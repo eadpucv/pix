@@ -10,7 +10,7 @@ active: index
                 <i class='icn icn-4x icn-user'></i>
                 <br>user actions
             </th>
-            <td><input type='text' tabindex='1' placeholder='type here user intent'></td>
+            <td><input type='text' tabindex='1' placeholder='type here...'></td>
             <td><input type='text' tabindex='4'></td>
             <td><input type='text' tabindex='7'></td>
             <td><input type='text' tabindex='10'></td>
@@ -21,7 +21,7 @@ active: index
                 <i class='icn icn-4x icn-dialogue'></i>
                 <br>interface
             </th>
-            <td><input type='text' tabindex='2' placeholder='type here what happens onstage'></td>
+            <td><input type='text' tabindex='2' placeholder='tab...'></td>
             <td><input type='text' tabindex='5'></td>
             <td><input type='text' tabindex='8'></td>
             <td><input type='text' tabindex='11'></td>
@@ -31,7 +31,7 @@ active: index
             <th><i class='icn icn-4x icn-gear'></i>
                 <br>service actions
             </th>
-            <td><input type='text' tabindex='3' placeholder='type here what happens under the hood'></td>
+            <td><input type='text' tabindex='3' placeholder='tab...'></td>
             <td><input type='text' tabindex='6'></td>
             <td><input type='text' tabindex='9'></td>
             <td><input type='text' tabindex='12'></td>
