@@ -1,6 +1,6 @@
 ---
 layout: base
-title: About
+title: PiX - Interaction Notation for UX Design
 active: index
 ---
 <div class='container'>
