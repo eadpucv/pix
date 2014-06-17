@@ -11,6 +11,7 @@
 
 @black:					rgb(3, 3, 3);
 @white:					rgb(255,255,255);
+@orange:				#e24414;
 @gray-darker:			lighten(#000, 13.5%); // #222
 @gray-dark:				lighten(#000, 20%);   // #333
 @gray:					lighten(#000, 33.5%); // #555
@@ -36,7 +37,7 @@
 // -------------------------
 
 @link-color:			@brand-primary;
-@link-hover-color:		darken(@link-color, 15%);
+@link-hover-color:		spin(saturate(@link-color, 20%), 19%);
 
 // Typography
 // -------------------------
@@ -89,7 +90,7 @@
 @line-height-small:              1.5;
 
 @border-radius-base:			4px;
-@border-radius-large:			6px;
+@border-radius-large:			12px;
 @border-radius-small:			3px;
 
 @radius:						@border-radius-base;
@@ -247,7 +248,7 @@
 // Number of columns in the grid system
 @grid-columns:              12;
 // Padding, to be divided by two and applied to the left and right of all columns
-@grid-gutter-width:         30px;
+@grid-gutter-width:         0;
 
 // Navbar collapse
 
@@ -321,7 +322,7 @@
 // Navs
 // -------------------------
 
-@nav-link-padding:                          10px 15px;
+@nav-link-padding:                          5px 15px 8px;
 @nav-link-hover-bg:                         @gray-lighter;
 
 @nav-disabled-link-color:                   @gray-light;
@@ -342,7 +343,7 @@
 @nav-tabs-justified-active-link-border-color:     @body-bg;
 
 // Pills
-@nav-pills-border-radius:                   @border-radius-base * 2;
+@nav-pills-border-radius:                   @border-radius-large;
 @nav-pills-active-link-hover-bg:            @component-active-bg;
 @nav-pills-active-link-hover-color:         @component-active-color;
 

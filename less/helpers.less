@@ -1,0 +1,42 @@
+.tleft{text-align: left}
+.tcenter{text-align: center}
+.tright{text-align: right}
+
+.inline{
+	display: inline-block;
+}
+.cf{
+	.clearfix;
+}
+
+input::-webkit-input-placeholder {
+	color: @input-color-placeholder;
+	font-weight: 100;
+}
+input::-moz-placeholder {
+	color: @input-color-placeholder;
+	font-weight: 100;
+}
+input:-moz-placeholder {   /* Older versions of Firefox */
+	color: @input-color-placeholder;
+	font-weight: 100;
+}
+input:-ms-input-placeholder { 
+	color: @input-color-placeholder;
+	font-weight: 100;
+}
+
+.orange{color: @orange}
+.white-bg{
+	background-color: @white;
+}
+.black-bg{
+	background-color: @black;
+}
+
+.box-shadow(...) {
+  @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
+  -webkit-box-shadow: @process;
+  -moz-box-shadow: @process;
+  box-shadow: @process;
+}
