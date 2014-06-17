@@ -1,38 +1,74 @@
 /* Scores */
+.page-header .nav-pills{
+	li{
+		top: 12px;
+		left: 4px;
+	}
+}
+
+.page-header .nav-pills > li > a,
+.page-header .nav-pills > li > a:active,
+.page-header .nav-pills > li > a:hover {
+    border-radius: 18px;
+	font-size: 20px;
+	font-weight: 100;
+	padding: 2px 11px 4px;
+	&.active{
+		background-color: @white;
+		border: 2px solid @orange;
+	}
+}
 
 
-table.score{
-	border-radius: 5px; 
-	&:hover{box-shadow: 0 0 2px @edit-color}
-	
-	tr{
-		&.bottom-solid{
-			border-bottom: 3px solid @black;
-		}
-		&.bottom-dotted{
-			border-bottom: 2px dotted @black;
-		}
-		
-		th,td{
-			height: 120px;
-			vertical-align: middle;
-			width: 120px;
-			padding: 20px;
-		}
+input.score-header{
+	margin: 12px 0;
+	color: @orange;
+	font-size: 22px;
+	padding: 4px;
+	line-height: 42px;
+	overflow: hidden;
+	width: auto;
+	border: none;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+	border-radius: @radius;
+	&:active,
+	&:focus,
+	&:hover{
+		box-shadow: 0 0 2px @edit-color inset;
+		background-color: fade(@edit-color, 30);
+	}
+}
 
-		th{
-			text-align: center;
-			font-weight: normal;
-			font-size: 12px;
-		}
+@border-width: 4px;
+@block-height: 120px;
 
-		td{
+.score{
+	margin-bottom: 32px;
+	.cf;
+	ul, ul li ul{
+		margin: 0;
+		padding: 0;
+		li{
+			list-style-type: none;
+			display: inline-block;
+		}
+	}
+	.col-sm-1{
+		.block{
+			height: @block-height;
+			padding: 0 12px;
+			.tcenter;
+			&.block-user{border-bottom: 1px dotted @black}
+			&.block-dialogue{border-bottom: 3px solid @black}
+			&.block-system{border-bottom: none}
 			input[type="text"]{
-				font-size: 18px;
+				font-size: 12px;
 				padding: 4px;
-				line-height: 42px;
+				//line-height: 42px;
+				margin: 20px 0 0 0;
 				overflow: hidden;
-				width: 80px;
+				width: 70px;
 				text-align: center;
 				border: none;
 				-moz-border-radius: @radius;
@@ -44,6 +80,18 @@ table.score{
 					box-shadow: 0 0 2px @edit-color inset;
 					background-color: fade(@edit-color, 30);
 				}
+			}
+		}
+		&.labels{
+			label{
+				line-height: 95%;
+				color: fade(@black, 50);
+			}
+		}
+		&.step{
+			border-radius: 18px;
+			&:hover{
+				outline: 1px dotted @orange;
 			}
 		}
 	}
