@@ -1,0 +1,24 @@
+{
+  "name": "type-cions",
+  "version": "0.0.1",
+  "homepage": "http://www.citisent.com",
+  "authors": [
+    "hspencer@ead.cl",
+    "roromt@gmail.com"
+  ],
+  "description": "partituras-o-matic",
+  "license": "None",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/_bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.2",
+    "font-awesome": "~4.0.3"
+  }
+}

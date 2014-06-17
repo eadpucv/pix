@@ -1,0 +1,23 @@
+{
+  "name": "PiX",
+  "version": "0.0.1",
+  "homepage": "http://www.ead.pucv.cl",
+  "authors": [
+    "hspencer@ead.cl",
+    "kexss@ead.cl"
+  ],
+  "description": "Interaction Scores Notation",
+  "license": "None",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/_bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.2"
+  }
+}

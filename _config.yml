@@ -1,0 +1,11 @@
+safe:			false
+source:			.
+destination:	_gh-pages
+lsi:			false
+markdown:		rdiscount
+pygments:		true
+permalink:		pretty
+baseurl: 		"http://hspencer.github.io/type-icons"
+exclude:		[bower_components, src]
+project:
+name: "Type Icons"

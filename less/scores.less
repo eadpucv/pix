@@ -1,0 +1,64 @@
+/* Scores */
+
+
+table.score{
+	border-radius: 5px; 
+	&:hover{box-shadow: 0 0 2px @edit-color}
+	
+	tr{
+		&.bottom-solid{
+			border-bottom: 3px solid @black;
+		}
+		&.bottom-dotted{
+			border-bottom: 2px dotted @black;
+		}
+		
+		th,td{
+			height: 120px;
+			vertical-align: middle;
+			width: 120px;
+			padding: 20px;
+		}
+
+		th{
+			text-align: center;
+			font-weight: normal;
+			font-size: 12px;
+		}
+
+		td{
+			input[type="text"]{
+				font-size: 18px;
+				padding: 4px;
+				line-height: 42px;
+				overflow: hidden;
+				width: 80px;
+				text-align: center;
+				border: none;
+				-moz-border-radius: @radius;
+				-webkit-border-radius: @radius;
+				border-radius: @radius;
+				&:active,
+				&:focus,
+				&:hover{
+					box-shadow: 0 0 2px @edit-color inset;
+					background-color: fade(@edit-color, 30);
+				}
+			}
+		}
+	}
+}
+
+footer{
+	background-color: @black;
+	color: @white;
+	font-size: 12px;
+	margin-top: 30px;
+	padding: 1em 0;
+	ul{
+		li{
+			list-style-type: none;
+			margin: 0 1em;
+		}
+	}
+}
