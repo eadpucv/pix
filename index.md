@@ -52,7 +52,8 @@ active: index
                     <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
                 </ul>
             </li>
-
         </ul>
     </div>
+
+    <button class='btn btn-primary'>Add other score</button>
 </div>

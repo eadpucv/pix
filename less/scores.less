@@ -58,6 +58,7 @@ input.score-header{
 		.block{
 			height: @block-height;
 			padding: 0 12px;
+			margin: 0;
 			.tcenter;
 			&.block-user{border-bottom: 1px dotted @black}
 			&.block-dialogue{border-bottom: 3px solid @black}
@@ -89,21 +90,22 @@ input.score-header{
 			}
 		}
 		&.step{
-			border-radius: 18px;
 			&:hover{
-				outline: 1px dotted @orange;
+
 			}
 		}
 	}
 }
 
 footer{
+	.cf;
 	background-color: @black;
 	color: @white;
 	font-size: 12px;
 	margin-top: 30px;
 	padding: 1em 0;
 	ul{
+		text-align: center;
 		li{
 			list-style-type: none;
 			margin: 0 1em;

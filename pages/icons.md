@@ -11,7 +11,7 @@ active: icons
 
 
     <div class='row'>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-user'></span><br><span class='tcenter'>user</span>
             </div>
@@ -21,7 +21,7 @@ active: icons
             </fieldset>
         </div>
 
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-think'></span><br><span class='tcenter'>think</span>
             </div>
@@ -30,7 +30,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe601;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-dialogue'></span><br><span class='tcenter'>dialogue</span>
             </div>
@@ -39,7 +39,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe602;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-talk'></span><br><span class='tcenter'>talk</span>
             </div>
@@ -51,7 +51,7 @@ active: icons
 
     </div>
     <div class='row'>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-tap'></span><br><span class='tcenter'>tap</span>
             </div>
@@ -60,7 +60,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe604;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-scroll'></span><br><span class='tcenter'>scroll</span>
             </div>
@@ -69,7 +69,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe605;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-tap-two'></span><br><span class='tcenter'>tap-two</span>
             </div>
@@ -78,7 +78,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe606;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-scroll-two'></span><br><span class='tcenter'>scroll-two</span>
             </div>
@@ -87,7 +87,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe607;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-slide'></span><br><span class='tcenter'>slide</span>
             </div>
@@ -96,7 +96,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe608;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-swipe-three'></span><br><span class='tcenter'>swipe-three</span>
             </div>
@@ -105,7 +105,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe609;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-swipe'></span><br><span class='tcenter'>swipe</span>
             </div>
@@ -114,7 +114,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe60a;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-pinch'></span><br><span class='tcenter'>pinch</span>
             </div>
@@ -123,7 +123,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe60b;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-pinchin'></span><br><span class='tcenter'>pinchin</span>
             </div>
@@ -132,7 +132,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe60c;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-rotate'></span><br><span class='tcenter'>rotate</span>
             </div>
@@ -141,7 +141,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe60d;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-hand'></span><br><span class='tcenter'>hand</span>
             </div>
@@ -150,7 +150,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe60e;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-collapse'></span><br><span class='tcenter'>collapse</span>
             </div>
@@ -162,7 +162,7 @@ active: icons
     </div>
 
     <div class='row'>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-mouse'></span><br><span class='tcenter'>mouse</span>
             </div>
@@ -171,7 +171,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe610;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-mouse-scroll'></span><br><span class='tcenter'>mouse-scroll</span>
             </div>
@@ -180,7 +180,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe611;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-mouse-drag'></span><br><span class='tcenter'>mouse-drag</span>
             </div>
@@ -189,7 +189,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe612;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-mouse-right'></span><br><span class='tcenter'>mouse-right</span>
             </div>
@@ -198,7 +198,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe613;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-mouse-left'></span><br><span class='tcenter'>mouse-left</span>
             </div>
@@ -207,7 +207,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe614;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-mouse-all'></span><br><span class='tcenter'>mouse-all</span>
             </div>
@@ -218,7 +218,7 @@ active: icons
         </div>
     </div>
     <div class='row'>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-keyboard'></span><br><span class='tcenter'>keyboard</span>
             </div>
@@ -227,7 +227,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe616;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-tab'></span><br><span class='tcenter'>tab</span>
             </div>
@@ -236,7 +236,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe617;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-enter'></span><br><span class='tcenter'>enter</span>
             </div>
@@ -247,7 +247,7 @@ active: icons
         </div>
     </div>
     <div class='row'>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-gear'></span><br><span class='tcenter'>gear</span>
             </div>
@@ -256,7 +256,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe619;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-loop'></span><br><span class='tcenter'>loop</span>
             </div>
@@ -265,7 +265,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe61a;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-upload'></span><br><span class='tcenter'>upload</span>
             </div>
@@ -274,7 +274,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe61b;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-download'></span><br><span class='tcenter'>download</span>
             </div>
@@ -285,7 +285,7 @@ active: icons
         </div>
     </div>
     <div class='row'>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-device-shake'></span><br><span class='tcenter'>device-shake</span>
             </div>
@@ -294,7 +294,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe61d;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-device-rotate'></span><br><span class='tcenter'>device-rotate</span>
             </div>
@@ -303,7 +303,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe61e;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-device-orient'></span><br><span class='tcenter'>device-orient</span>
             </div>
@@ -312,7 +312,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe61f;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-compass'></span><br><span class='tcenter'>compass</span>
             </div>
@@ -321,7 +321,7 @@ active: icons
                 <input type='text' class='form-control icn' maxlength='1' readonly value='&#xe620;'>
             </fieldset>
         </div>
-        <div class='col-sm-1'>
+        <div class='col-sm-1 tcenter'>
             <div>
                 <span class='icn icn-4x icn-position'></span><br><span class='tcenter'>position</span>
             </div>
