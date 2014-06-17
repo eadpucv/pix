@@ -5,7 +5,7 @@ lsi:			false
 markdown:		rdiscount
 pygments:		true
 permalink:		pretty
-baseurl: 		"http://ead.github.io/pix"
+baseurl: 		"http://eadpucv.github.io/pix/"
 exclude:		[bower_components, src]
 project:		PiX
 name: "Type Icons"
