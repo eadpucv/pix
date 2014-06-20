@@ -42,6 +42,18 @@ input.score-header{
 .score{
 	margin-bottom: 32px;
 	.cf;
+
+	.labels{
+		.tcenter;
+		label{
+			line-height: 95%;
+			color: fade(@black, 50);
+		}
+		.group .icn{
+			width: 100%;
+		}
+	}
+
 	ul, ul li ul{
 		margin: 0;
 		padding: 0;
@@ -49,48 +61,53 @@ input.score-header{
 			list-style-type: none;
 			display: inline-block;
 		}
-	}
-	.col-sm-1{
-		.block{
-			height: @block-height;
-			padding: 0 12px;
-			margin: 0;
-			.tcenter;
-			&.block-user{border-bottom: 1px dotted @black}
-			&.block-dialogue{border-bottom: 3px solid @black}
-			&.block-system{border-bottom: none}
-			input[type="text"]{
-				font-size: 12px;
-				padding: 4px;
-				//line-height: 42px;
-				margin: 20px 0 0 0;
-				overflow: hidden;
-				width: 70px;
-				text-align: center;
-				border: none;
-				-moz-border-radius: @radius;
-				-webkit-border-radius: @radius;
-				border-radius: @radius;
-				&:active,
-				&:focus,
-				&:hover{
-					box-shadow: 0 0 2px @edit-color inset;
-					background-color: fade(@edit-color, 30);
-				}
-			}
-		}
-		&.labels{
-			label{
-				line-height: 95%;
-				color: fade(@black, 50);
-			}
-		}
-		&.step{
-			&:hover{
+	}	
+	.block{
+		display: inline-block;
+		vertical-align: middle;
+		height: @block-height;
+		padding: 0 12px;
+		margin: 0;
+		width: 100%;
 
+		&.block-user{border-bottom: 1px dotted @black}
+		&.block-dialogue{border-bottom: 3px solid @black}
+		&.block-system{border-bottom: none}
+		
+		.group,
+		p{
+			.center-vertical;
+		}
+		p{
+			font-weight: 300;
+		}
+		input[type="text"]{
+			font-size: 12px;
+			padding: 4px;
+			//line-height: 42px;
+			margin: 20px 0 0 0;
+			overflow: hidden;
+			width: 70px;
+			text-align: center;
+			border: none;
+			-moz-border-radius: @radius;
+			-webkit-border-radius: @radius;
+			border-radius: @radius;
+			&:active,
+			&:focus,
+			&:hover{
+				box-shadow: 0 0 2px @edit-color inset;
+				background-color: fade(@edit-color, 30);
 			}
 		}
 	}
+
+	&.step{
+		&:hover{
+
+		}
+	}
+
 }
 
 footer{

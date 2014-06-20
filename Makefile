@@ -1,5 +1,6 @@
 
 .PHONY: less
+.PHONY: css
 
 install:
 	bower install
@@ -8,7 +9,7 @@ less:
 	lessc less/pix.less css/pix.css --clean-css
 	
 css:
-	less
+	lessc less/pix.less css/pix.css --clean-css
 
 server:
 	jekyll server --watch --baseurl= --trace
