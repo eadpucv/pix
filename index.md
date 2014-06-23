@@ -14,12 +14,12 @@ active: index
 
 <div class='score'>
     <ul class='labels col-xs-2'>
-        <li class='block block-user'><div class='group'><i class='icn icn-4x icn-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='group'><i class='icn icn-4x icn-dialogue'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='group'><i class='icn icn-4x icn-gear'></i><label>system response</label></div></li>
+        <li class='block block-user'><div class='icn-group'><i class='icn icn-4x icn-user'></i><label>user actions</label></div></li>
+        <li class='block block-dialogue'><div class='icn-group'><i class='icn icn-4x icn-dialogue'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='icn-group'><i class='icn icn-4x icn-gear'></i><label>system response</label></div></li>
     </ul>
-    <ul>
-        <li class='step col-xs-10'>
+    <ul class='step'>
+        <li class='col-xs-10'>
             <ul>
                 <li class='block block-user'><p>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>
                 <li class='block block-dialogue'><p>This is the interface dialogue layer that represents the concrete actions happening on the interface, the gestures, the direct manipulation or the direct onstage contact.</p></li>
@@ -30,84 +30,124 @@ active: index
 </div>
 
 <input class='score-header' placeholder='Name your score'>
+
 <div class='score'>
      <ul class='labels col-xs-1'>
-        <li class='block block-user'><div class='group'><i class='icn icn-4x icn-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='group'><i class='icn icn-4x icn-dialogue'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='group'><i class='icn icn-4x icn-gear'></i><label>system response</label></div></li>
+        <li class='block block-user'><div class='icn-group'><i class='icn icn-4x icn-user'></i><label>user actions</label></div></li>
+        <li class='block block-dialogue'><div class='icn-group'><i class='icn icn-4x icn-dialogue'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='icn-group'><i class='icn icn-4x icn-gear'></i><label>system response</label></div></li>
     </ul>
-    <ul>
-        <li class='step col-sm-1'>
+    <ul class='step'>
+        <li class='col-sm-1'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='1' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='2' placeholder='type here...'></li>
-                <li class='block block-system'><input type='text' tabindex='3' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <div class='icn-group'>
+                        <i class='icn icn-think'></i>
+                        <p>The user wants to do something</p>
+                    </div>
+                </li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <i class='icn icn-touch-1'></i>
+                        <p>press the button</p>
+                    </div>
+                </li>
+                <li class='block block-system'>
+                    <div class='icn-group'>
+                        <i class='icn icn-reload'></i>
+                        <p>The screen is updated</p>
+                    </div>
+                </li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='4' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='5' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-ok icn-stack-1x'></i>
+                            <i class='icn icn-think icn-stack-1x'></i>
+                        </div>
+                        <p>This is the same cloud with a stacked icon!</p>
+                    </div>
+                </li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-touch-1 icn-stack-1x'></i>
+                            <i class='icn icn-click icn-stack-1x'></i>
+                        </div>
+                        <p>This is an stacked icon!</p>
+                    </div>
+                </li>
                 <li class='block block-system'><input type='text' tabindex='6' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='7' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-question icn-stack-1x'></i>
+                            <i class='icn icn-think icn-stack-1x'></i>
+                        </div>
+                        <p>Yet this is another one</p>
+                    </div>
+                </li>
                 <li class='block block-dialogue'><input type='text' tabindex='8' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='9' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='10' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='11' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='12' placeholder='type here...'></li>
             </ul>
         </li>    
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='step col-sm-1'>
+        <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>

@@ -37,24 +37,59 @@ input.score-header{
 }
 
 @border-width: 4px;
+@border-color: fade(@black, 5);
 @block-height: 120px;
+@icn-size: 36px;
 
 .score{
 	margin: 10px -@border-width 32px -@border-width;
 	margin-bottom: 32px;
-	border: @border-width solid fade(@black, 5);
-	box-shadow: 0 0 2px fade(@black, 50%);
+	border: @border-width solid border-color;
+	box-shadow: 0 0 2px fade(@black, 30%);
 	border-radius: @border-width * 2;
+	
 	.cf;
 
-	.labels{
-		.tcenter;
-		label{
-			line-height: 95%;
-			color: fade(@black, 50);
+	ul{
+		&.labels{
+			background-color: @border-color;
+			box-shadow: -4px 0 5px fade(@black, 10) inset;
+			li .icn-group{
+				.tcenter;
+				font-weight: 600;
+				line-height: 110%;
+				.icn{
+					font-size: @icn-size;
+					color: fade(@black, 25%);
+				}
+			}
 		}
-		.group .icn{
-			width: 100%;
+
+		&.step{
+			font-weight: 300;
+			ul li.block .icn-group .icn,
+			ul li.block .icn-stack .ico-group .icn{
+				height: @icn-size + 2;
+				font-size: @icn-size;
+			}
+		}
+	}
+
+	.icn-group{
+		.center-vertical;
+		.icn-stack,
+		.icn{
+			display: block;
+			text-align: center;
+			margin: 0 auto;
+		}
+		p{
+			font-size: 11px;
+			line-height: 14px;
+			text-align: center;
+		}
+		.icn-stack{
+			.cf;
 		}
 	}
 
@@ -65,62 +100,48 @@ input.score-header{
 			list-style-type: none;
 			display: inline-block;
 		}
-	}	
-	.block{
-		display: inline-block;
-		vertical-align: middle;
-		height: @block-height;
-		padding: 0 12px;
-		margin: 0;
-		width: 100%;
-
-		&.block-user{border-bottom: 1px dotted @black}
-		&.block-dialogue{border-bottom: 3px solid @black}
-		&.block-system{border-bottom: none}
-		
-		.group,
-		p{
-			.center-vertical;
-		}
-		p{
-			font-weight: 300;
-		}
-		input[type="text"]{
-			font-size: 12px;
-			padding: 4px;
-			//line-height: 42px;
-			margin: 20px 0 0 0;
-			overflow: hidden;
-			width: 70px;
-			text-align: center;
-			border: none;
-			-moz-border-radius: @radius;
-			-webkit-border-radius: @radius;
-			border-radius: @radius;
-			&:active,
-			&:focus,
-			&:hover{
-				box-shadow: 0 0 2px @edit-color inset;
-				background-color: fade(@edit-color, 30);
-			}
-		}
 	}
+}
 
-	&.step{
+.block{
+	display: inline-block;
+	vertical-align: middle;
+	height: @block-height;
+	padding: 0 12px;
+	margin: 0;
+	width: 100%;
+
+	&.block-user{border-bottom: 1px dotted @black}
+	&.block-dialogue{border-bottom: 3px solid @black}
+	&.block-system{border-bottom: none}
+	
+
+	p{
+		font-weight: 300;
+	}
+	input[type="text"]{
+		font-size: 12px;
+		padding: 4px;
+		//line-height: 42px;
+		margin: 20px 0 0 0;
+		overflow: hidden;
+		width: 70px;
+		text-align: center;
+		border: none;
+		-moz-border-radius: @radius;
+		-webkit-border-radius: @radius;
+		border-radius: @radius;
+		&:active,
+		&:focus,
 		&:hover{
-
+			box-shadow: 0 0 2px @edit-color inset;
+			background-color: fade(@edit-color, 30);
 		}
 	}
 }
 
-.icn-group{
-	text-align: center;
-	font-size: 12px;
-	.icn{font-size: 32px}
-}
 
 footer{
-
 	color: @white;
 	font-size: 12px;
 	margin-top: 30px;
