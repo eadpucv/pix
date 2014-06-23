@@ -21,9 +21,9 @@ active: index
     <ul class='step'>
         <li class='col-xs-10'>
             <ul>
-                <li class='block block-user'><p>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>
-                <li class='block block-dialogue'><p>This is the interface dialogue layer that represents the concrete actions happening on the interface, the gestures, the direct manipulation or the direct onstage contact.</p></li>
-                <li class='block block-system'><p>This is the system layer, which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the user</p></li>
+                <li class='block block-user'><p class='center-vertical'>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>
+                <li class='block block-dialogue'><p class='center-vertical'>This is the interface dialogue layer that represents the concrete actions happening on the interface, the gestures, the direct manipulation or the direct onstage contact.</p></li>
+                <li class='block block-system'><p class='center-vertical'>This is the system layer, which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the user</p></li>
             </ul>
         </li>
     </ul>
@@ -94,42 +94,92 @@ active: index
                         <p>Yet this is another one</p>
                     </div>
                 </li>
-                <li class='block block-dialogue'><input type='text' tabindex='8' placeholder='type here...'></li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-mouse icn-stack-1x'></i>
+                            <i class='icn icn-mouse-left icn-stack-1x'></i>
+                            <i class='icn icn-arrows-all icn-stack-1x'></i>
+                        </div>
+                        <p>This one has three stacked icons!</p>
+                    </div>
+                </li>
                 <li class='block block-system'><input type='text' tabindex='9' placeholder='type here...'></li>
             </ul>
         </li>
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='10' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='11' placeholder='type here...'></li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-mouse icn-stack-1x'></i>
+                            <i class='icn icn-mouse-center icn-stack-1x'></i>
+                            <i class='icn icn-arrows-vertical icn-stack-1x'></i>
+                        </div>
+                        <p>This one has three stacked icons!</p>
+                    </div>
+                </li>
                 <li class='block block-system'><input type='text' tabindex='12' placeholder='type here...'></li>
             </ul>
         </li>    
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-touch-pinch icn-stack-1x'></i>
+                            <i class='icn icn-arrow-rotate icn-stack-1x'></i>
+                        </div>
+                        <p>rotate de picture</p>
+                    </div>
+                </li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-keyboard icn-stack-1x'></i>
+                            <i class='icn icn-arrows-keyboard icn-stack-1x'></i>
+                        </div>
+                        <p>use the arrow keys</p>
+                    </div>
+                </li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-touch-2 icn-stack-1x'></i>
+                            <i class='icn icn-arrow-right icn-stack-1x'></i>
+                        </div>
+                        <p>swipe to advance</p>
+                    </div>
+                </li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
+                <li class='block block-dialogue'>
+                    <div class='icn-group'>
+                        <div class='icn-stack'>
+                            <i class='icn icn-touch-2 icn-stack-1x'></i>
+                            <i class='icn icn-arrow-left icn-stack-1x'></i>
+                        </div>
+                        <p>Oooops!</p>
+                    </div>
+                </li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
