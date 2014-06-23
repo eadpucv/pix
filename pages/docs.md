@@ -6,28 +6,36 @@ active: docs
 
 Pix is designed to flow as you type in a natural and intuitive manner. For this reason we have created a hierarchical namimg schema for icons, from generic to specific.
 
-#### <i class='icn icn-2x color icn-user'></i> User Intent ####
+####<i class='icn icn-2x color icn-user'></i> User Intent####
 * create
-	* new
-	* clone
+	- new
+	- clone
 * read
 * search
 * filter
 * edit
 * share
 * delete
-	* all
 
-#### <i class='icn icn-2x color icn-dialogue'></i> Interface Dialogue ####
+####<i class='icn icn-2x color icn-dialogue'></i> Interface Dialogue####
+
+#####Navigate#####
 * scroll
 	* mouse
 	* touch
-			* two fingers
-        	* three fingers
-        	* four fingers
-        	* five fingers
-* slide
+		* two fingers
+		* three fingers
+		* four fingers
+* navigate
+	- next
+		+ touch
+	- previous
+		+ touch
 
+#####Manipulate#####
+* open
+* close
+	- touch
 * move
 	* resize
 * drag
@@ -41,6 +49,8 @@ Pix is designed to flow as you type in a natural and intuitive manner. For this 
 	* checkbox
 	* dropdown
 	* list
+
+#####Controls#####
 * input
 	* text
 	* voice
@@ -49,12 +59,17 @@ Pix is designed to flow as you type in a natural and intuitive manner. For this 
 	* sound
 	* location
 	* gesture
+	* value
+		- slider
+		- wheel
+
+#####Physical#####
 * device
 	* rotate
 	* orient
 	* orbit
 
-#### <i class='icn icn-2x color icn-gear'></i> System Response ####
+####<i class='icn icn-2x color icn-gear'></i> System Response####
 * update (refresh)
 	* data
 	* screen
