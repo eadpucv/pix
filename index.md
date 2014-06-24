@@ -14,9 +14,9 @@ active: index
 
 <div class='score'>
     <ul class='labels col-xs-2'>
-        <li class='block block-user'><div class='icn-group'><i class='icn icn-4x icn-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='icn-group'><i class='icn icn-4x icn-dialogue'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='icn-group'><i class='icn icn-4x icn-gear'></i><label>system response</label></div></li>
+        <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-dialogue'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear'></i><label>system response</label></div></li>
     </ul>
     <ul class='step'>
         <li class='col-xs-10'>
@@ -33,28 +33,28 @@ active: index
 
 <div class='score'>
      <ul class='labels col-xs-1'>
-        <li class='block block-user'><div class='icn-group'><i class='icn icn-4x icn-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='icn-group'><i class='icn icn-4x icn-dialogue'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='icn-group'><i class='icn icn-4x icn-gear'></i><label>system response</label></div></li>
+        <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-dialogue'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear'></i><label>system response</label></div></li>
     </ul>
     <ul class='step'>
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'>
-                    <div class='icn-group'>
-                        <i class='icn icn-think'></i>
+                    <div class='pix-group'>
+                        <i class='pix pix-think'></i>
                         <p>The user wants to do something</p>
                     </div>
                 </li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <i class='icn icn-touch-1'></i>
+                    <div class='pix-group'>
+                        <i class='pix pix-touch-1'></i>
                         <p>press the button</p>
                     </div>
                 </li>
                 <li class='block block-system'>
-                    <div class='icn-group'>
-                        <i class='icn icn-reload'></i>
+                    <div class='pix-group'>
+                        <i class='pix pix-reload'></i>
                         <p>The screen is updated</p>
                     </div>
                 </li>
@@ -63,19 +63,19 @@ active: index
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-ok icn-stack-1x'></i>
-                            <i class='icn icn-think icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-ok pix-stack-1x'></i>
+                            <i class='pix pix-think pix-stack-1x'></i>
                         </div>
                         <p>This is the same cloud with a stacked icon!</p>
                     </div>
                 </li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-touch-1 icn-stack-1x'></i>
-                            <i class='icn icn-click icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-touch-1 pix-stack-1x'></i>
+                            <i class='pix pix-click pix-stack-1x'></i>
                         </div>
                         <p>This is an stacked icon!</p>
                     </div>
@@ -86,20 +86,20 @@ active: index
         <li class='col-sm-1'>
             <ul>
                 <li class='block block-user'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-question icn-stack-1x'></i>
-                            <i class='icn icn-think icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-question pix-stack-1x'></i>
+                            <i class='pix pix-think pix-stack-1x'></i>
                         </div>
                         <p>Yet this is another one</p>
                     </div>
                 </li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-mouse icn-stack-1x'></i>
-                            <i class='icn icn-mouse-left icn-stack-1x'></i>
-                            <i class='icn icn-arrows-all icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-mouse pix-stack-1x'></i>
+                            <i class='pix pix-mouse-left pix-stack-1x'></i>
+                            <i class='pix pix-arrows-all pix-stack-1x'></i>
                         </div>
                         <p>This one has three stacked icons!</p>
                     </div>
@@ -111,11 +111,11 @@ active: index
             <ul>
                 <li class='block block-user'><input type='text' tabindex='10' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-mouse icn-stack-1x'></i>
-                            <i class='icn icn-mouse-center icn-stack-1x'></i>
-                            <i class='icn icn-arrows-vertical icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-mouse pix-stack-1x'></i>
+                            <i class='pix pix-mouse-center pix-stack-1x'></i>
+                            <i class='pix pix-arrows-vertical pix-stack-1x'></i>
                         </div>
                         <p>This one has three stacked icons!</p>
                     </div>
@@ -127,10 +127,10 @@ active: index
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-touch-pinch icn-stack-1x'></i>
-                            <i class='icn icn-arrow-rotate icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-touch-pinch pix-stack-1x'></i>
+                            <i class='pix pix-arrow-rotate pix-stack-1x'></i>
                         </div>
                         <p>rotate de picture</p>
                     </div>
@@ -142,10 +142,10 @@ active: index
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-keyboard icn-stack-1x'></i>
-                            <i class='icn icn-arrows-keyboard icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-keyboard pix-stack-1x'></i>
+                            <i class='pix pix-arrows-keyboard pix-stack-1x'></i>
                         </div>
                         <p>use the arrow keys</p>
                     </div>
@@ -157,10 +157,10 @@ active: index
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-touch-2 icn-stack-1x'></i>
-                            <i class='icn icn-arrow-right icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-touch-2 pix-stack-1x'></i>
+                            <i class='pix pix-arrow-right pix-stack-1x'></i>
                         </div>
                         <p>swipe to advance</p>
                     </div>
@@ -172,10 +172,10 @@ active: index
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
-                    <div class='icn-group'>
-                        <div class='icn-stack'>
-                            <i class='icn icn-touch-2 icn-stack-1x'></i>
-                            <i class='icn icn-arrow-left icn-stack-1x'></i>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-touch-2 pix-stack-1x'></i>
+                            <i class='pix pix-arrow-left pix-stack-1x'></i>
                         </div>
                         <p>Oooops!</p>
                     </div>

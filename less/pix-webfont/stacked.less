@@ -4,18 +4,27 @@
 .@{css-prefix}-stack {
   position: relative;
   display: inline-block;
-  width: 32px; //2em;
+  width: 38px; //2em;
   height: 38px; //2em;
   line-height: 40px; //2em;
   vertical-align: middle;
+
+  /*
+  &.@{css-prefix}-stack-lg{
+    width: 50px;
+  }
+  */
 }
 .@{css-prefix}-stack-1x, 
-.@{css-prefix}-stack-2x {
+.@{css-prefix}-stack-2x,
+.@{css-prefix}-stack-3x {
   position: absolute;
   left: 0;
   width: 100%;
   text-align: center;
 }
+
 .@{css-prefix}-stack-1x { line-height: inherit; }
 .@{css-prefix}-stack-2x { font-size: 2em; }
+.@{css-prefix}-stack-3x { font-size: 3em; }
 .@{css-prefix}-inverse { color: @inverse; }

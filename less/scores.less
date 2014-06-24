@@ -39,7 +39,7 @@ input.score-header{
 @border-width: 4px;
 @border-color: fade(@black, 5);
 @block-height: 120px;
-@icn-size: 36px;
+@pix-size: 36px;
 
 .score{
 	margin: 10px -@border-width 32px -@border-width;
@@ -52,12 +52,12 @@ input.score-header{
 		&.labels{
 			background-color: @border-color;
 
-			li .icn-group{
+			li .pix-group{
 				.tcenter;
 				font-weight: 600;
 				line-height: 110%;
-				.icn{
-					font-size: @icn-size;
+				.pix{
+					font-size: @pix-size;
 					color: fade(@black, 25%);
 				}
 			}
@@ -65,18 +65,18 @@ input.score-header{
 
 		&.step{
 			font-weight: 300;
-			ul li.block .icn-group .icn,
-			ul li.block .icn-stack .ico-group .icn{
-				height: @icn-size + 2;
-				font-size: @icn-size;
+			ul li.block .pix-group .pix,
+			ul li.block .pix-stack .ico-group .pix{
+				height: @pix-size + 2;
+				font-size: @pix-size;
 			}
 		}
 	}
 
-	.icn-group{
+	.pix-group{
 		.center-vertical;
-		.icn-stack,
-		.icn{
+		.pix-stack,
+		.pix{
 			display: block;
 			text-align: center;
 			margin: 0 auto;
@@ -86,7 +86,7 @@ input.score-header{
 			line-height: 14px;
 			text-align: center;
 		}
-		.icn-stack{
+		.pix-stack{
 			.cf;
 		}
 	}
@@ -138,6 +138,14 @@ input.score-header{
 	}
 }
 
+ul.docs{
+	li{
+		list-style: none;
+		ul li{
+			list-style: none;
+		}
+	}
+}
 
 footer{
 	color: @white;

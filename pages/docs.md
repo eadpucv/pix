@@ -4,20 +4,55 @@ title: PiX - Documentation
 active: docs
 ---
 
-Pix is designed to flow as you type in a natural and intuitive manner. For this reason we have created a hierarchical namimg schema for icons, from generic to specific.
+<p>Pix is designed to flow as you type in a natural and intuitive manner. For this reason we have created a hierarchical namimg schema for icons, from generic to specific. This syntax hierarchy serves as a way to combiane icons by stacking them the same way language works combining words and changing the meaning of the whole chain.</p>
 
-####<i class='icn icn-2x color icn-user'></i> User Intent####
-* create
-	- new
-	- clone
-* read
-* search
-* filter
-* edit
-* share
-* delete
 
-####<i class='icn icn-2x color icn-dialogue'></i> Interface Dialogue####
+<h3><i class='pix pix-2x black pix-user'></i> User Intent</h3>
+
+<table class='table table-bordered'>
+	<tr>
+		<thead>
+			<th>
+				1<sup>st</sup> order container: verb, action representing user intent
+			</th>
+			<th>
+				2<sup>nd</sup> order element: generic object or construct
+			</th>
+			<th>
+				3<sup>rd</sup> order complement: state or quality (rare)
+			</th>
+		</thead>
+	</tr>
+	<tr>
+		<td>think, say, do, feel</td>
+		<td>task, object, idea, question, text, picture, sound, location, voice, video</td>
+		<td>complete, incomplete</td>
+	</tr>
+</table>
+
+<ul class='docs'>
+	<li><i class='pix pix-3x pix-think'></i> pix-think
+		<ul>
+			<li>{% include stack2.html pix1="think" pix2="idea" %} pix-think-idea</li>
+			<li>{% include stack2.html pix1="think" pix2="list" %} pix-think-task</li>
+			<li>{% include stack2.html pix1="think" pix2="question" %} pix-think-question</li>
+			<li>{% include stack2.html pix1="think" pix2="ok" %} pix-think-ok, pix-think-complete</li>
+		</ul>
+	</li>
+</ul>
+- <i class='pix pix-3x pix-think'></i> pix-think
+	- {% include stack2.html pix1="think" pix2="idea" %} pix-think-idea
+	- {% include stack2.html pix1="think" pix2="list" %} pix-think-task
+	- {% include stack2.html pix1="think" pix2="question" %} pix-think-question
+	- {% include stack2.html pix1="think" pix2="ok" %} pix-think-ok, pix-think-complete
+- read
+- search
+- filter
+- edit
+- share
+- delete
+
+####<i class='pix pix-2x black pix-dialogue'></i> Interface Dialogue####
 
 #####Navigate#####
 * scroll
@@ -69,7 +104,7 @@ Pix is designed to flow as you type in a natural and intuitive manner. For this 
 	* orient
 	* orbit
 
-####<i class='icn icn-2x color icn-gear'></i> System Response####
+####<i class='pix pix-2x black pix-gear'></i> System Response####
 * update (refresh)
 	* data
 	* screen
@@ -84,3 +119,4 @@ Pix is designed to flow as you type in a natural and intuitive manner. For this 
 * communicate
 	* send
 	* receive
+</div>
