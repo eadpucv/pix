@@ -18,14 +18,35 @@ active: index
             <h3>¿Por Qué?</h3>
             <p>Necesitamos un entregable que permita encapsular el flujo de interacción, la cualidad y calidad de la experiencia que proponemos al usuario, a nuestros colegas y a nuestros clientes. </p>
 
-            <p>La gran mayoría de los documentos que entregamos a nuestros clientes y colegas son imágenes estáticas del flujo de experiencia, y esperamos que ellos lo imaginen en su cabeza. Normalmente se requeriere de otras explicaciones —videos, infografías, personas y escenarios, etc— para dar la idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>incolucra el flujo del tiempo</strong> pero También necesitamos un entregable que pueda ser leído por todos los miembros del equipo y que permita tomar decisiones sobre él, que pueda ser comprendido tanto por los gerentes, la gente de estrategia y de marketing como por las personas de operaciones, de servicio al cliente y de desarrollo.</p>
+            <p>La gran mayoría de los documentos que entregamos son imágenes estáticas del flujo de experiencia, y esperamos que ellos lo imaginen en su cabeza. Normalmente se requeriere de otras explicaciones —videos, infografías, personas y escenarios, etc— para dar la idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>incolucra el flujo del tiempo</strong> pero carecemos de un lenguaje que permita representarlo de forma adecuada y legible para todas las disciplinas involucradas en el proyecto.</p>
         </div>
     </div>
 </div>
 
-<h3>How it Works</h3>
-
-<p>The score is divided into three main layers:</p>
+<div class='row'>
+    <div lang='en' class='col-sm-6'>
+        <div class='inner left'>
+            <h3>How it works</h3>
+            <p>The score is divided into three layers:</p>
+            <ol>
+                <li>The user layer</li>
+                <li>The interaction layer</li>
+                <li>The service layer</li>
+            </ol>
+        </div>
+    </div>
+    <div lang='es' class='col-sm-6'>
+        <div class='inner right'>
+            <h3>Cómo funciona</h3>
+            <p>La partitura está dividida en tres capas:</p>
+            <ol>
+                <li>La capa del usuario</li>
+                <li>La capa de la interacción</li>
+                <li>La capa del servicio</li>
+            </ol>
+        </div>
+    </div>
+</div>
 
 <div class='score'>
     <ul class='labels col-xs-2'>
