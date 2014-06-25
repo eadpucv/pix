@@ -17,7 +17,7 @@ active: icons
 
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-pix"></i>
                 pix              
@@ -25,7 +25,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-grid"></i>
                 grid
@@ -36,7 +36,7 @@ active: icons
 
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-user"></i>
                 user
@@ -44,7 +44,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-user-happy"></i>
                 user-happy
@@ -52,7 +52,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-user-mad"></i>
                 user-mad
@@ -60,7 +60,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-user-sad"></i>
                 user-sad
@@ -68,7 +68,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-user-confused"></i>
                 user-confused
@@ -76,7 +76,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-user-surprised"></i>
                 user-surprised
@@ -84,7 +84,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-user-smile"></i>
                 user-smile
@@ -94,7 +94,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-think"></i>
                 think
@@ -102,7 +102,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-ok"></i>
                 ok
@@ -110,7 +110,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-share"></i>
                 share
@@ -118,7 +118,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-list"></i>
                 list
@@ -126,7 +126,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-question"></i>
                 question
@@ -134,7 +134,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-idea"></i>
                 idea
@@ -144,7 +144,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrow-down"></i>
                 arrow-down
@@ -152,7 +152,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrow-left"></i>
                 arrow-left
@@ -160,7 +160,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrow-right"></i>
                 arrow-right
@@ -168,7 +168,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrow-up"></i>
                 arrow-up
@@ -176,7 +176,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrows-vertical"></i>
                 arrows-vertical
@@ -184,7 +184,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrows-horizontal"></i>
                 arrows-horizontal
@@ -192,7 +192,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrows-diagonal"></i>
                 arrows-diagonal
@@ -200,7 +200,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrow-rotate"></i>
                 arrows-rotate
@@ -208,7 +208,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrows-all"></i>
                 arrows-all
@@ -216,7 +216,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrows-collapse"></i>
                 arrows-collapse
@@ -224,7 +224,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-click"></i>
                 click
@@ -234,7 +234,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-enter"></i>
                 enter
@@ -242,7 +242,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-arrows-keyboard"></i>
                 arrows-keyboard
@@ -250,7 +250,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-tab"></i>
                 tab
@@ -258,7 +258,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-type"></i>
                 type
@@ -268,7 +268,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-mouse-center"></i>
                 mouse-center
@@ -276,7 +276,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-mouse-left"></i>
                 mouse-left
@@ -284,7 +284,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-mouse-right"></i>
                 mouse-right
@@ -294,7 +294,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-voice"></i>
                 voice
@@ -302,7 +302,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-dialogue"></i>
                 dialogue
@@ -312,7 +312,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-mouse"></i>
                 mouse
@@ -320,7 +320,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-keyboard"></i>
                 keyboard
@@ -328,7 +328,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-1"></i>
                 touch-1
@@ -336,7 +336,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-2"></i>
                 touch-2
@@ -344,7 +344,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-3"></i>
                 touch-3
@@ -352,7 +352,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-4"></i>
                 touch-4
@@ -360,7 +360,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-5"></i>
                 touch-5
@@ -368,7 +368,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-5-expanded"></i>
                 touch-5-expanded
@@ -376,7 +376,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-alt"></i>
                 touch-alt
@@ -384,7 +384,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-touch-pinch"></i>
                 touch-pinch
@@ -392,7 +392,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-thumb"></i>
                 thumb
@@ -402,7 +402,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-device-rotate"></i>
                 device-rotate
@@ -410,7 +410,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-device-shake"></i>
                 device-shake
@@ -418,7 +418,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-device-orient"></i>
                 device-orient
@@ -428,7 +428,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-overlay-checkbox"></i>
                 overlay-checkbox
@@ -436,7 +436,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-overlay-delete"></i>
                 overlay-delete
@@ -444,7 +444,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-overlay-ok"></i>
                 overlay-ok
@@ -452,7 +452,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-overlay-radio"></i>
                 overlay-radio
@@ -460,7 +460,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-overlay-list"></i>
                 overlay-list
@@ -468,7 +468,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-overlay-switch"></i>
                 overlay-switch
@@ -478,7 +478,7 @@ active: icons
 </div>
 <div class="row">
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-position"></i>
                 position
@@ -486,7 +486,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-upload"></i>
                 upload
@@ -494,7 +494,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-gear"></i>
                 gear
@@ -502,7 +502,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-reload"></i>
                 reload
@@ -510,7 +510,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-process"></i>
                 process
@@ -518,7 +518,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-download"></i>
                 download
@@ -526,7 +526,7 @@ active: icons
         </div>
     </div>
     <div class="col-sm-1">
-        <div class="inner">
+        <div class="inner icon-docs">
             <div class='group tcenter'>
                 <i class="pix pix-3x pix-compass"></i>
                 compass
