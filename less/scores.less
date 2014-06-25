@@ -15,8 +15,13 @@ p.lead{font-weight: 300}
 	padding: 2px 11px 4px;
 }
 
+div[lang='en']{
+	h1,h2,h3,h4,h5,h6{color: @brand-primary !important}
+	p{color: darken(@brand-info, 25) !important}
+}
 div[lang='es']{
-	h3{color: @brand-info !important}
+	h1,h2,h3,h4,h5,h6{color: @brand-info !important}
+	p{color: darken(@brand-primary, 15)  !important}
 }
 
 input.score-header{
