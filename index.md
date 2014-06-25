@@ -10,7 +10,7 @@ active: index
             <h3>Why?</h3>
             <p>We need a design deliverable that can encapsule the flow of interaction, the quality of the experience we're proposing to the user, to our teamembers and to the business.</p>
             
-            <p>Most of the documents we hand out to our colleagues and clients represent snapshots of the experience flow, and we expect them to imagin the rest, to connect the dots. heads with the user of their imagination. It usually requires other material explanations —such as customer journeys, video sketches with personas, scenarios and the line— to give the idea of what we really want to be happening with our design. This is mainly because our design <strong>encompasses the flow of time</strong> but we lack the language to represent it properly and across all disciplines involved in the project.</p>
+            <p>Most of the documents we hand out to our colleagues and clients represent snapshots of the experience flow, and we expect them to imagine the rest, to connect the dots with their imagination. It usually requires other material explanations —such as customer journeys, video sketches with personas, scenarios and the line— to give the idea of what we really want to be happening with our design. This is mainly because our design <strong>encompasses the flow of time</strong> but we lack the language to represent it properly and across all disciplines involved in the project.</p>
         </div>
     </div>
     <div lang='es' class='col-sm-6'>
