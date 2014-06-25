@@ -57,9 +57,9 @@ active: index
     <ul>
         <li class='col-xs-10'>
             <ul>
-                <li class='block block-user'><p class='center-vertical'>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>
-                <li class='block block-dialogue'><p class='center-vertical'>This is the interface dialogue layer that represents the concrete actions happening on the interface, the gestures, the direct manipulation or the direct onstage contact.</p></li>
-                <li class='block block-system'><p class='center-vertical'>This is the system layer, which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the user</p></li>
+                <li class='block block-user'><p class='score-text'>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>
+                <li class='block block-dialogue'><p class='score-text'>This is the interface dialogue layer that represents the concrete actions happening on the interface, the gestures, the direct manipulation or the direct onstage contact.</p></li>
+                <li class='block block-system'><p class='score-text'>This is the system layer, which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the user</p></li>
             </ul>
         </li>
     </ul>

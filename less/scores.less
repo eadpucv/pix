@@ -88,7 +88,10 @@ input.score-header{
 	}
 
 	.pix-group{
-		.center-vertical;
+		display: table-cell;
+		height: @block-height;
+		width: 200px; // something more than it really has, just to center it
+		vertical-align: middle;
 		.pix-stack,
 		.pix{
 			display: block;
@@ -116,7 +119,8 @@ input.score-header{
 }
 
 .block{
-	display: inline-block;
+	display: table;
+	text-align: center;
 	vertical-align: middle;
 	height: @block-height;
 	padding: 0 12px;
