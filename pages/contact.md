@@ -6,8 +6,25 @@ active: contact
 
 <div class='row'>
 	<div class='col-sm-6'>
-		<h3>Drop us a line</h3>
-		<p>Feel free to write us and share your thought on this tool.</p>
+		<h3>Contact Information</h3>
+
+		<address>
+			<strong><span class='orange'>.:TIG:.</span> Taller de Investigaciones Gráficas</strong>
+			<a href='http://www.ead.pucv.cl'>e[ad] Escuela de Arquitectura y Diseño PUCV</a>
+
+			Matta 12, Recreo
+			Viña del Mar, Chile
+			Postal Code: 2580129
+			+56 32 2274401
+			PO Box: 4170 V2 Valparaíso
+
+			<strong>Katherine Exss</strong>
+			kexss[at]ead.cl
+
+			<strong>Herbert Spencer</strong>
+			hspencer[at]ead.cl
+		</address>
+
 	</div>
 	<div class='col-sm-6'>
 		<form name='contact' action="http://getsimpleform.com/messages?form_api_token=a7bacae78284faac22747762aefba2c0" method="post">

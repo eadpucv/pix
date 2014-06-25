@@ -10,10 +10,15 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+@half-gutter: .5em;
+
 .inner{
 	display: block;
 	width: 100%;
-	padding: 0 .5em;
+	padding: 0 @half-gutter;
+	&.right{padding: 0 0 0 @half-gutter}
+	&.left{padding: 0 @half-gutter 0 0}
 }
 
 // Colors

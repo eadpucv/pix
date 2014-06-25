@@ -1,20 +1,23 @@
 /* Scores */
-.page-header .nav-pills{
-	li{
-		top: 12px;
-		left: 4px;
-	}
+.brand{
+	font-size: 2.5em;
+	color: @black;
+	font-weight: 900;
 }
+p.lead{font-weight: 300}
 
 .page-header .nav-pills > li > a,
 .page-header .nav-pills > li > a:active,
 .page-header .nav-pills > li > a:hover {
     border-radius: 18px;
 	font-size: 20px;
-	font-weight: 100;
+	font-weight: 300;
 	padding: 2px 11px 4px;
 }
 
+div[lang='es']{
+	h3{color: @brand-info !important}
+}
 
 input.score-header{
 	margin: 12px 0;
@@ -55,11 +58,10 @@ input.score-header{
 			li .pix-group{
 				.tcenter;
 				font-weight: 600;
-				line-height: 110%;
-				.pix{
-					font-size: @pix-size;
-					color: fade(@black, 25%);
-				}
+				line-height: 1em;
+				color: fade(@black, 30%);
+				.pix{font-size: @pix-size}
+				label{font-size: .8em}
 			}
 		}
 
@@ -113,10 +115,6 @@ input.score-header{
 	&.block-dialogue{border-bottom: 3px solid @black}
 	&.block-system{border-bottom: none}
 	
-
-	p{
-		font-weight: 300;
-	}
 	input[type="text"]{
 		font-size: 12px;
 		padding: 4px;
@@ -159,4 +157,9 @@ footer{
 			list-style-type: none;
 		}
 	}
+}
+
+address{
+	white-space: pre;
+	
 }

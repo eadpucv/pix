@@ -4,9 +4,20 @@ title: PiX - Interaction Notation for UX Design
 active: index
 ---
 
-<h3>Why?</h3>
-
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+<div class='row'>
+    <div lang='en' class='col-sm-6'>
+        <div class='inner left'>
+            <h3>Why?</h3>
+            <p>We need a design deliverable that can encapsule the flow of interaction, the quality of the experience we're proposing to the user and to the business. Most of what we hand out to our colleagues is static and usually requires further explanations —such as stories or scenarios— to give the idea of what we want to be really happening. We also need a deliverable that can be read and agreed upon by every team member, from managers, business strategists and marketing people to business operations, customer support and development.</p>
+        </div>
+    </div>
+    <div lang='es' class='col-sm-6'>
+        <div class='inner right'>
+            <h3>¿Por Qué?</h3>
+            <p>Necesitamos un entregable que permita encapsular el flojo de interacción en términos de la calidad de la experiencia que proponemos, tanto para el usuario final como para el cliente. La gran mayoría de los artefactos con los que actualmente comunicamos nuestro trabajo son estáticos y suelen requerir más explicaciones —usualmente en forma de historias o escenarios— para dar la idea de lo que realmente queremos que ocurra. También necesitamos un entregable que pueda ser leído por todos los miembros del equipo y que permita tomar decisiones sobre él, que pueda ser comprendido tanto por los gerentes, la gente de estrategia y de marketing como por las personas de operaciones, de servicio al cliente y de desarrollo.</p>
+        </div>
+    </div>
+</div>
 
 <h3>How it Works</h3>
 
@@ -18,7 +29,7 @@ active: index
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-dialogue'></i><label>dialogues</label></div></li>
         <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear'></i><label>system response</label></div></li>
     </ul>
-    <ul class='step'>
+    <ul>
         <li class='col-xs-10'>
             <ul>
                 <li class='block block-user'><p class='center-vertical'>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>

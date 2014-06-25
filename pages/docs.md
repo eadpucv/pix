@@ -40,17 +40,6 @@ active: docs
 		</ul>
 	</li>
 </ul>
-- <i class='pix pix-3x pix-think'></i> pix-think
-	- {% include stack2.html pix1="think" pix2="idea" %} pix-think-idea
-	- {% include stack2.html pix1="think" pix2="list" %} pix-think-task
-	- {% include stack2.html pix1="think" pix2="question" %} pix-think-question
-	- {% include stack2.html pix1="think" pix2="ok" %} pix-think-ok, pix-think-complete
-- read
-- search
-- filter
-- edit
-- share
-- delete
 
 ####<i class='pix pix-2x black pix-dialogue'></i> Interface Dialogue####
 
