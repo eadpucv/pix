@@ -21,11 +21,11 @@
 // Brand colors
 // -------------------------
 
-@brand-primary:			#bc5f3e; //#428bca;
-@brand-success:			#5cb85c;
-@brand-warning:			#f0ad4e;
-@brand-danger:			#d9534f;
-@brand-info:			#5bc0de;
+@brand-primary:			#d95021;
+@brand-success:			#86b853;
+@brand-warning:			#f0b428;
+@brand-danger:			#cc7161;
+@brand-info:			#4bc0de;
 
 // Scaffolding
 // -------------------------
@@ -42,31 +42,32 @@
 // Typography
 // -------------------------
 
+@import url(http://fonts.googleapis.com/css?family=Lato:400,100,300,700,900);
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
 
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-sans-serif:  Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-serif:       "Roboto Slab", Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-serif;
+@font-family-base:        @font-family-sans-serif;
 
-@font-size-base:          14px;
-@font-size-large:         ceil(@font-size-base * 1.25); // ~18px
-@font-size-small:         ceil(@font-size-base * 0.85); // ~12px
+@font-size-base:          16px;
+@font-size-large:         ceil(@font-size-base * 1.25); 
+@font-size-small:         ceil(@font-size-base * 0.85); 
 
-@font-size-h1:            floor(@font-size-base * 2.6); // ~36px
-@font-size-h2:            floor(@font-size-base * 2.15); // ~30px
-@font-size-h3:            ceil(@font-size-base * 1.7); // ~24px
-@font-size-h4:            ceil(@font-size-base * 1.25); // ~18px
-@font-size-h5:            @font-size-base;
-@font-size-h6:            ceil(@font-size-base * 0.85); // ~12px
+@font-size-h1:            floor(@font-size-base * 1.6); 
+@font-size-h2:            floor(@font-size-base * 1.4); 
+@font-size-h3:            ceil(@font-size-base * 1.2); 
+@font-size-h4:            @font-size-base;
+@font-size-h5:            floor(@font-size-base * .9);
+@font-size-h6:            ceil(@font-size-base * .8); 
 
 @line-height-base:        1.428571429; // 20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
 
-@headings-font-family:    @font-family-base;
-@headings-font-weight:    500;
+@headings-font-family:    @font-family-serif;
+@headings-font-weight:    700;
 @headings-line-height:    1.1;
-@headings-color:          inherit;
+@headings-color:          @brand-primary;
 
 
 

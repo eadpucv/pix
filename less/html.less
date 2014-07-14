@@ -1,0 +1,58 @@
+.brand{
+	font-size: 2.5em;
+	a{
+		color: @black;
+		font-weight: 900;
+		&:hover{
+			text-decoration: none;
+			color: @orange;
+		}
+	}
+}
+
+p.lead{font-weight: 300}
+
+.page-header .nav-pills > li > a,
+.page-header .nav-pills > li > a:active,
+.page-header .nav-pills > li > a:hover {
+    border-radius: 18px;
+	font-size: 20px;
+	font-weight: 300;
+	padding: 2px 11px 4px;
+}
+
+div[lang='en']{
+	h1,h2,h3,h4,h5,h6{color: @brand-primary !important}
+	p, li{color: darken(@brand-info, 25) !important}
+}
+div[lang='es']{
+	h1,h2,h3,h4,h5,h6{color: @brand-info !important}
+	p, li{color: darken(@brand-primary, 15)  !important}
+}
+
+ul.docs{
+	li{
+		list-style: none;
+		ul li{
+			list-style: none;
+		}
+	}
+}
+
+footer{
+	color: @white;
+	font-size: 12px;
+	margin-top: 30px;
+	padding: 1em 0;
+	ul{
+		margin: 0;
+		padding: 0;
+		li{
+			list-style-type: none;
+		}
+	}
+}
+
+address{
+	white-space: pre;
+}

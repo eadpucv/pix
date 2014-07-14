@@ -1,24 +1,4 @@
 /* Scores */
-.page-header .nav-pills{
-	li{
-		top: 12px;
-		left: 4px;
-	}
-}
-
-.page-header .nav-pills > li > a,
-.page-header .nav-pills > li > a:active,
-.page-header .nav-pills > li > a:hover {
-    border-radius: 18px;
-	font-size: 20px;
-	font-weight: 100;
-	padding: 2px 11px 4px;
-	&.active{
-		background-color: @white;
-		border: 2px solid @orange;
-	}
-}
-
 
 input.score-header{
 	margin: 12px 0;
@@ -41,11 +21,62 @@ input.score-header{
 }
 
 @border-width: 4px;
+@border-color: fade(@black, 5);
 @block-height: 120px;
+@pix-size: 36px;
 
 .score{
+	margin: 10px -@border-width 32px -@border-width;
 	margin-bottom: 32px;
+	border: @border-width solid @border-color;
+	border-radius: @border-width * 2;
 	.cf;
+
+	ul{
+		&.labels{
+			background-color: @border-color;
+
+			li .pix-group{
+				.tcenter;
+				font-weight: 600;
+				line-height: 1em;
+				color: fade(@black, 30%);
+				.pix{font-size: @pix-size}
+				label{font-size: .8em}
+			}
+		}
+
+		&.step{
+			font-weight: 300;
+			ul li.block .pix-group .pix,
+			ul li.block .pix-stack .ico-group .pix{
+				height: @pix-size + 2;
+				font-size: @pix-size;
+			}
+		}
+	}
+
+	.pix-group{
+		display: table-cell;
+		height: @block-height;
+		width: 200px; // something more than it really has, just to center it
+		vertical-align: middle;
+		.pix-stack,
+		.pix{
+			display: block;
+			text-align: center;
+			margin: 0 auto;
+		}
+		p{
+			font-size: 11px;
+			line-height: 14px;
+			text-align: center;
+		}
+		.pix-stack{
+			.cf;
+		}
+	}
+
 	ul, ul li ul{
 		margin: 0;
 		padding: 0;
@@ -54,59 +85,62 @@ input.score-header{
 			display: inline-block;
 		}
 	}
-	.col-sm-1{
-		.block{
-			height: @block-height;
-			padding: 0 12px;
-			.tcenter;
-			&.block-user{border-bottom: 1px dotted @black}
-			&.block-dialogue{border-bottom: 3px solid @black}
-			&.block-system{border-bottom: none}
-			input[type="text"]{
-				font-size: 12px;
-				padding: 4px;
-				//line-height: 42px;
-				margin: 20px 0 0 0;
-				overflow: hidden;
-				width: 70px;
-				text-align: center;
-				border: none;
-				-moz-border-radius: @radius;
-				-webkit-border-radius: @radius;
-				border-radius: @radius;
-				&:active,
-				&:focus,
-				&:hover{
-					box-shadow: 0 0 2px @edit-color inset;
-					background-color: fade(@edit-color, 30);
-				}
-			}
-		}
-		&.labels{
-			label{
-				line-height: 95%;
-				color: fade(@black, 50);
-			}
-		}
-		&.step{
-			border-radius: 18px;
-			&:hover{
-				outline: 1px dotted @orange;
-			}
+}
+
+.block{
+	display: table;
+	text-align: center;
+	vertical-align: middle;
+	height: @block-height;
+	padding: 0 12px;
+	margin: 0;
+	width: 100%;
+
+	&.block-user{border-bottom: 1px dotted @black}
+	&.block-dialogue{border-bottom: 3px solid @black}
+	&.block-system{border-bottom: none}
+	
+	input[type="text"]{
+		font-size: 12px;
+		padding: 4px;
+		//line-height: 42px;
+		margin: 20px 0 0 0;
+		overflow: hidden;
+		width: 70px;
+		text-align: center;
+		border: none;
+		-moz-border-radius: @radius;
+		-webkit-border-radius: @radius;
+		border-radius: @radius;
+		&:active,
+		&:focus,
+		&:hover{
+			box-shadow: 0 0 2px @edit-color inset;
+			background-color: fade(@edit-color, 30);
 		}
 	}
 }
 
-footer{
-	background-color: @black;
-	color: @white;
+
+.icon-docs{
 	font-size: 12px;
-	margin-top: 30px;
-	padding: 1em 0;
-	ul{
-		li{
-			list-style-type: none;
-			margin: 0 1em;
-		}
-	}
+	.pix{ width: 100%}
+	small{color: @gray-light;}
+}
+
+.upper-left{
+	top: -55%;
+	left: -55%;
+}
+.upper-right{
+	top: -55%;
+	left: 55%;
+}
+.lower-left{
+	top: 55%;
+	left: -55%;
+}
+.lower-right{
+	top: 55%;
+	left: 55%;
 }

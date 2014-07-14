@@ -1,17 +1,25 @@
 <div class='container'>
 	<div class='page-header'>
-		<h1>PiX</h1>
-		<p class='lead inline'>Interaction notation for UX design <span class='orange'>&#8594;</span></p>
-		<ul class='inline nav nav-pills'>
+		<h1 class='brand'><a href='{{ site.baseurl }}/'><i class='pix pix-pix'></i> PiX</a></h1>
+		<p class='lead inline orange'>Interaction notation for UX design</p>
+		
+		<ul class='nav nav-pills pull-right'>
 			{% if page.active == 'index' %}
-			<li class='active'><a href='#'>About</a></li>
+				<li class='active'><a href='#'>about PiX</a></li>
 			{% else %}
-			<li><a href='{{ site.baseurl }}/'>About</a></li>
+				<li><a href='{{ site.baseurl }}/'>about PiX</a></li>
 			{% endif %}
+			
 			{% if page.active == 'icons' %}
-			<li class='active'><a href='#'>Icons</a></li>
+				<li class='active'><a href='#'>the icons</a></li>
 			{% else %}
-			<li><a href='{{ site.baseurl }}/pages/icons'>Icons</a></li>
+				<li><a href='{{ site.baseurl }}/pages/icons'>the icons</a></li>
+			{% endif %}
+			
+			{% if page.active == 'docs' %}
+				<li class='active'><a href='#'>documentation</a></li>
+			{% else %}
+				<li><a href='{{ site.baseurl }}/pages/docs'>documentation</a></li>
 			{% endif %}
 		</ul>
 	</div>

@@ -1,0 +1,47 @@
+// Responsive 
+// ----------
+
+// Extra small screen / phone
+@media(max-width: @screen-xs-max){
+	.container{
+		margin: 0 10%;
+	}
+	.page-header .nav-pills{
+		&.pull-right{
+			float: none !important;
+		}
+	}
+	.page-header .nav-pills > li > a,
+	.page-header .nav-pills > li > a:active,
+	.page-header .nav-pills > li > a:hover {
+		border-radius: 12px;
+		font-size: 14px;
+		font-weight: 300;
+		padding: 2px 11px 4px;
+		font-weight: 500;
+	}
+
+	.inner{
+		padding: 0;
+		&.left, &.right{
+			padding: 0;
+		}
+	} 
+}
+
+// small screen and down
+@media (max-width: @screen-sm-max){
+	.page-header{border-bottom: none}
+}
+// only small screen / tablet
+@media (min-width: @screen-sm) and (max-width: @screen-sm-max){
+}
+
+// Medium screen / desktop
+@media (min-width: @screen-md) and (max-width: @screen-md-max){
+
+}
+
+// Large screen / wide desktop
+@media (min-width: @screen-lg){
+}
