@@ -1,186 +1,243 @@
-.icn-pix {
+.pix-pix {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe650;');
+}
+.pix-grid-4 {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe648;');
+}
+.pix-grid-all {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe649;');
+}
+.pix-grid-center {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe64a;');
+}
+.pix-grid-ll {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe64c;');
+}
+.pix-grid-lr {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe64d;');
+}
+.pix-grid-ul {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe64e;');
+}
+.pix-grid-ur {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe64f;');
+}
+.pix-grid-horizontal {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe64b;');
+}
+.pix-container-book {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe600;');
 }
-.icn-grid {
+.pix-container-circle-dashed {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe601;');
 }
-.icn-user {
+.pix-container-circle {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe602;');
 }
-.icn-user-happy {
+.pix-container-database {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe603;');
 }
-.icn-user-mad {
+.pix-container-gear {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe604;');
 }
-.icn-user-sad {
+.pix-container-refresh {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe605;');
 }
-.icn-user-confused {
+.pix-container-reload {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe606;');
 }
-.icn-user-surprised {
+.pix-container-say {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe607;');
 }
-.icn-user-smile {
+.pix-container-square-dashed {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe608;');
 }
-.icn-think {
+.pix-container-square {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe609;');
 }
-.icn-ok {
+.pix-container-think {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe60a;');
 }
-.icn-share {
+.pix-keyboard {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe60b;');
 }
-.icn-list {
+.pix-mouse-click-center {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe60c;');
 }
-.icn-question {
+.pix-mouse-click-left {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe60d;');
 }
-.icn-idea {
+.pix-mouse-all {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe60e;');
 }
-.icn-arrow-down {
+.pix-mouse-click-right {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe60f;');
 }
-.icn-arrow-left {
+.pix-mouse {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe610;');
 }
-.icn-arrow-right {
+.pix-arrow-down {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe611;');
 }
-.icn-arrow-up {
+.pix-arrow-left {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe612;');
 }
-.icn-arrows-vertical {
+.pix-arrow-right {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe613;');
 }
-.icn-arrows-horizontal {
+.pix-arrow-up {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe614;');
 }
-.icn-arrows-diagonal {
+.pix-arrows-move {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe615;');
 }
-.icn-arrows-rotate {
+.pix-arrows-collapse {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe616;');
 }
-.icn-arrows-all {
+.pix-arrows-diagonal {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe617;');
 }
-.icn-arrows-collapse {
+.pix-arrow-enter {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe618;');
 }
-.icn-click {
+.pix-arrows-horizontal {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe619;');
 }
-.icn-enter {
+.pix-arrows-keyboard {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61a;');
 }
-.icn-arrows-keyboard {
+.pix-arrows-rotate {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61b;');
 }
-.icn-tab {
+.pix-click {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61c;');
 }
-.icn-type {
+.pix-arrow-tab {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61d;');
 }
-.icn-mouse-center {
-	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61e;');
-}
-.icn-mouse-left {
+.pix-arrows-vertical {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61f;');
 }
-.icn-mouse-right {
+.pix-checkbox {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe620;');
 }
-.icn-voice {
+.pix-radio {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe621;');
 }
-.icn-dialogue {
+.pix-list {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe622;');
 }
-.icn-mouse {
+.pix-switch {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe623;');
 }
-.icn-keyboard {
+.pix-face-intrigued {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe624;');
 }
-.icn-touch-1 {
+.pix-face-smiling {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe625;');
 }
-.icn-touch-2 {
+.pix-face-sad {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe626;');
 }
-.icn-touch-3 {
+.pix-face-surpirsed {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe627;');
 }
-.icn-touch-4 {
+.pix-face-upset {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe628;');
 }
-.icn-touch-5 {
+.pix-face {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe629;');
 }
-.icn-touch-5-expanded {
+.pix-thumbs-up {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe62a;');
 }
-.icn-touch-alt {
+.pix-touch-1 {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe62b;');
 }
-.icn-touch-pinch {
+.pix-touch-2 {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe62c;');
 }
-.icn-thumb {
+.pix-touch-3 {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe62d;');
 }
-.icn-device-rotate {
+.pix-touch-4 {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe62e;');
 }
-.icn-device-shake {
+.pix-touch-hand {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe62f;');
 }
-.icn-device-orient {
+.pix-hand {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe630;');
 }
-.icn-overlay-checkbox {
+.pix-touch-1-alt {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe631;');
 }
-.icn-icn_overlaydelete {
+.pix-touch-pinch {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe632;');
 }
-.icn-overlay-ok {
+.pix-contact {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe633;');
 }
-.icn-overlay-radio {
+.pix-cube {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe634;');
 }
-.icn-overlay-list {
+.pix-feed {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe635;');
 }
-.icn-overlay-switch {
+.pix-file {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe636;');
 }
-.icn-position {
+.pix-gear {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe637;');
 }
-.icn-upload {
+.pix-lightbulb {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe638;');
 }
-.icn-gear {
+.pix-link {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe639;');
 }
-.icn-reload {
+.pix-list2 {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe63a;');
 }
-.icn-process {
+.pix-lock {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe63b;');
 }
-.icn-download {
+.pix-unlock {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe63c;');
 }
-.icn-compass {
+.pix-no {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe63d;');
+}
+.pix-ok {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe63e;');
+}
+.pix-compass {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe63f;');
+}
+.pix-position {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe640;');
+}
+.pix-picture {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe641;');
+}
+.pix-video {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe642;');
+}
+.pix-sound {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe643;');
+}
+.pix-text {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe644;');
+}
+.pix-question {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe645;');
+}
+.pix-type {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61e;');
+}
+.pix-text-type {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe646;');
+}
+.pix-window {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe647;');
 }
