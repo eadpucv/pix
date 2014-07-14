@@ -51,8 +51,8 @@ active: index
 <div class='score'>
     <ul class='labels col-xs-2'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-dialogue'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear'></i><label>system response</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear-large'></i><label>system response</label></div></li>
     </ul>
     <ul>
         <li class='col-xs-10'>
@@ -70,8 +70,8 @@ active: index
 <div class='score'>
      <ul class='labels col-xs-1'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-dialogue'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear'></i><label>system response</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear-large'></i><label>system response</label></div></li>
     </ul>
     <ul class='step'>
         <li class='col-sm-1'>

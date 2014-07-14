@@ -114,7 +114,11 @@ active: docs
 
 <div style='font-size: 500%'>
 	 <div class='pix-stack'>
-        <i class='pix pix-grid pix-stack-1x'></i>
-        <i class='pix pix-grid pix-stack-1x upper-left'></i>
+        
+        <i class='color pix pix-grid-all pix-stack-1x upper-left'></i>
+        <i class='blue pix pix-grid-all pix-stack-1x upper-right'></i>
+        <i class='green pix pix-grid-all pix-stack-1x lower-left'></i>
+        <i class='orange pix pix-grid-all pix-stack-1x lower-right'></i>
+        <i class='pix pix-grid-all pix-stack-1x'></i>
     </div>
 </div>
