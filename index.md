@@ -52,7 +52,7 @@ active: index
     <ul class='labels col-xs-2'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear-large'></i><label>system response</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-database'></i><label>system response</label></div></li>
     </ul>
     <ul>
         <li class='col-xs-10'>
@@ -71,7 +71,7 @@ active: index
      <ul class='labels col-xs-1'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-gear-large'></i><label>system response</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-database'></i><label>system response</label></div></li>
     </ul>
     <ul class='step'>
         <li class='col-sm-1'>
@@ -101,8 +101,8 @@ active: index
                 <li class='block block-user'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-ok pix-stack-1x'></i>
-                            <i class='pix pix-think pix-stack-1x'></i>
+                            <i class='pix pix-ok'></i>
+                            <i class='pix pix-think'></i>
                         </div>
                         <p>This is the same cloud with a stacked icon!</p>
                     </div>
@@ -110,8 +110,8 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-touch-1 pix-stack-1x'></i>
-                            <i class='pix pix-click pix-stack-1x'></i>
+                            <i class='pix pix-touch-1'></i>
+                            <i class='pix pix-click stack-upper-left'></i>
                         </div>
                         <p>This is an stacked icon!</p>
                     </div>
@@ -124,8 +124,8 @@ active: index
                 <li class='block block-user'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-question pix-stack-1x'></i>
-                            <i class='pix pix-think pix-stack-1x'></i>
+                            <i class='pix pix-question'></i>
+                            <i class='pix pix-think'></i>
                         </div>
                         <p>Yet this is another one</p>
                     </div>
@@ -133,9 +133,9 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-mouse pix-stack-1x'></i>
-                            <i class='pix pix-mouse-left pix-stack-1x'></i>
-                            <i class='pix pix-arrows-all pix-stack-1x'></i>
+                            <i class='pix pix-mouse'></i>
+                            <i class='pix pix-click-left'></i>
+                            <i class='pix pix-arrows-move stack-upper-left'></i>
                         </div>
                         <p>This one has three stacked icons!</p>
                     </div>
@@ -149,9 +149,9 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-mouse pix-stack-1x'></i>
-                            <i class='pix pix-mouse-center pix-stack-1x'></i>
-                            <i class='pix pix-arrows-vertical pix-stack-1x'></i>
+                            <i class='pix pix-mouse'></i>
+                            <i class='pix pix-click-center'></i>
+                            <i class='pix pix-arrows-vertical stack-upper-left'></i>
                         </div>
                         <p>This one has three stacked icons!</p>
                     </div>
@@ -165,8 +165,8 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-touch-pinch pix-stack-1x'></i>
-                            <i class='pix pix-arrow-rotate pix-stack-1x'></i>
+                            <i class='pix pix-pinch'></i>
+                            <i class='pix pix-arrow-rotate stack-upper-left'></i>
                         </div>
                         <p>rotate de picture</p>
                     </div>
@@ -180,8 +180,8 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-keyboard pix-stack-1x'></i>
-                            <i class='pix pix-arrows-keyboard pix-stack-1x'></i>
+                            <i class='pix pix-keyboard'></i>
+                            <i class='pix pix-keyboard-arrows stack-upper-left'></i>
                         </div>
                         <p>use the arrow keys</p>
                     </div>
@@ -195,8 +195,8 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-touch-2 pix-stack-1x'></i>
-                            <i class='pix pix-arrow-right pix-stack-1x'></i>
+                            <i class='pix pix-touch-2'></i>
+                            <i class='pix pix-arrow-right stack-upper-left'></i>
                         </div>
                         <p>swipe to advance</p>
                     </div>
@@ -210,8 +210,8 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-touch-2 pix-stack-1x'></i>
-                            <i class='pix pix-arrow-left pix-stack-1x'></i>
+                            <i class='pix pix-touch-2'></i>
+                            <i class='pix pix-arrow-left stack-upper-left'></i>
                         </div>
                         <p>Oooops!</p>
                     </div>

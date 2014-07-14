@@ -87,9 +87,9 @@ active: icons
     {% include icon-doc.html name='arrow-rotate' %}
     {% include icon-doc.html name='arrows-move' %}
     {% include icon-doc.html name='arrows-collapse' %}
-    {% include icon-doc.html name='arrow-diagonal' %}
-    {% include icon-doc.html name='arrow-horizontal' %}
-    {% include icon-doc.html name='arrow-vertical' %}
+    {% include icon-doc.html name='arrows-diagonal' %}
+    {% include icon-doc.html name='arrows-horizontal' %}
+    {% include icon-doc.html name='arrows-vertical' %}
 </div>
 <hr>
 <h4>Objects</h4>

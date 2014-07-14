@@ -8,13 +8,45 @@
   height: 38px; //2em;
   line-height: 40px; //2em;
   vertical-align: middle;
-
-  /*
-  &.@{css-prefix}-stack-lg{
-    width: 50px;
-  }
-  */
 }
+
+
+.@{css-prefix}-stack .@{css-prefix}{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  line-height: inherit;
+}
+
+/*
+.stack-upper-left,
+.stack-upper-right,
+.stack-lower-left,
+.stack-lower-right{
+  font-size: 3em !important;
+}*/
+
+.stack-upper-left{
+  top: -55% !important;
+  left: -55% !important;
+}
+.stack-upper-right{
+  top: -55% !important;
+  left: 55% !important;
+}
+.stack-lower-left{
+  top: 55% !important;
+  left: -55% !important;
+}
+.stack-lower-right{
+  top: 55% !important;
+  left: 55% !important;
+}
+
+.@{css-prefix}-inverse { color: @inverse; }
+
+/*
 .@{css-prefix}-stack-1x, 
 .@{css-prefix}-stack-2x,
 .@{css-prefix}-stack-3x {
@@ -25,6 +57,7 @@
 }
 
 .@{css-prefix}-stack-1x { line-height: inherit; }
-.@{css-prefix}-stack-2x { font-size: 2em; }
-.@{css-prefix}-stack-3x { font-size: 3em; }
-.@{css-prefix}-inverse { color: @inverse; }
+.@{css-prefix}-stack-2x { font-size: 3em !important; }
+.@{css-prefix}-stack-3x { font-size: 5em !important; }
+
+*/

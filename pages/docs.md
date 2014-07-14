@@ -6,7 +6,6 @@ active: docs
 
 <p>Pix is designed to flow as you type in a natural and intuitive manner. For this reason we have created a hierarchical namimg schema for icons, from generic to specific. This syntax hierarchy serves as a way to combiane icons by stacking them the same way language works combining words and changing the meaning of the whole chain.</p>
 
-
 <h3><i class='pix pix-2x black pix-user'></i> User Intent</h3>
 
 <table class='table table-bordered'>
@@ -30,13 +29,14 @@ active: docs
 	</tr>
 </table>
 
+<!--
 <ul class='docs'>
 	<li><i class='pix pix-3x pix-think'></i> pix-think
 		<ul>
-			<li>{% include stack2.html pix1="think" pix2="idea" %} pix-think-idea</li>
-			<li>{% include stack2.html pix1="think" pix2="list" %} pix-think-task</li>
-			<li>{% include stack2.html pix1="think" pix2="question" %} pix-think-question</li>
-			<li>{% include stack2.html pix1="think" pix2="ok" %} pix-think-ok, pix-think-complete</li>
+			<li>{% include stack.html pix1="think" pix2="idea" %} pix-think-idea</li>
+			<li>{% include stack.html pix1="think" pix2="list" %} pix-think-task</li>
+			<li>{% include stack.html pix1="think" pix2="question" %} pix-think-question</li>
+			<li>{% include stack.html pix1="think" pix2="ok" %} pix-think-ok, pix-think-complete</li>
 		</ul>
 	</li>
 </ul>
@@ -109,16 +109,36 @@ active: docs
 	* send
 	* receive
 
+-->
 
 <h3>Testing Area</h3>
 
 <div style='font-size: 500%'>
 	 <div class='pix-stack'>
         
-        <i class='color pix pix-grid-all pix-stack-1x upper-left'></i>
-        <i class='blue pix pix-grid-all pix-stack-1x upper-right'></i>
-        <i class='green pix pix-grid-all pix-stack-1x lower-left'></i>
-        <i class='orange pix pix-grid-all pix-stack-1x lower-right'></i>
+        <i class='color pix pix-grid-all stack-upper-left'></i>
+        <i class='blue pix pix-grid-all stack-upper-right'></i>
+        <i class='green pix pix-grid-all stack-lower-left'></i>
+        <i class='orange pix pix-grid-all stack-lower-right'></i>
         <i class='pix pix-grid-all pix-stack-1x'></i>
     </div>
+	&nbsp;&nbsp;&nbsp;
+	{% include stack.html pix1="gear" pix2="database" %} 
+	&nbsp;
+	{% include stack.html pix1="ok" pix2="refresh" %} 
+	&nbsp;
+	{% include stack.html pix1="circle" pix2="user-happy" %} 
+	&nbsp;
+	{% include stack.html pix1="contact" pix2="book" %} 
+	&nbsp;
+	{% include stack.html pix1="face-intrigued" pix2="say" %}
+	&nbsp;
+	{% include stack.html pix1="lock" pix2="gear-large" %}
+	&nbsp; 
+	{% include stack-ul.html pix="touch-1" ul="switch" %}
+	&nbsp; 
+	{% include stack-ul.html pix="mouse-all" ul="arrows-move" %}
+	&nbsp; 
+	{% include stack-ul.html pix="keyboard" ul="keyboard-tab" %}  
 </div>
+
