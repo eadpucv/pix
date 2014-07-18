@@ -314,7 +314,12 @@ active: docs
 		<i class='pix pix-grid-all pix-stack-1x'></i>
 	</div>
 	&nbsp;&nbsp;&nbsp;
-	{% include stack.html pix1="gear" pix2="database" %} 
+	{% include stack.html pix1="cog" pix2="gear" %} 
+	;&nbsp;
+	<div class='pix-stack pix-stack-lg'>
+	    <i class='pix pix-gear color'></i>
+	    <i class='pix pix-cog pix-spin'></i>
+	</div>
 	&nbsp;
 	{% include stack.html pix1="ok" pix2="refresh" %} 
 	&nbsp;

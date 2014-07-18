@@ -48,11 +48,12 @@ active: index
     </div>
 </div>
 
+<h2>The Score</h2>
 <div class='pix-score'>
     <ul class='pix-header col-xs-2'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-database'></i><label>system response</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-interaction'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-robot'></i><label>system response</label></div></li>
     </ul>
     <ul class='pix-steps'>
         <li class='pix-step col-xs-10'>

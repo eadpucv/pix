@@ -6,7 +6,7 @@ active: icons
 
 
 
-<h3><span>Font Name:</span> PiX <small>(Glyphs:&nbsp;81)</small></h3>
+<h3><span>Font Name:</span> PiX <small>(Version 2.1 — Glyphs:&nbsp;98)</small></h3>
 <!--
 <p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. The icon structure supports stacking elements based on a simple grid system:</p> -->
 
@@ -67,7 +67,7 @@ active: icons
     {% include icon-doc.html name='arrows-move' %}
     {% include icon-doc.html name='arrows-collapse' %}
     {% include icon-doc.html name='arrows-diagonal' %}
-    {% include icon-doc.html name='arrows-rotate' %}
+    {% include icon-doc.html name='arrow-rotate' %}
     {% include icon-doc.html name='keyboard' %}
     {% include icon-doc.html name='keyboard-arrows' %}
 </div>
