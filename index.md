@@ -48,15 +48,15 @@ active: index
     </div>
 </div>
 
-<div class='score'>
-    <ul class='labels col-xs-2'>
+<div class='pix-score'>
+    <ul class='pix-header col-xs-2'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
         <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-database'></i><label>system response</label></div></li>
     </ul>
-    <ul>
-        <li class='col-xs-10'>
-            <ul>
+    <ul class='pix-steps'>
+        <li class='pix-step col-xs-10'>
+            <ul class='pix-blocks'>
                 <li class='block block-user'><p class='score-text'>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>
                 <li class='block block-dialogue'><p class='score-text'>This is the interface dialogue layer that represents the concrete actions happening on the interface, the gestures, the direct manipulation or the direct onstage contact.</p></li>
                 <li class='block block-system'><p class='score-text'>This is the system layer, which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the user</p></li>
@@ -68,7 +68,7 @@ active: index
 <input class='score-header' placeholder='Name your score'>
 
 <div class='score'>
-     <ul class='labels col-xs-1'>
+     <ul class='pix-header col-xs-1'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
         <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-database'></i><label>system response</label></div></li>
