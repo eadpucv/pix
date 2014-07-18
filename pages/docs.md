@@ -111,19 +111,215 @@ active: docs
 
 -->
 
+<h3>HTML PiX Structure</h3>
+<h4>Score Overview</h4>
+<div class='docs-block'>
+	.pix-score<br>
+	<div class='docs-block docs-bk'>
+		<strong>ul</strong>.pix-header<br>
+		<div class='docs-block docs-bk'>
+			<strong>li</strong>.block<br>
+			.block-user<br>
+			<div class='docs-block docs-bk'>
+				.pix-group<br>
+				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-user</div><br>
+				<div class='docs-block docs-bk'><strong>label</strong></div>
+			</div>
+		</div><br>
+		<div class='docs-block docs-bk'>
+			<strong>li</strong>.block<br>
+			.block-dialogue<br>
+			<div class='docs-block docs-bk'>
+				.pix-group<br>
+				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-dialogue</div><br>
+				<div class='docs-block docs-bk'><strong>label</strong></div>
+			</div>
+		</div><br>
+		<div class='docs-block docs-bk'>
+			<strong>li</strong>.block<br>
+			.block-system<br>
+			<div class='docs-block docs-bk'>
+				.pix-group<br>
+				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-system</div><br>
+				<div class='docs-block docs-bk'><strong>label</strong></div>
+			</div>
+		</div>
+	</div>
+
+	<div class='docs-block'>
+		<strong>ul</strong>.pix-steps<br>
+		<div class='docs-block'>
+			<strong>li</strong>.pix-step<br>
+			<div class='docs-block'>
+				<strong>ul</strong>.pix-blocks<br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-user<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-dialogue<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-system<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					.pix-notes<br>
+					<div class='docs-block'><strong>p</strong>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='docs-block'>
+			<strong>li</strong>.pix-step<br>
+			<div class='docs-block'>
+				<strong>ul</strong>.pix-blocks<br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-user<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-dialogue<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-system<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					.pix-notes<br>
+					<div class='docs-block'><strong>p</strong>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='docs-block'>
+			<strong>li</strong>.pix-step<br>
+			<div class='docs-block'>
+				<strong>ul</strong>.pix-blocks<br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-user<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-dialogue<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					<strong>li</strong>.block block-system<br>
+					<div class='docs-block'>
+						.pix-group<br>
+						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+						<div class='docs-block'><strong>p</strong></div>
+					</div>
+				</div><br>
+				<div class='docs-block'>
+					.pix-notes<br>
+					<div class='docs-block'><strong>p</strong>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='docs-block'>
+			<strong>li</strong>.pix-step<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<em>etc...</em>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+	</div>
+</div>
+
+<h3>Regular and Stacked Icons</h3>
+<div class='row'>
+	<div class='col-md-2'>
+		<h5>Regular Icon</h5>
+		<div class='docs-block'>
+			<strong>li</strong>.block<br>
+			<div class='docs-block'>
+				.pix-group<br>
+				<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+				<div class='docs-block'><strong>p</strong></div>
+			</div>
+		</div>
+	</div>
+	<div class='col-md-2'>
+		<h5>Stacked Icon</h5>
+		<div class='docs-block'>
+			<strong>li</strong>.block<br>
+			<div class='docs-block'>
+				.pix-group<br>
+				<div class='docs-block'>
+					.pix-stacked<br>
+					<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+					<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+					<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+				</div>
+				
+				<div class='docs-block'><strong>p</strong></div>
+			</div>
+		</div>
+	</div>
+</div>
 <h3>Testing Area</h3>
 
 <div style='font-size: 500%'>
-	 <div class='pix-stack'>
-        
-        <i class='color pix pix-grid-all stack-upper-left'></i>
-        <i class='blue pix pix-grid-all stack-upper-right'></i>
-        <i class='green pix pix-grid-all stack-lower-left'></i>
-        <i class='orange pix pix-grid-all stack-lower-right'></i>
-        <i class='pix pix-grid-all pix-stack-1x'></i>
-    </div>
+	<div class='pix-stack'>
+
+		<i class='color pix pix-grid-all stack-upper-left'></i>
+		<i class='blue pix pix-grid-all stack-upper-right'></i>
+		<i class='green pix pix-grid-all stack-lower-left'></i>
+		<i class='orange pix pix-grid-all stack-lower-right'></i>
+		<i class='pix pix-grid-all pix-stack-1x'></i>
+	</div>
 	&nbsp;&nbsp;&nbsp;
-	{% include stack.html pix1="gear" pix2="database" %} 
+	{% include stack.html pix1="cog" pix2="gear" %} 
+	;&nbsp;
+	<div class='pix-stack pix-stack-lg'>
+	    <i class='pix pix-gear color'></i>
+	    <i class='pix pix-cog pix-spin'></i>
+	</div>
 	&nbsp;
 	{% include stack.html pix1="ok" pix2="refresh" %} 
 	&nbsp;
