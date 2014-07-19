@@ -321,6 +321,13 @@ active: docs
 	    <i class='pix pix-cog pix-spin'></i>
 	</div>
 	&nbsp;
+		<div class='pix-stack pix-stack-lg'>
+	    <i class='pix pix-ok green'></i>
+	    <i class='pix pix-refresh pix-spin'></i>
+	</div>
+	&nbsp;
+	{% include stack-ul.html pix="hand" ul="arrows-move" %} 
+	&nbsp;
 	{% include stack.html pix1="ok" pix2="refresh" %} 
 	&nbsp;
 	{% include stack.html pix1="circle" pix2="user-happy" %} 

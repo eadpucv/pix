@@ -48,7 +48,7 @@ active: index
     </div>
 </div>
 
-<h2>The Score</h2>
+<h2 class='black'>The Score</h2>
 <div class='pix-score'>
     <ul class='pix-header col-xs-2'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
@@ -68,7 +68,7 @@ active: index
 
 <input class='score-header' placeholder='Name your score'>
 
-<div class='score'>
+<div class='pix-score'>
      <ul class='pix-header col-xs-1'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>

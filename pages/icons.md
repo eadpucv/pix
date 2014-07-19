@@ -10,7 +10,8 @@ active: icons
 <!--
 <p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. The icon structure supports stacking elements based on a simple grid system:</p> -->
 
-<h4>PiX Meta Elements</h4>
+<h4 id='meta'>PiX Meta Elements</h4>
+<p>These icons serve testing purposes, for alignment and stacking. The final deploy of the app will exclude most of them.</p>
 <div class='row'>
     {% include icon-doc.html name='pix' %}
     {% include icon-doc.html name='grid-center' %}
@@ -24,7 +25,8 @@ active: icons
     {% include icon-doc.html name='grid-horizontal' %}
 </div>
 <hr>
-<h4>Containers</h4>
+<h4 id='containers'>Containers</h4>
+<p>These icons are meant for containing objects and may are used in combination with others, mainly <a href='#objects'>objects</a>.</p>
 <div class='row'>
     {% include icon-doc.html name='square' %}
     {% include icon-doc.html name='square-dashed' %}
@@ -45,6 +47,7 @@ active: icons
 </div>
 <hr>
 <h4>User Faces</h4>
+<p>These icons are meant for the upper row of the score, for depicting user emotions and moods, mainly as a result of interaction with the system.</p>
 <div class='row'>
     {% include icon-doc.html name='user' %}
     {% include icon-doc.html name='user-smiling' %}
@@ -56,7 +59,8 @@ active: icons
     {% include icon-doc.html name='robot' %}
 </div>
 <hr>
-<h4>Controls & Overlays</h4>
+<h4 id='controls'>Controls & Overlays</h4>
+<p>These icons are mainly suited for the middle row (interaction and dialogues). Along with the <a href='#touch'>touch gestures</a>, all combinations try to depict all possible user actions through the interface. Maybe some are still missing.</p>
 <div class='row'>
     {% include icon-doc.html name='arrow-up' %}
     {% include icon-doc.html name='arrow-down' %}
@@ -85,7 +89,8 @@ active: icons
     {% include icon-doc.html name='touch' %}
 </div>
 <hr>
-<h4>Touch Gestures</h4>
+<h4 id='touch'>Touch Gestures</h4>
+<p>All possible finger gestures, for combining with arrows. They can also be rotated or fliped.</p>
 <div class='row'>
     {% include icon-doc.html name='touch-1' %}
     {% include icon-doc.html name='touch-2' %}
@@ -97,7 +102,8 @@ active: icons
     {% include icon-doc.html name='thumb' %}
 </div>
 <hr>
-<h4>Objects</h4>
+<h4 id='objects'>Objects</h4>
+<p>Standard objects and constructs depicting actions (ie. search, filter, read, etc.)</p>
 <div class='row'>
     {% include icon-doc.html name='file' %}
     {% include icon-doc.html name='cube' %}

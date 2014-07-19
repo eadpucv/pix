@@ -33,12 +33,18 @@ input.score-header{
 /******************************************** The Score */
 
 .pix-score{
+
 	margin: 10px -@pix-border-width 32px -@pix-border-width;
 	margin-bottom: 32px;
 	border: @pix-border-width solid @border-color;
 	border-radius: @pix-border-width * 2;
 	.cf;
 
+	ul li{
+		display: inline-block;
+		list-style-type: none;
+	}
+	
 	ul, ul li ul{
 		margin: 0;
 		padding: 0;
@@ -49,10 +55,10 @@ input.score-header{
 	}
 
 	ul{
-		&.labels{
+		&.pix-header{
 			background-color: @border-color;
 
-			li .pix-group{
+			li.pix-group{
 				.tcenter;
 				font-weight: 600;
 				line-height: 1em;
@@ -62,9 +68,7 @@ input.score-header{
 			}
 		}
 
-		&.pix-header{
 
-		}
 		&.pix-steps{
 			font-weight: 300;
 			ul li.block .pix-group .pix,
@@ -75,32 +79,32 @@ input.score-header{
 		}
 	}
 
-	.pix-group{
-		display: table-cell;
-		height: @pix-block-height;
-		width: 200px; // something more than it really has, just to center it
-		vertical-align: middle;
-		.pix-stack,
-		.pix{
-			display: block;
-			text-align: center;
-			margin: 0 auto;
-		}
-		p{
-			font-size: 11px;
-			line-height: 14px;
-			text-align: center;
-		}
-		.pix-stack{
-			.cf;
-		}
+}
+
+.pix-group{
+	vertical-align: middle;
+	.pix-stack,
+	.pix{
+		display: block;
+		text-align: center;
+		margin: 0 auto;
+		font-size: 38px;
+		line-height: 1;
 	}
 
+	p{
+		font-size: 11px;
+		line-height: 14px;
+		text-align: center;
+	}
 
+	.pix-stack{
+		//.cf;
+	}
 }
 
 .block{
-	display: table;
+	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 	height: @pix-block-height;
