@@ -3,7 +3,7 @@
 /******************************************** Variables */
 
 @pix-border-width: 4px;
-@pix-border-color: fade(@black, 5);
+@pix-border-color: #ccd4d1;
 @pix-block-height: 120px;
 @pix-size: 36px;
 
@@ -58,53 +58,59 @@ input.score-header{
 		&.pix-header{
 			background-color: @border-color;
 
-			li.pix-group{
+			li{
+				width: 100%;
 				.tcenter;
 				font-weight: 600;
 				line-height: 1em;
 				color: fade(@black, 30%);
 				//.pix{font-size: @pix-size}
 				label{font-size: .8em}
+				.pix-group{
+					display: block;
+					padding-top: 1.333em;
+					width: 100% !imporant;
+					.pix{
+						display: block;
+					}
+				}
 			}
 		}
 
 
 		&.pix-steps{
-			font-weight: 300;
-			ul li.block .pix-group .pix,
-			ul li.block .pix-stack .ico-group .pix{
-				height: @pix-size + 2;
-				//font-size: @pix-size;
-			}
+
 		}
 	}
 
 }
 
 .pix-group{
+	display: table-cell;
+	height: @pix-block-height;
 	vertical-align: middle;
-	.pix-stack,
+	
 	.pix{
-		display: block;
-		text-align: center;
-		margin: 0 auto;
-		font-size: 38px;
+		font-size: 2.5em;
 		line-height: 1;
 	}
-
+	
 	p{
-		font-size: 11px;
-		line-height: 14px;
-		text-align: center;
+		margin: .4em 0;
+		font-size: .66em;
+		line-height: 98%;
 	}
 
 	.pix-stack{
-		//.cf;
+		.stack-upper-left{
+			top: -27.5% !important;
+			left: -27.5% !important;
+		}
+		
 	}
 }
 
 .block{
-	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 	height: @pix-block-height;
@@ -112,8 +118,8 @@ input.score-header{
 	margin: 0;
 	width: 100%;
 
-	&.block-user{border-bottom: 1px dotted @black}
-	&.block-dialogue{border-bottom: 3px solid @black}
+	&.block-user{border-bottom: 1px dotted @pix-border-color}
+	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
 	&.block-system{border-bottom: none}
 	
 	input[type="text"]{

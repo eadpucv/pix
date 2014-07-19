@@ -192,7 +192,15 @@ active: index
         </li>
         <li class='col-sm-1'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-grid-center stack-upper-left color'></i>
+                            <i class='pix pix-grid-ul'></i>
+                        </div>
+                        <p>fix this problem</p>
+                    </div>
+                </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
@@ -211,7 +219,7 @@ active: index
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-touch-2'></i>
+                            <i class='pix pix-touch-2 pix-rotate-45'></i>
                             <i class='pix pix-arrow-left stack-upper-left'></i>
                         </div>
                         <p>Oooops!</p>
