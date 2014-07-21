@@ -145,3 +145,29 @@ active: icons
     {% include icon-doc.html name='window-page' %}
     {% include icon-doc.html name='window-gallery' %}
 </div>
+<hr>
+<h3>Icon Combinations</h3>
+<p>Various examples of stacked icons and their possibilities extending the existing icon set.</p>
+<div class='row'>
+    {% include icon-doc-stack-ul.html pix='touch-5' ul='arrows-move' %}
+    {% include icon-doc-stack-ul.html pix='touch-2' ul='arrows-horizontal' %}
+    {% include icon-doc-stack.html pix1='think' pix2='search' %}
+    {% include icon-doc-stack.html pix1='say' pix2='sound' %}
+    {% include icon-doc-stack.html pix1='cloud' pix2='arrow-up' %}
+    {% include icon-doc-stack.html pix1='circle' pix2='tag' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='window-page' %}
+    {% include icon-doc-stack.html pix1='database' pix2='ok' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='cube' %}
+    {% include icon-doc-stack.html pix1='book' pix2='contact' %}
+    {% include icon-doc-stack.html pix1='think' pix2='idea' %}
+    {% include icon-doc-stack-ul.html pix='keyboard' ul='keyboard-type' %}
+</div>
+
+<h4>Mouse Interactions</h4>
+<p>Specific mouse interactions</p>
+<div class='row'>
+    {% include icon-doc-mouse.html click='click-left' event='click' %}
+    {% include icon-doc-mouse.html click='click-left' event='arrows-move' %}
+    {% include icon-doc-mouse.html click='click-center' event='arrows-vertical' %}
+    {% include icon-doc-mouse.html click='click-right' event='arrow-right' %}
+</div>
