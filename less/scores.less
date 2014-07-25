@@ -1,9 +1,18 @@
-/* Scores */
+/* PiX: The Scores */
+
+/******************************************** Variables */
+
+@pix-border-width: 4px;
+@pix-border-color: #ccd4d1;
+@pix-block-height: 120px;
+@pix-size: 36px;
+
+/****************************************** Score Title */
 
 input.score-header{
 	margin: 12px 0;
 	color: @orange;
-	font-size: 22px;
+	// font-size: 22px;
 	padding: 4px;
 	line-height: 42px;
 	overflow: hidden;
@@ -20,63 +29,22 @@ input.score-header{
 	}
 }
 
-@border-width: 4px;
-@border-color: fade(@black, 5);
-@block-height: 120px;
-@pix-size: 36px;
 
-.score{
-	margin: 10px -@border-width 32px -@border-width;
+/******************************************** The Score */
+
+.pix-score{
+
+	margin: 10px -@pix-border-width 32px -@pix-border-width;
 	margin-bottom: 32px;
-	border: @border-width solid @border-color;
-	border-radius: @border-width * 2;
+	border: @pix-border-width solid @border-color;
+	border-radius: @pix-border-width * 2;
 	.cf;
 
-	ul{
-		&.labels{
-			background-color: @border-color;
-
-			li .pix-group{
-				.tcenter;
-				font-weight: 600;
-				line-height: 1em;
-				color: fade(@black, 30%);
-				.pix{font-size: @pix-size}
-				label{font-size: .8em}
-			}
-		}
-
-		&.step{
-			font-weight: 300;
-			ul li.block .pix-group .pix,
-			ul li.block .pix-stack .ico-group .pix{
-				height: @pix-size + 2;
-				font-size: @pix-size;
-			}
-		}
+	ul li{
+		display: inline-block;
+		list-style-type: none;
 	}
-
-	.pix-group{
-		display: table-cell;
-		height: @block-height;
-		width: 200px; // something more than it really has, just to center it
-		vertical-align: middle;
-		.pix-stack,
-		.pix{
-			display: block;
-			text-align: center;
-			margin: 0 auto;
-		}
-		p{
-			font-size: 11px;
-			line-height: 14px;
-			text-align: center;
-		}
-		.pix-stack{
-			.cf;
-		}
-	}
-
+	
 	ul, ul li ul{
 		margin: 0;
 		padding: 0;
@@ -85,19 +53,73 @@ input.score-header{
 			display: inline-block;
 		}
 	}
+
+	ul{
+		&.pix-header{
+			background-color: @border-color;
+
+			li{
+				width: 100%;
+				.tcenter;
+				font-weight: 600;
+				line-height: 1em;
+				color: fade(@black, 30%);
+				//.pix{font-size: @pix-size}
+				label{font-size: .8em}
+				.pix-group{
+					display: block;
+					padding-top: 1.333em;
+					width: 100% !imporant;
+					.pix{
+						display: block;
+					}
+				}
+			}
+		}
+
+
+		&.pix-steps{
+
+		}
+	}
+
+}
+
+.pix-group{
+	display: table-cell;
+	height: @pix-block-height;
+	vertical-align: middle;
+	text-align: center;
+	.pix{
+		font-size: 2.5em;
+		line-height: 1;
+	}
+	
+	p{
+		margin: .4em 0;
+		font-size: .66em;
+		line-height: 98%;
+	}
+
+	.pix-stack{
+		.stack-upper-left{
+			top: -27.5% !important;
+			left: -27.5% !important;
+		}
+		
+	}
 }
 
 .block{
-	display: table;
 	text-align: center;
 	vertical-align: middle;
-	height: @block-height;
+	height: @pix-block-height;
 	padding: 0 12px;
 	margin: 0;
 	width: 100%;
 
-	&.block-user{border-bottom: 1px dotted @black}
-	&.block-dialogue{border-bottom: 3px solid @black}
+	&.block-user{border-bottom: 1px dotted @pix-border-color}
+	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
 	&.block-system{border-bottom: none}
 	
 	input[type="text"]{
@@ -121,9 +143,10 @@ input.score-header{
 	}
 }
 
-
+/*
 .icon-docs{
 	font-size: 12px;
 	.pix{ width: 100%}
 	small{color: @gray-light;}
 }
+*/
