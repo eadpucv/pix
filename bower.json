@@ -1,6 +1,6 @@
 {
   "name": "PiX",
-  "version": "0.0.1",
+  "version": "0.8.2",
   "homepage": "http://www.ead.pucv.cl",
   "authors": [
     "hspencer@ead.cl",
@@ -11,9 +11,7 @@
   "private": false,
   "ignore": [
     "**/.*",
-    "node_modules",
     "bower_components",
-    "app/_bower_components",
     "test",
     "tests"
   ],
