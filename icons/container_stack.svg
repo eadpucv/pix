@@ -3,7 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
 <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
-<path d="M94,6v36H6V6H94 M95,2H5C3.35,2,2,3.35,2,5v38c0,1.65,1.35,3,3,3h90c1.65,0,3-1.35,3-3V5C98,3.35,96.65,2,95,2L95,2z"/>
-<path d="M94,54v40H6V54H94 M95,50H5c-1.65,0-3,1.35-3,3v42c0,1.65,1.35,3,3,3h90c1.65,0,3-1.35,3-3V53C98,51.35,96.65,50,95,50
-	L95,50z"/>
+<path d="M91,5H9C6.8,5,5,6.8,5,9v70c0,2.2,1.8,4,4,4h82c2.2,0,4-1.8,4-4V9C95,6.8,93.2,5,91,5z M87.26,9L50,21.42L12.74,9H87.26z
+	 M9,79V10.91l41,13.67l41-13.67V79H9z"/>
 </svg>

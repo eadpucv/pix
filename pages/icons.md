@@ -7,8 +7,7 @@ active: icons
 
 
 <h3><span>Font Name:</span> PiX <small>(Version 2.1 — Glyphs:&nbsp;98)</small></h3>
-<!--
-<p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. The icon structure supports stacking elements based on a simple grid system:</p> -->
+<p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. Different categories work as standalone icons or as a part of a more complex symbol. The complete list is <a href="https://docs.google.com/spreadsheets/d/18SfIEgUig5TVLkM9E1Qb9QyPn05qsCFxO5wHwdc5z-c/edit?usp=sharing">here</a>.</p>
 
 <h4 id='meta'>PiX Meta Elements</h4>
 <p>These icons serve testing purposes, for alignment and stacking. The final deploy of the app will exclude most of them.</p>
