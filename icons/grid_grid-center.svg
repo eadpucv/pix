@@ -4,9 +4,8 @@
 <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
 <g>
-	<path d="M68,32v36H32V32H68 M69,28H31c-1.65,0-3,1.35-3,3v38c0,1.65,1.35,3,3,3h38c1.65,0,3-1.35,3-3V31C72,29.35,70.65,28,69,28
-		L69,28z"/>
-	<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="50" y1="56" x2="50" y2="44"/>
-	<line fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" x1="56" y1="50" x2="44" y2="50"/>
+	<path d="M69,28H31c-1.65,0-3,1.35-3,3v38c0,1.65,1.35,3,3,3h38c1.65,0,3-1.35,3-3V31C72,29.35,70.65,28,69,28z M68,68H32V32h36V68z
+		"/>
+	<polygon points="48,56 52,56 52,52 56,52 56,48 52,48 52,44 48,44 48,48 44,48 44,52 48,52 	"/>
 </g>
 </svg>
