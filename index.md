@@ -66,7 +66,7 @@ active: index
     <tr>
         <th style='width: 20%'>
             <i class='pix pix-interaction'></i><br>
-            <label>dialogues</label>
+            <label>dialogue</label>
         </th>
         <td style='width: 40%' lang='en'>
             <p>This is the interface dialogue layer that represents the concrete actions happening on the interface: gestures, messages, actions; all direct manipulation of elements and constructs happening onstage.</p>
@@ -94,7 +94,7 @@ active: index
 <div class='pix-score'>
      <ul class='pix-header col-sm-1 col-xs-3'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>person</label></div></li>
-        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogues</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogue</label></div></li>
         <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system</label></div></li>
     </ul>
     <ul class='pix-steps'>
@@ -102,81 +102,13 @@ active: index
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
-                        <i class='pix pix-think'></i>
-                        <p>The user wants to do something</p>
-                    </div>
-                </li>
-                <li class='block block-dialogue'>
-                    <div class='pix-group'>
-                        <i class='pix pix-touch-1'></i>
-                        <p>press the button</p>
-                    </div>
-                </li>
-                <li class='block block-system'>
-                    <div class='pix-group'>
-                        <i class='pix pix-reload'></i>
-                        <p>The screen is updated</p>
-                    </div>
-                </li>
-                <div class='note'>
-                    <p>This is a suscint note about what is really going on here</p>
-                </div>
-            </ul>
-        </li>
-        <li class='pix-step col-sm-1 col-xs-3'>
-            <ul>
-                <li class='block block-user'>
-                    <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-ok'></i>
+                            <i class='pix pix-cube'></i>
                             <i class='pix pix-think'></i>
                         </div>
-                        <p>This is the same cloud with a stacked icon!</p>
+                        <p>The user wants to define a new PiX</p>
                     </div>
                 </li>
-                <li class='block block-dialogue'>
-                    <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-touch-1'></i>
-                            <i class='pix pix-click stack-upper-left'></i>
-                        </div>
-                        <p>This is an stacked icon!</p>
-                    </div>
-                </li>
-                <li class='block block-system'><input type='text' tabindex='6' placeholder='type here...'></li>
-            </ul>
-        </li>
-        <li class='pix-step col-sm-1 col-xs-3'>
-            <ul>
-                <li class='block block-user'>
-                    <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-question'></i>
-                            <i class='pix pix-think'></i>
-                        </div>
-                        <p>Yet this is another one</p>
-                    </div>
-                </li>
-                <li class='block block-dialogue'>
-                    <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-mouse'></i>
-                            <i class='pix pix-click-left'></i>
-                            <i class='pix pix-arrows-move stack-upper-left'></i>
-                        </div>
-                        <p>This one has three stacked icons!</p>
-                    </div>
-                </li>
-                <li class='block block-system'><input type='text' tabindex='9' placeholder='type here...'>
-                </li>
-                <div class='note'>
-                    <p>Just for clarification purposes...</p>
-                </div>
-            </ul>
-        </li>
-        <li class='pix-step col-sm-1 col-xs-3'>
-            <ul>
-                <li class='block block-user'><input type='text' tabindex='10' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
@@ -184,99 +116,232 @@ active: index
                             <i class='pix pix-click-center'></i>
                             <i class='pix pix-arrows-vertical stack-upper-left'></i>
                         </div>
-                        <p>This one has three stacked icons!</p>
+                        <p>So browses the page for the "create" button</p>
                     </div>
                 </li>
-                <li class='block block-system'><input type='text' tabindex='12' placeholder='type here...'></li>
-            </ul>
-        </li>    
-        <li class='pix-step col-sm-1 col-xs-3'>
-            <ul>
-                <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'>
-                    <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-pinch'></i>
-                            <i class='pix pix-arrow-rotate stack-upper-left'></i>
-                        </div>
-                        <p>rotate de picture</p>
-                    </div>
+                <li class='block block-system'>
+                    <input type='text' placeholder='type here...'>
                 </li>
-                <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
+                <div class='note'>
+                    <p>The PiX App has initiated properly. The system is idle.</p>
+                </div>
             </ul>
         </li>
         <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <input type='text' placeholder='type here...'>
+                </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-keyboard'></i>
-                            <i class='pix pix-keyboard-arrows stack-upper-left'></i>
+                            <i class='pix pix-mouse'></i>
+                            <i class='pix pix-click-left'></i>
+                            <i class='pix pix-plus stack-upper-left'></i>
                         </div>
-                        <p>use the arrow keys</p>
+                        <p>user clicks "new score"</p>
                     </div>
                 </li>
-                <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
+                <li class='block block-system'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-circle-dashed'></i>
+                            <i class='pix pix-cube'></i>
+                        </div>
+                        <p>New PiX object is created with empty fields</p>
+                    </div>  
+                </li>
             </ul>
+        </li>
+        <li class='pix-step col-sm-1 col-xs-3 split'>
+            <ul>
+                <li class='block block-user'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-dialogue'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-square-dashed'></i>
+                            <i class='pix pix-read'></i>
+                        </div>
+                        <p>Placeholders and labels provide visual cues</p>
+                    </div>
+                </li>
+                <li class='block block-system'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+            </ul>
+            <div class='note'>
+                <p>PiX is created and stored in the browser</p>
+            </div>
         </li>
         <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-grid-center stack-upper-left color'></i>
-                            <i class='pix pix-grid-ul'></i>
+                            <i class='pix pix-think'></i>
+                            <i class='pix pix-text'></i>
                         </div>
-                        <p>fix this problem</p>
+                        <p>Pick a name and description</p>
+                    </div>
+                </li>
+                <li class='block block-dialogue'>
+                    <div class='pix-group'>
+                        <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-keyboard'></i>
+                            <i class='pix pix-keyboard-type stack-upper-left'></i>
+                        </div>
+                        <p>User fills title + description</p>
+                    </div>
+                    </div>
+                </li>
+                <li class='block block-system'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-reload'></i>
+                            <i class='pix pix-cube'></i>
+                        </div>
+                        <p>Object's title updated</p>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class='pix-step col-sm-1 col-xs-3'>
+            <ul>
+                <li class='block block-user'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-dialogue'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-keyboard'></i>
+                            <i class='pix pix-keyboard-tab stack-upper-left'></i>
+                        </div>
+                        <p>Moves forward with TAB</p>
+                    </div>
+                </li>
+                <li class='block block-system'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-reload'></i>
+                            <i class='pix pix-cube'></i>
+                        </div>
+                        <p>Object's description updated</p>
+                    </div>
+                </li>
+            </ul>
+        </li>    
+        <li class='pix-step col-sm-1 col-xs-3'>
+            <ul>
+                <li class='block block-user'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-think'></i>
+                            <i class='pix pix-list'></i>
+                        </div>
+                        <p>define task as a sequence</p>
                     </div>
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-touch-2'></i>
-                            <i class='pix pix-arrow-right stack-upper-left'></i>
+                            <i class='pix pix-square-dashed'></i>
+                            <i class='pix pix-type'></i>
                         </div>
-                        <p>swipe to advance</p>
+                        <p>type PiX magic words to create icons</p>
                     </div>
                 </li>
-                <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
+                <li class='block block-system'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-gear'></i>
+                            <i class='pix pix-type'></i>
+                        </div>
+                        <p>App checks concordances of magic words</p>
+                    </div>
+                </li>
             </ul>
         </li>
         <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <input type='text' placeholder='type here...'>
+                </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-stack'>
-                            <i class='pix pix-touch-2 pix-rotate-45'></i>
-                            <i class='pix pix-arrow-left stack-upper-left'></i>
+                            <i class='pix pix-keyboard'></i>
+                            <i class='pix pix-keyboard-tab stack-upper-left'></i>
                         </div>
-                        <p>Oooops!</p>
+                        <p>Moves through PiX blocks with TAB</p>
                     </div>
                 </li>
-                <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
+                <li class='block block-system'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-circle-dashed'></i>
+                            <i class='pix pix-plus'></i>
+                        </div>
+                        <p>When the end of the score is reached, TAB adds a new column</p>
+                    </div>
+                </li>
             </ul>
         </li>
         <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
-                <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <div class='pix-group'>
+                        <i class='pix pix-user-surprised'></i>
+                        <p>The user is amazed by PiX awesomeness!</p>
+                    </div>
+                </li>
+                <li class='block block-dialogue'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-system'>
+                    <input type='text' placeholder='type here...'>
+                </li>
             </ul>
         </li>
         <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
-                <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-dialogue'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-system'>
+                    <input type='text' placeholder='type here...'>
+                </li>
             </ul>
         </li>
         <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
-                <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
-                <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
-                <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
+                <li class='block block-user'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-dialogue'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-system'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+            </ul>
+        </li>
+        <li class='pix-step col-sm-1 col-xs-3'>
+            <ul>
+                <li class='block block-user'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-dialogue'>
+                    <input type='text' placeholder='type here...'>
+                </li>
+                <li class='block block-system'>
+                    <input type='text' placeholder='type here...'>
+                </li>
             </ul>
         </li>
     </ul>
