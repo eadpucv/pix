@@ -13,6 +13,7 @@
 		overflow: auto;
 		border: none;
 		border-radius: @radius;
+		cursor: text;
 		&:active,
 		&:focus,
 		&:hover{
@@ -41,12 +42,9 @@ h1.score-header{
 /******************************************** The Score */
 
 .pix-score{
-
 	margin: 10px -@pix-border-width 32px -@pix-border-width;
 	margin-bottom: 32px;
-
 	.cf;
-
 	ul li{
 		display: inline-block;
 		list-style-type: none;
@@ -89,6 +87,9 @@ h1.score-header{
 
 		&.pix-steps{
 			li.pix-step{
+				&.split{
+					border-left: 1px solid @border-color;
+				}
 				&:last-child{
 					border-radius: @pix-border-width * 2;
 					border-right: @pix-border-width solid @border-color;
@@ -128,15 +129,10 @@ h1.score-header{
 	height: @pix-block-height;
 	vertical-align: middle;
 	text-align: center;
+	cursor: pointer;
 	.pix{
 		font-size: 2.5em;
 		line-height: 1;
-	}
-	
-	p{
-		margin: .4em 0;
-		font-size: .66em;
-		line-height: 98%;
 	}
 
 	.pix-stack{
@@ -144,11 +140,20 @@ h1.score-header{
 			top: -27.5% !important;
 			left: -27.5% !important;
 		}
-		
+	}
+	strong{
+		font-weight: 900;
 	}
 }
 
 .block{
+	
+	p{
+		margin: .4em 0;
+		font-size: .66em;
+		line-height: 98%;
+	}
+
 	text-align: center;
 	vertical-align: middle;
 	height: @pix-block-height;

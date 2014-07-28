@@ -27,6 +27,18 @@
 	font-family: @font-family-monospace;
 }
 
-.pix{
-	// background-color: fade(fuchsia, 10);
+
+
+.pix-reload{
+	&:active,
+	&:focus,
+	&:hover{
+		box-shadow: 0 0 2px @edit-color inset;
+		background-color: fade(@edit-color, 30);
+		color: fuchsia !important;
+		-webkit-animation: spin 2s infinite linear !important;
+		-moz-animation: spin 2s infinite linear !important;
+		-o-animation: spin 2s infinite linear !important;
+		animation: spin 2s infinite linear !important;
+	}
 }
