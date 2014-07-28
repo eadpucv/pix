@@ -88,7 +88,6 @@ active: icons
     {% include icon-doc.html name='arrows-cycle' %}
 </div>
 <hr>
-<hr>
 <h4>Playback Buttons</h4>
 <div class='row'>
     {% include icon-doc.html name='play' %}
