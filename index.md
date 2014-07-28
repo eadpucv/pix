@@ -48,31 +48,54 @@ active: index
     </div>
 </div>
 
-<h2 class='black'>The Score</h2>
-<div class='pix-score'>
-    <ul class='pix-header col-xs-2'>
-        <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system response</label></div></li>
-    </ul>
-    <ul class='pix-steps'>
-        <li class='pix-step col-xs-10'>
-            <ul class='pix-blocks'>
-                <li class='block block-user'><p class='score-text'>This is the user layer and depicts what the user wants to do, what has meaning to him/her, it's the task, the purpose </p></li>
-                <li class='block block-dialogue'><p class='score-text'>This is the interface dialogue layer that represents the concrete actions happening on the interface, the gestures, the direct manipulation or the direct onstage contact.</p></li>
-                <li class='block block-system'><p class='score-text'>This is the system layer, which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the user</p></li>
-            </ul>
-        </li>
-    </ul>
-</div>
+<h2>The Score</h2>
+
+<table class='table pix-table'>
+    <tr>
+        <th style='width: 20%'>
+            <i class='pix pix-user'></i><br>
+            <label>person</label>
+        </th>
+        <td style='width: 40%' lang='en'>
+            <p>This layer depicts the persons's intent and goals through the development of his/her mental model of the task at hand. It also shows the (expected) emotions involved in the overall experience.</p>
+        </td>
+        <td style='width: 40%' lang='es'>
+            <p>Esta capa muestra los objetivos de la persona mediante el desarrollo de su modelo mental de la tarea en cuestión. También muestra las emociones (esperadas) involucradas en la experiencia global.</p>
+        </td>
+    </tr>
+    <tr>
+        <th style='width: 20%'>
+            <i class='pix pix-interaction'></i><br>
+            <label>dialogues</label>
+        </th>
+        <td style='width: 40%' lang='en'>
+            <p>This is the interface dialogue layer that represents the concrete actions happening on the interface: gestures, messages, actions; all direct manipulation of elements and constructs happening onstage.</p>
+        </td>
+        <td style='width: 40%' lang='es'>
+            <p>Esta es la capa del diálogo que representa las acciones concretas sucediendo en la interfaz: gestos, mensajes, acciones; toda manipulación directa de elementos y constructos sucediendo en el punto de contacto.</p>
+        </td>
+    </tr>
+    <tr>
+        <th style='width: 20%'>
+            <i class='pix pix-gear'></i><br>
+            <label>system</label>
+        </th>
+        <td style='width: 40%' lang='en'>
+            <p>This is the system layer which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the person.</p>
+        </td>
+        <td style='width: 40%' lang='es'>
+            <p>Esta es la capa del sistema que muestra lo que ocurre tras bambalinas, aquello que permite que el servicio se desarrolle; todas las acciones de apoyo que son entregadas y presentadas a la persona.</p>
+        </td>
+    </tr>
+</table>
 
 <h1 class='score-header'><input placeholder='Name your score'></h1>
 <textarea class='score-description' placeholder='Describe your score'></textarea>
 <div class='pix-score'>
      <ul class='pix-header col-sm-1 col-xs-3'>
-        <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>user actions</label></div></li>
+        <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>person</label></div></li>
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system response</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system</label></div></li>
     </ul>
     <ul class='pix-steps'>
         <li class='pix-step col-sm-1 col-xs-3'>
