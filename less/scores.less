@@ -8,21 +8,10 @@
 @pix-size: 36px;
 
 /****************************************** Score Title */
-
-h1.score-header{
-	margin: 0;
-	input{
-		font-size: 32px;
-		margin: 12px 0;
-		color: @orange;
-		// font-size: 22px;
+.input-style{
 		padding: 4px;
-		line-height: 42px;
-		overflow: hidden;
-		width: auto;
+		overflow: auto;
 		border: none;
-		-moz-border-radius: @radius;
-		-webkit-border-radius: @radius;
 		border-radius: @radius;
 		&:active,
 		&:focus,
@@ -30,19 +19,22 @@ h1.score-header{
 			box-shadow: 0 0 2px @edit-color inset;
 			background-color: fade(@edit-color, 30);
 		}
+}
+
+h1.score-header{
+	margin: 0;
+	input{
+		font-size: 32px;
+		margin: 12px 0;
+		color: @orange;
+		line-height: 42px;
+		.input-style;
 	}
 }
 .score-description{
 	display: block;
 	width: 100%;
-	border: none;
-	padding: 4px;
-	&:active,
-	&:focus,
-	&:hover{
-		box-shadow: 0 0 2px @edit-color inset;
-		background-color: fade(@edit-color, 30);
-	}
+	.input-style;
 }
 
 
