@@ -4,9 +4,7 @@ title: PiX - Icons
 active: icons
 ---
 
-
-
-<h3><span>Font Name:</span> PiX <small>(Version 2.2 — Glyphs:&nbsp;112)</small></h3>
+<h3><span>Font Name:</span> PiX <small>(Version 2.4 — Glyphs:&nbsp;125)</small></h3>
 <p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. Different categories work as standalone icons or as a part of a more complex symbol. The complete list is <a href="https://docs.google.com/spreadsheets/d/18SfIEgUig5TVLkM9E1Qb9QyPn05qsCFxO5wHwdc5z-c/edit?usp=sharing">here</a>.</p>
 
 <h4 id='meta'>PiX Meta Elements</h4>
@@ -14,6 +12,7 @@ active: icons
 <div class='row'>
     {% include icon-doc.html name='pix' %}
     {% include icon-doc.html name='grid-center' %}
+    {% include icon-doc.html name='grid-ul' %}
     {% include icon-doc.html name='grid-horizontal' %}
     {% include icon-doc.html name='grid' %}
 </div>
@@ -27,18 +26,18 @@ active: icons
     {% include icon-doc.html name='circle' %}
     {% include icon-doc.html name='circle-dashed' %}
     {% include icon-doc.html name='say' %}
-    {% include icon-doc.html name='think' %}
     {% include icon-doc.html name='dialogue' %}
-    {% include icon-doc.html name='interaction' %}
+    {% include icon-doc.html name='think' %}
     {% include icon-doc.html name='cloud' %}
     {% include icon-doc.html name='email' %}
-    {% include icon-doc.html name='book' %}
-</div>
-<div class='row'>
     {% include icon-doc.html name='database' %}
     {% include icon-doc.html name='gear' %}
+</div>
+<div class='row'>
+    {% include icon-doc.html name='interaction' %}
     {% include icon-doc.html name='refresh' %}
     {% include icon-doc.html name='reload' %}
+    {% include icon-doc.html name='book' %}
 </div>
 <hr>
 <h4 id='controls'>Devices</h4>
@@ -89,7 +88,19 @@ active: icons
     {% include icon-doc.html name='arrows-cycle' %}
 </div>
 <hr>
-<h4>User Faces</h4>
+<hr>
+<h4>Playback Buttons</h4>
+<div class='row'>
+    {% include icon-doc.html name='play' %}
+    {% include icon-doc.html name='rewind' %}
+    {% include icon-doc.html name='fast-forward' %}
+    {% include icon-doc.html name='previous' %}
+    {% include icon-doc.html name='next' %}
+    {% include icon-doc.html name='stop' %}
+    {% include icon-doc.html name='pause' %}
+    {% include icon-doc.html name='rec' %}
+</div>
+<h4>Face Expressions</h4>
 <p>These icons are meant for the upper row of the score, for depicting user emotions and moods, mainly as a result of interaction with the system.</p>
 <div class='row'>
     {% include icon-doc.html name='user' %}
@@ -130,10 +141,12 @@ active: icons
     {% include icon-doc.html name='minus' %}
     {% include icon-doc.html name='plus' %}
     {% include icon-doc.html name='question' %}
-    {% include icon-doc.html name='contact' %}
+    {% include icon-doc.html name='alert' %}
 </div>
 <div class='row'>
+    {% include icon-doc.html name='contact' %}
     {% include icon-doc.html name='pencil' %}
+    {% include icon-doc.html name='wrench' %}
     {% include icon-doc.html name='search' %}
     {% include icon-doc.html name='filter' %}
     {% include icon-doc.html name='read' %}
@@ -143,24 +156,27 @@ active: icons
     {% include icon-doc.html name='tag' %}
     {% include icon-doc.html name='feed' %}
     {% include icon-doc.html name='message' %}
+</div>
+<div class='row'> 
     {% include icon-doc.html name='message-alert' %}
     {% include icon-doc.html name='message-question' %}
-</div>
-<div class='row'>  
     {% include icon-doc.html name='position' %}
     {% include icon-doc.html name='orientation' %}
     {% include icon-doc.html name='picture' %}
-    {% include icon-doc.html name='sound' %}
+    {% include icon-doc.html name='camera' %}
     {% include icon-doc.html name='video' %}
+    {% include icon-doc.html name='camera-video' %}
+    {% include icon-doc.html name='sound' %}
+    {% include icon-doc.html name='microphone' %}
     {% include icon-doc.html name='checkbox' %}
     {% include icon-doc.html name='radio' %}
+</div>
+<div class='row'>
     {% include icon-doc.html name='radio-select' %}
     {% include icon-doc.html name='select' %}
     {% include icon-doc.html name='switch' %}
     {% include icon-doc.html name='text' %}
     {% include icon-doc.html name='type' %}
-</div>
-<div class='row'>   
     {% include icon-doc.html name='lock' %}
     {% include icon-doc.html name='unlock' %}
     {% include icon-doc.html name='window' %}
