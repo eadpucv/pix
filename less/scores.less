@@ -9,18 +9,34 @@
 
 /****************************************** Score Title */
 
-input.score-header{
-	margin: 12px 0;
-	color: @orange;
-	// font-size: 22px;
-	padding: 4px;
-	line-height: 42px;
-	overflow: hidden;
-	width: auto;
+h1.score-header{
+	margin: 0;
+	input{
+		font-size: 32px;
+		margin: 12px 0;
+		color: @orange;
+		// font-size: 22px;
+		padding: 4px;
+		line-height: 42px;
+		overflow: hidden;
+		width: auto;
+		border: none;
+		-moz-border-radius: @radius;
+		-webkit-border-radius: @radius;
+		border-radius: @radius;
+		&:active,
+		&:focus,
+		&:hover{
+			box-shadow: 0 0 2px @edit-color inset;
+			background-color: fade(@edit-color, 30);
+		}
+	}
+}
+.score-description{
+	display: block;
+	width: 100%;
 	border: none;
-	-moz-border-radius: @radius;
-	-webkit-border-radius: @radius;
-	border-radius: @radius;
+	padding: 4px;
 	&:active,
 	&:focus,
 	&:hover{
