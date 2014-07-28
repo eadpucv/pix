@@ -69,13 +69,13 @@ active: index
 <h1 class='score-header'><input placeholder='Name your score'></h1>
 <textarea class='score-description' placeholder='Describe your score'></textarea>
 <div class='pix-score'>
-     <ul class='pix-header col-xs-1'>
+     <ul class='pix-header col-sm-1 col-xs-3'>
         <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>user actions</label></div></li>
         <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogues</label></div></li>
         <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system response</label></div></li>
     </ul>
-    <ul class='step'>
-        <li class='col-sm-1'>
+    <ul class='pix-steps'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
@@ -95,9 +95,12 @@ active: index
                         <p>The screen is updated</p>
                     </div>
                 </li>
+                <div class='note'>
+                    <p>This is a suscint note about what is really going on here</p>
+                </div>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
@@ -120,7 +123,7 @@ active: index
                 <li class='block block-system'><input type='text' tabindex='6' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
@@ -141,10 +144,14 @@ active: index
                         <p>This one has three stacked icons!</p>
                     </div>
                 </li>
-                <li class='block block-system'><input type='text' tabindex='9' placeholder='type here...'></li>
+                <li class='block block-system'><input type='text' tabindex='9' placeholder='type here...'>
+                </li>
+                <div class='note'>
+                    <p>Just for clarification purposes...</p>
+                </div>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='10' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
@@ -160,7 +167,7 @@ active: index
                 <li class='block block-system'><input type='text' tabindex='12' placeholder='type here...'></li>
             </ul>
         </li>    
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
@@ -175,7 +182,7 @@ active: index
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
@@ -190,7 +197,7 @@ active: index
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
@@ -213,7 +220,7 @@ active: index
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'>
@@ -228,21 +235,21 @@ active: index
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>
                 <li class='block block-system'><input type='text' tabindex='15' placeholder='type here...'></li>
             </ul>
         </li>
-        <li class='col-sm-1'>
+        <li class='pix-step col-sm-1 col-xs-3'>
             <ul>
                 <li class='block block-user'><input type='text' tabindex='13' placeholder='type here...'></li>
                 <li class='block block-dialogue'><input type='text' tabindex='14' placeholder='type here...'></li>

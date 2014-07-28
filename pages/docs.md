@@ -116,7 +116,7 @@ active: docs
 <div class='docs-block'>
 	.pix-score<br>
 	<div class='docs-block docs-bk'>
-		<strong>ul</strong>.pix-header<br>
+		<strong>ul</strong>.pix-header col-sm-1 col-xs-3<br>
 		<div class='docs-block docs-bk'>
 			<strong>li</strong>.block<br>
 			.block-user<br>
@@ -149,7 +149,7 @@ active: docs
 	<div class='docs-block'>
 		<strong>ul</strong>.pix-steps<br>
 		<div class='docs-block'>
-			<strong>li</strong>.pix-step<br>
+			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
 			<div class='docs-block'>
 				<strong>ul</strong>.pix-blocks<br>
 				<div class='docs-block'>
@@ -184,7 +184,7 @@ active: docs
 			</div>
 		</div>
 		<div class='docs-block'>
-			<strong>li</strong>.pix-step<br>
+			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
 			<div class='docs-block'>
 				<strong>ul</strong>.pix-blocks<br>
 				<div class='docs-block'>
@@ -219,7 +219,7 @@ active: docs
 			</div>
 		</div>
 		<div class='docs-block'>
-			<strong>li</strong>.pix-step<br>
+			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
 			<div class='docs-block'>
 				<strong>ul</strong>.pix-blocks<br>
 				<div class='docs-block'>
@@ -254,7 +254,7 @@ active: docs
 			</div>
 		</div>
 		<div class='docs-block'>
-			<strong>li</strong>.pix-step<br>
+			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
 			<br>
 			<br>
 			<br>

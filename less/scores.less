@@ -52,8 +52,7 @@ h1.score-header{
 
 	margin: 10px -@pix-border-width 32px -@pix-border-width;
 	margin-bottom: 32px;
-	border: @pix-border-width solid @border-color;
-	border-radius: @pix-border-width * 2;
+
 	.cf;
 
 	ul li{
@@ -73,8 +72,11 @@ h1.score-header{
 	ul{
 		&.pix-header{
 			background-color: @border-color;
-
+			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
 			li{
+				&.block-user{border-top: none}
+				&.block-system{border-bottom: none}
+				
 				width: 100%;
 				.tcenter;
 				font-weight: 600;
@@ -93,10 +95,38 @@ h1.score-header{
 			}
 		}
 
-
 		&.pix-steps{
-
+			li.pix-step{
+				&:last-child{
+					border-radius: @pix-border-width * 2;
+					border-right: @pix-border-width solid @border-color;
+				}
+				&:hover{
+					background-color: lighten(@edit-color, 10);
+					&:before{
+						display: block;
+						position: absolute;
+						top: -20px;
+						content: 'split score';
+						.note;
+					}
+					&:after{
+						display: block;
+						position: absolute;
+						content: 'add note';
+						.note;
+					}
+				}
+			}
 		}
+	}
+
+	.note{
+		padding: 4px;
+		font-size: 11px;
+		font-family: @font-family-serif;
+		color: desaturate(darken(@edit-color, 30), 20);
+		line-height: 100%;
 	}
 
 }
@@ -134,9 +164,12 @@ h1.score-header{
 	margin: 0;
 	width: 100%;
 
-	&.block-user{border-bottom: 1px dotted @pix-border-color}
+	&.block-user{
+		border-top: @pix-border-width solid @border-color;
+		border-bottom: 1px dotted @pix-border-color;
+	}
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
-	&.block-system{border-bottom: none}
+	&.block-system{border-bottom: @pix-border-width solid @border-color;}
 	
 	input[type="text"]{
 		font-size: 12px;
