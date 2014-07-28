@@ -28,3 +28,36 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(359deg); }
 }
+
+.@{css-prefix}-swing {
+  -webkit-animation: swing 1s infinite ease;
+  -moz-animation: swing 1s infinite ease;
+  -o-animation: swing 1s infinite ease;
+  animation: swing 1s infinite ease;
+}
+
+@-moz-keyframes swing {
+  0% { -moz-transform: rotate(-20deg); }
+  50% { -moz-transform: rotate(20deg); }
+  100% { -moz-transform: rotate(-20deg); }
+}
+@-webkit-keyframes swing {
+  0% { -webkit-transform: rotate(-20deg); }
+  50% { -webkit-transform: rotate(20deg); }
+  100% { -webkit-transform: rotate(-20deg); }
+}
+@-o-keyframes swing {
+  0% { -o-transform: rotate(-20deg); }
+  50% { -o-transform: rotate(20deg); }
+  100% { -o-transform: rotate(-20deg); }
+}
+@-ms-keyframes swing {
+  0% { -ms-transform: rotate(-20deg); }
+  50% { -ms-transform: rotate(20deg); }
+  100% { -ms-transform: rotate(-20deg); }
+}
+@keyframes swing {
+  0% { transform: rotate(-20deg); }
+  50% { transform: rotate(20deg); }
+  100% { transform: rotate(-20deg); }
+}

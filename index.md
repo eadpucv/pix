@@ -51,9 +51,9 @@ active: index
 <h2 class='black'>The Score</h2>
 <div class='pix-score'>
     <ul class='pix-header col-xs-2'>
-        <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-interaction'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-robot'></i><label>system response</label></div></li>
+        <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>user actions</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system response</label></div></li>
     </ul>
     <ul class='pix-steps'>
         <li class='pix-step col-xs-10'>
@@ -66,13 +66,13 @@ active: index
     </ul>
 </div>
 
-<input class='score-header' placeholder='Name your score'>
-
+<h1 class='score-header'><input placeholder='Name your score'></h1>
+<textarea class='score-description' placeholder='Describe your score'></textarea>
 <div class='pix-score'>
      <ul class='pix-header col-xs-1'>
-        <li class='block block-user'><div class='pix-group'><i class='pix pix-4x pix-user'></i><label>user actions</label></div></li>
-        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-4x pix-refresh'></i><label>dialogues</label></div></li>
-        <li class='block block-system'><div class='pix-group'><i class='pix pix-4x pix-database'></i><label>system response</label></div></li>
+        <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>user actions</label></div></li>
+        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogues</label></div></li>
+        <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system response</label></div></li>
     </ul>
     <ul class='step'>
         <li class='col-sm-1'>
