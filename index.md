@@ -340,7 +340,13 @@ active: index
                     <input type='text' placeholder='type here...'>
                 </li>
                 <li class='block block-system'>
-                    <input type='text' placeholder='type here...'>
+                    <div class='pix-group'>
+                        <div class='pix-stack'>
+                            <i class='pix pix-grid-ul'></i>
+                            <i class='pix pix-grid-center stack-upper-left orange'></i>
+                        </div>
+                        <p>This is a test for alignment purposes</p>
+                    </div>
                 </li>
             </ul>
         </li>

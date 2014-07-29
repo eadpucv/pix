@@ -307,21 +307,50 @@ active: icons
     {% include icon-doc-stack.html pix1='email' pix2='list' %}
     {% include icon-doc-stack.html pix1='email' pix2='question' %}
 </div>
-<h4>System Actions</h4>
+<hr>
+<h4>System Response</h4>
 <div class='row'>
-    {% include icon-doc-stack.html pix1='gear' pix2='ok' %}
-    {% include icon-doc-stack.html pix1='gear' pix2='no' %}
-    {% include icon-doc-stack.html pix1='gear' pix2='question' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='cog' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='ok' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='no' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='clock' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='window-page' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='cube' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='lightbulb' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='lock' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='unlock' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='question' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='alert' %}
+</div>
+<div class='row'>
+    {% include icon-doc-stack.html pix1='refresh' pix2='cog' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='ok' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='no' %}
-    {% include icon-doc-stack.html pix1='refresh' pix2='cog' %}
-    {% include icon-doc-stack.html pix1='refresh' pix2='question' %}
-    {% include icon-doc-stack.html pix1='refresh' pix2='message-alert' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='clock' %}
-    {% include icon-doc-stack.html pix1='database' pix2='ok' %}
-    {% include icon-doc-stack.html pix1='database' pix2='no' %}
-    {% include icon-doc-stack.html pix1='database' pix2='message-alert' %}
-</div>  
+    {% include icon-doc-stack.html pix1='refresh' pix2='window-page' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='cube' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='lightbulb' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='lock' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='unlock' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='question' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='alert' %}
+</div>
+<div class='row'>
+    {% include icon-doc-stack.html pix1='gear' pix2='cog' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='ok' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='no' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='clock' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='window-page' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='cube' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='lightbulb' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='lock' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='unlock' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='question' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='alert' %}
+</div>
 <div class='row'>
     {% include icon-doc-stack.html pix1='database' pix2='arrow-up' %}
     {% include icon-doc-stack.html pix1='database' pix2='arrow-down' %}
@@ -336,19 +365,26 @@ active: icons
     {% include icon-doc-stack.html pix1='cloud' pix2='no' %}
     {% include icon-doc-stack.html pix1='cloud' pix2='cog' %}
 </div>
-<h4>System Response</h4>
+<h4>Object Combinations</h4>
 <div class='row'>
-    {% include icon-doc-stack.html pix1='reload' pix2='ok' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='no' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='window' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='window-page' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='window-gallery' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='cube' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='lock' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='cog' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='question' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='message' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='message-alert' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='message-question' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-up' lm='cube' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-down' lm='cube' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-up' lm='picture' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-down' lm='picture' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-up' lm='video' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-down' lm='video' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-up' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-down' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-up' lm='contact' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-down' lm='contact' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-up' lm='position' %}
+    {% include icon-doc-stack-um-lm.html um='arrow-down' lm='position' %}
 </div>
-
+<div class='row'>
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='cube' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='picture' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='video' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='contact' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='calendar' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='position' %}
+</div>
