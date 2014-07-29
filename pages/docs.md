@@ -39,7 +39,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 		<div class='docs-block'>
 			<strong>li</strong>.block<br>
 			<div class='docs-block docs-bk'>
-				.pix-group<br>
+				<strong>div</strong>.pix-group<br>
 				<div class='docs-block'>
 					.pix-stacked<br>
 					<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
@@ -62,7 +62,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			<strong>li</strong>.block<br>
 			.block-user<br>
 			<div class='docs-block docs-bk'>
-				.pix-group<br>
+				<strong>div</strong>.pix-group<br>
 				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-user</div><br>
 				<div class='docs-block docs-bk'><strong>label</strong></div>
 			</div>
@@ -71,7 +71,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			<strong>li</strong>.block<br>
 			.block-dialogue<br>
 			<div class='docs-block docs-bk'>
-				.pix-group<br>
+				<strong>div</strong>.pix-group<br>
 				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-dialogue</div><br>
 				<div class='docs-block docs-bk'><strong>label</strong></div>
 			</div>
@@ -80,7 +80,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			<strong>li</strong>.block<br>
 			.block-system<br>
 			<div class='docs-block docs-bk'>
-				.pix-group<br>
+				<strong>div</strong>.pix-group<br>
 				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-system</div><br>
 				<div class='docs-block docs-bk'><strong>label</strong></div>
 			</div>
@@ -95,7 +95,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-user<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -103,7 +103,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-dialogue<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -111,7 +111,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-system<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -130,7 +130,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-user<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -138,7 +138,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-dialogue<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -146,7 +146,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-system<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -165,7 +165,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-user<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -173,7 +173,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-dialogue<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
@@ -181,7 +181,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 				<div class='docs-block'>
 					<strong>li</strong>.block block-system<br>
 					<div class='docs-block'>
-						.pix-group<br>
+						<strong>div</strong>.pix-group<br>
 						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
 						<div class='docs-block'><strong>p</strong></div>
 					</div>
