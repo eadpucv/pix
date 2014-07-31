@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'PiX';
-	src:url('fonts/PiX.eot?qn3b69');
-	src:url('fonts/PiX.eot?#iefixqn3b69') format('embedded-opentype'),
-		url('fonts/PiX.woff?qn3b69') format('woff'),
-		url('fonts/PiX.ttf?qn3b69') format('truetype'),
-		url('fonts/PiX.svg?qn3b69#PiX') format('svg');
+	src:url('fonts/PiX.eot?2sk70w');
+	src:url('fonts/PiX.eot?#iefix2sk70w') format('embedded-opentype'),
+		url('fonts/PiX.woff?2sk70w') format('woff'),
+		url('fonts/PiX.ttf?2sk70w') format('truetype'),
+		url('fonts/PiX.svg?2sk70w#PiX') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -26,6 +26,9 @@
 .pix-pix:before {
 	content: "\e600";
 }
+.pix-grid:before {
+	content: "\e604";
+}
 .pix-grid-center:before {
 	content: "\e601";
 }
@@ -34,9 +37,6 @@
 }
 .pix-grid-horizontal:before {
 	content: "\e603";
-}
-.pix-grid:before {
-	content: "\e604";
 }
 .pix-square:before {
 	content: "\e605";
@@ -68,8 +68,17 @@
 .pix-email:before {
 	content: "\e60e";
 }
+.pix-message:before {
+	content: "\e65b";
+}
 .pix-database:before {
 	content: "\e60f";
+}
+.pix-window:before {
+	content: "\e65c";
+}
+.pix-book:before {
+	content: "\e614";
 }
 .pix-gear:before {
 	content: "\e610";
@@ -82,9 +91,6 @@
 }
 .pix-reload:before {
 	content: "\e613";
-}
-.pix-book:before {
-	content: "\e614";
 }
 .pix-mobile:before {
 	content: "\e615";
@@ -255,6 +261,9 @@
 	content: "\e644";
 }
 .pix-thumb:before {
+	content: "\e652";
+}
+.pix-thumb-down:before {
 	content: "\e645";
 }
 .pix-cube:before {
@@ -263,17 +272,59 @@
 .pix-file:before {
 	content: "\e647";
 }
-.pix-lightbulb:before {
-	content: "\e648";
+.pix-envelope:before {
+	content: "\e64a";
+}
+.pix-picture:before {
+	content: "\e660";
+}
+.pix-video:before {
+	content: "\e67a";
+}
+.pix-sound:before {
+	content: "\e661";
+}
+.pix-comment:before {
+	content: "\e65d";
+}
+.pix-comments:before {
+	content: "\e668";
+}
+.pix-contact:before {
+	content: "\e651";
+}
+.pix-calendar:before {
+	content: "\e64b";
 }
 .pix-clock:before {
 	content: "\e649";
 }
-.pix-envelope:before {
-	content: "\e64a";
+.pix-position:before {
+	content: "\e65e";
 }
-.pix-calendar:before {
-	content: "\e64b";
+.pix-orientation:before {
+	content: "\e65f";
+}
+.pix-lightbulb:before {
+	content: "\e648";
+}
+.pix-cog:before {
+	content: "\e656";
+}
+.pix-feed:before {
+	content: "\e65a";
+}
+.pix-list:before {
+	content: "\e658";
+}
+.pix-text:before {
+	content: "\e66c";
+}
+.pix-page:before {
+	content: "\e66d";
+}
+.pix-gallery:before {
+	content: "\e66e";
 }
 .pix-ok:before {
 	content: "\e64c";
@@ -281,11 +332,11 @@
 .pix-no:before {
 	content: "\e64d";
 }
-.pix-minus:before {
-	content: "\e64e";
-}
 .pix-plus:before {
 	content: "\e64f";
+}
+.pix-minus:before {
+	content: "\e64e";
 }
 .pix-question:before {
 	content: "\e650";
@@ -293,14 +344,14 @@
 .pix-alert:before {
 	content: "\e678";
 }
-.pix-contact:before {
-	content: "\e651";
-}
 .pix-pencil:before {
-	content: "\e652";
+	content: "\e67d";
 }
 .pix-wrench:before {
 	content: "\e679";
+}
+.pix-type:before {
+	content: "\e669";
 }
 .pix-search:before {
 	content: "\e653";
@@ -311,50 +362,23 @@
 .pix-read:before {
 	content: "\e655";
 }
-.pix-cog:before {
-	content: "\e656";
-}
 .pix-link:before {
 	content: "\e657";
 }
-.pix-list:before {
-	content: "\e658";
+.pix-lock:before {
+	content: "\e66a";
+}
+.pix-unlock:before {
+	content: "\e66b";
 }
 .pix-tag:before {
 	content: "\e659";
 }
-.pix-feed:before {
-	content: "\e65a";
-}
-.pix-message:before {
-	content: "\e65b";
-}
-.pix-message-alert:before {
-	content: "\e65c";
-}
-.pix-message-question:before {
-	content: "\e65d";
-}
-.pix-position:before {
-	content: "\e65e";
-}
-.pix-orientation:before {
-	content: "\e65f";
-}
-.pix-picture:before {
-	content: "\e660";
-}
 .pix-camera:before {
 	content: "\e67b";
 }
-.pix-video:before {
-	content: "\e67a";
-}
 .pix-camera-video:before {
 	content: "\e662";
-}
-.pix-sound:before {
-	content: "\e661";
 }
 .pix-microphone:before {
 	content: "\e67c";
@@ -365,36 +389,15 @@
 .pix-radio:before {
 	content: "\e664";
 }
-.pix-radio-select:before {
-	content: "\e665";
+.pix-slider:before {
+	content: "\e66f";
 }
 .pix-select:before {
 	content: "\e666";
 }
+.pix-radio-select:before {
+	content: "\e665";
+}
 .pix-switch:before {
 	content: "\e667";
-}
-.pix-text:before {
-	content: "\e668";
-}
-.pix-type:before {
-	content: "\e669";
-}
-.pix-lock:before {
-	content: "\e66a";
-}
-.pix-unlock:before {
-	content: "\e66b";
-}
-.pix-window:before {
-	content: "\e66c";
-}
-.pix-window-text:before {
-	content: "\e66d";
-}
-.pix-window-page:before {
-	content: "\e66e";
-}
-.pix-window-gallery:before {
-	content: "\e66f";
 }

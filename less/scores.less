@@ -75,11 +75,10 @@ h1.score-header{
 				//.pix{font-size: @pix-size}
 				label{font-size: .8em}
 				.pix-group{
-					display: block;
-					padding-top: 1.333em;
+					//padding-top: 1.333em;
 					width: 100% !imporant;
 					.pix{
-						display: block;
+						margin-bottom: 12px;
 					}
 				}
 			}
@@ -125,7 +124,8 @@ h1.score-header{
 }
 
 .pix-group{
-	display: table-cell;
+	//display: table-cell;
+	margin-top: 1em;
 	height: @pix-block-height;
 	vertical-align: middle;
 	text-align: center;
@@ -136,6 +136,12 @@ h1.score-header{
 	}
 
 	.pix-stack{
+		.stack-left{
+			left: -33%;
+		}
+		.stack-right{
+			left: 33%;
+		}
 		.stack-upper-left{
 			top: -33%;
 			left: -33%;

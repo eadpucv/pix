@@ -7,5 +7,5 @@ pygments:		true
 permalink:		pretty
 baseurl: 		"http://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
-project:
 name: 			"PiX"
+pixver:			"2.5"

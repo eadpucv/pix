@@ -4,7 +4,7 @@ title: PiX - Icons
 active: icons
 ---
 
-<h3><span>Font Name:</span> PiX <small>(Version 2.4 — Glyphs:&nbsp;125)</small></h3>
+<h3><span>Font Name:</span> PiX <small>(Version 2.5 — Glyphs:&nbsp;125)</small></h3>
 <p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. Different categories work as standalone icons or as a part of a more complex symbol. The complete list is <a href="https://docs.google.com/spreadsheets/d/18SfIEgUig5TVLkM9E1Qb9QyPn05qsCFxO5wHwdc5z-c/edit?usp=sharing">here</a>.</p>
 
 <h4 id='meta'>PiX Meta Elements</h4>
@@ -30,14 +30,16 @@ active: icons
     {% include icon-doc.html name='think' %}
     {% include icon-doc.html name='cloud' %}
     {% include icon-doc.html name='email' %}
+    {% include icon-doc.html name='message' %}
     {% include icon-doc.html name='database' %}
-    {% include icon-doc.html name='gear' %}
 </div>
 <div class='row'>
+    {% include icon-doc.html name='window' %}
+    {% include icon-doc.html name='book' %}
+    {% include icon-doc.html name='gear' %}
     {% include icon-doc.html name='interaction' %}
     {% include icon-doc.html name='refresh' %}
     {% include icon-doc.html name='reload' %}
-    {% include icon-doc.html name='book' %}
 </div>
 <hr>
 <h4 id='controls'>Devices</h4>
@@ -64,9 +66,9 @@ active: icons
     {% include icon-doc.html name='click-right' %}
     {% include icon-doc.html name='keyboard' %}
     {% include icon-doc.html name='keyboard-type' %}
+    {% include icon-doc.html name='keyboard-arrows' %}
     {% include icon-doc.html name='keyboard-enter' %}
     {% include icon-doc.html name='keyboard-tab' %}
-    {% include icon-doc.html name='keyboard-arrows' %}
 </div>
 <hr>
 <h4>Arrows</h4>
@@ -124,6 +126,7 @@ active: icons
     {% include icon-doc.html name='hand' %}
     {% include icon-doc.html name='pinch' %}
     {% include icon-doc.html name='thumb' %}
+    {% include icon-doc.html name='thumb-down' %}
 </div>
 <hr>
 <h4 id='objects'>Objects</h4>
@@ -131,57 +134,55 @@ active: icons
 <div class='row'>
     {% include icon-doc.html name='cube' %}
     {% include icon-doc.html name='file' %}
-    {% include icon-doc.html name='lightbulb' %}
-    {% include icon-doc.html name='clock' %}
     {% include icon-doc.html name='envelope' %}
+    {% include icon-doc.html name='picture' %}
+    {% include icon-doc.html name='video' %}
+    {% include icon-doc.html name='sound' %}
+    {% include icon-doc.html name='comment' %}
+    {% include icon-doc.html name='comments' %}
+    {% include icon-doc.html name='contact' %}
     {% include icon-doc.html name='calendar' %}
-    {% include icon-doc.html name='ok' %}
-    {% include icon-doc.html name='no' %}
-    {% include icon-doc.html name='minus' %}
-    {% include icon-doc.html name='plus' %}
-    {% include icon-doc.html name='question' %}
-    {% include icon-doc.html name='alert' %}
+    {% include icon-doc.html name='clock' %}
+    {% include icon-doc.html name='position' %}
 </div>
 <div class='row'>
-    {% include icon-doc.html name='contact' %}
+    {% include icon-doc.html name='compass' %}
+    {% include icon-doc.html name='lightbulb' %}
+    {% include icon-doc.html name='cog' %}
+    {% include icon-doc.html name='feed' %}
+    {% include icon-doc.html name='list' %}
+    {% include icon-doc.html name='text' %}
+    {% include icon-doc.html name='page' %}
+    {% include icon-doc.html name='gallery' %}
+    {% include icon-doc.html name='ok' %}
+    {% include icon-doc.html name='no' %}
+    {% include icon-doc.html name='plus' %}
+    {% include icon-doc.html name='minus' %}
+</div>
+<div class='row'>
+    {% include icon-doc.html name='question' %}
+    {% include icon-doc.html name='alert' %}
     {% include icon-doc.html name='pencil' %}
     {% include icon-doc.html name='wrench' %}
+    {% include icon-doc.html name='type' %}
     {% include icon-doc.html name='search' %}
     {% include icon-doc.html name='filter' %}
     {% include icon-doc.html name='read' %}
-    {% include icon-doc.html name='cog' %}
     {% include icon-doc.html name='link' %}
-    {% include icon-doc.html name='list' %}
+    {% include icon-doc.html name='lock' %}
+    {% include icon-doc.html name='unlock' %}
     {% include icon-doc.html name='tag' %}
-    {% include icon-doc.html name='feed' %}
-    {% include icon-doc.html name='message' %}
 </div>
-<div class='row'> 
-    {% include icon-doc.html name='message-alert' %}
-    {% include icon-doc.html name='message-question' %}
-    {% include icon-doc.html name='position' %}
-    {% include icon-doc.html name='orientation' %}
-    {% include icon-doc.html name='picture' %}
+<div class='row'>
     {% include icon-doc.html name='camera' %}
-    {% include icon-doc.html name='video' %}
     {% include icon-doc.html name='camera-video' %}
-    {% include icon-doc.html name='sound' %}
     {% include icon-doc.html name='microphone' %}
     {% include icon-doc.html name='checkbox' %}
     {% include icon-doc.html name='radio' %}
-</div>
-<div class='row'>
-    {% include icon-doc.html name='radio-select' %}
+    {% include icon-doc.html name='slider' %}
     {% include icon-doc.html name='select' %}
+    {% include icon-doc.html name='radio-select' %}
     {% include icon-doc.html name='switch' %}
-    {% include icon-doc.html name='text' %}
-    {% include icon-doc.html name='type' %}
-    {% include icon-doc.html name='lock' %}
-    {% include icon-doc.html name='unlock' %}
-    {% include icon-doc.html name='window' %}
-    {% include icon-doc.html name='window-text' %}
-    {% include icon-doc.html name='window-page' %}
-    {% include icon-doc.html name='window-gallery' %}
 </div>
 <hr>
 <h1>Stacked Combinations</h1>
@@ -263,9 +264,22 @@ active: icons
     {% include icon-doc-stack-ul.html pix='touch' ul='select' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='radio-select' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='type' %}
-
+    {% include icon-doc-stack-ul.html pix='touch' ul='slider' %}
 </div>
 <h4>User Intent & Actions</h4>
+<div class='row'>
+   <div class="col-sm-12">
+        <div class="inner icon-docs">
+            <div class='pix-group'>
+                <div class='pix-stack'>
+                    <i class='pix pix-grid-center orange'></i>
+                    <i class='pix pix-grid faded'></i>
+                </div>
+                <p class='tcenter'><span class='docs-icon-name'>Standard stacking without special alignments, just containers and centered objetcs, using the <code>icon-doc-stack</code> template.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class='row'>
     {% include icon-doc-stack.html pix1='think' pix2='cube' %}
     {% include icon-doc-stack.html pix1='think' pix2='lightbulb' %}
@@ -307,15 +321,54 @@ active: icons
     {% include icon-doc-stack.html pix1='email' pix2='list' %}
     {% include icon-doc-stack.html pix1='email' pix2='question' %}
 </div>
+<div class='row'>
+    {% include icon-doc-stack.html pix1='message' pix2='list' %}
+    {% include icon-doc-stack.html pix1='message' pix2='text' %}
+    {% include icon-doc-stack.html pix1='message' pix2='page' %}
+    {% include icon-doc-stack.html pix1='message' pix2='gallery' %}
+    {% include icon-doc-stack.html pix1='message' pix2='alert' %}
+    {% include icon-doc-stack.html pix1='message' pix2='question' %}
+    {% include icon-doc-stack.html pix1='message' pix2='link' %}
+    {% include icon-doc-stack.html pix1='message' pix2='position' %}
+    {% include icon-doc-stack.html pix1='message' pix2='feed' %}
+    {% include icon-doc-stack.html pix1='message' pix2='contact' %}
+    {% include icon-doc-stack.html pix1='message' pix2='type' %}
+</div>
+<div class='row'>
+    {% include icon-doc-stack.html pix1='window' pix2='list' %}
+    {% include icon-doc-stack.html pix1='window' pix2='text' %}
+    {% include icon-doc-stack.html pix1='window' pix2='page' %}
+    {% include icon-doc-stack.html pix1='window' pix2='gallery' %}
+    {% include icon-doc-stack.html pix1='window' pix2='alert' %}
+    {% include icon-doc-stack.html pix1='window' pix2='question' %}
+    {% include icon-doc-stack.html pix1='window' pix2='link' %}
+    {% include icon-doc-stack.html pix1='window' pix2='position' %}
+    {% include icon-doc-stack.html pix1='window' pix2='feed' %}
+    {% include icon-doc-stack.html pix1='window' pix2='contact' %}
+    {% include icon-doc-stack.html pix1='window' pix2='type' %}
+</div>
 <hr>
 <h4>System Response</h4>
+<div class='row'>
+   <div class="col-sm-12">
+        <div class="inner icon-docs">
+            <div class='pix-group'>
+                <div class='pix-stack'>
+                    <i class='pix pix-grid-center orange'></i>
+                    <i class='pix pix-grid faded'></i>
+                </div>
+                <p class='tcenter'><span class='docs-icon-name'>Standard stacking without special alignments, just containers and centered objetcs, using the <code>icon-doc-stack</code> template.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class='row'>
     {% include icon-doc-stack.html pix1='reload' pix2='cog' %}
     {% include icon-doc-stack.html pix1='reload' pix2='ok' %}
     {% include icon-doc-stack.html pix1='reload' pix2='no' %}
     {% include icon-doc-stack.html pix1='reload' pix2='clock' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='window-page' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='text' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='page' %}
     {% include icon-doc-stack.html pix1='reload' pix2='cube' %}
     {% include icon-doc-stack.html pix1='reload' pix2='lightbulb' %}
     {% include icon-doc-stack.html pix1='reload' pix2='lock' %}
@@ -328,8 +381,8 @@ active: icons
     {% include icon-doc-stack.html pix1='refresh' pix2='ok' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='no' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='clock' %}
-    {% include icon-doc-stack.html pix1='refresh' pix2='window-page' %}
-    {% include icon-doc-stack.html pix1='refresh' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='text' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='page' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='cube' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='lightbulb' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='lock' %}
@@ -342,8 +395,8 @@ active: icons
     {% include icon-doc-stack.html pix1='gear' pix2='ok' %}
     {% include icon-doc-stack.html pix1='gear' pix2='no' %}
     {% include icon-doc-stack.html pix1='gear' pix2='clock' %}
-    {% include icon-doc-stack.html pix1='gear' pix2='window-page' %}
-    {% include icon-doc-stack.html pix1='gear' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='text' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='page' %}
     {% include icon-doc-stack.html pix1='gear' pix2='cube' %}
     {% include icon-doc-stack.html pix1='gear' pix2='lightbulb' %}
     {% include icon-doc-stack.html pix1='gear' pix2='lock' %}
@@ -367,6 +420,20 @@ active: icons
 </div>
 <h4>Object Combinations</h4>
 <div class='row'>
+   <div class="col-sm-12">
+        <div class="inner icon-docs">
+            <div class='pix-group'>
+                <div class='pix-stack'>
+                    <i class='pix stack-upper-middle pix-grid-center orange'></i>
+                    <i class='pix stack-lower-middle pix-grid-center'></i>
+                    <i class='pix pix-grid faded'></i>
+                </div>
+                <p class='tcenter'><span class='docs-icon-name'>Centered vertical alignment of the two elements, using the <code>icon-doc-stack-um-lm</code> template.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='row'>
     {% include icon-doc-stack-um-lm.html um='arrow-up' lm='cube' %}
     {% include icon-doc-stack-um-lm.html um='arrow-down' lm='cube' %}
     {% include icon-doc-stack-um-lm.html um='arrow-up' lm='picture' %}
@@ -381,10 +448,97 @@ active: icons
     {% include icon-doc-stack-um-lm.html um='arrow-down' lm='position' %}
 </div>
 <div class='row'>
+    {% include icon-doc-stack-um-lm.html um='clock' lm='cog' %}
+    {% include icon-doc-stack-um-lm.html um='ok' lm='cog' %}
+    {% include icon-doc-stack-um-lm.html um='no' lm='cog' %}
+    {% include icon-doc-stack-um-lm.html um='arrows-cycle' lm='cog' %}
+    {% include icon-doc-stack-um-lm.html um='alert' lm='cog' %}
+    {% include icon-doc-stack-um-lm.html um='question' lm='cog' %}
+    {% include icon-doc-stack-um-lm.html um='clock' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='ok' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='no' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='arrows-cycle' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='alert' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='question' lm='feed' %}
+</div>
+<div class='row'>
+    {% include icon-doc-stack-um-lm.html um='ok' lm='link' %}
+    {% include icon-doc-stack-um-lm.html um='no' lm='link' %}
+    {% include icon-doc-stack-um-lm.html um='alert' lm='link' %}
+    {% include icon-doc-stack-um-lm.html um='question' lm='link' %}
+    {% include icon-doc-stack-um-lm.html um='read' lm='list' %}
+    {% include icon-doc-stack-um-lm.html um='read' lm='envelope' %} 
+    {% include icon-doc-stack-um-lm.html um='read' lm='cube' %} 
+    {% include icon-doc-stack-um-lm.html um='read' lm='feed' %}
+    {% include icon-doc-stack-um-lm.html um='read' lm='lightbulb' %}
+    {% include icon-doc-stack-um-lm.html um='read' lm='calendar' %}
+    {% include icon-doc-stack-um-lm.html um='read' lm='position' %}
+    {% include icon-doc-stack-um-lm.html um='read' lm='question' %}
+</div>
+<div class='row'>
+   <div class="col-sm-12">
+        <div class="inner icon-docs">
+            <div class='pix-group'>
+                <div class='pix-stack'>
+                    <i class='pix stack-upper-right pix-grid-center orange'></i>
+                    <i class='pix stack-lower-left pix-grid-center'></i>
+                    <i class='pix pix-grid faded'></i>
+                </div>
+                <p class='tcenter'><span class='docs-icon-name'>Upper right and lower left alignment of the two elements, using the <code>icon-doc-stack-ur-ll</code> template.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='row'>
     {% include icon-doc-stack-ur-ll.html ur='pencil' ll='cube' %}
     {% include icon-doc-stack-ur-ll.html ur='pencil' ll='picture' %}
     {% include icon-doc-stack-ur-ll.html ur='pencil' ll='video' %}
     {% include icon-doc-stack-ur-ll.html ur='pencil' ll='contact' %}
     {% include icon-doc-stack-ur-ll.html ur='pencil' ll='calendar' %}
-    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='position' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='question' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='text' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='list' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='tag' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='feed' %}
+    {% include icon-doc-stack-ur-ll.html ur='pencil' ll='lightbulb' %}
+</div>
+<div class='row'>
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='cube' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='picture' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='video' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='contact' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='calendar' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='question' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='text' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='list' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='tag' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='feed' %}
+    {% include icon-doc-stack-ur-ll.html ur='position' ll='lightbulb' %}
+</div>
+<div class='row'>
+   <div class="col-sm-12">
+        <div class="inner icon-docs">
+            <div class='pix-group'>
+                <div class='pix-stack'>
+                    <i class='pix stack-left pix-grid-center orange'></i>
+                    <i class='pix stack-right pix-grid-center'></i>
+                    <i class='pix pix-grid faded'></i>
+                </div>
+                <p class='tcenter'><span class='docs-icon-name'>Left and right elements are aligned, using the <code>icon-doc-stack-l-r</code> template.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='row'>
+    {% include icon-doc-stack-l-r.html l='position' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='orientation' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='contact' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='camera' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='camera-video' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='microphone' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='arrows-cycle' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='search' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='sound' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='clock' r='mobile-vibrate' %}
+    {% include icon-doc-stack-l-r.html l='sound' r='mobile-vibrate' %}
 </div>
