@@ -309,10 +309,11 @@ active: icons
     {% include icon-doc-stack.html pix1='say' pix2='tag' %}
 </div>
 <div class='row'>
+    {% include icon-doc-stack.html pix1='circle-dashed' pix2='thumb' %}
+    {% include icon-doc-stack.html pix1='circle-dashed' pix2='thumb-down' %}
     {% include icon-doc-stack.html pix1='email' pix2='cube' %}
     {% include icon-doc-stack.html pix1='email' pix2='lightbulb' %}
     {% include icon-doc-stack.html pix1='email' pix2='sound' %}
-    {% include icon-doc-stack.html pix1='email' pix2='feed' %}
     {% include icon-doc-stack.html pix1='email' pix2='link' %}
     {% include icon-doc-stack.html pix1='email' pix2='contact' %}
     {% include icon-doc-stack.html pix1='email' pix2='calendar' %}
@@ -326,26 +327,32 @@ active: icons
     {% include icon-doc-stack.html pix1='message' pix2='text' %}
     {% include icon-doc-stack.html pix1='message' pix2='page' %}
     {% include icon-doc-stack.html pix1='message' pix2='gallery' %}
+
+    {% include icon-doc-stack.html pix1='window' pix2='list' %}
+    {% include icon-doc-stack.html pix1='window' pix2='text' %}
+    {% include icon-doc-stack.html pix1='window' pix2='page' %}
+    {% include icon-doc-stack.html pix1='window' pix2='gallery' %}
+
     {% include icon-doc-stack.html pix1='message' pix2='alert' %}
     {% include icon-doc-stack.html pix1='message' pix2='question' %}
+    {% include icon-doc-stack.html pix1='window' pix2='alert' %}
+    {% include icon-doc-stack.html pix1='window' pix2='question' %}
+</div>
+<div class='row'>
     {% include icon-doc-stack.html pix1='message' pix2='link' %}
     {% include icon-doc-stack.html pix1='message' pix2='position' %}
     {% include icon-doc-stack.html pix1='message' pix2='feed' %}
     {% include icon-doc-stack.html pix1='message' pix2='contact' %}
     {% include icon-doc-stack.html pix1='message' pix2='type' %}
-</div>
-<div class='row'>
-    {% include icon-doc-stack.html pix1='window' pix2='list' %}
-    {% include icon-doc-stack.html pix1='window' pix2='text' %}
-    {% include icon-doc-stack.html pix1='window' pix2='page' %}
-    {% include icon-doc-stack.html pix1='window' pix2='gallery' %}
-    {% include icon-doc-stack.html pix1='window' pix2='alert' %}
-    {% include icon-doc-stack.html pix1='window' pix2='question' %}
+    
     {% include icon-doc-stack.html pix1='window' pix2='link' %}
     {% include icon-doc-stack.html pix1='window' pix2='position' %}
     {% include icon-doc-stack.html pix1='window' pix2='feed' %}
     {% include icon-doc-stack.html pix1='window' pix2='contact' %}
     {% include icon-doc-stack.html pix1='window' pix2='type' %}
+
+    {% include icon-doc-stack.html pix1='book' pix2='contact' %}
+    {% include icon-doc-stack.html pix1='book' pix2='read' %}
 </div>
 <hr>
 <h4>System Response</h4>
