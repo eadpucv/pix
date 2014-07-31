@@ -4,7 +4,7 @@ title: PiX - Icons
 active: icons
 ---
 
-<h3><span>Font Name:</span> PiX <small>(Version 2.4 — Glyphs:&nbsp;125)</small></h3>
+<h3><span>Font Name:</span> PiX <small>(Version 2.5 — Glyphs:&nbsp;125)</small></h3>
 <p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. Different categories work as standalone icons or as a part of a more complex symbol. The complete list is <a href="https://docs.google.com/spreadsheets/d/18SfIEgUig5TVLkM9E1Qb9QyPn05qsCFxO5wHwdc5z-c/edit?usp=sharing">here</a>.</p>
 
 <h4 id='meta'>PiX Meta Elements</h4>
@@ -264,7 +264,7 @@ active: icons
     {% include icon-doc-stack-ul.html pix='touch' ul='select' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='radio-select' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='type' %}
-
+    {% include icon-doc-stack-ul.html pix='touch' ul='slider' %}
 </div>
 <h4>User Intent & Actions</h4>
 <div class='row'>
@@ -275,7 +275,7 @@ active: icons
                     <i class='pix pix-grid-center orange'></i>
                     <i class='pix pix-grid faded'></i>
                 </div>
-                <p class='tcenter'><span class='docs-icon-name'>Standard stacking without special alignments, just containers and centered objetcs, Uusing the <code>icon-doc-stack</code> template.</span></p>
+                <p class='tcenter'><span class='docs-icon-name'>Standard stacking without special alignments, just containers and centered objetcs, using the <code>icon-doc-stack</code> template.</span></p>
             </div>
         </div>
     </div>
@@ -350,12 +350,25 @@ active: icons
 <hr>
 <h4>System Response</h4>
 <div class='row'>
+   <div class="col-sm-12">
+        <div class="inner icon-docs">
+            <div class='pix-group'>
+                <div class='pix-stack'>
+                    <i class='pix pix-grid-center orange'></i>
+                    <i class='pix pix-grid faded'></i>
+                </div>
+                <p class='tcenter'><span class='docs-icon-name'>Standard stacking without special alignments, just containers and centered objetcs, using the <code>icon-doc-stack</code> template.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='row'>
     {% include icon-doc-stack.html pix1='reload' pix2='cog' %}
     {% include icon-doc-stack.html pix1='reload' pix2='ok' %}
     {% include icon-doc-stack.html pix1='reload' pix2='no' %}
     {% include icon-doc-stack.html pix1='reload' pix2='clock' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='window-page' %}
-    {% include icon-doc-stack.html pix1='reload' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='text' %}
+    {% include icon-doc-stack.html pix1='reload' pix2='page' %}
     {% include icon-doc-stack.html pix1='reload' pix2='cube' %}
     {% include icon-doc-stack.html pix1='reload' pix2='lightbulb' %}
     {% include icon-doc-stack.html pix1='reload' pix2='lock' %}
@@ -368,8 +381,8 @@ active: icons
     {% include icon-doc-stack.html pix1='refresh' pix2='ok' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='no' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='clock' %}
-    {% include icon-doc-stack.html pix1='refresh' pix2='window-page' %}
-    {% include icon-doc-stack.html pix1='refresh' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='text' %}
+    {% include icon-doc-stack.html pix1='refresh' pix2='page' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='cube' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='lightbulb' %}
     {% include icon-doc-stack.html pix1='refresh' pix2='lock' %}
@@ -382,8 +395,8 @@ active: icons
     {% include icon-doc-stack.html pix1='gear' pix2='ok' %}
     {% include icon-doc-stack.html pix1='gear' pix2='no' %}
     {% include icon-doc-stack.html pix1='gear' pix2='clock' %}
-    {% include icon-doc-stack.html pix1='gear' pix2='window-page' %}
-    {% include icon-doc-stack.html pix1='gear' pix2='window-gallery' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='text' %}
+    {% include icon-doc-stack.html pix1='gear' pix2='page' %}
     {% include icon-doc-stack.html pix1='gear' pix2='cube' %}
     {% include icon-doc-stack.html pix1='gear' pix2='lightbulb' %}
     {% include icon-doc-stack.html pix1='gear' pix2='lock' %}
@@ -441,33 +454,18 @@ active: icons
     {% include icon-doc-stack-um-lm.html um='arrows-cycle' lm='cog' %}
     {% include icon-doc-stack-um-lm.html um='alert' lm='cog' %}
     {% include icon-doc-stack-um-lm.html um='question' lm='cog' %}
-    {% include icon-doc-stack-um-lm.html um='text' lm='cog' %}
-    {% include icon-doc-stack-um-lm.html um='search' lm='cog' %}
-    {% include icon-doc-stack-um-lm.html um='wrench' lm='cog' %}
-</div>
-<div class='row'>
     {% include icon-doc-stack-um-lm.html um='clock' lm='feed' %}
     {% include icon-doc-stack-um-lm.html um='ok' lm='feed' %}
     {% include icon-doc-stack-um-lm.html um='no' lm='feed' %}
     {% include icon-doc-stack-um-lm.html um='arrows-cycle' lm='feed' %}
     {% include icon-doc-stack-um-lm.html um='alert' lm='feed' %}
     {% include icon-doc-stack-um-lm.html um='question' lm='feed' %}
-    {% include icon-doc-stack-um-lm.html um='text' lm='feed' %}
-    {% include icon-doc-stack-um-lm.html um='search' lm='feed' %}
-    {% include icon-doc-stack-um-lm.html um='wrench' lm='feed' %}
 </div>
 <div class='row'>
-    {% include icon-doc-stack-um-lm.html um='clock' lm='link' %}
     {% include icon-doc-stack-um-lm.html um='ok' lm='link' %}
     {% include icon-doc-stack-um-lm.html um='no' lm='link' %}
-    {% include icon-doc-stack-um-lm.html um='arrows-cycle' lm='link' %}
     {% include icon-doc-stack-um-lm.html um='alert' lm='link' %}
     {% include icon-doc-stack-um-lm.html um='question' lm='link' %}
-    {% include icon-doc-stack-um-lm.html um='text' lm='link' %}
-    {% include icon-doc-stack-um-lm.html um='search' lm='link' %}
-    {% include icon-doc-stack-um-lm.html um='wrench' lm='link' %}
-</div>
-<div class='row'>
     {% include icon-doc-stack-um-lm.html um='read' lm='list' %}
     {% include icon-doc-stack-um-lm.html um='read' lm='envelope' %} 
     {% include icon-doc-stack-um-lm.html um='read' lm='cube' %} 
@@ -475,7 +473,6 @@ active: icons
     {% include icon-doc-stack-um-lm.html um='read' lm='lightbulb' %}
     {% include icon-doc-stack-um-lm.html um='read' lm='calendar' %}
     {% include icon-doc-stack-um-lm.html um='read' lm='position' %}
-    {% include icon-doc-stack-um-lm.html um='read' lm='cog' %}
     {% include icon-doc-stack-um-lm.html um='read' lm='question' %}
 </div>
 <div class='row'>
@@ -539,18 +536,9 @@ active: icons
     {% include icon-doc-stack-l-r.html l='camera' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='camera-video' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='microphone' r='mobile' %}
-    {% include icon-doc-stack-l-r.html l='type' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='arrows-cycle' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='search' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='sound' r='mobile' %}
-</div>
-<div class='row'>
-    {% include icon-doc-stack-l-r.html l='position' r='mobile-vibrate' %}
-    {% include icon-doc-stack-l-r.html l='orientation' r='mobile-vibrate' %}
-    {% include icon-doc-stack-l-r.html l='contact' r='mobile-vibrate' %}
     {% include icon-doc-stack-l-r.html l='clock' r='mobile-vibrate' %}
-    {% include icon-doc-stack-l-r.html l='calendar' r='mobile-vibrate' %}
-    {% include icon-doc-stack-l-r.html l='microphone' r='mobile-vibrate' %}
-    {% include icon-doc-stack-l-r.html l='type' r='mobile-vibrate' %}
-    {% include icon-doc-stack-l-r.html l='search' r='mobile-vibrate' %}
     {% include icon-doc-stack-l-r.html l='sound' r='mobile-vibrate' %}
 </div>
