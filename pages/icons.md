@@ -183,6 +183,8 @@ active: icons
     {% include icon-doc.html name='select' %}
     {% include icon-doc.html name='radio-select' %}
     {% include icon-doc.html name='switch' %}
+    {% include icon-doc.html name='call' %}
+    {% include icon-doc.html name='hang-up' %}
 </div>
 <hr>
 <h1>Stacked Combinations</h1>
@@ -194,14 +196,30 @@ active: icons
     {% include icon-doc-mouse.html click='click-left' event='arrows-move' %}
     {% include icon-doc-mouse.html click='click-center' event='arrows-vertical' %}
     {% include icon-doc-mouse.html click='click-right' event='arrow-right' %}
+    {% include icon-doc-mouse.html click='click-right' event='ok' %}
+    {% include icon-doc-mouse.html click='click-right' event='no' %}
+    {% include icon-doc-mouse.html click='click-right' event='radio' %}
+    {% include icon-doc-mouse.html click='click-right' event='checkbox' %}
+    {% include icon-doc-mouse.html click='click-right' event='slider' %}
+</div>
+<h4>Trackpad</h4>
+<div class='row'>
+    {% include icon-doc-um.html pix='trackpad' um='click' %}
+    {% include icon-doc-um.html pix='trackpad' um='arrows-move' %}
+    {% include icon-doc-um.html pix='trackpad' um='arrows-vertical' %}
+    {% include icon-doc-um.html pix='trackpad' um='arrows-cycle' %}
+    {% include icon-doc-um.html pix='trackpad' um='arrow-rotate' %}
+    {% include icon-doc-um.html pix='trackpad' um='arrow-right' %}
+    {% include icon-doc-um.html pix='trackpad' um='radio' %}
+    {% include icon-doc-um.html pix='trackpad' um='checkbox' %}
+    {% include icon-doc-um.html pix='trackpad' um='slider' %}
 </div>
 <h4>Keyboard</h4>
 <div class='row'>
-    {% include icon-doc-stack-ul.html pix='keyboard' ul='keyboard-type' %}
-    {% include icon-doc-stack-ul.html pix='keyboard' ul='keyboard-enter' %}
-    {% include icon-doc-stack-ul.html pix='keyboard' ul='keyboard-tab' %}
-    {% include icon-doc-stack-ul.html pix='keyboard' ul='keyboard-arrows' %}
-
+    {% include icon-doc-um.html pix='keyboard' um='keyboard-type' %}
+    {% include icon-doc-um.html pix='keyboard' um='keyboard-enter' %}
+    {% include icon-doc-um.html pix='keyboard' um='keyboard-tab' %}
+    {% include icon-doc-um.html pix='keyboard' um='keyboard-arrows' %}
 </div>
 <h4>Touch Gestures</h4>
 <div class='row'>
@@ -256,8 +274,9 @@ active: icons
     {% include icon-doc-stack-ul.html pix='touch-2' ul='arrows-move' %}
     {% include icon-doc-stack-ul.html pix='touch-3' ul='arrows-move' %}
 </div>
-<p>These are some examples of touch interactions with specific screen elements:</p>
+<p>These are some examples of touch interactions with specific screen elements o with special meaning:</p>
 <div class='row'>
+    {% include icon-doc-stack-ul.html pix='touch' ul='click' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='switch' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='checkbox' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='radio' %}
@@ -265,6 +284,10 @@ active: icons
     {% include icon-doc-stack-ul.html pix='touch' ul='radio-select' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='type' %}
     {% include icon-doc-stack-ul.html pix='touch' ul='slider' %}
+    {% include icon-doc-stack-ul.html pix='touch' ul='ok' %}
+    {% include icon-doc-stack-ul.html pix='touch' ul='no' %}
+    {% include icon-doc-stack-ul.html pix='touch' ul='plus' %}
+    {% include icon-doc-stack-ul.html pix='touch' ul='minus' %}
 </div>
 <h4>User Intent & Actions</h4>
 <div class='row'>
@@ -275,7 +298,7 @@ active: icons
                     <i class='pix pix-grid-center orange'></i>
                     <i class='pix pix-grid faded'></i>
                 </div>
-                <p class='tcenter'><span class='docs-icon-name'>Standard stacking without special alignments, just containers and centered objetcs, using the <code>icon-doc-stack</code> template.</span></p>
+                <p class='tcenter'><span class='docs-icon-name'>Standard stacking without special alignments, just containers and centered objects, using the <code>icon-doc-stack</code> template.</span></p>
             </div>
         </div>
     </div>
@@ -327,12 +350,10 @@ active: icons
     {% include icon-doc-stack.html pix1='message' pix2='text' %}
     {% include icon-doc-stack.html pix1='message' pix2='page' %}
     {% include icon-doc-stack.html pix1='message' pix2='gallery' %}
-
     {% include icon-doc-stack.html pix1='window' pix2='list' %}
     {% include icon-doc-stack.html pix1='window' pix2='text' %}
     {% include icon-doc-stack.html pix1='window' pix2='page' %}
     {% include icon-doc-stack.html pix1='window' pix2='gallery' %}
-
     {% include icon-doc-stack.html pix1='message' pix2='alert' %}
     {% include icon-doc-stack.html pix1='message' pix2='question' %}
     {% include icon-doc-stack.html pix1='window' pix2='alert' %}
@@ -344,13 +365,11 @@ active: icons
     {% include icon-doc-stack.html pix1='message' pix2='feed' %}
     {% include icon-doc-stack.html pix1='message' pix2='contact' %}
     {% include icon-doc-stack.html pix1='message' pix2='type' %}
-    
     {% include icon-doc-stack.html pix1='window' pix2='link' %}
     {% include icon-doc-stack.html pix1='window' pix2='position' %}
     {% include icon-doc-stack.html pix1='window' pix2='feed' %}
     {% include icon-doc-stack.html pix1='window' pix2='contact' %}
     {% include icon-doc-stack.html pix1='window' pix2='type' %}
-
     {% include icon-doc-stack.html pix1='book' pix2='contact' %}
     {% include icon-doc-stack.html pix1='book' pix2='read' %}
 </div>
@@ -544,7 +563,7 @@ active: icons
     {% include icon-doc-stack-l-r.html l='camera-video' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='microphone' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='arrows-cycle' r='mobile' %}
-    {% include icon-doc-stack-l-r.html l='search' r='mobile' %}
+    {% include icon-doc-stack-l-r.html l='call' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='sound' r='mobile' %}
     {% include icon-doc-stack-l-r.html l='clock' r='mobile-vibrate' %}
     {% include icon-doc-stack-l-r.html l='sound' r='mobile-vibrate' %}

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'PiX';
-	src:url('fonts/PiX.eot?2sk70w');
-	src:url('fonts/PiX.eot?#iefix2sk70w') format('embedded-opentype'),
-		url('fonts/PiX.woff?2sk70w') format('woff'),
-		url('fonts/PiX.ttf?2sk70w') format('truetype'),
-		url('fonts/PiX.svg?2sk70w#PiX') format('svg');
+	src:url('fonts/PiX.eot?9yzrq6');
+	src:url('fonts/PiX.eot?#iefix9yzrq6') format('embedded-opentype'),
+		url('fonts/PiX.woff?9yzrq6') format('woff'),
+		url('fonts/PiX.ttf?9yzrq6') format('truetype'),
+		url('fonts/PiX.svg?9yzrq6#PiX') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -44,7 +44,7 @@
 .pix-square-dashed:before {
 	content: "\e606";
 }
-.pix-stack:before {
+.pix-pile:before {
 	content: "\e607";
 }
 .pix-circle:before {
@@ -302,7 +302,7 @@
 .pix-position:before {
 	content: "\e65e";
 }
-.pix-orientation:before {
+.pix-compass:before {
 	content: "\e65f";
 }
 .pix-lightbulb:before {
@@ -400,4 +400,10 @@
 }
 .pix-switch:before {
 	content: "\e667";
+}
+.pix-call:before {
+	content: "\e67e";
+}
+.pix-hang-up:before {
+	content: "\e67f";
 }
