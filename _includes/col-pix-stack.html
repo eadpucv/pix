@@ -1,0 +1,36 @@
+<div class="col-md-1 col-sm-2 col-xs-6">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+        	<div class='pix-stack'>
+                {% if include.gray %}<i class='pix pix-{{ include.gray }} gray'></i>{% endif %}
+                {% if include.pix1 %}<i class='pix pix-{{ include.pix1 }}'></i>{% endif %}
+                {% if include.pix2 %}<i class='pix pix-{{ include.pix2 }}'></i>{% endif %}
+                {% if include.pix3 %}<i class='pix pix-{{ include.pix3 }}'></i>{% endif %}
+                {% if include.top-left %}<i class='pix stack-top-left pix-{{ include.top-left }}'></i>{% endif %}
+                {% if include.top %}<i class='pix stack-top pix-{{ include.top }}'></i>{% endif %}
+                {% if include.top-right %}<i class='pix stack-top-right pix-{{ include.top-right }}'></i>{% endif %}
+                {% if include.left %}<i class='pix stack-left pix-{{ include.left }}'></i>{% endif %}
+                {% if include.right %}<i class='pix stack-right pix-{{ include.right }}'></i>{% endif %}
+                {% if include.bottom %}<i class='pix stack-bottom pix-{{ include.bottom }}'></i>{% endif %}
+                {% if include.bottom-left %}<i class='pix stack-bottom-left pix-{{ include.bottom-left }}'></i>{% endif %}
+                {% if include.bottom-right %}<i class='pix stack-bottom-right pix-{{ include.bottom-right }}'></i>{% endif %}
+        	</div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    {% if include.pix1 %} {{ include.pix1 }}{% endif %}
+                    {% if include.pix2 %} {{ include.pix2 }}{% endif %}
+                    {% if include.pix3 %} {{ include.pix3 }}{% endif %}
+                    {% if include.top-left %} <span class='orange'>(top-left)</span> {{ include.top-left }}{% endif %}
+                    {% if include.top %} <span class='orange'>(top)</span> {{ include.top }}{% endif %}
+                    {% if include.top-right %} <span class='orange'>(top-right)</span> {{ include.top-right }}{% endif %}
+                    {% if include.left %} <span class='orange'>(left)</span> {{ include.left }}{% endif %}
+                    {% if include.right %} <span class='orange'>(right)</span> {{ include.right }}{% endif %}
+                    {% if include.bottom %} <span class='orange'>(bottom)</span> {{ include.bottom }}{% endif %}
+                    {% if include.bottom-left %} <span class='orange'>(bottom-left)</span> {{ include.bottom-left }}{% endif %}
+                    {% if include.bottom-right %} <span class='orange'>(bottom-right)</span> {{ include.bottom-right }}{% endif %}
+            	</span>
+            </p>
+        </div>
+    </div>
+</div>
+

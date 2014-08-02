@@ -102,20 +102,13 @@ active: index
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-cube'></i>
-                            <i class='pix pix-think'></i>
-                        </div>
+                        {% include pix-stack.html pix1='think' pix2='cube' %}
                         <p>The user wants to define a new PiX</p>
                     </div>
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-mouse'></i>
-                            <i class='pix pix-click-center'></i>
-                            <i class='pix pix-arrows-vertical stack-upper-left'></i>
-                        </div>
+                        {% include pix-stack.html pix1='mouse' pix2='click-center' top-left='arrows-vertical' %}
                         <p>So browses the page for the "create" button</p>
                     </div>
                 </li>
@@ -134,20 +127,13 @@ active: index
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-mouse'></i>
-                            <i class='pix pix-click-left'></i>
-                            <i class='pix pix-plus stack-upper-left'></i>
-                        </div>
+                        {% include pix-stack.html pix1='mouse' pix2='click-left' top-left='plus' %}
                         <p>user clicks "new score"</p>
                     </div>
                 </li>
                 <li class='block block-system'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-circle-dashed'></i>
-                            <i class='pix pix-cube'></i>
-                        </div>
+                        {% include pix-stack.html pix1='cube' pix2='circle-dashed' %}
                         <p>New PiX object is created with empty fields</p>
                     </div>  
                 </li>
@@ -160,10 +146,7 @@ active: index
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-square-dashed'></i>
-                            <i class='pix pix-read'></i>
-                        </div>
+                        {% include pix-stack.html pix1='read' pix2='square-dashed' %}
                         <p>Placeholders and labels provide visual cues</p>
                     </div>
                 </li>
@@ -179,30 +162,21 @@ active: index
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-think'></i>
-                            <i class='pix pix-text'></i>
-                        </div>
+                        {% include pix-stack.html pix1='think' pix2='keyboard-type' %}
                         <p>Pick a name and description</p>
                     </div>
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
                         <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-keyboard'></i>
-                            <i class='pix pix-keyboard-type stack-upper-left'></i>
-                        </div>
+                            {% include pix-stack.html pix1='keyboard' top-left='keyboard-type' %}
                         <p>User fills title + description</p>
                     </div>
                     </div>
                 </li>
                 <li class='block block-system'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-reload'></i>
-                            <i class='pix pix-cube'></i>
-                        </div>
+                        {% include pix-stack.html pix1='cube' pix2='reload' %}
                         <p>Object's title updated</p>
                     </div>
                 </li>
@@ -215,19 +189,13 @@ active: index
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-keyboard'></i>
-                            <i class='pix pix-keyboard-tab stack-upper-left'></i>
-                        </div>
+                        {% include pix-stack.html pix1='keyboard' top-left='akeyboard-tab' %}
                         <p>Moves forward with TAB</p>
                     </div>
                 </li>
                 <li class='block block-system'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-reload'></i>
-                            <i class='pix pix-cube'></i>
-                        </div>
+                        {% include pix-stack.html pix1='reload' pix2='cube' %}
                         <p>Object's description updated</p>
                     </div>
                 </li>
@@ -237,28 +205,19 @@ active: index
             <ul>
                 <li class='block block-user'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-think'></i>
-                            <i class='pix pix-list'></i>
-                        </div>
+                        {% include pix-stack.html pix1='think' pix2='list' %}
                         <p>define task as a sequence</p>
                     </div>
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-square-dashed'></i>
-                            <i class='pix pix-type'></i>
-                        </div>
+                        {% include pix-stack.html pix1='type' pix2='square-dashed' %}
                         <p>type PiX magic words to create icons</p>
                     </div>
                 </li>
                 <li class='block block-system'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-gear'></i>
-                            <i class='pix pix-type'></i>
-                        </div>
+                        {% include pix-stack.html pix1='type' pix2='gear' %}
                         <p>App checks concordances of magic words</p>
                     </div>
                 </li>
@@ -271,19 +230,13 @@ active: index
                 </li>
                 <li class='block block-dialogue'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-keyboard'></i>
-                            <i class='pix pix-keyboard-tab stack-upper-left'></i>
-                        </div>
+                        {% include pix-stack.html pix1='keyboard' top-left='keyboard-tab' %}
                         <p>Moves through PiX blocks with TAB</p>
                     </div>
                 </li>
                 <li class='block block-system'>
                     <div class='pix-group'>
-                        <div class='pix-stack'>
-                            <i class='pix pix-circle-dashed'></i>
-                            <i class='pix pix-plus'></i>
-                        </div>
+                        {% include pix-stack.html pix1='plus' pix2='circle-dashed' %}
                         <p>When the end of the score is reached, TAB adds a new column</p>
                     </div>
                 </li>
@@ -343,7 +296,7 @@ active: index
                     <div class='pix-group'>
                         <div class='pix-stack'>
                             <i class='pix pix-grid-ul'></i>
-                            <i class='pix pix-grid-center stack-upper-left orange'></i>
+                            <i class='pix pix-grid-center stack-top-left orange'></i>
                         </div>
                         <p>This is a test for alignment purposes</p>
                     </div>
