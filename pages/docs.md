@@ -212,10 +212,14 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 </div>
 
 <h4>Testing Area</h4>
-<div class='row'>
-	{% include col-pix-stack.html gray='grid' top-right='ok' top-left='minus' bottom-right='plus' bottom-left='no' %}
+<div class='row' style='height: 300px'>
+	{% include col-pix-stack.html pix1='grid gray' top-right='ok' top-left='minus' bottom-right='plus' bottom-left='no' %}
 	{% include col-pix-stack.html bottom='ok green' top='comment' %}
 	{% include col-pix-stack.html top='hang-up' bottom='no color' %}
 	{% include col-pix-stack.html left='user-sad' right='user-laughing gray' %}
+	{% include col-pix-stack.html top-left='pencil pix-flip-horizontal' top-right='pencil' bottom-left='pencil pix-rotate-180' bottom-right='pencil pix-flip-vertical' %}
+	{% include col-pix-stack.html top-left='call pix-flip-horizontal' top-right='call' bottom-left='call pix-rotate-180' bottom-right='call pix-flip-vertical' %}
+	{% include col-pix-stack.html top-left='question pix-flip-horizontal blue' top-right='question red' bottom-left='question pix-rotate-180 green' bottom-right='question pix-flip-vertical yellow' %}
+
 </div>
 

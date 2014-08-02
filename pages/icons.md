@@ -205,14 +205,23 @@ active: icons
 <h4>Mouse</h4>
 <div class='row'>
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='click' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='click' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' pix3='click-right' top-left='click' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-move' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-diagonal' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-diagonal pix-flip-vertical' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-center' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='ok' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='no' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='radio' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='checkbox' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='slider' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrow-right' %}
+
+</div>
+<div class='row'>
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='ok' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='ok green' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='no' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='no red' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='radio' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='checkbox' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='slider' %}
 </div>
 <h4>Trackpad</h4>
 <div class='row'>
