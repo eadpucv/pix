@@ -211,5 +211,8 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	</div>
 </div>
 
-
+<h4>Testing Area</h4>
+<div class='row'>
+	{% include col-pix-stack.html gray='grid' top-right='ok' bottom-left='no' %}
+</div>
 
