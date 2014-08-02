@@ -188,7 +188,19 @@ active: icons
 </div>
 <hr>
 <h1>Stacked Combinations</h1>
-<p>Various examples of stacked icons and their possibilities extending the existing icon set.</p>
+<p>Various examples of stacked icons and their possibilities extending the existing icon set. These combinations can be stacked with different positioning criteria:</p>
+<div class='row'>
+    {% include col-pix-stack.html pix1='grid gray' pix2='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' top='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' bottom='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' left='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' right='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' top-left='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' top-right='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' bottom-left='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' bottom-right='grid-center color' %}
+</div>
+
 <h2>Control Interactions</h2>
 <h4>Mouse</h4>
 <div class='row'>

@@ -213,6 +213,9 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 
 <h4>Testing Area</h4>
 <div class='row'>
-	{% include col-pix-stack.html gray='grid' top-right='ok' bottom-left='no' %}
+	{% include col-pix-stack.html gray='grid' top-right='ok' top-left='minus' bottom-right='plus' bottom-left='no' %}
+	{% include col-pix-stack.html bottom='ok green' top='comment' %}
+	{% include col-pix-stack.html top='hang-up' bottom='no color' %}
+	{% include col-pix-stack.html left='user-sad' right='user-laughing gray' %}
 </div>
 

@@ -176,7 +176,7 @@ active: index
                 </li>
                 <li class='block block-system'>
                     <div class='pix-group'>
-                        {% include pix-stack.html pix1='cu'be pix2='reload' %}
+                        {% include pix-stack.html pix1='cube' pix2='reload' %}
                         <p>Object's title updated</p>
                     </div>
                 </li>
@@ -195,7 +195,7 @@ active: index
                 </li>
                 <li class='block block-system'>
                     <div class='pix-group'>
-                        {% include pix-stack.html pix1='cube' pix2='reload' %}
+                        {% include pix-stack.html pix1='reload' pix2='cube' %}
                         <p>Object's description updated</p>
                     </div>
                 </li>
