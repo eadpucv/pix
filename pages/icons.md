@@ -188,17 +188,17 @@ active: icons
 </div>
 <hr>
 <h1>Stacked Combinations</h1>
-<p>Te following are various examples of stacked icons and their possibilities extending the initial icon set. These combinations can be stacked with different positioning criteria according to this grid:</p>
+<p>The following are various examples of stacked icons and their possibilities extending the initial icon set. These combinations can be stacked with different positioning criteria according to this grid:</p>
 <div class='row'>
-    {% include col-pix-stack.html pix1='grid gray' pix2='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' top='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' bottom='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' left='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' right='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' top-left='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' top-right='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' bottom-left='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' bottom-right='grid-center' %}
+    {% include col-pix-stack.html pix1='grid gray' pix2='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' top='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' bottom='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' left='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' right='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' top-left='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' top-right='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' bottom-left='grid-center orange' %}
+    {% include col-pix-stack.html pix1='grid gray' bottom-right='grid-center orange' %}
 </div>
 
 <h2>Control Interactions</h2>
