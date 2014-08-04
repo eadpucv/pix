@@ -220,6 +220,14 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	{% include col-pix-stack.html top-left='pencil pix-flip-horizontal' top-right='pencil' bottom-left='pencil pix-rotate-180' bottom-right='pencil pix-flip-vertical' %}
 	{% include col-pix-stack.html top-left='call pix-flip-horizontal' top-right='call' bottom-left='call pix-rotate-180' bottom-right='call pix-flip-vertical' %}
 	{% include col-pix-stack.html top-left='question pix-flip-horizontal blue' top-right='question red' bottom-left='question pix-rotate-180 green' bottom-right='question pix-flip-vertical yellow' %}
-
+	{% include col-pix-stack.html pix1='notebook' top='ok pix-inverse' %}
+	{% include col-pix-stack.html top='user-surprised' bottom='touch' %}
+	{% include col-pix-stack.html pix1='database' pix2='robot gray' %}
+	{% include col-pix-stack.html pix1='text' pix2='pile' %}
+	{% include col-pix-stack.html left='text' top-right='pencil' %}
 </div>
-
+<div class='row' style='height: 300px'>
+	{% include col-pix-stack.html pix1='touch' top-left='switch red' %}
+	{% include col-pix-stack.html pix1='touch' top-left='switch green pix-flip-horizontal' %}
+	{% include col-pix-stack.html pix1='cube pix-flip-vertical gray' pix2='cube' %}
+</div>

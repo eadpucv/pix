@@ -188,7 +188,7 @@ active: icons
 </div>
 <hr>
 <h1>Stacked Combinations</h1>
-<p>Various examples of stacked icons and their possibilities extending the existing icon set. These combinations can be stacked with different positioning criteria:</p>
+<p>Te following are various examples of stacked icons and their possibilities extending the initial icon set. These combinations can be stacked with different positioning criteria according to this grid:</p>
 <div class='row'>
     {% include col-pix-stack.html pix1='grid gray' pix2='grid-center' %}
     {% include col-pix-stack.html pix1='grid gray' top='grid-center' %}
@@ -198,11 +198,12 @@ active: icons
     {% include col-pix-stack.html pix1='grid gray' top-left='grid-center' %}
     {% include col-pix-stack.html pix1='grid gray' top-right='grid-center' %}
     {% include col-pix-stack.html pix1='grid gray' bottom-left='grid-center' %}
-    {% include col-pix-stack.html pix1='grid gray' bottom-right='grid-center color' %}
+    {% include col-pix-stack.html pix1='grid gray' bottom-right='grid-center' %}
 </div>
 
 <h2>Control Interactions</h2>
 <h4>Mouse</h4>
+<p>Standard generic mouse actions</p>
 <div class='row'>
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='click' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='click' %}
@@ -214,6 +215,7 @@ active: icons
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrow-right' %}
 
 </div>
+<p>Mouse and interface elements</p>
 <div class='row'>
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='ok' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='ok green' %}
@@ -312,18 +314,6 @@ active: icons
 </div>
 <h4>User Intent & Actions</h4>
 <div class='row'>
-   <div class="col-sm-12">
-        <div class="inner icon-docs">
-            <div class='pix-group'>
-                <div class='pix-stack'>
-                    <i class='pix pix-grid-center orange'></i>
-                    <i class='pix pix-grid gray'></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class='row'>
     {% include col-pix-stack.html pix1='think' pix2='cube' %}
     {% include col-pix-stack.html pix1='think' pix2='lightbulb' %}
     {% include col-pix-stack.html pix1='think' pix2='read' %}
@@ -350,6 +340,20 @@ active: icons
     {% include col-pix-stack.html pix1='say' pix2='ok' %}
     {% include col-pix-stack.html pix1='say' pix2='no' %}
     {% include col-pix-stack.html pix1='say' pix2='tag' %}
+</div>
+<div class='row'>
+    {% include col-pix-stack.html pix2='pile' pix1='sound' %}
+    {% include col-pix-stack.html pix2='pile' pix1='lightbulb' %}
+    {% include col-pix-stack.html pix2='pile' pix1='picture' %}
+    {% include col-pix-stack.html pix2='pile' pix1='contact' %}
+    {% include col-pix-stack.html pix2='pile' pix1='calendar' %}
+    {% include col-pix-stack.html pix2='pile' pix1='position' %}
+    {% include col-pix-stack.html pix2='pile' pix1='video' %}
+    {% include col-pix-stack.html pix2='pile' pix1='read' %}
+    {% include col-pix-stack.html pix2='pile' pix1='list' %}
+    {% include col-pix-stack.html pix2='pile' pix1='text' %}
+    {% include col-pix-stack.html pix2='pile' pix1='page' %}
+    {% include col-pix-stack.html pix2='pile' pix1='gallery' %}
 </div>
 <div class='row'>
     {% include col-pix-stack.html pix1='circle-dashed' pix2='thumb' %}
@@ -395,18 +399,6 @@ active: icons
 </div>
 <hr>
 <h4>System Response</h4>
-<div class='row'>
-   <div class="col-sm-12">
-        <div class="inner icon-docs">
-            <div class='pix-group'>
-                <div class='pix-stack'>
-                    <i class='pix pix-grid-center orange'></i>
-                    <i class='pix pix-grid gray'></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class='row'>
     {% include col-pix-stack.html pix1='reload' pix2='cog' %}
     {% include col-pix-stack.html pix1='reload' pix2='ok' %}
@@ -465,19 +457,6 @@ active: icons
 </div>
 <h4>Object Combinations</h4>
 <div class='row'>
-   <div class="col-sm-12">
-        <div class="inner icon-docs">
-            <div class='pix-group'>
-                <div class='pix-stack'>
-                    <i class='pix stack-top pix-grid-center orange'></i>
-                    <i class='pix stack-bottom pix-grid-center'></i>
-                    <i class='pix pix-grid gray'></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class='row'>
     {% include col-pix-stack.html top='arrow-up' bottom='cube' %}
     {% include col-pix-stack.html top='arrow-down' bottom='cube' %}
     {% include col-pix-stack.html top='arrow-up' bottom='picture' %}
@@ -520,19 +499,6 @@ active: icons
     {% include col-pix-stack.html top='read' bottom='question' %}
 </div>
 <div class='row'>
-   <div class="col-sm-12">
-        <div class="inner icon-docs">
-            <div class='pix-group'>
-                <div class='pix-stack'>
-                    <i class='pix stack-top-right pix-grid-center orange'></i>
-                    <i class='pix stack-bottom-left pix-grid-center'></i>
-                    <i class='pix pix-grid gray'></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class='row'>
     {% include col-pix-stack.html top-right='pencil' bottom-left='cube' %}
     {% include col-pix-stack.html top-right='pencil' bottom-left='picture' %}
     {% include col-pix-stack.html top-right='pencil' bottom-left='video' %}
@@ -557,19 +523,6 @@ active: icons
     {% include col-pix-stack.html top-right='position' bottom-left='tag' %}
     {% include col-pix-stack.html top-right='position' bottom-left='feed' %}
     {% include col-pix-stack.html top-right='position' bottom-left='lightbulb' %}
-</div>
-<div class='row'>
-   <div class="col-sm-12">
-        <div class="inner icon-docs">
-            <div class='pix-group'>
-                <div class='pix-stack'>
-                    <i class='pix stack-left pix-grid-center orange'></i>
-                    <i class='pix stack-right pix-grid-center'></i>
-                    <i class='pix pix-grid gray'></i>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <div class='row'>
     {% include col-pix-stack.html left='position' right='mobile' %}
