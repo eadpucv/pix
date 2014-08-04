@@ -16,17 +16,17 @@
         	</div>
             <p class='tcenter'>
                 <span class='docs-icon-name'>
-                    {% if include.pix1 %}{{ include.pix1 }}{% endif %}
-                    {% if include.pix2 %} {{ include.pix2 }}{% endif %}
-                    {% if include.pix3 %} {{ include.pix3 }}{% endif %}
-                    {% if include.top-left %} {{ include.top-left }}<span class='orange'>→ top-left</span>{% endif %}
-                    {% if include.top %} {{ include.top }}<span class='orange'>→ top</span>{% endif %}
-                    {% if include.top-right %} {{ include.top-right }}<span class='orange'>→ top-right</span>{% endif %}
-                    {% if include.left %} {{ include.left }}<span class='orange'>→ left</span>{% endif %}
-                    {% if include.right %} {{ include.right }}<span class='orange'>→ right</span>{% endif %}
-                    {% if include.bottom %} {{ include.bottom }}<span class='orange'>→ bottom</span>{% endif %}
-                    {% if include.bottom-left %} {{ include.bottom-left }}<span class='orange'>→ bottom-left</span>{% endif %}
-                    {% if include.bottom-right %} {{ include.bottom-right }}<span class='orange'>→ bottom-right</span>{% endif %}
+                    {% if include.pix1 %}<span class='indicator'>⊙</span>{{ include.pix1 }} {% endif %}
+                    {% if include.pix2 %}<span class='indicator'>⊙</span>{{ include.pix2 }} {% endif %}
+                    {% if include.pix3 %}<span class='indicator'>⊙</span>{{ include.pix3 }} {% endif %}
+                    {% if include.top-left %}<span class='indicator'>↖︎</span>{{ include.top-left }} {% endif %}
+                    {% if include.top %}<span class='indicator'>↑</span>{{ include.top }} {% endif %}
+                    {% if include.top-right %}<span class='indicator'>↗︎</span>{{ include.top-right }} {% endif %}
+                    {% if include.left %}<span class='indicator'>←</span>{{ include.left }} {% endif %}
+                    {% if include.right %}<span class='indicator'>→</span>{{ include.right }} {% endif %}
+                    {% if include.bottom %}<span class='indicator'>↓</span>{{ include.bottom }} {% endif %}
+                    {% if include.bottom-left %}<span class='indicator'>↙︎</span>{{ include.bottom-left }} {% endif %}
+                    {% if include.bottom-right %}<span class='indicator'>↘︎</span>{{ include.bottom-right }} {% endif %}
             	</span>
             </p>
         </div>
