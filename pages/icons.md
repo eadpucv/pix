@@ -499,30 +499,30 @@ active: icons
     {% include col-pix-stack.html top='read' bottom='question' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html top-right='pencil' bottom-left='cube' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='picture' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='video' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='contact' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='calendar' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='question' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='text' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='list' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='tag' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='feed' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='lightbulb' %}
+    {% include col-pix-stack.html top-right='pencil' left='cube' %}
+    {% include col-pix-stack.html top-right='pencil' left='picture' %}
+    {% include col-pix-stack.html top-right='pencil' left='video' %}
+    {% include col-pix-stack.html top-right='pencil' left='contact' %}
+    {% include col-pix-stack.html top-right='pencil' left='calendar' %}
+    {% include col-pix-stack.html top-right='pencil' left='question' %}
+    {% include col-pix-stack.html top-right='pencil' left='text' %}
+    {% include col-pix-stack.html top-right='pencil' left='list' %}
+    {% include col-pix-stack.html top-right='pencil' left='tag' %}
+    {% include col-pix-stack.html top-right='pencil' left='feed' %}
+    {% include col-pix-stack.html top-right='pencil' left='lightbulb' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html top-right='position' bottom-left='cube' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='picture' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='video' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='contact' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='calendar' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='question' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='text' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='list' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='tag' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='feed' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='lightbulb' %}
+    {% include col-pix-stack.html top='position' bottom='cube' %}
+    {% include col-pix-stack.html top='position' bottom='picture' %}
+    {% include col-pix-stack.html top='position' bottom='video' %}
+    {% include col-pix-stack.html top='position' bottom='contact' %}
+    {% include col-pix-stack.html top='position' bottom='calendar' %}
+    {% include col-pix-stack.html top='position' bottom='question' %}
+    {% include col-pix-stack.html top='position' bottom='text' %}
+    {% include col-pix-stack.html top='position' bottom='list' %}
+    {% include col-pix-stack.html top='position' bottom='tag' %}
+    {% include col-pix-stack.html top='position' bottom='feed' %}
+    {% include col-pix-stack.html top='position' bottom='lightbulb' %}
 </div>
 <div class='row'>
     {% include col-pix-stack.html left='position' right='mobile' %}
