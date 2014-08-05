@@ -37,27 +37,60 @@
 }
 
 @-moz-keyframes swing {
-  0% { -moz-transform: rotate(-20deg); }
-  50% { -moz-transform: rotate(20deg); }
-  100% { -moz-transform: rotate(-20deg); }
+  0% { -moz-transform: rotate(-10deg); }
+  50% { -moz-transform: rotate(10deg); }
+  100% { -moz-transform: rotate(-10deg); }
 }
 @-webkit-keyframes swing {
-  0% { -webkit-transform: rotate(-20deg); }
-  50% { -webkit-transform: rotate(20deg); }
-  100% { -webkit-transform: rotate(-20deg); }
+  0% { -webkit-transform: rotate(-10deg); }
+  50% { -webkit-transform: rotate(10deg); }
+  100% { -webkit-transform: rotate(-10deg); }
 }
 @-o-keyframes swing {
-  0% { -o-transform: rotate(-20deg); }
-  50% { -o-transform: rotate(20deg); }
-  100% { -o-transform: rotate(-20deg); }
+  0% { -o-transform: rotate(-10deg); }
+  50% { -o-transform: rotate(10deg); }
+  100% { -o-transform: rotate(-10deg); }
 }
 @-ms-keyframes swing {
-  0% { -ms-transform: rotate(-20deg); }
-  50% { -ms-transform: rotate(20deg); }
-  100% { -ms-transform: rotate(-20deg); }
+  0% { -ms-transform: rotate(-10deg); }
+  50% { -ms-transform: rotate(10deg); }
+  100% { -ms-transform: rotate(-10deg); }
 }
 @keyframes swing {
-  0% { transform: rotate(-20deg); }
-  50% { transform: rotate(20deg); }
-  100% { transform: rotate(-20deg); }
+  0% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+.@{css-prefix}-beat {
+  -webkit-animation: beat .6s infinite ease;
+  -moz-animation: beat .6s infinite ease;
+  -o-animation: beat .6s infinite ease;
+  animation: beat .6s infinite ease;
+}
+
+@-moz-keyframes beat {
+  0% { -moz-transform: scale(.8); }
+  20% { -moz-transform: scale(1.5); }
+  100% { -moz-transform: scale(.8); }
+}
+@-webkit-keyframes beat {
+  0% { -webkit-transform: scale(.8); }
+  20% { -webkit-transform: scale(1.5); }
+  100% { -webkit-transform: scale(.8); }
+}
+@-o-keyframes beat {
+  0% { -o-transform: scale(.8); }
+  20% { -o-transform: scale(1.5); }
+  100% { -o-transform: scale(.8); }
+}
+@-ms-keyframes beat {
+  0% { -ms-transform: scale(.8); }
+  20% { -ms-transform: scale(1.5); }
+  100% { -ms-transform: scale(.8); }
+}
+@keyframes beat {
+  0% { transform: scale(.8); }
+  20% { transform: scale(1.5); }
+  100% { transform: scale(.8); }
 }
