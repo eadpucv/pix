@@ -5,7 +5,7 @@ active: icons
 ---
 
 <h3><span>Font Name:</span> PiX <small>(Version {{ site.pixver }} — Glyphs:&nbsp;128)</small></h3>
-<p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. Different categories work as standalone icons or as a part of a more complex symbol. The complete list is <a href="https://docs.google.com/spreadsheets/d/18SfIEgUig5TVLkM9E1Qb9QyPn05qsCFxO5wHwdc5z-c/edit?usp=sharing">here</a>.</p>
+<p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. Different categories work as standalone icons or as a part of a more complex symbol.</p>
 
 <h4 id='meta'>PiX Meta Elements</h4>
 <p>These icons serve testing purposes, for alignment and stacking. The final deploy of the app will exclude most of them.</p>
@@ -35,7 +35,7 @@ active: icons
 </div>
 <div class='row'>
     {% include col-pix.html name='window' %}
-    {% include col-pix.html name='book' %}
+    {% include col-pix.html name='book' %}<
     {% include col-pix.html name='gear' %}
     {% include col-pix.html name='interaction' %}
     {% include col-pix.html name='refresh' %}
@@ -499,30 +499,30 @@ active: icons
     {% include col-pix-stack.html top='read' bottom='question' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html top-right='pencil' bottom-left='cube' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='picture' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='video' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='contact' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='calendar' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='question' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='text' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='list' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='tag' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='feed' %}
-    {% include col-pix-stack.html top-right='pencil' bottom-left='lightbulb' %}
+    {% include col-pix-stack.html top-right='pencil' left='cube' %}
+    {% include col-pix-stack.html top-right='pencil' left='picture' %}
+    {% include col-pix-stack.html top-right='pencil' left='video' %}
+    {% include col-pix-stack.html top-right='pencil' left='contact' %}
+    {% include col-pix-stack.html top-right='pencil' left='calendar' %}
+    {% include col-pix-stack.html top-right='pencil' left='question' %}
+    {% include col-pix-stack.html top-right='pencil' left='text' %}
+    {% include col-pix-stack.html top-right='pencil' left='list' %}
+    {% include col-pix-stack.html top-right='pencil' left='tag' %}
+    {% include col-pix-stack.html top-right='pencil' left='feed' %}
+    {% include col-pix-stack.html top-right='pencil' left='lightbulb' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html top-right='position' bottom-left='cube' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='picture' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='video' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='contact' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='calendar' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='question' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='text' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='list' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='tag' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='feed' %}
-    {% include col-pix-stack.html top-right='position' bottom-left='lightbulb' %}
+    {% include col-pix-stack.html top='position' bottom='cube' %}
+    {% include col-pix-stack.html top='position' bottom='picture' %}
+    {% include col-pix-stack.html top='position' bottom='video' %}
+    {% include col-pix-stack.html top='position' bottom='contact' %}
+    {% include col-pix-stack.html top='position' bottom='calendar' %}
+    {% include col-pix-stack.html top='position' bottom='question' %}
+    {% include col-pix-stack.html top='position' bottom='text' %}
+    {% include col-pix-stack.html top='position' bottom='list' %}
+    {% include col-pix-stack.html top='position' bottom='tag' %}
+    {% include col-pix-stack.html top='position' bottom='feed' %}
+    {% include col-pix-stack.html top='position' bottom='lightbulb' %}
 </div>
 <div class='row'>
     {% include col-pix-stack.html left='position' right='mobile' %}

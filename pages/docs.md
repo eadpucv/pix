@@ -234,4 +234,5 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	{% include col-pix-stack.html bottom='tablet pix-rotate-90 gray' left='tablet' top-right='arrow-rotate pix-flip-horizontal' %}
 	{% include col-pix-stack.html bottom='mobile pix-rotate-90' left='mobile gray' top-right='arrow-rotate pix-rotate-90' %}
 	{% include col-pix-stack.html bottom='mobile pix-rotate-90 gray' left='mobile' top-right='arrow-rotate pix-flip-horizontal' %}
+	{% include col-pix-stack.html left='text hover-beat' top-right='pencil hover-swing' %}
 </div>
