@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Pix App</title>
+		<link rel="stylesheet" href="../css/pix.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body lang='ES_es' class='black-bg'>
+		<div class='white-bg'>
+			<div class='container'>
+				<h1 class='score-header'><input placeholder='Name your score'></h1>
+					<textarea class='score-description' placeholder='Describe your score'></textarea>
+
+					<section class="pix-tag-view">
+						<input type="text" class="pix-replace" placeholder="Escribe...">
+						<div class="pix-code" contenteditable="true"></div>
+					</section>
+
+					<div class='pix-score'>
+					     <ul class='pix-header col-sm-1 col-xs-3'>
+					        <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>person</label></div></li>
+					        <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogue</label></div></li>
+					        <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system</label></div></li>
+					    </ul>
+					    <ul class='pix-steps'>
+					        <li class='pix-step col-sm-1 col-xs-3'>
+					            <ul>
+					                <li class='block block-user'>
+					                    <div class='pix-group'>
+					                    	<div class="pix-stack">
+						                        <i class="pix pix-think"></i>
+						                        <i class="pix pix-cube"></i>
+						                    </div>
+						                    <p>The user wants to define a new PiX</p>
+
+					                    </div>
+					                </li>
+					                <li class='block block-dialogue'>
+					                    <div class='pix-group'>
+					                    	<div class="pix-stack">
+						                    	<i class="pix pix-mouse"></i>
+						                    	<i class="pix pix-click-center"></i>
+						                    	<i class="pix stack-top-left pix-arrows-vertical"></i>
+						                    </div>
+
+					                        <p>So browses the page for the "create" button</p>
+					                    </div>
+					                </li>
+					                <li class='block block-system'>
+					                    <input type='text' placeholder='type here...'>
+					                </li>
+					                <div class='note'>
+					                    <p>The PiX App has initiated properly. The system is idle.</p>
+					                </div>
+					            </ul>
+					        </li>
+					        <li class='pix-step col-sm-1 col-xs-3'>
+					            <ul>
+					                <li class='block block-user'>
+					                    <input type='text' placeholder='type here...'>
+					                </li>
+					                <li class='block block-dialogue'>
+					                    <div class='pix-group'>
+					                    	<div class="pix-stack">
+						                    	<i class="pix pix-mouse"></i>
+						                    	<i class="pix pix-click-left"></i>
+						                    	<i class="pix stack-top-left pix-plus"></i>
+					                    	</div>
+					                        <p>user clicks "new score"</p>
+					                    </div>
+					                </li>
+					                <li class='block block-system'>
+					                    <div class='pix-group'>
+					                    	<div class="pix-stack">
+						                    	<i class="pix pix-cube"></i>
+						                    	<i class="pix pix-circle-dashed"></i>
+					                    	</div>
+					                        <p>New PiX object is created with empty fields</p>
+					                    </div>
+					                </li>
+					            </ul>
+					        </li>
+					        <li class='pix-step col-sm-1 col-xs-3 split'>
+					            <ul>
+					                <li class='block block-user'>
+					                    <input type='text' placeholder='type here...'>
+					                </li>
+					                <li class='block block-dialogue'>
+					                    <div class='pix-group'>
+					                    	<div class="pix-stack">
+						                    	<i class="pix pix-read"></i>
+						                    	<i class="pix pix-square-dashed"></i>
+					                    	</div>
+					                        <p>Placeholders and labels provide visual cues</p>
+					                    </div>
+					                </li>
+					                <li class='block block-system'>
+					                    <input type='text' placeholder='type here...'>
+					                </li>
+					            </ul>
+					            <div class='note'>
+					                <p>PiX is created and stored in the browser</p>
+					            </div>
+					        </li>
+					        <li class='pix-step col-sm-1 col-xs-3'>
+					            <ul>
+					                <li class='block block-user'>
+					                    <div class='pix-group'>
+					                    	<div class="pix-stack">
+						                    	<i class="pix pix-think"></i>
+						                    	<i class="pix pix-keyboard-type"></i>
+						                    </div>
+					                        <p>Pick a name and description</p>
+					                    </div>
+					                </li>
+					                <li class='block block-dialogue'>
+					                    <div class='pix-group'>
+					                        <div class='pix-group'>
+					                        	<div class="pix-stack">
+						                        	<i class="pix pix-keyboard"></i>
+						                        	<i class="pix stack-top-left pix-keyboard-type"></i>
+					                        	</div>
+					                        <p>User fills title + description</p>
+					                    </div>
+					                    </div>
+					                </li>
+					                <li class='block block-system'>
+					                    <div class='pix-group'>
+					                    	<div class="pix-stack">
+						                    	<i class="pix pix-cube"></i>
+						                    	<i class="pix pix-reload"></i>
+					                    	</div>
+					                        <p>Object's title updated</p>
+					                    </div>
+					                </li>
+					            </ul>
+					        </li>
+
+					    </ul>
+					</div>
+
+					<button class='btn btn-primary'>Add other score</button>
+				</div>
+			</div>
+			<script type="text/javascript" src="js/jquery.js"></script>
+			<script type="text/javascript" src="js/app.js"></script>
+		</body>
+	</html>

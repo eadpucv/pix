@@ -1,0 +1,127 @@
+@font-face {
+	font-family: 'PiX';
+	src:url('../fonts/PiX.eot?pd06ka');
+	src:url('../fonts/PiX.eot?#iefixpd06ka') format('embedded-opentype'),
+		url('../fonts/PiX.woff?pd06ka') format('woff'),
+		url('../fonts/PiX.ttf?pd06ka') format('truetype'),
+		url('../fonts/PiX.svg?pd06ka#PiX') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icn-"], [class*=" icn-"] {
+	font-family: 'PiX';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icn-user:before {
+	content: "\e600";
+}
+.icn-think:before {
+	content: "\e601";
+}
+.icn-dialogue:before {
+	content: "\e602";
+}
+.icn-talk:before {
+	content: "\e603";
+}
+.icn-tap:before {
+	content: "\e604";
+}
+.icn-scroll:before {
+	content: "\e605";
+}
+.icn-tap-2:before {
+	content: "\e606";
+}
+.icn-scroll-2:before {
+	content: "\e607";
+}
+.icn-slide:before {
+	content: "\e608";
+}
+.icn-swipe-3:before {
+	content: "\e609";
+}
+.icn-swipe:before {
+	content: "\e60a";
+}
+.icn-pinch:before {
+	content: "\e60b";
+}
+.icn-pinchin:before {
+	content: "\e60c";
+}
+.icn-rotate:before {
+	content: "\e60d";
+}
+.icn-hand:before {
+	content: "\e60e";
+}
+.icn-collapse:before {
+	content: "\e60f";
+}
+.icn-mouse:before {
+	content: "\e610";
+}
+.icn-mouse-scroll:before {
+	content: "\e611";
+}
+.icn-mouse-drag:before {
+	content: "\e612";
+}
+.icn-mouse-right:before {
+	content: "\e613";
+}
+.icn-mouse-left:before {
+	content: "\e614";
+}
+.icn-mouse-all:before {
+	content: "\e615";
+}
+.icn-keyboard:before {
+	content: "\e616";
+}
+.icn-tab:before {
+	content: "\e617";
+}
+.icn-enter:before {
+	content: "\e618";
+}
+.icn-gear:before {
+	content: "\e619";
+}
+.icn-loop:before {
+	content: "\e61a";
+}
+.icn-upload:before {
+	content: "\e61b";
+}
+.icn-download:before {
+	content: "\e61c";
+}
+.icn-device-shake:before {
+	content: "\e61d";
+}
+.icn-device-rotate:before {
+	content: "\e61e";
+}
+.icn-device-orient:before {
+	content: "\e61f";
+}
+.icn-compass:before {
+	content: "\e620";
+}
+.icn-position:before {
+	content: "\e621";
+}

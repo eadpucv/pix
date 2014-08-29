@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  <meta charset='UTF-8'/>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link href='/css/pix.css' rel='stylesheet'>
+  <title>PiX - Documentation</title>
+  <!--
+  <script src='/js/jquery.min.js'></script>
+  <script src='/js/bootstrap.min.js'></script>
+  -->
+  <!--
+  <link rel='icon' type='image/x-icon' href='/img/favicon-pyxis.ico' />
+  <link rel='apple-touch-icon-precomposed' sizes='114x114' href='img/favicon-114.png'>
+  <link rel='apple-touch-icon-precomposed' sizes='72x72' href='img/favicon-72.png'>
+  <link rel='apple-touch-icon-precomposed' href='img/favicon-57.png'>
+  -->
+</head>
+
+
+
+	<body lang='ES_es' class='black-bg'>
+		<div class='white-bg'>
+			<div class='container'>
+	<div class='page-header'>
+		<h1 class='brand'><a href='/'><i class='pix pix-pix'></i> PiX</a></h1>
+		<p class='lead inline orange'>Interaction notation for UX design</p>
+		
+		<ul class='nav nav-pills'>
+			
+				<li><a href='/'>about PiX</a></li>
+			
+			
+			
+				<li><a href='/pages/icons'>icons</a></li>
+			
+
+			<!--
+			
+				<li><a href='/pages/magic'>magic words</a></li>
+			
+			-->
+			
+				<li class='active'><a href='#'>docs</a></li>
+			
+		</ul>
+	</div>
+</div>
+
+
+
+ 
+			<div class='container'>      
+		    	<p>Pix is designed to flow as you type in a natural and intuitive manner. For this reason we have created a hierarchical namimg schema for icons, from generic to specific. This syntax hierarchy serves as a way to combiane icons by stacking them the same way language works combining words and changing the meaning of the whole chain.</p>
+
+
+
+
+<h3>HTML PiX Structure</h3>
+
+
+<h4>Basic Element</h4>
+
+
+<p>Each step of the process comprises 3 <code>block</code> elements inside a <code>li.pix-step</code> that belongs to a <code>ul.pix-steps</code>.</p>
+
+<div class='row'>
+    <div class='col-md-2'>
+        <h5>Unedited block</h5>
+        <div class='docs-block'>
+            <strong>li</strong>.block<br>
+            <div class='docs-block docs-bk'>
+                <strong>input type='text'</strong>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-2'>
+        <h5>Regular Icon</h5>
+        <div class='docs-block'>
+            <strong>li</strong>.block<br>
+            <div class='docs-block docs-bk'>
+                <strong>div</strong>.pix-group<br>
+                <div class='docs-block'>
+                    <strong>i</strong>.pix pix-<em>icon-name</em><br>
+                </div><br>
+                <div class='docs-block'>
+                    <strong>p</strong><br>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class='col-md-2'>
+        <h5>Stacked Icon</h5>
+        <div class='docs-block'>
+            <strong>li</strong>.block<br>
+            <div class='docs-block docs-bk'>
+                <strong>div</strong>.pix-group<br>
+                <div class='docs-block'>
+                    .pix-stacked<br>
+                    <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                    <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                    <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                </div>
+                
+                <div class='docs-block'><strong>p</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<h4>Score Overview</h4>
+
+
+<div class='docs-block'>
+    .pix-score<br>
+    <div class='docs-block docs-bk'>
+        <strong>ul</strong>.pix-header col-sm-1 col-xs-3<br>
+        <div class='docs-block docs-bk'>
+            <strong>li</strong>.block<br>
+            .block-user<br>
+            <div class='docs-block docs-bk'>
+                <strong>div</strong>.pix-group<br>
+                <div class='docs-block docs-bk'><strong>i</strong>.pix pix-user</div><br>
+                <div class='docs-block docs-bk'><strong>label</strong></div>
+            </div>
+        </div><br>
+        <div class='docs-block docs-bk'>
+            <strong>li</strong>.block<br>
+            .block-dialogue<br>
+            <div class='docs-block docs-bk'>
+                <strong>div</strong>.pix-group<br>
+                <div class='docs-block docs-bk'><strong>i</strong>.pix pix-dialogue</div><br>
+                <div class='docs-block docs-bk'><strong>label</strong></div>
+            </div>
+        </div><br>
+        <div class='docs-block docs-bk'>
+            <strong>li</strong>.block<br>
+            .block-system<br>
+            <div class='docs-block docs-bk'>
+                <strong>div</strong>.pix-group<br>
+                <div class='docs-block docs-bk'><strong>i</strong>.pix pix-system</div><br>
+                <div class='docs-block docs-bk'><strong>label</strong></div>
+            </div>
+        </div>
+    </div>
+    <div class='docs-block'>
+        <strong>ul</strong>.pix-steps<br>
+        <div class='docs-block'>
+            <strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
+            <div class='docs-block'>
+                <strong>ul</strong>.pix-blocks<br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-user<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-dialogue<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-system<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    .pix-notes<br>
+                    <div class='docs-block'><strong>p</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='docs-block'>
+            <strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
+            <div class='docs-block'>
+                <strong>ul</strong>.pix-blocks<br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-user<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-dialogue<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-system<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    .pix-notes<br>
+                    <div class='docs-block'><strong>p</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='docs-block'>
+            <strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
+            <div class='docs-block'>
+                <strong>ul</strong>.pix-blocks<br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-user<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-dialogue<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    <strong>li</strong>.block block-system<br>
+                    <div class='docs-block'>
+                        <strong>div</strong>.pix-group<br>
+                        <div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
+                        <div class='docs-block'><strong>p</strong></div>
+                    </div>
+                </div><br>
+                <div class='docs-block'>
+                    .pix-notes<br>
+                    <div class='docs-block'><strong>p</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='docs-block'>
+            <strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <em>etc...</em>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+
+
+<h4>Testing Area</h4>
+
+
+<div class='row' style='height: 300px'>
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                <i class='pix pix-grid gray'></i>
+                
+                
+                <i class='pix stack-top-left pix-minus'></i>
+                
+                <i class='pix stack-top-right pix-ok'></i>
+                
+                
+                
+                <i class='pix stack-bottom-left pix-no'></i>
+                <i class='pix stack-bottom-right pix-plus'></i>
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    <span class='indicator'>⊙</span>grid gray 
+                    
+                    
+                    <span class='indicator'>↖︎</span>minus 
+                    
+                    <span class='indicator'>↗︎</span>ok 
+                    
+                    
+                    
+                    <span class='indicator'>↙︎</span>no 
+                    <span class='indicator'>↘︎</span>plus 
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                <i class='pix stack-top-left pix-comment pix-flip-horizontal green'></i>
+                
+                
+                
+                
+                <i class='pix stack-bottom pix-call'></i>
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    <span class='indicator'>↖︎</span>comment pix-flip-horizontal green 
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↓</span>call 
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                <i class='pix stack-top pix-no'></i>
+                
+                
+                
+                <i class='pix stack-bottom pix-hang-up red'></i>
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↑</span>no 
+                    
+                    
+                    
+                    <span class='indicator'>↓</span>hang-up red 
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                
+                
+                <i class='pix stack-left pix-user-sad'></i>
+                <i class='pix stack-right pix-user-laughing gray'></i>
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span class='indicator'>←</span>user-sad 
+                    <span class='indicator'>→</span>user-laughing gray 
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                <i class='pix stack-top-left pix-pencil pix-flip-horizontal'></i>
+                
+                <i class='pix stack-top-right pix-pencil'></i>
+                
+                
+                
+                <i class='pix stack-bottom-left pix-pencil pix-rotate-180'></i>
+                <i class='pix stack-bottom-right pix-pencil pix-flip-vertical'></i>
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    <span class='indicator'>↖︎</span>pencil pix-flip-horizontal 
+                    
+                    <span class='indicator'>↗︎</span>pencil 
+                    
+                    
+                    
+                    <span class='indicator'>↙︎</span>pencil pix-rotate-180 
+                    <span class='indicator'>↘︎</span>pencil pix-flip-vertical 
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                <i class='pix stack-top-left pix-call pix-flip-horizontal'></i>
+                
+                <i class='pix stack-top-right pix-call'></i>
+                
+                
+                
+                <i class='pix stack-bottom-left pix-call pix-rotate-180'></i>
+                <i class='pix stack-bottom-right pix-call pix-flip-vertical'></i>
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    <span class='indicator'>↖︎</span>call pix-flip-horizontal 
+                    
+                    <span class='indicator'>↗︎</span>call 
+                    
+                    
+                    
+                    <span class='indicator'>↙︎</span>call pix-rotate-180 
+                    <span class='indicator'>↘︎</span>call pix-flip-vertical 
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                <i class='pix stack-top-left pix-question pix-flip-horizontal blue'></i>
+                
+                <i class='pix stack-top-right pix-question red'></i>
+                
+                
+                
+                <i class='pix stack-bottom-left pix-question pix-rotate-180 green'></i>
+                <i class='pix stack-bottom-right pix-question pix-flip-vertical yellow'></i>
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    <span class='indicator'>↖︎</span>question pix-flip-horizontal blue 
+                    
+                    <span class='indicator'>↗︎</span>question red 
+                    
+                    
+                    
+                    <span class='indicator'>↙︎</span>question pix-rotate-180 green 
+                    <span class='indicator'>↘︎</span>question pix-flip-vertical yellow 
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                <i class='pix pix-notebook'></i>
+                
+                
+                
+                <i class='pix stack-top pix-ok pix-inverse'></i>
+                
+                
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    <span class='indicator'>⊙</span>notebook 
+                    
+                    
+                    
+                    <span class='indicator'>↑</span>ok pix-inverse 
+                    
+                    
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                <i class='pix stack-top pix-user-surprised'></i>
+                
+                
+                
+                <i class='pix stack-bottom pix-touch-1'></i>
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↑</span>user-surprised 
+                    
+                    
+                    
+                    <span class='indicator'>↓</span>touch-1 
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                <i class='pix pix-database'></i>
+                <i class='pix pix-robot gray'></i>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    <span class='indicator'>⊙</span>database 
+                    <span class='indicator'>⊙</span>robot gray 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                <i class='pix pix-text'></i>
+                <i class='pix pix-pile'></i>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    <span class='indicator'>⊙</span>text 
+                    <span class='indicator'>⊙</span>pile 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                
+                <i class='pix stack-top-right pix-pencil'></i>
+                <i class='pix stack-left pix-text'></i>
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↗︎</span>pencil 
+                    <span class='indicator'>←</span>text 
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<div class='row' style='height: 300px'>
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                <i class='pix pix-touch'></i>
+                
+                
+                <i class='pix stack-top-left pix-switch red'></i>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    <span class='indicator'>⊙</span>touch 
+                    
+                    
+                    <span class='indicator'>↖︎</span>switch red 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                <i class='pix pix-touch'></i>
+                
+                
+                <i class='pix stack-top-left pix-switch green pix-flip-horizontal'></i>
+                
+                
+                
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    <span class='indicator'>⊙</span>touch 
+                    
+                    
+                    <span class='indicator'>↖︎</span>switch green pix-flip-horizontal 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                <i class='pix pix-cube pix-flip-vertical gray'></i>
+                <i class='pix pix-cube'></i>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    <span class='indicator'>⊙</span>cube pix-flip-vertical gray 
+                    <span class='indicator'>⊙</span>cube 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                
+                <i class='pix stack-top-right pix-arrow-rotate pix-rotate-90'></i>
+                <i class='pix stack-left pix-tablet gray'></i>
+                
+                <i class='pix stack-bottom pix-tablet pix-rotate-90'></i>
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↗︎</span>arrow-rotate pix-rotate-90 
+                    <span class='indicator'>←</span>tablet gray 
+                    
+                    <span class='indicator'>↓</span>tablet pix-rotate-90 
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                
+                <i class='pix stack-top-right pix-arrow-rotate pix-flip-horizontal'></i>
+                <i class='pix stack-left pix-tablet'></i>
+                
+                <i class='pix stack-bottom pix-tablet pix-rotate-90 gray'></i>
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↗︎</span>arrow-rotate pix-flip-horizontal 
+                    <span class='indicator'>←</span>tablet 
+                    
+                    <span class='indicator'>↓</span>tablet pix-rotate-90 gray 
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                
+                <i class='pix stack-top-right pix-arrow-rotate pix-rotate-90'></i>
+                <i class='pix stack-left pix-mobile gray'></i>
+                
+                <i class='pix stack-bottom pix-mobile pix-rotate-90'></i>
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↗︎</span>arrow-rotate pix-rotate-90 
+                    <span class='indicator'>←</span>mobile gray 
+                    
+                    <span class='indicator'>↓</span>mobile pix-rotate-90 
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                
+                <i class='pix stack-top-right pix-arrow-rotate pix-flip-horizontal'></i>
+                <i class='pix stack-left pix-mobile'></i>
+                
+                <i class='pix stack-bottom pix-mobile pix-rotate-90 gray'></i>
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↗︎</span>arrow-rotate pix-flip-horizontal 
+                    <span class='indicator'>←</span>mobile 
+                    
+                    <span class='indicator'>↓</span>mobile pix-rotate-90 gray 
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="col-lg-1 col-md-2 col-xs-4">
+    <div class="inner icon-docs">
+        <div class='pix-group'>
+            <div class='pix-stack'>
+                
+                
+                
+                
+                
+                <i class='pix stack-top-right pix-pencil hover-swing'></i>
+                <i class='pix stack-left pix-text hover-beat'></i>
+                
+                
+                
+                
+            </div>
+            <p class='tcenter'>
+                <span class='docs-icon-name'>
+                    
+                    
+                    
+                    
+                    
+                    <span class='indicator'>↗︎</span>pencil hover-swing 
+                    <span class='indicator'>←</span>text hover-beat 
+                    
+                    
+                    
+                    
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+			</div>
+		</div>
+	    <footer>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-sm-6'>
+				<ul>
+					<li>This is an open source proyect under the <a href='http://opensource.org/licenses/Artistic-2.0'>Artistic Licence 2.0</a><br>designed and developed at <a href='http://www.ead.pucv.cl'>e[ad] Esuela de Arquitectura y Diseño PUCV</a></li>
+					<li>PiX version <strong>2.5</strong></li>
+					<li><a a href='https://github.com/eadpucv/pix'>Check the repository on Github</a></li>
+				</ul>
+			</div>
+			<div class='col-sm-6'>
+				<ul class='nav nav-pills pull-right'>
+					<li><a href='/pages/contact'>Contact us</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</footer>
+	</body>
+</html>

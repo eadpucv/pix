@@ -1,0 +1,71 @@
+// Helpers
+// --------------------------
+
+.tleft{text-align: left}
+.tcenter{text-align: center}
+.tright{text-align: right}
+.inline{display: inline-block;}
+.cf{.clearfix;}
+.score-text{
+	position: relative;
+	top: 30%;
+	text-align: left;
+}
+
+@half-gutter: .5em;
+
+.inner{
+	display: block;
+	width: 100%;
+	padding: 0 @half-gutter;
+	&.right{padding: 0 0 0 @half-gutter}
+	&.left{padding: 0 @half-gutter 0 0}
+}
+
+// Colors
+
+.white-bg{
+	background-color: @white;
+	padding-bottom: 30px;
+}
+
+.black-bg{background-color: @black}
+.color{color: @brand-primary}
+.orange{color: @orange}
+.black{color: @black}
+.blue{color: @brand-info}
+.green{color: @brand-success}
+.red{color: spin(@brand-primary, -15)}
+.yellow{color: spin(@brand-primary, 40)}
+.gray{color: fade(@black, 18)}
+
+// Appearence
+
+.bold{font-weight: 800}
+.shadow{text-shadow: 2px 2px 0 fade(@black, 10);}
+
+.box-shadow(...) {
+  @process: ~`(function(e){e=e||"0";var t=/\d/gi,r=/(?:\s|^)(\.?\d+\.?\d*)(?![^(]*\)|\w|%|\.)/gi;return/^[^, ]*,/.test(e)&&(e=e.replace(/(?:,)(?![^(]*\))/g,"")),t.test(e)&&(e=e.replace(r,function(e){return 0==e&&e||e+"px"})),e})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
+  -webkit-box-shadow: @process;
+  -moz-box-shadow: @process;
+  box-shadow: @process;
+}
+
+// Placeholders
+
+input::-webkit-input-placeholder {
+	color: @input-color-placeholder;
+	font-weight: 100;
+}
+input::-moz-placeholder {
+	color: @input-color-placeholder;
+	font-weight: 100;
+}
+input:-moz-placeholder {   /* Older versions of Firefox */
+	color: @input-color-placeholder;
+	font-weight: 100;
+}
+input:-ms-input-placeholder { 
+	color: @input-color-placeholder;
+	font-weight: 100;
+}

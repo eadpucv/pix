@@ -1,0 +1,31 @@
+{
+  "name": "Pix",
+  "title": "Pix",
+  "description": "Interaction notation for UX design",
+  "version": "0.1.0",
+  "homepage": "http://eadpucv.github.io/pix/",
+  "author": {
+    "name": "Herbert Spencer",
+    "email": "herbert.spencer@gmail.com"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/eadpucv/pix.git"
+  },
+  "bugs": "https://github.com/eadpucv/pix/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://eadpucv.github.io/pix//blob/master/LICENSE-MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt-webfont": "~0.4.8",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt": "~0.4.5"
+  },
+  "keywords": ["pix","notation","interaction","UX"]
+}
