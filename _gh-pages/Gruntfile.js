@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 	    webfont: {
 		  icons: {
 		    src: 'icons/*.svg',
-		    dest: 'build/fonts',
+		    dest: 'fonts',
 		    options: {
 			font: 'PiX',
 			ligatures: true,
