@@ -1,0 +1,37 @@
+// Responsive 
+// --------------------------
+
+// Extra small screen / phone
+@media(max-width: @screen-xs-max){
+	.container{
+		margin: 0 10%;
+	}
+	.page-header .nav-pills{
+		&.pull-right{
+			float: none !important;
+		}
+	}
+
+	.inner{
+		padding: 0;
+		&.left, &.right{
+			padding: 0;
+		}
+	} 
+}
+
+// small screen and down
+@media (max-width: @screen-sm-max){
+	.page-header{border-bottom: none}
+}
+// only small screen / tablet
+@media (min-width: @screen-sm) and (max-width: @screen-sm-max){
+}
+
+// Medium screen / desktop
+@media (min-width: @screen-md) and (max-width: @screen-md-max){
+}
+
+// Large screen / wide desktop
+@media (min-width: @screen-lg){
+}
