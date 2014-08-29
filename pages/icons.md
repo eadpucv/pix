@@ -104,13 +104,13 @@ active: icons
 <h4>Face Expressions</h4>
 <p>These icons are meant for the upper row of the score, for depicting user emotions and moods, mainly as a result of interaction with the system.</p>
 <div class='row'>
-    {% include col-pix.html name='user' %}
-    {% include col-pix.html name='user-smiling' %}
-    {% include col-pix.html name='user-laughing' %}
-    {% include col-pix.html name='user-sad' %}
-    {% include col-pix.html name='user-upset' %}
-    {% include col-pix.html name='user-surprised' %}
-    {% include col-pix.html name='user-intrigued' %}
+    {% include col-pix.html name='face' %}
+    {% include col-pix.html name='face-smiling' %}
+    {% include col-pix.html name='face-laughing' %}
+    {% include col-pix.html name='face-sad' %}
+    {% include col-pix.html name='face-upset' %}
+    {% include col-pix.html name='face-surprised' %}
+    {% include col-pix.html name='face-intrigued' %}
     {% include col-pix.html name='robot' %}
 </div>
 <hr>
