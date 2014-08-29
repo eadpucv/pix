@@ -316,7 +316,7 @@ active: index
         <ul class='media-list'>
             <li class='media'>
                 <a class='pull-left' href='#'>
-                    <img class='media-object img-circle' src='{{ site.baseurl }}img/katherine.jpg' width='48' alt='Katherine Exss'>
+                    <img class='media-object img-circle' src='{{ site.baseurl }}/img/katherine.jpg' width='48' alt='Katherine Exss'>
                 </a>
                 <div class='media-body'>
                     <h4 class='media-heading'>Katherine Exss</h4>
@@ -325,7 +325,7 @@ active: index
             </li>
             <li class='media'>
                 <a class='pull-left' href='#'>
-                    <img class='media-object img-circle' src='{{ site.baseurl }}img/herbert.jpg' width='48' alt='Herbert Spencer'>
+                    <img class='media-object img-circle' src='{{ site.baseurl }}/img/herbert.jpg' width='48' alt='Herbert Spencer'>
                 </a>
                 <div class='media-body'>
                     <h4 class='media-heading'>Herbert Spencer</h4>
@@ -334,7 +334,7 @@ active: index
            </li>
             <li class='media'>
                 <a class='pull-left' href='#'>
-                    <img class='media-object img-circle' src='{{ site.baseurl }}img/hugo.jpg' width='48' alt='Hugo Solar'>
+                    <img class='media-object img-circle' src='{{ site.baseurl }}/img/hugo.jpg' width='48' alt='Hugo Solar'>
                 </a>
                 <div class='media-body'>
                     <h4 class='media-heading'>Hugo Solar</h4>
