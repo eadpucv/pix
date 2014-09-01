@@ -73,21 +73,18 @@ active: icons
 <hr>
 <h4>Arrows</h4>
 <div class='row'>
-    {% include col-pix.html name='arrow-up' %}
-    {% include col-pix.html name='arrow-up' %}
-    {% include col-pix.html name='arrow-down' %}
-    {% include col-pix.html name='arrow-left' %}
-    {% include col-pix.html name='arrow-right' %}
-    {% include col-pix.html name='arrows-expand' %}
-    {% include col-pix.html name='arrows-collapse' %}
-    {% include col-pix.html name='arrows-move' %}
-    {% include col-pix.html name='arrows-diagonal' %}
-    {% include col-pix.html name='arrows-horizontal' %}
-    {% include col-pix.html name='arrows-vertical' %}
-    {% include col-pix.html name='arrow-rotate' %}
-</div>
-<div class='row'>
-    {% include col-pix.html name='arrows-cycle' %}
+    {% include col-pix.html name='up' %}
+    {% include col-pix.html name='down' %}
+    {% include col-pix.html name='left' %}
+    {% include col-pix.html name='right' %}
+    {% include col-pix.html nameexpand' %}
+    {% include col-pix.html namecollapse' %}
+    {% include col-pix.html namemove' %}
+    {% include col-pix.html name='resize' %}
+    {% include col-pix.html name='slide' %}
+    {% include col-pix.html name='scroll' %}
+    {% include col-pix.html name='rotate' %}
+    {% include col-pix.html namecycle' %}
 </div>
 <hr>
 <h4>Playback Buttons</h4>
@@ -208,11 +205,11 @@ active: icons
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='click' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='click' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' pix3='click-right' top-left='click' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-move' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-diagonal' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-diagonal pix-flip-vertical' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-center' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrow-right' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-lefmove' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='resize' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='resize pix-flip-vertical' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-center' top-left='scroll' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='right' %}
 
 </div>
 <p>Mouse and interface elements</p>
@@ -228,11 +225,11 @@ active: icons
 <h4>Trackpad</h4>
 <div class='row'>
     {% include col-pix-stack.html pix1='trackpad' top='click' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrows-move' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrows-cycle' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrow-rotate' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrow-right' %}
+    {% include col-pix-stack.html pix1='trackpad' tomove' %}
+    {% include col-pix-stack.html pix1='trackpad' top='scroll' %}
+    {% include col-pix-stack.html pix1='trackpad' tocycle' %}
+    {% include col-pix-stack.html pix1='trackpad' top='rotate' %}
+    {% include col-pix-stack.html pix1='trackpad' top='right' %}
     {% include col-pix-stack.html pix1='trackpad' top='radio' %}
     {% include col-pix-stack.html pix1='trackpad' top='checkbox' %}
     {% include col-pix-stack.html pix1='trackpad' top='slider' %}
@@ -252,50 +249,50 @@ active: icons
     {% include col-pix-stack.html pix1='touch-3' top-left='click' %}
     {% include col-pix-stack.html pix1='touch-4' top-left='click' %}
     {% include col-pix-stack.html pix1='touch-5' top-left='click' %}
-    {% include col-pix-stack.html pix1='pinch' top-left='arrows-diagonal' %}
-    {% include col-pix-stack.html pix1='pinch' top-left='arrow-rotate' %}
+    {% include col-pix-stack.html pix1='pinch' top-left='resize' %}
+    {% include col-pix-stack.html pix1='pinch' top-left='rotate' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-right' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='up' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='down' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='left' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='right' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='up' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='down' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='left' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='right' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='up' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='down' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='left' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='right' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrows-vertical' %}
+    {% include col-pix-stack.html pix1='touch-4' top-left='up' %}
+    {% include col-pix-stack.html pix1='touch-4' top-left='down' %}
+    {% include col-pix-stack.html pix1='touch-4' top-left='left' %}
+    {% include col-pix-stack.html pix1='touch-4' top-left='right' %}
+    {% include col-pix-stack.html pix1='touch-5' top-left='up' %}
+    {% include col-pix-stack.html pix1='touch-5' top-left='down' %}
+    {% include col-pix-stack.html pix1='touch-5' top-left='left' %}
+    {% include col-pix-stack.html pix1='touch-5' top-left='right' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='slide' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='scroll' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='slide' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='scroll' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='hand' top-left='arrows-expand' %}
-    {% include col-pix-stack.html pix1='hand' top-left='arrows-collapse' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrows-move' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrows-move' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrows-move' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='slide' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='scroll' %}
+    {% include col-pix-stack.html pix1='touch-4' top-left='slide' %}
+    {% include col-pix-stack.html pix1='touch-4' top-left='scroll' %}
+    {% include col-pix-stack.html pix1='touch-5' top-left='slide' %}
+    {% include col-pix-stack.html pix1='touch-5' top-left='scroll' %}
+    {% include col-pix-stack.html pix1='touch-4' top-left='slide' %}
+    {% include col-pix-stack.html pix1='hand' top-left='expand' %}
+    {% include col-pix-stack.html pix1='hand' top-left='collapse' %}
+    {% include col-pix-stack.html pix1='touch-1' top-lefmove' %}
+    {% include col-pix-stack.html pix1='touch-2' top-lefmove' %}
+    {% include col-pix-stack.html pix1='touch-3' top-lefmove' %}
 </div>
 <p>These are some examples of touch interactions with specific screen elements o with special meaning:</p>
 <div class='row'>
@@ -442,14 +439,14 @@ active: icons
     {% include col-pix-stack.html pix1='gear' pix2='alert' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html pix1='database' pix2='arrow-up' %}
-    {% include col-pix-stack.html pix1='database' pix2='arrow-down' %}
+    {% include col-pix-stack.html pix1='database' pix2='up' %}
+    {% include col-pix-stack.html pix1='database' pix2='down' %}
     {% include col-pix-stack.html pix1='database' pix2='search' %}
     {% include col-pix-stack.html pix1='database' pix2='filter' %}
     {% include col-pix-stack.html pix1='database' pix2='ok' %}
     {% include col-pix-stack.html pix1='database' pix2='no' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='arrow-up' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='arrow-down' %}
+    {% include col-pix-stack.html pix1='cloud' pix2='up' %}
+    {% include col-pix-stack.html pix1='cloud' pix2='down' %}
     {% include col-pix-stack.html pix1='cloud' pix2='search' %}
     {% include col-pix-stack.html pix1='cloud' pix2='ok' %}
     {% include col-pix-stack.html pix1='cloud' pix2='no' %}
@@ -457,30 +454,30 @@ active: icons
 </div>
 <h4>Object Combinations</h4>
 <div class='row'>
-    {% include col-pix-stack.html top='arrow-up' bottom='cube' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='cube' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='picture' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='picture' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='video' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='video' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='feed' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='feed' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='contact' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='contact' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='position' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='position' %}
+    {% include col-pix-stack.html top='up' bottom='cube' %}
+    {% include col-pix-stack.html top='down' bottom='cube' %}
+    {% include col-pix-stack.html top='up' bottom='picture' %}
+    {% include col-pix-stack.html top='down' bottom='picture' %}
+    {% include col-pix-stack.html top='up' bottom='video' %}
+    {% include col-pix-stack.html top='down' bottom='video' %}
+    {% include col-pix-stack.html top='up' bottom='feed' %}
+    {% include col-pix-stack.html top='down' bottom='feed' %}
+    {% include col-pix-stack.html top='up' bottom='contact' %}
+    {% include col-pix-stack.html top='down' bottom='contact' %}
+    {% include col-pix-stack.html top='up' bottom='position' %}
+    {% include col-pix-stack.html top='down' bottom='position' %}
 </div>
 <div class='row'>
     {% include col-pix-stack.html top='clock' bottom='cog' %}
     {% include col-pix-stack.html top='ok' bottom='cog' %}
     {% include col-pix-stack.html top='no' bottom='cog' %}
-    {% include col-pix-stack.html top='arrows-cycle' bottom='cog' %}
+    {% include col-pix-stack.html tocycle' bottom='cog' %}
     {% include col-pix-stack.html top='alert' bottom='cog' %}
     {% include col-pix-stack.html top='question' bottom='cog' %}
     {% include col-pix-stack.html top='clock' bottom='feed' %}
     {% include col-pix-stack.html top='ok' bottom='feed' %}
     {% include col-pix-stack.html top='no' bottom='feed' %}
-    {% include col-pix-stack.html top='arrows-cycle' bottom='feed' %}
+    {% include col-pix-stack.html tocycle' bottom='feed' %}
     {% include col-pix-stack.html top='alert' bottom='feed' %}
     {% include col-pix-stack.html top='question' bottom='feed' %}
 </div>
@@ -531,7 +528,7 @@ active: icons
     {% include col-pix-stack.html left='camera' right='mobile' %}
     {% include col-pix-stack.html left='camera-video' right='mobile' %}
     {% include col-pix-stack.html left='microphone' right='mobile' %}
-    {% include col-pix-stack.html left='arrows-cycle' right='mobile' %}
+    {% include col-pix-stack.html left='cycle' right='mobile' %}
     {% include col-pix-stack.html left='call' right='mobile' %}
     {% include col-pix-stack.html left='sound' right='mobile' %}
     {% include col-pix-stack.html left='clock' right='mobile-vibrate' %}
