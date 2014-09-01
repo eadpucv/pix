@@ -53,7 +53,7 @@ active: index
 <table class='table pix-table'>
     <tr>
         <th style='width: 20%'>
-            <i class='pix pix-user'></i><br>
+            <i class='pix pix-face'></i><br>
             <label>person</label>
         </th>
         <td style='width: 40%' lang='en'>
@@ -93,7 +93,7 @@ active: index
 <textarea class='score-description' placeholder='Describe your score'></textarea>
 <div class='pix-score'>
    <ul class='pix-header col-sm-1 col-xs-3'>
-    <li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>person</label></div></li>
+    <li class='block block-user'><div class='pix-group'><i class='pix pix-face'></i><label>person</label></div></li>
     <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogue</label></div></li>
     <li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system</label></div></li>
 </ul>
