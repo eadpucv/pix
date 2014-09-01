@@ -77,14 +77,14 @@ active: icons
     {% include col-pix.html name='down' %}
     {% include col-pix.html name='left' %}
     {% include col-pix.html name='right' %}
-    {% include col-pix.html nameexpand' %}
-    {% include col-pix.html namecollapse' %}
-    {% include col-pix.html namemove' %}
+    {% include col-pix.html name='expand' %}
+    {% include col-pix.html name='collapse' %}
+    {% include col-pix.html name='move' %}
     {% include col-pix.html name='resize' %}
     {% include col-pix.html name='slide' %}
     {% include col-pix.html name='scroll' %}
     {% include col-pix.html name='rotate' %}
-    {% include col-pix.html namecycle' %}
+    {% include col-pix.html name='cycle' %}
 </div>
 <hr>
 <h4>Playback Buttons</h4>
@@ -205,7 +205,7 @@ active: icons
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='click' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='click' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' pix3='click-right' top-left='click' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-lefmove' %}
+    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='move' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='resize' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='resize pix-flip-vertical' %}
     {% include col-pix-stack.html pix1='mouse' pix2='click-center' top-left='scroll' %}
@@ -225,9 +225,9 @@ active: icons
 <h4>Trackpad</h4>
 <div class='row'>
     {% include col-pix-stack.html pix1='trackpad' top='click' %}
-    {% include col-pix-stack.html pix1='trackpad' tomove' %}
+    {% include col-pix-stack.html pix1='trackpad' top='move' %}
     {% include col-pix-stack.html pix1='trackpad' top='scroll' %}
-    {% include col-pix-stack.html pix1='trackpad' tocycle' %}
+    {% include col-pix-stack.html pix1='trackpad' top='cycle' %}
     {% include col-pix-stack.html pix1='trackpad' top='rotate' %}
     {% include col-pix-stack.html pix1='trackpad' top='right' %}
     {% include col-pix-stack.html pix1='trackpad' top='radio' %}
@@ -290,9 +290,9 @@ active: icons
     {% include col-pix-stack.html pix1='touch-4' top-left='slide' %}
     {% include col-pix-stack.html pix1='hand' top-left='expand' %}
     {% include col-pix-stack.html pix1='hand' top-left='collapse' %}
-    {% include col-pix-stack.html pix1='touch-1' top-lefmove' %}
-    {% include col-pix-stack.html pix1='touch-2' top-lefmove' %}
-    {% include col-pix-stack.html pix1='touch-3' top-lefmove' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='move' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='move' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='move' %}
 </div>
 <p>These are some examples of touch interactions with specific screen elements o with special meaning:</p>
 <div class='row'>
@@ -471,13 +471,13 @@ active: icons
     {% include col-pix-stack.html top='clock' bottom='cog' %}
     {% include col-pix-stack.html top='ok' bottom='cog' %}
     {% include col-pix-stack.html top='no' bottom='cog' %}
-    {% include col-pix-stack.html tocycle' bottom='cog' %}
+    {% include col-pix-stack.html top='cycle' bottom='cog' %}
     {% include col-pix-stack.html top='alert' bottom='cog' %}
     {% include col-pix-stack.html top='question' bottom='cog' %}
     {% include col-pix-stack.html top='clock' bottom='feed' %}
     {% include col-pix-stack.html top='ok' bottom='feed' %}
     {% include col-pix-stack.html top='no' bottom='feed' %}
-    {% include col-pix-stack.html tocycle' bottom='feed' %}
+    {% include col-pix-stack.html top='cycle' bottom='feed' %}
     {% include col-pix-stack.html top='alert' bottom='feed' %}
     {% include col-pix-stack.html top='question' bottom='feed' %}
 </div>

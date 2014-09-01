@@ -1,13 +1,6 @@
 
-.PHONY: less
-.PHONY: css
-
 install:
 	bower install
-
-less:
-	lessc less/style.less css/style.css --clean-css
-	lessc fonts/pix-font.less fonts/pix-font.css --clean-css
 	
 css:
 	lessc less/style.less css/style.css --clean-css
@@ -19,3 +12,6 @@ server:
 dist:
 	cp bower_components/bootstrap/dist/js/bootstrap.min.js js
 	cp bower_components/jquery/dist/jquery.min.js js
+	grunt webfont
+	lessc less/style.less css/style.css --clean-css
+	lessc fonts/pix-font.less fonts/pix-font.css --clean-css
