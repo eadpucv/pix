@@ -7,11 +7,11 @@ install:
 
 less:
 	lessc less/style.less css/style.css --clean-css
-	lessc fonts/pix-font.less fonts/pix.css --clean-css
+	lessc fonts/pix-font.less fonts/pix-font.css --clean-css
 	
 css:
 	lessc less/style.less css/style.css --clean-css
-	lessc fonts/pix-font.less fonts/pix.css --clean-css
+	lessc fonts/pix-font.less fonts/pix-font.css --clean-css
 
 server:
 	jekyll server --watch --baseurl= --trace
