@@ -212,27 +212,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 </div>
 
 <h4>Testing Area</h4>
-<div class='row' style='height: 300px'>
-	{% include col-pix-stack.html pix1='grid gray' top-right='ok' top-left='minus' bottom-right='plus' bottom-left='no' %}
-	{% include col-pix-stack.html bottom='call' top-left='comment pix-flip-horizontal green' %}
-	{% include col-pix-stack.html top='no' bottom='hang-up red' %}
-	{% include col-pix-stack.html left='user-sad' right='user-laughing gray' %}
-	{% include col-pix-stack.html top-left='pencil pix-flip-horizontal' top-right='pencil' bottom-left='pencil pix-rotate-180' bottom-right='pencil pix-flip-vertical' %}
-	{% include col-pix-stack.html top-left='call pix-flip-horizontal' top-right='call' bottom-left='call pix-rotate-180' bottom-right='call pix-flip-vertical' %}
-	{% include col-pix-stack.html top-left='question pix-flip-horizontal blue' top-right='question red' bottom-left='question pix-rotate-180 green' bottom-right='question pix-flip-vertical yellow' %}
-	{% include col-pix-stack.html pix1='notebook' top='ok pix-inverse' %}
-	{% include col-pix-stack.html top='user-surprised' bottom='touch-1' %}
-	{% include col-pix-stack.html pix1='database' pix2='robot gray' %}
-	{% include col-pix-stack.html pix1='text' pix2='pile' %}
-	{% include col-pix-stack.html left='text' top-right='pencil' %}
-</div>
-<div class='row' style='height: 300px'>
-	{% include col-pix-stack.html pix1='touch' top-left='switch red' %}
-	{% include col-pix-stack.html pix1='touch' top-left='switch green pix-flip-horizontal' %}
-	{% include col-pix-stack.html pix1='cube pix-flip-vertical gray' pix2='cube' %}
-	{% include col-pix-stack.html bottom='tablet pix-rotate-90' left='tablet gray' top-right='arrow-rotate pix-rotate-90' %}
-	{% include col-pix-stack.html bottom='tablet pix-rotate-90 gray' left='tablet' top-right='arrow-rotate pix-flip-horizontal' %}
-	{% include col-pix-stack.html bottom='mobile pix-rotate-90' left='mobile gray' top-right='arrow-rotate pix-rotate-90' %}
-	{% include col-pix-stack.html bottom='mobile pix-rotate-90 gray' left='mobile' top-right='arrow-rotate pix-flip-horizontal' %}
-	{% include col-pix-stack.html left='text hover-beat' top-right='pencil hover-swing' %}
-</div>
+<small>type icon names and they'll appear...</small><br>
+<textarea cols='10' style='font-family:PiX; font-size: 72px'>
+face
+</textarea>
