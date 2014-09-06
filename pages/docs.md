@@ -213,6 +213,6 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 
 <h4>Testing Area</h4>
 <small>type icon names and they'll appear...</small><br>
-<textarea cols='10' style='font-family:PiX; font-size: 72px'>
+<textarea cols='15' class='pix-test'>
 face
 </textarea>
