@@ -3,18 +3,18 @@
 
 @font-face {
 	font-family:"PiX";
-	src: url("PiX-c697e62361db3929abd9fe54def8afe7.eot");
+	src: url("PiX-e1d719c3951be531882b8efa1c2488a6.eot");
 	font-weight: normal;
 	font-style: normal;
 	// unicode-range: U+F101-F180;
 }
 @font-face {
 	font-family: "PiX";
-	src: url("PiX-c697e62361db3929abd9fe54def8afe7.eot");
-	src: url("PiX-c697e62361db3929abd9fe54def8afe7.eot?#iefix") format("embedded-opentype"),
-		url("PiX-c697e62361db3929abd9fe54def8afe7.woff") format("woff"),
-		url("PiX-c697e62361db3929abd9fe54def8afe7.ttf") format("truetype"),
-		url("PiX-c697e62361db3929abd9fe54def8afe7.svg?#PiX") format("svg");
+	src: url("PiX-e1d719c3951be531882b8efa1c2488a6.eot");
+	src: url("PiX-e1d719c3951be531882b8efa1c2488a6.eot?#iefix") format("embedded-opentype"),
+		url("PiX-e1d719c3951be531882b8efa1c2488a6.woff") format("woff"),
+		url("PiX-e1d719c3951be531882b8efa1c2488a6.ttf") format("truetype"),
+		url("PiX-e1d719c3951be531882b8efa1c2488a6.svg?#PiX") format("svg");
 	font-weight: normal;
 	font-style: normal;
 	// unicode-range: U+F101-F180;
@@ -761,6 +761,16 @@
  	.pix-move();
 }
 
+.pix-n2() {
+	&:before {
+		content:"n2";
+	}
+	
+}
+.pix-n2{
+ 	.pix-n2();
+}
+
 .pix-next() {
 	&:before {
 		content:"next";
@@ -1311,6 +1321,16 @@
  	.pix-video();
 }
 
+.pix-w() {
+	&:before {
+		content:"w";
+	}
+	
+}
+.pix-w{
+ 	.pix-w();
+}
+
 .pix-window() {
 	&:before {
 		content:"window";
@@ -1329,4 +1349,14 @@
 }
 .pix-wrench{
  	.pix-wrench();
+}
+
+.pix-y() {
+	&:before {
+		content:"y";
+	}
+	
+}
+.pix-y{
+ 	.pix-y();
 }
