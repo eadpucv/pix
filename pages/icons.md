@@ -111,7 +111,7 @@ active: icons
     {% include col-pix.html name='robot' %}
 </div>
 <hr>
-<h4 id='touch'>Touch Gestures</h4>
+<h4 id='touch'>Hand Gestures</h4>
 <p>All possible finger gestures, for combining with arrows. They can also be rotated or fliped.</p>
 <div class='row'>
     {% include col-pix.html name='touch' %}
@@ -121,9 +121,37 @@ active: icons
     {% include col-pix.html name='touch-4' %}
     {% include col-pix.html name='touch-5' %}
     {% include col-pix.html name='hand' %}
-    {% include col-pix.html name='pinch' %}
+    {% include col-pix.html name='pinch-hand' %}
     {% include col-pix.html name='thumb' %}
     {% include col-pix.html name='thumb-down' %}
+</div>
+<hr>
+<h4 id='touch'>Touch Gestures</h4>
+<p>Hand-agnostic touch set</p>
+<div class='row'>
+    {% include col-pix.html name='tap' %}
+    {% include col-pix.html name='tap-2' %}
+    {% include col-pix.html name='tap-3' %}
+    {% include col-pix.html name='tap-4' %}
+    {% include col-pix.html name='pinch' %}
+    {% include col-pix.html name='pinch-zoom' %}
+    {% include col-pix.html name='pinch-rotate' %}
+    {% include col-pix.html name='touch-expand' %}
+    {% include col-pix.html name='touch-collapse' %}
+</div>
+<div class='row'>
+    {% include col-pix.html name='up-1' %}
+    {% include col-pix.html name='up-2' %}
+    {% include col-pix.html name='up-3' %}
+    {% include col-pix.html name='down-1' %}
+    {% include col-pix.html name='down-2' %}
+    {% include col-pix.html name='down-3' %}
+    {% include col-pix.html name='left-1' %}
+    {% include col-pix.html name='left-2' %}
+    {% include col-pix.html name='left-3' %}
+    {% include col-pix.html name='right-1' %}
+    {% include col-pix.html name='right-2' %}
+    {% include col-pix.html name='right-3' %}
 </div>
 <hr>
 <h4 id='objects'>Objects</h4>
@@ -249,22 +277,22 @@ active: icons
     {% include col-pix-stack.html pix1='touch-3' top-left='click' %}
     {% include col-pix-stack.html pix1='touch-4' top-left='click' %}
     {% include col-pix-stack.html pix1='touch-5' top-left='click' %}
-    {% include col-pix-stack.html pix1='pinch' top-left='resize' %}
-    {% include col-pix-stack.html pix1='pinch' top-left='rotate' %}
+    {% include col-pix-stack.html pix1='pinch-hand' top-left='resize' %}
+    {% include col-pix-stack.html pix1='pinch-hand' top-left='rotate' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html pix1='touch-1' top-left='up' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='down' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='left' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='right' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='up' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='down' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='left' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='right' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='up' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='down' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='left' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='right' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='up-1' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='down-1' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='left-1' %}
+    {% include col-pix-stack.html pix1='touch-1' top-left='right-1' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='up-2' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='down-2' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='left-2' %}
+    {% include col-pix-stack.html pix1='touch-2' top-left='right-2' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='up-3' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='down-3' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='left-3' %}
+    {% include col-pix-stack.html pix1='touch-3' top-left='right-3' %}
 </div>
 <div class='row'>
     {% include col-pix-stack.html pix1='touch-4' top-left='up' %}

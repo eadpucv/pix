@@ -1,13 +1,13 @@
 @font-face {
   font-family: "PiX";
-  src: url("PiX-e1d719c3951be531882b8efa1c2488a6.eot");
+  src: url("PiX-5d5a0a756521de3c5887b910c69abdc0.eot");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "PiX";
-  src: url("PiX-e1d719c3951be531882b8efa1c2488a6.eot");
-  src: url("PiX-e1d719c3951be531882b8efa1c2488a6.eot?#iefix") format("embedded-opentype"), url("PiX-e1d719c3951be531882b8efa1c2488a6.woff") format("woff"), url("PiX-e1d719c3951be531882b8efa1c2488a6.ttf") format("truetype"), url("PiX-e1d719c3951be531882b8efa1c2488a6.svg?#PiX") format("svg");
+  src: url("PiX-5d5a0a756521de3c5887b910c69abdc0.eot");
+  src: url("PiX-5d5a0a756521de3c5887b910c69abdc0.eot?#iefix") format("embedded-opentype"), url("PiX-5d5a0a756521de3c5887b910c69abdc0.woff") format("woff"), url("PiX-5d5a0a756521de3c5887b910c69abdc0.ttf") format("truetype"), url("PiX-5d5a0a756521de3c5887b910c69abdc0.svg?#PiX") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -136,6 +136,15 @@
 .pix-dialogue:before {
   content: "dialogue";
 }
+.pix-down-1:before {
+  content: "down-1";
+}
+.pix-down-2:before {
+  content: "down-2";
+}
+.pix-down-3:before {
+  content: "down-3";
+}
 .pix-down:before {
   content: "down";
 }
@@ -248,6 +257,15 @@
 .pix-keyboard:before {
   content: "keyboard";
 }
+.pix-left-1:before {
+  content: "left-1";
+}
+.pix-left-2:before {
+  content: "left-2";
+}
+.pix-left-3:before {
+  content: "left-3";
+}
 .pix-left:before {
   content: "left";
 }
@@ -315,9 +333,6 @@
 .pix-move:before {
   content: "move";
 }
-.pix-n2:before {
-  content: "n2";
-}
 .pix-next:before {
   content: "next";
 }
@@ -355,6 +370,15 @@
 }
 .pix-pile:before {
   content: "pile";
+}
+.pix-pinch-hand:before {
+  content: "pinch-hand";
+}
+.pix-pinch-rotate:before {
+  content: "pinch-rotate";
+}
+.pix-pinch-zoom:before {
+  content: "pinch-zoom";
 }
 .pix-pinch:before {
   content: "pinch";
@@ -423,6 +447,15 @@
 .pix-rewind:before {
   content: "rewind";
 }
+.pix-right-1:before {
+  content: "right-1";
+}
+.pix-right-2:before {
+  content: "right-2";
+}
+.pix-right-3:before {
+  content: "right-3";
+}
 .pix-right:before {
   content: "right";
 }
@@ -471,6 +504,18 @@
 .pix-tag:before {
   content: "tag";
 }
+.pix-tap-2:before {
+  content: "tap-2";
+}
+.pix-tap-3:before {
+  content: "tap-3";
+}
+.pix-tap-4:before {
+  content: "tap-4";
+}
+.pix-tap:before {
+  content: "tap";
+}
 .pix-text:before {
   content: "text";
 }
@@ -498,6 +543,12 @@
 .pix-touch-5:before {
   content: "touch-5";
 }
+.pix-touch-collapse:before {
+  content: "touch-collapse";
+}
+.pix-touch-expand:before {
+  content: "touch-expand";
+}
 .pix-touch:before {
   content: "touch";
 }
@@ -510,14 +561,20 @@
 .pix-unlock:before {
   content: "unlock";
 }
+.pix-up-1:before {
+  content: "up-1";
+}
+.pix-up-2:before {
+  content: "up-2";
+}
+.pix-up-3:before {
+  content: "up-3";
+}
 .pix-up:before {
   content: "up";
 }
 .pix-video:before {
   content: "video";
-}
-.pix-w:before {
-  content: "w";
 }
 .pix-window:before {
   content: "window";
@@ -535,9 +592,6 @@
   -moz-animation: swing .3s infinite ease;
   -o-animation: swing .3s infinite ease;
   animation: swing .3s infinite ease;
-}
-.pix-y:before {
-  content: "y";
 }
 /* makes the font 33% larger relative to the icon container */
 .pix-lg {
