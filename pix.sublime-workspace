@@ -1,0 +1,1993 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"current",
+				"current_user"
+			],
+			[
+				"have_",
+				"have_posts"
+			],
+			[
+				"archive",
+				"get_archives_link"
+			],
+			[
+				"post_met",
+				"post_meta_add"
+			],
+			[
+				"post",
+				"post_thumbnail"
+			],
+			[
+				"wp_get_atta",
+				"wp_get_attachment_url"
+			],
+			[
+				"wp_get_att",
+				"wp_get_attachment_thumb_url"
+			],
+			[
+				"page",
+				"pagenow"
+			],
+			[
+				"admin",
+				"admin_menu"
+			],
+			[
+				"wp_get_attachm",
+				"wp_get_attachment_url"
+			],
+			[
+				"post_ids",
+				"post_ids_cmnd"
+			],
+			[
+				"get_term",
+				"get_term_link"
+			],
+			[
+				"get_te",
+				"get_term"
+			],
+			[
+				"Button",
+				"ButtonSpecials"
+			],
+			[
+				"vi",
+				"visible"
+			],
+			[
+				"get_current_",
+				"get_current_blog_id"
+			],
+			[
+				"source",
+				"source_info_entry"
+			],
+			[
+				"source_",
+				"source_info_side"
+			],
+			[
+				"checbox",
+				"checkboxes"
+			],
+			[
+				"enqueue",
+				"wp_enqueue_script"
+			],
+			[
+				"item",
+				"item_output"
+			],
+			[
+				"author",
+				"author_id"
+			],
+			[
+				"get_post_type",
+				"get_post_type_archive_link"
+			],
+			[
+				"journaldetails_",
+				"journaldetails_journalDetailDate"
+			],
+			[
+				"out",
+				"out_date"
+			],
+			[
+				"contact",
+				"contact_info"
+			],
+			[
+				"menu_",
+				"menu_jorunal"
+			],
+			[
+				"get_blo",
+				"get_bloginfo"
+			],
+			[
+				"mail",
+				"mailing_subjects"
+			],
+			[
+				"the_post",
+				"the_post_id"
+			],
+			[
+				"background",
+				"background_color"
+			],
+			[
+				"pub",
+				"public_query_vars"
+			],
+			[
+				"economi",
+				"economicValues"
+			],
+			[
+				"transient",
+				"transient_name"
+			],
+			[
+				"econo",
+				"economicValues"
+			],
+			[
+				"return",
+				"return_data"
+			],
+			[
+				"economic",
+				"economic_data"
+			],
+			[
+				"xml",
+				"xml_list"
+			],
+			[
+				"wp_get_nav_",
+				"wp_get_nav_menu_items"
+			],
+			[
+				"switch_",
+				"switch_to_blog"
+			],
+			[
+				"career",
+				"careerOptions"
+			],
+			[
+				"getCare",
+				"getCareerOptions"
+			],
+			[
+				"get_book",
+				"get_bookmarks"
+			],
+			[
+				"youtube",
+				"youtube_id"
+			],
+			[
+				"thumb",
+				"thumb_id"
+			],
+			[
+				"get_quei",
+				"get_queried_object"
+			],
+			[
+				"news",
+				"news_params"
+			],
+			[
+				"getFac",
+				"getFacultyOptions"
+			],
+			[
+				"get_blog",
+				"get_blog_details"
+			],
+			[
+				"get_blog_",
+				"get_blog_option"
+			],
+			[
+				"udd_",
+				"udd_facultades"
+			],
+			[
+				"facult",
+				"faculty_type"
+			],
+			[
+				"testimonials",
+				"testimonials_list"
+			],
+			[
+				"get_post_thu",
+				"get_post_thumbnail_id"
+			],
+			[
+				"ti",
+				"titulo"
+			],
+			[
+				"tax",
+				"tax_carpeta"
+			],
+			[
+				"ca",
+				"carpeta"
+			],
+			[
+				"nombre_",
+				"nombre_institucion"
+			],
+			[
+				"str_r",
+				"str_replace"
+			],
+			[
+				"descri",
+				"descripcion2"
+			],
+			[
+				"des",
+				"descripcion"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"ari",
+				"Arial, Helvetica, sans-serif"
+			],
+			[
+				"first",
+				"first-child"
+			],
+			[
+				"Palatino",
+				"\"Palatino Linotype\""
+			],
+			[
+				"backgro",
+				"background-position"
+			],
+			[
+				"backgroun",
+				"background-repeat"
+			],
+			[
+				"tex",
+				"text-indent"
+			],
+			[
+				"Arial",
+				"Arial, Helvetica, sans-serif"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"get_ter",
+				"get_terms"
+			],
+			[
+				"post-",
+				"post-type-archive-colaboradores"
+			],
+			[
+				"the_",
+				"the_excerpt"
+			],
+			[
+				"text-",
+				"text-transform"
+			],
+			[
+				"wp_get_a",
+				"wp_get_attachment_url"
+			],
+			[
+				"the_ti",
+				"the_title"
+			],
+			[
+				"add_su",
+				"add_theme_support"
+			],
+			[
+				"get_que",
+				"get_queried_object"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"font-si",
+				"font-size"
+			],
+			[
+				"destacado",
+				"destacado-home"
+			],
+			[
+				"post-type-archive-",
+				"post-type-archive-recetas"
+			],
+			[
+				"class",
+				"class_related"
+			],
+			[
+				"wpcf",
+				"wpcf7-textarea"
+			],
+			[
+				"get_page_by_",
+				"get_page_by_title"
+			],
+			[
+				"lowe",
+				"lower-roman"
+			],
+			[
+				"font-s",
+				"font-style"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"get_",
+				"get_permalink"
+			],
+			[
+				"Time",
+				"\"Times New Roman\""
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"li",
+				"link"
+			],
+			[
+				"body",
+				"body_class"
+			],
+			[
+				"image",
+				"imageWidth"
+			],
+			[
+				"j",
+				"jsoncallback"
+			],
+			[
+				"fl",
+				"flickr_user"
+			],
+			[
+				"get_hea",
+				"get_header"
+			],
+			[
+				"tem",
+				"template_directory"
+			],
+			[
+				"cla",
+				"class_about"
+			],
+			[
+				"back",
+				"background	background-image: url"
+			],
+			[
+				"the_c",
+				"the_content"
+			],
+			[
+				"wp_get_attac",
+				"wp_get_attachment_metadata"
+			],
+			[
+				"print",
+				"print_r"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 6497,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "module.exports = function(grunt) {\n  grunt.initConfig({\n    pkg: grunt.file.readJSON('package.json'),\n	    webfont: {\n		  icons: {\n		    src: 'icons/*.svg',\n		    dest: 'build/fonts',\n		    options: {\n    			font: 'Pix',\n    			ligatures: true,\n    			engine: 'fontforge'\n    		}\n  		}\n	},\n    watch: {\n      files: ['icons/*.svg'],\n      tasks: ['webfont']\n    }\n  });\n\n  grunt.loadNpmTasks('grunt-contrib-watch');\n  grunt.loadNpmTasks('grunt-webfont');\n  grunt.registerTask('default', ['webfont']);\n\n};\n",
+			"file": "Gruntfile.js",
+			"file_size": 741,
+			"file_write_time": 1409242998000000,
+			"settings":
+			{
+				"buffer_size": 505,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/style.css",
+			"settings":
+			{
+				"buffer_size": 329,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/js/app.js",
+			"settings":
+			{
+				"buffer_size": 1342,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/danthuf/htdocs/Hebert/symbolset/js/application-symbolset.js",
+			"settings":
+			{
+				"buffer_size": 100232,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/symbolset.js",
+			"settings":
+			{
+				"buffer_size": 17301,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_layouts/base.html",
+			"settings":
+			{
+				"buffer_size": 258,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_includes/col-pix-stack.html",
+			"settings":
+			{
+				"buffer_size": 2673,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 367.0,
+		"selected_items":
+		[
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"lore",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"col",
+				"Color picker"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Disable Package"
+			],
+			[
+				"color",
+				"Color picker"
+			],
+			[
+				"xhtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"HTML",
+				"Snippet: html"
+			],
+			[
+				"",
+				"Snippet: Lorem ipsum"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/danthuf/htdocs/udd-facultades.git/htdocs/wp-content/themes/negocios-facultad-2013/functions.php",
+		"/Users/danthuf/htdocs/pix/_includes/col-pix-stack.html",
+		"/Users/danthuf/htdocs/pix/css/pix.css",
+		"/Users/danthuf/htdocs/pix/index.md",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/removekses/removekses.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/removekses/classes/RemoveKses.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-admin/widgets.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-admin/includes/widgets.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/twentyeleven/inc/widgets.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/single-opinion.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_multimedia.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/archive-multimedia.php",
+		"/Users/danthuf/htdocs/wp_cli_commands/get-media.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/MagazineWidget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/OpinionWidget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Person/Person.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Opinion/Opinion.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/single-multimedia.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/RelatedNotesWidget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/front-page.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/functions.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/inc/sidebars.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-RelatedOpinionByAuthor.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/archive-report.php",
+		"/Users/danthuf/htdocs/editec/front/less/objects.less",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/FeaturedStudyWidget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/js/admin_scripts.js",
+		"/Users/danthuf/htdocs/Hebert/symbolset/js/symbolset.js",
+		"/Users/danthuf/htdocs/Hebert/symbolset/js/application-symbolset.js",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Compendium/Compendium.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Multimedia/Multimedia.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-relatedNotes.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-relatedTopics.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-relatedArchives.php",
+		"/Users/danthuf/Downloads/jquery.fancybox-1.3.4_patch.js",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/js/plugins/fancybox/jquery.fancybox-1.3.4.pack.js",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-share.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/ButtonSpecials.php",
+		"/Users/danthuf/htdocs/ahgv/web/wp-content/themes/ahgv/advanced-search.php",
+		"/Users/danthuf/htdocs/ahgv/web/wp-content/themes/ahgv/functions.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/EventsConferencesWidget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/single-editorial.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Editorial/Editorial.php",
+		"/Users/danthuf/htdocs/editec/front/js/script.js",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/ContactForm/ContactForm.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/archive-editorial.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/mu-plugins/GutenPress/GutenPress/Helpers/Multilanguage.php",
+		"/Users/danthuf/htdocs/editec/tools/encoded-filename-repair.php",
+		"/Users/danthuf/htdocs/editec/tools/create-country_tax.php",
+		"/Users/danthuf/htdocs/editec/tools/transform-country_tax.php",
+		"/Users/danthuf/htdocs/editec/tools/migrate-columns.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/image-widget/image-widget.php",
+		"/Users/danthuf/htdocs/editec/tools/importador-articulos-mch.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/single-journal.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Journal/Journal.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-admin/includes/ajax-actions.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/jquery-popup/popup.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-admin/admin-ajax.php",
+		"/Users/danthuf/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-admin/upload.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/mu-plugins/loader.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/single-post.php",
+		"/Users/danthuf/htdocs/editec/front/less/widgets.less",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/image-widget/resources/js/image-widget.js",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/footer.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/archive.php",
+		"/Users/danthuf/htdocs/editec/tools/importador-eventos-ei.php",
+		"/Users/danthuf/htdocs/editec/tools/importador-posts-aqua.php",
+		"/Users/danthuf/htdocs/FileClasses.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/av-newsletter/extensions/avnl_templates.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/av-newsletter/manage-newsletters.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/av-newsletter/plantillas/noticias.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/av-newsletter/plantillas/extra.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/jquery-popup/casnova_popup.css",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/js/script.js",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/header.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/js/script.js",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Intersticial/Intersticial.php",
+		"/Users/danthuf/htdocs/editec/front/less/general-styles.less",
+		"/Users/danthuf/htdocs/editec/front/less/helpers.less",
+		"/Users/danthuf/htdocs/editec/front/less/buttons.less",
+		"/Users/danthuf/htdocs/editec/front/less/banners.less",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_journal-notes.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Reportage/Reportage.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/entries_archive_default.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_destacado-bigpicbird.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/entries_archive-featured.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/entries_archive.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/ButtonGenercWidget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/MostViewPostsWidget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_destacado-bigpicalone.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_gallery_destacados-widget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/ads/part_home-box1-ads.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/ads/part_home-box2-ads.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/yet-another-related-posts-plugin/class-core.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/simple-ads-manager/widget.class.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/simple-ads-manager/simple-ads-manager.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/SubscriptionForm/SubscriptionForm.php",
+		"/Users/danthuf/htdocs/editec/front/less/hatom.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-aqua.less",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/antispam-bee/antispam_bee.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/av-newsletter/source/extra.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/av-newsletter/source/default.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_gallery_lo_mas_visto-widget.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_loop-news-widget.php",
+		"/Users/danthuf/htdocs/editec/front/less/grid-config.less",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/archive-cadastre.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/single.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-config.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_destacado-default.php",
+		"/Users/danthuf/htdocs/editec/front/less/theme-electricidad-fixed.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-electricidad.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-sustentare.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-sustentare-fixed.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-mch.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-mch-fixed.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-lignum.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-lignum-fixed.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-latinomineria.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-latinomineria-fixed.less",
+		"/Users/danthuf/htdocs/editec/front/less/theme-aqua-fixed.less",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/archive-journal.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/inc/mobile-detect.php",
+		"/Users/danthuf/htdocs/udd-facultades.bzr/qa/udd-facultades-2013.sublime-project",
+		"/Users/danthuf/htdocs/editec/front/compile.sh",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-compendium.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-content.php",
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-excerpt.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/danthuf/htdocs/editec/htdocs/wp-content",
+			"/Users/hugosolar/htdocs/editec/front/less",
+			"/Users/hugosolar/htdocs/editec/htdocs/wp-content/themes/editec,/Users/hugosolar/htdocs/editec/htdocs/wp-content/plugins",
+			"",
+			"/Users/hugosolar/htdocs/udd-facultades.bzr/htdocs/wp-content/themes/,/Users/hugosolar/htdocs/udd-facultades.bzr/htdocs/wp-content/plugins",
+			"/Users/hugosolar/htdocs/udd-facultades.bzr/htdocs/wp-content/themes/",
+			"/Users/hugosolar/htdocs/dd/wp-includes"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".home-typer",
+			".ss-icon",
+			"columnas",
+			"left",
+			"microboton",
+			"Skyscraper",
+			"skyscraper",
+			"quantity",
+			"Quantity",
+			"quantity",
+			"lightbox",
+			"archive",
+			"sidebar",
+			"item",
+			"quantity",
+			"Quantity",
+			"quantity",
+			"OpinionWidget",
+			"quantity",
+			"Quantity",
+			"quantity",
+			"title",
+			"Title",
+			"title",
+			"tax",
+			"Tax",
+			"tax",
+			"title",
+			"Title",
+			"title",
+			"toggleElement",
+			"lo",
+			"$",
+			"pdf",
+			"option",
+			"entry-source",
+			"tax",
+			"quantity",
+			"Quantity",
+			"quantity",
+			"console.lo",
+			"interstitial",
+			"verify",
+			"_is_lang_spam",
+			"$array_temp",
+			"class Mobile_Detect",
+			"cookie",
+			"-style-css",
+			"margin-left: 165px",
+			"background-ima",
+			"ini",
+			"newsletter",
+			"GADOAuthConsumer",
+			"this",
+			"obj",
+			"feture_bottom",
+			"_",
+			"checked",
+			"mobile",
+			"title",
+			"$wpdb->escape",
+			"wpdb::escape",
+			"editec",
+			"DocumentRegulation",
+			"cpt_certificaciones",
+			"bottom_box1_newsletter",
+			"newsletter",
+			"sponsor",
+			"latinomin",
+			"red",
+			"latinomineria",
+			"#FF290B",
+			"Electricidad",
+			"mail",
+			"$mail",
+			"phone",
+			"title",
+			"Title",
+			"title",
+			"contact",
+			"flickr",
+			"->silver_value",
+			"->gold_value",
+			"->copper_value",
+			"copper",
+			"gold",
+			"copper",
+			"linkedin_url",
+			"pre",
+			"edit-curricu",
+			"-site-options",
+			"edit-curriculum",
+			"add_",
+			"add_submenu",
+			"malla",
+			"virtualhost",
+			"udd_faculties_exchange_programs",
+			"home_ajax_tabs",
+			"carrera'",
+			"tuition",
+			"tuition_",
+			"register_WP_Widget_UDD_text_linkregister_WP_Widget_UDD_text_link",
+			"register_WP_Widget_UDD_text_link",
+			"contact_modu",
+			"sidebars_by_faculty",
+			"<?",
+			"ajax",
+			"images_ajax",
+			"freuentes",
+			"calendario de eventos",
+			"menu_ver_mas_default",
+			"ajax-content",
+			"show_scolarships",
+			"freu",
+			"('",
+			"options",
+			"$data->tuition_page",
+			"$data->requirements",
+			"$data->scholarships_page",
+			"requirements",
+			"scholarships_page",
+			"$data->scholarships_page",
+			"$data->requirements",
+			"$data->scholarships_page",
+			"opt",
+			"admissions_mode",
+			"admission",
+			"->period"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"<?php echo $parameters['link_color'] ?>",
+			" is_admission() ",
+			".home",
+			"#F04914",
+			"()):\n",
+			"Videos",
+			"Marcas"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/index.html",
+					"settings":
+					{
+						"buffer_size": 6497,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								473,
+								473
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"is_preview": true,
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Gruntfile.js",
+					"settings":
+					{
+						"buffer_size": 505,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								505
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/style.css",
+					"settings":
+					{
+						"buffer_size": 329,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								326,
+								326
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"is_preview": true,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/js/app.js",
+					"settings":
+					{
+						"buffer_size": 1342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1045,
+								1045
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"is_preview": true,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 2.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/danthuf/htdocs/Hebert/symbolset/js/application-symbolset.js",
+					"settings":
+					{
+						"buffer_size": 100232,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								86057,
+								86068
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"is_preview": true,
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 49929.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/symbolset.js",
+					"settings":
+					{
+						"buffer_size": 17301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17083,
+								17083
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"is_preview": true,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 9789.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "_layouts/base.html",
+					"settings":
+					{
+						"buffer_size": 258,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								258,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"is_preview": true,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "_includes/col-pix-stack.html",
+					"settings":
+					{
+						"buffer_size": 2673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
+							"is_preview": true,
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"widgets",
+				"editec/htdocs/wp-admin/widgets.php"
+			],
+			[
+				"widget",
+				"editec/htdocs/wp-admin/includes/widgets.php"
+			],
+			[
+				"editec/inc/widgets.php",
+				"editec/htdocs/wp-content/themes/twentyeleven/inc/widgets.php"
+			],
+			[
+				"functions",
+				"editec/htdocs/wp-content/themes/editec/functions.php"
+			],
+			[
+				"page.php",
+				"editec/htdocs/wp-content/themes/editec/page.php"
+			],
+			[
+				"av-",
+				"htdocs/wp-content/plugins/av-newsletter/av-newsletter.php"
+			],
+			[
+				"ajax-",
+				"htdocs/wp-admin/includes/ajax-actions.php"
+			],
+			[
+				"admin-aja",
+				"htdocs/wp-admin/admin-ajax.php"
+			],
+			[
+				"upload.",
+				"htdocs/wp-admin/upload.php"
+			],
+			[
+				"function",
+				"htdocs/wp-content/themes/editec/functions.php"
+			],
+			[
+				"footer.p",
+				"htdocs/wp-content/themes/editec/footer.php"
+			],
+			[
+				"inters",
+				"htdocs/wp-content/plugins/Intersticial/Intersticial.php"
+			],
+			[
+				"head",
+				"htdocs/wp-content/themes/editec/header.php"
+			],
+			[
+				"less",
+				"front/less/buttons.less"
+			],
+			[
+				"general",
+				"front/less/general-styles.less"
+			],
+			[
+				"single-post",
+				"htdocs/wp-content/themes/editec/single-post.php"
+			],
+			[
+				"script.js",
+				"front/js/script.js"
+			],
+			[
+				"hatom",
+				"front/less/hatom.less"
+			],
+			[
+				"func",
+				"htdocs/wp-content/themes/editec/functions.php"
+			],
+			[
+				"compile",
+				"front/compile.sh"
+			],
+			[
+				"conferec",
+				"htdocs/wp-content/plugins/Conference/Conference.php"
+			],
+			[
+				"shortcode",
+				"htdocs/wp-content/themes/editec/inc/shortcodes.php"
+			],
+			[
+				"style.css",
+				"front/css/style.css"
+			],
+			[
+				"footer",
+				"htdocs/wp-content/themes/editec/footer.php"
+			],
+			[
+				"hea",
+				"htdocs/wp-content/themes/editec/header.php"
+			],
+			[
+				"entries_",
+				"htdocs/wp-content/themes/editec/partials/entries_archive-featured.php"
+			],
+			[
+				"part_des",
+				"htdocs/wp-content/themes/editec/partials/part_destacado-default.php"
+			],
+			[
+				"front",
+				"htdocs/wp-content/themes/editec/front-page.php"
+			],
+			[
+				"header",
+				"htdocs/wp-content/themes/editec/header.php"
+			],
+			[
+				"oau",
+				"htdocs/wp-content/plugins/google-analytics-dashboard/OAuth.php"
+			],
+			[
+				"archive",
+				"htdocs/wp-content/themes/editec/archive.php"
+			],
+			[
+				"funci",
+				"htdocs/wp-content/themes/editec/functions.php"
+			],
+			[
+				"journ",
+				"htdocs/wp-content/plugins/Journal/Journal.php"
+			],
+			[
+				"archi",
+				"htdocs/wp-content/themes/editec/archive.php"
+			],
+			[
+				"front-",
+				"htdocs/wp-content/themes/editec/front-page.php"
+			],
+			[
+				"journa",
+				"htdocs/wp-content/plugins/Journal/Journal.php"
+			],
+			[
+				"helpe",
+				"htdocs/wp-content/themes/editec/inc/helpers.php"
+			],
+			[
+				"opini",
+				"htdocs/wp-content/themes/editec/widgets/OpinionWidget.php"
+			],
+			[
+				"archive.",
+				"htdocs/wp-content/themes/editec/archive.php"
+			],
+			[
+				"av-new",
+				"htdocs/wp-content/plugins/av-newsletter/av-newsletter.php"
+			],
+			[
+				"single-po",
+				"htdocs/wp-content/themes/editec/single-post.php"
+			],
+			[
+				"archive-con",
+				"htdocs/wp-content/themes/editec/archive-conference.php"
+			],
+			[
+				"confe",
+				"htdocs/wp-content/plugins/Conference/Conference.php"
+			],
+			[
+				"journal",
+				"htdocs/wp-content/plugins/Journal/Journal.php"
+			],
+			[
+				"confere",
+				"htdocs/wp-content/plugins/Conference/Conference.php"
+			],
+			[
+				"funcion",
+				"htdocs/wp-content/themes/editec/functions.php"
+			],
+			[
+				"functi",
+				"htdocs/wp-includes/functions.php"
+			],
+			[
+				"repo",
+				"htdocs/wp-content/plugins/Report/Report.php"
+			],
+			[
+				"helpers",
+				"htdocs/wp-content/themes/home-2013/inc/helpers.php"
+			],
+			[
+				"single-per",
+				"htdocs/wp-content/themes/home-2013/single-person.php"
+			],
+			[
+				"faculty",
+				"htdocs/wp-content/mu-plugins/FacultySettings.php"
+			],
+			[
+				"sortab",
+				"htdocs/wp-content/mu-plugins/GutenPress/Forms/Element/Sortable.php"
+			],
+			[
+				"widg",
+				"htdocs/wp-content/themes/home-2013/inc/widgets.php"
+			],
+			[
+				"facult",
+				"htdocs/wp-content/mu-plugins/FacultySettings.php"
+			],
+			[
+				"module",
+				"htdocs/wp-content/themes/home-2013/inc/modules.php"
+			],
+			[
+				"person",
+				"htdocs/wp-content/plugins/Person/Person.php"
+			],
+			[
+				"donde-",
+				"htdocs/wp-content/themes/home-2013/template-donde-estamos.php"
+			],
+			[
+				"catego",
+				"htdocs/wp-content/themes/home-2013/category.php"
+			],
+			[
+				"categ",
+				"htdocs/wp-includes/category.php"
+			],
+			[
+				"page.ph",
+				"htdocs/wp-content/themes/home-2013/page.php"
+			],
+			[
+				"helper",
+				"htdocs/wp-content/themes/home-2013/inc/helpers.php"
+			],
+			[
+				"page",
+				"htdocs/wp-content/themes/home-2013/page.php"
+			],
+			[
+				"shortco",
+				"htdocs/wp-content/themes/home-2013/inc/shortcodes.php"
+			],
+			[
+				"shortcodes",
+				"htdocs/wp-content/themes/home-2013/inc/shortcodes.php"
+			],
+			[
+				"widge",
+				"htdocs/wp-content/themes/home-2013/inc/widgets.php"
+			],
+			[
+				"modules",
+				"htdocs/wp-content/themes/home-2013/inc/modules.php"
+			],
+			[
+				"foote",
+				"htdocs/wp-includes/theme-compat/footer.php"
+			],
+			[
+				"script",
+				"htdocs/wp-content/themes/home-2013/js/script.js"
+			],
+			[
+				"",
+				"htdocs/wp-content/themes/home-2013/functions.php"
+			],
+			[
+				"event",
+				"htdocs/wp-content/plugins/Event/Event.php"
+			],
+			[
+				"category",
+				"htdocs/wp-content/themes/home-2013/category.php"
+			],
+			[
+				"weight",
+				"htdocs/wp-content/mu-plugins/CentralizedInfo/WeightScores.php"
+			],
+			[
+				"module-",
+				"htdocs/wp-content/themes/home-2013/inc/modules-helpers.php"
+			],
+			[
+				"av-mi",
+				"htdocs/wp-content/plugins/av-migrate/av-migrates.php"
+			],
+			[
+				"template-dond",
+				"htdocs/wp-content/themes/home-2013/template-donde-estamos.php"
+			],
+			[
+				"header.php",
+				"htdocs/wp-content/themes/home-2013/header.php"
+			],
+			[
+				"template-donde",
+				"htdocs/wp-content/themes/home-2013/template-donde-estamos.php"
+			],
+			[
+				"modules-",
+				"htdocs/wp-content/themes/home-2013/inc/modules-helpers.php"
+			],
+			[
+				"career",
+				"htdocs/wp-content/plugins/Career/Career.php"
+			],
+			[
+				"mod",
+				"htdocs/wp-content/themes/home-2013/inc/modules.php"
+			],
+			[
+				"scolar",
+				"htdocs/wp-content/mu-plugins/CentralizedInfo/Scolarships.php"
+			],
+			[
+				"centralized",
+				"htdocs/wp-content/mu-plugins/CentralizedInfo.php"
+			],
+			[
+				"faq",
+				"htdocs/wp-content/plugins/Faq/Faq.php"
+			],
+			[
+				"perso",
+				"htdocs/wp-content/plugins/Person/Person.php"
+			],
+			[
+				"single-conte",
+				"htdocs/wp-content/themes/home-2013/single-career_content.php"
+			],
+			[
+				"home-admision",
+				"htdocs/wp-content/themes/especial-publicidad-2013/inc/modules/carrera/home/horizonte-1-admision.php"
+			],
+			[
+				"single-postgrad",
+				"htdocs/wp-content/themes/home-2013/single-postgrad.php"
+			],
+			[
+				"header-",
+				"htdocs/wp-content/themes/home-2013/inc/partials/header-normal.php"
+			],
+			[
+				"inputra",
+				"htdocs/wp-content/mu-plugins/GutenPress/Forms/Element/InputRadio.php"
+			],
+			[
+				"inputche",
+				"htdocs/wp-content/mu-plugins/GutenPress/Forms/Element/InputCheckbox.php"
+			],
+			[
+				"modu",
+				"htdocs/wp-content/themes/home-2013/inc/modules.php"
+			],
+			[
+				"horizonte-1-",
+				"htdocs/wp-content/themes/arquitectura-facultad-2013/inc/modules/facultad-2/home/horizonte-1-admision.php"
+			],
+			[
+				"short",
+				"htdocs/wp-includes/shortcodes.php"
+			],
+			[
+				"testimon",
+				"htdocs/wp-content/plugins/Testimonial/Testimonial.php"
+			],
+			[
+				"post-ty",
+				"wp-content/themes/proarte/inc/post-type-ediciones.php"
+			],
+			[
+				"pos-",
+				"wp-content/themes/proarte/inc/post-type-destacados.php"
+			],
+			[
+				"post-typ",
+				"wp-content/themes/proarte/inc/post-type-ediciones.php"
+			],
+			[
+				"page-edi",
+				"wp-content/themes/proarte/page-ediciones.php"
+			],
+			[
+				"post-type",
+				"wp-content/themes/proarte/inc/post-type-seminarios.php"
+			],
+			[
+				"post-type-",
+				"wp-content/themes/proarte/inc/post-type-actividades.php"
+			],
+			[
+				"post-type-pe",
+				"themes/tsonami/inc/post-type-personas.php"
+			],
+			[
+				"post-type-ar",
+				"themes/tsonami/inc/post-type-colaboradores.php"
+			],
+			[
+				"archive-",
+				"themes/tsonami/archive-artistas.php"
+			],
+			[
+				"post",
+				"themes/tsonami/inc/post-type-personas.php"
+			],
+			[
+				"soni",
+				"themes/tsonami/inc/post-type-sonido.php"
+			],
+			[
+				"per",
+				"themes/tsonami/archive-personas.php"
+			],
+			[
+				"foo",
+				"themes/tsonami/footer.php"
+			],
+			[
+				"super",
+				"wp-content/themes/etcheberry/css/superfish.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 257.0,
+	"status_bar_visible": true
+}
