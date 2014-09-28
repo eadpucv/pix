@@ -18,7 +18,7 @@ active: index
             <h3>¿Por Qué?</h3>
             <p>Necesitamos un entregable que permita encapsular el flujo de interacción, la cualidad y calidad de la experiencia que proponemos al usuario, a nuestros colegas y a nuestros clientes. </p>
 
-            <p>La gran mayoría de los documentos que entregamos son imágenes estáticas del flujo de experiencia, y esperamos que ellos lo imaginen en su cabeza. Normalmente se requeriere de otras explicaciones —videos, infografías, personas y escenarios, etc— para dar la idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>incolucra el flujo del tiempo</strong> pero carecemos de un lenguaje que permita representarlo de forma adecuada y legible para todas las disciplinas involucradas en el proyecto.</p>
+            <p>La gran mayoría de los documentos que entregamos son imágenes estáticas del flujo de experiencia, y esperamos que ellos lo imaginen en su cabeza. Normalmente se requiere de otras explicaciones —videos, infografías, personas y escenarios, etc.— para dar la idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>incolucra el flujo del tiempo</strong> pero carecemos de un lenguaje que permita representarlo de forma adecuada y legible para todas las disciplinas involucradas en el proyecto.</p>
         </div>
     </div>
 </div>
@@ -329,7 +329,7 @@ active: index
                 </a>
                 <div class='media-body'>
                     <h4 class='media-heading'>Herbert Spencer</h4>
-                    <p>Visual + Interaction Designer - <a href="https://twitter.com/hspencer">@hspencer</a></p>
+                    <p>Visual & Interaction Designer - <a href="https://twitter.com/hspencer">@hspencer</a></p>
                 </div>
            </li>
             <li class='media'>
@@ -345,6 +345,12 @@ active: index
     </div>
      <div class='col-sm-6'>
         <h3>Special thanks to</h3>
+        <ul>
+            <li>Catalina Reyes</li>
+            <li>Melany Marin</li>
+            <li>Ingrid Céspedes</li>
+        </ul>
+        <h4>And Also to</h4>
         <ul>
             <li><a href='https://github.com/sapegin/grunt-webfont'>Grunt-Webfont</a></li>
             <li><a href='https://icomoon.io/'>IcoMoon</a></li>

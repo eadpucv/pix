@@ -1,6 +1,6 @@
 ---
 layout: base
-title: PiX - Icons
+title: Icons
 active: icons
 ---
 
