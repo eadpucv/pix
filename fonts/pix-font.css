@@ -1,13 +1,13 @@
 @font-face {
   font-family: "PiX";
-  src: url("PiX-5d5a0a756521de3c5887b910c69abdc0.eot");
+  src: url("PiX-25fa9387969ba423d3b5f121322e5729.eot");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "PiX";
-  src: url("PiX-5d5a0a756521de3c5887b910c69abdc0.eot");
-  src: url("PiX-5d5a0a756521de3c5887b910c69abdc0.eot?#iefix") format("embedded-opentype"), url("PiX-5d5a0a756521de3c5887b910c69abdc0.woff") format("woff"), url("PiX-5d5a0a756521de3c5887b910c69abdc0.ttf") format("truetype"), url("PiX-5d5a0a756521de3c5887b910c69abdc0.svg?#PiX") format("svg");
+  src: url("PiX-25fa9387969ba423d3b5f121322e5729.eot");
+  src: url("PiX-25fa9387969ba423d3b5f121322e5729.eot?#iefix") format("embedded-opentype"), url("PiX-25fa9387969ba423d3b5f121322e5729.woff") format("woff"), url("PiX-25fa9387969ba423d3b5f121322e5729.ttf") format("truetype"), url("PiX-25fa9387969ba423d3b5f121322e5729.svg?#PiX") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -36,11 +36,23 @@
 }
 
 */
+.pix--:before {
+  content: "-";
+}
+.pix-a:before {
+  content: "a";
+}
 .pix-alert:before {
   content: "alert";
 }
+.pix-b:before {
+  content: "b";
+}
 .pix-book:before {
   content: "book";
+}
+.pix-c:before {
+  content: "c";
 }
 .pix-calendar:before {
   content: "calendar";
@@ -127,6 +139,9 @@
 .pix-cycle:before {
   content: "cycle";
 }
+.pix-d:before {
+  content: "d";
+}
 .pix-database:before {
   content: "database";
 }
@@ -148,6 +163,9 @@
 .pix-down:before {
   content: "down";
 }
+.pix-e:before {
+  content: "e";
+}
 .pix-email:before {
   content: "email";
 }
@@ -156,6 +174,9 @@
 }
 .pix-expand:before {
   content: "expand";
+}
+.pix-f:before {
+  content: "f";
 }
 .pix-face-intrigued:before {
   content: "face-intrigued";
@@ -190,6 +211,9 @@
 .pix-filter:before {
   content: "filter";
 }
+.pix-g:before {
+  content: "g";
+}
 .pix-gallery:before {
   content: "gallery";
 }
@@ -222,11 +246,17 @@
 .pix-grid:before {
   content: "grid";
 }
+.pix-h:before {
+  content: "h";
+}
 .pix-hand:before {
   content: "hand";
 }
 .pix-hang-up:before {
   content: "hang-up";
+}
+.pix-i:before {
+  content: "i";
 }
 .pix-interaction {
   transition: all 1s ease;
@@ -242,6 +272,12 @@
   -o-animation: spin 2s infinite linear !important;
   animation: spin 2s infinite linear !important;
 }
+.pix-j:before {
+  content: "j";
+}
+.pix-k:before {
+  content: "k";
+}
 .pix-keyboard-arrows:before {
   content: "keyboard-arrows";
 }
@@ -256,6 +292,9 @@
 }
 .pix-keyboard:before {
   content: "keyboard";
+}
+.pix-l:before {
+  content: "l";
 }
 .pix-left-1:before {
   content: "left-1";
@@ -280,6 +319,9 @@
 }
 .pix-lock:before {
   content: "lock";
+}
+.pix-m:before {
+  content: "m";
 }
 .pix-message:before {
   content: "message";
@@ -333,6 +375,9 @@
 .pix-move:before {
   content: "move";
 }
+.pix-n:before {
+  content: "n";
+}
 .pix-next:before {
   content: "next";
 }
@@ -342,8 +387,14 @@
 .pix-notebook:before {
   content: "notebook";
 }
+.pix-o:before {
+  content: "o";
+}
 .pix-ok:before {
   content: "ok";
+}
+.pix-p:before {
+  content: "p";
 }
 .pix-page:before {
   content: "page";
@@ -398,8 +449,14 @@
 .pix-previous:before {
   content: "previous";
 }
+.pix-q:before {
+  content: "q";
+}
 .pix-question:before {
   content: "question";
+}
+.pix-r:before {
+  content: "r";
 }
 .pix-radio-select:before {
   content: "radio-select";
@@ -465,6 +522,9 @@
 .pix-rotate:before {
   content: "rotate";
 }
+.pix-s:before {
+  content: "s";
+}
 .pix-say:before {
   content: "say";
 }
@@ -497,6 +557,9 @@
 }
 .pix-switch:before {
   content: "switch";
+}
+.pix-t:before {
+  content: "t";
 }
 .pix-tablet:before {
   content: "tablet";
@@ -558,6 +621,9 @@
 .pix-type:before {
   content: "type";
 }
+.pix-u:before {
+  content: "u";
+}
 .pix-unlock:before {
   content: "unlock";
 }
@@ -573,8 +639,14 @@
 .pix-up:before {
   content: "up";
 }
+.pix-v:before {
+  content: "v";
+}
 .pix-video:before {
   content: "video";
+}
+.pix-w:before {
+  content: "w";
 }
 .pix-window:before {
   content: "window";
@@ -592,6 +664,15 @@
   -moz-animation: swing .3s infinite ease;
   -o-animation: swing .3s infinite ease;
   animation: swing .3s infinite ease;
+}
+.pix-x:before {
+  content: "x";
+}
+.pix-y:before {
+  content: "y";
+}
+.pix-z:before {
+  content: "z";
 }
 /* makes the font 33% larger relative to the icon container */
 .pix-lg {
