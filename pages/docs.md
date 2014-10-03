@@ -211,8 +211,3 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	</div>
 </div>
 
-<h4>Testing Area</h4>
-<small>type icon names and they'll appear...</small><br>
-<textarea cols='15' class='pix-test'>
-face
-</textarea>
