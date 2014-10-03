@@ -53,19 +53,33 @@
 
 // Placeholders
 
-input::-webkit-input-placeholder {
-	color: @input-color-placeholder;
-	font-weight: 100;
+::-webkit-input-placeholder {
+    color: transparent;
 }
-input::-moz-placeholder {
-	color: @input-color-placeholder;
-	font-weight: 100;
+:hover::-webkit-input-placeholder {
+    color: @input-color-placeholder;
 }
-input:-moz-placeholder {   /* Older versions of Firefox */
-	color: @input-color-placeholder;
-	font-weight: 100;
+
+/* Firefox < 19 */
+:-moz-placeholder {
+    color: transparent;
 }
-input:-ms-input-placeholder { 
-	color: @input-color-placeholder;
-	font-weight: 100;
+:hover:-moz-placeholder {
+    color: @input-color-placeholder;
+}
+
+/* Firefox > 19 */
+::-moz-placeholder {
+    color: transparent;
+}
+:hover::-moz-placeholder {
+    color: @input-color-placeholder;
+}
+
+/* Internet Explorer 10 */
+:-ms-input-placeholder {
+    color: transparent;
+}
+:hover:-ms-input-placeholder {
+    color: @input-color-placeholder;
 }

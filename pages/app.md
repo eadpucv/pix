@@ -4,15 +4,15 @@ title: PiX Application
 active: app
 ---
 
-<h1 class='score-header'><input placeholder='Name your score'></h1>
-<textarea class='score-description' placeholder='Describe your score'></textarea>
+<h1 class='score-header'><input placeholder='Name your score' content='Score Name - click to edit'></h1>
+<textarea class='score-description' placeholder='Describe your score'>Description. Click to Edit</textarea>
 
 
 <div id="pix-template">
 	<!-- Handlebars template-->
 </div>
 
-<button id="add-new" class='btn btn-lg btn-primary pull-right'>New <i class='pix pix-plus pix-lg'></i></button>
+<button id="add-new" class='btn btn-lg btn-primary pull-right'>New <i class='pix pix-lg'>pix-add</i></button>
 <script id="layout-score" type="text/x-handlebars-template">
 	<div class='pix-score'>
 	     <ul class='pix-header col-sm-1 col-xs-3'>
