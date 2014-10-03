@@ -1,13 +1,13 @@
 @font-face {
   font-family: "PiX";
-  src: url("PiX-25fa9387969ba423d3b5f121322e5729.eot");
+  src: url("PiX-30df6ea8b28fa80ae3a16016839b3f92.eot");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "PiX";
-  src: url("PiX-25fa9387969ba423d3b5f121322e5729.eot");
-  src: url("PiX-25fa9387969ba423d3b5f121322e5729.eot?#iefix") format("embedded-opentype"), url("PiX-25fa9387969ba423d3b5f121322e5729.woff") format("woff"), url("PiX-25fa9387969ba423d3b5f121322e5729.ttf") format("truetype"), url("PiX-25fa9387969ba423d3b5f121322e5729.svg?#PiX") format("svg");
+  src: url("PiX-30df6ea8b28fa80ae3a16016839b3f92.eot");
+  src: url("PiX-30df6ea8b28fa80ae3a16016839b3f92.eot?#iefix") format("embedded-opentype"), url("PiX-30df6ea8b28fa80ae3a16016839b3f92.woff") format("woff"), url("PiX-30df6ea8b28fa80ae3a16016839b3f92.ttf") format("truetype"), url("PiX-30df6ea8b28fa80ae3a16016839b3f92.svg?#PiX") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -36,642 +36,433 @@
 }
 
 */
-.pix--:before {
+.-:before {
   content: "-";
 }
-.pix-a:before {
+.a:before {
   content: "a";
 }
-.pix-alert:before {
-  content: "alert";
-}
-.pix-b:before {
+.b:before {
   content: "b";
 }
-.pix-book:before {
-  content: "book";
-}
-.pix-c:before {
+.c:before {
   content: "c";
 }
-.pix-calendar:before {
-  content: "calendar";
-}
-.pix-call:before {
-  content: "call";
-}
-.pix-camera-video:before {
-  content: "camera-video";
-}
-.pix-camera:before {
-  content: "camera";
-}
-.pix-checkbox:before {
-  content: "checkbox";
-}
-.pix-circle-dashed {
-  transition: all 1s ease;
-}
-.pix-circle-dashed:before {
-  content: "circle-dashed";
-}
-.pix-circle-dashed:active,
-.pix-circle-dashed:focus,
-.pix-circle-dashed:hover {
-  -webkit-animation: spin 2s infinite linear !important;
-  -moz-animation: spin 2s infinite linear !important;
-  -o-animation: spin 2s infinite linear !important;
-  animation: spin 2s infinite linear !important;
-}
-.pix-circle:before {
-  content: "circle";
-}
-.pix-click-center:before {
-  content: "click-center";
-}
-.pix-click-left:before {
-  content: "click-left";
-}
-.pix-click-right:before {
-  content: "click-right";
-}
-.pix-click:before {
-  content: "click";
-}
-.pix-clock:before {
-  content: "clock";
-}
-.pix-cloud:before {
-  content: "cloud";
-}
-.pix-cog {
-  transition: all 1s ease;
-}
-.pix-cog:before {
-  content: "cog";
-}
-.pix-cog:active,
-.pix-cog:focus,
-.pix-cog:hover {
-  -webkit-animation: spin 2s infinite linear !important;
-  -moz-animation: spin 2s infinite linear !important;
-  -o-animation: spin 2s infinite linear !important;
-  animation: spin 2s infinite linear !important;
-}
-.pix-collapse:before {
-  content: "collapse";
-}
-.pix-comment:before {
-  content: "comment";
-}
-.pix-comments:before {
-  content: "comments";
-}
-.pix-compass:before {
-  content: "compass";
-}
-.pix-contact:before {
-  content: "contact";
-}
-.pix-cube:before {
-  content: "cube";
-}
-.pix-cycle:before {
-  content: "cycle";
-}
-.pix-d:before {
+.d:before {
   content: "d";
 }
-.pix-database:before {
-  content: "database";
-}
-.pix-desktop:before {
-  content: "desktop";
-}
-.pix-dialogue:before {
-  content: "dialogue";
-}
-.pix-down-1:before {
-  content: "down-1";
-}
-.pix-down-2:before {
-  content: "down-2";
-}
-.pix-down-3:before {
-  content: "down-3";
-}
-.pix-down:before {
-  content: "down";
-}
-.pix-e:before {
+.e:before {
   content: "e";
 }
-.pix-email:before {
-  content: "email";
-}
-.pix-envelope:before {
-  content: "envelope";
-}
-.pix-expand:before {
-  content: "expand";
-}
-.pix-f:before {
+.f:before {
   content: "f";
 }
-.pix-face-intrigued:before {
-  content: "face-intrigued";
-}
-.pix-face-laughing:before {
-  content: "face-laughing";
-}
-.pix-face-sad:before {
-  content: "face-sad";
-}
-.pix-face-smiling:before {
-  content: "face-smiling";
-}
-.pix-face-surprised:before {
-  content: "face-surprised";
-}
-.pix-face-upset:before {
-  content: "face-upset";
-}
-.pix-face:before {
-  content: "face";
-}
-.pix-fast-forward:before {
-  content: "fast-forward";
-}
-.pix-feed:before {
-  content: "feed";
-}
-.pix-file:before {
-  content: "file";
-}
-.pix-filter:before {
-  content: "filter";
-}
-.pix-g:before {
+.g:before {
   content: "g";
 }
-.pix-gallery:before {
-  content: "gallery";
-}
-.pix-game:before {
-  content: "game";
-}
-.pix-gear {
-  transition: all 1s ease;
-}
-.pix-gear:before {
-  content: "gear";
-}
-.pix-gear:active,
-.pix-gear:focus,
-.pix-gear:hover {
-  -webkit-animation: spin 2s infinite linear !important;
-  -moz-animation: spin 2s infinite linear !important;
-  -o-animation: spin 2s infinite linear !important;
-  animation: spin 2s infinite linear !important;
-}
-.pix-grid-center:before {
-  content: "grid-center";
-}
-.pix-grid-horizontal:before {
-  content: "grid-horizontal";
-}
-.pix-grid-ul:before {
-  content: "grid-ul";
-}
-.pix-grid:before {
-  content: "grid";
-}
-.pix-h:before {
+.h:before {
   content: "h";
 }
-.pix-hand:before {
-  content: "hand";
-}
-.pix-hang-up:before {
-  content: "hang-up";
-}
-.pix-i:before {
+.i:before {
   content: "i";
 }
-.pix-interaction {
-  transition: all 1s ease;
-}
-.pix-interaction:before {
-  content: "interaction";
-}
-.pix-interaction:active,
-.pix-interaction:focus,
-.pix-interaction:hover {
-  -webkit-animation: spin 2s infinite linear !important;
-  -moz-animation: spin 2s infinite linear !important;
-  -o-animation: spin 2s infinite linear !important;
-  animation: spin 2s infinite linear !important;
-}
-.pix-j:before {
+.j:before {
   content: "j";
 }
-.pix-k:before {
+.k:before {
   content: "k";
 }
-.pix-keyboard-arrows:before {
-  content: "keyboard-arrows";
-}
-.pix-keyboard-enter:before {
-  content: "keyboard-enter";
-}
-.pix-keyboard-tab:before {
-  content: "keyboard-tab";
-}
-.pix-keyboard-type:before {
-  content: "keyboard-type";
-}
-.pix-keyboard:before {
-  content: "keyboard";
-}
-.pix-l:before {
+.l:before {
   content: "l";
 }
-.pix-left-1:before {
+.left-1:before {
   content: "left-1";
 }
-.pix-left-2:before {
-  content: "left-2";
+.left-1:before {
+  content: "pix-left-1";
 }
-.pix-left-3:before {
-  content: "left-3";
-}
-.pix-left:before {
-  content: "left";
-}
-.pix-lightbulb:before {
-  content: "lightbulb";
-}
-.pix-link:before {
-  content: "link";
-}
-.pix-list:before {
-  content: "list";
-}
-.pix-lock:before {
-  content: "lock";
-}
-.pix-m:before {
+.m:before {
   content: "m";
 }
-.pix-message:before {
-  content: "message";
-}
-.pix-microphone:before {
-  content: "microphone";
-}
-.pix-minus:before {
-  content: "minus";
-}
-.pix-mobile-orient:before {
-  content: "mobile-orient";
-}
-.pix-mobile-rotate:before {
-  content: "mobile-rotate";
-}
-.pix-mobile-shake {
-  transition: all .3s ease;
-}
-.pix-mobile-shake:before {
-  content: "mobile-shake";
-}
-.pix-mobile-shake:active,
-.pix-mobile-shake:focus,
-.pix-mobile-shake:hover {
-  -webkit-animation: swing .3s infinite ease;
-  -moz-animation: swing .3s infinite ease;
-  -o-animation: swing .3s infinite ease;
-  animation: swing .3s infinite ease;
-}
-.pix-mobile-vibrate {
-  transition: all .3s ease;
-}
-.pix-mobile-vibrate:before {
-  content: "mobile-vibrate";
-}
-.pix-mobile-vibrate:active,
-.pix-mobile-vibrate:focus,
-.pix-mobile-vibrate:hover {
-  -webkit-animation: swing .3s infinite ease;
-  -moz-animation: swing .3s infinite ease;
-  -o-animation: swing .3s infinite ease;
-  animation: swing .3s infinite ease;
-}
-.pix-mobile:before {
-  content: "mobile";
-}
-.pix-mouse:before {
-  content: "mouse";
-}
-.pix-move:before {
-  content: "move";
-}
-.pix-n:before {
+.n:before {
   content: "n";
 }
-.pix-next:before {
-  content: "next";
-}
-.pix-no:before {
-  content: "no";
-}
-.pix-notebook:before {
-  content: "notebook";
-}
-.pix-o:before {
+.o:before {
   content: "o";
 }
-.pix-ok:before {
-  content: "ok";
-}
-.pix-p:before {
+.p:before {
   content: "p";
 }
+.pix-alert:before {
+  content: "pix-alert";
+}
+.pix-archive:before {
+  content: "pix-archive";
+}
+.pix-ask:before {
+  content: "pix-ask";
+}
+.pix-attach:before {
+  content: "pix-attach";
+}
+.pix-audio:before {
+  content: "pix-audio";
+}
+.pix-branch:before {
+  content: "pix-branch";
+}
+.pix-button:before {
+  content: "pix-button";
+}
+.pix-buy:before {
+  content: "pix-buy";
+}
+.pix-call:before {
+  content: "pix-call";
+}
+.pix-checkbox:before {
+  content: "pix-checkbox";
+}
+.pix-click-drag:before {
+  content: "pix-click-drag";
+}
+.pix-click:before {
+  content: "pix-click";
+}
+.pix-clock:before {
+  content: "pix-clock";
+}
+.pix-cloud:before {
+  content: "pix-cloud";
+}
+.pix-coment:before {
+  content: "pix-coment";
+}
+.pix-contact:before {
+  content: "pix-contact";
+}
+.pix-contacts:before {
+  content: "pix-contacts";
+}
+.pix-copy:before {
+  content: "pix-copy";
+}
+.pix-database:before {
+  content: "pix-database";
+}
+.pix-delete:before {
+  content: "pix-delete";
+}
+.pix-dislike:before {
+  content: "pix-dislike";
+}
+.pix-double-click:before {
+  content: "pix-double-click";
+}
+.pix-double-tap:before {
+  content: "pix-double-tap";
+}
+.pix-down-1:before {
+  content: "pix-down-1";
+}
+.pix-down-2:before {
+  content: "pix-down-2";
+}
+.pix-down-3:before {
+  content: "pix-down-3";
+}
+.pix-download:before {
+  content: "pix-download";
+}
+.pix-drag-left-1:before {
+  content: "pix-drag-left-1";
+}
+.pix-drag-left-2:before {
+  content: "pix-drag-left-2";
+}
+.pix-drag-left-3:before {
+  content: "pix-drag-left-3";
+}
+.pix-drag-n-drop:before {
+  content: "pix-drag-n-drop";
+}
+.pix-drag-right-1:before {
+  content: "pix-drag-right-1";
+}
+.pix-drag-right-2:before {
+  content: "pix-drag-right-2";
+}
+.pix-drag-right-3:before {
+  content: "pix-drag-right-3";
+}
+.pix-edit:before {
+  content: "pix-edit";
+}
+.pix-email:before {
+  content: "pix-email";
+}
+.pix-export:before {
+  content: "pix-export";
+}
+.pix-fall-back:before {
+  content: "pix-fall-back";
+}
+.pix-fast-foward:before {
+  content: "pix-fast-foward";
+}
+.pix-filter:before {
+  content: "pix-filter";
+}
+.pix-gallery:before {
+  content: "pix-gallery";
+}
+.pix-hang-out:before {
+  content: "pix-hang-out";
+}
+.pix-image:before {
+  content: "pix-image";
+}
+.pix-import:before {
+  content: "pix-import";
+}
+.pix-input-date:before {
+  content: "pix-input-date";
+}
+.pix-input-range:before {
+  content: "pix-input-range";
+}
+.pix-input-time:before {
+  content: "pix-input-time";
+}
+.pix-input:before {
+  content: "pix-input";
+}
+.pix-left-1:before {
+  content: "pix-left-1";
+}
+.pix-left-2:before {
+  content: "pix-left-2";
+}
+.pix-left-3:before {
+  content: "pix-left-3";
+}
+.pix-like:before {
+  content: "pix-like";
+}
+.pix-link:before {
+  content: "pix-link";
+}
+.pix-list:before {
+  content: "pix-list";
+}
+.pix-lock:before {
+  content: "pix-lock";
+}
+.pix-map:before {
+  content: "pix-map";
+}
+.pix-merge:before {
+  content: "pix-merge";
+}
+.pix-microphone:before {
+  content: "pix-microphone";
+}
+.pix-minus:before {
+  content: "pix-minus";
+}
+.pix-move:before {
+  content: "pix-move";
+}
+.pix-next:before {
+  content: "pix-next";
+}
+.pix-no:before {
+  content: "pix-no";
+}
+.pix-notify:before {
+  content: "pix-notify";
+}
+.pix-ok:before {
+  content: "pix-ok";
+}
 .pix-page:before {
-  content: "page";
+  content: "pix-page";
+}
+.pix-paste:before {
+  content: "pix-paste";
 }
 .pix-pause:before {
-  content: "pause";
-}
-.pix-pencil {
-  transition: all .3s ease;
-}
-.pix-pencil:before {
-  content: "pencil";
-}
-.pix-pencil:active,
-.pix-pencil:focus,
-.pix-pencil:hover {
-  -webkit-animation: swing .3s infinite ease;
-  -moz-animation: swing .3s infinite ease;
-  -o-animation: swing .3s infinite ease;
-  animation: swing .3s infinite ease;
-}
-.pix-picture:before {
-  content: "picture";
+  content: "pix-pause";
 }
 .pix-pile:before {
-  content: "pile";
-}
-.pix-pinch-hand:before {
-  content: "pinch-hand";
-}
-.pix-pinch-rotate:before {
-  content: "pinch-rotate";
+  content: "pix-pile";
 }
 .pix-pinch-zoom:before {
-  content: "pinch-zoom";
+  content: "pix-pinch-zoom";
 }
 .pix-pinch:before {
-  content: "pinch";
-}
-.pix-pix:before {
-  content: "pix";
+  content: "pix-pinch";
 }
 .pix-play:before {
-  content: "play";
+  content: "pix-play";
 }
-.pix-plus:before {
-  content: "plus";
+.pix-pluss:before {
+  content: "pix-pluss";
 }
 .pix-position:before {
-  content: "position";
+  content: "pix-position";
 }
 .pix-previous:before {
-  content: "previous";
+  content: "pix-previous";
 }
-.pix-q:before {
-  content: "q";
+.pix-print:before {
+  content: "pix-print";
 }
-.pix-question:before {
-  content: "question";
-}
-.pix-r:before {
-  content: "r";
-}
-.pix-radio-select:before {
-  content: "radio-select";
-}
-.pix-radio:before {
-  content: "radio";
-}
-.pix-read:before {
-  content: "read";
+.pix-ratio:before {
+  content: "pix-ratio";
 }
 .pix-rec:before {
-  content: "rec";
+  content: "pix-rec";
 }
-.pix-refresh {
-  transition: all 1s ease;
-}
-.pix-refresh:before {
-  content: "refresh";
-}
-.pix-refresh:active,
-.pix-refresh:focus,
-.pix-refresh:hover {
-  -webkit-animation: spin 2s infinite linear !important;
-  -moz-animation: spin 2s infinite linear !important;
-  -o-animation: spin 2s infinite linear !important;
-  animation: spin 2s infinite linear !important;
-}
-.pix-reload {
-  transition: all 1s ease;
-}
-.pix-reload:before {
-  content: "reload";
-}
-.pix-reload:active,
-.pix-reload:focus,
-.pix-reload:hover {
-  -webkit-animation: spin 2s infinite linear !important;
-  -moz-animation: spin 2s infinite linear !important;
-  -o-animation: spin 2s infinite linear !important;
-  animation: spin 2s infinite linear !important;
+.pix-record:before {
+  content: "pix-record";
 }
 .pix-resize:before {
-  content: "resize";
-}
-.pix-rewind:before {
-  content: "rewind";
+  content: "pix-resize";
 }
 .pix-right-1:before {
-  content: "right-1";
+  content: "pix-right-1";
 }
 .pix-right-2:before {
-  content: "right-2";
+  content: "pix-right-2";
 }
 .pix-right-3:before {
-  content: "right-3";
-}
-.pix-right:before {
-  content: "right";
-}
-.pix-robot:before {
-  content: "robot";
+  content: "pix-right-3";
 }
 .pix-rotate:before {
-  content: "rotate";
+  content: "pix-rotate";
 }
-.pix-s:before {
-  content: "s";
+.pix-rss:before {
+  content: "pix-rss";
 }
-.pix-say:before {
-  content: "say";
+.pix-save:before {
+  content: "pix-save";
 }
 .pix-scroll:before {
-  content: "scroll";
+  content: "pix-scroll";
 }
 .pix-search:before {
-  content: "search";
+  content: "pix-search";
+}
+.pix-select-ratio:before {
+  content: "pix-select-ratio";
 }
 .pix-select:before {
-  content: "select";
+  content: "pix-select";
 }
-.pix-slide:before {
-  content: "slide";
+.pix-send:before {
+  content: "pix-send";
 }
-.pix-slider:before {
-  content: "slider";
+.pix-set:before {
+  content: "pix-set";
 }
-.pix-sound:before {
-  content: "sound";
-}
-.pix-square-dashed:before {
-  content: "square-dashed";
-}
-.pix-square:before {
-  content: "square";
+.pix-share:before {
+  content: "pix-share";
 }
 .pix-stop:before {
-  content: "stop";
+  content: "pix-stop";
 }
 .pix-switch:before {
-  content: "switch";
-}
-.pix-t:before {
-  content: "t";
-}
-.pix-tablet:before {
-  content: "tablet";
+  content: "pix-switch";
 }
 .pix-tag:before {
-  content: "tag";
+  content: "pix-tag";
 }
 .pix-tap-2:before {
-  content: "tap-2";
+  content: "pix-tap-2";
 }
 .pix-tap-3:before {
-  content: "tap-3";
+  content: "pix-tap-3";
 }
 .pix-tap-4:before {
-  content: "tap-4";
+  content: "pix-tap-4";
 }
 .pix-tap:before {
-  content: "tap";
+  content: "pix-tap";
 }
 .pix-text:before {
-  content: "text";
-}
-.pix-think:before {
-  content: "think";
-}
-.pix-thumb-down:before {
-  content: "thumb-down";
-}
-.pix-thumb:before {
-  content: "thumb";
-}
-.pix-touch-1:before {
-  content: "touch-1";
-}
-.pix-touch-2:before {
-  content: "touch-2";
-}
-.pix-touch-3:before {
-  content: "touch-3";
-}
-.pix-touch-4:before {
-  content: "touch-4";
-}
-.pix-touch-5:before {
-  content: "touch-5";
+  content: "pix-text";
 }
 .pix-touch-collapse:before {
-  content: "touch-collapse";
+  content: "pix-touch-collapse";
 }
 .pix-touch-expand:before {
-  content: "touch-expand";
+  content: "pix-touch-expand";
 }
-.pix-touch:before {
-  content: "touch";
-}
-.pix-trackpad:before {
-  content: "trackpad";
-}
-.pix-type:before {
-  content: "type";
-}
-.pix-u:before {
-  content: "u";
+.pix-unlink:before {
+  content: "pix-unlink";
 }
 .pix-unlock:before {
-  content: "unlock";
+  content: "pix-unlock";
 }
 .pix-up-1:before {
-  content: "up-1";
+  content: "pix-up-1";
 }
 .pix-up-2:before {
-  content: "up-2";
+  content: "pix-up-2";
 }
 .pix-up-3:before {
-  content: "up-3";
+  content: "pix-up-3";
 }
-.pix-up:before {
-  content: "up";
+.pix-update:before {
+  content: "pix-update";
 }
-.pix-v:before {
-  content: "v";
+.pix-upload:before {
+  content: "pix-upload";
 }
 .pix-video:before {
-  content: "video";
+  content: "pix-video";
 }
-.pix-w:before {
-  content: "w";
+.pix-view:before {
+  content: "pix-view";
 }
 .pix-window:before {
-  content: "window";
+  content: "pix-window";
 }
-.pix-wrench {
-  transition: all .3s ease;
+.q:before {
+  content: "q";
 }
-.pix-wrench:before {
-  content: "wrench";
+.r:before {
+  content: "r";
 }
-.pix-wrench:active,
-.pix-wrench:focus,
-.pix-wrench:hover {
-  -webkit-animation: swing .3s infinite ease;
-  -moz-animation: swing .3s infinite ease;
-  -o-animation: swing .3s infinite ease;
-  animation: swing .3s infinite ease;
+.right-1:before {
+  content: "pix-right-1";
 }
-.pix-x:before {
+.right-1:before {
+  content: "right-1";
+}
+.s:before {
+  content: "s";
+}
+.t:before {
+  content: "t";
+}
+.u:before {
+  content: "u";
+}
+.v:before {
+  content: "v";
+}
+.w:before {
+  content: "w";
+}
+.x:before {
   content: "x";
 }
-.pix-y:before {
+.y:before {
   content: "y";
 }
-.pix-z:before {
+.z:before {
   content: "z";
 }
 /* makes the font 33% larger relative to the icon container */
