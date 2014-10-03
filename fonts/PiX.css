@@ -4,17 +4,17 @@
 
 @font-face {
 	font-family:"PiX";
-	src:url("PiX-30df6ea8b28fa80ae3a16016839b3f92.eot");
+	src:url("PiX-89ce308a58a0d7d38220e752acc1bd72.eot");
 	font-weight:normal;
 	font-style:normal;
 }
 @font-face {
 	font-family:"PiX";
-	src:url("PiX-30df6ea8b28fa80ae3a16016839b3f92.eot");
-	src:url("PiX-30df6ea8b28fa80ae3a16016839b3f92.eot?#iefix") format("embedded-opentype"),
-		url("PiX-30df6ea8b28fa80ae3a16016839b3f92.woff") format("woff"),
-		url("PiX-30df6ea8b28fa80ae3a16016839b3f92.ttf") format("truetype"),
-		url("PiX-30df6ea8b28fa80ae3a16016839b3f92.svg?#PiX") format("svg");
+	src:url("PiX-89ce308a58a0d7d38220e752acc1bd72.eot");
+	src:url("PiX-89ce308a58a0d7d38220e752acc1bd72.eot?#iefix") format("embedded-opentype"),
+		url("PiX-89ce308a58a0d7d38220e752acc1bd72.woff") format("woff"),
+		url("PiX-89ce308a58a0d7d38220e752acc1bd72.ttf") format("truetype"),
+		url("PiX-89ce308a58a0d7d38220e752acc1bd72.svg?#PiX") format("svg");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -104,11 +104,6 @@
 }
 
 
-.icon_left-1:before {
-	content:"left-1";
-}
-
-
 .icon_m:before {
 	content:"m";
 }
@@ -126,6 +121,11 @@
 
 .icon_p:before {
 	content:"p";
+}
+
+
+.icon_pix-add:before {
+	content:"pix-add";
 }
 
 
@@ -174,6 +174,16 @@
 }
 
 
+.icon_pix-cancel:before {
+	content:"pix-cancel";
+}
+
+
+.icon_pix-check:before {
+	content:"pix-check";
+}
+
+
 .icon_pix-checkbox:before {
 	content:"pix-checkbox";
 }
@@ -199,8 +209,13 @@
 }
 
 
-.icon_pix-coment:before {
-	content:"pix-coment";
+.icon_pix-comment:before {
+	content:"pix-comment";
+}
+
+
+.icon_pix-configuration:before {
+	content:"pix-configuration";
 }
 
 
@@ -224,8 +239,23 @@
 }
 
 
+.icon_pix-date:before {
+	content:"pix-date";
+}
+
+
 .icon_pix-delete:before {
 	content:"pix-delete";
+}
+
+
+.icon_pix-device-orient:before {
+	content:"pix-device-orient";
+}
+
+
+.icon_pix-dialogue:before {
+	content:"pix-dialogue";
 }
 
 
@@ -244,58 +274,13 @@
 }
 
 
-.icon_pix-down-1:before {
-	content:"pix-down-1";
-}
-
-
-.icon_pix-down-2:before {
-	content:"pix-down-2";
-}
-
-
-.icon_pix-down-3:before {
-	content:"pix-down-3";
-}
-
-
 .icon_pix-download:before {
 	content:"pix-download";
 }
 
 
-.icon_pix-drag-left-1:before {
-	content:"pix-drag-left-1";
-}
-
-
-.icon_pix-drag-left-2:before {
-	content:"pix-drag-left-2";
-}
-
-
-.icon_pix-drag-left-3:before {
-	content:"pix-drag-left-3";
-}
-
-
 .icon_pix-drag-n-drop:before {
 	content:"pix-drag-n-drop";
-}
-
-
-.icon_pix-drag-right-1:before {
-	content:"pix-drag-right-1";
-}
-
-
-.icon_pix-drag-right-2:before {
-	content:"pix-drag-right-2";
-}
-
-
-.icon_pix-drag-right-3:before {
-	content:"pix-drag-right-3";
 }
 
 
@@ -309,18 +294,63 @@
 }
 
 
+.icon_pix-empty:before {
+	content:"pix-empty";
+}
+
+
 .icon_pix-export:before {
 	content:"pix-export";
 }
 
 
-.icon_pix-fall-back:before {
-	content:"pix-fall-back";
+.icon_pix-face-intrigued:before {
+	content:"pix-face-intrigued";
+}
+
+
+.icon_pix-face-laughing:before {
+	content:"pix-face-laughing";
+}
+
+
+.icon_pix-face-sad:before {
+	content:"pix-face-sad";
+}
+
+
+.icon_pix-face-similing:before {
+	content:"pix-face-similing";
+}
+
+
+.icon_pix-face-surpirsed:before {
+	content:"pix-face-surpirsed";
+}
+
+
+.icon_pix-face-upset:before {
+	content:"pix-face-upset";
+}
+
+
+.icon_pix-face:before {
+	content:"pix-face";
 }
 
 
 .icon_pix-fast-foward:before {
 	content:"pix-fast-foward";
+}
+
+
+.icon_pix-file:before {
+	content:"pix-file";
+}
+
+
+.icon_pix-film:before {
+	content:"pix-film";
 }
 
 
@@ -334,8 +364,8 @@
 }
 
 
-.icon_pix-hang-out:before {
-	content:"pix-hang-out";
+.icon_pix-hang-up:before {
+	content:"pix-hang-up";
 }
 
 
@@ -346,41 +376,6 @@
 
 .icon_pix-import:before {
 	content:"pix-import";
-}
-
-
-.icon_pix-input-date:before {
-	content:"pix-input-date";
-}
-
-
-.icon_pix-input-range:before {
-	content:"pix-input-range";
-}
-
-
-.icon_pix-input-time:before {
-	content:"pix-input-time";
-}
-
-
-.icon_pix-input:before {
-	content:"pix-input";
-}
-
-
-.icon_pix-left-1:before {
-	content:"pix-left-1";
-}
-
-
-.icon_pix-left-2:before {
-	content:"pix-left-2";
-}
-
-
-.icon_pix-left-3:before {
-	content:"pix-left-3";
 }
 
 
@@ -404,6 +399,11 @@
 }
 
 
+.icon_pix-logo:before {
+	content:"pix-logo";
+}
+
+
 .icon_pix-map:before {
 	content:"pix-map";
 }
@@ -414,13 +414,13 @@
 }
 
 
-.icon_pix-microphone:before {
-	content:"pix-microphone";
+.icon_pix-mobile-rotate:before {
+	content:"pix-mobile-rotate";
 }
 
 
-.icon_pix-minus:before {
-	content:"pix-minus";
+.icon_pix-mobile-shake:before {
+	content:"pix-mobile-shake";
 }
 
 
@@ -434,18 +434,8 @@
 }
 
 
-.icon_pix-no:before {
-	content:"pix-no";
-}
-
-
 .icon_pix-notify:before {
 	content:"pix-notify";
-}
-
-
-.icon_pix-ok:before {
-	content:"pix-ok";
 }
 
 
@@ -464,8 +454,13 @@
 }
 
 
-.icon_pix-pile:before {
-	content:"pix-pile";
+.icon_pix-pay:before {
+	content:"pix-pay";
+}
+
+
+.icon_pix-person:before {
+	content:"pix-person";
 }
 
 
@@ -484,11 +479,6 @@
 }
 
 
-.icon_pix-pluss:before {
-	content:"pix-pluss";
-}
-
-
 .icon_pix-position:before {
 	content:"pix-position";
 }
@@ -504,8 +494,28 @@
 }
 
 
-.icon_pix-ratio:before {
-	content:"pix-ratio";
+.icon_pix-process:before {
+	content:"pix-process";
+}
+
+
+.icon_pix-prompt:before {
+	content:"pix-prompt";
+}
+
+
+.icon_pix-radio-select:before {
+	content:"pix-radio-select";
+}
+
+
+.icon_pix-radio:before {
+	content:"pix-radio";
+}
+
+
+.icon_pix-range:before {
+	content:"pix-range";
 }
 
 
@@ -514,8 +524,8 @@
 }
 
 
-.icon_pix-record:before {
-	content:"pix-record";
+.icon_pix-remove:before {
+	content:"pix-remove";
 }
 
 
@@ -524,18 +534,8 @@
 }
 
 
-.icon_pix-right-1:before {
-	content:"pix-right-1";
-}
-
-
-.icon_pix-right-2:before {
-	content:"pix-right-2";
-}
-
-
-.icon_pix-right-3:before {
-	content:"pix-right-3";
+.icon_pix-rewind:before {
+	content:"pix-rewind";
 }
 
 
@@ -554,6 +554,11 @@
 }
 
 
+.icon_pix-say:before {
+	content:"pix-say";
+}
+
+
 .icon_pix-scroll:before {
 	content:"pix-scroll";
 }
@@ -561,11 +566,6 @@
 
 .icon_pix-search:before {
 	content:"pix-search";
-}
-
-
-.icon_pix-select-ratio:before {
-	content:"pix-select-ratio";
 }
 
 
@@ -579,13 +579,18 @@
 }
 
 
-.icon_pix-set:before {
-	content:"pix-set";
+.icon_pix-share:before {
+	content:"pix-share";
 }
 
 
-.icon_pix-share:before {
-	content:"pix-share";
+.icon_pix-speak:before {
+	content:"pix-speak";
+}
+
+
+.icon_pix-stack:before {
+	content:"pix-stack";
 }
 
 
@@ -596,6 +601,11 @@
 
 .icon_pix-switch:before {
 	content:"pix-switch";
+}
+
+
+.icon_pix-system:before {
+	content:"pix-system";
 }
 
 
@@ -619,6 +629,106 @@
 }
 
 
+.icon_pix-tap-down-1:before {
+	content:"pix-tap-down-1";
+}
+
+
+.icon_pix-tap-down-2:before {
+	content:"pix-tap-down-2";
+}
+
+
+.icon_pix-tap-down-3:before {
+	content:"pix-tap-down-3";
+}
+
+
+.icon_pix-tap-down-4:before {
+	content:"pix-tap-down-4";
+}
+
+
+.icon_pix-tap-down-5:before {
+	content:"pix-tap-down-5";
+}
+
+
+.icon_pix-tap-left-1:before {
+	content:"pix-tap-left-1";
+}
+
+
+.icon_pix-tap-left-2:before {
+	content:"pix-tap-left-2";
+}
+
+
+.icon_pix-tap-left-3:before {
+	content:"pix-tap-left-3";
+}
+
+
+.icon_pix-tap-left-4:before {
+	content:"pix-tap-left-4";
+}
+
+
+.icon_pix-tap-left-5:before {
+	content:"pix-tap-left-5";
+}
+
+
+.icon_pix-tap-right-1:before {
+	content:"pix-tap-right-1";
+}
+
+
+.icon_pix-tap-right-2:before {
+	content:"pix-tap-right-2";
+}
+
+
+.icon_pix-tap-right-3:before {
+	content:"pix-tap-right-3";
+}
+
+
+.icon_pix-tap-right-4:before {
+	content:"pix-tap-right-4";
+}
+
+
+.icon_pix-tap-right-5:before {
+	content:"pix-tap-right-5";
+}
+
+
+.icon_pix-tap-up-1:before {
+	content:"pix-tap-up-1";
+}
+
+
+.icon_pix-tap-up-2:before {
+	content:"pix-tap-up-2";
+}
+
+
+.icon_pix-tap-up-3:before {
+	content:"pix-tap-up-3";
+}
+
+
+.icon_pix-tap-up-4:before {
+	content:"pix-tap-up-4";
+}
+
+
+.icon_pix-tap-up-5:before {
+	content:"pix-tap-up-5";
+}
+
+
 .icon_pix-tap:before {
 	content:"pix-tap";
 }
@@ -626,6 +736,16 @@
 
 .icon_pix-text:before {
 	content:"pix-text";
+}
+
+
+.icon_pix-think:before {
+	content:"pix-think";
+}
+
+
+.icon_pix-time:before {
+	content:"pix-time";
 }
 
 
@@ -639,6 +759,11 @@
 }
 
 
+.icon_pix-type:before {
+	content:"pix-type";
+}
+
+
 .icon_pix-unlink:before {
 	content:"pix-unlink";
 }
@@ -646,21 +771,6 @@
 
 .icon_pix-unlock:before {
 	content:"pix-unlock";
-}
-
-
-.icon_pix-up-1:before {
-	content:"pix-up-1";
-}
-
-
-.icon_pix-up-2:before {
-	content:"pix-up-2";
-}
-
-
-.icon_pix-up-3:before {
-	content:"pix-up-3";
 }
 
 
@@ -696,11 +806,6 @@
 
 .icon_r:before {
 	content:"r";
-}
-
-
-.icon_right-1:before {
-	content:"right-1";
 }
 
 

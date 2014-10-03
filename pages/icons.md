@@ -129,7 +129,7 @@ active: icons
     {% include col-pix.html name='pix-paste' %}
     {% include col-pix.html name='pix-pause' %}
     {% include col-pix.html name='pix-play' %}
-    {% include col-pix.html name='pix-pluss' %}
+    {% include col-pix.html name='pix-plus' %}
     {% include col-pix.html name='pix-previous' %}
     {% include col-pix.html name='pix-print' %}
     {% include col-pix.html name='pix-rec' %}

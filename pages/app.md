@@ -7,22 +7,18 @@ active: app
 <h1 class='score-header'><input placeholder='Name your score'></h1>
 <textarea class='score-description' placeholder='Describe your score'></textarea>
 
-<section class="pix-tag-view">
-	<input type="text" class="pix-replace" placeholder="Escribe...">
-	<div class="pix-code" contenteditable="true"></div>
-</section>
 
 <div id="pix-template">
 	<!-- Handlebars template-->
 </div>
 
-<button id="add-new" class='btn btn-lg btn-primary pull-right'>New <i class='pix pix-pluss pix-lg'></i></button>
+<button id="add-new" class='btn btn-lg btn-primary pull-right'>New <i class='pix pix-plus pix-lg'></i></button>
 <script id="layout-score" type="text/x-handlebars-template">
 	<div class='pix-score'>
 	     <ul class='pix-header col-sm-1 col-xs-3'>
-			<li class='block block-user'><div class='pix-group'><i class='pix pix-face'></i><label>person</label></div></li>
-			<li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogue</label></div></li>
-			<li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system</label></div></li>
+			<li class='block block-user'><div class='pix-group'><i class='pix'>pix-person</i><label>person</label></div></li>
+			<li class='block block-dialogue'><div class='pix-group'><i class='pix'>pix-dialogue</i><label>dialogue</label></div></li>
+			<li class='block block-system'><div class='pix-group'><i class='pix'>pix-system</i><label>system</label></div></li>
 		</ul>
 	    <ul class='pix-steps'>
 	    {% raw %}
@@ -36,22 +32,21 @@ active: app
     	<a href="#split-toggle" class="fly-link top">Split score</a>
         <ul>
             <li class='block block-user'>
-                <input type='text' class="pix pix-input input-user" placeholder='type here...'>
+                <input type='text' class="pix pix-input input-user" placeholder='pix-empty'>
                 <textarea class="pix-note input-user" placeholder='type here...'></textarea>
             </li>
             <li class='block block-dialogue'>
-                <input type='text' class="pix pix-input input-dialogue" placeholder='type here...'>
+                <input type='text' class="pix pix-input input-dialogue" placeholder='pix-empty'>
                 <textarea class="pix-note input-dialogue" placeholder='type here...'></textarea>
             </li>
             <li class='block block-system'>
-                <input type='text' class="pix pix-input input-system" placeholder='type here...'>
+                <input type='text' class="pix pix-input input-system" placeholder='pix-empty'>
                 <textarea class="pix-note input-system" placeholder='type here...'></textarea>
             </li>
             <div class='note'>
-               <input type='text' class="input-note" placeholder='type here...'>
+               <textarea class="input-note" placeholder='type here...'></textarea>
             </div>
         </ul>
         <a href="#add-note" class="fly-link bottom">Add note</a>
-
     </li>
 </script>

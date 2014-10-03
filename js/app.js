@@ -85,10 +85,10 @@ var pixObject = {
 			// var li = $('<li>').attr({class: 'pix-step col-sm-1 col-xs-3'});
 			// var fly_top = $('<a>').attr({href: '#split-toggle', class: 'fly-link top'}).text('Split score');
 			// var ul = $('<ul>');
-			// var block_user = $('<li>').attr({class: 'block block-user'}).append($('<input>').attr({class: 'pix-input input-user',type: 'text', placeholder: 'type here...'}));
-			// var block_dialogue = $('<li>').attr({class: 'block block-dialogue'}).append($('<input>').attr({class: 'pix-input input-dialogue',type: 'text', placeholder: 'type here...'}));
-			// var block_system = $('<li>').attr({class: 'block block-system'}).append($('<input>').attr({class: 'pix-input input-system',type: 'text', placeholder: 'type here...'}));
-			// var note = $('<div>').attr({class: 'note'}).append($('<input>').attr({class: 'pix-input input-note',type: 'text', placeholder: 'type here...'}));
+			// var block_user = $('<li>').attr({class: 'block block-user'}).append($('<input>').attr({class: 'pix-input input-user',type: 'text', placeholder: '1...'}));
+			// var block_dialogue = $('<li>').attr({class: 'block block-dialogue'}).append($('<input>').attr({class: 'pix-input input-dialogue',type: 'text', placeholder: '2...'}));
+			// var block_system = $('<li>').attr({class: 'block block-system'}).append($('<input>').attr({class: 'pix-input input-system',type: 'text', placeholder: '3...'}));
+			// var note = $('<div>').attr({class: 'note'}).append($('<input>').attr({class: 'pix-input input-note',type: 'text', placeholder: '4...'}));
 			// var fly_bottom = $('<a>').attr({href: '#add-note', class: 'fly-link bottom'}).text('Add note');
 			// ul.append(block_user).append(block_dialogue).append(block_system);
 			//var column = li.append(fly_top).append(ul).append(fly_bottom);
