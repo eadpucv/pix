@@ -16,7 +16,7 @@ active: app
 	<!-- Handlebars template-->
 </div>
 
-<button id="add-new" class='btn btn-lg btn-primary pull-right'><i class='pix pix-plus'></i> New</button>
+<button id="add-new" class='btn btn-lg btn-primary pull-right'>New <i class='pix pix-pluss pix-lg'></i></button>
 <script id="layout-score" type="text/x-handlebars-template">
 	<div class='pix-score'>
 	     <ul class='pix-header col-sm-1 col-xs-3'>

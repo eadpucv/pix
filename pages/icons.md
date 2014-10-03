@@ -34,11 +34,11 @@ active: icons
     {% include col-pix.html name='pix-page' %}
     {% include col-pix.html name='pix-pile' %}
     {% include col-pix.html name='pix-position' %}
-    {% include col-pix.html name='pix-radio' %}
+    {% include col-pix.html name='pix-ratio' %}
 </div>
 <div class='row'>
     {% include col-pix.html name='pix-rss' %}
-    {% include col-pix.html name='pix-select-radio' %}
+    {% include col-pix.html name='pix-select-ratio' %}
     {% include col-pix.html name='pix-select' %}
     {% include col-pix.html name='pix-switch' %}
     {% include col-pix.html name='pix-tag' %}
