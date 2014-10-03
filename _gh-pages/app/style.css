@@ -20,3 +20,33 @@
 .pix-code .pix-stack {
 	float: left;
 }
+.fly-link {
+	position: absolute;
+	display: none;
+	padding: 10px 0;
+	font-size: .9em;
+}
+.fly-link.top {
+	top: -30px;
+}
+.fly-link.bottom {
+	bottom: -20px;
+}
+.pix-step:hover .fly-link {
+	display: block;
+}
+.block .pix-note {
+	width: 70px;
+	height: 45px;
+	border: 0;
+	font-size: .65em;
+}
+.block .pix-note:hover {
+	border: 1px solid #EBEFE5;
+}
+.note .input-note {
+	display: none;
+	width: 85px;
+	height: 80px;
+	border: 1px solid #EBEFE5;
+}

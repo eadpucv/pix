@@ -16,7 +16,45 @@
 	background: #FFF;
 	border-bottom: 1px solid #C0C0C0;
 	font-size: 200%;
+	.pix-stack {
+		float: left;
+	}
 }
-.pix-code .pix-stack {
-	float: left;
+.block {
+	.pix-input {
+		font-size: 3em !important;
+	}
+	.pix-note {
+		width: 70px;
+		height: 38px;
+		text-align: center;
+		border: 0;
+		font-size: .65em;
+	}
+	.pix-note {
+		&:hover {
+			border: 1px solid #EBEFE5;
+		}
+	}
+}
+.fly-link {
+	position: absolute;
+	display: none;
+	padding: 10px 0;
+	font-size: .9em;
+	&.top {
+		top: -30px;
+	}
+	&.bottom {
+		bottom: -20px;
+	}
+}
+.pix-step:hover .fly-link {
+	display: block;
+}
+.note .input-note {
+	display: none;
+	width: 85px;
+	height: 80px;
+	border: 1px solid #EBEFE5;
 }

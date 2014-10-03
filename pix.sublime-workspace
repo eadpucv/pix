@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"offset",
+				"offsetParent	.offsetParent()"
+			],
+			[
+				"block",
+				"block_system"
+			],
+			[
+				"blo",
+				"block_system"
+			],
+			[
+				"has",
+				"hasClass	.hasClass()"
+			],
+			[
 				"current",
 				"current_user"
 			],
@@ -427,7 +443,7 @@
 			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 6497,
+				"buffer_size": 2222,
 				"line_ending": "Unix"
 			}
 		},
@@ -454,39 +470,18 @@
 			"file": "app/js/app.js",
 			"settings":
 			{
-				"buffer_size": 1342,
+				"buffer_size": 3092,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/danthuf/htdocs/Hebert/symbolset/js/application-symbolset.js",
-			"settings":
-			{
-				"buffer_size": 100232,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/symbolset.js",
-			"settings":
-			{
-				"buffer_size": 17301,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "_layouts/base.html",
-			"settings":
-			{
-				"buffer_size": 258,
-				"line_ending": "Unix"
-			}
-		},
-		{
+			"contents": " <div class=\"col-lg-1 col-md-2 col-xs-4\">\n    <div class=\"inner icon-docs\">\n        <div class='pix-group'>\n        	<div class='pix-stack'>\n                {% if include.pix1 %}<i class='pix pix-{{ include.pix1 }}'></i>{% endif %}\n                {% if include.pix2 %}<i class='pix pix-{{ include.pix2 }}'></i>{% endif %}\n                {% if include.pix3 %}<i class='pix pix-{{ include.pix3 }}'></i>{% endif %}\n                {% if include.top-left %}<i class='pix stack-top-left pix-{{ include.top-left }}'></i>{% endif %}\n                {% if include.top %}<i class='pix stack-top pix-{{ include.top }}'></i>{% endif %}\n                {% if include.top-right %}<i class='pix stack-top-right pix-{{ include.top-right }}'></i>{% endif %}\n                {% if include.left %}<i class='pix stack-left pix-{{ include.left }}'></i>{% endif %}\n                {% if include.right %}<i class='pix stack-right pix-{{ include.right }}'></i>{% endif %}\n                {% if include.bottom %}<i class='pix stack-bottom pix-{{ include.bottom }}'></i>{% endif %}\n                {% if include.bottom-left %}<i class='pix stack-bottom-left pix-{{ include.bottom-left }}'></i>{% endif %}\n                {% if include.bottom-right %}<i class='pix stack-bottom-right pix-{{ include.bottom-right }}'></i>{% endif %}\n        	</div>\n            <p class='tcenter'>\n                <span class='docs-icon-name'>\n                    {% if include.pix1 %}<span class='indicator'>⊙</span>{{ include.pix1 }} {% endif %}\n                    {% if include.pix2 %}<span class='indicator'>⊙</span>{{ include.pix2 }} {% endif %}\n                    {% if include.pix3 %}<span class='indicator'>⊙</span>{{ include.pix3 }} {% endif %}\n                    {% if include.top-left %}<span class='indicator'>↖︎</span>{{ include.top-left }} {% endif %}\n                    {% if include.top %}<span class='indicator'>↑</span>{{ include.top }} {% endif %}\n                    {% if include.top-right %}<span class='indicator'>↗︎</span>{{ include.top-right }} {% endif %}\n                    {% if include.left %}<span class='indicator'>←</span>{{ include.left }} {% endif %}\n                    {% if include.right %}<span class='indicator'>→</span>{{ include.right }} {% endif %}\n                    {% if include.bottom %}<span class='indicator'>↓</span>{{ include.bottom }} {% endif %}\n                    {% if include.bottom-left %}<span class='indicator'>↙︎</span>{{ include.bottom-left }} {% endif %}\n                    {% if include.bottom-right %}<span class='indicator'>↘︎</span>{{ include.bottom-right }} {% endif %}\n            	</span>\n            </p>\n        </div>\n    </div>\n</div>\n\n",
 			"file": "_includes/col-pix-stack.html",
+			"file_size": 2703,
+			"file_write_time": 1407212600000000,
 			"settings":
 			{
-				"buffer_size": 2673,
+				"buffer_size": 2674,
 				"line_ending": "Unix"
 			}
 		}
@@ -563,6 +558,9 @@
 	},
 	"file_history":
 	[
+		"/Users/danthuf/htdocs/pix/js/symbolset.js",
+		"/Users/danthuf/htdocs/Hebert/symbolset/js/application-symbolset.js",
+		"/Users/danthuf/htdocs/pix/_layouts/base.html",
 		"/Users/danthuf/htdocs/udd-facultades.git/htdocs/wp-content/themes/negocios-facultad-2013/functions.php",
 		"/Users/danthuf/htdocs/pix/_includes/col-pix-stack.html",
 		"/Users/danthuf/htdocs/pix/css/pix.css",
@@ -591,7 +589,6 @@
 		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/widgets/FeaturedStudyWidget.php",
 		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/js/admin_scripts.js",
 		"/Users/danthuf/htdocs/Hebert/symbolset/js/symbolset.js",
-		"/Users/danthuf/htdocs/Hebert/symbolset/js/application-symbolset.js",
 		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Compendium/Compendium.php",
 		"/Users/danthuf/htdocs/editec/htdocs/wp-content/plugins/Multimedia/Multimedia.php",
 		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-relatedNotes.php",
@@ -688,9 +685,7 @@
 		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/inc/mobile-detect.php",
 		"/Users/danthuf/htdocs/udd-facultades.bzr/qa/udd-facultades-2013.sublime-project",
 		"/Users/danthuf/htdocs/editec/front/compile.sh",
-		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-compendium.php",
-		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-content.php",
-		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-excerpt.php"
+		"/Users/danthuf/htdocs/editec/htdocs/wp-content/themes/editec/partials/part_single_post-compendium.php"
 	],
 	"find":
 	{
@@ -867,7 +862,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -875,15 +870,15 @@
 					"file": "app/index.html",
 					"settings":
 					{
-						"buffer_size": 6497,
+						"buffer_size": 2222,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								473,
-								473
+								0,
+								0
 							]
 						],
 						"settings":
@@ -943,7 +938,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 312.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -960,8 +955,8 @@
 						"selection":
 						[
 							[
-								0,
-								505
+								220,
+								220
 							]
 						],
 						"settings":
@@ -1109,15 +1104,15 @@
 					"file": "app/js/app.js",
 					"settings":
 					{
-						"buffer_size": 1342,
+						"buffer_size": 3092,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1045,
-								1045
+								2241,
+								2241
 							]
 						],
 						"settings":
@@ -1174,242 +1169,6 @@
 							"is_preview": true,
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 2.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/danthuf/htdocs/Hebert/symbolset/js/application-symbolset.js",
-					"settings":
-					{
-						"buffer_size": 100232,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								86057,
-								86068
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
-							"is_preview": true,
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 49929.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "js/symbolset.js",
-					"settings":
-					{
-						"buffer_size": 17301,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17083,
-								17083
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
-							"is_preview": true,
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 9789.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "_layouts/base.html",
-					"settings":
-					{
-						"buffer_size": 258,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								258,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Colorized-958477859446438-Monokai.tmTheme",
-							"is_preview": true,
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -1419,19 +1178,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"file": "_includes/col-pix-stack.html",
 					"settings":
 					{
-						"buffer_size": 2673,
+						"buffer_size": 2674,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1,
+								1
 							]
 						],
 						"settings":

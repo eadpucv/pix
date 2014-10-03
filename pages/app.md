@@ -12,30 +12,46 @@ active: app
 	<div class="pix-code" contenteditable="true"></div>
 </section>
 
-<div class='pix-score'>
-	<ul class='pix-header col-sm-1 col-xs-3'>
-		<li class='block block-user'><div class='pix-group'><i class='pix pix-user'></i><label>person</label></div></li>
-		<li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogue</label></div></li>
-		<li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system</label></div></li>
-	</ul>
-	<ul class='pix-steps'>
-		<li class='pix-step col-sm-1 col-xs-3'>
-			<ul>
-				<li class='block block-user'>
-					<input type='text' class="pix-input input-user" placeholder='type here...'>
-				</li>
-				<li class='block block-dialogue'>
-					<input type='text' class="pix-input input-dialogue" placeholder='type here...'>
-				</li>
-				<li class='block block-system'>
-					<input type='text' class="pix-input input-system" placeholder='type here...'>
-				</li>
-				<div class='note'>
-					<input type='text' class="pix-input input-note" placeholder='type here...'>
-				</div>
-			</ul>
-		</li>
-	</ul>
+<div id="pix-template">
+	<!-- Handlebars template-->
 </div>
 
-<button class='btn btn-lg btn-primary pull-right'><i class='pix pix-plus'></i> New</button>
+<button id="add-new" class='btn btn-lg btn-primary pull-right'><i class='pix pix-plus'></i> New</button>
+<script id="layout-score" type="text/x-handlebars-template">
+	<div class='pix-score'>
+	     <ul class='pix-header col-sm-1 col-xs-3'>
+			<li class='block block-user'><div class='pix-group'><i class='pix pix-face'></i><label>person</label></div></li>
+			<li class='block block-dialogue'><div class='pix-group'><i class='pix pix-interaction'></i><label>dialogue</label></div></li>
+			<li class='block block-system'><div class='pix-group'><i class='pix pix-gear'></i><label>system</label></div></li>
+		</ul>
+	    <ul class='pix-steps'>
+	    {% raw %}
+	        {{{step}}} 
+	    {% endraw %}
+	    </ul>
+	</div>
+</script>
+<script id="pix-step" type="text/x-handlebars-template">
+	<li class='pix-step col-sm-1 col-xs-3'>
+    	<a href="#split-toggle" class="fly-link top">Split score</a>
+        <ul>
+            <li class='block block-user'>
+                <input type='text' class="pix pix-input input-user" placeholder='type here...'>
+                <textarea class="pix-note input-user" placeholder='type here...'></textarea>
+            </li>
+            <li class='block block-dialogue'>
+                <input type='text' class="pix pix-input input-dialogue" placeholder='type here...'>
+                <textarea class="pix-note input-dialogue" placeholder='type here...'></textarea>
+            </li>
+            <li class='block block-system'>
+                <input type='text' class="pix pix-input input-system" placeholder='type here...'>
+                <textarea class="pix-note input-system" placeholder='type here...'></textarea>
+            </li>
+            <div class='note'>
+               <input type='text' class="input-note" placeholder='type here...'>
+            </div>
+        </ul>
+        <a href="#add-note" class="fly-link bottom">Add note</a>
+
+    </li>
+</script>

@@ -50,7 +50,7 @@ h1.score-header{
 		display: inline-block;
 		list-style-type: none;
 	}
-	
+
 	ul, ul li ul{
 		margin: 0;
 		padding: 0;
@@ -67,7 +67,7 @@ h1.score-header{
 			li{
 				&.block-user{border-top: none}
 				&.block-system{border-bottom: none}
-				
+
 				width: 100%;
 				.tcenter;
 				font-weight: 600;
@@ -94,19 +94,6 @@ h1.score-header{
 				}
 				&:hover{
 					background-color: lighten(@edit-color, 10);
-					&:before{
-						display: block;
-						position: absolute;
-						top: -20px;
-						content: 'split score';
-						.note;
-					}
-					&:after{
-						display: block;
-						position: absolute;
-						content: 'add note';
-						.note;
-					}
 				}
 			}
 		}
@@ -171,7 +158,7 @@ h1.score-header{
 }
 
 .block{
-	
+
 	p{
 		margin: 1em 0 0 0;
 		font-size: .66em;
@@ -191,7 +178,7 @@ h1.score-header{
 	}
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
 	&.block-system{border-bottom: @pix-border-width solid @border-color;}
-	
+
 	input[type="text"]{
 		font-size: 12px;
 		padding: 4px;

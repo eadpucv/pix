@@ -4,12 +4,13 @@
 	<body lang='ES_es' class='black-bg'>
 		<div class='white-bg nbt'>
 			{% include navbar.html %}
-			<div class='container'>      
+			<div class='container'>
 				{{ content }}
 			</div>
 		</div>
 	    {% include footer.html %}
-	    <script type="text/javascript" src="{{ site.baseurl }}/js/jquery.js"></script>
+	    <script type="text/javascript" src="{{ site.baseurl }}/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="{{ site.baseurl }}/js/handlebars.min.js"></script>
 		<script type="text/javascript" src="{{ site.baseurl }}/js/app.js"></script>
 	</body>
 </html>
