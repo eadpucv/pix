@@ -289,7 +289,7 @@
   -o-transform: scale(1, -1);
   transform: scale(1, -1);
 }
-.pix-stack {
+.pix-stacked {
   position: relative;
   display: inline-block;
   width: 38px;
