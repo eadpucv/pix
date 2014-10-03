@@ -15,6 +15,7 @@
 		border: none;
 		border-radius: @radius;
 		cursor: text;
+		background-color: transparent;
 		&:active,
 		&:focus,
 		&:hover{
@@ -118,7 +119,7 @@ h1.score-header{
 	cursor: pointer;
 	.pix{
 		font-size: 3em;
-		width: 1em;
+		width: 100%;
 	}
 
 	.pix-stack{
@@ -180,10 +181,20 @@ h1.score-header{
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
 	&.block-system{border-bottom: @pix-border-width solid @border-color;}
 
+	textarea{
+		background-color: transparent;
+		&:active,
+		&:focus,
+		&:hover{
+			border: none;
+			box-shadow: 0 0 2px @edit-color inset;
+			background-color: fade(@edit-color, 30);
+		}
+	}
 	input[type="text"]{
 		font-size: 12px;
 		padding: 4px;
-		margin: 20px 0 0 0;
+		margin: 14px 0 0 0;
 		overflow: hidden;
 		width: 70px;
 		text-align: center;
@@ -191,6 +202,7 @@ h1.score-header{
 		-moz-border-radius: @radius;
 		-webkit-border-radius: @radius;
 		border-radius: @radius;
+		background-color: transparent;
 		&:active,
 		&:focus,
 		&:hover{

@@ -15,7 +15,7 @@ active: app
 <button id="add-new" class='btn btn-lg btn-primary pull-right'>New <i class='pix pix-lg'>pix-add</i></button>
 <script id="layout-score" type="text/x-handlebars-template">
 	<div class='pix-score'>
-	     <ul class='pix-header col-sm-1 col-xs-3'>
+	     <ul class='pix-header col-lg-1 col-sm-2 col-xs-3'>
 			<li class='block block-user'><div class='pix-group'><i class='pix'>pix-person</i><label>person</label></div></li>
 			<li class='block block-dialogue'><div class='pix-group'><i class='pix'>pix-dialogue</i><label>dialogue</label></div></li>
 			<li class='block block-system'><div class='pix-group'><i class='pix'>pix-system</i><label>system</label></div></li>
@@ -28,7 +28,7 @@ active: app
 	</div>
 </script>
 <script id="pix-step" type="text/x-handlebars-template">
-	<li class='pix-step col-sm-1 col-xs-3'>
+	<li class='pix-step col-lg-1 col-sm-2 col-xs-3'>
     	<a href="#split-toggle" class="fly-link top">Split score</a>
         <ul>
             <li class='block block-user'>
