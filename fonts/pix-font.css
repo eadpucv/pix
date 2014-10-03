@@ -1,0 +1,428 @@
+@import "PiX.css";
+/* makes the font 33% larger relative to the icon container */
+.pix-lg {
+  font-size: 1.3333333333333333em !important;
+  line-height: 0.75em !important;
+  vertical-align: -15%;
+}
+.pix-2x {
+  font-size: 2em;
+}
+.pix-3x {
+  font-size: 3em;
+  line-height: 1.8em;
+  position: relative;
+  top: .3em;
+}
+.pix-4x {
+  font-size: 4em !important;
+  width: 1em;
+}
+.pix-5x {
+  font-size: 5em !important;
+  width: 1em;
+}
+.pix-jumbo {
+  font-size: 10em !important;
+  width: 1em;
+}
+.pix-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+.pix-ul {
+  padding-left: 0;
+  margin-left: 2.142857142857143em;
+  list-style-type: none;
+}
+.pix-ul > li {
+  position: relative;
+}
+.pix-li {
+  position: absolute;
+  left: -2.142857142857143em;
+  width: 2.142857142857143em;
+  top: 0.14285714285714285em;
+  text-align: center;
+}
+.pix-li.pix-lg {
+  left: -1.8571428571428572em;
+}
+.pix-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em;
+}
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.pix.pull-left {
+  margin-right: .3em;
+}
+.pix.pull-right {
+  margin-left: .3em;
+}
+.pix-spin {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(359deg);
+  }
+}
+@-ms-keyframes spin {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+.pix-swing {
+  -webkit-animation: swing 1s infinite ease;
+  -moz-animation: swing 1s infinite ease;
+  -o-animation: swing 1s infinite ease;
+  animation: swing 1s infinite ease;
+}
+@-moz-keyframes swing {
+  0% {
+    -moz-transform: rotate(-10deg);
+  }
+  50% {
+    -moz-transform: rotate(10deg);
+  }
+  100% {
+    -moz-transform: rotate(-10deg);
+  }
+}
+@-webkit-keyframes swing {
+  0% {
+    -webkit-transform: rotate(-10deg);
+  }
+  50% {
+    -webkit-transform: rotate(10deg);
+  }
+  100% {
+    -webkit-transform: rotate(-10deg);
+  }
+}
+@-o-keyframes swing {
+  0% {
+    -o-transform: rotate(-10deg);
+  }
+  50% {
+    -o-transform: rotate(10deg);
+  }
+  100% {
+    -o-transform: rotate(-10deg);
+  }
+}
+@-ms-keyframes swing {
+  0% {
+    -ms-transform: rotate(-10deg);
+  }
+  50% {
+    -ms-transform: rotate(10deg);
+  }
+  100% {
+    -ms-transform: rotate(-10deg);
+  }
+}
+@keyframes swing {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+.pix-beat {
+  -webkit-animation: beat .6s infinite ease;
+  -moz-animation: beat .6s infinite ease;
+  -o-animation: beat .6s infinite ease;
+  animation: beat .6s infinite ease;
+}
+@-moz-keyframes beat {
+  0% {
+    -moz-transform: scale(0.8);
+  }
+  20% {
+    -moz-transform: scale(1.5);
+  }
+  100% {
+    -moz-transform: scale(0.8);
+  }
+}
+@-webkit-keyframes beat {
+  0% {
+    -webkit-transform: scale(0.8);
+  }
+  20% {
+    -webkit-transform: scale(1.5);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+  }
+}
+@-o-keyframes beat {
+  0% {
+    -o-transform: scale(0.8);
+  }
+  20% {
+    -o-transform: scale(1.5);
+  }
+  100% {
+    -o-transform: scale(0.8);
+  }
+}
+@-ms-keyframes beat {
+  0% {
+    -ms-transform: scale(0.8);
+  }
+  20% {
+    -ms-transform: scale(1.5);
+  }
+  100% {
+    -ms-transform: scale(0.8);
+  }
+}
+@keyframes beat {
+  0% {
+    transform: scale(0.8);
+  }
+  20% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+.pix-rotate-20 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+.pix-rotate-45 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.pix-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.pix-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.pix-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.pix-flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.pix-flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+  -webkit-transform: scale(1, -1);
+  -moz-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+.pix-stacked {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 38px;
+  line-height: 40px;
+  vertical-align: middle;
+}
+.pix-stack .pix {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  line-height: inherit;
+}
+/*
+.stack-top-left,
+.stack-top-right,
+.stack-bottom-left,
+.stack-bottom-right{
+  font-size: 3em !important;
+}*/
+/*
+.stack-top-left{
+  top: -55% !important;
+  left: -55% !important;
+}
+.stack-top-right{
+  top: -55% !important;
+  left: 55% !important;
+}
+.stack-bottom-left{
+  top: 55% !important;
+  left: -55% !important;
+}
+.stack-bottom-right{
+  top: 55% !important;
+  left: 55% !important;
+}
+.stack-upper-midde{
+  top: -55% !important;
+}
+*/
+.pix-inverse {
+  color: #ffffff;
+}
+/*
+.@{css-prefix}-stack-1x, 
+.@{css-prefix}-stack-2x,
+.@{css-prefix}-stack-3x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.@{css-prefix}-stack-1x { line-height: inherit; }
+.@{css-prefix}-stack-2x { font-size: 3em !important; }
+.@{css-prefix}-stack-3x { font-size: 5em !important; }
+
+*/
+.hover-spin,
+.pix-circle-dashed,
+.pix-interaction,
+.pix-gear,
+.pix-cog,
+.pix-refresh,
+.pix-reload,
+.pix-arrows-cycle {
+  transition: all 1s ease;
+}
+.hover-spin:active,
+.pix-circle-dashed:active,
+.pix-interaction:active,
+.pix-gear:active,
+.pix-cog:active,
+.pix-refresh:active,
+.pix-reload:active,
+.pix-arrows-cycle:active,
+.hover-spin:focus,
+.pix-circle-dashed:focus,
+.pix-interaction:focus,
+.pix-gear:focus,
+.pix-cog:focus,
+.pix-refresh:focus,
+.pix-reload:focus,
+.pix-arrows-cycle:focus,
+.hover-spin:hover,
+.pix-circle-dashed:hover,
+.pix-interaction:hover,
+.pix-gear:hover,
+.pix-cog:hover,
+.pix-refresh:hover,
+.pix-reload:hover,
+.pix-arrows-cycle:hover {
+  -webkit-animation: spin 2s infinite linear !important;
+  -moz-animation: spin 2s infinite linear !important;
+  -o-animation: spin 2s infinite linear !important;
+  animation: spin 2s infinite linear !important;
+}
+.hover-swing,
+.pix-pencil,
+.pix-wrench,
+.pix-mobile-vibrate,
+.pix-mobile-shake {
+  transition: all .3s ease;
+}
+.hover-swing:active,
+.pix-pencil:active,
+.pix-wrench:active,
+.pix-mobile-vibrate:active,
+.pix-mobile-shake:active,
+.hover-swing:focus,
+.pix-pencil:focus,
+.pix-wrench:focus,
+.pix-mobile-vibrate:focus,
+.pix-mobile-shake:focus,
+.hover-swing:hover,
+.pix-pencil:hover,
+.pix-wrench:hover,
+.pix-mobile-vibrate:hover,
+.pix-mobile-shake:hover {
+  -webkit-animation: swing .3s infinite ease;
+  -moz-animation: swing .3s infinite ease;
+  -o-animation: swing .3s infinite ease;
+  animation: swing .3s infinite ease;
+}
+.hover-beat {
+  transition: all 1s ease;
+}
+.hover-beat:active,
+.hover-beat:focus,
+.hover-beat:hover {
+  -webkit-animation: beat 1s infinite ease;
+  -moz-animation: beat 1s infinite ease;
+  -o-animation: beat 1s infinite ease;
+  animation: beat 1s infinite ease;
+}

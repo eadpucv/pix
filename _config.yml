@@ -3,9 +3,9 @@ source:			.
 destination:	_gh-pages
 lsi:			false
 markdown:		rdiscount
-pygments:		true
+highlighter:	true
 permalink:		pretty
 baseurl: 		"http://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
 name: 			"PiX"
-pixver:			"2.5"
+pixver:			"4.0"

@@ -1,0 +1,76 @@
+.pix-replace {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	border-bottom: 1px solid #C0C0C0;
+}
+.pix-tag-view {
+	position: relative;
+}
+.pix-code {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 44px;
+	background: #FFF;
+	border-bottom: 1px solid #C0C0C0;
+	font-size: 200%;
+	.pix-stack {
+		float: left;
+	}
+}
+.block {
+	.pix-input {
+		font-size: 3em !important;
+	}
+	.pix-note {
+		width: 70px;
+		height: 38px;
+		text-align: center;
+		border: 0;
+		font-size: .65em;
+	}
+	.pix-note {
+		&:hover {
+			border: 1px solid #EBEFE5;
+		}
+	}
+}
+.fly-link {
+	
+	text-transform: uppercase;
+	position: absolute;
+	display: none;
+	padding: 10px 0;
+	font-size: .9em;
+	&.top {
+		top: -16px;
+		border-radius: @radius @radius 0 0;
+	}
+	&.bottom {
+		bottom: -16px;
+		border-radius: 0 0 @radius @radius;
+	}
+	&:hover{
+		background-color: @brand-primary !important;
+	}
+}
+
+.pix-step:hover .fly-link {
+	display: inline-block;
+	text-decoration: none;
+	background-color: lighten(@black, 50);
+	padding: 2px 6px;
+	color: @white;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.note .input-note {
+	margin: 10px 0 0 10px;
+	display: none;
+	width: 85px;
+	height: 80px;
+	border: none;
+}
