@@ -5,7 +5,7 @@ active: icons
 ---
 
 <h3><span>Font Name:</span> PiX <small>(Version {{ site.pixver }} — Glyphs:&nbsp;128)</small></h3>
-<p>This font family is designed specially for representing the actions, processes and objects involved in the flow of user experience.</p>
+<p>This font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. <a href='{{ site.baseurl}}/fonts/PiX.html'>Here</a> is the complete list automatically generated along with the font.</p>
 
 <h4 id='touch'>Objects</h4>
 <div class='row'>

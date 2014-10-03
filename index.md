@@ -53,7 +53,7 @@ active: index
 <table class='table pix-table'>
     <tr>
         <th style='width: 20%'>
-            <i class='pix pix-face'></i><br>
+            <i class='pix pix-person'></i><br>
             <label>person</label>
         </th>
         <td style='width: 40%' lang='en'>
@@ -65,7 +65,7 @@ active: index
     </tr>
     <tr>
         <th style='width: 20%'>
-            <i class='pix pix-interaction'></i><br>
+            <i class='pix pix-dialogue'></i><br>
             <label>dialogue</label>
         </th>
         <td style='width: 40%' lang='en'>
@@ -77,7 +77,7 @@ active: index
     </tr>
     <tr>
         <th style='width: 20%'>
-            <i class='pix pix-gear'></i><br>
+            <i class='pix pix-system'></i><br>
             <label>system</label>
         </th>
         <td style='width: 40%' lang='en'>
@@ -88,7 +88,7 @@ active: index
         </td>
     </tr>
 </table>
-
+<!--
 <h1 class='score-header'><input placeholder='Name your score'></h1>
 <textarea class='score-description' placeholder='Describe your score'></textarea>
 <div class='pix-score'>
@@ -309,7 +309,7 @@ active: index
 <button class='btn btn-primary'>Add other score</button>
 
 <hr>
-
+-->
 <div class='row'>
     <div class='col-sm-6'>
         <h3>Team</h3>
