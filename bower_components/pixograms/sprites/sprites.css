@@ -1,0 +1,411 @@
+.icon {
+	display: inline-block;
+	width: 256px;
+	height: 256px;
+	fill: currentColor;
+}
+.icon-pix-empty {
+	/*fill: #000000;*/
+}
+.icon-pix-logo {
+	/*fill: #000000;*/
+}
+.icon-pix-dialogue {
+	/*fill: #000000;*/
+}
+.icon-pix-person {
+	/*fill: #000000;*/
+}
+.icon-pix-system {
+	/*fill: #000000;*/
+}
+.icon-pix-face-intrigued {
+	/*fill: #000000;*/
+}
+.icon-pix-face-laughing {
+	/*fill: #000000;*/
+}
+.icon-pix-face-sad {
+	/*fill: #000000;*/
+}
+.icon-pix-face-similing {
+	/*fill: #000000;*/
+}
+.icon-pix-face-surpirsed {
+	/*fill: #000000;*/
+}
+.icon-pix-face-upset {
+	/*fill: #000000;*/
+}
+.icon-pix-face {
+	/*fill: #000000;*/
+}
+.icon-pix-click-drag {
+	/*fill: #000000;*/
+}
+.icon-pix-click {
+	/*fill: #000000;*/
+}
+.icon-pix-double-click {
+	/*fill: #000000;*/
+}
+.icon-pix-double-tap {
+	/*fill: #000000;*/
+}
+.icon-pix-drag-n-drop {
+	/*fill: #000000;*/
+}
+.icon-pix-pinch-zoom {
+	/*fill: #000000;*/
+}
+.icon-pix-pinch {
+	/*fill: #000000;*/
+}
+.icon-pix-rotate {
+	/*fill: #000000;*/
+}
+.icon-pix-scroll {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-2 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-3 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-4 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-down-1 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-down-2 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-down-3 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-down-4 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-down-5 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-left-1 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-left-2 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-left-3 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-left-4 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-left-5 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-right-1 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-right-2 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-right-3 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-right-4 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-right-5 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-up-1 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-up-2 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-up-3 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-up-4 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap-up-5 {
+	/*fill: #000000;*/
+}
+.icon-pix-tap {
+	/*fill: #000000;*/
+}
+.icon-pix-touch-collapse {
+	/*fill: #000000;*/
+}
+.icon-pix-touch-expand {
+	/*fill: #000000;*/
+}
+.icon-pix-add {
+	/*fill: #000000;*/
+}
+.icon-pix-alert {
+	/*fill: #000000;*/
+}
+.icon-pix-ask {
+	/*fill: #000000;*/
+}
+.icon-pix-attach {
+	/*fill: #000000;*/
+}
+.icon-pix-branch {
+	/*fill: #000000;*/
+}
+.icon-pix-buy {
+	/*fill: #000000;*/
+}
+.icon-pix-call {
+	/*fill: #000000;*/
+}
+.icon-pix-cancel {
+	/*fill: #000000;*/
+}
+.icon-pix-check {
+	/*fill: #000000;*/
+}
+.icon-pix-comment {
+	/*fill: #000000;*/
+}
+.icon-pix-config {
+	/*fill: #000000;*/
+}
+.icon-pix-paste {
+	/*fill: #000000;*/
+}
+.icon-pix-delete {
+	/*fill: #000000;*/
+}
+.icon-pix-device-orient {
+	/*fill: #000000;*/
+}
+.icon-pix-dislike {
+	/*fill: #000000;*/
+}
+.icon-pix-download {
+	/*fill: #000000;*/
+}
+.icon-pix-edit {
+	/*fill: #000000;*/
+}
+.icon-pix-export {
+	/*fill: #000000;*/
+}
+.icon-pix-fast-foward {
+	/*fill: #000000;*/
+}
+.icon-pix-hang-up {
+	/*fill: #000000;*/
+}
+.icon-pix-import {
+	/*fill: #000000;*/
+}
+.icon-pix-like {
+	/*fill: #000000;*/
+}
+.icon-pix-lock {
+	/*fill: #000000;*/
+}
+.icon-pix-merge {
+	/*fill: #000000;*/
+}
+.icon-pix-device-rotate {
+	/*fill: #000000;*/
+}
+.icon-pix-device-shake {
+	/*fill: #000000;*/
+}
+.icon-pix-move {
+	/*fill: #000000;*/
+}
+.icon-pix-next {
+	/*fill: #000000;*/
+}
+.icon-pix-notify {
+	/*fill: #000000;*/
+}
+.icon-pix-copy {
+	/*fill: #000000;*/
+}
+.icon-pix-pause {
+	/*fill: #000000;*/
+}
+.icon-pix-pay {
+	/*fill: #000000;*/
+}
+.icon-pix-play {
+	/*fill: #000000;*/
+}
+.icon-pix-previous {
+	/*fill: #000000;*/
+}
+.icon-pix-print {
+	/*fill: #000000;*/
+}
+.icon-pix-process {
+	/*fill: #000000;*/
+}
+.icon-pix-pront {
+	/*fill: #000000;*/
+}
+.icon-pix-rec {
+	/*fill: #000000;*/
+}
+.icon-pix-record {
+	/*fill: #000000;*/
+}
+.icon-pix-remove {
+	/*fill: #000000;*/
+}
+.icon-pix-resize {
+	/*fill: #000000;*/
+}
+.icon-pix-rewind {
+	/*fill: #000000;*/
+}
+.icon-pix-save {
+	/*fill: #000000;*/
+}
+.icon-pix-say {
+	/*fill: #000000;*/
+}
+.icon-pix-search {
+	/*fill: #000000;*/
+}
+.icon-pix-send {
+	/*fill: #000000;*/
+}
+.icon-pix-share {
+	/*fill: #000000;*/
+}
+.icon-pix-speak {
+	/*fill: #000000;*/
+}
+.icon-pix-stop {
+	/*fill: #000000;*/
+}
+.icon-pix-think {
+	/*fill: #000000;*/
+}
+.icon-pix-unlock {
+	/*fill: #000000;*/
+}
+.icon-pix-update {
+	/*fill: #000000;*/
+}
+.icon-pix-upload {
+	/*fill: #000000;*/
+}
+.icon-pix-view {
+	/*fill: #000000;*/
+}
+.icon-pix-archive {
+	/*fill: #000000;*/
+}
+.icon-pix-audio {
+	/*fill: #000000;*/
+}
+.icon-pix-button {
+	/*fill: #000000;*/
+}
+.icon-pix-checkbox {
+	/*fill: #000000;*/
+}
+.icon-pix-clock {
+	/*fill: #000000;*/
+}
+.icon-pix-cloud {
+	/*fill: #000000;*/
+}
+.icon-pix-contact {
+	/*fill: #000000;*/
+}
+.icon-pix-contacts {
+	/*fill: #000000;*/
+}
+.icon-pix-database {
+	/*fill: #000000;*/
+}
+.icon-pix-date {
+	/*fill: #000000;*/
+}
+.icon-pix-email {
+	/*fill: #000000;*/
+}
+.icon-pix-file {
+	/*fill: #000000;*/
+}
+.icon-pix-filter {
+	/*fill: #000000;*/
+}
+.icon-pix-gallery {
+	/*fill: #000000;*/
+}
+.icon-pix-image {
+	/*fill: #000000;*/
+}
+.icon-pix-input {
+	/*fill: #000000;*/
+}
+.icon-pix-link {
+	/*fill: #000000;*/
+}
+.icon-pix-list {
+	/*fill: #000000;*/
+}
+.icon-pix-map {
+	/*fill: #000000;*/
+}
+.icon-pix-page {
+	/*fill: #000000;*/
+}
+.icon-pix-position {
+	/*fill: #000000;*/
+}
+.icon-pix-radio-select {
+	/*fill: #000000;*/
+}
+.icon-pix-radio {
+	/*fill: #000000;*/
+}
+.icon-pix-range {
+	/*fill: #000000;*/
+}
+.icon-pix-rss {
+	/*fill: #000000;*/
+}
+.icon-pix-select {
+	/*fill: #000000;*/
+}
+.icon-pix-stack {
+	/*fill: #000000;*/
+}
+.icon-pix-switch {
+	/*fill: #000000;*/
+}
+.icon-pix-tag {
+	/*fill: #000000;*/
+}
+.icon-pix-text {
+	/*fill: #000000;*/
+}
+.icon-pix-time {
+	/*fill: #000000;*/
+}
+.icon-pix-unlink {
+	/*fill: #000000;*/
+}
+.icon-pix-video {
+	/*fill: #000000;*/
+}
+.icon-pix-window {
+	/*fill: #000000;*/
+}

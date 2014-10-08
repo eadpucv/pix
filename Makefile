@@ -6,13 +6,9 @@ install:
 	
 css:
 	lessc less/style.less css/style.css --clean-css
-	lessc fonts/pix-font.less fonts/pix-font.css
 
 server:
 	jekyll server --watch --baseurl= --trace
-
-zip-icons:
-	zip -r -X downloads/icons.zip icons
 
 cp_js:
 	cp bower_components/bootstrap/dist/js/bootstrap.min.js js
@@ -21,7 +17,6 @@ cp_js:
 
 dist:
 	make cp_js
-	grunt webfont
-	lessc less/style.less css/style.css --clean-css
-	lessc fonts/pix-font.less fonts/pix-font.css
-	make zip-icons
+	cp -R bower_components/pixograms/fonts .
+	cp bower_components/pixograms/css/pix-webfont.css css
+	make css

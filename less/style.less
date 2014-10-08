@@ -8,16 +8,14 @@
 
 
 @bootstrap-path:			'../bower_components/bootstrap/less/';
-@pix-path:					'pix-webfont/';
 
 // Core variables and mixins
 @import "variables";
-@import "../fonts/variables";
 @import "@{bootstrap-path}mixins";
 
 // Reset
 @import "@{bootstrap-path}normalize";
-@import "@{bootstrap-path}print";
+// @import "@{bootstrap-path}print";
 
 // Core CSS
 @import "@{bootstrap-path}scaffolding";
@@ -68,4 +66,5 @@
 @import "html";
 @import "docs";
 @import "app";
+@import "print";
 // @import "print";

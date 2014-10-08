@@ -1,0 +1,126 @@
+
+/* HTML Compiler */
+
+
+@import "variables";
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,900);
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+	background-color: @background;
+	color: @foreground;
+	font-family: 'Lato';
+	margin: 0;
+}
+
+.fixed{
+	position: fixed;
+	width: 33%;
+	left: 0;
+	top: 0;
+	padding: @padding;
+}
+
+pre code{
+	font-family: 'Inconsolata';
+	font-weight: 700;
+	font-size: 16px;
+}
+
+h1{
+	font-size: 70px;
+	letter-spacing: -.06ex;
+	font-weight: 900;
+	line-height: 100%;
+	padding: 0;
+	margin: 0;
+	text-shadow: @big-shadow;
+	small{
+		letter-spacing: normal;
+		font-weight: 100;
+		font-size: 42px;
+		color: fade(@foreground, 50);
+	}
+}
+
+h2{
+	font-weight: 700;
+	color: @color;
+}
+
+.downloads{
+	margin: 48px 0 0 0;
+}
+
+.btn{
+	display: inline-block;
+	margin: @padding/2 @padding 0 0;
+	background-color: @color;
+	font-weight: 200;
+	text-transform: uppercase;
+	text-shadow: @shadow;
+	color: white;
+	text-decoration: none;	
+	border-radius: 3px;
+	padding: 4px 12px;
+	font-size: 23px;
+	.pix{
+		font-size: 32px;
+		margin: -7px 0 0 0;
+	}
+	&:hover{
+		background-color: saturate(darken(@color, 10), 20);
+	}
+}
+
+.icons{
+	width: 66%;
+	margin: 0 0 0 34%;
+	padding: @padding;
+	.item{
+		display: inline-block;
+		width: 128px;
+		margin: 16px 16px 0 0;
+		text-align: center;
+		cursor: pointer;
+		padding: @padding/2;
+		border-radius: @padding/3;
+		&:hover{
+			background-color: white;
+			.pix, .icon-class{
+				text-shadow: @shadow;
+			}
+		}
+		.pix{
+			color: #0f0f0e;
+			font-size: 72px;
+			width: 100%;
+		}
+		.icon-class{
+			font-family: 'Inconsolata';
+			font-weight: 400;
+			font-size: 12px;
+		}
+	}
+}
+
+
+.lig{
+	font-size: 42px;
+}
+
+footer{
+	background-color: @foreground;
+	color: @background;
+	padding: @padding;
+	margin: 50px 0 0 0;
+	font-size: 12px;
+	font-weight: 900;
+	a{
+		color: @color;
+	}
+}

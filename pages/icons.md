@@ -10,217 +10,217 @@ active: icons
 <h2>Meta</h2>
 <p>Score headers and meta icons.</p>
 <div class='row'>
-{% include col-pix.html name='pix-logo' %}
-{% include col-pix.html name='pix-empty' %}
-{% include col-pix.html name='pix-person' %}
-{% include col-pix.html name='pix-dialogue' %}
-{% include col-pix.html name='pix-system' %}
+{% include col-pix.html name='logo' %}
+{% include col-pix.html name='empty' %}
+{% include col-pix.html name='person' %}
+{% include col-pix.html name='dialogue' %}
+{% include col-pix.html name='system' %}
 </div>
 
 <hr>
 
 <h2>Common Actions</h2>
 <div class='row'>
-{% include col-pix.html name='pix-add' %}
-{% include col-pix.html name='pix-remove' %}
-{% include col-pix.html name='pix-alert' %}
-{% include col-pix.html name='pix-ask' %}
-{% include col-pix.html name='pix-check' %}
-{% include col-pix.html name='pix-cancel' %}
-{% include col-pix.html name='pix-say' %}
-{% include col-pix.html name='pix-think' %}
+{% include col-pix.html name='add' %}
+{% include col-pix.html name='remove' %}
+{% include col-pix.html name='alert' %}
+{% include col-pix.html name='ask' %}
+{% include col-pix.html name='check' %}
+{% include col-pix.html name='cancel' %}
+{% include col-pix.html name='say' %}
+{% include col-pix.html name='think' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-send' %}
-{% include col-pix.html name='pix-share' %}
-{% include col-pix.html name='pix-speak' %}
-{% include col-pix.html name='pix-comment' %}
-{% include col-pix.html name='pix-attach' %}
+{% include col-pix.html name='send' %}
+{% include col-pix.html name='share' %}
+{% include col-pix.html name='speak' %}
+{% include col-pix.html name='comment' %}
+{% include col-pix.html name='attach' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-edit' %}
-{% include col-pix.html name='pix-save' %}
-{% include col-pix.html name='pix-copy' %}
-{% include col-pix.html name='pix-paste' %}
-{% include col-pix.html name='pix-delete' %}
-{% include col-pix.html name='pix-import' %}
-{% include col-pix.html name='pix-export' %}
-{% include col-pix.html name='pix-download' %}
-{% include col-pix.html name='pix-upload' %}
+{% include col-pix.html name='edit' %}
+{% include col-pix.html name='save' %}
+{% include col-pix.html name='copy' %}
+{% include col-pix.html name='paste' %}
+{% include col-pix.html name='delete' %}
+{% include col-pix.html name='import' %}
+{% include col-pix.html name='export' %}
+{% include col-pix.html name='download' %}
+{% include col-pix.html name='upload' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-config' %}
-{% include col-pix.html name='pix-film' %}
+{% include col-pix.html name='config' %}
+{% include col-pix.html name='film' %}
 
-{% include col-pix.html name='pix-buy' %}
-{% include col-pix.html name='pix-pay' %}
+{% include col-pix.html name='buy' %}
+{% include col-pix.html name='pay' %}
 
-{% include col-pix.html name='pix-call' %}
-{% include col-pix.html name='pix-hang-up' %}
-{% include col-pix.html name='pix-move' %}
-{% include col-pix.html name='pix-resize' %}
+{% include col-pix.html name='call' %}
+{% include col-pix.html name='hangup' %}
+{% include col-pix.html name='move' %}
+{% include col-pix.html name='resize' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-like' %}
-{% include col-pix.html name='pix-dislike' %}
-{% include col-pix.html name='pix-link' %}
-{% include col-pix.html name='pix-unlink' %}
-{% include col-pix.html name='pix-branch' %}
-{% include col-pix.html name='pix-merge' %}
-{% include col-pix.html name='pix-print' %}
-{% include col-pix.html name='pix-view' %}
+{% include col-pix.html name='like' %}
+{% include col-pix.html name='dislike' %}
+{% include col-pix.html name='link' %}
+{% include col-pix.html name='unlink' %}
+{% include col-pix.html name='branch' %}
+{% include col-pix.html name='merge' %}
+{% include col-pix.html name='print' %}
+{% include col-pix.html name='view' %}
 </div>
 
 <hr>
 
 <h2>Objects</h2>
 <div class='row'>
-{% include col-pix.html name='pix-file' %}
-{% include col-pix.html name='pix-email' %}
-{% include col-pix.html name='pix-archive' %}
-{% include col-pix.html name='pix-stack' %}
-{% include col-pix.html name='pix-image' %}
-{% include col-pix.html name='pix-audio' %}
-{% include col-pix.html name='pix-video' %}
-{% include col-pix.html name='pix-contact' %}
-{% include col-pix.html name='pix-contacts' %}
-{% include col-pix.html name='pix-position' %}
-{% include col-pix.html name='pix-map' %}
-{% include col-pix.html name='pix-rss' %}
+{% include col-pix.html name='file' %}
+{% include col-pix.html name='email' %}
+{% include col-pix.html name='archive' %}
+{% include col-pix.html name='stack' %}
+{% include col-pix.html name='image' %}
+{% include col-pix.html name='audio' %}
+{% include col-pix.html name='video' %}
+{% include col-pix.html name='contact' %}
+{% include col-pix.html name='contacts' %}
+{% include col-pix.html name='position' %}
+{% include col-pix.html name='map' %}
+{% include col-pix.html name='rss' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-clock' %}
-{% include col-pix.html name='pix-date' %}
-{% include col-pix.html name='pix-tag' %}
+{% include col-pix.html name='clock' %}
+{% include col-pix.html name='date' %}
+{% include col-pix.html name='tag' %}
 </div>
 
 <h3>Device</h3>
 <div class='row'>
-{% include col-pix.html name='pix-device-rotate' %}
-{% include col-pix.html name='pix-device-shake' %}
-{% include col-pix.html name='pix-device-orient' %}
+{% include col-pix.html name='devicerotate' %}
+{% include col-pix.html name='deviceshake' %}
+{% include col-pix.html name='deviceorient' %}
 </div>
 
 <hr>
 
 <h2>Interface Elements</h2>
 <div class='row'>
-{% include col-pix.html name='pix-button' %}
-{% include col-pix.html name='pix-checkbox' %}
-{% include col-pix.html name='pix-type' %}
-{% include col-pix.html name='pix-time' %}
-{% include col-pix.html name='pix-select' %}
-{% include col-pix.html name='pix-radio' %}
-{% include col-pix.html name='pix-radio-select' %}
-{% include col-pix.html name='pix-range' %}
-{% include col-pix.html name='pix-switch' %}
+{% include col-pix.html name='button' %}
+{% include col-pix.html name='checkbox' %}
+{% include col-pix.html name='input' %}
+{% include col-pix.html name='time' %}
+{% include col-pix.html name='select' %}
+{% include col-pix.html name='radio' %}
+{% include col-pix.html name='radioselect' %}
+{% include col-pix.html name='range' %}
+{% include col-pix.html name='switch' %}
 </div>
 
 <h2>Human Expressions</h2>
 <div class='row'>
-{% include col-pix.html name='pix-face' %}
-{% include col-pix.html name='pix-face-intrigued' %}
-{% include col-pix.html name='pix-face-laughing' %}
-{% include col-pix.html name='pix-face-sad' %}
-{% include col-pix.html name='pix-face-similing' %}
-{% include col-pix.html name='pix-face-surprised' %}
-{% include col-pix.html name='pix-face-upset' %}
+{% include col-pix.html name='face' %}
+{% include col-pix.html name='faceintrigued' %}
+{% include col-pix.html name='facelaughing' %}
+{% include col-pix.html name='facesad' %}
+{% include col-pix.html name='facesmiling' %}
+{% include col-pix.html name='facesurprised' %}
+{% include col-pix.html name='faceupset' %}
 </div>
 
 <hr>
 
 <h2>User Input</h2>
 <div class='row'>
-{% include col-pix.html name='pix-click' %}
-{% include col-pix.html name='pix-double-click' %}
-{% include col-pix.html name='pix-click-drag' %}
-{% include col-pix.html name='pix-drag-n-drop' %}
+{% include col-pix.html name='click' %}
+{% include col-pix.html name='doubleclick' %}
+{% include col-pix.html name='clickdrag' %}
+{% include col-pix.html name='dragndrop' %}
 </div>
 
 <h3>Playback Controls</h3>
 <div class='row'>
-{% include col-pix.html name='pix-previous' %}
-{% include col-pix.html name='pix-play' %}
-{% include col-pix.html name='pix-pause' %}
-{% include col-pix.html name='pix-next' %}
-{% include col-pix.html name='pix-fast-foward' %}
-{% include col-pix.html name='pix-rewind' %}
-{% include col-pix.html name='pix-stop' %}
-{% include col-pix.html name='pix-rec' %}
+{% include col-pix.html name='previous' %}
+{% include col-pix.html name='play' %}
+{% include col-pix.html name='pause' %}
+{% include col-pix.html name='next' %}
+{% include col-pix.html name='ff' %}
+{% include col-pix.html name='rew' %}
+{% include col-pix.html name='stop' %}
+{% include col-pix.html name='rec' %}
 </div>
 
 <h3>Touch Gestures</h3>
 <div class='row'>
-{% include col-pix.html name='pix-rotate' %}
-{% include col-pix.html name='pix-tap' %}
-{% include col-pix.html name='pix-double-tap' %}
-{% include col-pix.html name='pix-tap-2' %}
-{% include col-pix.html name='pix-tap-3' %}
-{% include col-pix.html name='pix-tap-4' %}
+{% include col-pix.html name='rotate' %}
+{% include col-pix.html name='tap' %}
+{% include col-pix.html name='doubletap' %}
+{% include col-pix.html name='tap2' %}
+{% include col-pix.html name='tap3' %}
+{% include col-pix.html name='tap4' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-tap-up-1' %}
-{% include col-pix.html name='pix-tap-up-2' %}
-{% include col-pix.html name='pix-tap-up-3' %}
-{% include col-pix.html name='pix-tap-up-4' %}
-{% include col-pix.html name='pix-tap-up-5' %}
-{% include col-pix.html name='pix-tap-down-1' %}
-{% include col-pix.html name='pix-tap-down-2' %}
-{% include col-pix.html name='pix-tap-down-3' %}
-{% include col-pix.html name='pix-tap-down-4' %}
-{% include col-pix.html name='pix-tap-down-5' %}
+{% include col-pix.html name='tap1up' %}
+{% include col-pix.html name='tap2up' %}
+{% include col-pix.html name='tap3up' %}
+{% include col-pix.html name='tap4up' %}
+{% include col-pix.html name='tap5up' %}
+{% include col-pix.html name='tap1down' %}
+{% include col-pix.html name='tap2down' %}
+{% include col-pix.html name='tap3down' %}
+{% include col-pix.html name='tap4down' %}
+{% include col-pix.html name='tap5down' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-tap-left-1' %}
-{% include col-pix.html name='pix-tap-left-2' %}
-{% include col-pix.html name='pix-tap-left-3' %}
-{% include col-pix.html name='pix-tap-left-4' %}
-{% include col-pix.html name='pix-tap-left-5' %}
-{% include col-pix.html name='pix-tap-right-1' %}
-{% include col-pix.html name='pix-tap-right-2' %}
-{% include col-pix.html name='pix-tap-right-3' %}
-{% include col-pix.html name='pix-tap-right-4' %}
-{% include col-pix.html name='pix-tap-right-5' %}
+{% include col-pix.html name='tap1left' %}
+{% include col-pix.html name='tap2left' %}
+{% include col-pix.html name='tap3left' %}
+{% include col-pix.html name='tap4left' %}
+{% include col-pix.html name='tap5left' %}
+{% include col-pix.html name='tap1right' %}
+{% include col-pix.html name='tap2right' %}
+{% include col-pix.html name='tap3right' %}
+{% include col-pix.html name='tap4right' %}
+{% include col-pix.html name='tap5right' %}
 </div>
 
 <div class='row'>
-{% include col-pix.html name='pix-touch-collapse' %}
-{% include col-pix.html name='pix-touch-expand' %}
-{% include col-pix.html name='pix-scroll' %}
-{% include col-pix.html name='pix-pinch-zoom' %}
-{% include col-pix.html name='pix-pinch' %}
+{% include col-pix.html name='touchcollapse' %}
+{% include col-pix.html name='touchexpand' %}
+{% include col-pix.html name='scroll' %}
+{% include col-pix.html name='pinchzoom' %}
+{% include col-pix.html name='pinch' %}
 </div>
 
 <hr>
 
 <h2>System</h2>
 <div class='row'>
-{% include col-pix.html name='pix-cloud' %}
-{% include col-pix.html name='pix-database' %}
-{% include col-pix.html name='pix-filter' %}
-{% include col-pix.html name='pix-search' %}
-{% include col-pix.html name='pix-process' %}
+{% include col-pix.html name='cloud' %}
+{% include col-pix.html name='database' %}
+{% include col-pix.html name='filter' %}
+{% include col-pix.html name='search' %}
+{% include col-pix.html name='process' %}
 </div>
 
 <h3>System Feedback</h3>
 <div class='row'>
-{% include col-pix.html name='pix-window' %}
-{% include col-pix.html name='pix-page' %}
-{% include col-pix.html name='pix-gallery' %}
-{% include col-pix.html name='pix-list' %}
-{% include col-pix.html name='pix-text' %}
+{% include col-pix.html name='window' %}
+{% include col-pix.html name='page' %}
+{% include col-pix.html name='gallery' %}
+{% include col-pix.html name='list' %}
+{% include col-pix.html name='text' %}
 </div>
 <div class='row'>
-{% include col-pix.html name='pix-update' %}
-{% include col-pix.html name='pix-notify' %}
-{% include col-pix.html name='pix-prompt' %}
-{% include col-pix.html name='pix-lock' %}
-{% include col-pix.html name='pix-unlock' %}
+{% include col-pix.html name='update' %}
+{% include col-pix.html name='notify' %}
+{% include col-pix.html name='prompt' %}
+{% include col-pix.html name='lock' %}
+{% include col-pix.html name='unlock' %}
 </div>

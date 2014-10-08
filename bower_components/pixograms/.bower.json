@@ -1,0 +1,13 @@
+{
+  "name": "pixograms",
+  "homepage": "https://github.com/eadpucv/pixograms",
+  "_release": "ddd62c9cdf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ddd62c9cdf7d88893397c0fca2af0dde698bece4"
+  },
+  "_source": "https://github.com/eadpucv/pixograms.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/eadpucv/pixograms.git"
+}

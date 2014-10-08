@@ -1,0 +1,878 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PiXograms</title>
+		<link rel="stylesheet" type="text/css" href="css/pix-webfont.css">
+		<!-- <link rel="stylesheet" type="text/css" href="style/style.css"> -->
+		
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/css?family=Lato:100,300,900);@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700);*{box-sizing:border-box}body{background-color:#f4f5e6;color:#27271b;font-family:Lato;margin:0}.fixed{position:fixed;width:33%;left:0;top:0;padding:32px}pre code{font-family:Inconsolata;font-weight:700;font-size:16px}h1{font-size:70px;letter-spacing:-.06ex;font-weight:900;line-height:100%;padding:0;margin:0;text-shadow:6px 6px 0 rgba(39,39,27,.1)}h1 small{letter-spacing:normal;font-weight:100;font-size:42px;color:rgba(39,39,27,.5)}h2{font-weight:700;color:#f06218}.downloads{margin:48px 0 0}.btn{display:inline-block;margin:16px 32px 0 0;background-color:#f06218;font-weight:200;text-transform:uppercase;text-shadow:3px 3px 0 rgba(39,39,27,.1);color:#fff;text-decoration:none;border-radius:3px;padding:4px 12px;font-size:23px}.btn .pix{font-size:32px;margin:-7px 0 0 0}.btn:hover{background-color:#d54900}.icons{width:66%;margin:0 0 0 34%;padding:32px}.icons .item{display:inline-block;width:128px;margin:16px 16px 0 0;text-align:center;cursor:pointer;padding:16px;border-radius:10.666666666666666px}.icons .item:hover{background-color:#fff}.icons .item:hover .pix,.icons .item:hover .icon-class{text-shadow:3px 3px 0 rgba(39,39,27,.1)}.icons .item .pix{color:#0f0f0e;font-size:72px;width:100%}.icons .item .icon-class{font-family:Inconsolata;font-weight:400;font-size:12px}.lig{font-size:42px}footer{background-color:#27271b;color:#f4f5e6;padding:32px;margin:50px 0 0;font-size:12px;font-weight:900}footer a{color:#f06218}
+		</style>
+		
+	</head>
+	<body>
+
+		<div class='fixed'>
+			<h1>PiXograms <br><small>v0.1.0</small></h1>
+
+			<h2>Usage</h2>
+			<div class='sample-code'>
+				<p>As a class</p>
+				<pre><code>&lt;i class=&quot;pix pix-<span id="name">name</span>&quot;&gt;&lt;/i&gt;</code></pre>
+				
+				
+				<p>As a ligature</p>
+				<pre><code>&lt;i class=&quot;pix&quot;&gt;<span id="name2">name</span>&lt;/i&gt;</code></pre>
+				
+			</div>
+			
+			<div class='downloads'>
+				<a href="download/icons.zip" class='btn'><i class='pix'>download</i> íconos</a>
+				<a href="download/pix-webfont.zip" class='btn'><i class='pix'>download</i> webfont</a>
+			</div>
+		</div>
+
+
+
+		
+		<div class="icons" id="icons">
+			<!-- <h3>Icons</h3> -->
+			
+				<div class="item" data-name="add">
+					<i class="pix pix-add"></i> <span class='icon-class'>pix-add</span>
+				</div>
+			
+				<div class="item" data-name="alert">
+					<i class="pix pix-alert"></i> <span class='icon-class'>pix-alert</span>
+				</div>
+			
+				<div class="item" data-name="archive">
+					<i class="pix pix-archive"></i> <span class='icon-class'>pix-archive</span>
+				</div>
+			
+				<div class="item" data-name="ask">
+					<i class="pix pix-ask"></i> <span class='icon-class'>pix-ask</span>
+				</div>
+			
+				<div class="item" data-name="attach">
+					<i class="pix pix-attach"></i> <span class='icon-class'>pix-attach</span>
+				</div>
+			
+				<div class="item" data-name="audio">
+					<i class="pix pix-audio"></i> <span class='icon-class'>pix-audio</span>
+				</div>
+			
+				<div class="item" data-name="branch">
+					<i class="pix pix-branch"></i> <span class='icon-class'>pix-branch</span>
+				</div>
+			
+				<div class="item" data-name="button">
+					<i class="pix pix-button"></i> <span class='icon-class'>pix-button</span>
+				</div>
+			
+				<div class="item" data-name="buy">
+					<i class="pix pix-buy"></i> <span class='icon-class'>pix-buy</span>
+				</div>
+			
+				<div class="item" data-name="call">
+					<i class="pix pix-call"></i> <span class='icon-class'>pix-call</span>
+				</div>
+			
+				<div class="item" data-name="cancel">
+					<i class="pix pix-cancel"></i> <span class='icon-class'>pix-cancel</span>
+				</div>
+			
+				<div class="item" data-name="check">
+					<i class="pix pix-check"></i> <span class='icon-class'>pix-check</span>
+				</div>
+			
+				<div class="item" data-name="checkbox">
+					<i class="pix pix-checkbox"></i> <span class='icon-class'>pix-checkbox</span>
+				</div>
+			
+				<div class="item" data-name="click">
+					<i class="pix pix-click"></i> <span class='icon-class'>pix-click</span>
+				</div>
+			
+				<div class="item" data-name="clickdrag">
+					<i class="pix pix-clickdrag"></i> <span class='icon-class'>pix-clickdrag</span>
+				</div>
+			
+				<div class="item" data-name="clock">
+					<i class="pix pix-clock"></i> <span class='icon-class'>pix-clock</span>
+				</div>
+			
+				<div class="item" data-name="cloud">
+					<i class="pix pix-cloud"></i> <span class='icon-class'>pix-cloud</span>
+				</div>
+			
+				<div class="item" data-name="comment">
+					<i class="pix pix-comment"></i> <span class='icon-class'>pix-comment</span>
+				</div>
+			
+				<div class="item" data-name="config">
+					<i class="pix pix-config"></i> <span class='icon-class'>pix-config</span>
+				</div>
+			
+				<div class="item" data-name="contact">
+					<i class="pix pix-contact"></i> <span class='icon-class'>pix-contact</span>
+				</div>
+			
+				<div class="item" data-name="contacts">
+					<i class="pix pix-contacts"></i> <span class='icon-class'>pix-contacts</span>
+				</div>
+			
+				<div class="item" data-name="copy">
+					<i class="pix pix-copy"></i> <span class='icon-class'>pix-copy</span>
+				</div>
+			
+				<div class="item" data-name="database">
+					<i class="pix pix-database"></i> <span class='icon-class'>pix-database</span>
+				</div>
+			
+				<div class="item" data-name="date">
+					<i class="pix pix-date"></i> <span class='icon-class'>pix-date</span>
+				</div>
+			
+				<div class="item" data-name="delete">
+					<i class="pix pix-delete"></i> <span class='icon-class'>pix-delete</span>
+				</div>
+			
+				<div class="item" data-name="deviceorient">
+					<i class="pix pix-deviceorient"></i> <span class='icon-class'>pix-deviceorient</span>
+				</div>
+			
+				<div class="item" data-name="devicerotate">
+					<i class="pix pix-devicerotate"></i> <span class='icon-class'>pix-devicerotate</span>
+				</div>
+			
+				<div class="item" data-name="deviceshake">
+					<i class="pix pix-deviceshake"></i> <span class='icon-class'>pix-deviceshake</span>
+				</div>
+			
+				<div class="item" data-name="dialogue">
+					<i class="pix pix-dialogue"></i> <span class='icon-class'>pix-dialogue</span>
+				</div>
+			
+				<div class="item" data-name="dislike">
+					<i class="pix pix-dislike"></i> <span class='icon-class'>pix-dislike</span>
+				</div>
+			
+				<div class="item" data-name="doubleclick">
+					<i class="pix pix-doubleclick"></i> <span class='icon-class'>pix-doubleclick</span>
+				</div>
+			
+				<div class="item" data-name="doubletap">
+					<i class="pix pix-doubletap"></i> <span class='icon-class'>pix-doubletap</span>
+				</div>
+			
+				<div class="item" data-name="download">
+					<i class="pix pix-download"></i> <span class='icon-class'>pix-download</span>
+				</div>
+			
+				<div class="item" data-name="dragndrop">
+					<i class="pix pix-dragndrop"></i> <span class='icon-class'>pix-dragndrop</span>
+				</div>
+			
+				<div class="item" data-name="edit">
+					<i class="pix pix-edit"></i> <span class='icon-class'>pix-edit</span>
+				</div>
+			
+				<div class="item" data-name="email">
+					<i class="pix pix-email"></i> <span class='icon-class'>pix-email</span>
+				</div>
+			
+				<div class="item" data-name="empty">
+					<i class="pix pix-empty"></i> <span class='icon-class'>pix-empty</span>
+				</div>
+			
+				<div class="item" data-name="export">
+					<i class="pix pix-export"></i> <span class='icon-class'>pix-export</span>
+				</div>
+			
+				<div class="item" data-name="face">
+					<i class="pix pix-face"></i> <span class='icon-class'>pix-face</span>
+				</div>
+			
+				<div class="item" data-name="faceintrigued">
+					<i class="pix pix-faceintrigued"></i> <span class='icon-class'>pix-faceintrigued</span>
+				</div>
+			
+				<div class="item" data-name="facelaughing">
+					<i class="pix pix-facelaughing"></i> <span class='icon-class'>pix-facelaughing</span>
+				</div>
+			
+				<div class="item" data-name="facesad">
+					<i class="pix pix-facesad"></i> <span class='icon-class'>pix-facesad</span>
+				</div>
+			
+				<div class="item" data-name="facesmiling">
+					<i class="pix pix-facesmiling"></i> <span class='icon-class'>pix-facesmiling</span>
+				</div>
+			
+				<div class="item" data-name="facesurpirsed">
+					<i class="pix pix-facesurpirsed"></i> <span class='icon-class'>pix-facesurpirsed</span>
+				</div>
+			
+				<div class="item" data-name="faceupset">
+					<i class="pix pix-faceupset"></i> <span class='icon-class'>pix-faceupset</span>
+				</div>
+			
+				<div class="item" data-name="fastfoward">
+					<i class="pix pix-fastfoward"></i> <span class='icon-class'>pix-fastfoward</span>
+				</div>
+			
+				<div class="item" data-name="file">
+					<i class="pix pix-file"></i> <span class='icon-class'>pix-file</span>
+				</div>
+			
+				<div class="item" data-name="filter">
+					<i class="pix pix-filter"></i> <span class='icon-class'>pix-filter</span>
+				</div>
+			
+				<div class="item" data-name="gallery">
+					<i class="pix pix-gallery"></i> <span class='icon-class'>pix-gallery</span>
+				</div>
+			
+				<div class="item" data-name="hangup">
+					<i class="pix pix-hangup"></i> <span class='icon-class'>pix-hangup</span>
+				</div>
+			
+				<div class="item" data-name="image">
+					<i class="pix pix-image"></i> <span class='icon-class'>pix-image</span>
+				</div>
+			
+				<div class="item" data-name="import">
+					<i class="pix pix-import"></i> <span class='icon-class'>pix-import</span>
+				</div>
+			
+				<div class="item" data-name="input">
+					<i class="pix pix-input"></i> <span class='icon-class'>pix-input</span>
+				</div>
+			
+				<div class="item" data-name="like">
+					<i class="pix pix-like"></i> <span class='icon-class'>pix-like</span>
+				</div>
+			
+				<div class="item" data-name="link">
+					<i class="pix pix-link"></i> <span class='icon-class'>pix-link</span>
+				</div>
+			
+				<div class="item" data-name="list">
+					<i class="pix pix-list"></i> <span class='icon-class'>pix-list</span>
+				</div>
+			
+				<div class="item" data-name="lock">
+					<i class="pix pix-lock"></i> <span class='icon-class'>pix-lock</span>
+				</div>
+			
+				<div class="item" data-name="logo">
+					<i class="pix pix-logo"></i> <span class='icon-class'>pix-logo</span>
+				</div>
+			
+				<div class="item" data-name="map">
+					<i class="pix pix-map"></i> <span class='icon-class'>pix-map</span>
+				</div>
+			
+				<div class="item" data-name="merge">
+					<i class="pix pix-merge"></i> <span class='icon-class'>pix-merge</span>
+				</div>
+			
+				<div class="item" data-name="move">
+					<i class="pix pix-move"></i> <span class='icon-class'>pix-move</span>
+				</div>
+			
+				<div class="item" data-name="next">
+					<i class="pix pix-next"></i> <span class='icon-class'>pix-next</span>
+				</div>
+			
+				<div class="item" data-name="notify">
+					<i class="pix pix-notify"></i> <span class='icon-class'>pix-notify</span>
+				</div>
+			
+				<div class="item" data-name="page">
+					<i class="pix pix-page"></i> <span class='icon-class'>pix-page</span>
+				</div>
+			
+				<div class="item" data-name="paste">
+					<i class="pix pix-paste"></i> <span class='icon-class'>pix-paste</span>
+				</div>
+			
+				<div class="item" data-name="pause">
+					<i class="pix pix-pause"></i> <span class='icon-class'>pix-pause</span>
+				</div>
+			
+				<div class="item" data-name="pay">
+					<i class="pix pix-pay"></i> <span class='icon-class'>pix-pay</span>
+				</div>
+			
+				<div class="item" data-name="person">
+					<i class="pix pix-person"></i> <span class='icon-class'>pix-person</span>
+				</div>
+			
+				<div class="item" data-name="pinch">
+					<i class="pix pix-pinch"></i> <span class='icon-class'>pix-pinch</span>
+				</div>
+			
+				<div class="item" data-name="pinchzoom">
+					<i class="pix pix-pinchzoom"></i> <span class='icon-class'>pix-pinchzoom</span>
+				</div>
+			
+				<div class="item" data-name="play">
+					<i class="pix pix-play"></i> <span class='icon-class'>pix-play</span>
+				</div>
+			
+				<div class="item" data-name="position">
+					<i class="pix pix-position"></i> <span class='icon-class'>pix-position</span>
+				</div>
+			
+				<div class="item" data-name="previous">
+					<i class="pix pix-previous"></i> <span class='icon-class'>pix-previous</span>
+				</div>
+			
+				<div class="item" data-name="print">
+					<i class="pix pix-print"></i> <span class='icon-class'>pix-print</span>
+				</div>
+			
+				<div class="item" data-name="process">
+					<i class="pix pix-process"></i> <span class='icon-class'>pix-process</span>
+				</div>
+			
+				<div class="item" data-name="pront">
+					<i class="pix pix-pront"></i> <span class='icon-class'>pix-pront</span>
+				</div>
+			
+				<div class="item" data-name="radio">
+					<i class="pix pix-radio"></i> <span class='icon-class'>pix-radio</span>
+				</div>
+			
+				<div class="item" data-name="radioselect">
+					<i class="pix pix-radioselect"></i> <span class='icon-class'>pix-radioselect</span>
+				</div>
+			
+				<div class="item" data-name="range">
+					<i class="pix pix-range"></i> <span class='icon-class'>pix-range</span>
+				</div>
+			
+				<div class="item" data-name="rec">
+					<i class="pix pix-rec"></i> <span class='icon-class'>pix-rec</span>
+				</div>
+			
+				<div class="item" data-name="record">
+					<i class="pix pix-record"></i> <span class='icon-class'>pix-record</span>
+				</div>
+			
+				<div class="item" data-name="remove">
+					<i class="pix pix-remove"></i> <span class='icon-class'>pix-remove</span>
+				</div>
+			
+				<div class="item" data-name="resize">
+					<i class="pix pix-resize"></i> <span class='icon-class'>pix-resize</span>
+				</div>
+			
+				<div class="item" data-name="rewind">
+					<i class="pix pix-rewind"></i> <span class='icon-class'>pix-rewind</span>
+				</div>
+			
+				<div class="item" data-name="rotate">
+					<i class="pix pix-rotate"></i> <span class='icon-class'>pix-rotate</span>
+				</div>
+			
+				<div class="item" data-name="rss">
+					<i class="pix pix-rss"></i> <span class='icon-class'>pix-rss</span>
+				</div>
+			
+				<div class="item" data-name="save">
+					<i class="pix pix-save"></i> <span class='icon-class'>pix-save</span>
+				</div>
+			
+				<div class="item" data-name="say">
+					<i class="pix pix-say"></i> <span class='icon-class'>pix-say</span>
+				</div>
+			
+				<div class="item" data-name="scroll">
+					<i class="pix pix-scroll"></i> <span class='icon-class'>pix-scroll</span>
+				</div>
+			
+				<div class="item" data-name="search">
+					<i class="pix pix-search"></i> <span class='icon-class'>pix-search</span>
+				</div>
+			
+				<div class="item" data-name="select">
+					<i class="pix pix-select"></i> <span class='icon-class'>pix-select</span>
+				</div>
+			
+				<div class="item" data-name="send">
+					<i class="pix pix-send"></i> <span class='icon-class'>pix-send</span>
+				</div>
+			
+				<div class="item" data-name="share">
+					<i class="pix pix-share"></i> <span class='icon-class'>pix-share</span>
+				</div>
+			
+				<div class="item" data-name="speak">
+					<i class="pix pix-speak"></i> <span class='icon-class'>pix-speak</span>
+				</div>
+			
+				<div class="item" data-name="stack">
+					<i class="pix pix-stack"></i> <span class='icon-class'>pix-stack</span>
+				</div>
+			
+				<div class="item" data-name="stop">
+					<i class="pix pix-stop"></i> <span class='icon-class'>pix-stop</span>
+				</div>
+			
+				<div class="item" data-name="switch">
+					<i class="pix pix-switch"></i> <span class='icon-class'>pix-switch</span>
+				</div>
+			
+				<div class="item" data-name="system">
+					<i class="pix pix-system"></i> <span class='icon-class'>pix-system</span>
+				</div>
+			
+				<div class="item" data-name="tag">
+					<i class="pix pix-tag"></i> <span class='icon-class'>pix-tag</span>
+				</div>
+			
+				<div class="item" data-name="tap">
+					<i class="pix pix-tap"></i> <span class='icon-class'>pix-tap</span>
+				</div>
+			
+				<div class="item" data-name="tap2">
+					<i class="pix pix-tap2"></i> <span class='icon-class'>pix-tap2</span>
+				</div>
+			
+				<div class="item" data-name="tap3">
+					<i class="pix pix-tap3"></i> <span class='icon-class'>pix-tap3</span>
+				</div>
+			
+				<div class="item" data-name="tap4">
+					<i class="pix pix-tap4"></i> <span class='icon-class'>pix-tap4</span>
+				</div>
+			
+				<div class="item" data-name="tapdown1">
+					<i class="pix pix-tapdown1"></i> <span class='icon-class'>pix-tapdown1</span>
+				</div>
+			
+				<div class="item" data-name="tapdown2">
+					<i class="pix pix-tapdown2"></i> <span class='icon-class'>pix-tapdown2</span>
+				</div>
+			
+				<div class="item" data-name="tapdown3">
+					<i class="pix pix-tapdown3"></i> <span class='icon-class'>pix-tapdown3</span>
+				</div>
+			
+				<div class="item" data-name="tapdown4">
+					<i class="pix pix-tapdown4"></i> <span class='icon-class'>pix-tapdown4</span>
+				</div>
+			
+				<div class="item" data-name="tapdown5">
+					<i class="pix pix-tapdown5"></i> <span class='icon-class'>pix-tapdown5</span>
+				</div>
+			
+				<div class="item" data-name="tapleft1">
+					<i class="pix pix-tapleft1"></i> <span class='icon-class'>pix-tapleft1</span>
+				</div>
+			
+				<div class="item" data-name="tapleft2">
+					<i class="pix pix-tapleft2"></i> <span class='icon-class'>pix-tapleft2</span>
+				</div>
+			
+				<div class="item" data-name="tapleft3">
+					<i class="pix pix-tapleft3"></i> <span class='icon-class'>pix-tapleft3</span>
+				</div>
+			
+				<div class="item" data-name="tapleft4">
+					<i class="pix pix-tapleft4"></i> <span class='icon-class'>pix-tapleft4</span>
+				</div>
+			
+				<div class="item" data-name="tapleft5">
+					<i class="pix pix-tapleft5"></i> <span class='icon-class'>pix-tapleft5</span>
+				</div>
+			
+				<div class="item" data-name="tapright1">
+					<i class="pix pix-tapright1"></i> <span class='icon-class'>pix-tapright1</span>
+				</div>
+			
+				<div class="item" data-name="tapright2">
+					<i class="pix pix-tapright2"></i> <span class='icon-class'>pix-tapright2</span>
+				</div>
+			
+				<div class="item" data-name="tapright3">
+					<i class="pix pix-tapright3"></i> <span class='icon-class'>pix-tapright3</span>
+				</div>
+			
+				<div class="item" data-name="tapright4">
+					<i class="pix pix-tapright4"></i> <span class='icon-class'>pix-tapright4</span>
+				</div>
+			
+				<div class="item" data-name="tapright5">
+					<i class="pix pix-tapright5"></i> <span class='icon-class'>pix-tapright5</span>
+				</div>
+			
+				<div class="item" data-name="tapup1">
+					<i class="pix pix-tapup1"></i> <span class='icon-class'>pix-tapup1</span>
+				</div>
+			
+				<div class="item" data-name="tapup2">
+					<i class="pix pix-tapup2"></i> <span class='icon-class'>pix-tapup2</span>
+				</div>
+			
+				<div class="item" data-name="tapup3">
+					<i class="pix pix-tapup3"></i> <span class='icon-class'>pix-tapup3</span>
+				</div>
+			
+				<div class="item" data-name="tapup4">
+					<i class="pix pix-tapup4"></i> <span class='icon-class'>pix-tapup4</span>
+				</div>
+			
+				<div class="item" data-name="tapup5">
+					<i class="pix pix-tapup5"></i> <span class='icon-class'>pix-tapup5</span>
+				</div>
+			
+				<div class="item" data-name="text">
+					<i class="pix pix-text"></i> <span class='icon-class'>pix-text</span>
+				</div>
+			
+				<div class="item" data-name="think">
+					<i class="pix pix-think"></i> <span class='icon-class'>pix-think</span>
+				</div>
+			
+				<div class="item" data-name="time">
+					<i class="pix pix-time"></i> <span class='icon-class'>pix-time</span>
+				</div>
+			
+				<div class="item" data-name="touchcollapse">
+					<i class="pix pix-touchcollapse"></i> <span class='icon-class'>pix-touchcollapse</span>
+				</div>
+			
+				<div class="item" data-name="touchexpand">
+					<i class="pix pix-touchexpand"></i> <span class='icon-class'>pix-touchexpand</span>
+				</div>
+			
+				<div class="item" data-name="unlink">
+					<i class="pix pix-unlink"></i> <span class='icon-class'>pix-unlink</span>
+				</div>
+			
+				<div class="item" data-name="unlock">
+					<i class="pix pix-unlock"></i> <span class='icon-class'>pix-unlock</span>
+				</div>
+			
+				<div class="item" data-name="update">
+					<i class="pix pix-update"></i> <span class='icon-class'>pix-update</span>
+				</div>
+			
+				<div class="item" data-name="upload">
+					<i class="pix pix-upload"></i> <span class='icon-class'>pix-upload</span>
+				</div>
+			
+				<div class="item" data-name="video">
+					<i class="pix pix-video"></i> <span class='icon-class'>pix-video</span>
+				</div>
+			
+				<div class="item" data-name="view">
+					<i class="pix pix-view"></i> <span class='icon-class'>pix-view</span>
+				</div>
+			
+				<div class="item" data-name="window">
+					<i class="pix pix-window"></i> <span class='icon-class'>pix-window</span>
+				</div>
+			
+			
+			<h3>Ligatures</h3>
+			
+			<div class="lig">
+				
+					add
+				
+					alert
+				
+					archive
+				
+					ask
+				
+					attach
+				
+					audio
+				
+					branch
+				
+					button
+				
+					buy
+				
+					call
+				
+					cancel
+				
+					check
+				
+					checkbox
+				
+					click
+				
+					clickdrag
+				
+					clock
+				
+					cloud
+				
+					comment
+				
+					config
+				
+					contact
+				
+					contacts
+				
+					copy
+				
+					database
+				
+					date
+				
+					delete
+				
+					deviceorient
+				
+					devicerotate
+				
+					deviceshake
+				
+					dialogue
+				
+					dislike
+				
+					doubleclick
+				
+					doubletap
+				
+					download
+				
+					dragndrop
+				
+					edit
+				
+					email
+				
+					empty
+				
+					export
+				
+					face
+				
+					faceintrigued
+				
+					facelaughing
+				
+					facesad
+				
+					facesmiling
+				
+					facesurpirsed
+				
+					faceupset
+				
+					fastfoward
+				
+					file
+				
+					filter
+				
+					gallery
+				
+					hangup
+				
+					image
+				
+					import
+				
+					input
+				
+					like
+				
+					link
+				
+					list
+				
+					lock
+				
+					logo
+				
+					map
+				
+					merge
+				
+					move
+				
+					next
+				
+					notify
+				
+					page
+				
+					paste
+				
+					pause
+				
+					pay
+				
+					person
+				
+					pinch
+				
+					pinchzoom
+				
+					play
+				
+					position
+				
+					previous
+				
+					print
+				
+					process
+				
+					pront
+				
+					radio
+				
+					radioselect
+				
+					range
+				
+					rec
+				
+					record
+				
+					remove
+				
+					resize
+				
+					rewind
+				
+					rotate
+				
+					rss
+				
+					save
+				
+					say
+				
+					scroll
+				
+					search
+				
+					select
+				
+					send
+				
+					share
+				
+					speak
+				
+					stack
+				
+					stop
+				
+					switch
+				
+					system
+				
+					tag
+				
+					tap
+				
+					tap2
+				
+					tap3
+				
+					tap4
+				
+					tapdown1
+				
+					tapdown2
+				
+					tapdown3
+				
+					tapdown4
+				
+					tapdown5
+				
+					tapleft1
+				
+					tapleft2
+				
+					tapleft3
+				
+					tapleft4
+				
+					tapleft5
+				
+					tapright1
+				
+					tapright2
+				
+					tapright3
+				
+					tapright4
+				
+					tapright5
+				
+					tapup1
+				
+					tapup2
+				
+					tapup3
+				
+					tapup4
+				
+					tapup5
+				
+					text
+				
+					think
+				
+					time
+				
+					touchcollapse
+				
+					touchexpand
+				
+					unlink
+				
+					unlock
+				
+					update
+				
+					upload
+				
+					video
+				
+					view
+				
+					window
+				
+			</div>
+			
+		</div>
+
+		
+
+		
+
+		<footer>Generated by <a href="https://github.com/sapegin/grunt-webfont">grunt-webfont</a>.</footer>
+
+		<script>
+		(function() {
+			document.getElementById('icons').onclick = function(e) {
+				e = e || window.event;
+				var name = e.target.getAttribute('data-name') || e.target.parentNode.getAttribute('data-name');
+				document.getElementById('name').innerHTML = name;
+				document.getElementById('name2').innerHTML = name;
+			}
+		})();
+		</script>
+	</body>
+</html>
