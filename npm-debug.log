@@ -1,0 +1,120 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/0.10.22/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@1.3.14
+3 info using node@v0.10.22
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/Users/hspencer/Sites/ead/pix',
+5 verbose install   [ 'bootstrap', 'pixograms' ] ]
+6 info preinstall PiX@0.1.0
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'bootstrap@~3.0.2', null ]
+9 verbose cache add name=undefined spec="bootstrap@~3.0.2" args=["bootstrap@~3.0.2",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'bootstrap@~3.0.2',
+10 verbose parsed url   path: 'bootstrap@~3.0.2',
+10 verbose parsed url   href: 'bootstrap@~3.0.2' }
+11 verbose cache add name="bootstrap" spec="~3.0.2" args=["bootstrap","~3.0.2"]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: '~3.0.2',
+12 verbose parsed url   path: '~3.0.2',
+12 verbose parsed url   href: '~3.0.2' }
+13 verbose addNamed [ 'bootstrap', '~3.0.2' ]
+14 verbose addNamed [ null, '>=3.0.2-0 <3.1.0-0' ]
+15 verbose cache add [ 'pixograms@https://github.com/eadpucv/pixograms.git', null ]
+16 verbose cache add name=undefined spec="pixograms@https://github.com/eadpucv/pixograms.git" args=["pixograms@https://github.com/eadpucv/pixograms.git",null]
+17 verbose parsed url { protocol: null,
+17 verbose parsed url   slashes: null,
+17 verbose parsed url   auth: null,
+17 verbose parsed url   host: null,
+17 verbose parsed url   port: null,
+17 verbose parsed url   hostname: null,
+17 verbose parsed url   hash: null,
+17 verbose parsed url   search: null,
+17 verbose parsed url   query: null,
+17 verbose parsed url   pathname: 'pixograms@https://github.com/eadpucv/pixograms.git',
+17 verbose parsed url   path: 'pixograms@https://github.com/eadpucv/pixograms.git',
+17 verbose parsed url   href: 'pixograms@https://github.com/eadpucv/pixograms.git' }
+18 verbose cache add name="pixograms" spec="https://github.com/eadpucv/pixograms.git" args=["pixograms","https://github.com/eadpucv/pixograms.git"]
+19 verbose parsed url { protocol: 'https:',
+19 verbose parsed url   slashes: true,
+19 verbose parsed url   auth: null,
+19 verbose parsed url   host: 'github.com',
+19 verbose parsed url   port: null,
+19 verbose parsed url   hostname: 'github.com',
+19 verbose parsed url   hash: null,
+19 verbose parsed url   search: null,
+19 verbose parsed url   query: null,
+19 verbose parsed url   pathname: '/eadpucv/pixograms.git',
+19 verbose parsed url   path: '/eadpucv/pixograms.git',
+19 verbose parsed url   href: 'https://github.com/eadpucv/pixograms.git' }
+20 silly lockFile a57b8dae-bootstrap-3-0-2 bootstrap@~3.0.2
+21 verbose lock bootstrap@~3.0.2 /Users/hspencer/.npm/a57b8dae-bootstrap-3-0-2.lock
+22 silly lockFile 15ffd312-github-com-eadpucv-pixograms-git https://github.com/eadpucv/pixograms.git
+23 verbose lock https://github.com/eadpucv/pixograms.git /Users/hspencer/.npm/15ffd312-github-com-eadpucv-pixograms-git.lock
+24 silly addNameRange { name: 'bootstrap',
+24 silly addNameRange   range: '>=3.0.2-0 <3.1.0-0',
+24 silly addNameRange   hasData: false }
+25 verbose addRemoteTarball [ 'https://github.com/eadpucv/pixograms.git', null ]
+26 verbose url raw bootstrap
+27 verbose url resolving [ 'https://registry.npmjs.org/', './bootstrap' ]
+28 verbose url resolved https://registry.npmjs.org/bootstrap
+29 info trying registry request attempt 1 at 08:42:31
+30 http GET https://registry.npmjs.org/bootstrap
+31 info retry fetch attempt 1 at 08:42:31
+32 verbose fetch to= /var/folders/6n/7bky0sgx1bg4fq7rn3m3f_s80000gn/T/npm-2030-TZEGSNbq/1412941351976-0.5486182188615203/tmp.tgz
+33 http GET https://github.com/eadpucv/pixograms.git
+34 http 200 https://github.com/eadpucv/pixograms.git
+35 http 200 https://registry.npmjs.org/bootstrap
+36 silly registry.get cb [ 200,
+36 silly registry.get   { date: 'Fri, 10 Oct 2014 11:42:42 GMT',
+36 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+36 silly registry.get     etag: '"9G45Y15B4GPGYJNNTR8VO8TML"',
+36 silly registry.get     'content-type': 'application/json',
+36 silly registry.get     'cache-control': 'max-age=60',
+36 silly registry.get     'content-length': '13866',
+36 silly registry.get     'accept-ranges': 'bytes',
+36 silly registry.get     via: '1.1 varnish',
+36 silly registry.get     age: '1202',
+36 silly registry.get     'x-served-by': 'cache-iad2128-IAD',
+36 silly registry.get     'x-cache': 'MISS',
+36 silly registry.get     'x-cache-hits': '0',
+36 silly registry.get     'x-timer': 'S1412941362.730879,VS0,VE17',
+36 silly registry.get     vary: 'Accept',
+36 silly registry.get     'keep-alive': 'timeout=10, max=50',
+36 silly registry.get     connection: 'Keep-Alive' } ]
+37 silly addNameRange number 2 { name: 'bootstrap', range: '>=3.0.2-0 <3.1.0-0', hasData: true }
+38 silly addNameRange versions [ 'bootstrap', [ '0.0.1', '0.0.2', '3.1.1', '3.2.0' ] ]
+39 silly lockFile a57b8dae-bootstrap-3-0-2 bootstrap@~3.0.2
+40 silly lockFile a57b8dae-bootstrap-3-0-2 bootstrap@~3.0.2
+41 error notarget No compatible version found: bootstrap@'>=3.0.2-0 <3.1.0-0'
+41 error notarget Valid install targets:
+41 error notarget ["0.0.1","0.0.2","3.1.1","3.2.0"]
+41 error notarget
+41 error notarget This is most likely not a problem with npm itself.
+41 error notarget In most cases you or one of your dependencies are requesting
+41 error notarget a package version that doesn't exist.
+42 error System Darwin 13.4.0
+43 error command "/usr/local/Cellar/node/0.10.22/bin/node" "/usr/local/bin/npm" "install"
+44 error cwd /Users/hspencer/Sites/ead/pix
+45 error node -v v0.10.22
+46 error npm -v 1.3.14
+47 error code ETARGET
+48 verbose exit [ 1, true ]

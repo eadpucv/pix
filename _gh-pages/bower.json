@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.0.2",
-    "pixograms": "https://github.com/eadpucv/pixograms.git"
+    "pixograms": "https://github.com/eadpucv/pixograms.git",
+    "handlebars": "https://github.com/components/handlebars.js.git"
   }
 }

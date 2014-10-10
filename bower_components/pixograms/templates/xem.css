@@ -29,6 +29,8 @@
 	text-decoration: inherit;
 	text-transform: none;
 	text-rendering: optimizeLegibility;
+	font-variant-ligatures: common-ligatures;
+	-webkit-font-variant-ligatures: common-ligatures;
 	-webkit-font-smoothing:antialiased;
 	-moz-osx-font-smoothing:grayscale;
 }

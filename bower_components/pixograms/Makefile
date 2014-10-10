@@ -21,7 +21,7 @@ css:
 	
 dist:
 	make font
-	make zip-icons
-	make zip-webfont
 	mv pix.html index.html
 	make css
+	make zip-icons
+	make zip-webfont
