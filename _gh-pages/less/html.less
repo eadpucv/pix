@@ -47,11 +47,11 @@ p.lead{font-weight: 300}
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: 800;
-	padding: 2px 11px 3px;
+	padding: 3px 11px 4px;
 
 	&:hover{
-		background-color: fade(@brand-info, 8);
-		box-shadow: inset 0 0 1px @brand-primary;
+		background-color: @white;
+		box-shadow: inset 0 0 0 2px @brand-primary;
 		color: @brand-primary;
 	}
 }
@@ -67,6 +67,10 @@ div[lang='en'],
 td[lang='en']{
 	h1,h2,h3,h4,h5,h6{color: @brand-primary !important}
 	p, li{color: darken(@brand-info, 25) !important}
+	i{
+		color: @black;
+		border-color: @brand-info;
+	}
 }
 div[lang='es'],
 td[lang='es']{

@@ -1,12 +1,21 @@
 {
-  "name": "pixograms",
+  "name": "PiXograms",
+  "version": "0.2.5",
+  "main": "css/pix-webfonts.css",
+  "ignore": [
+    "Makefile",
+    "/src",
+    "/downloads",
+    "/node_modules",
+    "/sprites",
+    "/style"
+  ],
   "homepage": "https://github.com/eadpucv/pixograms",
-  "version": "0.2.2",
-  "_release": "0.2.2",
+  "_release": "0.2.5",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.2",
-    "commit": "d36371b50ddb7b426da76cfc0632d2bbb0745b0f"
+    "tag": "v0.2.5",
+    "commit": "49bdbb7c61e42c15bdf6215ff8e50ea0f8c12cb7"
   },
   "_source": "https://github.com/eadpucv/pixograms.git",
   "_target": "*",

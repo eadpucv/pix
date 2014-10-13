@@ -4,8 +4,9 @@ title: Icons
 active: icons
 ---
 
-<h3><span>Font Name:</span> PiX <small>(Version {{ site.pixver }} — Glyphs:&nbsp;128)</small></h3>
+<h3><span>Font Name:</span> PiXograms <small><a href="http://eadpucv.github.io/pixograms">Check the original repository</a></small></h3>
 <p>This font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. <a href='{{ site.baseurl}}/fonts/PiX.html'>Here</a> is the complete list automatically generated along with the font.</p>
+
 
 <h2>Meta</h2>
 <p>Score headers and meta icons.</p>
@@ -15,11 +16,85 @@ active: icons
 {% include col-pix.html name='person' %}
 {% include col-pix.html name='dialogue' %}
 {% include col-pix.html name='system' %}
+{% include col-pix.html name='empty' %}
 </div>
 
+<h3>Generic</h3>
+<p>Multipurpose</p>
+<div class='row'>
+{% include col-pix.html name='up' %}
+{% include col-pix.html name='down' %}
+{% include col-pix.html name='left' %}
+{% include col-pix.html name='right' %}
+</div>
+
+<h3>Devices</h3>
+<p>Devices serve to specify what kind of interaction is involved. It's the key to the score:</p>
+<div class='row'>
+{% include col-pix.html name='mobile' %}
+{% include col-pix.html name='tablet' %}
+{% include col-pix.html name='notebook' %}
+{% include col-pix.html name='desktop' %}
+{% include col-pix.html name='tv' %}
+{% include col-pix.html name='kiosk' %}
+{% include col-pix.html name='game' %}
+</div>
 <hr>
 
-<h2>Common Actions</h2>
+<div class='row'>
+	<div class='col-md-7' lang='en'>
+		<h1><i class='pix pix-5x pix-border pull-left'>person</i> The person layer</h1>
+		<p>This layer depicts the persons's intent and goals through the development of his/her mental model of the task at hand. It also shows the (expected) emotions involved in the overall experience, as well as high-level actions.</p>
+	</div>
+	<div class='col-md-5' lang='es'>
+		<h1>La capa de la persona</h1>
+		<p>Esta capa muestra los objetivos de la persona mediante el desarrollo de su modelo mental de la tarea en cuestión. También muestra las emociones (esperadas) involucradas en la experiencia global.</p>
+	</div>
+</div>
+
+<h2>Emotions</h2>
+<div class='row'>
+{% include col-pix.html name='furious' %}
+{% include col-pix.html name='sad' %}
+{% include col-pix.html name='face' %}
+{% include col-pix.html name='intrigued' %}
+{% include col-pix.html name='surprised' %}
+{% include col-pix.html name='smiling' %}
+{% include col-pix.html name='happy' %}
+</div>
+
+<h2>Intent</h2>
+<div class='row'>
+{% include col-pix.html name='think' %}
+{% include col-pix.html name='say' %}
+{% include col-pix.html name='hand' %}
+{% include col-pix.html name='hand1' %}
+</div>
+
+<div class='row'>
+	<div class='col-md-7' lang='en'>
+		<h1><i class='pix pix-5x pix-border pull-left'>dialogue</i> The dialogue layer</h1>
+		<p>This is the interface dialogue layer that represents the concrete actions happening on the interface: gestures, messages, actions; all direct manipulation of elements and constructs happening onstage.</p>
+	</div>
+	<div class='col-md-5' lang='es'>
+		<h1>La capa del diálogo</h1>
+		<p>Esta es la capa del diálogo que representa las acciones concretas sucediendo en la interfaz: gestos, mensajes, acciones; toda manipulación directa de elementos y constructos sucediendo en el punto de contacto.</p>
+	</div>
+</div>
+
+<div class='row'>
+{% include col-pix.html name='send' %}
+{% include col-pix.html name='share' %}
+{% include col-pix.html name='speak' %}
+{% include col-pix.html name='comment' %}
+{% include col-pix.html name='attach' %}
+{% include col-pix.html name='config' %}
+{% include col-pix.html name='buy' %}
+{% include col-pix.html name='pay' %}
+{% include col-pix.html name='call' %}
+{% include col-pix.html name='hangup' %}
+</div>
+
 <div class='row'>
 {% include col-pix.html name='add' %}
 {% include col-pix.html name='remove' %}
@@ -32,36 +107,11 @@ active: icons
 </div>
 
 <div class='row'>
-{% include col-pix.html name='send' %}
-{% include col-pix.html name='share' %}
-{% include col-pix.html name='speak' %}
-{% include col-pix.html name='comment' %}
-{% include col-pix.html name='attach' %}
-</div>
-
-<div class='row'>
 {% include col-pix.html name='edit' %}
 {% include col-pix.html name='save' %}
 {% include col-pix.html name='copy' %}
 {% include col-pix.html name='paste' %}
 {% include col-pix.html name='delete' %}
-{% include col-pix.html name='import' %}
-{% include col-pix.html name='export' %}
-{% include col-pix.html name='download' %}
-{% include col-pix.html name='upload' %}
-</div>
-
-<div class='row'>
-{% include col-pix.html name='config' %}
-{% include col-pix.html name='film' %}
-
-{% include col-pix.html name='buy' %}
-{% include col-pix.html name='pay' %}
-
-{% include col-pix.html name='call' %}
-{% include col-pix.html name='hangup' %}
-{% include col-pix.html name='move' %}
-{% include col-pix.html name='resize' %}
 </div>
 
 <div class='row'>
@@ -94,6 +144,8 @@ active: icons
 </div>
 
 <div class='row'>
+{% include col-pix.html name='camera' %}
+{% include col-pix.html name='film' %}
 {% include col-pix.html name='clock' %}
 {% include col-pix.html name='date' %}
 {% include col-pix.html name='tag' %}
@@ -106,7 +158,7 @@ active: icons
 {% include col-pix.html name='deviceorient' %}
 </div>
 
-<hr>
+<hr class='divider'>
 
 <h2>Interface Elements</h2>
 <div class='row'>
@@ -119,32 +171,21 @@ active: icons
 {% include col-pix.html name='radioselect' %}
 {% include col-pix.html name='range' %}
 {% include col-pix.html name='switch' %}
+{% include col-pix.html name='move' %}
+{% include col-pix.html name='resize' %}
 </div>
-
-<h2>Human Expressions</h2>
-<div class='row'>
-{% include col-pix.html name='face' %}
-{% include col-pix.html name='faceintrigued' %}
-{% include col-pix.html name='facelaughing' %}
-{% include col-pix.html name='facesad' %}
-{% include col-pix.html name='facesmiling' %}
-{% include col-pix.html name='facesurprised' %}
-{% include col-pix.html name='faceupset' %}
-</div>
-
-<hr>
 
 <h2>User Input</h2>
 <div class='row'>
 {% include col-pix.html name='click' %}
 {% include col-pix.html name='doubleclick' %}
-{% include col-pix.html name='clickdrag' %}
-{% include col-pix.html name='dragndrop' %}
+{% include col-pix.html name='drag' %}
+{% include col-pix.html name='drop' %}
 </div>
 
 <h3>Playback Controls</h3>
 <div class='row'>
-{% include col-pix.html name='previous' %}
+{% include col-pix.html name='prev' %}
 {% include col-pix.html name='play' %}
 {% include col-pix.html name='pause' %}
 {% include col-pix.html name='next' %}
@@ -156,7 +197,7 @@ active: icons
 
 <h3>Touch Gestures</h3>
 <div class='row'>
-{% include col-pix.html name='rotate' %}
+
 {% include col-pix.html name='tap' %}
 {% include col-pix.html name='doubletap' %}
 {% include col-pix.html name='tap2' %}
@@ -191,14 +232,26 @@ active: icons
 </div>
 
 <div class='row'>
-{% include col-pix.html name='touchcollapse' %}
-{% include col-pix.html name='touchexpand' %}
+{% include col-pix.html name='collapse' %}
+{% include col-pix.html name='expand' %}
 {% include col-pix.html name='scroll' %}
-{% include col-pix.html name='pinchzoom' %}
+{% include col-pix.html name='zoom' %}
 {% include col-pix.html name='pinch' %}
+{% include col-pix.html name='rotate' %}
 </div>
 
 <hr>
+
+<div class='row'>
+	<div class='col-md-7' lang='en'>
+		<h1><i class='pix pix-5x pix-border pull-left'>system</i> The system layer</h1>
+		<p>This is the system layer which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the person.</p>
+	</div>
+	<div class='col-md-5' lang='es'>
+		<h1>La capa de la persona</h1>
+		<p>Esta es la capa del sistema que muestra lo que ocurre tras bambalinas, aquello que permite que el servicio se desarrolle; todas las acciones de apoyo que son entregadas y presentadas a la persona.</p>
+	</div>
+</div>
 
 <h2>System</h2>
 <div class='row'>
@@ -207,6 +260,12 @@ active: icons
 {% include col-pix.html name='filter' %}
 {% include col-pix.html name='search' %}
 {% include col-pix.html name='process' %}
+{% include col-pix.html name='import' %}
+{% include col-pix.html name='export' %}
+{% include col-pix.html name='upload' %}
+{% include col-pix.html name='download' %}
+{% include col-pix.html name='api' %}
+
 </div>
 
 <h3>System Feedback</h3>
@@ -216,11 +275,12 @@ active: icons
 {% include col-pix.html name='gallery' %}
 {% include col-pix.html name='list' %}
 {% include col-pix.html name='text' %}
+{% include col-pix.html name='progress' %}
 </div>
 <div class='row'>
 {% include col-pix.html name='update' %}
 {% include col-pix.html name='notify' %}
-{% include col-pix.html name='prompt' %}
+{% include col-pix.html name='message' %}
 {% include col-pix.html name='lock' %}
 {% include col-pix.html name='unlock' %}
 </div>

@@ -7,7 +7,7 @@
 @import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700);
 
 
-html{text-rendering:optimizeLegibility}
+html{text-rendering:optimize-legibility}
 
 *{
 	box-sizing: border-box;
@@ -100,6 +100,8 @@ h2{
 		margin: -7px 0 0 0;
 	}
 	&:hover{
+		color: white;
+		text-shadow: 0 0 1px 3px fade(@foreground, 20);
 		background-color: saturate(darken(@color, 10), 20);
 	}
 }
