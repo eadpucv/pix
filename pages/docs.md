@@ -48,208 +48,205 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 		</div>
 	</div>
 </div>
-<div class='row'>
-	<div class='col-md-2'>
-		<h5>Unedited block</h5>
-		<div class='docs-block'>
-			<strong>li</strong>.block<br>
-			<div class='docs-block docs-bk'>
-				<strong>input type='text'</strong>
-			</div>
-		</div>
-	</div>
-	<div class='col-md-2'>
-		<h5>Regular Icon</h5>
-		<div class='docs-block'>
-			<strong>li</strong>.block<br>
-			<div class='docs-block docs-bk'>
-				<strong>div</strong>.pix-group<br>
-				<div class='docs-block'>
-					<strong>i</strong>.pix pix-<em>icon-name</em><br>
-				</div><br>
-				<div class='docs-block'>
-					<strong>p</strong><br>
-				</div>
-			</div>
-		</div>
-	</div>
-		<div class='col-md-2'>
-		<h5>Stacked Icon</h5>
-		<div class='docs-block'>
-			<strong>li</strong>.block<br>
-			<div class='docs-block docs-bk'>
-				<strong>div</strong>.pix-group<br>
-				<div class='docs-block'>
-					.pix-stacked<br>
-					<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-					<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-					<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-				</div>
-				
-				<div class='docs-block'><strong>p</strong></div>
-			</div>
-		</div>
-	</div>
+
+<h2>Partitura</h2>
+
+<div class="pix-score">
+	<!-- the score header -->
+	<ul class="pix-header col-md-1">
+		<li class="block block-user">
+			<div class="pix-group"><i class='pix pix-person'></i><label>person</label></div>
+		</li>
+		<li class="block block-dialogue">
+			<div class="pix-group"><i class='pix pix-dialogue'></i><label>dialogue</label></div>
+		</li>
+		<li class="block block-system">
+			<div class="pix-group"><i class='pix pix-system'></i><label>system</label></div>
+		</li>
+	</ul>
+
+	<!-- the steps -->
+	<ul class="pix-steps">
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"><i class="pix">think</i>the user thinks about something</div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"><i class="pix">scroll</i>the user scroll through the homepage</div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"><i class="pix">empty</i>nothing really happens</div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+		
+		<a href="#split-toggle" class="fly-link top">Split score</a>
+		<li class="step col-md-1">
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+		</li>
+		<a href="#add-note" class="fly-link down">add note</a>
+	</ul>
 </div>
 
-<h4>Score Overview</h4>
-<div class='docs-block'>
-	.pix-score<br>
-	<div class='docs-block docs-bk'>
-		<strong>ul</strong>.pix-header col-sm-1 col-xs-3<br>
-		<div class='docs-block docs-bk'>
-			<strong>li</strong>.block<br>
-			.block-user<br>
-			<div class='docs-block docs-bk'>
-				<strong>div</strong>.pix-group<br>
-				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-user</div><br>
-				<div class='docs-block docs-bk'><strong>label</strong></div>
-			</div>
-		</div><br>
-		<div class='docs-block docs-bk'>
-			<strong>li</strong>.block<br>
-			.block-dialogue<br>
-			<div class='docs-block docs-bk'>
-				<strong>div</strong>.pix-group<br>
-				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-dialogue</div><br>
-				<div class='docs-block docs-bk'><strong>label</strong></div>
-			</div>
-		</div><br>
-		<div class='docs-block docs-bk'>
-			<strong>li</strong>.block<br>
-			.block-system<br>
-			<div class='docs-block docs-bk'>
-				<strong>div</strong>.pix-group<br>
-				<div class='docs-block docs-bk'><strong>i</strong>.pix pix-system</div><br>
-				<div class='docs-block docs-bk'><strong>label</strong></div>
-			</div>
-		</div>
-	</div>
-	<div class='docs-block'>
-		<strong>ul</strong>.pix-steps<br>
-		<div class='docs-block'>
-			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
-			<div class='docs-block'>
-				<strong>ul</strong>.pix-blocks<br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-user<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-dialogue<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-system<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					.pix-notes<br>
-					<div class='docs-block'><strong>p</strong>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class='docs-block'>
-			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
-			<div class='docs-block'>
-				<strong>ul</strong>.pix-blocks<br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-user<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-dialogue<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-system<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					.pix-notes<br>
-					<div class='docs-block'><strong>p</strong>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class='docs-block'>
-			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
-			<div class='docs-block'>
-				<strong>ul</strong>.pix-blocks<br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-user<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-dialogue<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					<strong>li</strong>.block block-system<br>
-					<div class='docs-block'>
-						<strong>div</strong>.pix-group<br>
-						<div class='docs-block'><strong>i</strong>.pix pix-<em>icon-name</em></div><br>
-						<div class='docs-block'><strong>p</strong></div>
-					</div>
-				</div><br>
-				<div class='docs-block'>
-					.pix-notes<br>
-					<div class='docs-block'><strong>p</strong>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class='docs-block'>
-			<strong>li</strong>.pix-step col-sm-1 col-xs-3<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<em>etc...</em>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-		</div>
-	</div>
-</div>
-
+<hr>
 <h4>Para el selector y el autocomplete</h4>
 <ul class="select nav nav-stacked pix-ul">
 	<li><a href="#"><i class="pix pix-fw pix-click"></i> click</a></li>
@@ -257,3 +254,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	<li><a href="#"><i class="pix pix-fw pix-cloud"></i> cloud</a></li>
 	<li><a href="#"><i class="pix pix-fw pix-collapse"></i> collapse</a></li>
 </ul>
+
+<script type="text/javascript" src="{{ site.baseurl }}/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/js/handlebars.min.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/js/app.js"></script>
