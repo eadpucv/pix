@@ -9,6 +9,45 @@ active: docs
 <h3>HTML PiX Structure</h3>
 <h4>Basic Element</h4>
 Each step of the process comprises 3 <code>block</code> elements inside a <code>li.pix-step</code> that belongs to a <code>ul.pix-steps</code>.
+
+
+<div class="row">
+	<div class="col-md-3">
+		<h5>Bloque sin editar</h5>
+		<li class='block'>
+			<textarea placeholder='type "pix" or ...'></textarea>
+		</li>
+	</div>
+	<div class="col-md-3">
+		<h5>Bloque sin editar</h5>
+		<div class='docs-block'>
+			<strong>li</strong>.block<br>
+			<div class='docs-block docs-bk'>
+				<strong>textarea</strong>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<h5>Bloque editado</h5>
+		<li class='block'>
+			<div class="pix-group">
+				<i class="pix pix-click"></i>El usuario hace click sobre el botón aceptar
+			</div>
+		</li>
+	</div>
+	<div class="col-md-3">
+		<h5>Bloque editado</h5>
+		<div class="docs-block">
+			<strong>li</strong>.block
+			<div class="docs-block">
+				<strong>div</strong>.pix-group<br>
+				<div class="docs-block">
+					<strong>i</strong>.pix 
+				</div> + text
+			</div>
+		</div>
+	</div>
+</div>
 <div class='row'>
 	<div class='col-md-2'>
 		<h5>Unedited block</h5>
@@ -211,3 +250,10 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	</div>
 </div>
 
+<h4>Para el selector y el autocomplete</h4>
+<ul class="select nav nav-stacked pix-ul">
+	<li><a href="#"><i class="pix pix-fw pix-click"></i> click</a></li>
+	<li><a href="#"><i class="pix pix-fw pix-clock"></i> clock</a></li>
+	<li><a href="#"><i class="pix pix-fw pix-cloud"></i> cloud</a></li>
+	<li><a href="#"><i class="pix pix-fw pix-collapse"></i> collapse</a></li>
+</ul>
