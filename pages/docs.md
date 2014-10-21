@@ -67,9 +67,8 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 
 	<!-- the steps -->
 	<ul class="pix-steps">
-		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
 			<ul>
 				<li class="block block-user">
 					<div class="pix-group"><i class="pix">think</i>the user thinks about something</div>
@@ -81,27 +80,139 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<div class="pix-group"><i class="pix">empty</i>nothing really happens</div>
 				</li>
 			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
 		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
 		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
+		<li class="pix-step col-md-1">
+			{% include tools-top.html %}
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"><i class="pix">say</i>the user says about something</div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"><i class="pix">collapse</i>and closes the app</div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+			{% include tools-bottom.html %}
+		</li>
+		
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
+			<ul class='split'>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
+		</li>
+		
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
+		</li>
+		
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
 			<ul>
 				<li class="block block-user">
 					<textarea rows='10'></textarea>
 				</li>
 				<li class="block block-dialogue">
-					<div class="pix-group"></div>
+					<textarea rows='10'></textarea>
 				</li>
 				<li class="block block-system">
-					<div class="pix-group"></div>
+					<textarea rows='10'></textarea>
 				</li>
 			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
 		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
 		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
+			<ul>
+				<li class="block block-user">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-dialogue">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-system">
+					<textarea rows='10'></textarea>
+				</li>
+			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
+		</li>
+		
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
+			<ul>
+				<li class="block block-user">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-dialogue">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-system">
+					<textarea rows='10'></textarea>
+				</li>
+			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
+		</li>
+		
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
+			<ul>
+				<li class="block block-user">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-dialogue">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-system">
+					<textarea rows='10'></textarea>
+				</li>
+			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
+		</li>
+		
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
+			<ul>
+				<li class="block block-user">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-dialogue">
+					<textarea rows='10'></textarea>
+				</li>
+				<li class="block block-system">
+					<textarea rows='10'></textarea>
+				</li>
+			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
+		</li>
+		
+		<li class="pix-step col-md-1">
+			<a href="#split-toggle" class="fly-link top">Split score</a>
 			<ul>
 				<li class="block block-user">
 					<div class="pix-group"></div>
@@ -113,136 +224,10 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<div class="pix-group"></div>
 				</li>
 			</ul>
+			<a href="#add-note" class="fly-link down">add note</a>
 		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
 		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
 		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
-		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
-		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
-		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
-		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
-		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
-		
-		<a href="#split-toggle" class="fly-link top">Split score</a>
-		<li class="step col-md-1">
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-		</li>
-		<a href="#add-note" class="fly-link down">add note</a>
 	</ul>
 </div>
 

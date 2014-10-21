@@ -46,36 +46,6 @@
 	}
 }
 
-.fly-link {
-	
-	text-transform: uppercase;
-	position: absolute;
-	display: none;
-	padding: 10px 0;
-	font-size: .9em;
-	&.top {
-		top: -16px;
-		border-radius: @radius @radius 0 0;
-	}
-	&.bottom {
-		bottom: -16px;
-		border-radius: 0 0 @radius @radius;
-	}
-	&:hover{
-		background-color: @brand-primary !important;
-	}
-}
-
-.pix-step:hover .fly-link {
-	display: inline-block;
-	text-decoration: none;
-	background-color: lighten(@black, 50);
-	padding: 2px 6px;
-	color: @white;
-	font-size: 10px;
-	font-weight: bold;
-}
-
 .note .input-note {
 	margin: 10px 0 0 10px;
 	display: none;
@@ -83,4 +53,62 @@
 	height: 80px;
 	border: none;
 	line-height: 95%;
+}
+
+
+// drop-down and select class. Use in combination with: <ul class="select nav nav-stacked pix-ul">
+ul.select{
+	position: relative;
+	background-color: @white;
+	border-radius: @radius;
+	box-shadow: 3px 3px 0 fade(@black, 10);
+	border: @pix-border-width/2 solid darken(@border-color, 10);
+	li{
+		a{
+			font-size: 14px;
+			color: @black;
+			padding: 5px;
+			.pix{
+				font-size: 32px;
+			}
+			&:hover{
+				background-color: fade(@brand-info, 20);
+			}
+		}
+	}
+}
+
+
+@tools-offset: 18px;
+
+
+.pix-step:hover .fly-link {
+	display: inline-block;
+	text-decoration: none;
+
+}
+
+.fly-link {
+	position: absolute;
+	display: none;
+	background-color: transparent;
+	&.top {
+		top: -@tools-offset;
+	}
+	&.bottom {
+		bottom: -@tools-offset;
+	}
+	.btn-tools{
+		font-size: 16px;
+		padding: 0 !important;
+		line-height: 100%;
+		.size(22px, 22px);
+		.img-circle;
+		color: @white;
+		text-shadow: 0 0 2px @white;
+		background-color: saturate(@brand-primary, 25);
+		&:hover{
+			background-color: @black;
+		}
+	}
 }

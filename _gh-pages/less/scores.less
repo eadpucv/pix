@@ -3,10 +3,11 @@
 
 /******************************************** Variables */
 
-@pix-border-width: 4px;
-@pix-border-color: #ccd4d1;
-@pix-block-height: 120px;
-@pix-size: 36px;
+@pix-border-width: 				4px;
+@pix-border-color:				#ccd4d1;
+@edit-color:				 	#efefd7;
+@pix-block-height:				120px;
+@pix-size:						3.67em;
 
 /****************************************** Score Title */
 .input-style{
@@ -35,6 +36,7 @@ h1.score-header{
 		.input-style;
 	}
 }
+
 .score-description{
 	display: block;
 	width: 100%;
@@ -65,33 +67,40 @@ h1.score-header{
 	ul{
 		&.pix-header{
 			background-color: @border-color;
-			// border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
+			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
 			li{
 				&.block-user{border-top: none}
 				&.block-system{border-bottom: none}
-				width: 100%;
-				.tcenter;
-				font-weight: 600;
-				line-height: 1em;
-				color: fade(@black, 40%);
-				label{font-size: 1.2em}
+				
+
 				.pix-group{
-					.pix{margin: .2em 0}
+					width: 100%;
+					.tcenter;
+					font-weight: 600;
+					line-height: 1em;
+					color: fade(@black, 40%);
+					.pix{
+						font-size: @pix-size * 1.1;
+						margin: .2em 0;
+					}
+					label{
+						font-size: 1.2em;
+					}
 				}
 			}
 		}
 
 		&.pix-steps{
 			li.pix-step{
-				&.split{
+				ul.split{
 					border-left: 1px solid darken(@border-color, 15);
 				}
 				&:last-child{
-					// border-radius: @pix-border-width * 2;
-					border-right: @pix-border-width solid @border-color;
+					border-radius: @pix-border-width * 2;
+					border-right: @pix-border-width solid @border-color !important;
 				}
 				&:hover{
-					background-color: lighten(@edit-color, 10);
+					background-color: fade(@edit-color, 15);
 				}
 			}
 		}
@@ -112,7 +121,7 @@ h1.score-header{
 	cursor: pointer;
 
 	.pix{
-		font-size: 3em;
+		font-size: @pix-size;
 		width: 100%;
 	}
 
@@ -121,12 +130,14 @@ h1.score-header{
 	}
 }
 
-.block{
 
+
+li.block{
+	list-style-type: none;
 	text-align: center;
 	vertical-align: middle;
 	height: @pix-block-height;
-	padding: 0 12px;
+	padding: 0 5px;
 	margin: 0;
 	width: 100%;
 
@@ -137,9 +148,11 @@ h1.score-header{
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
 	&.block-system{border-bottom: @pix-border-width solid @border-color;}
 
+	
+	.pix-group,
 	textarea{
-		font-size: 12px;
-		line-height: 80%;
+		font-size: 11px;
+		line-height: 100%;
 		padding: 5px;
 		border: none;
 		width: 100% !important;
@@ -151,28 +164,20 @@ h1.score-header{
 			box-shadow: 0 0 2px @edit-color inset;
 			background-color: fade(@edit-color, 30);
 		}
+		.pix{
+			display: block;
+			text-align: center;
+			font-size: @pix-size;
+			line-height: 100%;
+		}
 	}
 
 }
 
 textarea.pix-test{
 	font-family: 'PiX';
-	font-size: 3em;
+	font-size: @pix-size;
 }
 
-/*----------------------------------------- new score DOM */
 
-li.block{
-	list-style-type: none;
-	padding: 5px;	
-	.pix-group{
-		padding: 5px;
-		line-height: 80%;
-		font-size: 12px;
-		.pix{
-			display: block;
-			text-align: center;
-			font-size: 48px;
-		}
-	}
-}
+
