@@ -233,8 +233,9 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	</ul>
 </div>
 
-<hr>
+
 <h4>Para el selector y el autocomplete</h4>
+<p>Hay que modificar el display y el posicionamiento en el CSS. Buscar '.select' en 'app.less'</p>
 <ul class="select nav nav-stacked pix-ul">
 	<li><a href="#"><i class="pix pix-fw pix-click"></i> click</a></li>
 	<li><a href="#"><i class="pix pix-fw pix-clock"></i> clock</a></li>
