@@ -63,13 +63,14 @@ ul.select{
 	border-radius: @radius;
 	box-shadow: 3px 3px 0 fade(@black, 10);
 	border: @pix-border-width/2 solid darken(@border-color, 10);
+	margin: 0 10px 0 0;
 	li{
 		a{
 			font-size: 14px;
 			color: @black;
 			padding: 5px;
 			.pix{
-				font-size: 32px;
+				font-size: 36px; // @pix-size;
 			}
 			&:hover{
 				background-color: fade(@brand-info, 20);

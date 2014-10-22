@@ -7,6 +7,7 @@
 @pix-border-color:				#ccd4d1;
 @edit-color:				 	#efefd7;
 @pix-block-height:				120px;
+@pix-block-width:				8.3%;
 @pix-size:						3.67em;
 
 /****************************************** Score Title */
@@ -69,6 +70,8 @@ h1.score-header{
 			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
 			border-top: @pix-border-width solid @border-color;
 			border-bottom: @pix-border-width solid @pix-border-color;
+			width: @pix-block-width;
+			display: inline-block;
 			li{
 				&.block-user{border-top: none}
 				&.block-system{border-bottom: none}
@@ -88,8 +91,12 @@ h1.score-header{
 		}
 
 		&.pix-steps{
+			display: inline;
 			li.pix-step{
 				position: relative;
+				width: @pix-block-width;
+				display: inline-block;
+				margin-left: -3px; // strange bug
 				ul.split{
 					border-left: 1px solid darken(@border-color, 15);
 				}
@@ -107,7 +114,7 @@ h1.score-header{
 	.note{
 		display: inline-block;
 		position: absolute;
-		padding: 4px;	
+		padding: 8px 4px;	
 		font-size: 11px;
 		font-family: @font-family-serif;
 		color: fade(@black, 70%);
@@ -127,7 +134,7 @@ li.block{
 	text-align: center;
 	vertical-align: middle;
 	height: @pix-block-height;
-	padding: 0 5px;
+	padding: 0;
 	margin: 0;
 	width: 100%;
 
@@ -156,7 +163,7 @@ li.block{
 		&:focus,
 		&:hover{
 			border: none;
-			box-shadow: 0 0 2px @edit-color inset;
+			box-shadow: 0 0 0 2px @edit-color inset;
 			background-color: fade(@edit-color, 30);
 		}
 		.pix{
@@ -168,18 +175,12 @@ li.block{
 	}
 }
 
+// only for editable blocks inside the score
 ul.pix-steps li.pix-step ul .block .pix-group:hover{
 	cursor: pointer;
-	:before{
-		position: absolute;
-		float: right;
-		font-family: 'pix';
-		content: 'edit';
-		font-size: 22px;
-		top: -2px;
-		right: 12px;
-		color: fade(@black, 40%)
-	}
+	background-image: url(../img/edit.png);
+	background-repeat: no-repeat;
+	background-position: top right;
 }
 
 

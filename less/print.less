@@ -5,19 +5,18 @@
 
 @media print {
 
-    @page std {
-        size:11.69in 8.27in ; 
+    @page {
+        size: 11.69in 8.27in; 
         margin:.5in .5in .5in .5in; 
-        mso-header-margin:.5in; 
-        mso-footer-margin:.5in; 
-        mso-paper-source:0;
+        mso-header-margin: .5in; 
+        mso-footer-margin: .5in; 
+        mso-paper-source: 0;
     }
 
     * {
         text-shadow: none !important;
         font-size: 14px;
-        color: #000 !important; // Black prints faster: h5bp.com/s
-        // background: transparent !important;
+        color: #000 !important;
         box-shadow: none !important;
     }
 
@@ -27,7 +26,19 @@
     }
 
     div.pix-score{
-        @page: std;
+        page-break-inside: avoid;
+        display: block;
+        ul.pix-steps{
+            li.pix-step{
+                display: inline-block;
+            }
+        }
+
+        li.block,
+        .pix-group{
+            display: inline-block;
+        }
+    
     }
 
     pre,

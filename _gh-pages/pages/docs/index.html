@@ -115,7 +115,7 @@
 
 <div class="pix-score">
     <!-- the score header -->
-    <ul class="pix-header col-md-1">
+    <ul class="pix-header">
         <li class="block block-user">
             <div class="pix-group"><i class='pix pix-person'></i><label>person</label></div>
         </li>
@@ -129,7 +129,7 @@
 
     <!-- the steps -->
     <ul class="pix-steps">
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -151,7 +151,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -173,7 +173,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -197,7 +197,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -219,7 +219,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -241,7 +241,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -263,7 +263,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -285,7 +285,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -307,7 +307,7 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -329,7 +329,29 @@
 </div>
         </li>
         
-        <li class="pix-step col-md-1">
+        <li class="pix-step">
+            <div class="fly-link top">
+    <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
+    <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
+    <a href="#add" class="btn btn-tools tool-add" title="add step"><img src='/img/tool_add.svg'></a>
+</div>
+            <ul>
+                <li class="block block-user">
+                    <div class="pix-group"></div>
+                </li>
+                <li class="block block-dialogue">
+                    <div class="pix-group"></div>
+                </li>
+                <li class="block block-system">
+                    <div class="pix-group"></div>
+                </li>
+            </ul>
+            <div class="fly-link bottom">
+    <a href="#note" class="btn btn-xs btn-tools tool-note" title="add note"><img src='/img/tool_nota.svg'></a>
+</div>
+        </li>
+
+        <li class="pix-step">
             <div class="fly-link top">
     <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='/img/tool_split.svg'></a>
     <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='/img/tool_remove.svg'></a>
@@ -361,7 +383,7 @@
 <h4>Dropdown</h4>
 
 
-<p>Hay que modificar el display y el posicionamiento en el CSS. Buscar '.select' en 'app.less'</p>
+<p>Hay que modificar el <code>display</code> y <code>position</code> en el CSS. Buscar <col>.select</col> en <em>'app.less'</em></p>
 
 
 
@@ -376,17 +398,9 @@
             <li><a href="#"><i class="pix pix-fw pix-collapse"></i> collapse</a></li>
         </ul>
     </div>
+
     <div class="col-md-4">
-        <div class="docs-block">
-            <strong>ul</strong>select nav nav-stacked pix-ul
-            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        Ejemplo para el selector de "tipo de partitura"
+        Ejemplo para el selector de "tipo de partitura" en pix-header
         <ul class="select nav nav-stacked pix-ul">
             <li><a href="#"><i class="pix pix-fw pix-dialogue"></i> dialogue</a></li>
             <li><a href="#"><i class="pix pix-fw pix-mobile"></i> mobile</a></li>
@@ -397,6 +411,16 @@
             <li><a href="#"><i class="pix pix-fw pix-game"></i> game</a></li>
             <li><a href="#"><i class="pix pix-fw pix-body"></i> body</a></li>
         </ul>
+    </div>
+
+    <div class="col-md-4">
+        <div class="docs-block">
+            <strong>ul</strong>.select nav nav-stacked pix-ul
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+        </div>
     </div>
 </div>
 

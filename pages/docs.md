@@ -53,7 +53,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 
 <div class="pix-score">
 	<!-- the score header -->
-	<ul class="pix-header col-md-1">
+	<ul class="pix-header">
 		<li class="block block-user">
 			<div class="pix-group"><i class='pix pix-person'></i><label>person</label></div>
 		</li>
@@ -67,7 +67,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 
 	<!-- the steps -->
 	<ul class="pix-steps">
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -83,7 +83,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -99,7 +99,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<div class='note top'>Wireframe 01</div>
 			<ul class='split'>
@@ -117,7 +117,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -133,7 +133,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -149,7 +149,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -165,7 +165,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -181,7 +181,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -197,7 +197,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -213,7 +213,23 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			{% include tools-bottom.html %}
 		</li>
 		
-		<li class="pix-step col-md-1">
+		<li class="pix-step">
+			{% include tools-top.html %}
+			<ul>
+				<li class="block block-user">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-dialogue">
+					<div class="pix-group"></div>
+				</li>
+				<li class="block block-system">
+					<div class="pix-group"></div>
+				</li>
+			</ul>
+			{% include tools-bottom.html %}
+		</li>
+
+		<li class="pix-step">
 			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
@@ -235,7 +251,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 
 
 <h4>Dropdown</h4>
-<p>Hay que modificar el display y el posicionamiento en el CSS. Buscar '.select' en 'app.less'</p>
+<p>Hay que modificar el <code>display</code> y <code>position</code> en el CSS. Buscar <col>.select</col> en <em>'app.less'</em></p>
 
 <div class="row">
 	<div class="col-md-4">
@@ -247,17 +263,9 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			<li><a href="#"><i class="pix pix-fw pix-collapse"></i> collapse</a></li>
 		</ul>
 	</div>
+
 	<div class="col-md-4">
-		<div class="docs-block">
-			<strong>ul</strong>select nav nav-stacked pix-ul
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		Ejemplo para el selector de "tipo de partitura"
+		Ejemplo para el selector de "tipo de partitura" en pix-header
 		<ul class="select nav nav-stacked pix-ul">
 			<li><a href="#"><i class="pix pix-fw pix-dialogue"></i> dialogue</a></li>
 			<li><a href="#"><i class="pix pix-fw pix-mobile"></i> mobile</a></li>
@@ -268,6 +276,16 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 			<li><a href="#"><i class="pix pix-fw pix-game"></i> game</a></li>
 			<li><a href="#"><i class="pix pix-fw pix-body"></i> body</a></li>
 		</ul>
+	</div>
+
+	<div class="col-md-4">
+		<div class="docs-block">
+			<strong>ul</strong>.select nav nav-stacked pix-ul
+			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+		</div>
 	</div>
 </div>
 
