@@ -79,13 +79,10 @@ ul.select{
 }
 
 
-@tools-offset: 18px;
-
+@tools-offset: 10px;
 
 .pix-step:hover .fly-link {
 	display: inline-block;
-	text-decoration: none;
-
 }
 
 .fly-link {
@@ -93,22 +90,31 @@ ul.select{
 	display: none;
 	background-color: transparent;
 	&.top {
-		top: -@tools-offset;
+		top: -@tools-offset - 2px;
 	}
 	&.bottom {
 		bottom: -@tools-offset;
 	}
 	.btn-tools{
-		font-size: 16px;
 		padding: 0 !important;
 		line-height: 100%;
-		.size(22px, 22px);
+		.size(16px, 16px);
 		.img-circle;
 		color: @white;
 		text-shadow: 0 0 2px @white;
-		background-color: saturate(@brand-primary, 25);
+		background-color: @gray-light;
+		box-shadow: 0 0 0 3px fade(@white, 90);
+		margin: 0 1px;
+		img{
+			position: relative;
+			.size(12px, 12px);
+			top: -3px;
+		}
 		&:hover{
-			background-color: @black;
+			&.tool-split{background-color: @blue}
+			&.tool-remove{background-color: @red}
+			&.tool-add{background-color: @green}
+			&.tool-note{background-color: @blue}
 		}
 	}
 }

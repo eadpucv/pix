@@ -47,9 +47,8 @@ h1.score-header{
 /******************************************** The Score */
 
 .pix-score{
-	margin: 10px -@pix-border-width 32px -@pix-border-width;
-	margin-bottom: 32px;
 	.cf;
+	margin: 10px -@pix-border-width 32px -@pix-border-width;
 	ul li{
 		display: inline-block;
 		list-style-type: none;
@@ -60,7 +59,7 @@ h1.score-header{
 		padding: 0;
 		li{
 			list-style-type: none;
-			display: inline-block;
+			display: table;
 		}
 	}
 
@@ -68,20 +67,18 @@ h1.score-header{
 		&.pix-header{
 			background-color: @border-color;
 			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
+			border-top: @pix-border-width solid @border-color;
+			border-bottom: @pix-border-width solid @pix-border-color;
 			li{
 				&.block-user{border-top: none}
 				&.block-system{border-bottom: none}
 				
-
 				.pix-group{
-					width: 100%;
-					.tcenter;
 					font-weight: 600;
-					line-height: 1em;
+					height: @pix-block-height;
 					color: fade(@black, 40%);
 					.pix{
 						font-size: @pix-size * 1.1;
-						margin: .2em 0;
 					}
 					label{
 						font-size: 1.2em;
@@ -115,24 +112,8 @@ h1.score-header{
 	}
 }
 
-.pix-group{
-	height: @pix-block-height;
-	text-align: center;
-	cursor: pointer;
-
-	.pix{
-		font-size: @pix-size;
-		width: 100%;
-	}
-
-	strong{
-		font-weight: 900;
-	}
-}
-
-
-
 li.block{
+	display: table;
 	list-style-type: none;
 	text-align: center;
 	vertical-align: middle;
@@ -151,6 +132,11 @@ li.block{
 	
 	.pix-group,
 	textarea{
+		.cf;
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+		height: @pix-block-height;
 		font-size: 11px;
 		line-height: 100%;
 		padding: 5px;

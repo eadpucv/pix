@@ -68,7 +68,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 	<!-- the steps -->
 	<ul class="pix-steps">
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<div class="pix-group"><i class="pix">think</i>the user thinks about something</div>
@@ -80,7 +80,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<div class="pix-group"><i class="pix">empty</i>nothing really happens</div>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
@@ -100,10 +100,10 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul class='split'>
 				<li class="block block-user">
-					<div class="pix-group"></div>
+					<div class="pix-group"> ... </div>
 				</li>
 				<li class="block block-dialogue">
 					<div class="pix-group"></div>
@@ -112,11 +112,11 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<div class="pix-group"></div>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<div class="pix-group"></div>
@@ -128,11 +128,11 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<div class="pix-group"></div>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<textarea rows='10'></textarea>
@@ -144,11 +144,11 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<textarea rows='10'></textarea>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<textarea rows='10'></textarea>
@@ -160,11 +160,11 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<textarea rows='10'></textarea>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<textarea rows='10'></textarea>
@@ -176,11 +176,11 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<textarea rows='10'></textarea>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<textarea rows='10'></textarea>
@@ -192,11 +192,11 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<textarea rows='10'></textarea>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<textarea rows='10'></textarea>
@@ -208,11 +208,11 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<textarea rows='10'></textarea>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		<li class="pix-step col-md-1">
-			<a href="#split-toggle" class="fly-link top">Split score</a>
+			{% include tools-top.html %}
 			<ul>
 				<li class="block block-user">
 					<div class="pix-group"></div>
@@ -224,7 +224,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<div class="pix-group"></div>
 				</li>
 			</ul>
-			<a href="#add-note" class="fly-link down">add note</a>
+			{% include tools-bottom.html %}
 		</li>
 		
 		
