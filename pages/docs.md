@@ -101,6 +101,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 		
 		<li class="pix-step col-md-1">
 			{% include tools-top.html %}
+			<div class='note top'>Wireframe 01</div>
 			<ul class='split'>
 				<li class="block block-user">
 					<div class="pix-group"> ... </div>
@@ -112,6 +113,7 @@ Each step of the process comprises 3 <code>block</code> elements inside a <code>
 					<div class="pix-group"></div>
 				</li>
 			</ul>
+			<div class='note bottom'>En este momento parece oportuno agregar una nota</div>
 			{% include tools-bottom.html %}
 		</li>
 		

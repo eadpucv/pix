@@ -89,6 +89,7 @@ h1.score-header{
 
 		&.pix-steps{
 			li.pix-step{
+				position: relative;
 				ul.split{
 					border-left: 1px solid darken(@border-color, 15);
 				}
@@ -104,15 +105,23 @@ h1.score-header{
 	}
 
 	.note{
-		// padding: 4px;
+		display: inline-block;
+		position: absolute;
+		padding: 4px;	
 		font-size: 11px;
 		font-family: @font-family-serif;
-		color: desaturate(darken(@edit-color, 30), 20);
+		color: fade(@black, 70%);
 		line-height: 100%;
+		&.top{
+			font-weight: bold;
+			bottom: @pix-block-height * 3 + 12px}
+		&.bottom{
+			top: @pix-block-height * 3 + 12px}
 	}
 }
 
 li.block{
+	position: relative;
 	display: table;
 	list-style-type: none;
 	text-align: center;
@@ -158,12 +167,21 @@ li.block{
 		}
 	}
 
+	.pix-group:hover{
+		cursor: pointer;
+		:before{
+			position: absolute;
+			float: right;
+			font-family: 'pix';
+			content: 'edit';
+			font-size: 22px;
+			top: -2px;
+			right: 12px;
+			color: fade(@black, 40%)
+		}
+	}
 }
 
-textarea.pix-test{
-	font-family: 'PiX';
-	font-size: @pix-size;
-}
 
 
 
