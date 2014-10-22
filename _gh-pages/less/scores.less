@@ -166,22 +166,20 @@ li.block{
 			line-height: 100%;
 		}
 	}
-
-	.pix-group:hover{
-		cursor: pointer;
-		:before{
-			position: absolute;
-			float: right;
-			font-family: 'pix';
-			content: 'edit';
-			font-size: 22px;
-			top: -2px;
-			right: 12px;
-			color: fade(@black, 40%)
-		}
-	}
 }
 
-
+ul.pix-steps li.pix-step ul .block .pix-group:hover{
+	cursor: pointer;
+	:before{
+		position: absolute;
+		float: right;
+		font-family: 'pix';
+		content: 'edit';
+		font-size: 22px;
+		top: -2px;
+		right: 12px;
+		color: fade(@black, 40%)
+	}
+}
 
 

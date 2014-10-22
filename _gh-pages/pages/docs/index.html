@@ -182,7 +182,7 @@
             <div class='note top'>Wireframe 01</div>
             <ul class='split'>
                 <li class="block block-user">
-                    <div class="pix-group"> ... </div>
+                    <div class="pix-group">Y así se comporta la celda cuando hay sólo texto, que es muy posible que ocurra.</div>
                 </li>
                 <li class="block block-dialogue">
                     <div class="pix-group"></div>
@@ -358,18 +358,47 @@
 
 
 
-<h4>Para el selector y el autocomplete</h4>
+<h4>Dropdown</h4>
 
 
 <p>Hay que modificar el display y el posicionamiento en el CSS. Buscar '.select' en 'app.less'</p>
 
 
-<ul class="select nav nav-stacked pix-ul">
-    <li><a href="#"><i class="pix pix-fw pix-click"></i> click</a></li>
-    <li><a href="#"><i class="pix pix-fw pix-clock"></i> clock</a></li>
-    <li><a href="#"><i class="pix pix-fw pix-cloud"></i> cloud</a></li>
-    <li><a href="#"><i class="pix pix-fw pix-collapse"></i> collapse</a></li>
-</ul>
+
+
+<div class="row">
+    <div class="col-md-4">
+        Ejemplo de autocomplete
+        <ul class="select nav nav-stacked pix-ul">
+            <li><a href="#"><i class="pix pix-fw pix-click"></i> click</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-clock"></i> clock</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-cloud"></i> cloud</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-collapse"></i> collapse</a></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <div class="docs-block">
+            <strong>ul</strong>select nav nav-stacked pix-ul
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+            <div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        Ejemplo para el selector de "tipo de partitura"
+        <ul class="select nav nav-stacked pix-ul">
+            <li><a href="#"><i class="pix pix-fw pix-dialogue"></i> dialogue</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-mobile"></i> mobile</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-tablet"></i> tablet</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-notebook"></i> notebook</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-desktop"></i> desktop</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-tv"></i> tv</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-game"></i> game</a></li>
+            <li><a href="#"><i class="pix pix-fw pix-body"></i> body</a></li>
+        </ul>
+    </div>
+</div>
 
 
 
