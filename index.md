@@ -338,7 +338,7 @@ active: index
      <div class='col-sm-6'>
         <h3>Special thanks to</h3>
         <ul>
-            <li>Catalina Reyes</li>
+            <li>Nicole Dupre</li>
             <li>Melany Marin</li>
             <li>Ingrid Céspedes</li>
         </ul>

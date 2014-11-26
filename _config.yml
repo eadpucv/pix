@@ -8,4 +8,4 @@ permalink:		pretty
 baseurl: 		"http://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
 name: 			"PiX"
-pixver:			"4.2.0"
+pixver:			"5.0.0"

@@ -1,9 +1,13 @@
 
 .PHONY: css
+.PHONY: less
 
 install:
 	bower install
-	
+
+less: 
+	lessc less/style.less css/style.css --clean-css
+
 css:
 	lessc less/style.less css/style.css --clean-css
 
