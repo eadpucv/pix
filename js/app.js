@@ -42,7 +42,7 @@ var pixObject = {
 	$.fn.flyLink = function(){
 		var href = $(this).attr('href').replace('#','');
 		console.log(href);
-		if (href == 'split-toggle') {
+		if (href == 'split') {
 			var split = $(this).parent();
 			if (split.hasClass('split')) {
 				split.removeClass('split');
