@@ -29,25 +29,25 @@ active: app
 </script>
 
 <script id="pix-step" type="text/x-handlebars-template">
-	<li class='pix-step col-lg-1 col-sm-2 col-xs-3'>
-    	<a href="#split-toggle" class="fly-link top">Split score</a>
+	<li class='pix-step'>
+        <div class="fly-link top">
+            <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='{{ site.baseurl }}/img/tool_split.svg'></a>
+            <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='{{ site.baseurl }}/img/tool_remove.svg'></a>
+            <a href="#add" class="btn btn-tools tool-add" title="add step"><img src='{{ site.baseurl }}/img/tool_add.svg'></a>
+        </div>
         <ul>
             <li class='block block-user'>
-                <input type='text' class="pix pix-input input-user" placeholder='empty'>
-                <textarea class="pix-note input-user" placeholder='type here...'></textarea>
+                <textarea rows='10' placeholder='type here...'></textarea>
             </li>
             <li class='block block-dialogue'>
-                <input type='text' class="pix pix-input input-dialogue" placeholder='empty'>
-                <textarea class="pix-note input-dialogue" placeholder='type here...'></textarea>
+                <textarea rows='10' placeholder='type here...'></textarea>
             </li>
             <li class='block block-system'>
-                <input type='text' class="pix pix-input input-system" placeholder='empty'>
-                <textarea class="pix-note input-system" placeholder='type here...'></textarea>
+                <textarea rows='10' placeholder='type here...'></textarea>
             </li>
-            <div class='note'>
-               <textarea class="input-note" placeholder='type here...'></textarea>
-            </div>
         </ul>
-        <a href="#add-note" class="fly-link bottom">Add note</a>
+        <div class="fly-link bottom">
+            <a href="#note" class="btn btn-xs btn-tools tool-note" title="add note"><img src='{{ site.baseurl }}/img/tool_nota.svg'></a>
+        </div>
     </li>
 </script>
