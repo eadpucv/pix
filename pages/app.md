@@ -38,12 +38,15 @@ active: app
         <ul>
             <li class='block block-user'>
                 <textarea rows='10' placeholder='type here...'></textarea>
+                <div class="pix-div-input" contenteditable="true"></div>
             </li>
             <li class='block block-dialogue'>
                 <textarea rows='10' placeholder='type here...'></textarea>
+                <div class="pix-div-input" contenteditable="true"></div>
             </li>
             <li class='block block-system'>
                 <textarea rows='10' placeholder='type here...'></textarea>
+                <div class="pix-div-input" contenteditable="true"></div>
             </li>
         </ul>
         <div class="fly-link bottom">

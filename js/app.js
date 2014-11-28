@@ -23,6 +23,32 @@ var pixObject = {
 	}
 };
 ;(function ( $ ) {
+	$.handleEvents = {
+		init : function(context){
+			$('#add-new').on('click',function(event){
+				$('#pix-template').addScore();
+			});
+			$('.pix-steps').on('keypress','.pix-div-input',function(event){
+				$(this).checkText($(this).text(), event);
+			});
+			$('.pix-steps').on('keyup', '.pix-div-input', function(event){
+				var target = $(this);
+				$(this).replacePix($(this).text(), target);
+			});
+			$('.pix-steps').on('click','.btn-tools',function(event){
+				obj = $(this);
+				console.log(this.hash);
+
+				if (this.hash == '#add') {
+					obj.addNodeCurrent();
+				} else if ( this.hash == '#remove') {
+					obj.removeCurrentNode();
+				} else if ( this.hash == '#split') {
+					obj.splitCurrent()
+				}
+			});
+		}
+	}
 	$.fn.addScore= function(){
 		var pix_layout = $('#layout-score').html();
 		var step_template = $('#pix-step').html();
@@ -31,47 +57,75 @@ var pixObject = {
 		var context = {step: step_compile};
 		var html = template(context);
 		$(this).append(html);
-		$('.pix-input').bind('keypress',function(event){
-			$(this).checkText($(this).text(), event);
-		});
-		$('.fly-link').bind('click',function(event){
-				$(this).flyLink(event);
-		});
+		
 		return false;
 	}
-	$.fn.flyLink = function(){
-		var href = $(this).attr('href').replace('#','');
-		console.log(href);
-		if (href == 'split') {
-			var split = $(this).parent();
-			if (split.hasClass('split')) {
-				split.removeClass('split');
-				$(this).text('Split score');
-			} else {
-				split.addClass('split');
-				$(this).text('Unsplit score');
-			}
 
-		}
-		if (href == 'add-note') {
-			console.log($(this).prev().find('.input-note'));
-			var note = $(this).prev().find('.input-note');
-			if (note.is(':visible')) {
-				note.hide();
-				$(this).text('Add note');
-			} else {
-				note.show();
-				note.text('');
-				$(this).text('Delete note');
-			}
-		}
-		return false;
+	$.fn.replacePix = function(str,target) {
+			var re = new RegExp("(pix[-][a-z])([a-z]+)([\w ]+)","gm");
+			var textarea = $(this).prev();
+			textarea.val(str);
+			console.log(textarea.val());
+			var newstr = textarea.val();
+			if (newstr.match(re)) {
+				//$(this).prev().val(str);
+		        str = str.replace(re,'<i class="pix $1$2"></i>');
+		        //console.log(newstr);
+		        $(target).html(str);
+		        $(target).html('');
+		        $(target).html(str);
+	        }
+	}
+	// $.fn.flyLink = function(){
+	// 	var href = $(this).attr('href').replace('#','');
+	// 	console.log(href);
+	// 	if (href == 'split') {
+	// 		var split = $(this).parent();
+	// 		if (split.hasClass('split')) {
+	// 			split.removeClass('split');
+	// 			$(this).text('Split score');
+	// 		} else {
+	// 			split.addClass('split');
+	// 			$(this).text('Unsplit score');
+	// 		}
+
+	// 	}
+	// 	if (href == 'add-note') {
+	// 		console.log($(this).prev().find('.input-note'));
+	// 		var note = $(this).prev().find('.input-note');
+	// 		if (note.is(':visible')) {
+	// 			note.hide();
+	// 			$(this).text('Add note');
+	// 		} else {
+	// 			note.show();
+	// 			note.text('');
+	// 			$(this).text('Delete note');
+	// 		}
+	// 	}
+	// 	return false;
+	// }
+	$.fn.splitCurrent = function() {
+		var obj = $(this);
+		obj.parent().next().toggleClass('split');
+	}
+	$.fn.removeCurrentNode = function() {
+		var obj = $(this);
+		obj.parent().parent().remove();
+	}
+	$.fn.addNodeCurrent = function() {
+		var obj = $(this);
+		var step_template = $('#pix-step').html();
+		var column = Handlebars.compile(step_template);
+
+		obj.parent().parent().after(column);
+
 	}
 	$.fn.checkText = function(str, event) {
 		//console.log(str);
 		// $('.pix-replace').val(str);
 		// grep = '';
-		// regex = new RegExp(str,"g");
+		 var re =  new RegExp("(pix[-])([a-z]*)","gm");
+		 str = str.replace(re,'<i class="icon $1$2"></i>');
 		// var grep = $.grep(pix_icons,function(n,i){
 		// 	//console.log(n.text);
 		// 	//return n.text.match(regex); //regex que busca asociados... para el autocomplete
@@ -81,6 +135,7 @@ var pixObject = {
 		// if (grep.length == 1) {
 		// 	$('.pix-code').html(str.replace(regex,'<span class="pix-stack"><i class="pix '+grep.pop().id+'"></span>'));
 		// }
+
 		this.addNode = function(context) {
 			// var li = $('<li>').attr({class: 'pix-step col-sm-1 col-xs-3'});
 			// var fly_top = $('<a>').attr({href: '#split-toggle', class: 'fly-link top'}).text('Split score');
@@ -95,8 +150,8 @@ var pixObject = {
 			var step_template = $('#pix-step').html();
 			var column = Handlebars.compile(step_template);
 
-			$(context).append(column).find('.pix-step').last().find('.pix-input').first().focus();
-			$('.pix-input').bind('keypress',function(event){
+			$('.pix-steps').append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
+			$('.pix-div-input').bind('keypress',function(event){
 				$(this).checkText($(this).text(), event);
 			});
 			$('.fly-link').bind('click',function(event){
@@ -107,16 +162,12 @@ var pixObject = {
 		if (event.keyCode == 9) {
 			//next tab
 			event.preventDefault();
-			var next = $(this).parent().next().find('.pix-input');
-			// console.log('NEXT');
-			// console.log(next);
+			var next = $(this).parent().parent().next().find('.pix-div-input');
 			if (next.length == 0) {
-				console.log($(this).offsetParent());
-				console.log('ALT NEXT');
-				var alt_next = $(this).offsetParent().next().find('.pix-input').first();
-				console.log(alt_next);
+				var alt_next = $(this).offsetParent().next().find('.pix-div-input').first();
+				//console.log(alt_next);
 				if (alt_next.length == 0) {
-					console.log($(this).offsetParent().parent());
+					//console.log($(this).offsetParent().parent());
 					that.addNode($(this).offsetParent().parent());
 				} else {
 					alt_next.focus().select();
@@ -137,14 +188,18 @@ jQuery(document).ready(function($){
 	var context = {step: step_compile};
 	var html = template(context);
 	$('#pix-template').html(html);
-
-	$('.pix-input').bind('keypress',function(event){
-		$(this).checkText($(this).text(), event);
-	});
-	$('.fly-link').bind('click',function(event){
-			$(this).flyLink(event);
-	});
-	$('#add-new').bind('click',function(event){
-		$('#pix-template').addScore();
-	});
+	$.handleEvents.init();
+	// $('.pix-div-input').bind('keypress',function(event){
+	// 	$(this).checkText($(this).text(), event);
+	// });
+	// $('.tool-add').bind('click',function(event){
+	// 	$(this).addNodeCurrent($(this));
+	// });
+	// $('#add-new').bind('click',function(event){
+	// 	$('#pix-template').addScore();
+	// });
+	// $('.pix-div-input').bind('keyup', function(event){
+	// 	var target = $(this);
+	// 	$(this).replacePix($(this).text(), target);
+	// });
 });
