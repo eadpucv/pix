@@ -13,6 +13,23 @@ var pix_icons =[
 	{text: "circle-dashed", id:"pix-circle-dashed"},
 	{text: "square-dashed", id:"pix-square-dashed"}
 ];
+function placeCaretAtEnd(el) {
+    el.focus();
+    if (typeof window.getSelection != "undefined"
+            && typeof document.createRange != "undefined") {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse(false);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else if (typeof document.body.createTextRange != "undefined") {
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(el);
+        textRange.collapse(false);
+        textRange.select();
+    }
+}
 var pixObject = {
 	currentObject: null,
 	getCurrent : function() {
@@ -87,6 +104,8 @@ var pixObject = {
 		        $(target).html(str);
 		        $(target).html('');
 		        $(target).html(str);
+		        //console.log(target);
+		        //placeCaretAtEnd(target);
 	        }
 	}
 	/*
@@ -96,6 +115,13 @@ var pixObject = {
 	$.fn.splitCurrent = function() {
 		var obj = $(this);
 		obj.parent().next().toggleClass('split');
+	}
+	/*
+	* Añade / esconde nota de cada step
+	*/
+	$.fn.addNoteCurrent = function() {
+		var obj = $(this);
+		obj.parent().next().toggleClass('active');
 	}
 	/*
 	* Elimina la columna contextual al botón

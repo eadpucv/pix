@@ -21,3 +21,10 @@ li.block textarea {
 	display: block;
 	font-size: 400%;
 }
+.pix-step .note {
+	display: none;
+	width: 94px;
+}
+.pix-step .note.active {
+	display: block;
+}

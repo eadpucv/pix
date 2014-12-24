@@ -52,5 +52,6 @@ active: app
         <div class="fly-link bottom">
             <a href="#add-note" class="btn btn-xs btn-tools tool-note" title="add note"><img src='{{ site.baseurl }}/img/tool_nota.svg'></a>
         </div>
+            <textarea class="note" rows='10' placeholder='type here...'></textarea>
     </li>
 </script>
