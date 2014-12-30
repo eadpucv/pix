@@ -28,3 +28,8 @@ li.block textarea {
 .pix-step .note.active {
 	display: block;
 }
+
+ul.select {
+	position: absolute;
+	width: 384px;
+}

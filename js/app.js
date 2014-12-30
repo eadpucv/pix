@@ -88,15 +88,51 @@ var pixObject = {
 		
 		return false;
 	}
+	$.fn.showAutoComplete = function(search) {
+		var searchText = search.replace('pix-','');
+		var ul = $('<ul>').attr('class','select nav nav-stacked pix-ul');
+		var results = [];
+		$.ajax({
+			dataType: 'json',
+			url: Ajax.icons,
+			success: function(data) {
+				$.each(data,function(i,n){
+					var prop = Object.getOwnPropertyNames(n);
+					var propName = prop[0].toString();
+					var searchExp = new RegExp("^"+searchText+"+","g");
+					//console.log(propName.match(searchExp));
+					if (propName.match(searchExp)) {
+						results.push('pix-'+propName);
+					}
+				});
+				$.each(results,function(i,n){
+					console.log('aaaa');
+					var item = n.replace('pix-','');
+					var li = $('<li>').append($('<a>').attr('href','#'+item).append($('<i>').attr('class','pix pix-fw pix-'+item)).text(item));
+					ul.append(li);
+					console.log(ul);
+					$('body').append(ul);
+				});
+			},
+			error : function(jqXHR,status,error) {
+				console.log(error);
+			}
+
+		});	
+	}
 	/*
 	*	Ejecuta la acción de reemplazo (regex) del caracter Pix por el layout especificado
 	*/
 	$.fn.replacePix = function(str,target) {
+			var autocomplete = new RegExp("(pix[-][a-z])","g");
 			var re = new RegExp("(pix[-][a-z])([a-z]+)([\w ]+)","gm");
 			var textarea = $(this).prev();
 			textarea.val(str);
 			console.log(textarea.val());
 			var newstr = textarea.val();
+			if (newstr.match(autocomplete)) {
+				$(this).showAutoComplete(newstr);
+			}
 			if (newstr.match(re)) {
 				//$(this).prev().val(str);
 		        str = str.replace(re,'<i class="pix $1$2"></i>');
