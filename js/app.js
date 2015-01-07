@@ -1,18 +1,3 @@
-var pix_icons =[
-	{text: "think", id:"pix-think"},
-	{text: "cube", id:"pix-cube"},
-	{text: "mouse", id:"pix-mouse"},
-	{text: "plus", id:"pix-plus"},
-	{text: "read", id: "pix-read"},
-	{text: "reload", id:"pix-reload"},
-	{text: "keyboard", id:"pix-keyboard"},
-	{text: "click-left", id:"pix-click-left"},
-	{text: "click-center", id:"pix-click-center"},
-	//{text: "keyboard type", id:"keyboard-type"},
-	{text: "top left", id:"stack-top-left"},
-	{text: "circle-dashed", id:"pix-circle-dashed"},
-	{text: "square-dashed", id:"pix-square-dashed"}
-];
 function placeCaretAtEnd(el) {
     el.focus();
     if (typeof window.getSelection != "undefined"
@@ -55,6 +40,37 @@ var pixObject = {
 			$('.pix-steps').on('click','.btn-tools',function(event){
 				$(this).clickTool();
 			});
+		},
+		acSelectNext : function(ul) {
+			var current = ul.find('.active');
+			var next = current.next();
+			if (next.length > 0) {
+				current.removeClass('active');
+				next.addClass('active');
+			} else {
+				current.removeClass('active');
+				ul.find('li:first').addClass('active');
+			}
+		},
+		acSelectPrev : function(ul) {
+			var current = ul.find('.active');
+			var prev = current.prev();
+			if (prev.length > 0) {
+				current.removeClass('active');
+				prev.addClass('active');
+			} else {
+				current.removeClass('active');
+				ul.find('li:last').addClass('active');
+			}
+		},
+		acClose : function(ul) {
+			ul.remove();
+		},
+		acAddIcon : function(ul,obj) {
+			var current = ul.find('.active');
+			var i = $('<i>').attr('class','pix pix-'+current.text());
+			obj.html(i);
+			this.acClose(ul);
 		}
 	}
 	$.fn.clickTool = function() {
@@ -89,36 +105,63 @@ var pixObject = {
 		return false;
 	}
 	$.fn.showAutoComplete = function(search) {
+		var obj = $(this);
 		var searchText = search.replace('pix-','');
-		var ul = $('<ul>').attr('class','select nav nav-stacked pix-ul');
-		var results = [];
-		$.ajax({
-			dataType: 'json',
-			url: Ajax.icons,
-			success: function(data) {
-				$.each(data,function(i,n){
-					var prop = Object.getOwnPropertyNames(n);
-					var propName = prop[0].toString();
-					var searchExp = new RegExp("^"+searchText+"+","g");
-					//console.log(propName.match(searchExp));
-					if (propName.match(searchExp)) {
-						results.push('pix-'+propName);
-					}
-				});
-				$.each(results,function(i,n){
-					console.log('aaaa');
-					var item = n.replace('pix-','');
-					var li = $('<li>').append($('<a>').attr('href','#'+item).append($('<i>').attr('class','pix pix-fw pix-'+item)).text(item));
-					ul.append(li);
-					console.log(ul);
-					$('body').append(ul);
-				});
-			},
-			error : function(jqXHR,status,error) {
-				console.log(error);
-			}
+		if ($('.pix-ul').length == 0) {
+			var ul = $('<ul>').attr('class','select nav nav-stacked pix-ul');
+			var results = [];
+			$.ajax({
+				dataType: 'json',
+				url: Ajax.icons,
+				success: function(data) {
+					$.each(data,function(i,n){
+						var prop = Object.getOwnPropertyNames(n);
+						var propName = prop[0].toString();
+						var searchExp = new RegExp("^"+searchText+"+","g");
+						//console.log(propName.match(searchExp));
+						if (propName.match(searchExp)) {
+							results.push('pix-'+propName);
+						}
+					});
+					$.each(results,function(i,n){
+						var item = n.replace('pix-','');
+						var li = $('<li>').append($('<a>').attr('href','#'+item).text(item).prepend($('<i>').attr('class','pix pix-fw pix-'+item)));
+						ul.append(li);
+						$('body').append(ul);
+						var input_position_top = obj.offset().top + obj.outerHeight();
+						var input_position_left = obj.offset().left;
 
-		});	
+						ul.css({'top' : input_position_top,'left': input_position_left});
+						ul.find('li:first').addClass('active');
+
+					});
+				},
+				error : function(jqXHR,status,error) {
+					console.log(error);
+				}
+
+			});	
+			/*
+			* KEYCODES
+			*
+			* abajo : 40
+			* arriba : 38
+			* izq: 37
+			* der: 39
+			* esc: 27
+			* enter: 13
+			*/
+			var passUl = ul;
+			obj.on('keyup',function(event,passUl){
+				switch(event.keyCode) {
+					case 40 : $.handleEvents.acSelectNext(ul); break;
+					case 38 : $.handleEvents.acSelectPrev(ul); break;
+					case 27 : $.handleEvents.acClose(ul); break;
+					case 13 : $.handleEvents.acAddIcon(ul,obj); break;
+				}
+				
+			});
+		}
 	}
 	/*
 	*	Ejecuta la acción de reemplazo (regex) del caracter Pix por el layout especificado
@@ -191,6 +234,7 @@ var pixObject = {
 		/*
 			Control del tab para crear nueva columna
 		*/
+		console.log(event.keyCode);
 		if (event.keyCode == 9) {
 			//next tab
 			event.preventDefault();

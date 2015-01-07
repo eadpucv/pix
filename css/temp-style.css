@@ -33,3 +33,6 @@ ul.select {
 	position: absolute;
 	width: 384px;
 }
+ul.pix-ul li.active a {
+	background: #bceee1;
+}
