@@ -30,6 +30,7 @@ active: app
 
 <script id="pix-step" type="text/x-handlebars-template">
 	<li class='pix-step'>
+        <textarea class="note top" rows='1' placeholder='type here...'></textarea>
         <div class="fly-link top">
             <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='{{ site.baseurl }}/img/tool_split.svg'></a>
             <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='{{ site.baseurl }}/img/tool_remove.svg'></a>
@@ -52,6 +53,6 @@ active: app
         <div class="fly-link bottom">
             <a href="#add-note" class="btn btn-xs btn-tools tool-note" title="add note"><img src='{{ site.baseurl }}/img/tool_nota.svg'></a>
         </div>
-            <textarea class="note" rows='10' placeholder='type here...'></textarea>
+            <textarea class="note bottom" rows='10' placeholder='type here...'></textarea>
     </li>
 </script>

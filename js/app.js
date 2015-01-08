@@ -179,13 +179,15 @@ var pixObject = {
 			var re = new RegExp("(pix[-][a-z])([a-z]+)([\w ]+)","gm");
 			var textarea = $(this).prev();
 			textarea.val(str);
-			console.log(textarea.val());
+			
+			console.log(str);
 			var newstr = textarea.val();
 			if (newstr.match(autocomplete)) {
 				$(this).showAutoComplete(newstr);
 			}
 			if (newstr.match(re)) {
 				//$(this).prev().val(str);
+				$(target).data('pix-icon',str.replace(' ',''));
 		        str = str.replace(re,'<i class="pix $1$2"></i>');
 		        //console.log(newstr);
 		        $(target).html(str);
@@ -195,7 +197,8 @@ var pixObject = {
 		        var jsobj = target.get(0);
 				setEndOfContenteditable(jsobj);
 		        $.handleEvents.acClose();
-	        }
+	        } 
+	        console.log($(target).data('pix-icon'));
 	}
 	/*
 	* Cambia la clase del ul contenedor generando un split
@@ -204,6 +207,8 @@ var pixObject = {
 	$.fn.splitCurrent = function() {
 		var obj = $(this);
 		obj.parent().next().toggleClass('split');
+		obj.parent().prev().toggleClass('active');
+		return false;
 	}
 	/*
 	* Añade / esconde nota de cada step
@@ -211,6 +216,7 @@ var pixObject = {
 	$.fn.addNoteCurrent = function() {
 		var obj = $(this);
 		obj.parent().next().toggleClass('active');
+		return false;
 	}
 	/*
 	* Elimina la columna contextual al botón
@@ -218,6 +224,7 @@ var pixObject = {
 	$.fn.removeCurrentNode = function() {
 		var obj = $(this);
 		obj.parent().parent().remove();
+		return false;
 	}
 	/*
 	* Añade una columna despues de la actual
