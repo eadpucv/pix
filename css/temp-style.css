@@ -28,7 +28,7 @@ li.block textarea {
 .pix-step .note.active {
 	display: block;
 }
-
+@media print{@page {size: landscape}}
 ul.select {
 	position: absolute;
 	width: 384px;
