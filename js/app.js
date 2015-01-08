@@ -1,18 +1,21 @@
-function placeCaretAtEnd(el) {
-    el.focus();
-    if (typeof window.getSelection != "undefined"
-            && typeof document.createRange != "undefined") {
-        var range = document.createRange();
-        range.selectNodeContents(el);
-        range.collapse(false);
-        var sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-    } else if (typeof document.body.createTextRange != "undefined") {
-        var textRange = document.body.createTextRange();
-        textRange.moveToElementText(el);
-        textRange.collapse(false);
-        textRange.select();
+function setEndOfContenteditable(contentEditableElement)
+{
+    var range,selection;
+    if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
+    {
+        range = document.createRange();//Create a range (a range is a like the selection but invisible)
+        range.selectNodeContents(contentEditableElement);//Select the entire contents of the element with the range
+        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+        selection = window.getSelection();//get the selection object (allows you to change selection)
+        selection.removeAllRanges();//remove any selections already made
+        selection.addRange(range);//make the range you have just created the visible selection
+    }
+    else if(document.selection)//IE 8 and lower
+    { 
+        range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
+        range.moveToElementText(contentEditableElement);//Select the entire contents of the element with the range
+        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+        range.select();//Select the range (make it the visible selection
     }
 }
 var pixObject = {
@@ -40,6 +43,9 @@ var pixObject = {
 			$('.pix-steps').on('click','.btn-tools',function(event){
 				$(this).clickTool();
 			});
+			$('.pix-steps').on('click', '.pix-div-input', function(event){
+				$.handleEvents.acClose();
+			});
 		},
 		acSelectNext : function(ul) {
 			var current = ul.find('.active');
@@ -64,13 +70,15 @@ var pixObject = {
 			}
 		},
 		acClose : function(ul) {
-			ul.remove();
+			$('.pix-ul').remove();
 		},
 		acAddIcon : function(ul,obj) {
 			var current = ul.find('.active');
 			var i = $('<i>').attr('class','pix pix-'+current.text());
 			obj.html(i);
 			this.acClose(ul);
+			var jsobj = obj.get(0);
+			setEndOfContenteditable(jsobj);
 		}
 	}
 	$.fn.clickTool = function() {
@@ -184,7 +192,9 @@ var pixObject = {
 		        $(target).html('');
 		        $(target).html(str);
 		        //console.log(target);
-		        //placeCaretAtEnd(target);
+		        var jsobj = target.get(0);
+				setEndOfContenteditable(jsobj);
+		        $.handleEvents.acClose();
 	        }
 	}
 	/*
@@ -234,9 +244,9 @@ var pixObject = {
 		/*
 			Control del tab para crear nueva columna
 		*/
-		console.log(event.keyCode);
 		if (event.keyCode == 9) {
 			//next tab
+			$.handleEvents.acClose();
 			event.preventDefault();
 			var next = $(this).parent().parent().next().find('.pix-div-input');
 			if (next.length == 0) {
