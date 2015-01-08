@@ -34,11 +34,21 @@ var pixObject = {
 				$('#pix-template').addScore();
 			});
 			$('.pix-steps').on('keypress','.pix-div-input',function(event){
-				$(this).checkText($(this).text(), event);
+				if (event.keyCode != 8) {
+					$(this).checkText($(this).text(), event);
+				} else {
+					var icon = $(this).data('pix-icon');
+					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+				}
 			});
 			$('.pix-steps').on('keyup', '.pix-div-input', function(event){
-				var target = $(this);
-				$(this).replacePix($(this).text(), target);
+				if (event.keyCode != 8) {
+					var target = $(this);
+					$(this).replacePix($(this).text(), target);
+				} else {
+					var icon = $(this).data('pix-icon');
+					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+				}
 			});
 			$('.pix-steps').on('click','.btn-tools',function(event){
 				$(this).clickTool();
@@ -72,10 +82,14 @@ var pixObject = {
 		acClose : function(ul) {
 			$('.pix-ul').remove();
 		},
-		acAddIcon : function(ul,obj) {
+		acAddIcon : function(ul,obj,match) {
 			var current = ul.find('.active');
-			var i = $('<i>').attr('class','pix pix-'+current.text());
-			obj.html(i);
+			//var i = $('<i>').attr('class','pix pix-'+current.text());
+			var i = '<i class="pix pix-'+current.text()+'"></i>';
+			obj.data('pix-icon',current.text());
+			var textReplace  = obj.text().replace(match[0],i);
+			console.log(textReplace);
+			obj.html(textReplace);
 			this.acClose(ul);
 			var jsobj = obj.get(0);
 			setEndOfContenteditable(jsobj);
@@ -112,9 +126,10 @@ var pixObject = {
 		
 		return false;
 	}
-	$.fn.showAutoComplete = function(search) {
+	$.fn.showAutoComplete = function(search,match) {
 		var obj = $(this);
-		var searchText = search.replace('pix-','');
+		var searchText = match[0].replace('pix-','');
+		console.log(searchText);
 		if ($('.pix-ul').length == 0) {
 			var ul = $('<ul>').attr('class','select nav nav-stacked pix-ul');
 			var results = [];
@@ -165,7 +180,7 @@ var pixObject = {
 					case 40 : $.handleEvents.acSelectNext(ul); break;
 					case 38 : $.handleEvents.acSelectPrev(ul); break;
 					case 27 : $.handleEvents.acClose(ul); break;
-					case 13 : $.handleEvents.acAddIcon(ul,obj); break;
+					case 13 : $.handleEvents.acAddIcon(ul,obj,match); break;
 				}
 				
 			});
@@ -180,16 +195,16 @@ var pixObject = {
 			var textarea = $(this).prev();
 			textarea.val(str);
 			
-			console.log(str);
+			//console.log(str);
 			var newstr = textarea.val();
-			if (newstr.match(autocomplete)) {
-				$(this).showAutoComplete(newstr);
+			var matchAc = newstr.match(autocomplete);
+			if (matchAc) {
+				$(this).showAutoComplete(newstr,matchAc);
 			}
 			if (newstr.match(re)) {
 				//$(this).prev().val(str);
 				$(target).data('pix-icon',str.replace(' ',''));
 		        str = str.replace(re,'<i class="pix $1$2"></i>');
-		        //console.log(newstr);
 		        $(target).html(str);
 		        $(target).html('');
 		        $(target).html(str);
@@ -198,7 +213,6 @@ var pixObject = {
 				setEndOfContenteditable(jsobj);
 		        $.handleEvents.acClose();
 	        } 
-	        console.log($(target).data('pix-icon'));
 	}
 	/*
 	* Cambia la clase del ul contenedor generando un split
