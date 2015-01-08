@@ -57,8 +57,14 @@
 
 
 // drop-down and select class. Use in combination with: <ul class="select nav nav-stacked pix-ul">
+ul.pix-ul li.active a {
+	background-color: saturate(fade(@brand-primary, 30), 30);
+}
+
 ul.select{
-	position: relative;
+	position: absolute;
+	z-index: 1000 !important;
+	width: 200px;
 	background-color: @white;
 	border-radius: @radius;
 	box-shadow: 3px 3px 0 fade(@black, 10);
@@ -73,7 +79,7 @@ ul.select{
 				font-size: 36px; // @pix-size;
 			}
 			&:hover{
-				background-color: fade(@brand-info, 20);
+				background-color: saturate(fade(@brand-primary, 10), 30);
 			}
 		}
 	}
@@ -87,8 +93,8 @@ ul.select{
 }
 
 .fly-link {
-	position: absolute;
 	display: none;
+	position: absolute;
 	background-color: transparent;
 	&.top {
 		top: -@tools-offset - 2px;
@@ -121,3 +127,49 @@ ul.select{
 		}
 	}
 }
+
+.pix-div-input {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	height: 120px;
+	font-size: 11px;
+	line-height: 100%;
+	padding: 5px;
+	border: 0px none;
+	width: 100% !important;
+}
+
+#pix-template {
+	margin-top: 40px;
+}
+
+.pix-div-input:hover {
+	border: 0px none;
+	box-shadow: 0px 0px 0px 2px #EFEFD7 inset;
+	background-color: rgba(239, 239, 215, 0.3);
+}
+
+li.block textarea {
+	display: none;
+}
+
+.pix-div-input i {
+	display: block;
+	font-size: 400%;
+}
+.pix-step .note {
+	display: none;
+	border: none;
+	width: 94px;
+}
+.pix-step .note.top {
+
+}
+.pix-step .note.bottom {
+	margin-top: 5px;
+}
+.pix-step .note.active {
+	display: block;
+}
+

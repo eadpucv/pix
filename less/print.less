@@ -6,38 +6,44 @@
 @media print {
 
     @page {
-        size: 11.69in 8.27in; 
+
+        size: 11.0in 17.0in landscape; 
         margin:.5in .5in .5in .5in; 
         mso-header-margin: .5in; 
         mso-footer-margin: .5in; 
         mso-paper-source: 0;
+
+        @bottom-right-corner {
+            content: "Made with PiX";
+        }
+    }
+
+    body{
+        -moz-print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     * {
         text-shadow: none !important;
         font-size: 14px;
-        color: #000 !important;
+        // color: #000 !important;
         box-shadow: none !important;
     }
-    .container {
-        width: 100%;
-        position: relative;
-        padding-left: 90px;
-        -webkit-transform: rotate(-90deg); -moz-transform:rotate(-90deg);
-        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-    }
+
     footer {
-      display: none;
+        display: none;
     }
+
     #add-new {
-      display: none;
+        display: none;
     }
+
     .navbar {
-      display: none;
+        display: none;
     }
 
     .hp{
-        /* hide for print*/
         display: none;
     }
 
@@ -49,12 +55,20 @@
                 display: inline-block;
             }
         }
+        ul.pix-header{
+            border-right: 1px solid @pix-border-color;
+            li{
+                .block >i.pix,
+                .block > label{
+                    color: @pix-border-color !important;
+                }
+            } 
+        }
 
         li.block,
         .pix-group{
             display: inline-block;
-        }
-    
+        }  
     }
 
     pre,
@@ -64,52 +78,52 @@
     }
 
     thead {
-        display: table-header-group; // h5bp.com/t
-    }
+            display: table-header-group; // h5bp.com/t
+        }
 
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
+        tr,
+        img {
+            page-break-inside: avoid;
+        }
 
-    img {
-        max-width: 100% !important;
-    }
+        img {
+            max-width: 100% !important;
+        }
 
-    @page {
-        margin: 2cm .5cm;
-    }
+        @page {
+            margin: 2cm .5cm;
+        }
 
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
+        p,
+        h2,
+        h3 {
+            orphans: 3;
+            widows: 3;
+        }
 
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
+        h2,
+        h3 {
+            page-break-after: avoid;
+        }
 
-      // Chrome (OSX) fix for https://github.com/twbs/bootstrap/issues/11245
-      // Once fixed, we can just straight up remove this.
-      select {
-        background: #fff !important;
-    }
+          // Chrome (OSX) fix for https://github.com/twbs/bootstrap/issues/11245
+          // Once fixed, we can just straight up remove this.
+          select {
+            background: #fff !important;
+        }
 
-      // Bootstrap components
-      .navbar {
-        display: none;
-    }
-    .table {
-        td,
-        th {
-          background-color: #fff !important;
+          // Bootstrap components
+          .navbar {
+            display: none;
+        }
+        .table {
+            td,
+            th {
+              background-color: #fff !important;
+          }
       }
-    }
-    .btn,
-    .dropup > .btn {
+      .btn,
+      .dropup > .btn {
         > .caret {
           border-top-color: #000 !important;
       }
@@ -127,5 +141,4 @@
           border: 1px solid #ddd !important;
       }
     }
-
 }

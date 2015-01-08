@@ -16,7 +16,6 @@ This textarea uses pixograms as the base font, so you can type the icon names an
 <p>Score headers and meta icons.</p>
 <div class='row'>
 {% include col-pix.html name='logo' %}
-{% include col-pix.html name='empty' %}
 {% include col-pix.html name='person' %}
 {% include col-pix.html name='dialogue' %}
 {% include col-pix.html name='system' %}

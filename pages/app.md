@@ -4,8 +4,8 @@ title: PiX Application
 active: app
 ---
 
-<h1 class='score-header'><input placeholder='Name your score' value='Score Name'></h1>
-<textarea class='score-description' placeholder='Describe your score' rows='1'>This is the description you can edit. Navigate the score with your TAB key to add new columns. In the icon input area just type the icon's name and it'll appear.</textarea>
+<h1 class='score-header'><input placeholder='Name your score'></h1>
+<textarea class='score-description' placeholder='Describe your score' rows='1'></textarea>
 
 
 <div id="pix-template">

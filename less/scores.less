@@ -66,15 +66,24 @@ h1.score-header{
 
 	ul{
 		&.pix-header{
-			background-color: @border-color;
+			background-color: lighten(@pix-border-color, 10);
+			border-radius: @pix-border-width 0 0 @pix-border-width;
+			/*
 			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
-			border-top: @pix-border-width solid @border-color;
+			border-top: @pix-border-width solid @pix-border-color;
 			border-bottom: @pix-border-width solid @pix-border-color;
+			*/
+			border-left: @pix-border-width solid @pix-border-color;
 			width: @pix-block-width;
 			display: inline-block;
 			li{
-				&.block-user{border-top: none}
-				&.block-system{border-bottom: none}
+				&.block-user{
+					border-top: @pix-border-width solid @pix-border-color;
+				}
+
+				&.block-system{
+					border-bottom: @pix-border-width solid @pix-border-color;
+				}
 				
 				.pix-group{
 					font-weight: 600;
@@ -85,6 +94,10 @@ h1.score-header{
 					}
 					label{
 						font-size: 1.2em;
+					}
+					&:hover{
+						background-color: transparent;
+						box-shadow: none;
 					}
 				}
 			}
@@ -98,11 +111,11 @@ h1.score-header{
 				display: inline-block;
 				margin-left: -3px; // strange bug
 				ul.split{
-					border-left: 1px solid darken(@border-color, 15);
+					border-left: 1px solid darken(@pix-border-color, 15);
 				}
 				&:last-child{
 					border-radius: @pix-border-width * 2;
-					border-right: @pix-border-width solid @border-color !important;
+					border-right: @pix-border-width solid @pix-border-color !important;
 				}
 				&:hover{
 					background-color: fade(@edit-color, 15);
@@ -139,14 +152,15 @@ li.block{
 	width: 100%;
 
 	&.block-user{
-		border-top: @pix-border-width solid @border-color;
+		border-top: @pix-border-width solid @pix-border-color;
 		border-bottom: 1px dotted @pix-border-color;
 	}
-	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
-	&.block-system{border-bottom: @pix-border-width solid @border-color;}
 
-	
-	.pix-group,
+	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
+	&.block-system{border-bottom: @pix-border-width solid @pix-border-color;}
+
+
+	.pix-group,	
 	textarea{
 		.cf;
 		display: table-cell;
@@ -159,6 +173,8 @@ li.block{
 		border: none;
 		width: 100% !important;
 		background-color: transparent;
+		
+		
 		&:active,
 		&:focus,
 		&:hover{
@@ -166,6 +182,7 @@ li.block{
 			box-shadow: 0 0 0 2px @edit-color inset;
 			background-color: fade(@edit-color, 30);
 		}
+
 		.pix{
 			display: block;
 			text-align: center;
@@ -173,14 +190,16 @@ li.block{
 			line-height: 100%;
 		}
 	}
+	
 }
 
+/*
 // only for editable blocks inside the score
-ul.pix-steps li.pix-step ul .block .pix-group:hover{
+ul.pix-steps li.pix-step ul .block .pix-div-input:hover{
 	cursor: pointer;
 	background-image: url(../img/edit.png);
 	background-repeat: no-repeat;
 	background-position: top right;
 }
-
+*/
 
