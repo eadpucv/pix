@@ -7,6 +7,8 @@ active: icons
 <h3><span>Font Name:</span> PiX <small>(Version {{ site.pixver }} — Glyphs:&nbsp;128)</small></h3>
 <p>This font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. <a href='{{ site.baseurl}}/fonts/PiX.html'>Here</a> is the complete list automatically generated along with the font.</p>
 
+<textarea class='pix pix-2x'>add alert angry api archive ask attach audio autocomplete body branch button buy call camera cancel check checkbox click clock cloud collapse color comment config contact contacts copy cut database date delete desktop deviceorient devicerotate deviceshake devicevibrate dialogue dislike doubleclick doubletap down download drag drop edit email empty expand export face ff file film filter furious gallery game hand hand1 hangup happy image import input intrigued kiosk left like link list lock logo map merge message mobile move next notebook notify page password paste pause pay person pinch play position prev print process progress qr radio radioselect range rec remove resize rew right rotate route rss sad save say scroll search select send share smiling speak stack stop surprised switch system tablet tag tap tap1down tap1left tap1right tap1up tap2 tap2down tap2left tap2right tap2up tap3 tap3down tap3left tap3right tap3up tap4 tap4down tap4left tap4right tap4up tap5down tap5left tap5right tap5up text think time tv unlink unlock up update upload video view window zoom </textarea>
+
 <h4 id='touch'>Objects</h4>
 <div class='row'>
     {% include col-pix.html name='pix-archive' %}
