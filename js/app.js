@@ -44,7 +44,10 @@ var pixObject = {
 			$('.pix-steps').on('keyup', '.pix-div-input', function(event){
 				if (event.keyCode != 8) {
 					var target = $(this);
-					$(this).replacePix($(this).text(), target);
+					var keySafe = [40,38];
+					if ($.inArray(event.keyCode,keySafe) == -1) {
+						$(this).replacePix($(this).text(), target);
+					}
 				} else {
 					var icon = $(this).data('pix-icon');
 					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
@@ -67,6 +70,7 @@ var pixObject = {
 				current.removeClass('active');
 				ul.find('li:first').addClass('active');
 			}
+			return false;
 		},
 		acSelectPrev : function(ul) {
 			var current = ul.find('.active');
@@ -80,17 +84,37 @@ var pixObject = {
 			}
 		},
 		acClose : function(ul) {
-			$('.pix-ul').remove();
+			$('body').find('ul.pix-ul').remove();
 		},
 		acAddIcon : function(ul,obj,match) {
 			var current = ul.find('.active');
+			
 			//var i = $('<i>').attr('class','pix pix-'+current.text());
 			var i = '<i class="pix pix-'+current.text()+'"></i>';
+			console.log(current.text());
 			obj.data('pix-icon',current.text());
 			var textReplace  = obj.text().replace(match[0],i);
-			console.log(textReplace);
+			if (textReplace.length < 3) {
+				textReplace = i;
+			}
 			obj.html(textReplace);
 			this.acClose(ul);
+			var jsobj = obj.get(0);
+			setEndOfContenteditable(jsobj);
+		},
+		acPutIcon : function(obj,clicked) {
+			var click = $(clicked);
+			var i = '<i class="pix pix-'+click.text()+'"></i>';
+			var searchpix = new RegExp("(pix[-][a-z]+)","g");
+			var matchac = click.text().match(searchpix);
+			if (matchac) {
+				var replacedText = obj.text().replace(matchac[0],i);
+				obj.html(replacedText);
+			} else {
+				obj.html(i);
+			}
+			$.handleEvents.acClose();
+			obj.focus();
 			var jsobj = obj.get(0);
 			setEndOfContenteditable(jsobj);
 		}
@@ -127,9 +151,9 @@ var pixObject = {
 		return false;
 	}
 	$.fn.showAutoComplete = function(search,match) {
+		$.handleEvents.acClose();
 		var obj = $(this);
 		var searchText = match[0].replace('pix-','');
-		console.log(searchText);
 		if ($('.pix-ul').length == 0) {
 			var ul = $('<ul>').attr('class','select nav nav-stacked pix-ul');
 			var results = [];
@@ -150,13 +174,16 @@ var pixObject = {
 						var item = n.replace('pix-','');
 						var li = $('<li>').append($('<a>').attr('href','#'+item).text(item).prepend($('<i>').attr('class','pix pix-fw pix-'+item)));
 						ul.append(li);
-						$('body').append(ul);
-						var input_position_top = obj.offset().top + obj.outerHeight();
-						var input_position_left = obj.offset().left;
+					});
+					$('body').append(ul);
+						
+					var input_position_top = obj.offset().top + obj.outerHeight();
+					var input_position_left = obj.offset().left;
 
-						ul.css({'top' : input_position_top,'left': input_position_left});
-						ul.find('li:first').addClass('active');
-
+					ul.css({'top' : input_position_top,'left': input_position_left});
+					ul.find('li:first').addClass('active');
+					ul.find('a').on('click',function(event){
+						$.handleEvents.acPutIcon(obj,this);
 					});
 				},
 				error : function(jqXHR,status,error) {
@@ -184,13 +211,13 @@ var pixObject = {
 				}
 				
 			});
-		}
+		} 
 	}
 	/*
 	*	Ejecuta la acción de reemplazo (regex) del caracter Pix por el layout especificado
 	*/
 	$.fn.replacePix = function(str,target) {
-			var autocomplete = new RegExp("(pix[-][a-z])","g");
+			var autocomplete = new RegExp("(pix[-][a-z]+)","g");
 			var re = new RegExp("(pix[-][a-z])([a-z]+)([\w ]+)","gm");
 			var textarea = $(this).prev();
 			textarea.val(str);
