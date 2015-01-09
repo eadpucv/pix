@@ -64,6 +64,9 @@ var pixObject = {
 			$('.pix-steps').on('click', '.pix-div-input', function(event){
 				$.handleEvents.acClose();
 			});
+			$('.export').on('click',function(){
+				$.fn.exportTool();
+			});
 		},
 		acSelectNext : function(ul) {
 			var current = ul.find('.active');
@@ -96,7 +99,7 @@ var pixObject = {
 			
 			//var i = $('<i>').attr('class','pix pix-'+current.text());
 			var i = '<i class="pix pix-'+current.text()+'"></i>';
-			console.log(current.text());
+			
 			obj.data('pix-icon',current.text());
 			var textReplace  = obj.text().replace(match[0],i);
 			if (textReplace.length < 3) {
@@ -110,6 +113,7 @@ var pixObject = {
 		acPutIcon : function(obj,clicked) {
 			var click = $(clicked);
 			var i = '<i class="pix pix-'+click.text()+'"></i>';
+			obj.data('pix-icon',click.text());
 			var searchpix = new RegExp("(pix[-][a-z]+)","g");
 			var matchac = click.text().match(searchpix);
 			if (matchac) {
@@ -123,6 +127,52 @@ var pixObject = {
 			var jsobj = obj.get(0);
 			setEndOfContenteditable(jsobj);
 		}
+	}
+	$.fn.exportTool = function() {
+		var title = $('.score-header').find('input').val();
+		var description = $('.score-description').text();
+		var pix_scores = $('.pix-score');
+		console.log(pix_scores);
+		var scores = [];
+		$.each(pix_scores,function(i,val){
+			var steps = $(this).find('.pix-step');
+			var result_steps = [];
+			$.each(steps,function(j,ival){
+				var user = $(this).find('.block-user').children('div');
+				var user_icon = '';
+				if (user.data('pix-icon'))
+					user_icon = 'pix-'+user.data('pix-icon');
+				var user_data = user_icon+' '+user.text();
+
+				var dialogue = $(this).find('.block-dialogue').children('div');
+				var dialogue_icon = '';
+				if (dialogue.data('pix-icon'))
+					dialogue_icon = 'pix-'+dialogue.data('pix-icon');
+				var dialogue_data = dialogue_icon+' '+dialogue.text();
+
+				var system = $(this).find('.block-system').children('div');
+				var system_icon = '';
+				if (system.data('pix-icon'))
+					system_icon = 'pix-'+system.data('pix-icon');
+				var system_data = system_icon+' '+system.text();
+
+				var step_title = $(ival).children('.note.top').text();
+				var note  = $(ival).children('.note.bottom').text();
+				var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
+				result_steps.push(object);
+			});
+			scores.push(result_steps);
+		});
+		
+		var objectExport = {
+			title: title,
+			description: description,
+			scores : scores
+		}
+		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
+		$('.export').attr('href','data:'+data);
+		$('.export').attr('download','pix-data.json');
+		$('.export').trigger('click');
 	}
 	$.fn.clickTool = function() {
 		obj = $(this);
