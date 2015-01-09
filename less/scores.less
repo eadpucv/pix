@@ -3,10 +3,12 @@
 
 /******************************************** Variables */
 
-@pix-border-width: 4px;
-@pix-border-color: #ccd4d1;
-@pix-block-height: 120px;
-@pix-size: 36px;
+@pix-border-width: 				4px;
+@pix-border-color:				#ccd4d1;
+@edit-color:				 	#efefd7;
+@pix-block-height:				120px;
+@pix-block-width:				8.3%;
+@pix-size:						3.67em;
 
 /****************************************** Score Title */
 .input-style{
@@ -15,6 +17,7 @@
 		border: none;
 		border-radius: @radius;
 		cursor: text;
+		background-color: transparent;
 		&:active,
 		&:focus,
 		&:hover{
@@ -34,6 +37,7 @@ h1.score-header{
 		.input-style;
 	}
 }
+
 .score-description{
 	display: block;
 	width: 100%;
@@ -44,9 +48,8 @@ h1.score-header{
 /******************************************** The Score */
 
 .pix-score{
-	margin: 10px -@pix-border-width 32px -@pix-border-width;
-	margin-bottom: 32px;
 	.cf;
+	margin: 10px -@pix-border-width 64px -@pix-border-width;
 	ul li{
 		display: inline-block;
 		list-style-type: none;
@@ -57,150 +60,146 @@ h1.score-header{
 		padding: 0;
 		li{
 			list-style-type: none;
-			display: inline-block;
+			display: table;
 		}
 	}
 
 	ul{
 		&.pix-header{
-			background-color: @border-color;
-			// border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
+			background-color: lighten(@pix-border-color, 10);
+			border-radius: @pix-border-width*2 0 0 @pix-border-width*2;
+			/*
+			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
+			border-top: @pix-border-width solid @pix-border-color;
+			border-bottom: @pix-border-width solid @pix-border-color;
+			*/
+			border-left: @pix-border-width solid @pix-border-color;
+			width: @pix-block-width;
+			display: inline-block;
 			li{
-				&.block-user{border-top: none}
-				&.block-system{border-bottom: none}
+				&.block-user{
+					border-top: @pix-border-width solid @pix-border-color;
+				}
 
-				width: 100%;
-				.tcenter;
-				font-weight: 600;
-				line-height: 1em;
-				color: fade(@black, 30%);
-				label{font-size: .8em}
+				&.block-system{
+					border-bottom: @pix-border-width solid @pix-border-color;
+				}
+				
 				.pix-group{
-					width: 100% !imporant;
+					font-weight: 600;
+					height: @pix-block-height;
+					color: fade(@black, 40%);
 					.pix{
-						margin-bottom: 12px;
+						font-size: @pix-size * 1.1;
+					}
+					label{
+						font-size: 1.2em;
+					}
+					&:hover{
+						background-color: transparent;
+						box-shadow: none;
 					}
 				}
 			}
 		}
 
 		&.pix-steps{
+			display: inline;
 			li.pix-step{
-				&.split{
-					border-left: 1px solid darken(@border-color, 15);
+				position: relative;
+				width: @pix-block-width;
+				display: inline-block;
+				margin-left: -3px; // strange bug
+				ul.split{
+					border-left: 1px solid darken(@pix-border-color, 15);
 				}
 				&:last-child{
-					// border-radius: @pix-border-width * 2;
-					border-right: @pix-border-width solid @border-color;
+					border-radius: @pix-border-width * 2;
+					border-right: @pix-border-width solid @pix-border-color !important;
 				}
 				&:hover{
-					background-color: lighten(@edit-color, 10);
+					background-color: fade(@edit-color, 15);
 				}
 			}
 		}
 	}
 
 	.note{
-		// padding: 4px;
+		display: inline-block;
+		position: absolute;
+		padding: 8px 4px;	
 		font-size: 11px;
 		font-family: @font-family-serif;
-		color: desaturate(darken(@edit-color, 30), 20);
+		color: fade(@black, 70%);
 		line-height: 100%;
+		&.top{
+			font-weight: bold;
+			bottom: @pix-block-height * 3 + 12px}
+		&.bottom{
+			top: @pix-block-height * 3 + 12px}
 	}
 }
 
-.pix-group{
-	//display: table-cell;
-	margin-top: 1em;
-	height: @pix-block-height;
-	vertical-align: middle;
-	text-align: center;
-	cursor: pointer;
-	.pix{
-		font-size: 3em;
-		width: 1em;
-	}
-
-	.pix-stack{
-		.stack-top{
-			top: -30%;
-			left: -2%;
-		}
-		.stack-bottom{
-			top: 30%;
-			left: -2%;
-		}
-		.stack-left{
-			left: -33%;
-		}
-		.stack-right{
-			left: 33%;
-		}
-		.stack-top-left{
-			top: -33%;
-			left: -33%;
-		}
-		.stack-top-right{
-			top: -33%;
-			left: 33%;
-		}
-		.stack-bottom-left{
-			top: 33%;
-			left: -33%;
-		}
-		.stack-bottom-right{
-			top: 33%;
-			left: 33%;
-		}
-	}
-	strong{
-		font-weight: 900;
-	}
-}
-
-.block{
-
-	p{
-		margin: 1em 0 0 0;
-		font-size: .66em;
-		line-height: 98%;
-	}
-
+li.block{
+	position: relative;
+	display: table;
+	list-style-type: none;
 	text-align: center;
 	vertical-align: middle;
 	height: @pix-block-height;
-	padding: 0 12px;
+	padding: 0;
 	margin: 0;
 	width: 100%;
 
 	&.block-user{
-		border-top: @pix-border-width solid @border-color;
+		border-top: @pix-border-width solid @pix-border-color;
 		border-bottom: 1px dotted @pix-border-color;
 	}
-	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
-	&.block-system{border-bottom: @pix-border-width solid @border-color;}
 
-	input[type="text"]{
-		font-size: 12px;
-		padding: 4px;
-		margin: 20px 0 0 0;
-		overflow: hidden;
-		width: 70px;
+	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
+	&.block-system{border-bottom: @pix-border-width solid @pix-border-color;}
+
+
+	.pix-group,	
+	textarea{
+		.cf;
+		display: table-cell;
 		text-align: center;
+		vertical-align: middle;
+		height: @pix-block-height;
+		font-size: 11px;
+		line-height: 100%;
+		padding: 5px;
 		border: none;
-		-moz-border-radius: @radius;
-		-webkit-border-radius: @radius;
-		border-radius: @radius;
+		width: 100% !important;
+		background-color: transparent;
+		
+		
 		&:active,
 		&:focus,
 		&:hover{
-			box-shadow: 0 0 2px @edit-color inset;
+			border: none;
+			box-shadow: 0 0 0 2px @edit-color inset;
 			background-color: fade(@edit-color, 30);
 		}
+
+		.pix{
+			display: block;
+			text-align: center;
+			font-size: @pix-size;
+			line-height: 100%;
+		}
 	}
+	
 }
 
-textarea.pix-test{
-	font-family: 'PiX';
-	font-size: 3em;
+/*
+// only for editable blocks inside the score
+ul.pix-steps li.pix-step ul .block .pix-div-input:hover{
+	cursor: pointer;
+	background-image: url(../img/edit.png);
+	background-repeat: no-repeat;
+	background-position: top right;
 }
+*/
+

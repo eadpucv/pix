@@ -1,4 +1,170 @@
-@media print{
-	@page {size: landscape}
-	
+//
+// Basic print styles
+// --------------------------------------------------
+// Source: https://github.com/h5bp/html5-boilerplate/blob/master/css/main.css
+
+@media print {
+
+    @page {
+
+        size: 11.0in 17.0in landscape; 
+        margin:.5in .5in .5in .5in; 
+        mso-header-margin: .5in; 
+        mso-footer-margin: .5in; 
+        mso-paper-source: 0;
+
+        @bottom-right-corner {
+            content: "Made with PiX";
+        }
+    }
+
+    body{
+        -moz-print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    * {
+        text-shadow: none !important;
+        font-size: 14px;
+        // color: #000 !important;
+        box-shadow: none !important;
+    }
+
+    footer {
+        display: none;
+    }
+
+    #add-new {
+        display: none;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .hp{
+        display: none;
+    }
+
+    .pix-score{
+        page-break-inside: avoid;
+        display: block;
+        ul.pix-steps{
+            li.pix-step{
+                display: inline-block;
+            }
+        }
+        ul.pix-header{
+            border-right: 1px solid @pix-border-color;
+            li{
+                .block >i.pix,
+                .block > label{
+                    color: @pix-border-color !important;
+                }
+            } 
+        }
+        /*
+        .block{
+            display: inline-block;
+        }
+        .pix-group{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        } 
+        */ 
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+            display: table-header-group; // h5bp.com/t
+        }
+
+        tr,
+        img {
+            page-break-inside: avoid;
+        }
+
+        img {
+            max-width: 100% !important;
+        }
+
+        @page {
+            margin: 2cm .5cm;
+        }
+
+        p,
+        h2,
+        h3 {
+            orphans: 3;
+            widows: 3;
+        }
+
+        h2,
+        h3 {
+            page-break-after: avoid;
+        }
+
+          // Chrome (OSX) fix for https://github.com/twbs/bootstrap/issues/11245
+          // Once fixed, we can just straight up remove this.
+          select {
+            background: #fff !important;
+        }
+
+          // Bootstrap components
+          .navbar {
+            display: none;
+        }
+        .table {
+            td,
+            th {
+              background-color: #fff !important;
+          }
+      }
+      .btn,
+      .dropup > .btn {
+        > .caret {
+          border-top-color: #000 !important;
+      }
+    }
+    .label {
+        border: 1px solid #000;
+    }
+
+    .table {
+        border-collapse: collapse !important;
+    }
+    .table-bordered {
+        th,
+        td {
+          border: 1px solid #ddd !important;
+      }
+    }
+
+    // Placeholders
+
+    ::-webkit-input-placeholder {
+      color: transparent !important;
+    }
+
+    /* Firefox < 19 */
+    :-moz-placeholder {
+      color: transparent !important;
+    }
+
+    /* Firefox > 19 */
+    ::-moz-placeholder {
+      color: transparent !important;
+    }
+
+    /* Internet Explorer 10 */
+    :-ms-input-placeholder {
+      color: transparent !important;
+}
 }

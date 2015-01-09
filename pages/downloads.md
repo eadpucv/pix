@@ -4,13 +4,26 @@ title: Downloads
 active: downloads
 ---
 <div class='row'>
-<div class='col-md-6'>
+<div lang='en' class='col-md-6'>
 	<h2>Icons</h2>
+	All icons are available as a separate package in the <a href='http://eadpucv.cgithub.io/pixograms' title='Pixograms Reposiroty'>Pixograms repository</a>.
 <ol>
-	<li><a href='{{ site.baseurl }}/downloads/icons.zip'>All icons in SVG format</a></li>
+	<li><a href='http://eadpucv.github.io/pixograms/download/icons.zip'>Pixograms</a> in SVG format</li>
+	<li><a href='http://eadpucv.github.io/pixograms/download/pix-webfont.zip'>Pixograms Webfont</a> (All icon names are ligatures)</li>
 </ol>
 </div>
 
+<div lang='es' class='col-md-6'>
+	<h2>Íconos</h2>
+	Todos los íconos están disponibles como un paquete en el <a href='http://eadpucv.cgithub.io/pixograms' title='Repositorio de Pixograms'>repositorio Pixograms</a>.
+<ol>
+	<li><a href='http://eadpucv.github.io/pixograms/download/icons.zip'>Pixogramas</a> en formato SVG</li>
+	<li><a href='http://eadpucv.github.io/pixograms/download/pix-webfont.zip'>Tipografía Web Pixograms</a> (todos los nombres de los íconos corresponden a ligaduras)</li>
+</ol>
+</div>
+</div>
+
+<div class='row'>
 <div class='col-md-6'>
 	<h2>Templates & Stencils</h2>
 	<h3>Illustrator</h3>
