@@ -38,7 +38,10 @@ var pixObject = {
 					$(this).checkText($(this).text(), event);
 				} else {
 					var icon = $(this).data('pix-icon');
-					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+
+					if ($(this).text().length > 0) {
+						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					}
 				}
 			});
 			$('.pix-steps').on('keyup', '.pix-div-input', function(event){
@@ -50,7 +53,9 @@ var pixObject = {
 					}
 				} else {
 					var icon = $(this).data('pix-icon');
-					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					if ($(this).text().length > 0) {
+						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					}
 				}
 			});
 			$('.pix-steps').on('click','.btn-tools',function(event){
