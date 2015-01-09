@@ -47,7 +47,7 @@
         display: none;
     }
 
-    div.pix-score{
+    .pix-score{
         page-break-inside: avoid;
         display: block;
         ul.pix-steps{
@@ -64,11 +64,16 @@
                 }
             } 
         }
-
-        li.block,
-        .pix-group{
+        /*
+        .block{
             display: inline-block;
-        }  
+        }
+        .pix-group{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        } 
+        */ 
     }
 
     pre,
@@ -141,4 +146,25 @@
           border: 1px solid #ddd !important;
       }
     }
+
+    // Placeholders
+
+    ::-webkit-input-placeholder {
+      color: transparent !important;
+    }
+
+    /* Firefox < 19 */
+    :-moz-placeholder {
+      color: transparent !important;
+    }
+
+    /* Firefox > 19 */
+    ::-moz-placeholder {
+      color: transparent !important;
+    }
+
+    /* Internet Explorer 10 */
+    :-ms-input-placeholder {
+      color: transparent !important;
+}
 }

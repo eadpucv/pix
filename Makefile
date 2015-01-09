@@ -6,10 +6,10 @@ install:
 	bower install
 
 less: 
-	lessc less/style.less css/style.css
+	lessc less/style.less css/style.css --clean-css
 
 css:
-	lessc less/style.less css/style.css
+	lessc less/style.less css/style.css --clean-css
 
 server:
 	jekyll server --watch --baseurl= --trace

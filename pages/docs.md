@@ -4,292 +4,37 @@ title: PiX - Documentation
 active: docs
 ---
 
-<p>Pix is designed to flow as you type in a natural and intuitive manner. For this reason we have created a hierarchical namimg schema for icons, from generic to specific. This syntax hierarchy serves as a way to combiane icons by stacking them the same way language works combining words and changing the meaning of the whole chain.</p>
-
-<h3>HTML PiX Structure</h3>
-<h4>Basic Element</h4>
-Each step of the process comprises 3 <code>block</code> elements inside a <code>li.pix-step</code> that belongs to a <code>ul.pix-steps</code>.
-
-
-<div class="row">
-	<div class="col-md-3">
-		<h5>Bloque sin editar</h5>
-		<li class='block'>
-			<textarea placeholder='type "pix" or ...'></textarea>
-		</li>
-	</div>
-	<div class="col-md-3">
-		<h5>Bloque sin editar</h5>
-		<div class='docs-block'>
-			<strong>li</strong>.block<br>
-			<div class='docs-block docs-bk'>
-				<strong>textarea</strong>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3">
-		<h5>Bloque editado</h5>
-		<li class='block'>
-			<div class="pix-group">
-				<i class="pix pix-click"></i>El usuario hace click sobre el botón aceptar
-			</div>
-		</li>
-	</div>
-	<div class="col-md-3">
-		<h5>Bloque editado</h5>
-		<div class="docs-block">
-			<strong>li</strong>.block
-			<div class="docs-block">
-				<strong>div</strong>.pix-group<br>
-				<div class="docs-block">
-					<strong>i</strong>.pix 
-				</div> + text
-			</div>
-		</div>
-	</div>
+<div class='row'>
+    <div lang='en' class='col-sm-6'>
+        <h3>How to create a PiX</h3>
+        <ol>
+        	<li>Open the <a href='{{ site.baseurl }}/pages/app'>App</a></li>
+        	<li>Name your PiX and add a description</li>
+        	<li>Type inside each PiX cell, for adding an icon, just type <code>pix-</code> plus the icon name you wish to insert
+				<ul>
+					<li>Within the autocomplete, select with your arrow keys <code>↑</code> or <code>↓</code> and hit <code>return</code> to insert it</li>
+					<li>If you ignore the autocomplete and keep typing, just press <code>space</code> to insert the icon</li>
+				</ul>
+        	</li>
+        	<li>Split the score with the <a href="#" class="btn btn-tools tool-split" title="split score"><img src='{{ site.baseurl }}/img/tool_split.svg'></a> button to declare a different section or screen. You can name the new section in the textarea that appears on top</li>
+        	<li>For adding a new step in your score, just press <code>tab</code> and a new column (or step) will be added at the end, or the click on the <a href="#" class="btn btn-tools tool-add" title="add step"><img src='{{ site.baseurl }}/img/tool_add.svg'></a> button for inserting a new step wherever you need it</li>
+        	<li>For removing a step, just click on the <a href="#" class="btn btn-tools tool-remove" title="remove step"><img src='{{ site.baseurl }}/img/tool_remove.svg'></a> button</li>
+        </ol>
+    </div>
+    <div lang='es' class='col-sm-6'>
+        <h3>Cómo crear una PiX</h3>
+        <ol>
+        	<li>Abre la <a href='{{ site.baseurl }}/pages/app'>Aplicación</a></li>
+        	<li>Nombra tu PiX y agrega una descripción</li>
+        	<li>Tipea dentro de cada celda de la partitura, para insertar un ícono sólo tipea <code>pix-</code> con el nombre del ícono a continuación
+				<ul>
+					<li>Aparecerá un menú con diferentes alternativas de acuerdo a la letra del ícono, para seleccionar el que quieres usar usa las flechas del teclado <code>↑</code> o <code>↓</code> y presiona <code>return</code> para insertarlo</li>
+					<li>Si prefieres ignorar este menú, sólo continua editando y presiona <code>espacio</code> para finalizar la inserción</li>
+				</ul>
+        	</li>
+        	<li>Para dividir la partitura en diferentes partes usa el botón <a href="#" class="btn btn-tools tool-split" title="split score"><img src='{{ site.baseurl }}/img/tool_split.svg'></a> para crear una línea vertical. Puedes nombrar la nueva sección en el nuevo espacio que aparece sobre la partitura</li>
+        	<li>Para agregar un nuevo paso o columna a la partitura, sólo presiona <code>tab</code> en la última celda y aparecerá otro paso a continuación. O puedes presionar el botón <a href="#" class="btn btn-tools tool-add" title="add step"><img src='{{ site.baseurl }}/img/tool_add.svg'></a> para insertar un espacio donde sea que lo requieras</li>
+        	<li>Para eliminar un paso o columna sólo presiona el botón <a href="#" class="btn btn-tools tool-remove" title="remove step"><img src='{{ site.baseurl }}/img/tool_remove.svg'></a></li>
+        </ol>
+    </div>
 </div>
-
-<h2>Partitura</h2>
-
-<div class="pix-score">
-	<!-- the score header -->
-	<ul class="pix-header">
-		<li class="block block-user">
-			<div class="pix-group"><i class='pix pix-person'></i><label>person</label></div>
-		</li>
-		<li class="block block-dialogue">
-			<div class="pix-group"><i class='pix pix-dialogue'></i><label>dialogue</label></div>
-		</li>
-		<li class="block block-system">
-			<div class="pix-group"><i class='pix pix-system'></i><label>system</label></div>
-		</li>
-	</ul>
-
-	<!-- the steps -->
-	<ul class="pix-steps">
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"><i class="pix">think</i>the user thinks about something</div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"><i class="pix">scroll</i>the user scroll through the homepage</div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"><i class="pix">empty</i>nothing really happens</div>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"><i class="pix">say</i>the user says about something</div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"><i class="pix">collapse</i>and closes the app</div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<div class='note top'>Wireframe 01</div>
-			<ul class='split'>
-				<li class="block block-user">
-					<div class="pix-group">Y así se comporta la celda cuando hay sólo texto, que es muy posible que ocurra.</div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-			<div class='note bottom'>En este momento parece oportuno agregar una nota</div>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-dialogue">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-system">
-					<textarea rows='10'></textarea>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-dialogue">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-system">
-					<textarea rows='10'></textarea>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-dialogue">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-system">
-					<textarea rows='10'></textarea>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-dialogue">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-system">
-					<textarea rows='10'></textarea>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-dialogue">
-					<textarea rows='10'></textarea>
-				</li>
-				<li class="block block-system">
-					<textarea rows='10'></textarea>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-
-		<li class="pix-step">
-			{% include tools-top.html %}
-			<ul>
-				<li class="block block-user">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-dialogue">
-					<div class="pix-group"></div>
-				</li>
-				<li class="block block-system">
-					<div class="pix-group"></div>
-				</li>
-			</ul>
-			{% include tools-bottom.html %}
-		</li>
-		
-		
-	</ul>
-</div>
-
-
-<h4>Dropdown</h4>
-<p>Hay que modificar el <code>display</code> y <code>position</code> en el CSS. Buscar <col>.select</col> en <em>'app.less'</em></p>
-
-<div class="row">
-	<div class="col-md-4">
-		Ejemplo de autocomplete
-		<ul class="select nav nav-stacked pix-ul">
-			<li><a href="#"><i class="pix pix-fw pix-click"></i> click</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-clock"></i> clock</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-cloud"></i> cloud</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-collapse"></i> collapse</a></li>
-		</ul>
-	</div>
-
-	<div class="col-md-4">
-		Ejemplo para el selector de "tipo de partitura" en pix-header
-		<ul class="select nav nav-stacked pix-ul">
-			<li><a href="#"><i class="pix pix-fw pix-dialogue"></i> dialogue</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-mobile"></i> mobile</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-tablet"></i> tablet</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-notebook"></i> notebook</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-desktop"></i> desktop</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-tv"></i> tv</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-game"></i> game</a></li>
-			<li><a href="#"><i class="pix pix-fw pix-body"></i> body</a></li>
-		</ul>
-	</div>
-
-	<div class="col-md-4">
-		<div class="docs-block">
-			<strong>ul</strong>.select nav nav-stacked pix-ul
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-			<div class="docs-block"><div class="docs-block"><strong>i</strong>.pix pix-fw pix-iconName</div> text</div>
-		</div>
-	</div>
-</div>
-
-
-<script type="text/javascript" src="{{ site.baseurl }}/js/jquery.min.js"></script>
-<script type="text/javascript" src="{{ site.baseurl }}/js/handlebars.min.js"></script>
-<script type="text/javascript" src="{{ site.baseurl }}/js/app.js"></script>

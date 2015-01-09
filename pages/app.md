@@ -13,6 +13,7 @@ active: app
 </div>
 
 <button id="add-new" class='btn btn-primary pull-right'><i class='pix pix-fw pix-3x'>add</i></button>
+
 <script id="layout-score" type="text/x-handlebars-template">
 	<div class='pix-score'>
 	     <ul class='pix-header'>

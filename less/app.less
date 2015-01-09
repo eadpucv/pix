@@ -2,6 +2,7 @@
 	&.pix-2x{line-height: 0}
 } 
 
+/*
 .pix-replace {
 	width: 100%;
 	padding: 10px;
@@ -28,24 +29,9 @@
 }
 
 .block {
-	.pix-input {
-		font-size: 3em !important;
-	}
-	.pix-note {
-		width: 70px;
-		height: 38px;
-		text-align: center;
-		line-height: 1.1em;
-		border: 0;
-		font-size: .65em;
-	}
-	.pix-note {
-		&:hover {
-			border: 1px solid #EBEFE5;
-		}
-	}
-}
 
+}
+*/
 .note .input-note {
 	margin: 10px 0 0 10px;
 	display: none;
@@ -104,27 +90,28 @@ ul.select{
 		bottom: -@tools-offset;
 		z-index: 101;
 	}
-	.btn-tools{
-		padding: 0 !important;
-		line-height: 100%;
-		.size(16px, 16px);
-		.img-circle;
-		color: @white;
-		text-shadow: 0 0 2px @white;
-		background-color: @gray-light;
-		box-shadow: 0 0 0 3px fade(@white, 90);
-		margin: 0 1px;
-		img{
-			position: relative;
-			.size(12px, 12px);
-			top: -3px;
-		}
-		&:hover{
-			&.tool-split{background-color: @blue}
-			&.tool-remove{background-color: @red}
-			&.tool-add{background-color: @green}
-			&.tool-note{background-color: @blue}
-		}
+}
+
+.btn-tools{
+	padding: 0 !important;
+	line-height: 100%;
+	.size(16px, 16px);
+	.img-circle;
+	color: @white;
+	text-shadow: 0 0 2px @white;
+	background-color: @gray-light;
+	box-shadow: 0 0 0 3px fade(@white, 90);
+	margin: 0 1px;
+	img{
+		position: relative;
+		.size(12px, 12px);
+		top: -3px;
+	}
+	&:hover{
+		&.tool-split{background-color: @blue}
+		&.tool-remove{background-color: @red}
+		&.tool-add{background-color: @green}
+		&.tool-note{background-color: @blue}
 	}
 }
 
@@ -138,6 +125,10 @@ ul.select{
 	padding: 5px;
 	border: 0px none;
 	width: 100% !important;
+	&:active{
+		text-align: center;
+		vertical-align: middle;
+	}
 }
 
 #pix-template {
@@ -158,6 +149,7 @@ li.block textarea {
 	display: block;
 	font-size: 400%;
 }
+
 .pix-step .note {
 	display: none;
 	border: none;
