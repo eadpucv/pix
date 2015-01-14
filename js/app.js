@@ -67,6 +67,12 @@ var pixObject = {
 			$('.export').on('click',function(){
 				$.fn.exportTool();
 			});
+			$('.import').on('click',function(){
+				$('.upload-json').trigger('click');
+			});
+			$('.upload-json').on('change',function(event){
+				$.fn.importTool(this);
+			});
 		},
 		acSelectNext : function(ul) {
 			var current = ul.find('.active');
@@ -128,11 +134,79 @@ var pixObject = {
 			setEndOfContenteditable(jsobj);
 		}
 	}
+
+	$.fn.importTool = function(that) {
+		var files = that.files;
+		if (files[0].type.indexOf("json") >= 0) {
+			var reader = new FileReader();
+			var json = {};
+			reader.onload = (function(json) { return function(e) { $.fn.makeImport(e.target) }; })(json);
+			reader.readAsText(files[0]);
+		} else {
+			alert('Sólo puedes importar archivos JSON');
+		}
+	}
+	$.fn.makeImport = function(result) {
+		if (!result.error) {
+			$('.pix-steps').find('.pix-step').remove();
+			var pix_object = $.parseJSON(result.result);
+			//console.log(pix_object); 
+			$('.score-header').find('input').val(pix_object.title);
+			$('.score-description').val(pix_object.description);
+			$.each(pix_object.scores,function(i,v){
+				$.each(v,function(i,step){
+					//console.log(step);
+					var re = new RegExp("(pix[-][a-z])([a-z]+)","gm");
+					var new_obj = {};
+					$.each(step,function(i,item){
+						var match = item.match(re);
+						if (item.match(re)) {
+					        item = item.replace(re,'<i class="pix $1$2"></i>');
+					        new_obj[i] = item;
+				        } else {
+				        	new_obj[i] = item;
+				        }
+					});
+					console.log(new_obj);
+					//handlebars
+					var step_template = $('#pix-step').html();
+					var column = Handlebars.compile(step_template);
+					var column_temp = column(new_obj);
+
+					$('.pix-steps').append(column_temp);
+					//obj.parent().parent().after(column);
+				});
+			});
+			var actives = $('.pix-step');
+			$.each(actives,function(i,step){
+				var obj = $(this);
+				console.log(obj.find('.pix-div-input').first().html());
+				if (obj.find('.note.top').text() != '') {
+					obj.find('.note.top').addClass('active');
+					obj.find('ul').first().addClass('split');
+				}
+				if (obj.find('.note.bottom').text() != '') {
+					obj.find('.note.bottom').addClass('active');
+				}
+				var inputs = obj.find('.pix-div-input');
+				$.each(inputs, function(){
+					var inp = $(this);
+					var pix_class = $(this).find('i').attr('class');
+
+					if (pix_class !== undefined)
+						inp.data('pix-icon',pix_class.replace('pix pix-',''));
+				});
+			});
+			//TODO : make import looping object
+		} else {
+			//TODO : Error handler
+			alert('Error al leer archivo : '+result.error);
+		}
+	}
 	$.fn.exportTool = function() {
 		var title = $('.score-header').find('input').val();
-		var description = $('.score-description').text();
+		var description = $('.score-description').val();
 		var pix_scores = $('.pix-score');
-		console.log(pix_scores);
 		var scores = [];
 		$.each(pix_scores,function(i,val){
 			var steps = $(this).find('.pix-step');
@@ -156,8 +230,8 @@ var pixObject = {
 					system_icon = 'pix-'+system.data('pix-icon');
 				var system_data = system_icon+' '+system.text();
 
-				var step_title = $(ival).children('.note.top').text();
-				var note  = $(ival).children('.note.bottom').text();
+				var step_title = $(ival).find('.note.top').val();
+				var note  = $(ival).find('.note.bottom').val();
 				var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
 				result_steps.push(object);
 			});
@@ -329,6 +403,7 @@ var pixObject = {
 		var obj = $(this);
 		var step_template = $('#pix-step').html();
 		var column = Handlebars.compile(step_template);
+		column()
 
 		obj.parent().parent().after(column);
 
@@ -373,6 +448,19 @@ jQuery(document).ready(function($){
 	/*
 		Handlebars
 	*/
+	// Debug handlebars
+	Handlebars.registerHelper("debug", function(optionalValue) {
+	  console.log("Current Context");
+	  console.log("====================");
+	  console.log(this);
+	 
+	  if (optionalValue) {
+	    console.log("Value");
+	    console.log("====================");
+	    console.log(optionalValue);
+	  }
+	});
+
 	var pix_layout = $('#layout-score').html();
 	var step_template = $('#pix-step').html();
 	var step_compile = Handlebars.compile(step_template);
