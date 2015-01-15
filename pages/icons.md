@@ -4,8 +4,16 @@ title: Icons
 active: icons
 ---
 
-<h3>Font Name: PiXograms</h3>
-<p>This font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. <a href='{{ site.baseurl}}/fonts/PiX.html'>Here</a> is the complete list automatically generated along with the font.</p>
+<h3>PiXograms</h3>
+<div class='row'>
+	<div class='col-md-6' lang='en'>
+		<p>The Pixograms font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. It works as a <a href='http://eadpucv.github.io/pixograms'>separate repository</a> and works as a dependency for PiX so its easier to maintain and upgrade.</p>
+	</div>
+	<div class='col-md-6' lang='es'>
+		<p>La familia tipográfica Pixograms está especialmente diseñada para representar las acciones, procesos y objetos involucrados en el flujo de experiencia del usuario. Trabaja como un <a href='http://eadpucv.github.io/pixograms'>repositorio independiente</a> y es una dependencia de PiX de tal forma que resulta más sencilla su mantención y actualización.</p>
+	</div>
+</div>
+
 
 <h4>All Icons</h4>
 This textarea uses pixograms as the base font, so you can type the icon names and they'll appear as ligatures. <a href="http://eadpucv.github.io/pixograms">Check the original repository</a>

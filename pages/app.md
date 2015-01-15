@@ -58,3 +58,5 @@ active: app
             <textarea class="note bottom" rows='10' placeholder='type here...'>{% raw %}{{{note}}}{% endraw %}</textarea>
     </li>
 </script>
+
+<div class="pull-left hp">need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a></div>
