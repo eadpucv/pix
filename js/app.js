@@ -18,6 +18,27 @@ function setEndOfContenteditable(contentEditableElement)
         range.select();//Select the range (make it the visible selection
     }
 }
+/*
+* Props to dense13.com
+* http://dense13.com/blog/2009/05/03/converting-string-to-slug-javascript/
+*/
+function string_to_slug(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+  
+  // remove accents, swap ñ for n, etc
+  var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+  var to   = "aaaaeeeeiiiioooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+}
 var pixObject = {
 	currentObject: null,
 	getCurrent : function() {
@@ -200,53 +221,58 @@ var pixObject = {
 			//TODO : make import looping object
 		} else {
 			//TODO : Error handler
-			alert('Error al leer archivo : '+result.error);
+			alert('Read file error : '+result.error);
 		}
 	}
 	$.fn.exportTool = function() {
 		var title = $('.score-header').find('input').val();
-		var description = $('.score-description').val();
-		var pix_scores = $('.pix-score');
-		var scores = [];
-		$.each(pix_scores,function(i,val){
-			var steps = $(this).find('.pix-step');
-			var result_steps = [];
-			$.each(steps,function(j,ival){
-				var user = $(this).find('.block-user').children('div');
-				var user_icon = '';
-				if (user.data('pix-icon'))
-					user_icon = 'pix-'+user.data('pix-icon');
-				var user_data = user_icon+' '+user.text();
+		if (title != "") {
+			var description = $('.score-description').val();
+			var pix_scores = $('.pix-score');
+			var scores = [];
+			$.each(pix_scores,function(i,val){
+				var steps = $(this).find('.pix-step');
+				var result_steps = [];
+				$.each(steps,function(j,ival){
+					var user = $(this).find('.block-user').children('div');
+					var user_icon = '';
+					if (user.data('pix-icon'))
+						user_icon = 'pix-'+user.data('pix-icon');
+					var user_data = user_icon+' '+user.text();
 
-				var dialogue = $(this).find('.block-dialogue').children('div');
-				var dialogue_icon = '';
-				if (dialogue.data('pix-icon'))
-					dialogue_icon = 'pix-'+dialogue.data('pix-icon');
-				var dialogue_data = dialogue_icon+' '+dialogue.text();
+					var dialogue = $(this).find('.block-dialogue').children('div');
+					var dialogue_icon = '';
+					if (dialogue.data('pix-icon'))
+						dialogue_icon = 'pix-'+dialogue.data('pix-icon');
+					var dialogue_data = dialogue_icon+' '+dialogue.text();
 
-				var system = $(this).find('.block-system').children('div');
-				var system_icon = '';
-				if (system.data('pix-icon'))
-					system_icon = 'pix-'+system.data('pix-icon');
-				var system_data = system_icon+' '+system.text();
+					var system = $(this).find('.block-system').children('div');
+					var system_icon = '';
+					if (system.data('pix-icon'))
+						system_icon = 'pix-'+system.data('pix-icon');
+					var system_data = system_icon+' '+system.text();
 
-				var step_title = $(ival).find('.note.top').val();
-				var note  = $(ival).find('.note.bottom').val();
-				var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
-				result_steps.push(object);
+					var step_title = $(ival).find('.note.top').val();
+					var note  = $(ival).find('.note.bottom').val();
+					var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
+					result_steps.push(object);
+				});
+				scores.push(result_steps);
 			});
-			scores.push(result_steps);
-		});
-		
-		var objectExport = {
-			title: title,
-			description: description,
-			scores : scores
+			
+			var objectExport = {
+				title: title,
+				description: description,
+				scores : scores
+			}
+			var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
+			$('.export').attr('href','data:'+data);
+			var slug = string_to_slug(title);
+			$('.export').attr('download','pix-data-'+slug+'.json');
+			$('.export').trigger('click');
+		} else {
+			alert('You must set a score name');
 		}
-		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
-		$('.export').attr('href','data:'+data);
-		$('.export').attr('download','pix-data.json');
-		$('.export').trigger('click');
 	}
 	$.fn.clickTool = function() {
 		obj = $(this);
