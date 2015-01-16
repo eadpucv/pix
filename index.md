@@ -9,13 +9,13 @@ active: index
         <h3>Why?</h3>
         <p>We need a design deliverable that can encapsule the flow of interaction, the quality of the experience we're proposing to the user, to our team members and to the business.</p>
         
-        <p>Most of the documents we hand out to our colleagues and clients represent snapshots of the experience flow, and we expect them to imagine the rest, to connect the dots with their imagination. It usually requires other material explanations —such as customer journeys, video sketches with personas, scenarios and the line— to give the idea of what we really want to be happening with our design. This is mainly because our design <strong>encompasses the flow of time</strong> but we lack the language to represent it properly and across all disciplines involved in the project.</p>
+        <p>Most of the documents we hand out to our colleagues and clients represent snapshots of the experience flow, and we expect them to imagine the rest, to connect the dots with their imagination. It usually requires other material explanations —such as customer journeys, video sketches with personas, scenarios and the like– to give the idea of what we really want to be happening with our design. This is mainly because our design <strong>is a dialogue that unfolds in time</strong> but we lack the language to represent it properly and across all disciplines involved in the project.</p>
     </div>
     <div lang='es' class='col-sm-6'>
         <h3>¿Por Qué?</h3>
-        <p>Necesitamos un entregable que permita encapsular el flujo de interacción, la cualidad y calidad de la experiencia que proponemos al usuario, a nuestros colegas y a nuestros clientes. </p>
+        <p>Necesitamos un entregable que permita encapsular el flujo de interacción, la calidad de la experiencia que proponemos al usuario, a nuestros colegas y a nuestros clientes. </p>
 
-        <p>La gran mayoría de los documentos que entregamos son imágenes estáticas del flujo de experiencia, y esperamos que imaginen el resto en su cabeza. Normalmente se requiere de otras explicaciones —videos, infografías, personas y escenarios, etc.— para dar la idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>involucra el flujo del tiempo</strong> pero carecemos de un lenguaje que permita representarlo de forma adecuada y legible para todas las disciplinas involucradas en el proyecto.</p>
+        <p>La gran mayoría de los documentos que entregamos son imágenes estáticas del flujo de experiencia, y esperamos que imaginen el resto en su cabeza conectando los puntos. Normalmente se requiere de otras explicaciones —videos, infografías, personas y escenarios, etc.— para dar una idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>es un diálogo que se despliega en el tiempo</strong> pero carecemos de un lenguaje que permita representarlo de forma adecuada y legible para todas las disciplinas involucradas en el proyecto.</p>
     </div>
 </div>
 
