@@ -275,7 +275,9 @@ var pixObject = {
 		var template = Handlebars.compile(pix_layout);
 		var context = {step: step_compile};
 		var html = template(context);
-		$(this).append(html);
+		$('#pix-template').append(html);
+		$('.pix-score').last().find('.pix-div-input:first').focus();
+		$('.pix-score').last().find('.pix-steps').data('pix-columns',1);
 		
 		return false;
 	}
@@ -393,7 +395,13 @@ var pixObject = {
 	*/
 	$.fn.removeCurrentNode = function() {
 		var obj = $(this);
-		obj.parent().parent().remove();
+		var pix_steps = obj.parent().parent().parents();
+		var counter = pix_steps.data('pix-columns');
+		if (counter > 1) {
+			pix_steps.data('pix-columns',counter-1);
+			obj.parent().parent().remove();
+		}
+
 		return false;
 	}
 	/*
@@ -401,11 +409,19 @@ var pixObject = {
 	*/
 	$.fn.addNodeCurrent = function() {
 		var obj = $(this);
+
 		var step_template = $('#pix-step').html();
 		var column = Handlebars.compile(step_template);
 		column()
-
-		obj.parent().parent().after(column);
+		var pix_steps = obj.parent().parent().parents();
+		var counter = pix_steps.data('pix-columns');
+		console.log(counter);
+		if (counter < 12) {
+			pix_steps.data('pix-columns',counter+1);
+			obj.parent().parent().after(column);
+		} else {
+			$(this).addScore();
+		}
 
 	}
 	/*
@@ -468,6 +484,7 @@ jQuery(document).ready(function($){
 	var context = {step: step_compile};
 	var html = template(context);
 	$('#pix-template').html(html);
+	$('.pix-steps').first().data('pix-columns',1);
 
 	/*
 		Iniciamos eventos
