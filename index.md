@@ -15,7 +15,7 @@ active: index
         <h3>¿Por Qué?</h3>
         <p>Necesitamos un entregable que permita encapsular el flujo de interacción, la cualidad y calidad de la experiencia que proponemos al usuario, a nuestros colegas y a nuestros clientes. </p>
 
-        <p>La gran mayoría de los documentos que entregamos son imágenes estáticas del flujo de experiencia, y esperamos que ellos lo imaginen en su cabeza. Normalmente se requiere de otras explicaciones —videos, infografías, personas y escenarios, etc.— para dar la idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>involucra el flujo del tiempo</strong> pero carecemos de un lenguaje que permita representarlo de forma adecuada y legible para todas las disciplinas involucradas en el proyecto.</p>
+        <p>La gran mayoría de los documentos que entregamos son imágenes estáticas del flujo de experiencia, y esperamos que imaginen el resto en su cabeza. Normalmente se requiere de otras explicaciones —videos, infografías, personas y escenarios, etc.— para dar la idea de lo que realmente proponemos y queremos que ocurra. Esto se debe principalmente a que nuestro diseño <strong>involucra el flujo del tiempo</strong> pero carecemos de un lenguaje que permita representarlo de forma adecuada y legible para todas las disciplinas involucradas en el proyecto.</p>
     </div>
 </div>
 
