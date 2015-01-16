@@ -33,7 +33,7 @@ var pixObject = {
 			$('#add-new').on('click',function(event){
 				$('#pix-template').addScore();
 			});
-			$('.pix-steps').on('keypress','.pix-div-input',function(event){
+			$('#pix-template').on('keypress','.pix-div-input',function(event){
 				if (event.keyCode != 8) {
 					$(this).checkText($(this).text(), event);
 				} else {
@@ -44,7 +44,7 @@ var pixObject = {
 					}
 				}
 			});
-			$('.pix-steps').on('keyup', '.pix-div-input', function(event){
+			$('#pix-template').on('keyup', '.pix-div-input', function(event){
 				if (event.keyCode != 8) {
 					var target = $(this);
 					var keySafe = [40,38];
@@ -58,10 +58,10 @@ var pixObject = {
 					}
 				}
 			});
-			$('.pix-steps').on('click','.btn-tools',function(event){
+			$('#pix-template').on('click','.btn-tools',function(event){
 				$(this).clickTool();
 			});
-			$('.pix-steps').on('click', '.pix-div-input', function(event){
+			$('#pix-template').on('click', '.pix-div-input', function(event){
 				$.handleEvents.acClose();
 			});
 			$('.export').on('click',function(){
