@@ -12,7 +12,7 @@ active: app
 	<!-- Handlebars template-->
 </div>
 
-<button id="add-new" class='btn btn-primary pull-right'><i class='pix'>add</i></button>
+<button id="add-new" title='add a new score' class='btn btn-primary pull-right'><i class='pix'>add</i></button>
 
 <script id="layout-score" type="text/x-handlebars-template">
 {{debug}}

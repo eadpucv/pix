@@ -271,7 +271,7 @@ var pixObject = {
 			$('.export').attr('download','pix-data-'+slug+'.json');
 			$('.export').trigger('click');
 		} else {
-			alert('You must set a score name');
+			alert('Please name your score before exporting it.');
 		}
 	}
 	$.fn.clickTool = function() {
