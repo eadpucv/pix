@@ -8,8 +8,8 @@
 @edit-color:				 	#efefd7;
 @pix-block-height:				120px;
 @pix-block-width:				8.3%;
-@pix-size:						3.67em;
-
+@pix-size:						4em;
+@tools-offset: 					10px;
 /****************************************** Score Title */
 .input-style{
 		padding: 4px;
@@ -46,6 +46,10 @@ h1.score-header{
 
 
 /******************************************** The Score */
+
+#pix-template {
+	margin-top: 40px;
+}
 
 .pix-score{
 	.cf;
@@ -90,7 +94,7 @@ h1.score-header{
 					height: @pix-block-height;
 					color: fade(@black, 40%);
 					.pix{
-						font-size: @pix-size * 1.1;
+						font-size: @pix-size;
 					}
 					label{
 						font-size: 1.2em;
@@ -140,6 +144,7 @@ h1.score-header{
 		}
 		&.bottom{
 			top: @pix-block-height * 3 + 12px;
+			background-color: transparent;
 		}
 	}
 }
@@ -185,6 +190,8 @@ li.block{
 			border: none;
 			box-shadow: 0 0 0 2px @edit-color inset;
 			background-color: fade(@edit-color, 30);
+			text-align: center;
+			vertical-align: middle;
 		}
 
 		i.pix{
@@ -198,13 +205,148 @@ li.block{
 	
 }
 
-/*
-// only for editable blocks inside the score
-ul.pix-steps li.pix-step ul .block .pix-div-input:hover{
-	cursor: pointer;
-	background-image: url(../img/edit.png);
-	background-repeat: no-repeat;
-	background-position: top right;
-}
-*/
+.nav li a .pix{
+	&.pix-2x{line-height: 0}
+} 
 
+.note .input-note {
+	margin: 10px 0 0 10px;
+	display: none;
+	width: 85px;
+	height: 80px;
+	border: none;
+	line-height: 95%;
+}
+
+
+// drop-down and select class. Use in combination with: <ul class="select nav nav-stacked pix-ul">
+ul.pix-ul li.active a {
+	background-color: saturate(fade(@brand-primary, 30), 30);
+}
+
+ul.select{
+	position: absolute;
+	z-index: 1000 !important;
+	width: 200px;
+	background-color: @white;
+	border-radius: @radius;
+	box-shadow: 3px 3px 0 fade(@black, 10);
+	border: @pix-border-width/2 solid darken(@border-color, 10);
+	margin: 0 10px 0 0;
+	li{
+		a{
+			font-size: 14px;
+			color: @black;
+			padding: 5px;
+			.pix{
+				font-size: 36px; // @pix-size;
+			}
+			&:hover{
+				background-color: saturate(fade(@brand-primary, 10), 30);
+			}
+		}
+	}
+}
+
+
+.pix-step:hover .fly-link {
+	display: inline-block;
+}
+
+.fly-link {
+	display: none;
+	position: absolute;
+	background-color: transparent;
+	&.top {
+		top: -@tools-offset - 2px;
+		z-index: 100;
+	}
+	&.bottom {
+		bottom: -@tools-offset;
+		z-index: 101;
+	}
+}
+
+.btn-tools{
+	padding: 0 !important;
+	line-height: 100%;
+	.size(16px, 16px);
+	.img-circle;
+	color: @white;
+	text-shadow: 0 0 2px @white;
+	background-color: @gray-light;
+	box-shadow: 0 0 0 3px fade(@white, 90);
+	margin: 0 1px;
+	img{
+		position: relative;
+		.size(12px, 12px);
+		top: -3px;
+	}
+	&:hover{
+		&.tool-split{background-color: @blue}
+		&.tool-remove{background-color: @red}
+		&.tool-add{background-color: @green}
+		&.tool-note{background-color: @blue}
+	}
+}
+
+.pix-div-input {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	height: 120px;
+	font-size: 11px;
+	line-height: 100%;
+	padding: 5px;
+	border: 0px none;
+	width: 100% !important;
+	&:active{
+		text-align: center;
+		vertical-align: middle;
+	}
+}
+
+
+
+.pix-div-input:hover {
+	border: 0px none;
+	box-shadow: 0px 0px 0px 2px #EFEFD7 inset;
+	background-color: rgba(239, 239, 215, 0.3);
+}
+
+li.block textarea {
+	display: none;
+}
+
+.pix-div-input i {
+	display: block;
+	font-size: 400%;
+}
+
+.pix-step{
+	.note {
+		display: none;
+		border: none;
+		width: 94px;
+		&.bottom {
+			
+		}
+		&.active {
+			display: block;
+		}
+	}
+}
+
+.upload-json {
+	display: none !important;
+}
+
+#add-new{
+	.size(60px, 60px);
+	border-radius: 50%;
+	.pix{
+		position: relative;
+		font-size: 3em;
+		top:-1px;
+	}
+}
