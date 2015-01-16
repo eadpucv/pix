@@ -12,7 +12,7 @@ active: app
 	<!-- Handlebars template-->
 </div>
 
-<button id="add-new" class='btn btn-primary pull-right'><i class='pix pix-fw pix-3x'>add</i></button>
+<button id="add-new" class='btn btn-primary pull-right'><i class='pix'>add</i></button>
 
 <script id="layout-score" type="text/x-handlebars-template">
 {{debug}}
@@ -59,4 +59,4 @@ active: app
     </li>
 </script>
 
-<div class="pull-left hp">need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a></div>
+<div class="help-line hp">need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a></div>
