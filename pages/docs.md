@@ -10,7 +10,11 @@ active: docs
         <ol>
         	<li>Open the <a href='{{ site.baseurl }}/pages/app'>App</a></li>
         	<li>Name your PiX and add a description</li>
+<<<<<<< HEAD
         	<li>Type inside each PiX cell, for adding an icon, just type <code>pix-</code> plus the icon name you wish to insert
+=======
+        	<li>Type inside each PiX cell, for adding an icon, just type <code>pix-</code> plus the icon name you wish to insert (check the <a href='http://eadpucv.github.io/pixograms/'>complete list of icons</a>)
+>>>>>>> v5.0.0
 				<ul>
 					<li>Within the autocomplete, select with your arrow keys <code>↑</code> or <code>↓</code> and hit <code>return</code> to insert it</li>
 					<li>If you ignore the autocomplete and keep typing, just press <code>space</code> to insert the icon</li>
@@ -26,7 +30,11 @@ active: docs
         <ol>
         	<li>Abre la <a href='{{ site.baseurl }}/pages/app'>Aplicación</a></li>
         	<li>Nombra tu PiX y agrega una descripción</li>
+<<<<<<< HEAD
         	<li>Tipea dentro de cada celda de la partitura, para insertar un ícono sólo tipea <code>pix-</code> con el nombre del ícono a continuación
+=======
+        	<li>Tipea dentro de cada celda de la partitura, para insertar un ícono sólo tipea <code>pix-</code> con el nombre del ícono a continuación (revisa la <a href='http://eadpucv.github.io/pixograms/'>lista completa de íconos</a>)
+>>>>>>> v5.0.0
 				<ul>
 					<li>Aparecerá un menú con diferentes alternativas de acuerdo a la letra del ícono, para seleccionar el que quieres usar usa las flechas del teclado <code>↑</code> o <code>↓</code> y presiona <code>return</code> para insertarlo</li>
 					<li>Si prefieres ignorar este menú, sólo continua editando y presiona <code>espacio</code> para finalizar la inserción</li>

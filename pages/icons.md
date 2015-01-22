@@ -4,8 +4,26 @@ title: Icons
 active: icons
 ---
 
+<<<<<<< HEAD
 <h3>Font Name: PiXograms</h3>
 <p>This font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. <a href='{{ site.baseurl}}/fonts/PiX.html'>Here</a> is the complete list automatically generated along with the font.</p>
+=======
+<h3>PiXograms</h3>
+<div class='row'>
+	<div class='col-md-6' lang='en'>
+		<p>The Pixograms font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. It works as a <a href='http://eadpucv.github.io/pixograms'>separate repository</a> and works as a dependency for PiX so its easier to maintain and upgrade.</p>
+	</div>
+	<div class='col-md-6' lang='es'>
+		<p>La familia tipográfica Pixograms está especialmente diseñada para representar las acciones, procesos y objetos involucrados en el flujo de experiencia del usuario. Trabaja como un <a href='http://eadpucv.github.io/pixograms'>repositorio independiente</a> y es una dependencia de PiX de tal forma que resulta más sencilla su mantención y actualización.</p>
+	</div>
+</div>
+
+
+<h4>All Icons</h4>
+This textarea uses pixograms as the base font, so you can type the icon names and they'll appear as ligatures. <a href="http://eadpucv.github.io/pixograms">Check the original repository</a>
+
+<textarea class='pix pix-2x pix-demo' rows='7'>add alert angry api archive ask attach audio autocomplete body branch button buy call camera cancel check checkbox click clock cloud collapse color comment config contact contacts copy cut database date delete desktop deviceorient devicerotate deviceshake devicevibrate dialogue dislike doubleclick doubletap down download drag drop edit email empty expand export face ff file film filter furious gallery game hand hand1 hangup happy image import input intrigued kiosk left like link list lock logo map merge message mobile move next notebook notify page password paste pause pay person pinch play position prev print process progress qr radio radioselect range rec remove resize rew right rotate route rss sad save say scroll search select send share smiling speak stack stop surprised switch system tablet tag tap tap1down tap1left tap1right tap1up tap2 tap2down tap2left tap2right tap2up tap3 tap3down tap3left tap3right tap3up tap4 tap4down tap4left tap4right tap4up tap5down tap5left tap5right tap5up text think time tv unlink unlock up update upload video view window zoom </textarea>
+>>>>>>> v5.0.0
 
 <h4>All Icons</h4>
 This textarea uses pixograms as the base font, so you can type the icon names and they'll appear as ligatures. <a href="http://eadpucv.github.io/pixograms">Check the original repository</a>
@@ -20,6 +38,7 @@ This textarea uses pixograms as the base font, so you can type the icon names an
 {% include col-pix.html name='dialogue' %}
 {% include col-pix.html name='system' %}
 {% include col-pix.html name='empty' %}
+<<<<<<< HEAD
 </div>
 
 <h3>Generic</h3>
@@ -31,6 +50,19 @@ This textarea uses pixograms as the base font, so you can type the icon names an
 {% include col-pix.html name='right' %}
 </div>
 
+=======
+</div>
+
+<h3>Generic</h3>
+<p>Multipurpose</p>
+<div class='row'>
+{% include col-pix.html name='up' %}
+{% include col-pix.html name='down' %}
+{% include col-pix.html name='left' %}
+{% include col-pix.html name='right' %}
+</div>
+
+>>>>>>> v5.0.0
 <h3>Devices</h3>
 <p>Devices serve to specify what kind of interaction is involved. It's the key to the score:</p>
 <div class='row'>
@@ -84,6 +116,7 @@ This textarea uses pixograms as the base font, so you can type the icon names an
 		<p>Esta es la capa del diálogo que representa las acciones concretas sucediendo en la interfaz: gestos, mensajes, acciones; toda manipulación directa de elementos y constructos sucediendo en el punto de contacto.</p>
 	</div>
 </div>
+<<<<<<< HEAD
 
 <div class='row'>
 {% include col-pix.html name='send' %}
@@ -118,6 +151,42 @@ This textarea uses pixograms as the base font, so you can type the icon names an
 </div>
 
 <div class='row'>
+=======
+
+<div class='row'>
+{% include col-pix.html name='send' %}
+{% include col-pix.html name='share' %}
+{% include col-pix.html name='speak' %}
+{% include col-pix.html name='comment' %}
+{% include col-pix.html name='attach' %}
+{% include col-pix.html name='config' %}
+{% include col-pix.html name='buy' %}
+{% include col-pix.html name='pay' %}
+{% include col-pix.html name='call' %}
+{% include col-pix.html name='hangup' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='add' %}
+{% include col-pix.html name='remove' %}
+{% include col-pix.html name='alert' %}
+{% include col-pix.html name='ask' %}
+{% include col-pix.html name='check' %}
+{% include col-pix.html name='cancel' %}
+{% include col-pix.html name='say' %}
+{% include col-pix.html name='think' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='edit' %}
+{% include col-pix.html name='save' %}
+{% include col-pix.html name='copy' %}
+{% include col-pix.html name='paste' %}
+{% include col-pix.html name='delete' %}
+</div>
+
+<div class='row'>
+>>>>>>> v5.0.0
 {% include col-pix.html name='like' %}
 {% include col-pix.html name='dislike' %}
 {% include col-pix.html name='link' %}

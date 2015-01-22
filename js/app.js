@@ -18,6 +18,30 @@ function setEndOfContenteditable(contentEditableElement)
         range.select();//Select the range (make it the visible selection
     }
 }
+<<<<<<< HEAD
+=======
+/*
+* Props to dense13.com
+* http://dense13.com/blog/2009/05/03/converting-string-to-slug-javascript/
+*/
+function string_to_slug(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+  
+  // remove accents, swap ñ for n, etc
+  var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+  var to   = "aaaaeeeeiiiioooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+}
+>>>>>>> v5.0.0
 var pixObject = {
 	currentObject: null,
 	getCurrent : function() {
@@ -33,18 +57,26 @@ var pixObject = {
 			$('#add-new').on('click',function(event){
 				$('#pix-template').addScore();
 			});
+<<<<<<< HEAD
 			$('.pix-steps').on('keypress','.pix-div-input',function(event){
+=======
+			$('#pix-template').on('keypress','.pix-div-input',function(event){
+>>>>>>> v5.0.0
 				if (event.keyCode != 8) {
 					$(this).checkText($(this).text(), event);
 				} else {
 					var icon = $(this).data('pix-icon');
 <<<<<<< HEAD
+<<<<<<< HEAD
 					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
 =======
+=======
+>>>>>>> v5.0.0
 
 					if ($(this).text().length > 0) {
 						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
 					}
+<<<<<<< HEAD
 >>>>>>> v5.0.0
 				}
 			});
@@ -57,6 +89,13 @@ var pixObject = {
 					var icon = $(this).data('pix-icon');
 					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
 =======
+=======
+				}
+			});
+			$('#pix-template').on('keyup', '.pix-div-input', function(event){
+				if (event.keyCode != 8) {
+					var target = $(this);
+>>>>>>> v5.0.0
 					var keySafe = [40,38];
 					if ($.inArray(event.keyCode,keySafe) == -1) {
 						$(this).replacePix($(this).text(), target);
@@ -66,6 +105,7 @@ var pixObject = {
 					if ($(this).text().length > 0) {
 						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
 					}
+<<<<<<< HEAD
 >>>>>>> v5.0.0
 				}
 			});
@@ -77,6 +117,16 @@ var pixObject = {
 			});
 <<<<<<< HEAD
 =======
+=======
+				}
+			});
+			$('#pix-template').on('click','.btn-tools',function(event){
+				$(this).clickTool();
+			});
+			$('#pix-template').on('click', '.pix-div-input', function(event){
+				$.handleEvents.acClose();
+			});
+>>>>>>> v5.0.0
 			$('.export').on('click',function(){
 				$.fn.exportTool();
 			});
@@ -86,6 +136,9 @@ var pixObject = {
 			$('.upload-json').on('change',function(event){
 				$.fn.importTool(this);
 			});
+<<<<<<< HEAD
+>>>>>>> v5.0.0
+=======
 >>>>>>> v5.0.0
 		},
 		acSelectNext : function(ul) {
@@ -99,6 +152,10 @@ var pixObject = {
 				ul.find('li:first').addClass('active');
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			return false;
+>>>>>>> v5.0.0
 =======
 			return false;
 >>>>>>> v5.0.0
@@ -116,6 +173,7 @@ var pixObject = {
 		},
 		acClose : function(ul) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$('.pix-ul').remove();
 		},
 		acAddIcon : function(ul,obj,match) {
@@ -126,6 +184,8 @@ var pixObject = {
 			var textReplace  = obj.text().replace(match[0],i);
 			console.log(textReplace);
 =======
+=======
+>>>>>>> v5.0.0
 			$('body').find('ul.pix-ul').remove();
 		},
 		acAddIcon : function(ul,obj,match) {
@@ -139,14 +199,20 @@ var pixObject = {
 			if (textReplace.length < 3) {
 				textReplace = i;
 			}
+<<<<<<< HEAD
+>>>>>>> v5.0.0
+=======
 >>>>>>> v5.0.0
 			obj.html(textReplace);
 			this.acClose(ul);
 			var jsobj = obj.get(0);
 			setEndOfContenteditable(jsobj);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 =======
+=======
+>>>>>>> v5.0.0
 		},
 		acPutIcon : function(obj,clicked) {
 			var click = $(clicked);
@@ -232,11 +298,16 @@ var pixObject = {
 			//TODO : make import looping object
 		} else {
 			//TODO : Error handler
+<<<<<<< HEAD
 			alert('Error al leer archivo : '+result.error);
+=======
+			alert('Read file error : '+result.error);
+>>>>>>> v5.0.0
 		}
 	}
 	$.fn.exportTool = function() {
 		var title = $('.score-header').find('input').val();
+<<<<<<< HEAD
 		var description = $('.score-description').val();
 		var pix_scores = $('.pix-score');
 		var scores = [];
@@ -280,6 +351,55 @@ var pixObject = {
 		$('.export').attr('download','pix-data.json');
 		$('.export').trigger('click');
 >>>>>>> v5.0.0
+=======
+		if (title != "") {
+			var description = $('.score-description').val();
+			var pix_scores = $('.pix-score');
+			var scores = [];
+			$.each(pix_scores,function(i,val){
+				var steps = $(this).find('.pix-step');
+				var result_steps = [];
+				$.each(steps,function(j,ival){
+					var user = $(this).find('.block-user').children('div');
+					var user_icon = '';
+					if (user.data('pix-icon'))
+						user_icon = 'pix-'+user.data('pix-icon');
+					var user_data = user_icon+' '+user.text();
+
+					var dialogue = $(this).find('.block-dialogue').children('div');
+					var dialogue_icon = '';
+					if (dialogue.data('pix-icon'))
+						dialogue_icon = 'pix-'+dialogue.data('pix-icon');
+					var dialogue_data = dialogue_icon+' '+dialogue.text();
+
+					var system = $(this).find('.block-system').children('div');
+					var system_icon = '';
+					if (system.data('pix-icon'))
+						system_icon = 'pix-'+system.data('pix-icon');
+					var system_data = system_icon+' '+system.text();
+
+					var step_title = $(ival).find('.note.top').val();
+					var note  = $(ival).find('.note.bottom').val();
+					var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
+					result_steps.push(object);
+				});
+				scores.push(result_steps);
+			});
+			
+			var objectExport = {
+				title: title,
+				description: description,
+				scores : scores
+			}
+			var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
+			$('.export').attr('href','data:'+data);
+			var slug = string_to_slug(title);
+			$('.export').attr('download','pix-data-'+slug+'.json');
+			$('.export').trigger('click');
+		} else {
+			alert('Please name your score before exporting it.');
+		}
+>>>>>>> v5.0.0
 	}
 	$.fn.clickTool = function() {
 		obj = $(this);
@@ -308,15 +428,27 @@ var pixObject = {
 		var template = Handlebars.compile(pix_layout);
 		var context = {step: step_compile};
 		var html = template(context);
+<<<<<<< HEAD
 		$(this).append(html);
+=======
+		$('#pix-template').append(html);
+		$('.pix-score').last().find('.pix-div-input:first').focus();
+		$('.pix-score').last().find('.pix-steps').data('pix-columns',1);
+>>>>>>> v5.0.0
 		
 		return false;
 	}
 	$.fn.showAutoComplete = function(search,match) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		var obj = $(this);
 		var searchText = match[0].replace('pix-','');
 		console.log(searchText);
+=======
+		$.handleEvents.acClose();
+		var obj = $(this);
+		var searchText = match[0].replace('pix-','');
+>>>>>>> v5.0.0
 =======
 		$.handleEvents.acClose();
 		var obj = $(this);
@@ -343,6 +475,7 @@ var pixObject = {
 						var li = $('<li>').append($('<a>').attr('href','#'+item).text(item).prepend($('<i>').attr('class','pix pix-fw pix-'+item)));
 						ul.append(li);
 <<<<<<< HEAD
+<<<<<<< HEAD
 						$('body').append(ul);
 						var input_position_top = obj.offset().top + obj.outerHeight();
 						var input_position_left = obj.offset().left;
@@ -357,10 +490,21 @@ var pixObject = {
 					var input_position_top = obj.offset().top + obj.outerHeight();
 					var input_position_left = obj.offset().left;
 
+=======
+					});
+					$('body').append(ul);
+						
+					var input_position_top = obj.offset().top + obj.outerHeight();
+					var input_position_left = obj.offset().left;
+
+>>>>>>> v5.0.0
 					ul.css({'top' : input_position_top,'left': input_position_left});
 					ul.find('li:first').addClass('active');
 					ul.find('a').on('click',function(event){
 						$.handleEvents.acPutIcon(obj,this);
+<<<<<<< HEAD
+>>>>>>> v5.0.0
+=======
 >>>>>>> v5.0.0
 					});
 				},
@@ -390,7 +534,11 @@ var pixObject = {
 				
 			});
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
+=======
+		} 
+>>>>>>> v5.0.0
 =======
 		} 
 >>>>>>> v5.0.0
@@ -400,7 +548,11 @@ var pixObject = {
 	*/
 	$.fn.replacePix = function(str,target) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			var autocomplete = new RegExp("(pix[-][a-z])","g");
+=======
+			var autocomplete = new RegExp("(pix[-][a-z]+)","g");
+>>>>>>> v5.0.0
 =======
 			var autocomplete = new RegExp("(pix[-][a-z]+)","g");
 >>>>>>> v5.0.0
@@ -443,6 +595,7 @@ var pixObject = {
 	$.fn.addNoteCurrent = function() {
 		var obj = $(this);
 		obj.parent().next().toggleClass('active');
+<<<<<<< HEAD
 		return false;
 	}
 	/*
@@ -454,10 +607,30 @@ var pixObject = {
 		return false;
 	}
 	/*
+=======
+		return false;
+	}
+	/*
+	* Elimina la columna contextual al botón
+	*/
+	$.fn.removeCurrentNode = function() {
+		var obj = $(this);
+		var pix_steps = obj.parent().parent().parents();
+		var counter = pix_steps.data('pix-columns');
+		if (counter > 1) {
+			pix_steps.data('pix-columns',counter-1);
+			obj.parent().parent().remove();
+		}
+
+		return false;
+	}
+	/*
+>>>>>>> v5.0.0
 	* Añade una columna despues de la actual
 	*/
 	$.fn.addNodeCurrent = function() {
 		var obj = $(this);
+<<<<<<< HEAD
 		var step_template = $('#pix-step').html();
 		var column = Handlebars.compile(step_template);
 <<<<<<< HEAD
@@ -466,6 +639,21 @@ var pixObject = {
 >>>>>>> v5.0.0
 
 		obj.parent().parent().after(column);
+=======
+
+		var step_template = $('#pix-step').html();
+		var column = Handlebars.compile(step_template);
+		column()
+		var pix_steps = obj.parent().parent().parents();
+		var counter = pix_steps.data('pix-columns');
+		console.log(counter);
+		if (counter < 12) {
+			pix_steps.data('pix-columns',counter+1);
+			obj.parent().parent().after(column);
+		} else {
+			$(this).addScore();
+		}
+>>>>>>> v5.0.0
 
 	}
 	/*
@@ -509,7 +697,10 @@ jQuery(document).ready(function($){
 		Handlebars
 	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> v5.0.0
 	// Debug handlebars
 	Handlebars.registerHelper("debug", function(optionalValue) {
 	  console.log("Current Context");
@@ -523,6 +714,9 @@ jQuery(document).ready(function($){
 	  }
 	});
 
+<<<<<<< HEAD
+>>>>>>> v5.0.0
+=======
 >>>>>>> v5.0.0
 	var pix_layout = $('#layout-score').html();
 	var step_template = $('#pix-step').html();
@@ -531,6 +725,7 @@ jQuery(document).ready(function($){
 	var context = {step: step_compile};
 	var html = template(context);
 	$('#pix-template').html(html);
+	$('.pix-steps').first().data('pix-columns',1);
 
 	/*
 		Iniciamos eventos

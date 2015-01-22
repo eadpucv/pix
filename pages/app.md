@@ -12,7 +12,11 @@ active: app
 	<!-- Handlebars template-->
 </div>
 
+<<<<<<< HEAD
 <button id="add-new" class='btn btn-primary pull-right'><i class='pix pix-fw pix-3x'>add</i></button>
+=======
+<button id="add-new" title='add a new score' class='btn btn-primary pull-right'><i class='pix'>add</i></button>
+>>>>>>> v5.0.0
 
 <script id="layout-score" type="text/x-handlebars-template">
 {{debug}}
@@ -33,7 +37,11 @@ active: app
 <script id="pix-step" type="text/x-handlebars-template">
 	<li class='pix-step'>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <textarea class="note top" rows='1' placeholder='type here...'></textarea>
+=======
+        <textarea class="note top" rows='1' placeholder='type here...'>{% raw %}{{{step_title}}}{% endraw %}</textarea>
+>>>>>>> v5.0.0
 =======
         <textarea class="note top" rows='1' placeholder='type here...'>{% raw %}{{{step_title}}}{% endraw %}</textarea>
 >>>>>>> v5.0.0
@@ -46,6 +54,7 @@ active: app
             <li class='block block-user'>
                 <textarea rows='10' placeholder='type here...'></textarea>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div class="pix-div-input" contenteditable="true"></div>
             </li>
             <li class='block block-dialogue'>
@@ -56,6 +65,8 @@ active: app
                 <textarea rows='10' placeholder='type here...'></textarea>
                 <div class="pix-div-input" contenteditable="true"></div>
 =======
+=======
+>>>>>>> v5.0.0
                 <div class="pix-div-input" contenteditable="true">{% raw %}{{{user}}}{% endraw %}</div>
             </li>
             <li class='block block-dialogue'>
@@ -65,6 +76,9 @@ active: app
             <li class='block block-system'>
                 <textarea rows='10' placeholder='type here...'></textarea>
                 <div class="pix-div-input" contenteditable="true">{% raw %}{{{system}}}{% endraw %}</div>
+<<<<<<< HEAD
+>>>>>>> v5.0.0
+=======
 >>>>>>> v5.0.0
             </li>
         </ul>
@@ -72,9 +86,15 @@ active: app
             <a href="#add-note" class="btn btn-xs btn-tools tool-note" title="add note"><img src='{{ site.baseurl }}/img/tool_nota.svg'></a>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <textarea class="note bottom" rows='10' placeholder='type here...'></textarea>
+=======
+            <textarea class="note bottom" rows='10' placeholder='type here...'>{% raw %}{{{note}}}{% endraw %}</textarea>
+>>>>>>> v5.0.0
 =======
             <textarea class="note bottom" rows='10' placeholder='type here...'>{% raw %}{{{note}}}{% endraw %}</textarea>
 >>>>>>> v5.0.0
     </li>
 </script>
+
+<div class="help-line hp">need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a></div>
