@@ -38,16 +38,35 @@ var pixObject = {
 					$(this).checkText($(this).text(), event);
 				} else {
 					var icon = $(this).data('pix-icon');
+<<<<<<< HEAD
 					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+=======
+
+					if ($(this).text().length > 0) {
+						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					}
+>>>>>>> v5.0.0
 				}
 			});
 			$('.pix-steps').on('keyup', '.pix-div-input', function(event){
 				if (event.keyCode != 8) {
 					var target = $(this);
+<<<<<<< HEAD
 					$(this).replacePix($(this).text(), target);
 				} else {
 					var icon = $(this).data('pix-icon');
 					$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+=======
+					var keySafe = [40,38];
+					if ($.inArray(event.keyCode,keySafe) == -1) {
+						$(this).replacePix($(this).text(), target);
+					}
+				} else {
+					var icon = $(this).data('pix-icon');
+					if ($(this).text().length > 0) {
+						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					}
+>>>>>>> v5.0.0
 				}
 			});
 			$('.pix-steps').on('click','.btn-tools',function(event){
@@ -56,6 +75,18 @@ var pixObject = {
 			$('.pix-steps').on('click', '.pix-div-input', function(event){
 				$.handleEvents.acClose();
 			});
+<<<<<<< HEAD
+=======
+			$('.export').on('click',function(){
+				$.fn.exportTool();
+			});
+			$('.import').on('click',function(){
+				$('.upload-json').trigger('click');
+			});
+			$('.upload-json').on('change',function(event){
+				$.fn.importTool(this);
+			});
+>>>>>>> v5.0.0
 		},
 		acSelectNext : function(ul) {
 			var current = ul.find('.active');
@@ -67,6 +98,10 @@ var pixObject = {
 				current.removeClass('active');
 				ul.find('li:first').addClass('active');
 			}
+<<<<<<< HEAD
+=======
+			return false;
+>>>>>>> v5.0.0
 		},
 		acSelectPrev : function(ul) {
 			var current = ul.find('.active');
@@ -80,6 +115,7 @@ var pixObject = {
 			}
 		},
 		acClose : function(ul) {
+<<<<<<< HEAD
 			$('.pix-ul').remove();
 		},
 		acAddIcon : function(ul,obj,match) {
@@ -89,11 +125,161 @@ var pixObject = {
 			obj.data('pix-icon',current.text());
 			var textReplace  = obj.text().replace(match[0],i);
 			console.log(textReplace);
+=======
+			$('body').find('ul.pix-ul').remove();
+		},
+		acAddIcon : function(ul,obj,match) {
+			var current = ul.find('.active');
+			
+			//var i = $('<i>').attr('class','pix pix-'+current.text());
+			var i = '<i class="pix pix-'+current.text()+'"></i>';
+			
+			obj.data('pix-icon',current.text());
+			var textReplace  = obj.text().replace(match[0],i);
+			if (textReplace.length < 3) {
+				textReplace = i;
+			}
+>>>>>>> v5.0.0
 			obj.html(textReplace);
 			this.acClose(ul);
 			var jsobj = obj.get(0);
 			setEndOfContenteditable(jsobj);
+<<<<<<< HEAD
 		}
+=======
+		},
+		acPutIcon : function(obj,clicked) {
+			var click = $(clicked);
+			var i = '<i class="pix pix-'+click.text()+'"></i>';
+			obj.data('pix-icon',click.text());
+			var searchpix = new RegExp("(pix[-][a-z]+)","g");
+			var matchac = click.text().match(searchpix);
+			if (matchac) {
+				var replacedText = obj.text().replace(matchac[0],i);
+				obj.html(replacedText);
+			} else {
+				obj.html(i);
+			}
+			$.handleEvents.acClose();
+			obj.focus();
+			var jsobj = obj.get(0);
+			setEndOfContenteditable(jsobj);
+		}
+	}
+
+	$.fn.importTool = function(that) {
+		var files = that.files;
+		if (files[0].type.indexOf("json") >= 0) {
+			var reader = new FileReader();
+			var json = {};
+			reader.onload = (function(json) { return function(e) { $.fn.makeImport(e.target) }; })(json);
+			reader.readAsText(files[0]);
+		} else {
+			alert('Sólo puedes importar archivos JSON');
+		}
+	}
+	$.fn.makeImport = function(result) {
+		if (!result.error) {
+			$('.pix-steps').find('.pix-step').remove();
+			var pix_object = $.parseJSON(result.result);
+			//console.log(pix_object); 
+			$('.score-header').find('input').val(pix_object.title);
+			$('.score-description').val(pix_object.description);
+			$.each(pix_object.scores,function(i,v){
+				$.each(v,function(i,step){
+					//console.log(step);
+					var re = new RegExp("(pix[-][a-z])([a-z]+)","gm");
+					var new_obj = {};
+					$.each(step,function(i,item){
+						var match = item.match(re);
+						if (item.match(re)) {
+					        item = item.replace(re,'<i class="pix $1$2"></i>');
+					        new_obj[i] = item;
+				        } else {
+				        	new_obj[i] = item;
+				        }
+					});
+					console.log(new_obj);
+					//handlebars
+					var step_template = $('#pix-step').html();
+					var column = Handlebars.compile(step_template);
+					var column_temp = column(new_obj);
+
+					$('.pix-steps').append(column_temp);
+					//obj.parent().parent().after(column);
+				});
+			});
+			var actives = $('.pix-step');
+			$.each(actives,function(i,step){
+				var obj = $(this);
+				console.log(obj.find('.pix-div-input').first().html());
+				if (obj.find('.note.top').text() != '') {
+					obj.find('.note.top').addClass('active');
+					obj.find('ul').first().addClass('split');
+				}
+				if (obj.find('.note.bottom').text() != '') {
+					obj.find('.note.bottom').addClass('active');
+				}
+				var inputs = obj.find('.pix-div-input');
+				$.each(inputs, function(){
+					var inp = $(this);
+					var pix_class = $(this).find('i').attr('class');
+
+					if (pix_class !== undefined)
+						inp.data('pix-icon',pix_class.replace('pix pix-',''));
+				});
+			});
+			//TODO : make import looping object
+		} else {
+			//TODO : Error handler
+			alert('Error al leer archivo : '+result.error);
+		}
+	}
+	$.fn.exportTool = function() {
+		var title = $('.score-header').find('input').val();
+		var description = $('.score-description').val();
+		var pix_scores = $('.pix-score');
+		var scores = [];
+		$.each(pix_scores,function(i,val){
+			var steps = $(this).find('.pix-step');
+			var result_steps = [];
+			$.each(steps,function(j,ival){
+				var user = $(this).find('.block-user').children('div');
+				var user_icon = '';
+				if (user.data('pix-icon'))
+					user_icon = 'pix-'+user.data('pix-icon');
+				var user_data = user_icon+' '+user.text();
+
+				var dialogue = $(this).find('.block-dialogue').children('div');
+				var dialogue_icon = '';
+				if (dialogue.data('pix-icon'))
+					dialogue_icon = 'pix-'+dialogue.data('pix-icon');
+				var dialogue_data = dialogue_icon+' '+dialogue.text();
+
+				var system = $(this).find('.block-system').children('div');
+				var system_icon = '';
+				if (system.data('pix-icon'))
+					system_icon = 'pix-'+system.data('pix-icon');
+				var system_data = system_icon+' '+system.text();
+
+				var step_title = $(ival).find('.note.top').val();
+				var note  = $(ival).find('.note.bottom').val();
+				var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
+				result_steps.push(object);
+			});
+			scores.push(result_steps);
+		});
+		
+		var objectExport = {
+			title: title,
+			description: description,
+			scores : scores
+		}
+		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
+		$('.export').attr('href','data:'+data);
+		$('.export').attr('download','pix-data.json');
+		$('.export').trigger('click');
+>>>>>>> v5.0.0
 	}
 	$.fn.clickTool = function() {
 		obj = $(this);
@@ -127,9 +313,15 @@ var pixObject = {
 		return false;
 	}
 	$.fn.showAutoComplete = function(search,match) {
+<<<<<<< HEAD
 		var obj = $(this);
 		var searchText = match[0].replace('pix-','');
 		console.log(searchText);
+=======
+		$.handleEvents.acClose();
+		var obj = $(this);
+		var searchText = match[0].replace('pix-','');
+>>>>>>> v5.0.0
 		if ($('.pix-ul').length == 0) {
 			var ul = $('<ul>').attr('class','select nav nav-stacked pix-ul');
 			var results = [];
@@ -150,6 +342,7 @@ var pixObject = {
 						var item = n.replace('pix-','');
 						var li = $('<li>').append($('<a>').attr('href','#'+item).text(item).prepend($('<i>').attr('class','pix pix-fw pix-'+item)));
 						ul.append(li);
+<<<<<<< HEAD
 						$('body').append(ul);
 						var input_position_top = obj.offset().top + obj.outerHeight();
 						var input_position_left = obj.offset().left;
@@ -157,6 +350,18 @@ var pixObject = {
 						ul.css({'top' : input_position_top,'left': input_position_left});
 						ul.find('li:first').addClass('active');
 
+=======
+					});
+					$('body').append(ul);
+						
+					var input_position_top = obj.offset().top + obj.outerHeight();
+					var input_position_left = obj.offset().left;
+
+					ul.css({'top' : input_position_top,'left': input_position_left});
+					ul.find('li:first').addClass('active');
+					ul.find('a').on('click',function(event){
+						$.handleEvents.acPutIcon(obj,this);
+>>>>>>> v5.0.0
 					});
 				},
 				error : function(jqXHR,status,error) {
@@ -184,13 +389,21 @@ var pixObject = {
 				}
 				
 			});
+<<<<<<< HEAD
 		}
+=======
+		} 
+>>>>>>> v5.0.0
 	}
 	/*
 	*	Ejecuta la acción de reemplazo (regex) del caracter Pix por el layout especificado
 	*/
 	$.fn.replacePix = function(str,target) {
+<<<<<<< HEAD
 			var autocomplete = new RegExp("(pix[-][a-z])","g");
+=======
+			var autocomplete = new RegExp("(pix[-][a-z]+)","g");
+>>>>>>> v5.0.0
 			var re = new RegExp("(pix[-][a-z])([a-z]+)([\w ]+)","gm");
 			var textarea = $(this).prev();
 			textarea.val(str);
@@ -247,6 +460,10 @@ var pixObject = {
 		var obj = $(this);
 		var step_template = $('#pix-step').html();
 		var column = Handlebars.compile(step_template);
+<<<<<<< HEAD
+=======
+		column()
+>>>>>>> v5.0.0
 
 		obj.parent().parent().after(column);
 
@@ -291,6 +508,22 @@ jQuery(document).ready(function($){
 	/*
 		Handlebars
 	*/
+<<<<<<< HEAD
+=======
+	// Debug handlebars
+	Handlebars.registerHelper("debug", function(optionalValue) {
+	  console.log("Current Context");
+	  console.log("====================");
+	  console.log(this);
+	 
+	  if (optionalValue) {
+	    console.log("Value");
+	    console.log("====================");
+	    console.log(optionalValue);
+	  }
+	});
+
+>>>>>>> v5.0.0
 	var pix_layout = $('#layout-score').html();
 	var step_template = $('#pix-step').html();
 	var step_compile = Handlebars.compile(step_template);

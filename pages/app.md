@@ -15,6 +15,7 @@ active: app
 <button id="add-new" class='btn btn-primary pull-right'><i class='pix pix-fw pix-3x'>add</i></button>
 
 <script id="layout-score" type="text/x-handlebars-template">
+{{debug}}
 	<div class='pix-score'>
 	     <ul class='pix-header'>
 			<li class='block block-user'><div class='pix-group'><i class='pix pix-person'></i><label>person</label></div></li>
@@ -31,7 +32,11 @@ active: app
 
 <script id="pix-step" type="text/x-handlebars-template">
 	<li class='pix-step'>
+<<<<<<< HEAD
         <textarea class="note top" rows='1' placeholder='type here...'></textarea>
+=======
+        <textarea class="note top" rows='1' placeholder='type here...'>{% raw %}{{{step_title}}}{% endraw %}</textarea>
+>>>>>>> v5.0.0
         <div class="fly-link top">
             <a href="#split" class="btn btn-tools tool-split" title="split score"><img src='{{ site.baseurl }}/img/tool_split.svg'></a>
             <a href="#remove" class="btn btn-tools tool-remove" title="remove step"><img src='{{ site.baseurl }}/img/tool_remove.svg'></a>
@@ -40,6 +45,7 @@ active: app
         <ul>
             <li class='block block-user'>
                 <textarea rows='10' placeholder='type here...'></textarea>
+<<<<<<< HEAD
                 <div class="pix-div-input" contenteditable="true"></div>
             </li>
             <li class='block block-dialogue'>
@@ -49,11 +55,26 @@ active: app
             <li class='block block-system'>
                 <textarea rows='10' placeholder='type here...'></textarea>
                 <div class="pix-div-input" contenteditable="true"></div>
+=======
+                <div class="pix-div-input" contenteditable="true">{% raw %}{{{user}}}{% endraw %}</div>
+            </li>
+            <li class='block block-dialogue'>
+                <textarea rows='10' placeholder='type here...'></textarea>
+                <div class="pix-div-input" contenteditable="true">{% raw %}{{{dialogue}}}{% endraw %}</div>
+            </li>
+            <li class='block block-system'>
+                <textarea rows='10' placeholder='type here...'></textarea>
+                <div class="pix-div-input" contenteditable="true">{% raw %}{{{system}}}{% endraw %}</div>
+>>>>>>> v5.0.0
             </li>
         </ul>
         <div class="fly-link bottom">
             <a href="#add-note" class="btn btn-xs btn-tools tool-note" title="add note"><img src='{{ site.baseurl }}/img/tool_nota.svg'></a>
         </div>
+<<<<<<< HEAD
             <textarea class="note bottom" rows='10' placeholder='type here...'></textarea>
+=======
+            <textarea class="note bottom" rows='10' placeholder='type here...'>{% raw %}{{{note}}}{% endraw %}</textarea>
+>>>>>>> v5.0.0
     </li>
 </script>
