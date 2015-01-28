@@ -121,7 +121,7 @@ active: index
      <div class='col-sm-6'>
         <h3>Special thanks to</h3>
         <ul>
-            <li>Nicole Dupre</li>
+            <li>Nicole Dupre, UX Designer - <a href="https://twitter.com/dupre">@dupre</a></li>
             <li>Melany Marin</li>
             <li>Ingrid Céspedes</li>
         </ul>

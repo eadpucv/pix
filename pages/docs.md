@@ -38,7 +38,3 @@ active: docs
         </ol>
     </div>
 </div>
-
-<div class="row">
-    {% include pix-example.html %}
-</div>

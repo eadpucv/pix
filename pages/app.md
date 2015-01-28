@@ -59,4 +59,4 @@ active: app
     </li>
 </script>
 
-<div class="help-line hp">need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a></div>
+<div class="help-line hp">Need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a><br><small>We're still experimenting some issues with Webkit, please use Firefox in the meantime.</small></div>
