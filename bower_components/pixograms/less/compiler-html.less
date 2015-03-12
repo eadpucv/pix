@@ -1,0 +1,182 @@
+
+/* HTML Compiler */
+
+
+@import "variables";
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,900,300,100);
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+
+html{text-rendering:optimize-legibility}
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+	background-color: @background;
+	color: @foreground;
+	font-family: 'Lato';
+	margin: 0;
+}
+
+p{
+	font-weight: 300;
+	margin: 5px 0;
+	strong{
+		font-weight: 900;
+	}
+}
+a{
+	color: @color;
+	font-weight: 700;
+	text-decoration: none;
+	&:hover{color: saturate(@color, 25%)}
+}
+
+
+.fixed{
+	position: fixed;
+	width: 33%;
+	left: 0;
+	top: 0;
+	padding: @padding;
+}
+
+pre {
+	background-color: white;
+	border-radius: 4px;
+	margin: 0;
+	padding: 6px;
+	code{
+		
+		font-family: 'Inconsolata';
+		font-weight: 700;
+		font-size: 16px;
+	}
+}
+
+h1{
+	font-size: 70px;
+	letter-spacing: -.06ex;
+	font-weight: 900;
+	line-height: 44%;
+	padding: 0;
+	margin: 0;
+	text-shadow: @big-shadow;
+		.version{
+		display: inline-block;
+		font-size: 14px;
+		line-height: 1.2;
+		letter-spacing: .5ex;
+		text-shadow: none;
+		color: @background;
+		background-color: fade(@foreground, 25);
+		padding: 2px 6px;
+		border-radius: 6px;
+		font-weight: 900;
+	}
+}
+
+h2{
+	font-weight: 700;
+	color: @color;
+}
+
+.btn{
+	display: inline-block;
+	margin: @padding/2 @padding/2 0 0;
+	background-color: @color;
+	font-weight: 200;
+	text-transform: uppercase;
+	text-shadow: @shadow;
+	color: white;
+	text-decoration: none;	
+	border-radius: 3px;
+	padding: 4px 12px;
+	font-size: 23px;
+	.pix{
+		font-size: 32px;
+		margin: -7px 0 0 0;
+	}
+	&:hover{
+		color: white;
+		text-shadow: 0 0 1px 3px fade(@foreground, 20);
+		background-color: saturate(darken(@color, 10), 20);
+	}
+}
+
+.icons{
+	width: 66%;
+	margin: 0 0 0 34%;
+	padding: @padding;
+	.item{
+		display: inline-block;
+		width: 128px;
+		margin: 16px 16px 0 0;
+		text-align: center;
+		cursor: pointer;
+		padding: @padding/2;
+		border-radius: @padding/3;
+		&:hover{
+			background-color: white;
+			.pix, .icon-class{
+				text-shadow: @shadow;
+			}
+		}
+		.pix{
+			color: #0f0f0e;
+			font-size: 72px;
+			width: 100%;
+		}
+		.icon-class{
+			font-family: 'Inconsolata';
+			font-weight: 400;
+			font-size: 12px;
+		}
+	}
+}
+
+.lig{
+	font-size: 42px;
+}
+
+textarea.test-area{
+	width: 100%;
+	border: none;
+	background-color: white;
+	font-size: 72px;
+	font-family: 'pix' !important;
+	padding: 0 12px;
+	font-variant-ligatures: common-ligatures;
+	-webkit-font-variant-ligatures: common-ligatures;
+}
+
+footer{
+	.clearfix;
+	background-color: @foreground;
+	color: @background;
+	padding: @padding;
+	margin: 50px 0 0 0;
+	font-size: 16px;
+	font-weight: 900;
+	a{
+		color: white;
+	}
+}
+
+
+.right{
+	float:right;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
