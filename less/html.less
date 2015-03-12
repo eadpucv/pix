@@ -29,6 +29,19 @@
 	}
 }
 
+ul.nav{
+	&.nav-pills{
+		li a i.pix{
+			color: darken(@link-color, 14);
+			font-size: 1.5em;
+			line-height: .5em;
+			margin: 0 0 0 .5ex;
+		}
+		li.active a i.pix{
+			color: @white;
+		}
+	}
+}
 /* navbar top: to provent content overlay */
 .nbt{ padding-top: @navbar-height}
 

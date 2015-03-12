@@ -1,0 +1,6 @@
+{
+	"baseClass": "pix",
+	"classPrefix": "pix-",
+	"mixinPrefix": "pix-",
+	"version": "v0.2.5"
+}

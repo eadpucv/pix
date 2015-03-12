@@ -81,10 +81,6 @@ active: index
     </tr>
 </table>
 <hr>
-<div class="row">
-    {% include pix-example.html %}
-</div>
-<hr>
 <div class='row'>
     <div class='col-sm-6'>
         <h3>Team</h3>
