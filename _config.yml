@@ -3,7 +3,6 @@ source:			.
 destination:	_gh-pages
 lsi:			false
 markdown:		rdiscount
-highlighter:	true
 permalink:		pretty
 baseurl: 		"http://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
