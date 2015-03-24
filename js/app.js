@@ -19,6 +19,7 @@ function setEndOfContenteditable(contentEditableElement)
     }
 }
 /*
+* Convert a string into a slug
 * Props to dense13.com
 * http://dense13.com/blog/2009/05/03/converting-string-to-slug-javascript/
 */
@@ -433,18 +434,26 @@ var pixObject = {
 	/*
 	* Añade una columna despues de la actual
 	*/
-	$.fn.addNodeCurrent = function() {
+	$.fn.addNodeCurrent = function(getObject) {
 		var obj = $(this);
 
 		var step_template = $('#pix-step').html();
 		var column = Handlebars.compile(step_template);
 		column()
-		var pix_steps = obj.parent().parent().parents();
+		if (getObject == 'last') {
+			var pix_steps = obj.parent().parent().parents();
+			var pix_steps = $(pix_steps[1]);
+		} else {
+			var pix_steps = obj.parent().parent().parents();
+		}
 		var counter = pix_steps.data('pix-columns');
-		console.log(counter);
 		if (counter < 12) {
 			pix_steps.data('pix-columns',counter+1);
-			obj.parent().parent().after(column);
+			if (getObject === 'last') {
+				$(pix_steps).append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
+			} else {
+				obj.parent().parent().after(column);
+			}
 		} else {
 			$(this).addScore();
 		}
@@ -474,7 +483,8 @@ var pixObject = {
 				//console.log(alt_next);
 				if (alt_next.length == 0) {
 					//console.log($(this).offsetParent().parent());
-					that.addNode($(this).offsetParent().parent());
+					//that.addNode($(this).offsetParent().parent());
+					$(this).addNodeCurrent('last');
 				} else {
 					alt_next.focus().select();
 				}
