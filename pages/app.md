@@ -30,6 +30,17 @@ active: app
 	</div>
 </script>
 
+<script id="layout-score-no-header" type="text/x-handlebars-template">
+{{debug}}
+    <div class='pix-score'>
+        <ul class='pix-steps'>
+        {% raw %}
+            {{{step}}} 
+        {% endraw %}
+        </ul>
+    </div>
+</script>
+
 <script id="pix-step" type="text/x-handlebars-template">
 	<li class='pix-step'>
         <textarea class="note top" rows='1' placeholder='type here...'>{% raw %}{{{step_title}}}{% endraw %}</textarea>

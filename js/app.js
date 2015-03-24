@@ -83,18 +83,12 @@ var pixObject = {
 					var obj = $(this);
 					var icon = obj.data('pix-icon');
 					var no_icon = obj.data('no-icon');
-					console.log(icon);
 					var length = obj.text().length;
-					console.log(length);
-					console.log(no_icon);
 					if ( length > 1) {
-						console.log('mas que 1');
 						obj.prepend('<i class="pix pix-'+icon+'"></i>');
 					} else if ((length <= 1) && (length > 0)) {
-						console.log('menos que 1');
 						obj.prepend('<i class="pix pix-'+icon+'"></i>');
 					} else if ((length == 0) && (no_icon == undefined)) {
-						console.log('igual a cero con icono');
 						obj.prepend('<i class="pix pix-'+icon+'"></i>');
 						var theobj = obj.get(0);
 						setEndOfContenteditable(theobj);
@@ -338,6 +332,22 @@ var pixObject = {
 		
 		return false;
 	}
+	/*
+	* Añade un nuevo score sin headers
+	*/
+	$.fn.addSemiScore= function(){
+		var pix_layout = $('#layout-score-no-header').html();
+		var step_template = $('#pix-step').html();
+		var step_compile = Handlebars.compile(step_template);
+		var template = Handlebars.compile(pix_layout);
+		var context = {step: step_compile};
+		var html = template(context);
+		$('#pix-template').append(html);
+		$('.pix-score').last().find('.pix-div-input:first').focus();
+		$('.pix-score').last().find('.pix-steps').data('pix-columns',1);
+		
+		return false;
+	}
 	$.fn.showAutoComplete = function(search,match) {
 		$.handleEvents.acClose();
 		var obj = $(this);
@@ -477,7 +487,7 @@ var pixObject = {
 			var pix_steps = obj.parent().parent().parents();
 		}
 		var counter = pix_steps.data('pix-columns');
-		if (counter < 12) {
+		if (counter < 10) {
 			pix_steps.data('pix-columns',counter+1);
 			if (getObject === 'last') {
 				$(pix_steps).append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
@@ -485,7 +495,7 @@ var pixObject = {
 				obj.parent().parent().after(column);
 			}
 		} else {
-			$(this).addScore();
+			$(this).addSemiScore();
 		}
 
 	}
