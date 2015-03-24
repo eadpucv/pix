@@ -54,16 +54,22 @@ var pixObject = {
 		init : function(context){
 			$('#add-new').on('click',function(event){
 				$('#pix-template').addScore();
+				return false;
 			});
 			$('#pix-template').on('keypress','.pix-div-input',function(event){
 				if (event.keyCode != 8) {
 					$(this).checkText($(this).text(), event);
 				} else {
 					var icon = $(this).data('pix-icon');
-
-					if ($(this).text().length > 0) {
-						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
-					}
+					var length = $(this).text().length;
+					// if ($(this).text().length > 1) {
+					// 	$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					// } else if ((length <= 1) && (icon != "")) {
+					// 	$(this).prepend('<i class="pix pix-'+icon+'"></i>');	
+					// } else if (length == 0) {
+					// 	$(this).data('pix-icon','');
+					// 	$(this).html('');
+					// }
 				}
 			});
 			$('#pix-template').on('keyup', '.pix-div-input', function(event){
@@ -74,23 +80,47 @@ var pixObject = {
 						$(this).replacePix($(this).text(), target);
 					}
 				} else {
-					var icon = $(this).data('pix-icon');
-					if ($(this).text().length > 0) {
-						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					var obj = $(this);
+					var icon = obj.data('pix-icon');
+					var no_icon = obj.data('no-icon');
+					console.log(icon);
+					var length = obj.text().length;
+					console.log(length);
+					console.log(no_icon);
+					if ( length > 1) {
+						console.log('mas que 1');
+						obj.prepend('<i class="pix pix-'+icon+'"></i>');
+					} else if ((length <= 1) && (length > 0)) {
+						console.log('menos que 1');
+						obj.prepend('<i class="pix pix-'+icon+'"></i>');
+					} else if ((length == 0) && (no_icon == undefined)) {
+						console.log('igual a cero con icono');
+						obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						var theobj = obj.get(0);
+						setEndOfContenteditable(theobj);
+						obj.data('no-icon',1);
+					} else if ((length == 0) && (no_icon)) {
+						obj.removeData('pix-icon');
+						obj.removeData('no-icon');
+						obj.html('');
 					}
 				}
 			});
 			$('#pix-template').on('click','.btn-tools',function(event){
 				$(this).clickTool();
+				return false;
 			});
 			$('#pix-template').on('click', '.pix-div-input', function(event){
 				$.handleEvents.acClose();
+				return false;
 			});
 			$('.export').on('click',function(){
 				$.fn.exportTool();
+				return false;
 			});
 			$('.import').on('click',function(){
 				$('.upload-json').trigger('click');
+				return false;
 			});
 			$('.upload-json').on('change',function(event){
 				$.fn.importTool(this);
@@ -463,12 +493,6 @@ var pixObject = {
 	*	Controla funciones de input como el avance del tab para crear una nueva columna
 	*/
 	$.fn.checkText = function(str, event) {
-		this.addNode = function(context) {
-			var step_template = $('#pix-step').html();
-			var column = Handlebars.compile(step_template);
-
-			$('.pix-steps').append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
-		}
 		var that = this;
 		/*
 			Control del tab para crear nueva columna
