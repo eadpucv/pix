@@ -487,7 +487,7 @@ var pixObject = {
 			var pix_steps = obj.parent().parent().parents();
 		}
 		var counter = pix_steps.data('pix-columns');
-		if (counter < 10) {
+		if (counter < 11) {
 			pix_steps.data('pix-columns',counter+1);
 			if (getObject === 'last') {
 				$(pix_steps).append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();

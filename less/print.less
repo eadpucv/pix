@@ -6,8 +6,7 @@
 @media print {
 
     @page {
-
-        size: tabloid landscape; 
+        size: tabloid landscape !important; 
         margin:.5in .5in .5in .5in; 
         mso-header-margin: .5in; 
         mso-footer-margin: .5in; 
@@ -19,9 +18,10 @@
     }
 
     body{
-        -moz-print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        width: 100% !important;
+        .black-bg{
+            background-color: transparent !important;
+        }
     }
 
     * {
