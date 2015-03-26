@@ -18,6 +18,70 @@ function setEndOfContenteditable(contentEditableElement)
         range.select();//Select the range (make it the visible selection
     }
 }
+/**
+* Encodes multi-byte Unicode string into utf-8 multiple single-byte characters
+* (BMP / basic multilingual plane only).
+*
+* Chars in range U+0080 - U+07FF are encoded in 2 chars, U+0800 - U+FFFF in 3 chars.
+*
+* Can be achieved in JavaScript by unescape(encodeURIComponent(str)),
+* but this approach may be useful in other languages.
+*
+* @param {string} strUni Unicode string to be encoded as UTF-8.
+* @returns {string} Encoded string.
+*/
+function Utf8Encode(strUni) {
+	var strUtf = strUni.replace(
+/[\u0080-\u07ff]/g, // U+0080 - U+07FF => 2 bytes 110yyyyy, 10zzzzzz
+function(c) {
+	var cc = c.charCodeAt(0);
+	return String.fromCharCode(0xc0 | cc>>6, 0x80 | cc&0x3f); }
+	);
+	strUtf = strUtf.replace(
+/[\u0800-\uffff]/g, // U+0800 - U+FFFF => 3 bytes 1110xxxx, 10yyyyyy, 10zzzzzz
+function(c) {
+	var cc = c.charCodeAt(0);
+	return String.fromCharCode(0xe0 | cc>>12, 0x80 | cc>>6&0x3F, 0x80 | cc&0x3f); }
+	);
+	return strUtf;
+}
+ 
+/**
+* Decodes utf-8 encoded string back into multi-byte Unicode characters.
+*
+* Can be achieved JavaScript by decodeURIComponent(escape(str)),
+* but this approach may be useful in other languages.
+*
+* @param {string} strUtf UTF-8 string to be decoded back to Unicode.
+* @returns {string} Decoded string.
+*/
+function Utf8Decode(strUtf) {
+// note: decode 3-byte chars first as decoded 2-byte strings could appear to be 3-byte char!
+var strUni = strUtf.replace(
+/[\u00e0-\u00ef][\u0080-\u00bf][\u0080-\u00bf]/g, // 3-byte chars
+function(c) { // (note parentheses for precedence)
+	var cc = ((c.charCodeAt(0)&0x0f)<<12) | ((c.charCodeAt(1)&0x3f)<<6) | ( c.charCodeAt(2)&0x3f);
+	return String.fromCharCode(cc); }
+	);
+strUni = strUni.replace(
+/[\u00c0-\u00df][\u0080-\u00bf]/g, // 2-byte chars
+function(c) { // (note parentheses for precedence)
+	var cc = (c.charCodeAt(0)&0x1f)<<6 | c.charCodeAt(1)&0x3f;
+	return String.fromCharCode(cc); }
+	);
+return strUni;
+}
+
+function isWebkit() {
+	var uagt = navigator.userAgent;
+	var searchwk = new RegExp("WebKit","g");
+	var matchac = uagt.match(searchwk);
+	if (matchac) {
+		return true;
+	} else {
+		return false;
+	}
+}
 /*
 * Convert a string into a slug
 * Props to dense13.com
@@ -56,20 +120,9 @@ var pixObject = {
 				$('#pix-template').addScore();
 				return false;
 			});
-			$('#pix-template').on('keypress','.pix-div-input',function(event){
+			$('#pix-template').on('keydown','.pix-div-input',function(event){
 				if (event.keyCode != 8) {
 					$(this).checkText($(this).text(), event);
-				} else {
-					var icon = $(this).data('pix-icon');
-					var length = $(this).text().length;
-					// if ($(this).text().length > 1) {
-					// 	$(this).prepend('<i class="pix pix-'+icon+'"></i>');
-					// } else if ((length <= 1) && (icon != "")) {
-					// 	$(this).prepend('<i class="pix pix-'+icon+'"></i>');	
-					// } else if (length == 0) {
-					// 	$(this).data('pix-icon','');
-					// 	$(this).html('');
-					// }
 				}
 			});
 			$('#pix-template').on('keyup', '.pix-div-input', function(event){
@@ -80,23 +133,26 @@ var pixObject = {
 						$(this).replacePix($(this).text(), target);
 					}
 				} else {
-					var obj = $(this);
-					var icon = obj.data('pix-icon');
-					var no_icon = obj.data('no-icon');
-					var length = obj.text().length;
-					if ( length > 1) {
-						obj.prepend('<i class="pix pix-'+icon+'"></i>');
-					} else if ((length <= 1) && (length > 0)) {
-						obj.prepend('<i class="pix pix-'+icon+'"></i>');
-					} else if ((length == 0) && (no_icon == undefined)) {
-						obj.prepend('<i class="pix pix-'+icon+'"></i>');
-						var theobj = obj.get(0);
-						setEndOfContenteditable(theobj);
-						obj.data('no-icon',1);
-					} else if ((length == 0) && (no_icon)) {
-						obj.removeData('pix-icon');
-						obj.removeData('no-icon');
-						obj.html('');
+					if (!isWebkit()) {
+						var obj = $(this);
+						var icon = obj.data('pix-icon');
+						var no_icon = obj.data('no-icon');
+						var length = obj.text().length;
+						if ( length > 1) {
+							obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						} else if ((length <= 1) && (length > 0)) {
+							obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						} else if ((length == 0) && (no_icon == undefined)) {
+							obj.prepend('<i class="pix pix-'+icon+'"></i>');
+							var theobj = obj.get(0);
+							setEndOfContenteditable(theobj);
+							obj.data('no-icon',1);
+						} else if ((length == 0) && (no_icon)) {
+							obj.removeData('pix-icon');
+							obj.removeData('no-icon');
+							obj.html('');
+						}
+					} else {
 					}
 				}
 			});
@@ -109,11 +165,16 @@ var pixObject = {
 				return false;
 			});
 			$('.export').on('click',function(){
-				$.fn.exportTool();
+				$.fn.exportTool('download');
 				return false;
 			});
 			$('.import').on('click',function(){
 				$('.upload-json').trigger('click');
+				return false;
+			});
+			$('.embed').on('click',function(){
+				console.log('click');
+				$.fn.exportTool('embed');
 				return false;
 			});
 			$('.upload-json').on('change',function(event){
@@ -150,7 +211,7 @@ var pixObject = {
 			var current = ul.find('.active');
 			
 			//var i = $('<i>').attr('class','pix pix-'+current.text());
-			var i = '<i class="pix pix-'+current.text()+'"></i>';
+			var i = '<i class="pix pix-'+current.text()+'"></i>&nbsp;';
 			
 			obj.data('pix-icon',current.text());
 			var textReplace  = obj.text().replace(match[0],i);
@@ -164,7 +225,7 @@ var pixObject = {
 		},
 		acPutIcon : function(obj,clicked) {
 			var click = $(clicked);
-			var i = '<i class="pix pix-'+click.text()+'"></i>';
+			var i = '<i class="pix pix-'+click.text()+'"></i> &nbsp;';
 			obj.data('pix-icon',click.text());
 			var searchpix = new RegExp("(pix[-][a-z]+)","g");
 			var matchac = click.text().match(searchpix);
@@ -249,7 +310,7 @@ var pixObject = {
 			alert('Read file error : '+result.error);
 		}
 	}
-	$.fn.exportTool = function() {
+	$.fn.exportTool = function(type) {
 		var title = $('.score-header').find('input').val();
 		if (title != "") {
 			var description = $('.score-description').val();
@@ -290,14 +351,41 @@ var pixObject = {
 				description: description,
 				scores : scores
 			}
-			var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
-			$('.export').attr('href','data:'+data);
-			var slug = string_to_slug(title);
-			$('.export').attr('download','pix-data-'+slug+'.json');
-			$('.export').trigger('click');
+			console.log(objectExport);
+			if (type == 'download') {
+				$(this).exportDownload(objectExport);
+			} else if (type == 'embed') {
+				$(this).embedTool(objectExport);
+			}
+			
 		} else {
 			alert('Please name your score before exporting it.');
 		}
+	}
+	$.fn.embedTool = function(object) {
+		console.log(object);
+		var data = window.btoa(unescape(encodeURIComponent(JSON.stringify(object))));
+		var code = '<iframe src="http://'+location.host+'/pages/app-embed/#!/import/'+data+'" width="1170" height="540">';
+		console.log(code);
+		$('.embedcode').text(code);
+		$('#embed-info').show();
+	}
+	$.fn.embedImport = function() {
+		var urlhash = location.hash;
+		if (urlhash.indexOf('import')) {
+			var hash = location.hash.substring(10);
+			var object = {
+				result: decodeURIComponent(escape(window.atob( hash )))
+			}
+			$.fn.makeImport(object);
+		}
+	}
+	$.fn.exportDownload = function(object) {
+		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(object));
+		$('.export').attr('href','data:'+data);
+		var slug = string_to_slug(title);
+		$('.export').attr('download','pix-data-'+slug+'.json');
+		$('.export').trigger('click');
 	}
 	$.fn.clickTool = function() {
 		obj = $(this);
@@ -546,7 +634,7 @@ jQuery(document).ready(function($){
 	    console.log(optionalValue);
 	  }
 	});
-
+	
 	var pix_layout = $('#layout-score').html();
 	var step_template = $('#pix-step').html();
 	var step_compile = Handlebars.compile(step_template);
@@ -555,6 +643,12 @@ jQuery(document).ready(function($){
 	var html = template(context);
 	$('#pix-template').html(html);
 	$('.pix-steps').first().data('pix-columns',1);
+	/*
+		Si hay embed lo importa
+	*/
+	if (location.hash.indexOf('import') != -1) {
+		$.fn.embedImport();
+	}
 
 	/*
 		Iniciamos eventos
