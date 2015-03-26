@@ -18,59 +18,6 @@ function setEndOfContenteditable(contentEditableElement)
         range.select();//Select the range (make it the visible selection
     }
 }
-/**
-* Encodes multi-byte Unicode string into utf-8 multiple single-byte characters
-* (BMP / basic multilingual plane only).
-*
-* Chars in range U+0080 - U+07FF are encoded in 2 chars, U+0800 - U+FFFF in 3 chars.
-*
-* Can be achieved in JavaScript by unescape(encodeURIComponent(str)),
-* but this approach may be useful in other languages.
-*
-* @param {string} strUni Unicode string to be encoded as UTF-8.
-* @returns {string} Encoded string.
-*/
-function Utf8Encode(strUni) {
-	var strUtf = strUni.replace(
-/[\u0080-\u07ff]/g, // U+0080 - U+07FF => 2 bytes 110yyyyy, 10zzzzzz
-function(c) {
-	var cc = c.charCodeAt(0);
-	return String.fromCharCode(0xc0 | cc>>6, 0x80 | cc&0x3f); }
-	);
-	strUtf = strUtf.replace(
-/[\u0800-\uffff]/g, // U+0800 - U+FFFF => 3 bytes 1110xxxx, 10yyyyyy, 10zzzzzz
-function(c) {
-	var cc = c.charCodeAt(0);
-	return String.fromCharCode(0xe0 | cc>>12, 0x80 | cc>>6&0x3F, 0x80 | cc&0x3f); }
-	);
-	return strUtf;
-}
- 
-/**
-* Decodes utf-8 encoded string back into multi-byte Unicode characters.
-*
-* Can be achieved JavaScript by decodeURIComponent(escape(str)),
-* but this approach may be useful in other languages.
-*
-* @param {string} strUtf UTF-8 string to be decoded back to Unicode.
-* @returns {string} Decoded string.
-*/
-function Utf8Decode(strUtf) {
-// note: decode 3-byte chars first as decoded 2-byte strings could appear to be 3-byte char!
-var strUni = strUtf.replace(
-/[\u00e0-\u00ef][\u0080-\u00bf][\u0080-\u00bf]/g, // 3-byte chars
-function(c) { // (note parentheses for precedence)
-	var cc = ((c.charCodeAt(0)&0x0f)<<12) | ((c.charCodeAt(1)&0x3f)<<6) | ( c.charCodeAt(2)&0x3f);
-	return String.fromCharCode(cc); }
-	);
-strUni = strUni.replace(
-/[\u00c0-\u00df][\u0080-\u00bf]/g, // 2-byte chars
-function(c) { // (note parentheses for precedence)
-	var cc = (c.charCodeAt(0)&0x1f)<<6 | c.charCodeAt(1)&0x3f;
-	return String.fromCharCode(cc); }
-	);
-return strUni;
-}
 
 function isWebkit() {
 	var uagt = navigator.userAgent;
@@ -173,7 +120,6 @@ var pixObject = {
 				return false;
 			});
 			$('.embed').on('click',function(){
-				console.log('click');
 				$.fn.exportTool('embed');
 				return false;
 			});
@@ -257,12 +203,10 @@ var pixObject = {
 		if (!result.error) {
 			$('.pix-steps').find('.pix-step').remove();
 			var pix_object = $.parseJSON(result.result);
-			//console.log(pix_object); 
 			$('.score-header').find('input').val(pix_object.title);
 			$('.score-description').val(pix_object.description);
 			$.each(pix_object.scores,function(i,v){
 				$.each(v,function(i,step){
-					//console.log(step);
 					var re = new RegExp("(pix[-][a-z])([a-z]+)","gm");
 					var new_obj = {};
 					$.each(step,function(i,item){
@@ -274,7 +218,6 @@ var pixObject = {
 				        	new_obj[i] = item;
 				        }
 					});
-					console.log(new_obj);
 					//handlebars
 					var step_template = $('#pix-step').html();
 					var column = Handlebars.compile(step_template);
@@ -287,7 +230,6 @@ var pixObject = {
 			var actives = $('.pix-step');
 			$.each(actives,function(i,step){
 				var obj = $(this);
-				console.log(obj.find('.pix-div-input').first().html());
 				if (obj.find('.note.top').text() != '') {
 					obj.find('.note.top').addClass('active');
 					obj.find('ul').first().addClass('split');
@@ -351,7 +293,6 @@ var pixObject = {
 				description: description,
 				scores : scores
 			}
-			console.log(objectExport);
 			if (type == 'download') {
 				$(this).exportDownload(objectExport);
 			} else if (type == 'embed') {
@@ -362,14 +303,18 @@ var pixObject = {
 			alert('Please name your score before exporting it.');
 		}
 	}
+	/*
+		Genera el codigo embed del iframe y lo muestra
+	*/
 	$.fn.embedTool = function(object) {
-		console.log(object);
 		var data = window.btoa(unescape(encodeURIComponent(JSON.stringify(object))));
 		var code = '<iframe src="http://'+location.host+'/pages/app-embed/#!/import/'+data+'" width="1170" height="540">';
-		console.log(code);
 		$('.embedcode').text(code);
 		$('#embed-info').show();
 	}
+	/*
+		Ejecuta la importación de la data que trae la url
+	*/
 	$.fn.embedImport = function() {
 		var urlhash = location.hash;
 		if (urlhash.indexOf('import')) {
@@ -380,6 +325,9 @@ var pixObject = {
 			$.fn.makeImport(object);
 		}
 	}
+	/*
+		Ejecuta la acción de descarga del JSON 
+	*/
 	$.fn.exportDownload = function(object) {
 		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(object));
 		$('.export').attr('href','data:'+data);
@@ -451,7 +399,6 @@ var pixObject = {
 						var prop = Object.getOwnPropertyNames(n);
 						var propName = prop[0].toString();
 						var searchExp = new RegExp("^"+searchText+"+","g");
-						//console.log(propName.match(searchExp));
 						if (propName.match(searchExp)) {
 							results.push('pix-'+propName);
 						}
@@ -508,20 +455,17 @@ var pixObject = {
 			var textarea = $(this).prev();
 			textarea.val(str);
 			
-			//console.log(str);
 			var newstr = textarea.val();
 			var matchAc = newstr.match(autocomplete);
 			if (matchAc) {
 				$(this).showAutoComplete(newstr,matchAc);
 			}
 			if (newstr.match(re)) {
-				//$(this).prev().val(str);
 				$(target).data('pix-icon',str.replace(' ',''));
 		        str = str.replace(re,'<i class="pix $1$2"></i>');
 		        $(target).html(str);
 		        $(target).html('');
 		        $(target).html(str);
-		        //console.log(target);
 		        var jsobj = target.get(0);
 				setEndOfContenteditable(jsobj);
 		        $.handleEvents.acClose();
@@ -602,9 +546,7 @@ var pixObject = {
 			var next = $(this).parent().parent().next().find('.pix-div-input');
 			if (next.length == 0) {
 				var alt_next = $(this).offsetParent().next().find('.pix-div-input').first();
-				//console.log(alt_next);
 				if (alt_next.length == 0) {
-					//console.log($(this).offsetParent().parent());
 					//that.addNode($(this).offsetParent().parent());
 					$(this).addNodeCurrent('last');
 				} else {
