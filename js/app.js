@@ -123,6 +123,10 @@ var pixObject = {
 				$.fn.exportTool('embed');
 				return false;
 			});
+			$('.embed-close').on('click',function(){
+				$('#embed-info').hide();
+				return false;
+			});
 			$('.upload-json').on('change',function(event){
 				$.fn.importTool(this);
 			});
