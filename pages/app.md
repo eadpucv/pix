@@ -70,8 +70,10 @@ active: app
 </script>
 
 <div class="help-line hp">Need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a><br>If you find this proyect helpfull, please consider supporting it. {% include donate-button.html %}</div>
-<div id="embed-info" style="display:none;margin:auto;position:absolute;top:0;left:0;bottom:0;right:0;width:500px;height:300px;padding:20px;">
+<div id="embed-info" style="display:none">
     <h3>Embed</h3>
     <textarea class="embedcode" style="width:100%" rows="5">
     </textarea>
+     <p>Copy this code and paste it in the <acronym title='Hyper Text Markup Language'>HTML</acronym> editor of your website. <a class='btn btn-sm btn-success pull-right'>ok</a></p>
+
 </div>
