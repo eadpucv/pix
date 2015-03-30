@@ -18,7 +18,19 @@ function setEndOfContenteditable(contentEditableElement)
         range.select();//Select the range (make it the visible selection
     }
 }
+
+function isWebkit() {
+	var uagt = navigator.userAgent;
+	var searchwk = new RegExp("WebKit","g");
+	var matchac = uagt.match(searchwk);
+	if (matchac) {
+		return true;
+	} else {
+		return false;
+	}
+}
 /*
+* Convert a string into a slug
 * Props to dense13.com
 * http://dense13.com/blog/2009/05/03/converting-string-to-slug-javascript/
 */
@@ -53,16 +65,11 @@ var pixObject = {
 		init : function(context){
 			$('#add-new').on('click',function(event){
 				$('#pix-template').addScore();
+				return false;
 			});
-			$('#pix-template').on('keypress','.pix-div-input',function(event){
+			$('#pix-template').on('keydown','.pix-div-input',function(event){
 				if (event.keyCode != 8) {
 					$(this).checkText($(this).text(), event);
-				} else {
-					var icon = $(this).data('pix-icon');
-
-					if ($(this).text().length > 0) {
-						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
-					}
 				}
 			});
 			$('#pix-template').on('keyup', '.pix-div-input', function(event){
@@ -73,23 +80,52 @@ var pixObject = {
 						$(this).replacePix($(this).text(), target);
 					}
 				} else {
-					var icon = $(this).data('pix-icon');
-					if ($(this).text().length > 0) {
-						$(this).prepend('<i class="pix pix-'+icon+'"></i>');
+					if (!isWebkit()) {
+						var obj = $(this);
+						var icon = obj.data('pix-icon');
+						var no_icon = obj.data('no-icon');
+						var length = obj.text().length;
+						if ( length > 1) {
+							obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						} else if ((length <= 1) && (length > 0)) {
+							obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						} else if ((length == 0) && (no_icon == undefined)) {
+							obj.prepend('<i class="pix pix-'+icon+'"></i>');
+							var theobj = obj.get(0);
+							setEndOfContenteditable(theobj);
+							obj.data('no-icon',1);
+						} else if ((length == 0) && (no_icon)) {
+							obj.removeData('pix-icon');
+							obj.removeData('no-icon');
+							obj.html('');
+						}
+					} else {
 					}
 				}
 			});
 			$('#pix-template').on('click','.btn-tools',function(event){
 				$(this).clickTool();
+				return false;
 			});
 			$('#pix-template').on('click', '.pix-div-input', function(event){
 				$.handleEvents.acClose();
+				return false;
 			});
 			$('.export').on('click',function(){
-				$.fn.exportTool();
+				$.fn.exportTool('download');
+				return false;
 			});
 			$('.import').on('click',function(){
 				$('.upload-json').trigger('click');
+				return false;
+			});
+			$('.embed').on('click',function(){
+				$.fn.exportTool('embed');
+				return false;
+			});
+			$('.embed-close').on('click',function(){
+				$('#embed-info').hide();
+				return false;
 			});
 			$('.upload-json').on('change',function(event){
 				$.fn.importTool(this);
@@ -125,7 +161,7 @@ var pixObject = {
 			var current = ul.find('.active');
 			
 			//var i = $('<i>').attr('class','pix pix-'+current.text());
-			var i = '<i class="pix pix-'+current.text()+'"></i>';
+			var i = '<i class="pix pix-'+current.text()+'"></i>&nbsp;';
 			
 			obj.data('pix-icon',current.text());
 			var textReplace  = obj.text().replace(match[0],i);
@@ -139,7 +175,7 @@ var pixObject = {
 		},
 		acPutIcon : function(obj,clicked) {
 			var click = $(clicked);
-			var i = '<i class="pix pix-'+click.text()+'"></i>';
+			var i = '<i class="pix pix-'+click.text()+'"></i> &nbsp;';
 			obj.data('pix-icon',click.text());
 			var searchpix = new RegExp("(pix[-][a-z]+)","g");
 			var matchac = click.text().match(searchpix);
@@ -171,12 +207,10 @@ var pixObject = {
 		if (!result.error) {
 			$('.pix-steps').find('.pix-step').remove();
 			var pix_object = $.parseJSON(result.result);
-			//console.log(pix_object); 
 			$('.score-header').find('input').val(pix_object.title);
 			$('.score-description').val(pix_object.description);
 			$.each(pix_object.scores,function(i,v){
 				$.each(v,function(i,step){
-					//console.log(step);
 					var re = new RegExp("(pix[-][a-z])([a-z]+)","gm");
 					var new_obj = {};
 					$.each(step,function(i,item){
@@ -188,7 +222,6 @@ var pixObject = {
 				        	new_obj[i] = item;
 				        }
 					});
-					console.log(new_obj);
 					//handlebars
 					var step_template = $('#pix-step').html();
 					var column = Handlebars.compile(step_template);
@@ -201,7 +234,6 @@ var pixObject = {
 			var actives = $('.pix-step');
 			$.each(actives,function(i,step){
 				var obj = $(this);
-				console.log(obj.find('.pix-div-input').first().html());
 				if (obj.find('.note.top').text() != '') {
 					obj.find('.note.top').addClass('active');
 					obj.find('ul').first().addClass('split');
@@ -224,7 +256,7 @@ var pixObject = {
 			alert('Read file error : '+result.error);
 		}
 	}
-	$.fn.exportTool = function() {
+	$.fn.exportTool = function(type) {
 		var title = $('.score-header').find('input').val();
 		if (title != "") {
 			var description = $('.score-description').val();
@@ -265,14 +297,47 @@ var pixObject = {
 				description: description,
 				scores : scores
 			}
-			var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
-			$('.export').attr('href','data:'+data);
-			var slug = string_to_slug(title);
-			$('.export').attr('download','pix-data-'+slug+'.json');
-			$('.export').trigger('click');
+			if (type == 'download') {
+				$(this).exportDownload(objectExport);
+			} else if (type == 'embed') {
+				$(this).embedTool(objectExport);
+			}
+			
 		} else {
 			alert('Please name your score before exporting it.');
 		}
+	}
+	/*
+		Genera el codigo embed del iframe y lo muestra
+	*/
+	$.fn.embedTool = function(object) {
+		var data = window.btoa(unescape(encodeURIComponent(JSON.stringify(object))));
+		var code = '<iframe src="http://'+location.host+'/pages/app-embed/#!/import/'+data+'" width="1170" height="540">';
+		$('.embedcode').text(code);
+		$('#embed-info').show();
+	}
+	/*
+		Ejecuta la importación de la data que trae la url
+	*/
+	$.fn.embedImport = function() {
+		var urlhash = location.hash;
+		if (urlhash.indexOf('import')) {
+			var hash = location.hash.substring(10);
+			var object = {
+				result: decodeURIComponent(escape(window.atob( hash )))
+			}
+			$.fn.makeImport(object);
+		}
+	}
+	/*
+		Ejecuta la acción de descarga del JSON 
+	*/
+	$.fn.exportDownload = function(object) {
+		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(object));
+		$('.export').attr('href','data:'+data);
+		var slug = string_to_slug(title);
+		$('.export').attr('download','pix-data-'+slug+'.json');
+		$('.export').trigger('click');
 	}
 	$.fn.clickTool = function() {
 		obj = $(this);
@@ -307,6 +372,22 @@ var pixObject = {
 		
 		return false;
 	}
+	/*
+	* Añade un nuevo score sin headers
+	*/
+	$.fn.addSemiScore= function(){
+		var pix_layout = $('#layout-score-no-header').html();
+		var step_template = $('#pix-step').html();
+		var step_compile = Handlebars.compile(step_template);
+		var template = Handlebars.compile(pix_layout);
+		var context = {step: step_compile};
+		var html = template(context);
+		$('#pix-template').append(html);
+		$('.pix-score').last().find('.pix-div-input:first').focus();
+		$('.pix-score').last().find('.pix-steps').data('pix-columns',1);
+		
+		return false;
+	}
 	$.fn.showAutoComplete = function(search,match) {
 		$.handleEvents.acClose();
 		var obj = $(this);
@@ -322,7 +403,6 @@ var pixObject = {
 						var prop = Object.getOwnPropertyNames(n);
 						var propName = prop[0].toString();
 						var searchExp = new RegExp("^"+searchText+"+","g");
-						//console.log(propName.match(searchExp));
 						if (propName.match(searchExp)) {
 							results.push('pix-'+propName);
 						}
@@ -379,20 +459,17 @@ var pixObject = {
 			var textarea = $(this).prev();
 			textarea.val(str);
 			
-			//console.log(str);
 			var newstr = textarea.val();
 			var matchAc = newstr.match(autocomplete);
 			if (matchAc) {
 				$(this).showAutoComplete(newstr,matchAc);
 			}
 			if (newstr.match(re)) {
-				//$(this).prev().val(str);
 				$(target).data('pix-icon',str.replace(' ',''));
 		        str = str.replace(re,'<i class="pix $1$2"></i>');
 		        $(target).html(str);
 		        $(target).html('');
 		        $(target).html(str);
-		        //console.log(target);
 		        var jsobj = target.get(0);
 				setEndOfContenteditable(jsobj);
 		        $.handleEvents.acClose();
@@ -433,20 +510,28 @@ var pixObject = {
 	/*
 	* Añade una columna despues de la actual
 	*/
-	$.fn.addNodeCurrent = function() {
+	$.fn.addNodeCurrent = function(getObject) {
 		var obj = $(this);
 
 		var step_template = $('#pix-step').html();
 		var column = Handlebars.compile(step_template);
 		column()
-		var pix_steps = obj.parent().parent().parents();
-		var counter = pix_steps.data('pix-columns');
-		console.log(counter);
-		if (counter < 12) {
-			pix_steps.data('pix-columns',counter+1);
-			obj.parent().parent().after(column);
+		if (getObject == 'last') {
+			var pix_steps = obj.parent().parent().parents();
+			var pix_steps = $(pix_steps[1]);
 		} else {
-			$(this).addScore();
+			var pix_steps = obj.parent().parent().parents();
+		}
+		var counter = pix_steps.data('pix-columns');
+		if (counter < 11) {
+			pix_steps.data('pix-columns',counter+1);
+			if (getObject === 'last') {
+				$(pix_steps).append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
+			} else {
+				obj.parent().parent().after(column);
+			}
+		} else {
+			$(this).addSemiScore();
 		}
 
 	}
@@ -454,12 +539,6 @@ var pixObject = {
 	*	Controla funciones de input como el avance del tab para crear una nueva columna
 	*/
 	$.fn.checkText = function(str, event) {
-		this.addNode = function(context) {
-			var step_template = $('#pix-step').html();
-			var column = Handlebars.compile(step_template);
-
-			$('.pix-steps').append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
-		}
 		var that = this;
 		/*
 			Control del tab para crear nueva columna
@@ -471,10 +550,9 @@ var pixObject = {
 			var next = $(this).parent().parent().next().find('.pix-div-input');
 			if (next.length == 0) {
 				var alt_next = $(this).offsetParent().next().find('.pix-div-input').first();
-				//console.log(alt_next);
 				if (alt_next.length == 0) {
-					//console.log($(this).offsetParent().parent());
-					that.addNode($(this).offsetParent().parent());
+					//that.addNode($(this).offsetParent().parent());
+					$(this).addNodeCurrent('last');
 				} else {
 					alt_next.focus().select();
 				}
@@ -502,7 +580,7 @@ jQuery(document).ready(function($){
 	    console.log(optionalValue);
 	  }
 	});
-
+	
 	var pix_layout = $('#layout-score').html();
 	var step_template = $('#pix-step').html();
 	var step_compile = Handlebars.compile(step_template);
@@ -511,6 +589,12 @@ jQuery(document).ready(function($){
 	var html = template(context);
 	$('#pix-template').html(html);
 	$('.pix-steps').first().data('pix-columns',1);
+	/*
+		Si hay embed lo importa
+	*/
+	if (location.hash.indexOf('import') != -1) {
+		$.fn.embedImport();
+	}
 
 	/*
 		Iniciamos eventos
