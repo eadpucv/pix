@@ -1,6 +1,6 @@
 ---
-layout: app
-title: PiX Application
+layout: app-embed
+title: PiX Application Embed
 active: app
 ---
 <h1 class='score-header'><input placeholder='Name your score'></h1>
@@ -10,8 +10,6 @@ active: app
 <div id="pix-template">
 	<!-- Handlebars template-->
 </div>
-
-<button id="add-new" title='add a new score' class='btn btn-primary pull-right'><i class='pix'>add</i></button>
 
 <script id="layout-score" type="text/x-handlebars-template">
 {{debug}}
@@ -68,12 +66,3 @@ active: app
             <textarea class="note bottom" rows='10' placeholder='type here...'>{% raw %}{{{note}}}{% endraw %}</textarea>
     </li>
 </script>
-
-<div class="help-line hp">Need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a><br>If you find this proyect helpfull, please consider supporting it. {% include donate-button.html %}</div>
-<div id="embed-info" style="display:none">
-    <h3>Embed code:</h3>
-    <textarea class="embedcode" style="width:100%" rows="5">
-    </textarea>
-     <p>Copy this code and paste it in the <acronym title='Hyper Text Markup Language'>HTML</acronym> editor of your website. <a class='embed-close btn btn-xs btn-primary pull-right'>OK</a></p>
-
-</div>
