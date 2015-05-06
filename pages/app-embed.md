@@ -3,14 +3,15 @@ layout: app-embed
 title: PiX Application Embed
 active: app
 ---
-<h1 class='score-header'><input placeholder='Name your score'></h1>
-<textarea class='score-description' placeholder='Describe your score' rows='1'></textarea>
-
+<body class="embed">
+    <h1 class='score-header'><input placeholder='Name your score'></h1>
+    <textarea class='score-description' placeholder='Describe your score' rows='1'></textarea>
 
 <div id="pix-template">
 	<!-- Handlebars template-->
 </div>
 
+</body>
 <script id="layout-score" type="text/x-handlebars-template">
 {{debug}}
 	<div class='pix-score'>
