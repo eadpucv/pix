@@ -1,3 +1,33 @@
+/*	special embed specs		*/
+iframe{
+	border: none;
+	height: 100%;
+}
+.embed{
+	body{
+		overflow-y: hidden;
+	}
+	.container{width: 100%}
+	h1{
+		
+		*, input{
+			font-size: 18px;
+			margin: 0;
+			margin-bottom: 0;
+			padding: 0;
+			.uppercase;
+			.light;
+		}
+	}
+	textarea{
+		padding: 0;
+		font-size: 12px;
+		margin-top: 0;
+
+	}
+}
+
+/*	pages  	*/
 
 .brand{
 	font-family: Lato;
@@ -202,4 +232,18 @@ textarea{
 		margin: 1em 0 0 0;
 		font-size: .9em;
 	}
+}
+
+/* html native tooltip style */
+
+a[title]:hover:after {
+  content: attr(title);
+  color: @white;
+  background-color: @black;
+  padding: @padding-large;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  white-space: nowrap;
+  z-index: @zindex-tooltip;
 }
