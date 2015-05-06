@@ -312,7 +312,7 @@ var pixObject = {
 	*/
 	$.fn.embedTool = function(object) {
 		var data = window.btoa(unescape(encodeURIComponent(JSON.stringify(object))));
-		var code = '<iframe src="http://'+location.host+'/pages/app-embed/#!/import/'+data+'" width="1170" height="540">';
+		var code = '<iframe src="http://'+location.host+'/pages/app-embed/#!/import/'+data+'" width="100%" height="auto">';
 		$('.embedcode').text(code);
 		$('#embed-info').show();
 	}
