@@ -3,10 +3,16 @@ layout: base
 title: PiX - Interaction Notation for UX Design
 active: index
 ---
-
+<div class='row'>
+<div class='tcenter'>
+    <a class='btn huge' href='{{ site.baseurl }}/pages/app'>
+        <i class='pix'>notebook body play</i>
+    </a>
+</div>
+</div>
 <div class='row'>
     <div lang='en' class='col-sm-6'>
-    <h4 class='uppercase color sans'>PiX is a visual language to encode design, defining interaction structure for service design. Specially thought for software development and digital apps.</h4>
+    <h4 class='uppercase color sans'>PiX is a visual language to encode design, defining interaction structure for services. Specially crafted for software development and digital apps.</h4>
         <h3>Why?</h3>
         <p>We need a design deliverable that can encapsule the flow of interaction, the quality of the experience we're proposing to the user, to our team members and to the business.</p>
         
