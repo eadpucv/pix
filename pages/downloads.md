@@ -23,14 +23,19 @@ active: downloads
 </div>
 </div>
 
+<div class="tcenter">
+	<a class='btn huge' href='{{site.baseurl}}/downloads/pix-toolkit.pdf' title='Co-design toolkit'>PiX Toolkit</a>
+	<p>PDF formato carta</p>
+</div>
+
 <div class='row'>
 <div class='col-md-6'>
 	<h2>Templates & Stencils</h2>
 	<h3>Illustrator</h3>
-<ol>
-	<li><a href='{{ site.baseurl }}/downloads/pix-template-en.ai'>PiX Template - English</a></li>
-	<li><a href='{{ site.baseurl }}/downloads/pix-template-es.ai'>PiX Template - Español</a></li>
-</ol>
+	<ol>
+		<li><a href='{{ site.baseurl }}/downloads/pix-template-en.ai'>PiX Template - English</a></li>
+		<li><a href='{{ site.baseurl }}/downloads/pix-template-es.ai'>PiX Template - Español</a></li>
+	</ol>
 
 <h3>Omnigraffle</h3>
 <ol>
