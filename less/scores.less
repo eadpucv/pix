@@ -7,7 +7,7 @@
 @pix-border-color:				#ccd4d1;
 @edit-color:				 	#efefd7;
 @pix-block-height:				120px;
-@pix-block-width:				8.3%;
+@pix-block-width:				100px;
 @pix-size:						4em;
 @tools-offset: 					10px;
 /****************************************** Score Title */
@@ -68,9 +68,17 @@ h1.score-header{
 			display: table;
 		}
 	}
-
+	/*Aqui agregue un arreglo poco elegantge para la mascara de overflow horizontal*/
+	.step-mask {
+		float: left;
+		width: 88%;
+		height: 382px;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
 	ul{
 		&.pix-header{
+			float: left;
 			background-color: lighten(@pix-border-color, 10);
 			border-radius: @pix-border-width*2 0 0 @pix-border-width*2;
 			/*
@@ -107,9 +115,9 @@ h1.score-header{
 				}
 			}
 		}
-
+		
 		&.pix-steps{
-			display: inline;
+			display: block;
 			li.pix-step{
 				position: relative;
 				width: @pix-block-width;

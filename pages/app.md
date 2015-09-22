@@ -21,11 +21,13 @@ active: app
 			<li class='block block-dialogue'><div class='pix-group'><i class='pix pix-dialogue'></i><label>dialogue</label></div></li>
 			<li class='block block-system'><div class='pix-group'><i class='pix pix-system'></i><label>system</label></div></li>
 		</ul>
-	    <ul class='pix-steps'>
-	    {% raw %}
-	        {{{step}}} 
-	    {% endraw %}
-	    </ul>
+        <div class="step-mask">
+    	    <ul class='pix-steps'>
+    	    {% raw %}
+    	        {{{step}}} 
+    	    {% endraw %}
+    	    </ul>
+        </div>
 	</div>
 </script>
 

@@ -81,24 +81,25 @@ var pixObject = {
 					}
 				} else {
 					if (!isWebkit()) {
-						var obj = $(this);
-						var icon = obj.data('pix-icon');
-						var no_icon = obj.data('no-icon');
-						var length = obj.text().length;
-						if ( length > 1) {
-							obj.prepend('<i class="pix pix-'+icon+'"></i>');
-						} else if ((length <= 1) && (length > 0)) {
-							obj.prepend('<i class="pix pix-'+icon+'"></i>');
-						} else if ((length == 0) && (no_icon == undefined)) {
-							obj.prepend('<i class="pix pix-'+icon+'"></i>');
-							var theobj = obj.get(0);
-							setEndOfContenteditable(theobj);
-							obj.data('no-icon',1);
-						} else if ((length == 0) && (no_icon)) {
-							obj.removeData('pix-icon');
-							obj.removeData('no-icon');
-							obj.html('');
-						}
+						//var obj = $(this);
+						//console.log(this);
+						// var icon = obj.data('pix-icon');
+						// var no_icon = obj.data('no-icon');
+						// var length = obj.text().length;
+						// if ( length > 1) {
+						// 	obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						// } else if ((length <= 1) && (length > 0)) {
+						// 	obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						// } else if ((length == 0) && (no_icon == undefined)) {
+						// 	obj.prepend('<i class="pix pix-'+icon+'"></i>');
+						// 	var theobj = obj.get(0);
+						// 	setEndOfContenteditable(theobj);
+						// 	obj.data('no-icon',1);
+						// } else if ((length == 0) && (no_icon)) {
+						// 	obj.removeData('pix-icon');
+						// 	obj.removeData('no-icon');
+						// 	obj.html('');
+						// }
 					} else {
 					}
 				}
@@ -157,6 +158,20 @@ var pixObject = {
 		acClose : function(ul) {
 			$('body').find('ul.pix-ul').remove();
 		},
+		addTextNode : function(obj) {
+			var p = $('<p>').attr('contenteditable','true');
+	        obj.append(p);
+
+	        var element = obj.find('p').get(0);
+	        var s = window.getSelection(),
+    		r = document.createRange();
+    		element.innerHTML = '\u00a0';
+			r.selectNodeContents(element);
+			s.removeAllRanges();
+			s.addRange(r);
+			document.execCommand('delete', false, null);
+			element.focus();
+		},
 		acAddIcon : function(ul,obj,match) {
 			var current = ul.find('.active');
 			
@@ -169,6 +184,10 @@ var pixObject = {
 				textReplace = i;
 			}
 			obj.html(textReplace);
+
+
+	        this.addTextNode(obj);
+
 			this.acClose(ul);
 			var jsobj = obj.get(0);
 			setEndOfContenteditable(jsobj);
@@ -182,6 +201,7 @@ var pixObject = {
 			if (matchac) {
 				var replacedText = obj.text().replace(matchac[0],i);
 				obj.html(replacedText);
+				this.addTextNode(obj);
 			} else {
 				obj.html(i);
 			}
@@ -470,6 +490,9 @@ var pixObject = {
 		        $(target).html(str);
 		        $(target).html('');
 		        $(target).html(str);
+		        
+		        $.handleEvents.addTextNode($(target));
+
 		        var jsobj = target.get(0);
 				setEndOfContenteditable(jsobj);
 		        $.handleEvents.acClose();
@@ -523,17 +546,18 @@ var pixObject = {
 			var pix_steps = obj.parent().parent().parents();
 		}
 		var counter = pix_steps.data('pix-columns');
-		if (counter < 11) {
-			pix_steps.data('pix-columns',counter+1);
-			if (getObject === 'last') {
-				$(pix_steps).append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
-			} else {
-				obj.parent().parent().after(column);
-			}
+		pix_steps.data('pix-columns',counter+1);
+		if (getObject === 'last') {
+			$(pix_steps).append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
 		} else {
-			$(this).addSemiScore();
+			obj.parent().parent().after(column);
 		}
-
+		//Agrandamos .pix-steps a medida que aumenten las columnas
+		var width = 0;
+		$('.pix-steps').find('.pix-step').each(function(){
+			width = width + $(this).outerWidth(); 
+		});
+		$('.pix-steps').css('width',width);
 	}
 	/*
 	*	Controla funciones de input como el avance del tab para crear una nueva columna
