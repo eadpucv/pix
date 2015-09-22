@@ -230,7 +230,53 @@ li.block{
 	line-height: 95%;
 }
 
-
+.pix-icon-list {
+	position: absolute;
+	width: 750px;
+	height: 510px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	padding: 1rem;
+	background-color: @white;
+	border-radius: @radius;
+	box-shadow: 3px 3px 0 fade(@black, 10);
+	border: @pix-border-width/2 solid darken(@border-color, 10);
+	z-index: 9999;
+	.button-close {
+		display: block;
+		width: 100%;
+		text-align: right;
+	}
+	ul {
+		display: block;
+		list-style: none;
+		height: 450px;
+		overflow: auto;
+		li {
+			display: inline-block;
+			a {
+				display: block;
+				min-width: 110px;
+				padding: .5rem;
+				border: 1px solid #C8C8D4;
+				text-align: center;
+				i.pix{
+					display: inline-block;
+					text-align: center;
+					font-size: 36px;
+					line-height: 100%;
+					white-space: nowrap;
+				}
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
 // drop-down and select class. Use in combination with: <ul class="select nav nav-stacked pix-ul">
 ul.pix-ul li.active a {
 	background-color: saturate(fade(@brand-primary, 30), 30);

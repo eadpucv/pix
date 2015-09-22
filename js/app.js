@@ -72,6 +72,10 @@ var pixObject = {
 					$(this).checkText($(this).text(), event);
 				}
 			});
+			$('#pix-template').on('dblclick', '.pix-div-input', function(event){
+				$(this).showIconList($(this));
+				return false;
+			});
 			$('#pix-template').on('keyup', '.pix-div-input', function(event){
 				if (event.keyCode != 8) {
 					var target = $(this);
@@ -160,6 +164,9 @@ var pixObject = {
 		acClose : function(ul) {
 			$('body').find('ul.pix-ul').remove();
 		},
+		icClose : function() {
+			$('body').find('.pix-icon-list').remove();
+		},
 		addTextNode : function(obj) {
 			var p = $('<p>').attr('contenteditable','true');
 	        obj.append(p);
@@ -207,8 +214,10 @@ var pixObject = {
 				this.addTextNode(obj);
 			} else {
 				obj.html(i);
+				this.addTextNode(obj);
 			}
 			$.handleEvents.acClose();
+			$.handleEvents.icClose();
 			obj.focus();
 			var jsobj = obj.get(0);
 			setEndOfContenteditable(jsobj);
@@ -410,6 +419,40 @@ var pixObject = {
 		$('.pix-score').last().find('.pix-steps').data('pix-columns',1);
 		
 		return false;
+	}
+	$.fn.showIconList = function(obj) {
+		$.handleEvents.icClose();
+		var icon_list = $('<div>').attr('class','pix-icon-list');
+		var close = $('<a>').attr({ 'class' : 'button-close', 'href' : '#' }).text('X');
+		icon_list.prepend(close);
+		var ul = $('<ul>');
+		$.ajax({
+			dataType: 'json',
+			url: Ajax.icons,
+			success: function(data) {
+				$.each(data,function(i,n){
+					var prop = Object.getOwnPropertyNames(n);
+					var textName = prop[0].toString();
+					var propName = 'pix-'+prop[0].toString();
+					var li = $('<li>').append($('<a>').attr('href','#'+propName).text(textName).prepend( $('<br>') ).prepend($('<i>').attr( 'class','pix pix-fw '+propName ) ));
+					ul.append(li);
+				});
+				icon_list.append(ul);
+				$('body').append(icon_list);
+				ul.find('a').on('click',function(event){
+					$.handleEvents.acPutIcon(obj,this);
+					return false;
+				});
+				$('.button-close').on('click', function(event) {
+					$.handleEvents.icClose();
+					return false;
+				});
+			},
+			error : function(jqXHR,status,error) {
+				console.log(error);
+			}
+
+		});	
 	}
 	$.fn.showAutoComplete = function(search,match) {
 		$.handleEvents.acClose();
