@@ -80,7 +80,9 @@ var pixObject = {
 						$(this).replacePix($(this).text(), target);
 					}
 				} else {
+					//document.execCommand('delete', false, null);
 					if (!isWebkit()) {
+
 						//var obj = $(this);
 						//console.log(this);
 						// var icon = obj.data('pix-icon');
@@ -173,24 +175,25 @@ var pixObject = {
 			element.focus();
 		},
 		acAddIcon : function(ul,obj,match) {
-			var current = ul.find('.active');
-			
-			//var i = $('<i>').attr('class','pix pix-'+current.text());
-			var i = '<i class="pix pix-'+current.text()+'"></i>&nbsp;';
-			
-			obj.data('pix-icon',current.text());
-			var textReplace  = obj.text().replace(match[0],i);
-			if (textReplace.length < 3) {
-				textReplace = i;
+			var icon = obj.data('pix-icon');
+			if (icon == undefined) {
+				var current = ul.find('.active');
+				//var i = $('<i>').attr('class','pix pix-'+current.text());
+				var i = '<i class="pix pix-'+current.text()+'"></i>&nbsp;';
+				
+				obj.data('pix-icon',current.text());
+				var textReplace  = obj.text().replace(match[0],i);
+				if (textReplace.length < 3) {
+					textReplace = i;
+				}
+				obj.html(textReplace);
+
+		        this.addTextNode(obj);
+
+				this.acClose(ul);
+				var jsobj = obj.get(0);
+				setEndOfContenteditable(jsobj);
 			}
-			obj.html(textReplace);
-
-
-	        this.addTextNode(obj);
-
-			this.acClose(ul);
-			var jsobj = obj.get(0);
-			setEndOfContenteditable(jsobj);
 		},
 		acPutIcon : function(obj,clicked) {
 			var click = $(clicked);
