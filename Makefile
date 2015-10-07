@@ -6,7 +6,8 @@ install:
 	bower install
 
 less: 
-	lessc less/style.less > css/style.css --compress
+	lessc less/style.less > css/style.css --clean-css="--s1 --advanced --compatibility=ie8"
+
 
 css:
 	make less
