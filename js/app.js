@@ -85,6 +85,12 @@ var pixObject = {
 					}
 				} else {
 					//document.execCommand('delete', false, null);
+					var obj = $(this);
+					var icon = obj.data('pix-icon');
+					if (obj.text = '') {
+						obj.removeData('pix-icon');
+						console.log('removida la data');
+					}
 					if (!isWebkit()) {
 
 						//var obj = $(this);
@@ -189,6 +195,7 @@ var pixObject = {
 				var i = '<i class="pix pix-'+current.text()+'"></i>&nbsp;';
 				
 				obj.data('pix-icon',current.text());
+				console.log(obj.data('pix-icon'));
 				var textReplace  = obj.text().replace(match[0],i);
 				if (textReplace.length < 3) {
 					textReplace = i;
@@ -206,6 +213,7 @@ var pixObject = {
 			var click = $(clicked);
 			var i = '<i class="pix pix-'+click.text()+'"></i> &nbsp;';
 			obj.data('pix-icon',click.text());
+			console.log(obj.data('pix-icon'));
 			var searchpix = new RegExp("(pix[-][a-z]+)","g");
 			var matchac = click.text().match(searchpix);
 			if (matchac) {
@@ -650,13 +658,21 @@ jQuery(document).ready(function($){
 	    console.log(optionalValue);
 	  }
 	});
+	//Interaction partitures
+	//var pix_layout = $('#layout-score').html();
+	//var step_template = $('#pix-step').html();
+
+	//Service blueprint
+	var pix_layout = $('#service-score').html();
+	var step_template = $('#pix-service-step').html();
 	
-	var pix_layout = $('#layout-score').html();
-	var step_template = $('#pix-step').html();
 	var step_compile = Handlebars.compile(step_template);
 	var template = Handlebars.compile(pix_layout);
 	var context = {step: step_compile};
 	var html = template(context);
+
+
+
 	$('#pix-template').html(html);
 	$('.pix-steps').first().data('pix-columns',1);
 	/*
