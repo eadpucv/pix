@@ -6,7 +6,7 @@ install:
 	bower install
 
 less: 
-	lessc less/style.less > css/style.css --compress
+	lessc less/style.less > css/style.css
 
 css:
 	make less

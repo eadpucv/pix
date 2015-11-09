@@ -172,13 +172,12 @@ li.block{
 	margin: 0;
 	width: 100%;
 
-	&.block-user{
-		border-top: @pix-border-width solid @pix-border-color;
-		border-bottom: 1px dotted @pix-border-color;
-	}
+	&:first-child{border-top: @pix-border-width solid @pix-border-color;}
+	&:last-child{border-bottom: @pix-border-width solid @pix-border-color;}
 
+	&.block-user{border-bottom: 1px dotted @pix-border-color}
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
-	&.block-system{border-bottom: @pix-border-width solid @pix-border-color;}
+	&.block-system{}
 
 	.pix-div-input,
 	.pix-group,	
@@ -230,47 +229,68 @@ li.block{
 	line-height: 95%;
 }
 
+
+@pix-list-side: 500px;
+@pix-list-padding: 30px;
+
 .pix-icon-list {
 	position: absolute;
-	width: 750px;
-	height: 510px;
-	top: 0;
+	width: @pix-list-side + (2 * @pix-list-padding);
+	height: @pix-list-side;
+	top: -3 * @pix-list-padding;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	margin: auto;
-	padding: 1rem;
+	padding: @pix-list-padding;
 	background-color: @white;
 	border-radius: @radius;
-	box-shadow: 3px 3px 0 fade(@black, 10);
-	border: @pix-border-width/2 solid darken(@border-color, 10);
+	border: @pix-border-width/2 solid @pix-border-color;
 	z-index: 9999;
 	.button-close {
-		display: block;
-		width: 100%;
-		text-align: right;
+		font-family: pix;
+		display: inline-block;
+		position: absolute;
+		font-size: 47px;
+		right: -12px;
+		top: -14px;
+		background-color: @brand-primary;
+		color: @white;
+		line-height: 27px;
+		width: 27px;
+		height: 27px;
+		text-align: center;
+		border-radius: 50%;
+		&:hover{
+			text-decoration: none;
+			background-color: lighten(@brand-primary, 15);
+		}
 	}
 	ul {
 		display: block;
 		list-style: none;
-		height: 450px;
+		height: @pix-list-side - (2 * @pix-list-padding);
+		margin: 0;
+		padding: 0;
 		overflow: auto;
 		li {
 			display: inline-block;
 			a {
 				display: block;
-				min-width: 110px;
-				padding: .5rem;
-				border: 1px solid #C8C8D4;
+				min-width: 115px;
+				padding: .5em;
 				text-align: center;
+				border-radius: @radius;
 				i.pix{
 					display: inline-block;
 					text-align: center;
 					font-size: 36px;
 					line-height: 100%;
 					white-space: nowrap;
+					color: @black;
 				}
 				&:hover {
+					background-color: fade(@edit-color, 50);
 					text-decoration: none;
 				}
 			}
@@ -403,14 +423,4 @@ li.block textarea {
 
 .upload-json {
 	display: none !important;
-}
-
-#add-new{
-	.size(60px, 60px);
-	border-radius: 50%;
-	.pix{
-		position: relative;
-		font-size: 3em;
-		top:-1px;
-	}
 }
