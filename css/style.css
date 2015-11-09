@@ -4023,7 +4023,6 @@ h1.score-header input:hover {
   padding-top: .7rem;
   padding-left: .4rem;
   width: 88%;
-  height: 387px;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -4783,6 +4782,18 @@ a[title]:hover:after {
   top: 100%;
   white-space: nowrap;
   z-index: 1030;
+}
+.select_layout_container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 30rem;
+  padding: 2rem;
+  z-index: 9999;
+  background: #ffffff;
 }
 .docs-block {
   color: #0c708f;

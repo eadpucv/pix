@@ -589,8 +589,13 @@ var pixObject = {
 	*/
 	$.fn.addNodeCurrent = function(getObject) {
 		var obj = $(this);
+		var layout_mode = $('body').data('layout');
 
-		var step_template = $('#pix-step').html();
+		if (layout_mode == 'sb') {
+			var step_template = $('#pix-service-step').html();
+		} else if (layout_mode == 'ip') {
+			var step_template = $('#pix-step').html();
+		} 
 		var column = Handlebars.compile(step_template);
 		column()
 		if (getObject == 'last') {
@@ -609,7 +614,7 @@ var pixObject = {
 		//Agrandamos .pix-steps a medida que aumenten las columnas
 		var width = 0;
 		$('.pix-steps').find('.pix-step').each(function(){
-			width = width + $(this).outerWidth(); 
+			width = width + $(this).outerWidth() +10; 
 		});
 		$('.pix-steps').css('width',width);
 	}
@@ -625,66 +630,84 @@ var pixObject = {
 			//next tab
 			$.handleEvents.acClose();
 			event.preventDefault();
-			var next = $(this).parent().parent().next().find('.pix-div-input');
+			var next = $(this).parent().next().find('.pix-div-input');
 			if (next.length == 0) {
-				var alt_next = $(this).offsetParent().next().find('.pix-div-input').first();
+				console.log('no hay mas en col');
+				var alt_next = $(this).parent().parent().parent().next();
+				//var alt_next = $(this).offsetParent().next().find('.pix-div-input').first();
 				if (alt_next.length == 0) {
 					//that.addNode($(this).offsetParent().parent());
 					$(this).addNodeCurrent('last');
 				} else {
-					alt_next.focus().select();
+					alt_next.find('.pix-div-input').first().focus().select();
 				}
 			} else {
+				console.log('avanza en item columna');
 				next.focus().select();
 			}
 			return false;
 		}
 	};
+	$.layoutSelect = function() {
+		var container_select = $('<div>').addClass('select_layout_container');
+		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Service Blueprint');
+		var a_ip = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Partiture');
+		container_select.append(a_sb).append(a_ip);
+		$('body').append(container_select);
+	}
+	/*
+		Define el layout que se va a utilizar
+	*/
+	$.fn.defineLayout = function(layout) {
+		switch(layout) {
+			case 'sb' : 
+				//Service blueprint
+				var pix_layout = $('#service-score').html();
+				var step_template = $('#pix-service-step').html();
+				$('body').data('layout','sb');//service blueprint
+				$('body').addClass('service-blueprint');
+			break;
+			case 'ip' :
+				//Interaction partitures
+				var pix_layout = $('#layout-score').html();
+				var step_template = $('#pix-step').html();
+				$('body').data('layout','ip');//interaction-partiture
+				$('body').addClass('interaction-partiture');
+			break;
+		}
+		var step_compile = Handlebars.compile(step_template);
+		var template = Handlebars.compile(pix_layout);
+		var context = {step: step_compile};
+		var html = template(context);
+		$('#pix-template').html(html);
+		/*
+			Iniciamos eventos
+		*/
+		$.handleEvents.init();
+	};
 }(jQuery));
 
 jQuery(document).ready(function($){
-	/*
-		Handlebars
-	*/
-	// Debug handlebars
-	Handlebars.registerHelper("debug", function(optionalValue) {
-	  console.log("Current Context");
-	  console.log("====================");
-	  console.log(this);
-	 
-	  if (optionalValue) {
-	    console.log("Value");
-	    console.log("====================");
-	    console.log(optionalValue);
-	  }
-	});
-	//Interaction partitures
-	//var pix_layout = $('#layout-score').html();
-	//var step_template = $('#pix-step').html();
 
-	//Service blueprint
+	//$.layoutSelect();
 	var pix_layout = $('#service-score').html();
 	var step_template = $('#pix-service-step').html();
-	
+	$('body').data('layout','sb');//service blueprint
+	$('body').addClass('service-blueprint');
+
 	var step_compile = Handlebars.compile(step_template);
 	var template = Handlebars.compile(pix_layout);
 	var context = {step: step_compile};
 	var html = template(context);
-
-
-
 	$('#pix-template').html(html);
-	$('.pix-steps').first().data('pix-columns',1);
+
+
 	/*
 		Si hay embed lo importa
 	*/
 	if (location.hash.indexOf('import') != -1) {
 		$.fn.embedImport();
 	}
-
-	/*
-		Iniciamos eventos
-	*/
 	$.handleEvents.init();
 	
 });
