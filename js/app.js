@@ -654,11 +654,18 @@ var pixObject = {
 		var a_ip = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Partiture');
 		container_select.append(a_sb).append(a_ip);
 		$('body').append(container_select);
+		$(container_select).find('a').on('click',function(e){
+			e.preventDefault();
+			var $action = $(this).attr('href');
+			$.defineLayout($action.replace('#',''));
+			$('body').find('.select_layout_container').remove();
+			return false;
+		});
 	}
 	/*
 		Define el layout que se va a utilizar
 	*/
-	$.fn.defineLayout = function(layout) {
+	$.defineLayout = function(layout) {
 		switch(layout) {
 			case 'sb' : 
 				//Service blueprint
@@ -689,18 +696,7 @@ var pixObject = {
 
 jQuery(document).ready(function($){
 
-	//$.layoutSelect();
-	var pix_layout = $('#service-score').html();
-	var step_template = $('#pix-service-step').html();
-	$('body').data('layout','sb');//service blueprint
-	$('body').addClass('service-blueprint');
-
-	var step_compile = Handlebars.compile(step_template);
-	var template = Handlebars.compile(pix_layout);
-	var context = {step: step_compile};
-	var html = template(context);
-	$('#pix-template').html(html);
-
+	$.layoutSelect();
 
 	/*
 		Si hay embed lo importa
@@ -708,6 +704,5 @@ jQuery(document).ready(function($){
 	if (location.hash.indexOf('import') != -1) {
 		$.fn.embedImport();
 	}
-	$.handleEvents.init();
 	
 });

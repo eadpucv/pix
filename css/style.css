@@ -4791,9 +4791,21 @@ a[title]:hover:after {
   bottom: 0;
   margin: auto;
   width: 30rem;
+  height: 17rem;
   padding: 2rem;
   z-index: 9999;
   background: #ffffff;
+  border: 1px solid #d94021;
+}
+.select_layout_container a {
+  display: inline-block;
+  width: 45%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.select_layout_container a .pix-group {
+  font-size: 4rem;
 }
 .docs-block {
   color: #0c708f;
