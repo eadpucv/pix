@@ -10,6 +10,38 @@
 @pix-block-width:				100px;
 @pix-size:						4em;
 @tools-offset: 					10px;
+@radius: 						6px;
+
+.select_layout_container {
+
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: 30rem;
+	height: 17rem;
+	padding: 2rem;
+	z-index: 9999;
+	background: @white;
+	border-radius: @radius;
+	a {
+		display: inline-block;
+		padding: 1rem;
+		width: 45%;
+		padding: 1rem;
+		font-size: 1.5rem;
+		.pix-group {
+			font-size: 4rem;
+		}
+		text-align: center;
+		&:hover{text-decoration: none}
+	}
+}
+
+
+
 /****************************************** Score Title */
 .input-style{
 		padding: 4px;
@@ -93,11 +125,11 @@ h1.score-header{
 			width: @pix-block-width;
 			display: inline-block;
 			li{
-				&.block-user{
+				&:first-child{
 					border-top: @pix-border-width solid @pix-border-color;
 				}
 
-				&.block-system{
+				&:last-child{
 					border-bottom: @pix-border-width solid @pix-border-color;
 				}
 				
@@ -175,6 +207,7 @@ li.block{
 	&:first-child{border-top: @pix-border-width solid @pix-border-color;}
 	&:last-child{border-bottom: @pix-border-width solid @pix-border-color;}
 
+	&.block-environment,
 	&.block-user{border-bottom: 1px dotted @pix-border-color}
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
 	&.block-system{}

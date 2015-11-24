@@ -650,8 +650,8 @@ var pixObject = {
 	};
 	$.layoutSelect = function() {
 		var container_select = $('<div>').addClass('select_layout_container');
-		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Service Blueprint');
-		var a_ip = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Partiture');
+		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint');
+		var a_ip = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
 		container_select.append(a_sb).append(a_ip);
 		$('body').append(container_select);
 		$(container_select).find('a').on('click',function(e){

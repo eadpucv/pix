@@ -33,7 +33,7 @@ active: app
 {{debug}}
     <div class='pix-score'>
          <ul class='pix-header'>
-         <li class='block block-enviroment'><div class='pix-group'><i class='pix pix-body'></i><label>enviroment</label></div></li>
+         <li class='block block-environment'><div class='pix-group'><i class='pix pix-body'></i><label>environment</label></div></li>
             <li class='block block-user'><div class='pix-group'><i class='pix pix-person'></i><label>person</label></div></li>
             <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-dialogue'></i><label>dialogue</label></div></li>
             <li class='block block-system'><div class='pix-group'><i class='pix pix-system'></i><label>system</label></div></li>
@@ -68,9 +68,9 @@ active: app
             <a href="#add" class="btn btn-tools tool-add" title="add step"><img src='{{ site.baseurl }}/img/tool_add.svg'></a>
         </div>
         <ul>
-            <li class='block block-enviroment'>
+            <li class='block block-environment'>
                 <textarea rows='10' placeholder='type here...'></textarea>
-                <div class="pix-div-input" contenteditable="true">{% raw %}{{{enviroment}}}{% endraw %}</div>
+                <div class="pix-div-input" contenteditable="true">{% raw %}{{{environment}}}{% endraw %}</div>
             </li>
             <li class='block block-user'>
                 <textarea rows='10' placeholder='type here...'></textarea>
