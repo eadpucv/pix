@@ -4055,14 +4055,9 @@ h1.score-header input:hover {
 }
 .pix-score ul.pix-header {
   float: left;
-  margin-top: .7rem;
+  margin-top: 2.7rem;
   background-color: #e8ebea;
   border-radius: 8px 0 0 8px;
-  /*
-			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
-			border-top: @pix-border-width solid @pix-border-color;
-			border-bottom: @pix-border-width solid @pix-border-color;
-			*/
   border-left: 4px solid #ccd4d1;
   width: 100px;
   display: inline-block;
@@ -4090,6 +4085,8 @@ h1.score-header input:hover {
 }
 .pix-score ul.pix-steps {
   display: block;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
 }
 .pix-score ul.pix-steps li.pix-step {
   position: relative;
@@ -4118,13 +4115,27 @@ h1.score-header input:hover {
 }
 .pix-score .note.top {
   font-weight: bold;
-  bottom: 372px;
   line-height: 120%;
   overflow: hidden;
 }
 .pix-score .note.bottom {
-  top: 372px;
   background-color: transparent;
+}
+.pix-score.template-pix .note.top {
+  bottom: 372px;
+}
+.pix-score.template-pix .note.bottom {
+  top: 372px;
+}
+.pix-score.template-blueprint .note.top {
+  bottom: 612px;
+}
+.pix-score.template-blueprint .note.bottom {
+  top: 612px;
+}
+.pix-score.template-blueprint ul.pix-header li:last-child,
+.pix-score.template-blueprint ul.pix-steps li.pix-step ul li:last-child {
+  border-top: 1px dotted #ccd4d1;
 }
 li.block {
   position: relative;

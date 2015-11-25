@@ -678,8 +678,8 @@ var pixObject = {
 				//Interaction partitures
 				var pix_layout = $('#layout-score').html();
 				var step_template = $('#pix-step').html();
-				$('body').data('layout','ip');//interaction-partiture
-				$('body').addClass('interaction-partiture');
+				$('body').data('layout','ip');//interaction-score
+				$('body').addClass('interaction-score');
 			break;
 		}
 		var step_compile = Handlebars.compile(step_template);

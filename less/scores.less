@@ -113,14 +113,9 @@ h1.score-header{
 	ul{
 		&.pix-header{
 			float: left;
-			margin-top: .7rem;
+			margin-top: 2.7rem;
 			background-color: lighten(@pix-border-color, 10);
 			border-radius: @pix-border-width*2 0 0 @pix-border-width*2;
-			/*
-			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
-			border-top: @pix-border-width solid @pix-border-color;
-			border-bottom: @pix-border-width solid @pix-border-color;
-			*/
 			border-left: @pix-border-width solid @pix-border-color;
 			width: @pix-block-width;
 			display: inline-block;
@@ -153,6 +148,8 @@ h1.score-header{
 		
 		&.pix-steps{
 			display: block;
+			margin-top: 2rem;
+			margin-bottom: 5rem;
 			li.pix-step{
 				position: relative;
 				width: @pix-block-width;
@@ -182,16 +179,38 @@ h1.score-header{
 		line-height: 100%;
 		&.top{
 			font-weight: bold;
-			bottom: @pix-block-height * 3 + 12px;
 			line-height: 120%;
 			overflow: hidden;
 		}
 		&.bottom{
-			top: @pix-block-height * 3 + 12px;
 			background-color: transparent;
 		}
 	}
+
+	&.template-pix{
+		.note{
+			&.top{bottom: @pix-block-height * 3 + 12px;}
+			&.bottom{top: @pix-block-height * 3 + 12px;}
+		}
+	}
+
+	&.template-blueprint{
+		.note{
+			&.top{bottom: @pix-block-height * 5 + 12px;}
+			&.bottom{top: @pix-block-height * 5 + 12px;}
+		}
+	}
+
+	&.template-blueprint{
+		ul.pix-header li:last-child,
+		ul.pix-steps li.pix-step ul li:last-child{
+			border-top: 1px dotted @pix-border-color;
+		}
+	}
 }
+
+
+
 
 li.block{
 	position: relative;
@@ -418,7 +437,6 @@ ul.select{
 		vertical-align: middle;
 	}
 }
-
 
 
 .pix-div-input:hover {

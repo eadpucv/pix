@@ -14,7 +14,7 @@ active: app
 </body>
 <script id='layout-score' type='text/x-handlebars-template'>
 {{debug}}
-	<div class='pix-score'>
+	<div class='pix-score template-pix'>
 	     <ul class='pix-header'>
 			<li class='block block-user'><div class='pix-group'><i class='pix pix-person'></i><label>person</label></div></li>
 			<li class='block block-dialogue'><div class='pix-group'><i class='pix pix-dialogue'></i><label>dialogue</label></div></li>
@@ -30,7 +30,7 @@ active: app
 
 <script id='layout-score-no-header' type='text/x-handlebars-template'>
 {{debug}}
-    <div class='pix-score'>
+    <div class='pix-score template-blueprint'>
         <ul class='pix-steps'>
         {% raw %}
             {{{step}}} 
