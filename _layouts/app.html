@@ -3,11 +3,16 @@
 	{% include app-head.html %}
 	<body lang='ES_es' class='black-bg'>
 		<div class='white-bg nbt'>
-			{% include navbar.html %}
-			<div class='container'>
+			{% include app-navbar.html %}
+			<div class='container pix-app'>
 				{{ content }}
 			</div>
+			<div class='container'>
+				<div class='help-line'>Need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a><br>If you find this proyect helpfull, please consider supporting it. {% include donate-button.html %}
+			</div>
 		</div>
+		</div>
+
 	    {% include footer.html %}
 	    <script type="text/javascript" src="{{ site.baseurl }}/js/jquery.min.js"></script>
 	    <script type="text/javascript" src="{{ site.baseurl }}/js/handlebars.min.js"></script>

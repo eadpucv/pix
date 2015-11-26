@@ -649,16 +649,17 @@ var pixObject = {
 		}
 	};
 	$.layoutSelect = function() {
-		var container_select = $('<div>').addClass('select_layout_container');
+		var container_select = $('<div>').addClass('select-layout-container');
+		var a_tit = $('<h3>').html('Select template');
+		var a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
 		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint');
-		var a_ip = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
-		container_select.append(a_sb).append(a_ip);
+		container_select.append(a_tit).append(a_pix).append(a_sb);
 		$('body').append(container_select);
 		$(container_select).find('a').on('click',function(e){
 			e.preventDefault();
 			var $action = $(this).attr('href');
 			$.defineLayout($action.replace('#',''));
-			$('body').find('.select_layout_container').remove();
+			$('body').find('.select-layout-container').remove();
 			return false;
 		});
 	}

@@ -12,20 +12,28 @@
 @tools-offset: 					10px;
 @radius: 						6px;
 
-.select_layout_container {
 
+.pix-app{
+	min-height: 50rem;
+}
+
+.select-layout-container {
 	position: absolute;
+	text-align: center;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
 	margin: auto;
 	width: 30rem;
-	height: 17rem;
+	height: 24rem;
 	padding: 2rem;
 	z-index: 9999;
 	background: @white;
-	border-radius: @radius;
+	.overlay;
+
+	h3{}
+	
 	a {
 		display: inline-block;
 		padding: 1rem;
@@ -154,7 +162,7 @@ h1.score-header{
 				position: relative;
 				width: @pix-block-width;
 				display: inline-block;
-				margin-left: -3px; // strange bug
+				margin-left: -4px; // strange bug
 				ul.split{
 					border-left: 1px solid darken(@pix-border-color, 15);
 				}
@@ -295,9 +303,7 @@ li.block{
 	right: 0;
 	margin: auto;
 	padding: @pix-list-padding;
-	background-color: @white;
-	border-radius: @radius;
-	border: @pix-border-width/2 solid @pix-border-color;
+	.overlay;
 	z-index: 9999;
 	.button-close {
 		font-family: pix;
