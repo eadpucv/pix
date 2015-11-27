@@ -11,38 +11,17 @@
 @pix-size:						4em;
 @tools-offset: 					10px;
 @radius: 						6px;
+@pix-score-margin-top: 			4rem;
+@pix-score-margin-bottom: 		11rem;
+@pix-list-side: 				500px;
+@pix-list-padding: 				30px;
 
-.select_layout_container {
-
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	width: 30rem;
-	height: 17rem;
-	padding: 2rem;
-	z-index: 9999;
-	background: @white;
-	border-radius: @radius;
-	a {
-		display: inline-block;
-		padding: 1rem;
-		width: 45%;
-		padding: 1rem;
-		font-size: 1.5rem;
-		.pix-group {
-			font-size: 4rem;
-		}
-		text-align: center;
-		&:hover{text-decoration: none}
-	}
+.pix-app{
+	min-height: 50rem;
 }
 
-
-
 /****************************************** Score Title */
+
 .input-style{
 		padding: 4px;
 		overflow: auto;
@@ -86,7 +65,7 @@ h1.score-header{
 
 .pix-score{
 	.cf;
-	margin: 10px -@pix-border-width 64px -@pix-border-width;
+	margin: 10px -@pix-border-width 0 -@pix-border-width;
 	ul li{
 		display: inline-block;
 		list-style-type: none;
@@ -113,7 +92,7 @@ h1.score-header{
 	ul{
 		&.pix-header{
 			float: left;
-			margin-top: 2.7rem;
+			margin-top: @pix-score-margin-top + .7rem;
 			background-color: lighten(@pix-border-color, 10);
 			border-radius: @pix-border-width*2 0 0 @pix-border-width*2;
 			border-left: @pix-border-width solid @pix-border-color;
@@ -148,13 +127,13 @@ h1.score-header{
 		
 		&.pix-steps{
 			display: block;
-			margin-top: 2rem;
-			margin-bottom: 5rem;
+			margin-top: @pix-score-margin-top;
+			margin-bottom: @pix-score-margin-bottom;
 			li.pix-step{
 				position: relative;
 				width: @pix-block-width;
 				display: inline-block;
-				margin-left: -3px; // strange bug
+				margin-left: -4px; // strange bug
 				ul.split{
 					border-left: 1px solid darken(@pix-border-color, 15);
 				}
@@ -172,18 +151,22 @@ h1.score-header{
 	.note{
 		display: inline-block;
 		position: absolute;
-		padding: 8px 4px;	
+		padding: 0;	
 		font-size: 11px;
 		font-family: @font-family-serif;
 		color: fade(@black, 70%);
 		line-height: 100%;
+		overflow: hidden;
+		
 		&.top{
-			font-weight: bold;
-			line-height: 120%;
-			overflow: hidden;
+			min-height: @pix-score-margin-top;
+			font-weight: bold;			
 		}
+
 		&.bottom{
+			padding-top: 8px;
 			background-color: transparent;
+			max-height: @pix-score-margin-bottom;
 		}
 	}
 
@@ -282,22 +265,47 @@ li.block{
 }
 
 
-@pix-list-side: 500px;
-@pix-list-padding: 30px;
+.select-layout-container {
+	position: absolute;
+	text-align: center;
+	left: 0;
+	right: 0;
+	top: -6 * @pix-list-padding;
+	bottom: 0;
+	margin: auto;
+	width: 30rem;
+	height: 24rem;
+	padding: 2rem;
+	z-index: 9999;
+	background: @white;
+	.overlay;
+
+	a {
+		display: inline-block;
+		padding: 1rem;
+		width: 45%;
+		padding: 1rem;
+		font-size: 1.5rem;
+		.pix-group {
+			font-size: 4rem;
+		}
+		text-align: center;
+		&:hover{text-decoration: none}
+	}
+}
+
 
 .pix-icon-list {
 	position: absolute;
 	width: @pix-list-side + (2 * @pix-list-padding);
 	height: @pix-list-side;
-	top: -3 * @pix-list-padding;
+	top: -2 * @pix-list-padding;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	margin: auto;
 	padding: @pix-list-padding;
-	background-color: @white;
-	border-radius: @radius;
-	border: @pix-border-width/2 solid @pix-border-color;
+	.overlay;
 	z-index: 9999;
 	.button-close {
 		font-family: pix;

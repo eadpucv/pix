@@ -124,7 +124,6 @@ active: app
     </li>
 </script>
 
-<div class="help-line hp">Need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a><br>If you find this proyect helpfull, please consider supporting it. {% include donate-button.html %}</div>
 <div id="embed-info" style="display:none">
     <h3>Embed code:</h3>
     <textarea class="embedcode" style="width:100%" rows="5">

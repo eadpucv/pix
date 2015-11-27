@@ -1,15 +1,16 @@
 /*	special embed specs		*/
+
 iframe{
 	border: none;
 	height: 100%;
 }
+
 .embed{
 	body{
 		overflow-y: hidden;
 	}
 	.container{width: 100%}
 	h1{
-		
 		*, input{
 			font-size: 18px;
 			margin: 0;
@@ -29,24 +30,54 @@ iframe{
 
 /*	pages  	*/
 
-.brand{
+.page-header{
+	text-align: center;
+	border-bottom: 0px solid transparent;
+	margin-bottom: -2em;
+	.brand{
 	font-family: Lato;
-	font-size: 2.5em;
-	a{
-		color: @black;
-		font-weight: 900;
-		
-		&:hover{
-			text-decoration: none;
-			color: @orange;
+	display: inline-block;
+	font-size: 9em;
+		a{
+			color: @black;
+			font-weight: 900;
+			transition: all .5s ease;
+			&:hover{
+				text-decoration: none;
+				color: @orange;
+			}
+			.pix{
+				margin-top: -4rem;
+			}
 		}
 	}
-	small{
-		font-weight: 200;
-		font-size: 18px;
-		color: fade(@black, 20);
+
+	aside{
+		display: inline-block;
+		text-align: left;
+		margin: 0 1em;
+		.version{
+			font-weight: 400;
+			font-size: 24px;
+			color: fade(@black, 20);}
+			line-height: 2em;
+			letter-spacing: .1ex;
+		.github{
+			font-size: 11px;
+		}
+	}
+
+	p.lead{
+		font-size: 3.8rem;
+		text-transform: uppercase;
+		font-weight: 300;
 	}
 }
+
+hr {
+	border-width: 20px 0px 0px;
+}
+
 .navbar > .container .navbar-brand{
 	font-family: Lato;
 	font-weight: 900;
@@ -73,13 +104,14 @@ ul.nav{
 		}
 	}
 }
+
 /* navbar top: to provent content overlay */
 .nbt{ padding-top: @navbar-height}
 
 h1{ color: @black}
 h2{ color: darken(@brand-info, 20)}
 h3{ color: @brand-info}
-p.lead{font-weight: 300}
+
 
 
 .page-header{
@@ -113,16 +145,14 @@ p.lead{font-weight: 300}
 }
 
 .huge{
-	font-size: 72px;
-	margin: .3em 0 .5em 0;
+	font-size: 4rem;
 	color: @white;
 	text-shadow: -1px -1px 0px fade(@white, 30);
 	font-weight: 300;
 	text-transform: uppercase;
-	padding: 31px 58px 41px;
-	border-radius: 28px;
+	padding: 2rem 4rem;
+	border-radius: 1rem;
 	background-color: lighten(@black, 5);
-
 	&:focus,
 	&:active,
 	&:hover{
@@ -236,10 +266,7 @@ textarea{
 	width: 500px;
 	height: 300px;
 	padding: 20px;
-	background-color: @white;
-	border-radius: @radius * 2;
-	border: @pix-border-width solid @brand-info;
-	.box-shadow(0 0 25px fade(@black, 30));
+	.overlay;
 	textarea.embedcode{
 		background-color: @blue;
 		border: none;
@@ -255,6 +282,11 @@ textarea{
 	}
 }
 
+
+.pix-heading{
+	.overlay;
+	padding: 3rem 5rem;
+}
 /* html native tooltip style */
 
 a[title]:hover:after {

@@ -1,42 +1,16 @@
 <div class='container'>
-	<div class='page-header'>
-		<h1 class='brand'>
-			<a href='{{ site.baseurl }}/'><i class='pix'>logo</i> PiX</a> 
-			 <small>v{{ site.pixver }}</small>
-		</h1>
-		<p class='lead inline orange'>Interaction notation for UX design</p>
-		<a data-count-api="/repos/eadpucv/pix#stargazers_count" data-count-href="/eadpucv/pix/stargazers" href="https://github.com/eadpucv/pix" class="github-button">Star</a>
-		<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
-		
-
-		<ul class='nav nav-pills'>
-
-			<li><a href='{{ site.baseurl }}/pages/app'>App <i class='pix pix-logo'></i></a></li>
-
-			{% if page.active == 'index' %}
-				<li class='active'><a href='#'>about PiX <i class='pix pix-page'></i></a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/'>about PiX <i class='pix pix-page'></i></a></li>
-			{% endif %}
-			
-			{% if page.active == 'icons' %}
-				<li class='active'><a href='#'>icons <i class='pix pix-system'></i></a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/pages/icons'>icons <i class='pix pix-system'></i></a></li>
-			{% endif %}
-			
-			{% if page.active == 'docs' %}
-				<li class='active'><a href='#'>docs <i class='pix pix-view'></i></a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/pages/docs'>docs <i class='pix pix-view'></i></a></li>
-			{% endif %}
-
-			{% if page.active == 'downloads' %}
-				<li class='active'><a href='#'>downloads <i class="pix pix-down"></i></a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/pages/downloads'>downloads <i class="pix pix-down"></i></a></li>
-			{% endif %}
-		</ul>
+	<div class='row'>
+		<div class='page-header col-sm-8 col-sm-offset-2'>
+			<h1 class='brand'>
+				<a href='{{ site.baseurl }}/'><i class='pix'>logo</i> PiX</a> 
+			</h1>
+			<aside>
+				<span class='version'>v{{ site.pixver }}</span><br>
+				<span class='github'><a data-count-api="/repos/eadpucv/pix#stargazers_count" data-count-href="/eadpucv/pix/stargazers" href="https://github.com/eadpucv/pix" class="github-button">Star</a>
+				<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script></span>
+			</aside>
+			<p class='lead inline orange'>Interaction notation for UX design</p>
+		</div>
 	</div>
 </div>
 
