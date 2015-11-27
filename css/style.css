@@ -4045,38 +4045,6 @@ td.visible-print {
 .pix-app {
   min-height: 50rem;
 }
-.select-layout-container {
-  position: absolute;
-  text-align: center;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  width: 30rem;
-  height: 24rem;
-  padding: 2rem;
-  z-index: 9999;
-  background: #ffffff;
-  background-color: #ffffff;
-  border-radius: 12px;
-  -webkit-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
-  -moz-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
-  box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
-}
-.select-layout-container a {
-  display: inline-block;
-  width: 45%;
-  padding: 1rem;
-  font-size: 1.5rem;
-  text-align: center;
-}
-.select-layout-container a .pix-group {
-  font-size: 4rem;
-}
-.select-layout-container a:hover {
-  text-decoration: none;
-}
 /****************************************** Score Title */
 .input-style {
   padding: 4px;
@@ -4137,7 +4105,7 @@ h1.score-header input:hover {
 }
 /******************************************** The Score */
 .pix-score {
-  margin: 10px -4px 64px -4px;
+  margin: 10px -4px 0 -4px;
   /*Aqui agregue un arreglo poco elegantge para la mascara de overflow horizontal*/
 }
 .pix-score:before,
@@ -4180,7 +4148,7 @@ h1.score-header input:hover {
 }
 .pix-score ul.pix-header {
   float: left;
-  margin-top: 2.7rem;
+  margin-top: 4.7rem;
   background-color: #e8ebea;
   border-radius: 8px 0 0 8px;
   border-left: 4px solid #ccd4d1;
@@ -4210,8 +4178,8 @@ h1.score-header input:hover {
 }
 .pix-score ul.pix-steps {
   display: block;
-  margin-top: 2rem;
-  margin-bottom: 5rem;
+  margin-top: 4rem;
+  margin-bottom: 11rem;
 }
 .pix-score ul.pix-steps li.pix-step {
   position: relative;
@@ -4232,19 +4200,21 @@ h1.score-header input:hover {
 .pix-score .note {
   display: inline-block;
   position: absolute;
-  padding: 8px 4px;
+  padding: 0;
   font-size: 11px;
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   color: rgba(46, 25, 72, 0.7);
   line-height: 100%;
-}
-.pix-score .note.top {
-  font-weight: bold;
-  line-height: 120%;
   overflow: hidden;
 }
+.pix-score .note.top {
+  min-height: 4rem;
+  font-weight: bold;
+}
 .pix-score .note.bottom {
+  padding-top: 8px;
   background-color: transparent;
+  max-height: 11rem;
 }
 .pix-score.template-pix .note.top {
   bottom: 372px;
@@ -4363,11 +4333,43 @@ li.block textarea i.pix {
   border: none;
   line-height: 95%;
 }
+.select-layout-container {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: -180px;
+  bottom: 0;
+  margin: auto;
+  width: 30rem;
+  height: 24rem;
+  padding: 2rem;
+  z-index: 9999;
+  background: #ffffff;
+  background-color: #ffffff;
+  border-radius: 12px;
+  -webkit-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+  -moz-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+  box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+}
+.select-layout-container a {
+  display: inline-block;
+  width: 45%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.select-layout-container a .pix-group {
+  font-size: 4rem;
+}
+.select-layout-container a:hover {
+  text-decoration: none;
+}
 .pix-icon-list {
   position: absolute;
   width: 560px;
   height: 500px;
-  top: -90px;
+  top: -60px;
   bottom: 0;
   left: 0;
   right: 0;

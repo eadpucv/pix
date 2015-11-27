@@ -110,7 +110,7 @@ lang: en
 
 <div class='row'>
     <div class="col-sm-12">
-        {% include pix-example.html %}
+        <!-- {% include pix-example.html %} -->
     </div>
 </div>
 
