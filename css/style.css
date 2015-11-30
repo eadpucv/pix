@@ -4753,16 +4753,27 @@ h3 {
   margin: 0 5px -5px 0;
 }
 .btn-huge.btn-toolkit {
-  background-color: #46266e;
-  -webkit-box-shadow: 1px 1px 0 0 #2e1948, 2px 2px 0 0 #2e1948, 3px 3px 0 0 #2e1948, 4px 4px 0 0 rgba(46, 25, 72, 0.5), 5px 5px 0 0 rgba(46, 25, 72, 0.2),  0px 0px 0 0 #000;
-  -moz-box-shadow: 1px 1px 0 0 #2e1948, 2px 2px 0 0 #2e1948, 3px 3px 0 0 #2e1948, 4px 4px 0 0 rgba(46, 25, 72, 0.5), 5px 5px 0 0 rgba(46, 25, 72, 0.2),  0px 0px 0 0 #000;
-  box-shadow: 1px 1px 0 0 #2e1948, 2px 2px 0 0 #2e1948, 3px 3px 0 0 #2e1948, 4px 4px 0 0 rgba(46, 25, 72, 0.5), 5px 5px 0 0 rgba(46, 25, 72, 0.2),  0px 0px 0 0 #000;
+  background-color: #7740ba;
+  -webkit-box-shadow: 1px 1px 0 0 #46266e, 2px 2px 0 0 #46266e, 3px 3px 0 0 #46266e, 4px 4px 0 0 rgba(70, 38, 110, 0.5), 5px 5px 0 0 rgba(70, 38, 110, 0.2),  0px 0px 0 0 #000;
+  -moz-box-shadow: 1px 1px 0 0 #46266e, 2px 2px 0 0 #46266e, 3px 3px 0 0 #46266e, 4px 4px 0 0 rgba(70, 38, 110, 0.5), 5px 5px 0 0 rgba(70, 38, 110, 0.2),  0px 0px 0 0 #000;
+  box-shadow: 1px 1px 0 0 #46266e, 2px 2px 0 0 #46266e, 3px 3px 0 0 #46266e, 4px 4px 0 0 rgba(70, 38, 110, 0.5), 5px 5px 0 0 rgba(70, 38, 110, 0.2),  0px 0px 0 0 #000;
+}
+.btn-huge.btn-toolkit:focus,
+.btn-huge.btn-toolkit:active,
+.btn-huge.btn-toolkit:hover {
+  text-shadow: 1px 1px 1px #46266e, 2px 2px 1px #46266e, 3px 3px 1px #46266e, 4px 4px 1px #46266e, 5px 5px 1px #46266e,  0px 0px 1px #000;
 }
 .btn-huge.btn-app {
+  background-color: #e3644a;
+  -webkit-box-shadow: 1px 1px 0 0 #ad331a, 2px 2px 0 0 #ad331a, 3px 3px 0 0 #ad331a, 4px 4px 0 0 rgba(173, 51, 26, 0.5), 5px 5px 0 0 rgba(173, 51, 26, 0.2),  0px 0px 0 0 #000;
+  -moz-box-shadow: 1px 1px 0 0 #ad331a, 2px 2px 0 0 #ad331a, 3px 3px 0 0 #ad331a, 4px 4px 0 0 rgba(173, 51, 26, 0.5), 5px 5px 0 0 rgba(173, 51, 26, 0.2),  0px 0px 0 0 #000;
+  box-shadow: 1px 1px 0 0 #ad331a, 2px 2px 0 0 #ad331a, 3px 3px 0 0 #ad331a, 4px 4px 0 0 rgba(173, 51, 26, 0.5), 5px 5px 0 0 rgba(173, 51, 26, 0.2),  0px 0px 0 0 #000;
+}
+.btn-huge.btn-app:focus,
+.btn-huge.btn-app:active,
+.btn-huge.btn-app:hover {
+  text-shadow: 1px 1px 1px #c3391e, 2px 2px 1px #c3391e, 3px 3px 1px #c3391e, 4px 4px 1px #c3391e, 5px 5px 1px #c3391e,  0px 0px 1px #000;
   background-color: #d94021;
-  -webkit-box-shadow: 1px 1px 0 0 #972c17, 2px 2px 0 0 #972c17, 3px 3px 0 0 #972c17, 4px 4px 0 0 rgba(151, 44, 23, 0.5), 5px 5px 0 0 rgba(151, 44, 23, 0.2),  0px 0px 0 0 #000;
-  -moz-box-shadow: 1px 1px 0 0 #972c17, 2px 2px 0 0 #972c17, 3px 3px 0 0 #972c17, 4px 4px 0 0 rgba(151, 44, 23, 0.5), 5px 5px 0 0 rgba(151, 44, 23, 0.2),  0px 0px 0 0 #000;
-  box-shadow: 1px 1px 0 0 #972c17, 2px 2px 0 0 #972c17, 3px 3px 0 0 #972c17, 4px 4px 0 0 rgba(151, 44, 23, 0.5), 5px 5px 0 0 rgba(151, 44, 23, 0.2),  0px 0px 0 0 #000;
 }
 .btn-huge:focus,
 .btn-huge:active,

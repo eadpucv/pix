@@ -176,14 +176,24 @@ h3{ color: @brand-info}
 	margin: 0 5px -5px 0;
 	
 	&.btn-toolkit{
-		background-color: lighten(@black, 10);
-		.longShadowBox(@black, 5);
+		background-color: lighten(@black, 30);
+		.longShadowBox(lighten(@black, 10), 5);
+		&:focus,
+		&:active,
+		&:hover{
+			.longShadow(lighten(@black, 10), 5);
+		}
 	}
 
 	&.btn-app{
-		background-color: @brand-primary;
-		.longShadowBox(darken(@brand-primary, 15), 5);
-
+		background-color: lighten(@brand-primary, 10);
+		.longShadowBox(darken(@brand-primary, 10), 5);
+		&:focus,
+		&:active,
+		&:hover{
+			.longShadow(darken(@brand-primary, 5), 5);
+			background-color: @brand-primary;
+		}
 	}
 
 	
