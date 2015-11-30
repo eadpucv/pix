@@ -35,19 +35,17 @@ p.xl{
 	font-size: 2.1em !important;
 	font-weight: 600 !important;
 	line-height: 100%;
-	color: @brand-primary;
+	color: lighten(@black, 20);
 }
 
 div.row div p,
 div.row div ol,
 div.row div table tr td p{
-	font-size: 1.5em;
+	font-size: 1.4em;
 	font-weight: 300;
 	text-align: justify;
 	.hyphens(auto);
 }
-
-table th{vertical-align: middle !important}
 
 /*	pages  	*/
 
@@ -165,24 +163,43 @@ h3{ color: @brand-info}
 	}
 }
 
-.huge{
+.btn-huge{
+	display: block;
 	font-size: 4rem;
 	color: @white;
-	text-shadow: -1px -1px 0px fade(@white, 30);
+	// text-shadow: -1px -1px 0px fade(@white, 30);
 	font-weight: 300;
 	text-transform: uppercase;
 	padding: 2rem 4rem;
 	border-radius: 1rem;
-	background-color: lighten(@black, 5);
+	transition: all ease .3s;
+	margin: 0 5px -5px 0;
+	
+	&.btn-toolkit{
+		background-color: lighten(@black, 10);
+		.longShadowBox(@black, 5);
+	}
+
+	&.btn-app{
+		background-color: @brand-primary;
+		.longShadowBox(darken(@brand-primary, 15), 5);
+
+	}
+
+	
+	
 	&:focus,
 	&:active,
 	&:hover{
+		box-shadow: 0 0 0 transparent;
+		margin-top: 5px 0 0 5px;
 		color: @white !important;
 		text-decoration: none;
 		background-color: lighten(@black, 20)
 	}
 }
 
+/*
 div[lang='en'],
 td[lang='en']{
 	h1,h2,h3,h4,h5,h6{color: @brand-primary !important}
@@ -197,6 +214,7 @@ td[lang='es']{
 	h1,h2,h3,h4,h5,h6{color: @brand-info !important}
 	p, li{color: darken(@brand-primary, 15)  !important}
 }
+*/
 
 ul.docs{
 	li{
@@ -211,13 +229,14 @@ ul.docs{
 	tr{
 		th{
 			.tcenter;
+			vertical-align: middle;
 			i.pix{
-				font-size: 72px;
-				color: fade(@black, 35);
+				font-size: 6em;
+				color: fade(@black, 60);
 			}
 			label{
 				color: fade(@black, 50);
-				font-size: 14px;
+				font-size: 1em;
 			}
 		}
 	}

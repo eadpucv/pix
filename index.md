@@ -18,10 +18,10 @@ lang: en
 
 <div class='row'>
     <div class='col-sm-4 col-sm-offset-2'>
-        <a class='btn btn-block huge' href='{{ site.baseurl }}/pages/app'>PiX app</a>
+        <a class='btn btn-block btn-huge btn-app' href='{{ site.baseurl }}/pages/app'>PiX app</a>
     </div>
     <div class='col-sm-4'>
-        <a class='btn btn-block huge' href='{{ site.baseurl }}/downloads/pix-toolkit.pdf'>Toolkit</a>
+        <a class='btn btn-block btn-huge btn-toolkit' href='{{ site.baseurl }}/downloads/pix-toolkit.pdf'>Toolkit</a>
     </div>
 </div>
 
@@ -30,9 +30,7 @@ lang: en
 <div class='row'>
     <div class='col-sm-8 col-sm-offset-2'>
         
-        <p class='xl'>PiX is a visual language specially crafted to define experience involved in the interaction flow within digital services.</p>
-
-        <h3>Why?</h3>
+        <p class='xl'>PiX is a visual language specially crafted to define and model user experience within digital services.</p>
         
         <p>We need a design deliverable that can encapsule the flow of interaction, the quality of the experience we're proposing to the user, to our team members and to the business.</p>
         
@@ -410,10 +408,10 @@ lang: en
         {% include col-pix.html name='upload' %}
         {% include col-pix.html name='download' %}
         {% include col-pix.html name='api' %}
-
         </div>
 
         <h3>System Feedback</h3>
+        
         <div class='row'>
         {% include col-pix.html name='window' %}
         {% include col-pix.html name='page' %}
@@ -422,6 +420,7 @@ lang: en
         {% include col-pix.html name='text' %}
         {% include col-pix.html name='progress' %}
         </div>
+        
         <div class='row'>
         {% include col-pix.html name='update' %}
         {% include col-pix.html name='notify' %}

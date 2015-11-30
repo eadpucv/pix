@@ -193,7 +193,7 @@ body {
   font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.42857143;
-  color: #333333;
+  color: #160c22;
   background-color: #ffffff;
 }
 input,
@@ -1777,7 +1777,7 @@ textarea.input-lg {
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
-  color: #737373;
+  color: #522d81;
 }
 @media (min-width: 768px) {
   .form-inline .form-group {
@@ -4620,12 +4620,12 @@ p.xl {
   font-size: 2.1em !important;
   font-weight: 600 !important;
   line-height: 100%;
-  color: #d94021;
+  color: #5e3394;
 }
 div.row div p,
 div.row div ol,
 div.row div table tr td p {
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 300;
   text-align: justify;
   word-wrap: break-word;
@@ -4634,9 +4634,6 @@ div.row div table tr td p {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
-}
-table th {
-  vertical-align: middle !important;
 }
 /*	pages  	*/
 .page-header {
@@ -4744,68 +4741,54 @@ h3 {
   background-color: #972c17;
   color: #ffffff;
 }
-.huge {
+.btn-huge {
+  display: block;
   font-size: 4rem;
   color: #ffffff;
-  text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.3);
   font-weight: 300;
   text-transform: uppercase;
   padding: 2rem 4rem;
   border-radius: 1rem;
-  background-color: #3a205b;
+  transition: all ease .3s;
+  margin: 0 5px -5px 0;
 }
-.huge:focus,
-.huge:active,
-.huge:hover {
+.btn-huge.btn-toolkit {
+  background-color: #46266e;
+  -webkit-box-shadow: 1px 1px 0 0 #2e1948, 2px 2px 0 0 #2e1948, 3px 3px 0 0 #2e1948, 4px 4px 0 0 rgba(46, 25, 72, 0.5), 5px 5px 0 0 rgba(46, 25, 72, 0.2),  0px 0px 0 0 #000;
+  -moz-box-shadow: 1px 1px 0 0 #2e1948, 2px 2px 0 0 #2e1948, 3px 3px 0 0 #2e1948, 4px 4px 0 0 rgba(46, 25, 72, 0.5), 5px 5px 0 0 rgba(46, 25, 72, 0.2),  0px 0px 0 0 #000;
+  box-shadow: 1px 1px 0 0 #2e1948, 2px 2px 0 0 #2e1948, 3px 3px 0 0 #2e1948, 4px 4px 0 0 rgba(46, 25, 72, 0.5), 5px 5px 0 0 rgba(46, 25, 72, 0.2),  0px 0px 0 0 #000;
+}
+.btn-huge.btn-app {
+  background-color: #d94021;
+  -webkit-box-shadow: 1px 1px 0 0 #972c17, 2px 2px 0 0 #972c17, 3px 3px 0 0 #972c17, 4px 4px 0 0 rgba(151, 44, 23, 0.5), 5px 5px 0 0 rgba(151, 44, 23, 0.2),  0px 0px 0 0 #000;
+  -moz-box-shadow: 1px 1px 0 0 #972c17, 2px 2px 0 0 #972c17, 3px 3px 0 0 #972c17, 4px 4px 0 0 rgba(151, 44, 23, 0.5), 5px 5px 0 0 rgba(151, 44, 23, 0.2),  0px 0px 0 0 #000;
+  box-shadow: 1px 1px 0 0 #972c17, 2px 2px 0 0 #972c17, 3px 3px 0 0 #972c17, 4px 4px 0 0 rgba(151, 44, 23, 0.5), 5px 5px 0 0 rgba(151, 44, 23, 0.2),  0px 0px 0 0 #000;
+}
+.btn-huge:focus,
+.btn-huge:active,
+.btn-huge:hover {
+  box-shadow: 0 0 0 transparent;
+  margin-top: 5px 0 0 5px;
   color: #ffffff !important;
   text-decoration: none;
   background-color: #5e3394;
 }
-div[lang='en'] h1,
-td[lang='en'] h1,
-div[lang='en'] h2,
-td[lang='en'] h2,
-div[lang='en'] h3,
-td[lang='en'] h3,
-div[lang='en'] h4,
-td[lang='en'] h4,
-div[lang='en'] h5,
-td[lang='en'] h5,
-div[lang='en'] h6,
-td[lang='en'] h6 {
-  color: #d94021 !important;
+/*
+div[lang='en'],
+td[lang='en']{
+	h1,h2,h3,h4,h5,h6{color: @brand-primary !important}
+	p, li{color: darken(@brand-info, 25) !important}
+	i{
+		color: @black;
+		border-color: @brand-info;
+	}
 }
-div[lang='en'] p,
-td[lang='en'] p,
-div[lang='en'] li,
-td[lang='en'] li {
-  color: #0c708f !important;
+div[lang='es'],
+td[lang='es']{
+	h1,h2,h3,h4,h5,h6{color: @brand-info !important}
+	p, li{color: darken(@brand-primary, 15)  !important}
 }
-div[lang='en'] i,
-td[lang='en'] i {
-  color: #2e1948;
-  border-color: #2ec0ed;
-}
-div[lang='es'] h1,
-td[lang='es'] h1,
-div[lang='es'] h2,
-td[lang='es'] h2,
-div[lang='es'] h3,
-td[lang='es'] h3,
-div[lang='es'] h4,
-td[lang='es'] h4,
-div[lang='es'] h5,
-td[lang='es'] h5,
-div[lang='es'] h6,
-td[lang='es'] h6 {
-  color: #2ec0ed !important;
-}
-div[lang='es'] p,
-td[lang='es'] p,
-div[lang='es'] li,
-td[lang='es'] li {
-  color: #972c17 !important;
-}
+*/
 ul.docs li {
   list-style: none;
 }
@@ -4814,14 +4797,15 @@ ul.docs li ul li {
 }
 .pix-table tr th {
   text-align: center;
+  vertical-align: middle;
 }
 .pix-table tr th i.pix {
-  font-size: 72px;
-  color: rgba(46, 25, 72, 0.35);
+  font-size: 6em;
+  color: rgba(46, 25, 72, 0.6);
 }
 .pix-table tr th label {
   color: rgba(46, 25, 72, 0.5);
-  font-size: 14px;
+  font-size: 1em;
 }
 footer {
   color: #ffffff;
