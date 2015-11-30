@@ -30,7 +30,7 @@ lang: en
 <div class='row'>
     <div class='col-sm-8 col-sm-offset-2'>
         
-        <h4 class='uppercase color sans'>PiX is a visual language specially crafted to define experience involved in the interaction flow within digital services.</h4>
+        <p class='xl'>PiX is a visual language specially crafted to define experience involved in the interaction flow within digital services.</p>
 
         <h3>Why?</h3>
         
@@ -91,7 +91,7 @@ lang: en
 
 <div class='row'>
     <div class="col-sm-offset-2 col-sm-8">
-        <h3>How to create a PiX</h3>
+        <h3 id="docs">How to create a PiX</h3>
         <ol>
             <li>Open the <a href='{{ site.baseurl }}/pages/app'>App</a></li>
             <li>Name your PiX and add a description</li>
@@ -119,8 +119,10 @@ lang: en
 <div class='row'>
     <div class='col-sm-8 col-sm-offset-2'>
         <h1>Downloads</h1>
+        
         <h2>Icons</h2>
         <p>All icons are available as a separate package in the <a href='http://eadpucv.cgithub.io/pixograms' title='Pixograms Reposiroty'>Pixograms repository</a>.</p>
+        
         <ol>
             <li><a href='http://eadpucv.github.io/pixograms/download/icons.zip'>Pixograms</a> in SVG format</li>
             <li><a href='http://eadpucv.github.io/pixograms/download/pix-webfont.zip'>Pixograms Webfont</a> (All icon names are ligatures)</li>
@@ -160,7 +162,7 @@ lang: en
         <p>The Pixograms font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. It works as a <a href='http://eadpucv.github.io/pixograms'>separate repository</a> and works as a dependency for PiX so its easier to maintain and upgrade.</p>
 
         <h4>All Icons</h4>
-        This textarea uses pixograms as the base font, so you can type the icon names and they'll appear as ligatures. <a href="http://eadpucv.github.io/pixograms">Check the original repository</a>
+        <p>This textarea uses pixograms as the base font, so you can type the icon names and they'll appear as ligatures. <a href="http://eadpucv.github.io/pixograms">Check the original repository</a></p>
 
         <textarea class='pix pix-2x pix-demo' rows='7'>add alert angry api archive ask attach audio autocomplete body branch button buy call camera cancel check checkbox click clock cloud collapse color comment config contact contacts copy cut database date delete desktop deviceorient devicerotate deviceshake devicevibrate dialogue dislike doubleclick doubletap down download drag drop edit email empty expand export face ff file film filter furious gallery game hand hand1 hangup happy image import input intrigued kiosk left like link list lock logo map merge message mobile move next notebook notify page password paste pause pay person pinch play position prev print process progress qr radio radioselect range rec remove resize rew right rotate route rss sad save say scroll search select send share smiling speak stack stop surprised switch system tablet tag tap tap1down tap1left tap1right tap1up tap2 tap2down tap2left tap2right tap2up tap3 tap3down tap3left tap3right tap3up tap4 tap4down tap4left tap4right tap4up tap5down tap5left tap5right tap5up text think time tv unlink unlock up update upload video view window zoom </textarea>
 

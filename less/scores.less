@@ -3,18 +3,18 @@
 
 /******************************************** Variables */
 
-@pix-border-width: 				4px;
+@pix-border-width:				4px;
 @pix-border-color:				#ccd4d1;
-@edit-color:				 	#efefd7;
+@edit-color:					#efefd7;
 @pix-block-height:				120px;
 @pix-block-width:				100px;
 @pix-size:						4em;
-@tools-offset: 					10px;
-@radius: 						6px;
-@pix-score-margin-top: 			4rem;
-@pix-score-margin-bottom: 		11rem;
-@pix-list-side: 				500px;
-@pix-list-padding: 				30px;
+@tools-offset:					10px;
+@radius:						6px;
+@pix-score-margin-top:			4rem;
+@pix-score-margin-bottom:		11rem;
+@pix-list-side:					500px;
+@pix-list-padding:				30px;
 
 .pix-app{
 	min-height: 50rem;
@@ -57,7 +57,7 @@ h1.score-header{
 	display: block;
 	width: 100%;
 	.input-style;
-	margin: 0 0 40px 0;
+	margin-top: 0;
 }
 
 
@@ -160,7 +160,8 @@ h1.score-header{
 		
 		&.top{
 			min-height: @pix-score-margin-top;
-			font-weight: bold;			
+			font-weight: bold;
+			vertical-align: text-bottom;		
 		}
 
 		&.bottom{
@@ -228,8 +229,7 @@ li.block{
 		border: none;
 		width: 100% !important;
 		background-color: transparent;
-		
-		
+	
 		&:active,
 		&:focus,
 		&:hover{
@@ -248,8 +248,10 @@ li.block{
 			white-space: nowrap;
 		}
 	}
-	
 }
+
+.pix-group span.tcenter{display: block}
+
 
 .nav li a .pix{
 	&.pix-2x{line-height: 0}
