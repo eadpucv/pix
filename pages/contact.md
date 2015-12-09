@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: simple
 title: PiX - Contact
 active: contact
 ---
@@ -54,4 +54,52 @@ active: contact
 			<input type='submit' value='Send' class='btn btn-primary pull-right'/>
 		</form>
 	</div>
+</div>
+
+<div class='row'>
+    <div class='col-sm-4 col-sm-offset-2'>
+        <h3>Team</h3>
+        <ul class='media-list'>
+            <li class='media'>
+                <a class='pull-left' href='#'>
+                    <img class='media-object img-circle' src='{{ site.baseurl }}/img/herbert.jpg' width='48' alt='Herbert Spencer'>
+                </a>
+                <div class='media-body'>
+                    <h4 class='media-heading'>Herbert Spencer</h4>
+                    <p>Visual & Interaction Designer - <a href="https://twitter.com/hspencer">@hspencer</a></p>
+                </div>
+            </li>
+            <li class='media'>
+                <a class='pull-left' href='#'>
+                    <img class='media-object img-circle' src='{{ site.baseurl }}/img/katherine.jpg' width='48' alt='Katherine Exss'>
+                </a>
+                <div class='media-body'>
+                    <h4 class='media-heading'>Katherine Exss</h4>
+                    <p>User Researcher & Information Architect - <a href="https://twitter.com/alikathe">@alikathe</a></p>
+                </div>
+            </li>
+            <li class='media'>
+                <a class='pull-left' href='#'>
+                    <img class='media-object img-circle' src='{{ site.baseurl }}/img/hugo.jpg' width='48' alt='Hugo Solar'>
+                </a>
+                <div class='media-body'>
+                    <h4 class='media-heading'>Hugo Solar</h4>
+                    <p>Lead Developer - <a href="https://twitter.com/hugosolar">@hugosolar</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+     <div class='col-sm-4'>
+        <h3>Special thanks to</h3>
+        <ul>
+            <li>Nicole Dupre, UX Designer - <a href="https://twitter.com/dupre">@dupre</a></li>
+            <li>Melany Marin</li>
+            <li>Ingrid Céspedes</li>
+        </ul>
+        <h4>And Also to</h4>
+        <ul>
+            <li><a href='https://github.com/sapegin/grunt-webfont'>Grunt-Webfont</a></li>
+            <li><a href='https://icomoon.io/'>IcoMoon</a></li>
+        </ul>
+     </div>
 </div>

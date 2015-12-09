@@ -649,16 +649,17 @@ var pixObject = {
 		}
 	};
 	$.layoutSelect = function() {
-		var container_select = $('<div>').addClass('select_layout_container');
-		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Service Blueprint');
-		var a_ip = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Partiture');
-		container_select.append(a_sb).append(a_ip);
+		var container_select = $('<div>').addClass('select-layout-container');
+		var a_tit = $('<h3>').html('Select template');
+		var a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
+		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint');
+		container_select.append(a_tit).append(a_pix).append(a_sb);
 		$('body').append(container_select);
 		$(container_select).find('a').on('click',function(e){
 			e.preventDefault();
 			var $action = $(this).attr('href');
 			$.defineLayout($action.replace('#',''));
-			$('body').find('.select_layout_container').remove();
+			$('body').find('.select-layout-container').remove();
 			return false;
 		});
 	}
@@ -678,8 +679,8 @@ var pixObject = {
 				//Interaction partitures
 				var pix_layout = $('#layout-score').html();
 				var step_template = $('#pix-step').html();
-				$('body').data('layout','ip');//interaction-partiture
-				$('body').addClass('interaction-partiture');
+				$('body').data('layout','ip');//interaction-score
+				$('body').addClass('interaction-score');
 			break;
 		}
 		var step_compile = Handlebars.compile(step_template);

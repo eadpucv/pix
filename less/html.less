@@ -1,15 +1,16 @@
 /*	special embed specs		*/
+
 iframe{
 	border: none;
 	height: 100%;
 }
+
 .embed{
 	body{
 		overflow-y: hidden;
 	}
 	.container{width: 100%}
 	h1{
-		
 		*, input{
 			font-size: 18px;
 			margin: 0;
@@ -27,26 +28,75 @@ iframe{
 	}
 }
 
+
+/* big text for index */
+
+p.xl{
+	font-size: 2.1em !important;
+	font-weight: 600 !important;
+	line-height: 100%;
+	color: lighten(@black, 20);
+}
+
+div.row div p,
+div.row div ol,
+div.row div table tr td p{
+	font-size: 1.4em;
+	font-weight: 300;
+	text-align: justify;
+	.hyphens(auto);
+}
+
 /*	pages  	*/
 
-.brand{
+.page-header{
+	text-align: center;
+	border-bottom: 0px solid transparent;
+	margin-bottom: -2em;
+	.brand{
 	font-family: Lato;
-	font-size: 2.5em;
-	a{
-		color: @black;
-		font-weight: 900;
-		
-		&:hover{
-			text-decoration: none;
-			color: @orange;
+	display: inline-block;
+	font-size: 9em;
+		a{
+			color: @black;
+			font-weight: 900;
+			transition: all .5s ease;
+			&:hover{
+				text-decoration: none;
+				color: @orange;
+			}
+			.pix{
+				margin-top: -4rem;
+			}
 		}
 	}
-	small{
-		font-weight: 200;
-		font-size: 18px;
-		color: fade(@black, 20);
+
+	aside{
+		display: inline-block;
+		text-align: left;
+		margin: 0 1em;
+		.version{
+			font-weight: 400;
+			font-size: 24px;
+			color: fade(@black, 20);}
+			line-height: 2em;
+			letter-spacing: .1ex;
+		.github{
+			font-size: 11px;
+		}
+	}
+
+	p.lead{
+		font-size: 3.8rem;
+		text-transform: uppercase;
+		font-weight: 300;
 	}
 }
+
+hr {
+	border-width: 20px 0px 0px;
+}
+
 .navbar > .container .navbar-brand{
 	font-family: Lato;
 	font-weight: 900;
@@ -73,13 +123,14 @@ ul.nav{
 		}
 	}
 }
+
 /* navbar top: to provent content overlay */
 .nbt{ padding-top: @navbar-height}
 
 h1{ color: @black}
 h2{ color: darken(@brand-info, 20)}
 h3{ color: @brand-info}
-p.lead{font-weight: 300}
+
 
 
 .page-header{
@@ -112,26 +163,53 @@ p.lead{font-weight: 300}
 	}
 }
 
-.huge{
-	font-size: 72px;
-	margin: .3em 0 .5em 0;
+.btn-huge{
+	display: block;
+	font-size: 4rem;
 	color: @white;
-	text-shadow: -1px -1px 0px fade(@white, 30);
+	// text-shadow: -1px -1px 0px fade(@white, 30);
 	font-weight: 300;
 	text-transform: uppercase;
-	padding: 31px 58px 41px;
-	border-radius: 28px;
-	background-color: lighten(@black, 5);
+	padding: 2rem 4rem;
+	border-radius: 1rem;
+	transition: all ease .3s;
+	margin: 0 5px -5px 0;
+	
+	&.btn-toolkit{
+		background-color: lighten(@black, 30);
+		.longShadowBox(lighten(@black, 10), 5);
+		&:focus,
+		&:active,
+		&:hover{
+			.longShadow(lighten(@black, 10), 5);
+		}
+	}
 
+	&.btn-app{
+		background-color: lighten(@brand-primary, 10);
+		.longShadowBox(darken(@brand-primary, 10), 5);
+		&:focus,
+		&:active,
+		&:hover{
+			.longShadow(darken(@brand-primary, 5), 5);
+			background-color: @brand-primary;
+		}
+	}
+
+	
+	
 	&:focus,
 	&:active,
 	&:hover{
+		box-shadow: 0 0 0 transparent;
+		margin-top: 5px 0 0 5px;
 		color: @white !important;
 		text-decoration: none;
 		background-color: lighten(@black, 20)
 	}
 }
 
+/*
 div[lang='en'],
 td[lang='en']{
 	h1,h2,h3,h4,h5,h6{color: @brand-primary !important}
@@ -146,6 +224,7 @@ td[lang='es']{
 	h1,h2,h3,h4,h5,h6{color: @brand-info !important}
 	p, li{color: darken(@brand-primary, 15)  !important}
 }
+*/
 
 ul.docs{
 	li{
@@ -160,13 +239,14 @@ ul.docs{
 	tr{
 		th{
 			.tcenter;
+			vertical-align: middle;
 			i.pix{
-				font-size: 72px;
-				color: fade(@black, 35);
+				font-size: 6em;
+				color: fade(@black, 60);
 			}
 			label{
 				color: fade(@black, 50);
-				font-size: 14px;
+				font-size: 1em;
 			}
 		}
 	}
@@ -236,10 +316,7 @@ textarea{
 	width: 500px;
 	height: 300px;
 	padding: 20px;
-	background-color: @white;
-	border-radius: @radius * 2;
-	border: @pix-border-width solid @brand-info;
-	.box-shadow(0 0 25px fade(@black, 30));
+	.overlay;
 	textarea.embedcode{
 		background-color: @blue;
 		border: none;
@@ -255,6 +332,11 @@ textarea{
 	}
 }
 
+
+.pix-heading{
+	.overlay;
+	padding: 3rem 5rem;
+}
 /* html native tooltip style */
 
 a[title]:hover:after {
@@ -267,31 +349,4 @@ a[title]:hover:after {
   top: 100%;
   white-space: nowrap;
   z-index: @zindex-tooltip;
-}
-
-.select_layout_container {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	width: 30rem;
-	height: 17rem;
-	padding: 2rem;
-	z-index: 9999;
-	background: @white;
-	border: 1px solid @brand-primary;
-	a {
-		display: inline-block;
-		padding: 1rem;
-		width: 45%;
-		padding: 1rem;
-		font-size: 1.5rem;
-		.pix-group {
-			font-size: 4rem;
-		}
-		text-align: center;
-
-	}
 }

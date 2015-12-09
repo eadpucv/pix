@@ -1,0 +1,27 @@
+<ul class='nav nav-pills'>
+	<li><a href='{{ site.baseurl }}/pages/app'>App <i class='pix pix-logo'></i></a></li>
+
+	{% if page.active == 'index' %}
+		<li class='active'><a href='#'>about PiX <i class='pix pix-page'></i></a></li>
+	{% else %}
+		<li><a href='{{ site.baseurl }}/'>about PiX <i class='pix pix-page'></i></a></li>
+	{% endif %}
+	
+	{% if page.active == 'icons' %}
+		<li class='active'><a href='#'>icons <i class='pix pix-system'></i></a></li>
+	{% else %}
+		<li><a href='{{ site.baseurl }}/pages/icons'>icons <i class='pix pix-system'></i></a></li>
+	{% endif %}
+	
+	{% if page.active == 'docs' %}
+		<li class='active'><a href='#'>docs <i class='pix pix-view'></i></a></li>
+	{% else %}
+		<li><a href='{{ site.baseurl }}/pages/docs'>docs <i class='pix pix-view'></i></a></li>
+	{% endif %}
+
+	{% if page.active == 'downloads' %}
+		<li class='active'><a href='#'>downloads <i class="pix pix-down"></i></a></li>
+	{% else %}
+		<li><a href='{{ site.baseurl }}/pages/downloads'>downloads <i class="pix pix-down"></i></a></li>
+	{% endif %}
+</ul>

@@ -12,7 +12,8 @@ active: app
 </div>
 
 <script id="layout-score" type="text/x-handlebars-template">
-	<div class='pix-score'>
+
+	<div class='pix-score template-pix'>
 	     <ul class='pix-header'>
 			<li class='block block-user'><div class='pix-group'><i class='pix pix-person'></i><label>person</label></div></li>
 			<li class='block block-dialogue'><div class='pix-group'><i class='pix pix-dialogue'></i><label>dialogue</label></div></li>
@@ -29,10 +30,9 @@ active: app
 </script>
 
 <script id="service-score" type="text/x-handlebars-template">
-
-    <div class='pix-score'>
+    <div class='pix-score template-blueprint'>
          <ul class='pix-header'>
-         <li class='block block-enviroment'><div class='pix-group'><i class='pix pix-body'></i><label>enviroment</label></div></li>
+         <li class='block block-environment'><div class='pix-group'><i class='pix pix-body'></i><label>environment</label></div></li>
             <li class='block block-user'><div class='pix-group'><i class='pix pix-person'></i><label>person</label></div></li>
             <li class='block block-dialogue'><div class='pix-group'><i class='pix pix-dialogue'></i><label>dialogue</label></div></li>
             <li class='block block-system'><div class='pix-group'><i class='pix pix-system'></i><label>system</label></div></li>
@@ -66,9 +66,9 @@ active: app
             <a href="#add" class="btn btn-tools tool-add" title="add step"><img src='{{ site.baseurl }}/img/tool_add.svg'></a>
         </div>
         <ul>
-            <li class='block block-enviroment'>
+            <li class='block block-environment'>
                 <textarea rows='10' placeholder='type here...'></textarea>
-                <div class="pix-div-input" contenteditable="true">{% raw %}{{{enviroment}}}{% endraw %}</div>
+                <div class="pix-div-input" contenteditable="true">{% raw %}{{{environment}}}{% endraw %}</div>
             </li>
             <li class='block block-user'>
                 <textarea rows='10' placeholder='type here...'></textarea>
@@ -122,7 +122,6 @@ active: app
     </li>
 </script>
 
-<div class="help-line hp">Need help? <a href='{{ site.baseurl }}/pages/docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a><br>If you find this proyect helpfull, please consider supporting it. {% include donate-button.html %}</div>
 <div id="embed-info" style="display:none">
     <h3>Embed code:</h3>
     <textarea class="embedcode" style="width:100%" rows="5">
