@@ -12,7 +12,6 @@ active: app
 </div>
 
 <script id="layout-score" type="text/x-handlebars-template">
-{{debug}}
 	<div class='pix-score'>
 	     <ul class='pix-header'>
 			<li class='block block-user'><div class='pix-group'><i class='pix pix-person'></i><label>person</label></div></li>
@@ -30,7 +29,7 @@ active: app
 </script>
 
 <script id="service-score" type="text/x-handlebars-template">
-{{debug}}
+
     <div class='pix-score'>
          <ul class='pix-header'>
          <li class='block block-enviroment'><div class='pix-group'><i class='pix pix-body'></i><label>enviroment</label></div></li>
@@ -50,7 +49,6 @@ active: app
 </script>
 
 <script id="layout-score-no-header" type="text/x-handlebars-template">
-{{debug}}
     <div class='pix-score'>
         <ul class='pix-steps'>
         {% raw %}
