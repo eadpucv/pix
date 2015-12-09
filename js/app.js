@@ -136,6 +136,11 @@ var pixObject = {
 				$.fn.exportTool('embed');
 				return false;
 			});
+			$('.new').on('click',function(){
+				console.log('oink');
+				$.layoutSelect();
+				return false;
+			});
 			$('.embed-close').on('click',function(){
 				$('#embed-info').hide();
 				return false;
@@ -245,8 +250,10 @@ var pixObject = {
 	}
 	$.fn.makeImport = function(result) {
 		if (!result.error) {
-			$('.pix-steps').find('.pix-step').remove();
 			var pix_object = $.parseJSON(result.result);
+			var layout = pix_object.layout;
+			$.defineLayout(layout);
+			$('.pix-steps').find('.pix-step').remove();
 			$('.score-header').find('input').val(pix_object.title);
 			$('.score-description').val(pix_object.description);
 			$.each(pix_object.scores,function(i,v){
@@ -263,7 +270,7 @@ var pixObject = {
 				        }
 					});
 					//handlebars
-					var step_template = $('#pix-step').html();
+					var step_template = ( layout == 'ip' ) ? $('#pix-step').html() : $('#pix-service-step').html();
 					var column = Handlebars.compile(step_template);
 					var column_temp = column(new_obj);
 
@@ -301,6 +308,7 @@ var pixObject = {
 		if (title != "") {
 			var description = $('.score-description').val();
 			var pix_scores = $('.pix-score');
+			var layout = $('body').data('layout');
 			var scores = [];
 			$.each(pix_scores,function(i,val){
 				var steps = $(this).find('.pix-step');
@@ -334,6 +342,7 @@ var pixObject = {
 			
 			var objectExport = {
 				title: title,
+				layout: layout,
 				description: description,
 				scores : scores
 			}
@@ -576,9 +585,8 @@ var pixObject = {
 	$.fn.removeCurrentNode = function() {
 		var obj = $(this);
 		var pix_steps = obj.parent().parent().parents();
-		var counter = pix_steps.data('pix-columns');
+		var counter = $('.pix-steps').find('.pix-step').length;
 		if (counter > 1) {
-			pix_steps.data('pix-columns',counter-1);
 			obj.parent().parent().remove();
 		}
 
@@ -649,6 +657,7 @@ var pixObject = {
 		}
 	};
 	$.layoutSelect = function() {
+		console.log('eso');
 		var container_select = $('<div>').addClass('select-layout-container');
 		var a_tit = $('<h3>').html('Select template');
 		var a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
@@ -697,13 +706,12 @@ var pixObject = {
 
 jQuery(document).ready(function($){
 
-	$.layoutSelect();
-
+	$.defineLayout('ip');
 	/*
 		Si hay embed lo importa
 	*/
 	if (location.hash.indexOf('import') != -1) {
 		$.fn.embedImport();
-	}
+	} 
 	
 });
