@@ -83,40 +83,10 @@ var pixObject = {
 					if ($.inArray(event.keyCode,keySafe) == -1) {
 						$(this).replacePix($(this).text(), target);
 					}
-				} else {
-					//document.execCommand('delete', false, null);
-					var obj = $(this);
-					var icon = obj.data('pix-icon');
-					if (obj.text = '') {
-						obj.removeData('pix-icon');
-						console.log('removida la data');
-					}
-					if (!isWebkit()) {
-
-						//var obj = $(this);
-						//console.log(this);
-						// var icon = obj.data('pix-icon');
-						// var no_icon = obj.data('no-icon');
-						// var length = obj.text().length;
-						// if ( length > 1) {
-						// 	obj.prepend('<i class="pix pix-'+icon+'"></i>');
-						// } else if ((length <= 1) && (length > 0)) {
-						// 	obj.prepend('<i class="pix pix-'+icon+'"></i>');
-						// } else if ((length == 0) && (no_icon == undefined)) {
-						// 	obj.prepend('<i class="pix pix-'+icon+'"></i>');
-						// 	var theobj = obj.get(0);
-						// 	setEndOfContenteditable(theobj);
-						// 	obj.data('no-icon',1);
-						// } else if ((length == 0) && (no_icon)) {
-						// 	obj.removeData('pix-icon');
-						// 	obj.removeData('no-icon');
-						// 	obj.html('');
-						// }
-					} else {
-					}
-				}
+				} 
 			});
 			$('#pix-template').on('click','.btn-tools',function(event){
+				console.log(event);
 				$(this).clickTool();
 				return false;
 			});
@@ -134,6 +104,10 @@ var pixObject = {
 			});
 			$('.embed').on('click',function(){
 				$.fn.exportTool('embed');
+				return false;
+			});
+			$('.new').on('click',function(){
+				$.layoutSelect();
 				return false;
 			});
 			$('.embed-close').on('click',function(){
@@ -174,18 +148,40 @@ var pixObject = {
 			$('body').find('.pix-icon-list').remove();
 		},
 		addTextNode : function(obj) {
-			var p = $('<p>').attr('contenteditable','true');
+			var p = $('<p>').attr('id','unique').html('holi\n');
 	        obj.append(p);
-
+	        
+	        var jelement = obj.find('p').first();
 	        var element = obj.find('p').get(0);
-	        var s = window.getSelection(),
-    		r = document.createRange();
-    		element.innerHTML = '\u00a0';
-			r.selectNodeContents(element);
-			s.removeAllRanges();
-			s.addRange(r);
-			document.execCommand('delete', false, null);
-			element.focus();
+	        var sel = window.getSelection();
+	        var range = document.createRange();
+	        element = document.getElementById("unique");
+	        range.setStart(element.childNodes[0], 5);
+			range.collapse(true);
+			sel.removeAllRanges();
+			sel.addRange(range);
+	  //       var caret = 0;
+	  //       range.setStart(element, caret);
+			// range.setEnd(element, caret);
+			// sel.removeAllRanges();
+			// sel.addRange(range);
+		    //var innerDiv = element;
+		    //console.log(innerDiv);
+		    // var innerDivText = innerDiv.firstChild;
+
+		    // returnFocus = jelement.text().length;
+		    // sel.collapse(innerDivText, returnFocus);
+		    // innerDiv.parentNode.focus();
+		    // jelement.trigger('click');
+
+	  //       var s = window.getSelection(),
+   //  		r = document.createRange();
+   //  		//element.innerHTML = '\u00a0';
+			// r.selectNodeContents(element);
+			// s.removeAllRanges();
+			// s.addRange(r);
+			// document.execCommand('delete', false, null);
+			// jelement.trigger('click');
 		},
 		acAddIcon : function(ul,obj,match) {
 			var icon = obj.data('pix-icon');
@@ -245,8 +241,10 @@ var pixObject = {
 	}
 	$.fn.makeImport = function(result) {
 		if (!result.error) {
-			$('.pix-steps').find('.pix-step').remove();
 			var pix_object = $.parseJSON(result.result);
+			var layout = pix_object.layout;
+			$.defineLayout(layout);
+			$('.pix-steps').find('.pix-step').remove();
 			$('.score-header').find('input').val(pix_object.title);
 			$('.score-description').val(pix_object.description);
 			$.each(pix_object.scores,function(i,v){
@@ -263,7 +261,7 @@ var pixObject = {
 				        }
 					});
 					//handlebars
-					var step_template = $('#pix-step').html();
+					var step_template = ( layout == 'ip' ) ? $('#pix-step').html() : $('#pix-service-step').html();
 					var column = Handlebars.compile(step_template);
 					var column_temp = column(new_obj);
 
@@ -301,6 +299,7 @@ var pixObject = {
 		if (title != "") {
 			var description = $('.score-description').val();
 			var pix_scores = $('.pix-score');
+			var layout = $('body').data('layout');
 			var scores = [];
 			$.each(pix_scores,function(i,val){
 				var steps = $(this).find('.pix-step');
@@ -334,6 +333,7 @@ var pixObject = {
 			
 			var objectExport = {
 				title: title,
+				layout: layout,
 				description: description,
 				scores : scores
 			}
@@ -576,9 +576,8 @@ var pixObject = {
 	$.fn.removeCurrentNode = function() {
 		var obj = $(this);
 		var pix_steps = obj.parent().parent().parents();
-		var counter = pix_steps.data('pix-columns');
+		var counter = $('.pix-steps').find('.pix-step').length;
 		if (counter > 1) {
-			pix_steps.data('pix-columns',counter-1);
 			obj.parent().parent().remove();
 		}
 
@@ -590,7 +589,6 @@ var pixObject = {
 	$.fn.addNodeCurrent = function(getObject) {
 		var obj = $(this);
 		var layout_mode = $('body').data('layout');
-
 		if (layout_mode == 'sb') {
 			var step_template = $('#pix-service-step').html();
 		} else if (layout_mode == 'ip') {
@@ -604,8 +602,6 @@ var pixObject = {
 		} else {
 			var pix_steps = obj.parent().parent().parents();
 		}
-		var counter = pix_steps.data('pix-columns');
-		pix_steps.data('pix-columns',counter+1);
 		if (getObject === 'last') {
 			$(pix_steps).append(column).find('.pix-step').last().find('li').first().find('.pix-div-input').focus();
 		} else {
@@ -617,6 +613,7 @@ var pixObject = {
 			width = width + $(this).outerWidth() +10; 
 		});
 		$('.pix-steps').css('width',width);
+		return false;
 	}
 	/*
 	*	Controla funciones de input como el avance del tab para crear una nueva columna
@@ -632,7 +629,6 @@ var pixObject = {
 			event.preventDefault();
 			var next = $(this).parent().next().find('.pix-div-input');
 			if (next.length == 0) {
-				console.log('no hay mas en col');
 				var alt_next = $(this).parent().parent().parent().next();
 				//var alt_next = $(this).offsetParent().next().find('.pix-div-input').first();
 				if (alt_next.length == 0) {
@@ -642,13 +638,13 @@ var pixObject = {
 					alt_next.find('.pix-div-input').first().focus().select();
 				}
 			} else {
-				console.log('avanza en item columna');
 				next.focus().select();
 			}
 			return false;
 		}
 	};
 	$.layoutSelect = function() {
+		console.log('eso');
 		var container_select = $('<div>').addClass('select-layout-container');
 		var a_tit = $('<h3>').html('Select template');
 		var a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
@@ -691,19 +687,17 @@ var pixObject = {
 		/*
 			Iniciamos eventos
 		*/
-		$.handleEvents.init();
 	};
 }(jQuery));
 
 jQuery(document).ready(function($){
 
-	$.layoutSelect();
-
+	$.defineLayout('ip');
 	/*
 		Si hay embed lo importa
 	*/
 	if (location.hash.indexOf('import') != -1) {
 		$.fn.embedImport();
-	}
-	
+	} 
+	$.handleEvents.init();
 });
