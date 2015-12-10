@@ -18,6 +18,52 @@ function setEndOfContenteditable(contentEditableElement)
         range.select();//Select the range (make it the visible selection
     }
 }
+function pasteHtmlAtCaret(html, selectPastedContent) {
+    var sel, range;
+    if (window.getSelection) {
+        // IE9 and non-IE
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            // Range.createContextualFragment() would be useful here but is
+            // only relatively recently standardized and is not supported in
+            // some browsers (IE9, for one)
+            var el = document.createElement("div");
+            el.innerHTML = html;
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+            var firstNode = frag.firstChild;
+            range.insertNode(frag);
+            
+            // Preserve the selection
+            if (lastNode) {
+                range = range.cloneRange();
+                range.setStartAfter(lastNode);
+                if (selectPastedContent) {
+                    range.setStartBefore(firstNode);
+                } else {
+                    range.collapse(true);
+                }
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    } else if ( (sel = document.selection) && sel.type != "Control") {
+        // IE < 9
+        var originalRange = sel.createRange();
+        originalRange.collapse(true);
+        sel.createRange().pasteHTML(html);
+        if (selectPastedContent) {
+            range = sel.createRange();
+            range.setEndPoint("StartToStart", originalRange);
+            range.select();
+        }
+    }
+}
 
 function isWebkit() {
 	var uagt = navigator.userAgent;
@@ -148,40 +194,16 @@ var pixObject = {
 			$('body').find('.pix-icon-list').remove();
 		},
 		addTextNode : function(obj) {
-			var p = $('<p>').attr('id','unique').html('holi\n');
+			if ( isWebkit() ) {
+				var p = $('<span>').addClass('aptext').html('\n');
+			} else {
+				var p = $('<p>').addClass('aptext').html('\n');
+			}
 	        obj.append(p);
-	        
-	        var jelement = obj.find('p').first();
-	        var element = obj.find('p').get(0);
-	        var sel = window.getSelection();
-	        var range = document.createRange();
-	        element = document.getElementById("unique");
-	        range.setStart(element.childNodes[0], 5);
-			range.collapse(true);
-			sel.removeAllRanges();
-			sel.addRange(range);
-	  //       var caret = 0;
-	  //       range.setStart(element, caret);
-			// range.setEnd(element, caret);
-			// sel.removeAllRanges();
-			// sel.addRange(range);
-		    //var innerDiv = element;
-		    //console.log(innerDiv);
-		    // var innerDivText = innerDiv.firstChild;
 
-		    // returnFocus = jelement.text().length;
-		    // sel.collapse(innerDivText, returnFocus);
-		    // innerDiv.parentNode.focus();
-		    // jelement.trigger('click');
-
-	  //       var s = window.getSelection(),
-   //  		r = document.createRange();
-   //  		//element.innerHTML = '\u00a0';
-			// r.selectNodeContents(element);
-			// s.removeAllRanges();
-			// s.addRange(r);
-			// document.execCommand('delete', false, null);
-			// jelement.trigger('click');
+	  		obj.find('.aptext').focus();
+	  		setEndOfContenteditable(obj.find('.aptext').get(0));
+	  		
 		},
 		acAddIcon : function(ul,obj,match) {
 			var icon = obj.data('pix-icon');
@@ -207,9 +229,9 @@ var pixObject = {
 		},
 		acPutIcon : function(obj,clicked) {
 			var click = $(clicked);
-			var i = '<i class="pix pix-'+click.text()+'"></i> &nbsp;';
+			var i = '<i class="pix pix-'+click.text()+'"></i><br>';
 			obj.data('pix-icon',click.text());
-			console.log(obj.data('pix-icon'));
+			//console.log(obj.data('pix-icon'));
 			var searchpix = new RegExp("(pix[-][a-z]+)","g");
 			var matchac = click.text().match(searchpix);
 			if (matchac) {
