@@ -67,9 +67,9 @@ active: app
             <a href="#add" class="btn btn-tools tool-add" title="add step"><img src='{{ site.baseurl }}/img/tool_add.svg'></a>
         </div>
         <ul>
-            <li class='block block-environment'>
+            <li class='block block-enviroment'>
                 <textarea rows='10' placeholder='type here...'></textarea>
-                <div class="pix-div-input" contenteditable="true">{% raw %}{{{environment}}}{% endraw %}</div>
+                <div class="pix-div-input" contenteditable="true">{% raw %}{{{enviroment}}}{% endraw %}</div>
             </li>
             <li class='block block-user'>
                 <textarea rows='10' placeholder='type here...'></textarea>
@@ -83,9 +83,9 @@ active: app
                 <textarea rows='10' placeholder='type here...'></textarea>
                 <div class="pix-div-input" contenteditable="true">{% raw %}{{{system}}}{% endraw %}</div>
             </li>
-            <li class='block block-supporting-processes'>
+            <li class='block block-supporting_processes'>
                 <textarea rows='10' placeholder='type here...'></textarea>
-                <div class="pix-div-input" contenteditable="true">{% raw %}{{{supporting-processes}}}{% endraw %}</div>
+                <div class="pix-div-input" contenteditable="true">{% raw %}{{{supporting_processes}}}{% endraw %}</div>
             </li>
         </ul>
         <div class="fly-link bottom">

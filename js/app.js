@@ -285,6 +285,7 @@ var pixObject = {
 					//handlebars
 					var step_template = ( layout == 'ip' ) ? $('#pix-step').html() : $('#pix-service-step').html();
 					var column = Handlebars.compile(step_template);
+					console.log(new_obj);
 					var column_temp = column(new_obj);
 
 					$('.pix-steps').append(column_temp);
@@ -327,6 +328,14 @@ var pixObject = {
 				var steps = $(this).find('.pix-step');
 				var result_steps = [];
 				$.each(steps,function(j,ival){
+					if (layout == 'sb') {
+						var enviroment = $(this).find('.block-enviroment').children('div');
+						var enviroment_icon = '';
+						if (enviroment.data('pix-icon')){
+							enviroment_icon = 'pix-'+enviroment.data('pix-icon');
+						}
+						var enviroment_data = enviroment_icon+' '+enviroment.text();	
+					}
 					var user = $(this).find('.block-user').children('div');
 					var user_icon = '';
 					if (user.data('pix-icon'))
@@ -345,9 +354,23 @@ var pixObject = {
 						system_icon = 'pix-'+system.data('pix-icon');
 					var system_data = system_icon+' '+system.text();
 
+					if (layout == 'sb') {
+						var supporting_processes = $(this).find('.block-supporting_processes').children('div');
+						var supporting_processes_icon = '';
+						if (supporting_processes.data('pix-icon')) {
+							supporting_processes_icon = 'pix-'+supporting_processes.data('pix-icon');
+						}
+						var supporting_processes_data = supporting_processes_icon+' '+supporting_processes.text();	
+					}
+
 					var step_title = $(ival).find('.note.top').val();
 					var note  = $(ival).find('.note.bottom').val();
-					var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
+					if (layout == 'sb') {
+						var object = {step_title: step_title, enviroment: enviroment_data, user: user_data, dialogue: dialogue_data, system : system_data, supporting_processes: supporting_processes_data, note: note };
+					} else {
+						var object = {step_title: step_title, user: user_data, dialogue: dialogue_data, system : system_data, note: note };
+					}
+					
 					result_steps.push(object);
 				});
 				scores.push(result_steps);
