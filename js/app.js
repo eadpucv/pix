@@ -203,7 +203,7 @@ var pixObject = {
 
 	  		obj.find('.aptext').focus();
 	  		setEndOfContenteditable(obj.find('.aptext').get(0));
-	  		
+
 		},
 		acAddIcon : function(ul,obj,match) {
 			var icon = obj.data('pix-icon');
@@ -397,7 +397,7 @@ var pixObject = {
 	$.fn.exportDownload = function(object) {
 		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(object));
 		$('.export').attr('href','data:'+data);
-		var slug = string_to_slug(title);
+		var slug = string_to_slug(object.title);
 		$('.export').attr('download','pix-data-'+slug+'.json');
 		$('.export').trigger('click');
 	}
