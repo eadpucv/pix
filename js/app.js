@@ -285,7 +285,6 @@ var pixObject = {
 					//handlebars
 					var step_template = ( layout == 'ip' ) ? $('#pix-step').html() : $('#pix-service-step').html();
 					var column = Handlebars.compile(step_template);
-					console.log(new_obj);
 					var column_temp = column(new_obj);
 
 					$('.pix-steps').append(column_temp);
@@ -311,6 +310,14 @@ var pixObject = {
 						inp.data('pix-icon',pix_class.replace('pix pix-',''));
 				});
 			});
+
+			//Agrandamos .pix-steps a medida que aumenten las columnas
+			var width = 0;
+			$('.pix-steps').find('.pix-step').each(function(){
+				width = width + $(this).outerWidth() +10; 
+			});
+			$('.pix-steps').css('width',width);
+
 			//TODO : make import looping object
 		} else {
 			//TODO : Error handler
