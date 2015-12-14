@@ -4593,7 +4593,6 @@ li.block textarea {
 /*	special embed specs		*/
 iframe {
   border: none;
-  height: 100%;
 }
 .embed body {
   overflow-y: hidden;
@@ -4603,12 +4602,14 @@ iframe {
 }
 .embed h1 *,
 .embed h1 input {
-  font-size: 18px;
+  font-size: 20px;
   margin: 0;
   margin-bottom: 0;
   padding: 0;
-  text-transform: uppercase;
-  font-weight: lighter;
+}
+.embed h1 *:hover,
+.embed h1 input:hover {
+  background-color: transparent;
 }
 .embed textarea {
   padding: 0;

@@ -106,11 +106,22 @@ lang: en
     </div>   
 </div>
 
+<hr>
+
+<!--
 <div class='row'>
+    
+    <h1 id="docs">Some Examples</h1>
+    
     <div class="col-sm-12">
-        <!-- {% include pix-example.html %} -->
+        {% include example-creation-tutorial.html %} 
     </div>
+    
+    <div class="col-sm-12">
+        {% include example-gmail-desktop.html %} 
+    </div> 
 </div>
+-->
 
 <hr>
 
