@@ -4602,7 +4602,6 @@ iframe {
 }
 .embed h1 *,
 .embed h1 input {
-  font-size: 20px;
   margin: 0;
   margin-bottom: 0;
   padding: 0;
@@ -4610,11 +4609,15 @@ iframe {
 .embed h1 *:hover,
 .embed h1 input:hover {
   background-color: transparent;
+  border-color: transparent;
 }
 .embed textarea {
   padding: 0;
-  font-size: 12px;
   margin-top: 0;
+}
+.embed textarea:hover {
+  background-color: transparent;
+  border-color: transparent;
 }
 /* big text for index */
 p.xl {

@@ -108,7 +108,7 @@ lang: en
 
 <hr>
 
-<!--
+
 <div class='row'>
     
     <h1 id="docs">Some Examples</h1>
@@ -121,7 +121,7 @@ lang: en
         {% include example-gmail-desktop.html %} 
     </div> 
 </div>
--->
+
 
 <hr>
 
