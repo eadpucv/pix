@@ -702,6 +702,42 @@ var pixObject = {
 			return false;
 		}
 	};
+	$.loadSession = function(message,obj) {
+		var container = $('<div>').attr('id','embed-info'),
+			message = $('<p>').html(message),
+			a_cls = $('<a>').addClass('button-close').attr('href','#').text('Close'),
+			a_rst = $('<a>').addClass('button-restore').attr('href','#').text('Restore');
+			container.append(message).append(a_cls).append(a_rst);
+		$('body').append(container);
+		container.find('.button-close').on('click',function(e) {
+			e.preventDefault();
+			$('#embed-info').remove();
+			return false;
+		});
+		container.find('.button-restore').on('click', function(e){
+			e.preventDefault();
+			var objectRestore = {
+				result: obj,
+				error: 0
+			}
+			$.fn.makeImport(objectRestore);
+			$('body').find('#embed-info').remove();
+			return false;
+		});
+	};
+	/*
+	* Chequeamos si hay sesión existente en el navegador
+	*/
+	$.checkSavedPix = function() {
+		// TODO: Hacer una multisesión
+		var pix = localStorage.getItem('pix');
+		if ( pix ) {
+			$.loadSession('You have a saved session on your browser, do you want to restore it?',pix);
+		}
+	};
+	/*
+	* Muestra el dialogo para seleccionar layout
+	*/
 	$.layoutSelect = function() {
 		var container_select = $('<div>').addClass('select-layout-container');
 		var a_tit = $('<h3>').html('Select template'),
@@ -755,7 +791,7 @@ var pixObject = {
 }(jQuery));
 
 jQuery(document).ready(function($){
-
+	$.checkSavedPix();
 	$.defineLayout('ip');
 	/*
 		Si hay embed lo importa
