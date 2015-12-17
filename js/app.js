@@ -144,6 +144,10 @@ var pixObject = {
 				$.fn.exportTool('download');
 				return false;
 			});
+			$('.save').on('click',function(){
+				$.fn.exportTool('save');
+				return false;
+			});
 			$('.import').on('click',function(){
 				$('.upload-json').trigger('click');
 				return false;
@@ -393,6 +397,9 @@ var pixObject = {
 				$(this).exportDownload(objectExport);
 			} else if (type == 'embed') {
 				$(this).embedTool(objectExport);
+			} else if ( type == 'save' ) {
+				localStorage.setItem('pix',JSON.stringify(objectExport));
+				console.log('Pix saved');
 			}
 			
 		} else {
@@ -696,13 +703,18 @@ var pixObject = {
 		}
 	};
 	$.layoutSelect = function() {
-		console.log('eso');
 		var container_select = $('<div>').addClass('select-layout-container');
-		var a_tit = $('<h3>').html('Select template');
-		var a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
-		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint');
-		container_select.append(a_tit).append(a_pix).append(a_sb);
+		var a_tit = $('<h3>').html('Select template'),
+		a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)'),
+		a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint'),
+		a_close = $('<a>').addClass('button-close').attr('href','#').text('cancel');
+		container_select.append(a_tit).append(a_pix).append(a_sb).append(a_close);
 		$('body').append(container_select);
+		$('.button-close').on('click', function(e){
+			e.preventDefault();
+			$('body').find('.select-layout-container').remove();
+			return false;
+		});
 		$(container_select).find('a').on('click',function(e){
 			e.preventDefault();
 			var $action = $(this).attr('href');
