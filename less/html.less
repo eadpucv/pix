@@ -100,6 +100,7 @@ hr {
 	border-width: 20px 0px 0px;
 }
 
+/*
 .navbar > .container .navbar-brand{
 	font-family: Lato;
 	font-weight: 900;
@@ -126,7 +127,25 @@ ul.nav{
 		}
 	}
 }
+*/
 
+nav.nav-white{
+	position: absolute;
+	margin-top: 3em; 
+	li{
+		font-size: 3em;
+		font-weight: 800;
+		text-transform: uppercase;
+		a{
+			transition: all 1s ease;
+			color: fade(@white, 20);
+			&:hover{
+				color: @white;
+				text-decoration: none;
+			}
+		}
+	}
+}
 /* navbar top: to provent content overlay */
 .nbt{ padding-top: @navbar-height}
 

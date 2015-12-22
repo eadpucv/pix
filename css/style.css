@@ -4685,28 +4685,50 @@ div.row div table tr td p {
 hr {
   border-width: 20px 0px 0px;
 }
-.navbar > .container .navbar-brand {
-  font-family: Lato;
-  font-weight: 900;
-  color: #d94021;
+/*
+.navbar > .container .navbar-brand{
+	font-family: Lato;
+	font-weight: 900;
+	color: @brand-primary;
+	&:hover{color: @white;}
+	i.pix{
+		color: @white;
+		font-size: 170%;
+		line-height: 10%;
+	}
 }
-.navbar > .container .navbar-brand:hover {
+
+ul.nav{
+	&.nav-pills{
+		li a i.pix{
+			display: none;
+			color: darken(@link-color, 14);
+			font-size: 1.5em;
+			line-height: .5em;
+			margin: 0 0 0 .5ex;
+		}
+		li.active a i.pix{
+			color: @white;
+		}
+	}
+}
+*/
+nav.nav-white {
+  position: absolute;
+  margin-top: 3em;
+}
+nav.nav-white li {
+  font-size: 3em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+nav.nav-white li a {
+  transition: all 1s ease;
+  color: rgba(255, 255, 255, 0.2);
+}
+nav.nav-white li a:hover {
   color: #ffffff;
-}
-.navbar > .container .navbar-brand i.pix {
-  color: #ffffff;
-  font-size: 170%;
-  line-height: 10%;
-}
-ul.nav.nav-pills li a i.pix {
-  display: none;
-  color: #9b2e18;
-  font-size: 1.5em;
-  line-height: .5em;
-  margin: 0 0 0 .5ex;
-}
-ul.nav.nav-pills li.active a i.pix {
-  color: #ffffff;
+  text-decoration: none;
 }
 /* navbar top: to provent content overlay */
 .nbt {
