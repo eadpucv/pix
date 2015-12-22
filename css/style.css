@@ -4685,19 +4685,20 @@ div.row div table tr td p {
 hr {
   border-width: 20px 0px 0px;
 }
-/*
-.navbar > .container .navbar-brand{
-	font-family: Lato;
-	font-weight: 900;
-	color: @brand-primary;
-	&:hover{color: @white;}
-	i.pix{
-		color: @white;
-		font-size: 170%;
-		line-height: 10%;
-	}
+.navbar > .container .navbar-brand {
+  font-family: Lato;
+  font-weight: 900;
+  color: #d94021;
 }
-
+.navbar > .container .navbar-brand:hover {
+  color: #ffffff;
+}
+.navbar > .container .navbar-brand i.pix {
+  color: #ffffff;
+  font-size: 170%;
+  line-height: 10%;
+}
+/*
 ul.nav{
 	&.nav-pills{
 		li a i.pix{
