@@ -5102,6 +5102,9 @@ a[title]:hover:after {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
+  .help-line {
+    display: none !important;
+  }
   ::-webkit-input-placeholder {
     color: transparent !important;
   }
