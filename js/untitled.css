@@ -1,0 +1,62 @@
+/* CSS for print */
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300,600);
+
+h1,h2,h3,h4,h5,h6{
+    color: #C00;
+    font-family: "Open Sans";
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+a,
+.book .book-body .page-wrapper .page-inner section.normal a{
+    color: #C00;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal img{
+    display: block;
+    margin: 0 auto;
+}
+
+p{
+    text-align: justify;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    font-family: "Gentium Book Basic";
+    margin: 0 0 1em 0;
+    text-indent: -3em;
+
+    /* guiones de quiebre */
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+
+sub, sup{
+    font-weight: bold;
+    font-size: 75% !important;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+
+/* notas pie de página */
+
+blockquote[id*="fn_"]{
+    font-family: "Gentium Book Basic";
+    border-left: 4em solid transparent !important;
+    padding: 0 !important;
+    line-height: 130%;
+    font-size: .8em !important;
+    margin: 0 0 0 !important;
+    color: #000 !important;
+}
