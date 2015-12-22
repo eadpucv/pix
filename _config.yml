@@ -8,3 +8,12 @@ baseurl: 		"http://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
 name: 			"PiX"
 pixver:			"0.9.2"
+exclude:
+  - less
+  - libs
+  - node_modules
+  - bower_components
+  - src
+  - bower.json
+  - package.json
+  - Makefile

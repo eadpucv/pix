@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: simple
 title: Thank You
 active: thankyou
 ---

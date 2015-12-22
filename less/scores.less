@@ -3,14 +3,25 @@
 
 /******************************************** Variables */
 
-@pix-border-width: 				4px;
+@pix-border-width:				4px;
 @pix-border-color:				#ccd4d1;
-@edit-color:				 	#efefd7;
+@edit-color:					#efefd7;
 @pix-block-height:				120px;
-@pix-block-width:				8.3%;
+@pix-block-width:				100px;
 @pix-size:						4em;
-@tools-offset: 					10px;
+@tools-offset:					10px;
+@radius:						6px;
+@pix-score-margin-top:			4rem;
+@pix-score-margin-bottom:		11rem;
+@pix-list-side:					500px;
+@pix-list-padding:				30px;
+
+.pix-app{
+	min-height: 50rem;
+}
+
 /****************************************** Score Title */
+
 .input-style{
 		padding: 4px;
 		overflow: auto;
@@ -46,7 +57,7 @@ h1.score-header{
 	display: block;
 	width: 100%;
 	.input-style;
-	margin: 0 0 40px 0;
+	margin-top: 0;
 }
 
 
@@ -54,7 +65,7 @@ h1.score-header{
 
 .pix-score{
 	.cf;
-	margin: 10px -@pix-border-width 64px -@pix-border-width;
+	margin: 10px -@pix-border-width 0 -@pix-border-width;
 	ul li{
 		display: inline-block;
 		list-style-type: none;
@@ -68,25 +79,31 @@ h1.score-header{
 			display: table;
 		}
 	}
-
+	/*Aqui agregue un arreglo poco elegantge para la mascara de overflow horizontal*/
+	.step-mask {
+		float: left;
+		padding-top: .7rem;
+		padding-left: .4rem;
+		width: 88%;
+		//height: 387px;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
 	ul{
 		&.pix-header{
+			float: left;
+			margin-top: @pix-score-margin-top + .7rem;
 			background-color: lighten(@pix-border-color, 10);
 			border-radius: @pix-border-width*2 0 0 @pix-border-width*2;
-			/*
-			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
-			border-top: @pix-border-width solid @pix-border-color;
-			border-bottom: @pix-border-width solid @pix-border-color;
-			*/
 			border-left: @pix-border-width solid @pix-border-color;
 			width: @pix-block-width;
 			display: inline-block;
 			li{
-				&.block-user{
+				&:first-child{
 					border-top: @pix-border-width solid @pix-border-color;
 				}
 
-				&.block-system{
+				&:last-child{
 					border-bottom: @pix-border-width solid @pix-border-color;
 				}
 				
@@ -107,14 +124,16 @@ h1.score-header{
 				}
 			}
 		}
-
+		
 		&.pix-steps{
-			display: inline;
+			display: block;
+			margin-top: @pix-score-margin-top;
+			margin-bottom: @pix-score-margin-bottom;
 			li.pix-step{
 				position: relative;
 				width: @pix-block-width;
 				display: inline-block;
-				margin-left: -3px; // strange bug
+				margin-left: -4px; // strange bug
 				ul.split{
 					border-left: 1px solid darken(@pix-border-color, 15);
 				}
@@ -132,23 +151,50 @@ h1.score-header{
 	.note{
 		display: inline-block;
 		position: absolute;
-		padding: 8px 4px;	
+		padding: 0;	
 		font-size: 11px;
 		font-family: @font-family-serif;
 		color: fade(@black, 70%);
 		line-height: 100%;
+		overflow: hidden;
+		
 		&.top{
+			min-height: @pix-score-margin-top;
 			font-weight: bold;
-			bottom: @pix-block-height * 3 + 12px;
-			line-height: 120%;
-			overflow: hidden;
+			vertical-align: text-bottom;		
 		}
+
 		&.bottom{
-			top: @pix-block-height * 3 + 12px;
+			padding-top: 8px;
 			background-color: transparent;
+			max-height: @pix-score-margin-bottom;
+		}
+	}
+
+	&.template-pix{
+		.note{
+			&.top{bottom: @pix-block-height * 3 + 12px;}
+			&.bottom{top: @pix-block-height * 3 + 12px;}
+		}
+	}
+
+	&.template-blueprint{
+		.note{
+			&.top{bottom: @pix-block-height * 5 + 12px;}
+			&.bottom{top: @pix-block-height * 5 + 12px;}
+		}
+	}
+
+	&.template-blueprint{
+		ul.pix-header li:last-child,
+		ul.pix-steps li.pix-step ul li:last-child{
+			border-top: 1px dotted @pix-border-color;
 		}
 	}
 }
+
+
+
 
 li.block{
 	position: relative;
@@ -161,13 +207,13 @@ li.block{
 	margin: 0;
 	width: 100%;
 
-	&.block-user{
-		border-top: @pix-border-width solid @pix-border-color;
-		border-bottom: 1px dotted @pix-border-color;
-	}
+	&:first-child{border-top: @pix-border-width solid @pix-border-color;}
+	&:last-child{border-bottom: @pix-border-width solid @pix-border-color;}
 
+	&.block-environment,
+	&.block-user{border-bottom: 1px dotted @pix-border-color}
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
-	&.block-system{border-bottom: @pix-border-width solid @pix-border-color;}
+	&.block-system{}
 
 	.pix-div-input,
 	.pix-group,	
@@ -183,8 +229,7 @@ li.block{
 		border: none;
 		width: 100% !important;
 		background-color: transparent;
-		
-		
+	
 		&:active,
 		&:focus,
 		&:hover{
@@ -203,8 +248,10 @@ li.block{
 			white-space: nowrap;
 		}
 	}
-	
 }
+
+.pix-group span.tcenter{display: block}
+
 
 .nav li a .pix{
 	&.pix-2x{line-height: 0}
@@ -220,6 +267,98 @@ li.block{
 }
 
 
+.select-layout-container {
+	position: absolute;
+	text-align: center;
+	left: 0;
+	right: 0;
+	top: -6 * @pix-list-padding;
+	bottom: 0;
+	margin: auto;
+	width: 30rem;
+	height: 24rem;
+	padding: 2rem;
+	z-index: 9999;
+	background: @white;
+	.overlay;
+
+	a {
+		display: inline-block;
+		padding: 1rem;
+		width: 45%;
+		padding: 1rem;
+		font-size: 1.5rem;
+		.pix-group {
+			font-size: 4rem;
+		}
+		text-align: center;
+		&:hover{text-decoration: none}
+	}
+}
+
+
+.pix-icon-list {
+	position: absolute;
+	width: @pix-list-side + (2 * @pix-list-padding);
+	height: @pix-list-side;
+	top: -2 * @pix-list-padding;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	padding: @pix-list-padding;
+	.overlay;
+	z-index: 9999;
+	.button-close {
+		font-family: pix;
+		display: inline-block;
+		position: absolute;
+		font-size: 47px;
+		right: -12px;
+		top: -14px;
+		background-color: @brand-primary;
+		color: @white;
+		line-height: 27px;
+		width: 27px;
+		height: 27px;
+		text-align: center;
+		border-radius: 50%;
+		&:hover{
+			text-decoration: none;
+			background-color: lighten(@brand-primary, 15);
+		}
+	}
+	ul {
+		display: block;
+		list-style: none;
+		height: @pix-list-side - (2 * @pix-list-padding);
+		margin: 0;
+		padding: 0;
+		overflow: auto;
+		li {
+			display: inline-block;
+			a {
+				display: block;
+				min-width: 115px;
+				padding: .5em;
+				text-align: center;
+				border-radius: @radius;
+				i.pix{
+					display: inline-block;
+					text-align: center;
+					font-size: 36px;
+					line-height: 100%;
+					white-space: nowrap;
+					color: @black;
+				}
+				&:hover {
+					background-color: fade(@edit-color, 50);
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
 // drop-down and select class. Use in combination with: <ul class="select nav nav-stacked pix-ul">
 ul.pix-ul li.active a {
 	background-color: saturate(fade(@brand-primary, 30), 30);
@@ -229,6 +368,8 @@ ul.select{
 	position: absolute;
 	z-index: 1000 !important;
 	width: 200px;
+	height: 250px;
+	overflow-y: scroll;
 	background-color: @white;
 	border-radius: @radius;
 	box-shadow: 3px 3px 0 fade(@black, 10);
@@ -308,7 +449,6 @@ ul.select{
 }
 
 
-
 .pix-div-input:hover {
 	border: 0px none;
 	box-shadow: 0px 0px 0px 2px #EFEFD7 inset;
@@ -344,14 +484,4 @@ li.block textarea {
 
 .upload-json {
 	display: none !important;
-}
-
-#add-new{
-	.size(60px, 60px);
-	border-radius: 50%;
-	.pix{
-		position: relative;
-		font-size: 3em;
-		top:-1px;
-	}
 }

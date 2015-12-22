@@ -3,9 +3,7 @@ layout: base
 title: PiX - Documentation
 active: docs
 ---
-<div class="row">
-    {% include pix-example.html %}
-</div>
+
 <div class='row'>
     <div lang='en' class='col-sm-6'>
         <h3>How to create a PiX</h3>
@@ -39,7 +37,4 @@ active: docs
         	<li>Para eliminar un paso o columna sólo presiona el botón <a href="#" class="btn btn-tools tool-remove" title="remove step"><img src='{{ site.baseurl }}/img/tool_remove.svg'></a></li>
         </ol>
     </div>
-</div>
-<div class="row">
-    {% include pix-example-gmail.html %}
 </div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	{% include head.html %}
+	<body lang='{{ page.lang }}' class='black-bg'>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2">
+						<nav class='nav-white'>
+							<li><a href="{{ site.baseurl }}/">&larr; Go back</a></li>
+						</nav>
+					</div>	
+				</div>
+			</div> 
+			
+		<div class='white-bg'>
+			<div class='container' style='margin-top: 10rem; padding-top: 10rem'>      
+				{{ content }}
+			</div>
+		</div>
+	    {% include footer.html %}
+	</body>
+</html>
