@@ -35,6 +35,13 @@ lang: en
         <p>We need a design deliverable that can encapsule the flow of interaction, the quality of the experience we're proposing to the user, to our team members and to the business.</p>
         
         <p>Most of the documents we hand out to our colleagues and clients represent snapshots of the experience flow, and we expect them to imagine the rest, to connect the dots with their imagination. It usually requires other material explanations —such as customer journeys, video sketches with personas, scenarios and the like– to give the idea of what we really want to be happening with our design. This is mainly because our design <strong>is a dialogue that unfolds in time</strong> but we lack the language to represent it properly and across all disciplines involved in the project.</p>
+
+        <h3>Features</h3>
+        <ol>
+            <li>Save and import your work in JSON format</li>
+            <li>Select between the PiX template or a Service Blueprint template</li>
+            <li>PDF export (very soon)</li>
+        </ol>
     </div>
 </div>
 
@@ -93,7 +100,8 @@ lang: en
         <ol>
             <li>Open the <a href='{{ site.baseurl }}/pages/app'>App</a></li>
             <li>Name your PiX and add a description</li>
-            <li>Type inside each PiX cell, for adding an icon, just type <code>pix-</code> plus the icon name you wish to insert (check the <a href='http://eadpucv.github.io/pixograms/'>complete list of icons</a>)
+            <li>Double click on a table cell to select an icon an continue writing your description</li>
+            <li><strong>Or</strong> type inside each PiX cell, for adding an icon, just type <code>pix-</code> plus the icon name you wish to insert (check the <a href='http://eadpucv.github.io/pixograms/'>complete list of icons</a>)
                 <ul>
                     <li>Within the autocomplete, select with your arrow keys <code>↑</code> or <code>↓</code> and hit <code>return</code> to insert it</li>
                     <li>If you ignore the autocomplete and keep typing, just press <code>space</code> to insert the icon</li>
