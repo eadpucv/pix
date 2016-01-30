@@ -399,7 +399,7 @@ var pixObject = {
 				$(this).embedTool(objectExport);
 			} else if ( type == 'save' ) {
 				localStorage.setItem('pix',JSON.stringify(objectExport));
-				console.log('Pix saved');
+				$.showMessage('Score Saved...');
 			}
 			
 		} else {
@@ -705,9 +705,10 @@ var pixObject = {
 	$.loadSession = function(message,obj) {
 		var container = $('<div>').attr('id','embed-info'),
 			message = $('<p>').html(message),
-			a_cls = $('<a>').addClass('button-close').attr('href','#').text('Close'),
-			a_rst = $('<a>').addClass('button-restore').attr('href','#').text('Restore');
-			container.append(message).append(a_cls).append(a_rst);
+			a_cls = $('<a>').addClass('button-close btn').attr('href','#').text('Close'),
+			a_rst = $('<a>').addClass('button-restore btn').attr('href','#').text('Restore');
+			a_sess = $('<a>').addClass('button-reset btn').attr('href','#').text('Reset data');
+			container.append(message).append(a_cls).append(a_rst).append(a_sess);
 		$('body').append(container);
 		container.find('.button-close').on('click',function(e) {
 			e.preventDefault();
@@ -721,7 +722,15 @@ var pixObject = {
 				error: 0
 			}
 			$.fn.makeImport(objectRestore);
-			$('body').find('#embed-info').remove();
+			$.showMessage('Restored saved session');
+			$(this).parent().remove();
+			return false;
+		});
+		container.find('.button-reset').on('click', function(e){
+			e.preventDefault();
+			localStorage.removeItem('pix');
+			$.showMessage('Reset saved session');
+			$(this).parent().remove();
 			return false;
 		});
 	};
@@ -734,6 +743,30 @@ var pixObject = {
 		if ( pix ) {
 			$.loadSession('You have a saved session on your browser, do you want to restore it?',pix);
 		}
+	};
+	/*
+	* Mensaje informativo genérico
+	*/
+	$.showMessage = function(msg) {
+		console.log(msg);
+		var msg_container = $('<div>').addClass('message-container').text(msg);
+		msg_container.css({
+			'display' : 'none',
+			'position' : 'absolute',
+			'top': '15px',
+			'width': '100%',
+			'text-align':'center',
+			'color': 'white',
+			'z-index': 1031,
+		});
+		$('body').append(msg_container);
+		 msg_container.fadeIn('fast', function() {
+		 	msg_container.delay(1000);
+		 	msg_container.fadeOut('slow', function(){
+		 		msg_container.remove();
+		 	});
+		 	
+		});
 	};
 	/*
 	* Muestra el dialogo para seleccionar layout
@@ -791,6 +824,9 @@ var pixObject = {
 }(jQuery));
 
 jQuery(document).ready(function($){
+	/*
+		Chequeamos si existe sesion guardada
+	*/
 	$.checkSavedPix();
 	$.defineLayout('ip');
 	/*
