@@ -4739,6 +4739,92 @@ li.block textarea {
   text-decoration: none;
   background-color: #e77660;
 }
+.button-restore,
+.button-reset {
+  margin: 3em 0 0 20%;
+}
+.button-restore {
+  color: #ffffff;
+  background-color: #8dd15e;
+  border-color: #7fcb4a;
+}
+.button-restore:hover,
+.button-restore:focus,
+.button-restore:active,
+.button-restore.active,
+.open .dropdown-toggle.button-restore {
+  color: #ffffff;
+  background-color: #77c83e;
+  border-color: #61a830;
+}
+.button-restore:active,
+.button-restore.active,
+.open .dropdown-toggle.button-restore {
+  background-image: none;
+}
+.button-restore.disabled,
+.button-restore[disabled],
+fieldset[disabled] .button-restore,
+.button-restore.disabled:hover,
+.button-restore[disabled]:hover,
+fieldset[disabled] .button-restore:hover,
+.button-restore.disabled:focus,
+.button-restore[disabled]:focus,
+fieldset[disabled] .button-restore:focus,
+.button-restore.disabled:active,
+.button-restore[disabled]:active,
+fieldset[disabled] .button-restore:active,
+.button-restore.disabled.active,
+.button-restore[disabled].active,
+fieldset[disabled] .button-restore.active {
+  background-color: #8dd15e;
+  border-color: #7fcb4a;
+}
+.button-restore .badge {
+  color: #8dd15e;
+  background-color: #fff;
+}
+.button-reset {
+  color: #ffffff;
+  background-color: #f17061;
+  border-color: #ef5b4a;
+}
+.button-reset:hover,
+.button-reset:focus,
+.button-reset:active,
+.button-reset.active,
+.open .dropdown-toggle.button-reset {
+  color: #ffffff;
+  background-color: #ee4e3c;
+  border-color: #e72a14;
+}
+.button-reset:active,
+.button-reset.active,
+.open .dropdown-toggle.button-reset {
+  background-image: none;
+}
+.button-reset.disabled,
+.button-reset[disabled],
+fieldset[disabled] .button-reset,
+.button-reset.disabled:hover,
+.button-reset[disabled]:hover,
+fieldset[disabled] .button-reset:hover,
+.button-reset.disabled:focus,
+.button-reset[disabled]:focus,
+fieldset[disabled] .button-reset:focus,
+.button-reset.disabled:active,
+.button-reset[disabled]:active,
+fieldset[disabled] .button-reset:active,
+.button-reset.disabled.active,
+.button-reset[disabled].active,
+fieldset[disabled] .button-reset.active {
+  background-color: #f17061;
+  border-color: #ef5b4a;
+}
+.button-reset .badge {
+  color: #f17061;
+  background-color: #fff;
+}
 @media (max-width: 767px) {
   .container {
     margin: 0 10%;
