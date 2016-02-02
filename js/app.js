@@ -564,7 +564,7 @@ var pixObject = {
 	$.fn.showIconList = function(obj) {
 		$.handleEvents.icClose();
 		var icon_list = $('<div>').attr('class','pix-icon-list');
-		var close = $('<a>').attr({ 'class' : 'button-close', 'href' : '#' }).text('cancel');
+		var close = $('<a>').attr({ 'class' : 'button-close', 'href' : '#' });
 		icon_list.prepend(close);
 		var ul = $('<ul>');
 		$.ajax({

@@ -4567,25 +4567,6 @@ li.block textarea i.pix {
   box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
   z-index: 9999;
 }
-.pix-icon-list .button-close {
-  font-family: pix;
-  display: inline-block;
-  position: absolute;
-  font-size: 47px;
-  right: -12px;
-  top: -14px;
-  background-color: #d94021;
-  color: #ffffff;
-  line-height: 27px;
-  width: 27px;
-  height: 27px;
-  text-align: center;
-  border-radius: 50%;
-}
-.pix-icon-list .button-close:hover {
-  text-decoration: none;
-  background-color: #e77660;
-}
 .pix-icon-list ul {
   display: block;
   list-style: none;
@@ -4728,6 +4709,33 @@ li.block textarea {
 }
 .upload-json {
   display: none !important;
+}
+.button-close {
+  position: absolute;
+  display: inline-block;
+  right: -12px;
+  top: -14px;
+  font-family: pix;
+  font-size: 47px;
+  background-color: #d94021;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 27px;
+  width: 27px;
+  height: 27px;
+  text-align: center;
+  border-radius: 50%;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: common-ligatures;
+}
+.button-close:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #e77660;
+}
+.button-close:before {
+  content: "cancel";
 }
 @media (max-width: 767px) {
   .container {
