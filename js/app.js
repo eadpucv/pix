@@ -418,8 +418,8 @@ var pixObject = {
 			url = 'http://'+location.host+'/pages/app-embed/#!/print/'+data,
 			width = $('.pix-steps').width(),
 			name = string_to_slug( $('.score-header').find('input').val() ),
-			//request_domain = 'http://192.168.0.12:4730/'
-			request_domain = 'http://pix-language.com/';
+			request_domain = 'http://190.208.62.202:4730/'
+			//request_domain = 'http://pix-language.com/';
 			request_url = request_domain+'pdf';
 
 		var request_data = {
