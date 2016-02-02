@@ -4995,11 +4995,8 @@ nav.nav-white li a:hover {
 h1 {
   color: #2e1948;
 }
-h2 {
-  color: #0e83a7;
-}
 h3 {
-  color: #2ec0ed;
+  color: #0e83a7;
 }
 .page-header {
   position: relative;
@@ -5166,7 +5163,7 @@ textarea {
   box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
 }
 #embed-info textarea.embedcode {
-  background-color: #3476ac;
+  background-color: #2e1948;
   border: none;
   border-radius: 6px;
   color: #ffffff;
