@@ -132,7 +132,6 @@ var pixObject = {
 				} 
 			});
 			$('#pix-template').on('click','.btn-tools',function(event){
-				console.log(event);
 				$(this).clickTool();
 				return false;
 			});
@@ -146,6 +145,10 @@ var pixObject = {
 			});
 			$('.save').on('click',function(){
 				$.fn.exportTool('save');
+				return false;
+			});
+			$('.print').on('click',function(){
+				$.fn.exportTool('print');
 				return false;
 			});
 			$('.import').on('click',function(){
@@ -321,7 +324,6 @@ var pixObject = {
 				width = width + $(this).outerWidth() +10; 
 			});
 			$('.pix-steps').css('width',width);
-
 			//TODO : make import looping object
 		} else {
 			//TODO : Error handler
@@ -397,6 +399,8 @@ var pixObject = {
 				$(this).exportDownload(objectExport);
 			} else if (type == 'embed') {
 				$(this).embedTool(objectExport);
+			} else if ( type == 'print' ) {
+				$(this).printTool(objectExport);
 			} else if ( type == 'save' ) {
 				localStorage.setItem('pix',JSON.stringify(objectExport));
 				$.showMessage('Score Saved...');
@@ -405,6 +409,55 @@ var pixObject = {
 		} else {
 			alert('Please name your score before exporting it.');
 		}
+	}
+	/*
+		Imprimir a PDF
+	*/
+	$.fn.printTool = function(object) {
+		var data = window.btoa( unescape( encodeURIComponent( JSON.stringify(object) ) ) ),
+			url = 'http://'+location.host+'/pages/app-embed/#!/print/'+data,
+			width = $('.pix-steps').width(),
+			name = string_to_slug( $('.score-header').find('input').val() ),
+			//request_domain = 'http://192.168.0.12:4730/'
+			request_domain = 'http://pix-language/';
+			request_url = request_domain+'pdf';
+
+		var request_data = {
+			'score_name' : name,
+			'score_width': width,
+			'url' : url
+		};
+
+		$.ajax({
+			url: request_url,
+			type: 'POST',
+			data : request_data,
+			beforeSend: function() {
+				$.showMessage('Generating PDF...');
+				$.loader('show');
+			},
+			success: function(data) {
+				if (data.status) {
+					$.loader('hide');
+					var url = request_domain+'download/'+data.return,
+                    	windowName = "Download PDF",
+                    	windowSize = "width=1,height=1",
+                    	download_pdf = window.open(url, windowName, windowSize);
+                    	$('body').delay(500).queue(function(next){
+                    		download_pdf.close();
+                    		next();
+                    	});
+				} else {
+					$.showMessage('Error generating PDF...');
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				$.showMessage('Unknown error...');
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		})
 	}
 	/*
 		Genera el codigo embed del iframe y lo muestra
@@ -418,15 +471,36 @@ var pixObject = {
 	/*
 		Ejecuta la importación de la data que trae la url
 	*/
-	$.fn.embedImport = function() {
+	$.fn.embedImport = function(type) {
 		var urlhash = location.hash;
-		if (urlhash.indexOf('import')) {
-			var hash = location.hash.substring(10);
+		console.log(urlhash.indexOf('import'));
+		console.log(urlhash.indexOf('print'));
+		if ( urlhash.indexOf('import') || urlhash.indexOf('print') ) {
+			var hash = ( urlhash.indexOf('import') > 0 ) ? location.hash.substring(10) : location.hash.substring(9);
+			console.log(hash);
 			var object = {
 				result: decodeURIComponent(escape(window.atob( hash )))
 			}
 			$.fn.makeImport(object);
+			if (type == 'print') {
+				$.fn.replaceIcons();
+			}
 		}
+	}
+	$.fn.replaceIcons = function() {
+		//Reemplazamos iconos por svg
+		$('.pix-group').each(function(){
+			var obj = $(this),
+				class_icon = obj.find('.pix').attr('class').replace('pix ', '');
+			var icon = class_icon.replace('pix-','');
+			obj.find('.pix').replaceWith('<img src="/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
+		});
+		$('.pix-div-input').each(function(){
+			var obj = $(this),
+				icon = obj.data('pix-icon');
+			obj.find('.pix').replaceWith('<img src="/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
+			console.log('replaced');
+		});
 	}
 	/*
 		Ejecuta la acción de descarga del JSON 
@@ -745,6 +819,18 @@ var pixObject = {
 		}
 	};
 	/*
+	*	Loader show/hide
+	*/
+	$.loader = function(mode) {
+		var loader = $('.loader');
+		if (mode == 'show') {
+			loader.removeClass('hidden');
+		}
+		if (mode == 'hide') {
+			loader.addClass('hidden');
+		}
+	}
+	/*
 	* Mensaje informativo genérico
 	*/
 	$.showMessage = function(msg) {
@@ -752,7 +838,7 @@ var pixObject = {
 		var msg_container = $('<div>').addClass('message-container').text(msg);
 		msg_container.css({
 			'display' : 'none',
-			'position' : 'absolute',
+			'position' : 'fixed',
 			'top': '15px',
 			'width': '100%',
 			'text-align':'center',
@@ -833,7 +919,13 @@ jQuery(document).ready(function($){
 		Si hay embed lo importa
 	*/
 	if (location.hash.indexOf('import') != -1) {
-		$.fn.embedImport();
+		$.fn.embedImport('embed');
+	}
+	/*
+		Si hay print lo importa
+	*/
+	if (location.hash.indexOf('print') != -1) {
+		$.fn.embedImport('print');
 	} 
 	$.handleEvents.init();
 });
