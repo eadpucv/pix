@@ -4073,7 +4073,11 @@ td.visible-print {
   width: 80px;
   height: 80px;
   border: 1px solid lightgray;
-  border-radius: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  -webkit-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+  -moz-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+  box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
 }
 .sk-circle {
   margin: 20px auto;
