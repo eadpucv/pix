@@ -496,12 +496,12 @@ var pixObject = {
 			var obj = $(this),
 				class_icon = obj.find('.pix').attr('class').replace('pix ', '');
 			var icon = class_icon.replace('pix-','');
-			obj.find('.pix').replaceWith('<img src="https://raw.githubusercontent.com/eadpucv/pix/master/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
+			obj.find('.pix').replaceWith('<img src="http://eadpucv.github.io/pix/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
 		});
 		$('.pix-div-input').each(function(){
 			var obj = $(this),
 				icon = obj.data('pix-icon');
-			obj.find('.pix').replaceWith('<img src="https://raw.githubusercontent.com/eadpucv/pix/master/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
+			obj.find('.pix').replaceWith('<img src="http://eadpucv.github.io/pix/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
 			console.log('replaced');
 		});
 	}
