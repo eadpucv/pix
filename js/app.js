@@ -415,7 +415,8 @@ var pixObject = {
 	*/
 	$.fn.printTool = function(object) {
 		var data = window.btoa( unescape( encodeURIComponent( JSON.stringify(object) ) ) ),
-			url = 'http://'+location.host+'/pages/app-embed/#!/print/'+data,
+			sub_url = ( location.host == 'eadpucv.github.io' ) ? '/pix' : '',
+			url = 'http://'+location.host+sub_url+'/pages/app-embed/#!/print/'+data,
 			width = $('.pix-steps').width(),
 			name = string_to_slug( $('.score-header').find('input').val() ),
 			request_domain = 'http://190.208.62.202:4730/'
@@ -464,8 +465,9 @@ var pixObject = {
 		Genera el codigo embed del iframe y lo muestra
 	*/
 	$.fn.embedTool = function(object) {
-		var data = window.btoa(unescape(encodeURIComponent(JSON.stringify(object))));
-		var code = '<iframe src="http://'+location.host+'/pages/app-embed/#!/import/'+data+'" width="100%" height="auto">';
+		var data = window.btoa(unescape(encodeURIComponent(JSON.stringify(object)))),
+			sub_url = ( location.host == 'eadpucv.github.io' ) ? '/pix' : '',
+			code = '<iframe src="http://'+location.host+sub_url+'/pages/app-embed/#!/import/'+data+'" width="100%" height="auto">';
 		$('.embedcode').text(code);
 		$('#embed-info').show();
 	}
