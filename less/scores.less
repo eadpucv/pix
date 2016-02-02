@@ -470,16 +470,16 @@ li.block textarea {
 
 .button-close {
 	position: absolute;
-	display: inline-block;
+	display: inline-block !important;
 	right: -12px;
 	top: -14px;
 	font-family: pix;
-	font-size: 47px;
+	font-size: 47px !important;
 	background-color: @brand-primary;
 	color: @white;
 	text-decoration: none;
 	line-height: 27px;
-	width: 27px;
+	width: 27px !important;
 	height: 27px;
 	text-align: center;
 	box-shadow: 0 0 2px @black;
@@ -487,6 +487,7 @@ li.block textarea {
 	text-transform: none;
     text-rendering: optimizeLegibility;
     font-variant-ligatures: common-ligatures;
+    padding: 0 !important;
     &:before{
 		content: "cancel"
     }

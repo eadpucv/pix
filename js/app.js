@@ -862,7 +862,7 @@ var pixObject = {
 		var a_tit = $('<h3>').html('Select template'),
 		a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)'),
 		a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint'),
-		a_close = $('<a>').addClass('button-close').attr('href','#').text('cancel');
+		a_close = $('<a>').addClass('button-close').attr('href','#');
 		container_select.append(a_tit).append(a_pix).append(a_sb).append(a_close);
 		$('body').append(container_select);
 		$('.button-close').on('click', function(e){
