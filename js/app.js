@@ -453,6 +453,7 @@ var pixObject = {
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				$.showMessage('Unknown error...');
+				$.loader('hide');
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);
@@ -913,19 +914,17 @@ jQuery(document).ready(function($){
 	/*
 		Chequeamos si existe sesion guardada
 	*/
-	$.checkSavedPix();
+	
 	$.defineLayout('ip');
 	/*
 		Si hay embed lo importa
 	*/
 	if (location.hash.indexOf('import') != -1) {
 		$.fn.embedImport('embed');
-	}
-	/*
-		Si hay print lo importa
-	*/
-	if (location.hash.indexOf('print') != -1) {
+	} else if (location.hash.indexOf('print') != -1) {
 		$.fn.embedImport('print');
-	} 
+	} else {
+		$.checkSavedPix();
+	}
 	$.handleEvents.init();
 });
