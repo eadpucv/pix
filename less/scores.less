@@ -482,16 +482,17 @@ li.block textarea {
 	width: 27px;
 	height: 27px;
 	text-align: center;
+	box-shadow: 0 0 2px @black;
 	border-radius: 50%;
 	text-transform: none;
     text-rendering: optimizeLegibility;
     font-variant-ligatures: common-ligatures;
+    &:before{
+		content: "cancel"
+    }
 	&:hover{
 		color: @white;
 		text-decoration: none;
 		background-color: lighten(@brand-primary, 15);
-	}
-	&:before{
-		content: "cancel";
 	}
 }
