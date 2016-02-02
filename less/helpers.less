@@ -80,7 +80,6 @@
 .overlay{
 	background-color: @white;
 	border-radius: @radius * 2;
-	// border: @pix-border-width solid @brand-info;
 	.box-shadow(0 0 7px fade(@black, 30));
 }
 
@@ -112,6 +111,7 @@
 	.longShadowLoop(@shadowString, @size - 1);
 	.longShadowBox(@color, @size - 1, @spread, @flag + 1, @ends);
 }
+
 // Spinners
 .loader {
 	position: fixed;
@@ -125,7 +125,7 @@
 	width: 80px;
 	height: 80px;
 	border: 1px solid lightgray;
-	border-radius: 2rem;
+	.overlay;
 }
 .sk-circle {
   margin: 20px auto;
