@@ -132,7 +132,6 @@ var pixObject = {
 				} 
 			});
 			$('#pix-template').on('click','.btn-tools',function(event){
-				console.log(event);
 				$(this).clickTool();
 				return false;
 			});
@@ -142,6 +141,14 @@ var pixObject = {
 			});
 			$('.export').on('click',function(){
 				$.fn.exportTool('download');
+				return false;
+			});
+			$('.save').on('click',function(){
+				$.fn.exportTool('save');
+				return false;
+			});
+			$('.print').on('click',function(){
+				$.fn.exportTool('print');
 				return false;
 			});
 			$('.import').on('click',function(){
@@ -317,7 +324,6 @@ var pixObject = {
 				width = width + $(this).outerWidth() +10; 
 			});
 			$('.pix-steps').css('width',width);
-
 			//TODO : make import looping object
 		} else {
 			//TODO : Error handler
@@ -393,11 +399,66 @@ var pixObject = {
 				$(this).exportDownload(objectExport);
 			} else if (type == 'embed') {
 				$(this).embedTool(objectExport);
+			} else if ( type == 'print' ) {
+				$(this).printTool(objectExport);
+			} else if ( type == 'save' ) {
+				localStorage.setItem('pix',JSON.stringify(objectExport));
+				$.showMessage('Score Saved...');
 			}
 			
 		} else {
 			alert('Please name your score before exporting it.');
 		}
+	}
+	/*
+		Imprimir a PDF
+	*/
+	$.fn.printTool = function(object) {
+		var data = window.btoa( unescape( encodeURIComponent( JSON.stringify(object) ) ) ),
+			url = 'http://'+location.host+'/pages/app-embed/#!/print/'+data,
+			width = $('.pix-steps').width(),
+			name = string_to_slug( $('.score-header').find('input').val() ),
+			//request_domain = 'http://192.168.0.12:4730/'
+			request_domain = 'http://pix-language/';
+			request_url = request_domain+'pdf';
+
+		var request_data = {
+			'score_name' : name,
+			'score_width': width,
+			'url' : url
+		};
+
+		$.ajax({
+			url: request_url,
+			type: 'POST',
+			data : request_data,
+			beforeSend: function() {
+				$.showMessage('Generating PDF...');
+				$.loader('show');
+			},
+			success: function(data) {
+				if (data.status) {
+					$.loader('hide');
+					var url = request_domain+'download/'+data.return,
+                    	windowName = "Download PDF",
+                    	windowSize = "width=1,height=1",
+                    	download_pdf = window.open(url, windowName, windowSize);
+                    	$('body').delay(500).queue(function(next){
+                    		download_pdf.close();
+                    		next();
+                    	});
+				} else {
+					$.showMessage('Error generating PDF...');
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				$.showMessage('Unknown error...');
+				$.loader('hide');
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		})
 	}
 	/*
 		Genera el codigo embed del iframe y lo muestra
@@ -411,15 +472,36 @@ var pixObject = {
 	/*
 		Ejecuta la importación de la data que trae la url
 	*/
-	$.fn.embedImport = function() {
+	$.fn.embedImport = function(type) {
 		var urlhash = location.hash;
-		if (urlhash.indexOf('import')) {
-			var hash = location.hash.substring(10);
+		console.log(urlhash.indexOf('import'));
+		console.log(urlhash.indexOf('print'));
+		if ( urlhash.indexOf('import') || urlhash.indexOf('print') ) {
+			var hash = ( urlhash.indexOf('import') > 0 ) ? location.hash.substring(10) : location.hash.substring(9);
+			console.log(hash);
 			var object = {
 				result: decodeURIComponent(escape(window.atob( hash )))
 			}
 			$.fn.makeImport(object);
+			if (type == 'print') {
+				$.fn.replaceIcons();
+			}
 		}
+	}
+	$.fn.replaceIcons = function() {
+		//Reemplazamos iconos por svg
+		$('.pix-group').each(function(){
+			var obj = $(this),
+				class_icon = obj.find('.pix').attr('class').replace('pix ', '');
+			var icon = class_icon.replace('pix-','');
+			obj.find('.pix').replaceWith('<img src="/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
+		});
+		$('.pix-div-input').each(function(){
+			var obj = $(this),
+				icon = obj.data('pix-icon');
+			obj.find('.pix').replaceWith('<img src="/icons/'+icon+'.svg" class="pix-icon-svg" style="width:4rem;"/><br>');
+			console.log('replaced');
+		});
 	}
 	/*
 		Ejecuta la acción de descarga del JSON 
@@ -483,7 +565,7 @@ var pixObject = {
 	$.fn.showIconList = function(obj) {
 		$.handleEvents.icClose();
 		var icon_list = $('<div>').attr('class','pix-icon-list');
-		var close = $('<a>').attr({ 'class' : 'button-close', 'href' : '#' }).text('cancel');
+		var close = $('<a>').attr({ 'class' : 'button-close', 'href' : '#' });
 		icon_list.prepend(close);
 		var ul = $('<ul>');
 		$.ajax({
@@ -695,14 +777,100 @@ var pixObject = {
 			return false;
 		}
 	};
+	$.loadSession = function(message,obj) {
+		var container = $('<div>').addClass('embed-info'),
+			message = $('<p>').html(message),
+			a_cls = $('<a>').addClass('button-close btn').attr('href','#').text(''),
+			a_rst = $('<a>').addClass('button-restore btn').attr('href','#').text('Restore');
+			a_sess = $('<a>').addClass('button-reset btn').attr('href','#').text('Reset data');
+			container.append(message).append(a_cls).append(a_rst).append(a_sess);
+		$('body').append(container);
+		container.find('.button-close').on('click',function(e) {
+			e.preventDefault();
+			$(this).parent().remove();
+			return false;
+		});
+		container.find('.button-restore').on('click', function(e){
+			e.preventDefault();
+			var objectRestore = {
+				result: obj,
+				error: 0
+			}
+			$.fn.makeImport(objectRestore);
+			$.showMessage('Restored saved session');
+			$(this).parent().remove();
+			return false;
+		});
+		container.find('.button-reset').on('click', function(e){
+			e.preventDefault();
+			localStorage.removeItem('pix');
+			$.showMessage('Reset saved session');
+			$(this).parent().remove();
+			return false;
+		});
+	};
+	/*
+	* Chequeamos si hay sesión existente en el navegador
+	*/
+	$.checkSavedPix = function() {
+		// TODO: Hacer una multisesión
+		var pix = localStorage.getItem('pix');
+		if ( pix ) {
+			$.loadSession('You have a saved session on your browser, do you want to restore it?',pix);
+		}
+	};
+	/*
+	*	Loader show/hide
+	*/
+	$.loader = function(mode) {
+		var loader = $('.loader');
+		if (mode == 'show') {
+			loader.removeClass('hidden');
+		}
+		if (mode == 'hide') {
+			loader.addClass('hidden');
+		}
+	}
+	/*
+	* Mensaje informativo genérico
+	*/
+	$.showMessage = function(msg) {
+		console.log(msg);
+		var msg_container = $('<div>').addClass('message-container').text(msg);
+		msg_container.css({
+			'display' : 'none',
+			'position' : 'fixed',
+			'top': '15px',
+			'width': '100%',
+			'text-align':'center',
+			'color': 'white',
+			'z-index': 1031,
+		});
+		$('body').append(msg_container);
+		 msg_container.fadeIn('fast', function() {
+		 	msg_container.delay(1000);
+		 	msg_container.fadeOut('slow', function(){
+		 		msg_container.remove();
+		 	});
+		 	
+		});
+	};
+	/*
+	* Muestra el dialogo para seleccionar layout
+	*/
 	$.layoutSelect = function() {
-		console.log('eso');
 		var container_select = $('<div>').addClass('select-layout-container');
-		var a_tit = $('<h3>').html('Select template');
-		var a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)');
-		var a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint');
-		container_select.append(a_tit).append(a_pix).append(a_sb);
+		var a_tit = $('<h3>').html('Select template'),
+		a_pix = $('<a>').attr('href','#ip').html('<div class="pix-group"><i class="pix pix-logo"></i></div> Interaction Score (PiX)'),
+		a_sb = $('<a>').attr('href','#sb').html('<div class="pix-group"><i class="pix pix-body"></i></div> Service Blueprint'),
+		a_close = $('<a>').addClass('button-close').attr('href','#');
+		container_select.append(a_tit).append(a_pix).append(a_sb).append(a_close);
 		$('body').append(container_select);
+		$('.button-close').on('click', function(e){
+			e.preventDefault();
+			$('body').find('.select-layout-container').remove();
+			return false;
+		});
 		$(container_select).find('a').on('click',function(e){
 			e.preventDefault();
 			var $action = $(this).attr('href');
@@ -743,13 +911,20 @@ var pixObject = {
 }(jQuery));
 
 jQuery(document).ready(function($){
-
+	/*
+		Chequeamos si existe sesion guardada
+	*/
+	
 	$.defineLayout('ip');
 	/*
 		Si hay embed lo importa
 	*/
 	if (location.hash.indexOf('import') != -1) {
-		$.fn.embedImport();
-	} 
+		$.fn.embedImport('embed');
+	} else if (location.hash.indexOf('print') != -1) {
+		$.fn.embedImport('print');
+	} else {
+		$.checkSavedPix();
+	}
 	$.handleEvents.init();
 });

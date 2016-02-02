@@ -151,8 +151,8 @@ nav.nav-white{
 .nbt{ padding-top: @navbar-height}
 
 h1{ color: @black}
-h2{ color: darken(@brand-info, 20)}
-h3{ color: @brand-info}
+h3{ color: darken(@brand-info, 20)}
+// h3{ color: @brand-info}
 
 
 
@@ -341,7 +341,7 @@ textarea{
 	padding: 20px;
 	.overlay;
 	textarea.embedcode{
-		background-color: @blue;
+		background-color: @black; // @blue;
 		border: none;
 		border-radius: @radius;
 		color: @white;
@@ -355,6 +355,31 @@ textarea{
 	}
 }
 
+.embed-info{
+	margin:auto;
+	position:absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 500px;
+	height: 300px;
+	padding: 20px;
+	.overlay;
+	textarea.embedcode{
+		background-color: @blue;
+		border: none;
+		border-radius: @radius;
+		color: @white;
+		padding: 1em;
+		font-family: @font-family-monospace;
+		text-shadow: 1px 1px 1px fade(@black, 30);
+	}
+	p{
+		margin: 1em 0 0 0;
+		font-size: .9em;
+	}
+}
 
 .pix-heading{
 	.overlay;
