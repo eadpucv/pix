@@ -5092,6 +5092,35 @@ textarea {
   margin: 1em 0 0 0;
   font-size: .9em;
 }
+.embed-info {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 500px;
+  height: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  -webkit-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+  -moz-box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+  box-shadow: 0 0 7px rgba(46, 25, 72, 0.3);
+}
+.embed-info textarea.embedcode {
+  background-color: #3476ac;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 1em;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  text-shadow: 1px 1px 1px rgba(46, 25, 72, 0.3);
+}
+.embed-info p {
+  margin: 1em 0 0 0;
+  font-size: .9em;
+}
 .pix-heading {
   background-color: #ffffff;
   border-radius: 12px;

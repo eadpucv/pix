@@ -777,16 +777,16 @@ var pixObject = {
 		}
 	};
 	$.loadSession = function(message,obj) {
-		var container = $('<div>').attr('id','embed-info'),
+		var container = $('<div>').addClass('embed-info'),
 			message = $('<p>').html(message),
-			a_cls = $('<a>').addClass('button-close btn').attr('href','#').text('Close'),
+			a_cls = $('<a>').addClass('button-close btn').attr('href','#').text(''),
 			a_rst = $('<a>').addClass('button-restore btn').attr('href','#').text('Restore');
 			a_sess = $('<a>').addClass('button-reset btn').attr('href','#').text('Reset data');
 			container.append(message).append(a_cls).append(a_rst).append(a_sess);
 		$('body').append(container);
 		container.find('.button-close').on('click',function(e) {
 			e.preventDefault();
-			$('#embed-info').remove();
+			$(this).parent().remove();
 			return false;
 		});
 		container.find('.button-restore').on('click', function(e){

@@ -122,10 +122,10 @@ active: app
     </li>
 </script>
 
-<div id="embed-info" style="display:none">
+<div id="embed-info" class="embed-info" style="display:none">
     <h3>Embed code:</h3>
     <textarea class="embedcode" style="width:100%" rows="5">
     </textarea>
-     <p>Copy this code and paste it in the <acronym title='Hyper Text Markup Language'>HTML</acronym> editor of your website. <a class='embed-close btn btn-xs btn-primary pull-right'>OK</a></p>
+     <p>Copy this code and paste it in the <acronym title='Hyper Text Markup Language'>HTML</acronym> editor of your website. <a class='embed-close button-close'></a></p>
 
 </div>
