@@ -419,7 +419,7 @@ var pixObject = {
 			width = $('.pix-steps').width(),
 			name = string_to_slug( $('.score-header').find('input').val() ),
 			//request_domain = 'http://192.168.0.12:4730/'
-			request_domain = 'http://pix-language/';
+			request_domain = 'http://pix-language.com/';
 			request_url = request_domain+'pdf';
 
 		var request_data = {
