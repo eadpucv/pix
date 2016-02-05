@@ -35,6 +35,15 @@ lang: en
         <p>We need a design deliverable that can encapsule the flow of interaction, the quality of the experience we're proposing to the user, to our team members and to the business.</p>
         
         <p>Most of the documents we hand out to our colleagues and clients represent snapshots of the experience flow, and we expect them to imagine the rest, to connect the dots with their imagination. It usually requires other material explanations —such as customer journeys, video sketches with personas, scenarios and the like– to give the idea of what we really want to be happening with our design. This is mainly because our design <strong>is a dialogue that unfolds in time</strong> but we lack the language to represent it properly and across all disciplines involved in the project.</p>
+
+        <h2>Features</h2>
+        <ol>
+            <li><strong>Designed for power users</strong>. Insert icons while typing with <code>pix-iconName</code> and <code>TAB</code> to jump or create the next slot</li>
+            <li><strong>Save your work</strong> by storing or restoring your browser session</li>
+            <li><strong>Import and export</strong> your PiX in JSON format</li>
+            <li><strong>PDF output</strong> for creating great design deliverables</li>
+            <li><strong>2 Templates</strong> you can choose from: a 3-layered PiX score or a 5-layered service blueprint score</li>
+        </ol>
     </div>
 </div>
 
@@ -204,6 +213,7 @@ lang: en
         {% include col-pix.html name='tv' %}
         {% include col-pix.html name='kiosk' %}
         {% include col-pix.html name='game' %}
+        {% include col-pix.html name='body' %}
         </div>
         <hr>
 
