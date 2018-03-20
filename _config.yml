@@ -3,7 +3,7 @@ source:			.
 destination:	_gh-pages
 lsi:			false
 permalink:		pretty
-baseurl: 		"http://eadpucv.github.io/pix"
+baseurl: 		"https://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
 name: 			"PiX"
 pixver:			"1.0.0"
