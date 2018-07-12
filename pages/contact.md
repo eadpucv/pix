@@ -7,33 +7,8 @@ active: contact
 <div class='row'>
 	<div class='col-sm-8 col-sm-offset-2'>
         <h2>Contact Us!</h2>
-        <form name='contact' action="http://getsimpleform.com/messages?form_api_token=a7bacae78284faac22747762aefba2c0" method="post">
-            <input type='hidden' name='redirect_to' value='{{ site.baseurl }}/pages/thankyou' />
-                 <div class='form-group'>
-                    <label for='name'>Name</label>
-                    <input type='text' name='name' class='form-control'/>
-                </div>
-                <div class='form-group'>
-                    <label for='email'>Email</label>
-                    <input type='text' name='email' class='form-control'/>
-                </div>
-                <div class='form-group'>
-                    <label for='kind'>Kind</label>
-                    <select name='kind' class='form-control'>
-                       <option selected>inquiry regarding the language</option>
-                       <option>feature request</option>
-                       <option>icon request</option>
-                       <option>share an idea for improvement</option>
-                       <option>request access to the reposity as a collaborator</option>
-                   </select>
-               </div>
-               <div class='form-group'>
-                <label for='message'>Message</label>
-                <textarea name='message' class='form-control' rows='8'></textarea>
-            </div>
-            <input type='submit' value='Send' class='btn btn-primary pull-right'/>
-        </form>
-
+        
+        <p>Due to an enormous amount of spam received by the previous contact form we disabled it. We encourage you to contact us through our github repository submitting an issue or directly through our <a href='http://ead.pucv.cl'>school web page</a>. Sorry for the inconvenience</p>
 
         <h3>Contact Information</h3>
 
