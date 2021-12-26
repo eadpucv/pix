@@ -3,18 +3,32 @@
 
 /******************************************** Variables */
 
-@pix-border-width: 4px;
-@pix-border-color: #ccd4d1;
-@pix-block-height: 120px;
-@pix-size: 36px;
+@pix-border-width:				4px;
+@pix-border-color:				#ccd4d1;
+@edit-color:					#efefd7;
+@pix-block-height:				120px;
+@pix-block-width:				100px;
+@pix-size:						4em;
+@tools-offset:					10px;
+@radius:						6px;
+@pix-score-margin-top:			4rem;
+@pix-score-margin-bottom:		11rem;
+@pix-list-side:					500px;
+@pix-list-padding:				30px;
+
+.pix-app{
+	min-height: 50rem;
+}
 
 /****************************************** Score Title */
+
 .input-style{
 		padding: 4px;
 		overflow: auto;
 		border: none;
 		border-radius: @radius;
 		cursor: text;
+		background-color: transparent;
 		&:active,
 		&:focus,
 		&:hover{
@@ -25,190 +39,466 @@
 
 h1.score-header{
 	margin: 0;
+	font-size: 32px;
+	margin: 12px 0;
+	color: @orange;
+	line-height: 42px;
 	input{
 		font-size: 32px;
 		margin: 12px 0;
 		color: @orange;
 		line-height: 42px;
+		width: 100%;
 		.input-style;
 	}
 }
+
 .score-description{
 	display: block;
 	width: 100%;
 	.input-style;
+	margin-top: 0;
 }
 
 
 /******************************************** The Score */
 
 .pix-score{
-	margin: 10px -@pix-border-width 32px -@pix-border-width;
-	margin-bottom: 32px;
 	.cf;
+	margin: 10px -@pix-border-width 0 -@pix-border-width;
 	ul li{
 		display: inline-block;
 		list-style-type: none;
 	}
-	
+
 	ul, ul li ul{
 		margin: 0;
 		padding: 0;
 		li{
 			list-style-type: none;
-			display: inline-block;
+			display: table;
 		}
 	}
-
+	/*Aqui agregue un arreglo poco elegantge para la mascara de overflow horizontal*/
+	.step-mask {
+		float: left;
+		padding-top: .7rem;
+		padding-left: .4rem;
+		width: 88%;
+		//height: 387px;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
 	ul{
 		&.pix-header{
-			background-color: @border-color;
-			border-radius: @pix-border-width * 2 0 0 @pix-border-width * 2;
+			float: left;
+			margin-top: @pix-score-margin-top + .7rem;
+			background-color: lighten(@pix-border-color, 10);
+			border-radius: @pix-border-width*2 0 0 @pix-border-width*2;
+			border-left: @pix-border-width solid @pix-border-color;
+			width: @pix-block-width;
+			display: inline-block;
 			li{
-				&.block-user{border-top: none}
-				&.block-system{border-bottom: none}
+				&:first-child{
+					border-top: @pix-border-width solid @pix-border-color;
+				}
+
+				&:last-child{
+					border-bottom: @pix-border-width solid @pix-border-color;
+				}
 				
-				width: 100%;
-				.tcenter;
-				font-weight: 600;
-				line-height: 1em;
-				color: fade(@black, 30%);
-				label{font-size: .8em}
 				.pix-group{
-					width: 100% !imporant;
+					font-weight: 600;
+					height: @pix-block-height;
+					color: fade(@black, 40%);
 					.pix{
-						margin-bottom: 12px;
+						font-size: @pix-size;
+					}
+					label{
+						font-size: 1.2em;
+					}
+					&:hover{
+						background-color: transparent;
+						box-shadow: none;
 					}
 				}
 			}
 		}
-
+		
 		&.pix-steps{
+			display: block;
+			margin-top: @pix-score-margin-top;
+			margin-bottom: @pix-score-margin-bottom;
 			li.pix-step{
-				&.split{
-					border-left: 1px solid @border-color;
+				position: relative;
+				width: @pix-block-width;
+				display: inline-block;
+				margin-left: -4px; // strange bug
+				ul.split{
+					border-left: 1px solid darken(@pix-border-color, 15);
 				}
 				&:last-child{
 					border-radius: @pix-border-width * 2;
-					border-right: @pix-border-width solid @border-color;
+					border-right: @pix-border-width solid @pix-border-color !important;
 				}
 				&:hover{
-					background-color: lighten(@edit-color, 10);
-					&:before{
-						display: block;
-						position: absolute;
-						top: -20px;
-						content: 'split score';
-						.note;
-					}
-					&:after{
-						display: block;
-						position: absolute;
-						content: 'add note';
-						.note;
-					}
+					background-color: fade(@edit-color, 15);
 				}
 			}
 		}
 	}
 
 	.note{
-		padding: 4px;
+		display: inline-block;
+		position: absolute;
+		padding: 0;	
 		font-size: 11px;
 		font-family: @font-family-serif;
-		color: desaturate(darken(@edit-color, 30), 20);
+		color: fade(@black, 70%);
 		line-height: 100%;
-	}
-
-}
-
-.pix-group{
-	//display: table-cell;
-	margin-top: 1em;
-	height: @pix-block-height;
-	vertical-align: middle;
-	text-align: center;
-	cursor: pointer;
-	.pix{
-		font-size: 3em;
+		overflow: hidden;
 		
+		&.top{
+			min-height: @pix-score-margin-top;
+			font-weight: bold;
+			vertical-align: text-bottom;		
+		}
+
+		&.bottom{
+			padding-top: 8px;
+			background-color: transparent;
+			max-height: @pix-score-margin-bottom;
+		}
 	}
 
-	.pix-stack{
-		.stack-top{
-			top: -30%;
-			left: -2%;
-		}
-		.stack-bottom{
-			top: 30%;
-			left: -2%;
-		}
-		.stack-left{
-			left: -33%;
-		}
-		.stack-right{
-			left: 33%;
-		}
-		.stack-top-left{
-			top: -33%;
-			left: -33%;
-		}
-		.stack-top-right{
-			top: -33%;
-			left: 33%;
-		}
-		.stack-bottom-left{
-			top: 33%;
-			left: -33%;
-		}
-		.stack-bottom-right{
-			top: 33%;
-			left: 33%;
+	&.template-pix{
+		.note{
+			&.top{bottom: @pix-block-height * 3 + 12px;}
+			&.bottom{top: @pix-block-height * 3 + 12px;}
 		}
 	}
-	strong{
-		font-weight: 900;
+
+	&.template-blueprint{
+		.note{
+			&.top{bottom: @pix-block-height * 5 + 12px;}
+			&.bottom{top: @pix-block-height * 5 + 12px;}
+		}
+	}
+
+	&.template-blueprint{
+		ul.pix-header li:last-child,
+		ul.pix-steps li.pix-step ul li:last-child{
+			border-top: 1px dotted @pix-border-color;
+		}
 	}
 }
 
-.block{
-	
-	p{
-		margin: 1em 0 0 0;
-		font-size: .66em;
-		line-height: 98%;
-	}
 
+
+
+li.block{
+	position: relative;
+	display: table;
+	list-style-type: none;
 	text-align: center;
 	vertical-align: middle;
 	height: @pix-block-height;
-	padding: 0 12px;
+	padding: 0;
 	margin: 0;
 	width: 100%;
 
-	&.block-user{
-		border-top: @pix-border-width solid @border-color;
-		border-bottom: 1px dotted @pix-border-color;
-	}
+	&:first-child{border-top: @pix-border-width solid @pix-border-color;}
+	&:last-child{border-bottom: @pix-border-width solid @pix-border-color;}
+
+	&.block-environment,
+	&.block-user{border-bottom: 1px dotted @pix-border-color}
 	&.block-dialogue{border-bottom: 3px solid @pix-border-color}
-	&.block-system{border-bottom: @pix-border-width solid @border-color;}
-	
-	input[type="text"]{
-		font-size: 12px;
-		padding: 4px;
-		margin: 20px 0 0 0;
-		overflow: hidden;
-		width: 70px;
+	&.block-system{}
+
+	.pix-div-input,
+	.pix-group,	
+	textarea{
+		.cf;
+		display: table-cell;
 		text-align: center;
+		vertical-align: middle;
+		height: @pix-block-height;
+		font-size: 11px;
+		line-height: 100%;
+		padding: 5px;
 		border: none;
-		-moz-border-radius: @radius;
-		-webkit-border-radius: @radius;
-		border-radius: @radius;
+		width: 100% !important;
+		background-color: transparent;
+	
 		&:active,
 		&:focus,
 		&:hover{
-			box-shadow: 0 0 2px @edit-color inset;
+			border: none;
+			box-shadow: 0 0 0 2px @edit-color inset;
 			background-color: fade(@edit-color, 30);
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		i.pix{
+			display: block;
+			text-align: center;
+			font-size: @pix-size;
+			line-height: 100%;
+			white-space: nowrap;
 		}
 	}
 }
+
+.pix-group span.tcenter{display: block}
+
+
+.nav li a .pix{
+	&.pix-2x{line-height: 0}
+} 
+
+.note .input-note {
+	margin: 10px 0 0 10px;
+	display: none;
+	width: 85px;
+	height: 80px;
+	border: none;
+	line-height: 95%;
+}
+
+
+.select-layout-container {
+	position: absolute;
+	text-align: center;
+	left: 0;
+	right: 0;
+	top: -6 * @pix-list-padding;
+	bottom: 0;
+	margin: auto;
+	width: 30rem;
+	height: 24rem;
+	padding: 2rem;
+	z-index: 9999;
+	background: @white;
+	.overlay;
+
+	a {
+		display: inline-block;
+		padding: 1rem;
+		width: 45%;
+		padding: 1rem;
+		font-size: 1.5rem;
+		.pix-group {
+			font-size: 4rem;
+		}
+		text-align: center;
+		&:hover{text-decoration: none}
+	}
+}
+
+
+.pix-icon-list {
+	position: absolute;
+	width: @pix-list-side + (2 * @pix-list-padding);
+	height: @pix-list-side;
+	top: -2 * @pix-list-padding;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	padding: @pix-list-padding;
+	.overlay;
+	z-index: 9999;
+
+	ul {
+		display: block;
+		list-style: none;
+		height: @pix-list-side - (2 * @pix-list-padding);
+		margin: 0;
+		padding: 0;
+		overflow: auto;
+		li {
+			display: inline-block;
+			a {
+				display: block;
+				min-width: 115px;
+				padding: .5em;
+				text-align: center;
+				border-radius: @radius;
+				i.pix{
+					display: inline-block;
+					text-align: center;
+					font-size: 36px;
+					line-height: 100%;
+					white-space: nowrap;
+					color: @black;
+				}
+				&:hover {
+					background-color: fade(@edit-color, 50);
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+// drop-down and select class. Use in combination with: <ul class="select nav nav-stacked pix-ul">
+ul.pix-ul li.active a {
+	background-color: saturate(fade(@brand-primary, 30), 30);
+}
+
+ul.select{
+	position: absolute;
+	z-index: 1000 !important;
+	width: 200px;
+	height: 250px;
+	overflow-y: scroll;
+	background-color: @white;
+	border-radius: @radius;
+	box-shadow: 3px 3px 0 fade(@black, 10);
+	border: @pix-border-width/2 solid darken(@border-color, 10);
+	margin: 0 10px 0 0;
+	li{
+		a{
+			font-size: 14px;
+			color: @black;
+			padding: 5px;
+			.pix{
+				font-size: 36px; // @pix-size;
+			}
+			&:hover{
+				background-color: saturate(fade(@brand-primary, 10), 30);
+			}
+		}
+	}
+}
+
+
+.pix-step:hover .fly-link {
+	display: inline-block;
+}
+
+.fly-link {
+	display: none;
+	position: absolute;
+	background-color: transparent;
+	&.top {
+		top: -@tools-offset - 2px;
+		z-index: 100;
+	}
+	&.bottom {
+		bottom: -@tools-offset;
+		z-index: 101;
+	}
+}
+
+.btn-tools{
+	padding: 0 !important;
+	line-height: 100%;
+	.size(16px, 16px);
+	.img-circle;
+	color: @white;
+	text-shadow: 0 0 2px @white;
+	background-color: @gray-light;
+	box-shadow: 0 0 0 3px fade(@white, 90);
+	margin: 0 1px;
+	img{
+		position: relative;
+		.size(12px, 12px);
+		top: -3px;
+	}
+	&:hover{
+		&.tool-split{background-color: @blue}
+		&.tool-remove{background-color: @red}
+		&.tool-add{background-color: @green}
+		&.tool-note{background-color: @blue}
+	}
+}
+
+.pix-div-input {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	height: 120px;
+	font-size: 11px;
+	line-height: 100%;
+	padding: 5px;
+	border: 0px none;
+	width: 100% !important;
+	&:active{
+		text-align: center;
+		vertical-align: middle;
+	}
+}
+
+
+.pix-div-input:hover {
+	border: 0px none;
+	box-shadow: 0px 0px 0px 2px #EFEFD7 inset;
+	background-color: rgba(239, 239, 215, 0.3);
+}
+
+li.block textarea {
+	display: none;
+}
+
+.pix-div-input i {
+	display: block;
+	font-size: 400%;
+}
+
+.pix-step{
+	.note {
+		display: none;
+		border: none;
+		width: 94px;
+		&.bottom {
+			
+		}
+		&.active {
+			display: block;
+		}
+	}
+
+	&.pix-step-wide{
+		width: 33%;
+	}
+}
+
+.upload-json {
+	display: none !important;
+}
+
+.button-close {
+	position: absolute;
+	display: inline-block !important;
+	right: -12px;
+	top: -14px;
+	font-family: pix;
+	font-size: 47px !important;
+	background-color: @brand-primary;
+	color: @white;
+	text-decoration: none;
+	line-height: 27px;
+	width: 27px !important;
+	height: 27px;
+	text-align: center;
+	box-shadow: 0 0 2px @black;
+	border-radius: 50%;
+	text-transform: none;
+    text-rendering: optimizeLegibility;
+    font-variant-ligatures: common-ligatures;
+    padding: 0 !important;
+    &:before{
+		content: "cancel"
+    }
+	&:hover{
+		color: @white;
+		text-decoration: none;
+		background-color: lighten(@brand-primary, 15);
+	}
+}
+
+
+.button-restore, .button-reset{margin: 3em 0 0 20%}
+.button-restore{.btn-success}
+.button-reset{.btn-danger}

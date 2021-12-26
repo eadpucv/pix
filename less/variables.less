@@ -9,35 +9,40 @@
 // Grays
 // -------------------------
 
-@black:					rgb(3, 3, 3);
-@white:					rgb(255,255,255);
+@black:					#2E1948;
+@white:					#FFF;
 @orange:				#e24414;
 @gray-darker:			lighten(#000, 13.5%); // #222
 @gray-dark:				lighten(#000, 20%);   // #333
 @gray:					lighten(#000, 33.5%); // #555
 @gray-light:			lighten(#000, 60%);   // #999
 @gray-lighter:			lighten(#000, 93.5%); // #eee
+@red: 					#ff5247;
+@green: 				#65b941;
+@blue: 					#3476ac;
+
 
 // Brand colors
 // -------------------------
 
-@brand-primary:			#d95021;
-@brand-success:			#86b853;
-@brand-warning:			#f0b428;
-@brand-danger:			#cc7161;
-@brand-info:			#4bc0de;
+@brand-primary:			#D94021;
+@brand-success:			#8DD15E;
+@brand-warning:			#FFC972;
+@brand-danger:			#F17061;
+@brand-info:			#2EC0ED;
 
 // Scaffolding
 // -------------------------
 
 @body-bg:				#fff;
-@text-color:			@gray-dark;
+@text-color:			darken(@black, 10); // @gray-dark;
 
 // Links
 // -------------------------
 
 @link-color:			@brand-primary;
 @link-hover-color:		spin(saturate(@link-color, 20%), 19%);
+@border-color:			lighten(@gray-light, 30);
 
 // Typography
 // -------------------------
@@ -78,21 +83,24 @@
 @padding-base-vertical:          6px;
 @padding-base-horizontal:        12px;
 
+@padding-large: 				@padding-large-vertical @padding-large-horizontal;
 @padding-large-vertical:         10px;
 @padding-large-horizontal:       16px;
 
+@padding-small:					@padding-small-vertical @padding-small-horizontal;
 @padding-small-vertical:         5px;
 @padding-small-horizontal:       10px;
 
 @padding-xs-vertical:            1px;
 @padding-xs-horizontal:          5px;
 
+
 @line-height-large:              1.33;
 @line-height-small:              1.5;
 
 @border-radius-base:			4px;
-@border-radius-large:			12px;
-@border-radius-small:			3px;
+@border-radius-large:			4px;// 12px;
+@border-radius-small:			2px;
 
 @radius:						@border-radius-base;
 
@@ -146,7 +154,6 @@
 @btn-info-border:                darken(@btn-info-bg, 5%);
 
 @btn-link-disabled-color:        @gray-light;
-@edit-color:					 #efefd7;
 
 
 // Forms
@@ -249,7 +256,7 @@
 // Number of columns in the grid system
 @grid-columns:              12;
 // Padding, to be divided by two and applied to the left and right of all columns
-@grid-gutter-width:         0;
+@grid-gutter-width:         30px;
 
 // Navbar collapse
 
@@ -297,8 +304,8 @@
 //
 // Reset inverted navbar basics
 @navbar-inverse-color:                      @gray-light;
-@navbar-inverse-bg:                         #222;
-@navbar-inverse-border:                     darken(@navbar-inverse-bg, 10%);
+@navbar-inverse-bg:                         @black;
+@navbar-inverse-border:                     lighten(@navbar-inverse-bg, 10%);
 
 // Inverted navbar links
 @navbar-inverse-link-color:                 @gray-light;

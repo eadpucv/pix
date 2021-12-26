@@ -1,539 +1,297 @@
 ---
 layout: base
-title: PiX - Icons
+title: Icons
 active: icons
 ---
 
-<h3><span>Font Name:</span> PiX <small>(Version {{ site.pixver }} — Glyphs:&nbsp;128)</small></h3>
-<p>This font family is designed specially for representing the actions and processes involved in the flow of user experience. Different categories work as standalone icons or as a part of a more complex symbol.</p>
-
-<h4 id='meta'>PiX Meta Elements</h4>
-<p>These icons serve testing purposes, for alignment and stacking. The final deploy of the app will exclude most of them.</p>
+<h3>PiXograms</h3>
 <div class='row'>
-    {% include col-pix.html name='pix' %}
-    {% include col-pix.html name='grid-center' %}
-    {% include col-pix.html name='grid-ul' %}
-    {% include col-pix.html name='grid-horizontal' %}
-    {% include col-pix.html name='grid' %}
-</div>
-<hr>
-<h4 id='containers'>Containers</h4>
-<p>These icons are meant for containing objects and may are used in combination with others, mainly <a href='#objects'>objects</a>.</p>
-<div class='row'>
-    {% include col-pix.html name='square' %}
-    {% include col-pix.html name='square-dashed' %}
-    {% include col-pix.html name='pile' %}
-    {% include col-pix.html name='circle' %}
-    {% include col-pix.html name='circle-dashed' %}
-    {% include col-pix.html name='say' %}
-    {% include col-pix.html name='dialogue' %}
-    {% include col-pix.html name='think' %}
-    {% include col-pix.html name='cloud' %}
-    {% include col-pix.html name='email' %}
-    {% include col-pix.html name='message' %}
-    {% include col-pix.html name='database' %}
-</div>
-<div class='row'>
-    {% include col-pix.html name='window' %}
-    {% include col-pix.html name='book' %}<
-    {% include col-pix.html name='gear' %}
-    {% include col-pix.html name='interaction' %}
-    {% include col-pix.html name='refresh' %}
-    {% include col-pix.html name='reload' %}
-</div>
-<hr>
-<h4 id='controls'>Devices</h4>
-<div class='row'>
-    {% include col-pix.html name='mobile' %}
-    {% include col-pix.html name='mobile-vibrate' %}
-    {% include col-pix.html name='mobile-rotate' %}
-    {% include col-pix.html name='mobile-shake' %}
-    {% include col-pix.html name='mobile-orient' %}
-    {% include col-pix.html name='tablet' %}
-    {% include col-pix.html name='notebook' %}
-    {% include col-pix.html name='desktop' %}
-
-</div>
-<hr>
-<h4 id='controls'>Controls & Overlays</h4>
-<p>These icons are mainly suited for the middle row (interaction and dialogues). Along with the <a href='#touch'>touch gestures</a>, all combinations try to depict all possible user actions through the interface. Maybe some are still missing.</p>
-<div class='row'>
-    {% include col-pix.html name='trackpad' %}
-    {% include col-pix.html name='game' %}
-    {% include col-pix.html name='mouse' %}
-    {% include col-pix.html name='click-left' %}
-    {% include col-pix.html name='click-center' %}
-    {% include col-pix.html name='click-right' %}
-    {% include col-pix.html name='keyboard' %}
-    {% include col-pix.html name='keyboard-type' %}
-    {% include col-pix.html name='keyboard-arrows' %}
-    {% include col-pix.html name='keyboard-enter' %}
-    {% include col-pix.html name='keyboard-tab' %}
-</div>
-<hr>
-<h4>Arrows</h4>
-<div class='row'>
-    {% include col-pix.html name='arrow-up' %}
-    {% include col-pix.html name='arrow-up' %}
-    {% include col-pix.html name='arrow-down' %}
-    {% include col-pix.html name='arrow-left' %}
-    {% include col-pix.html name='arrow-right' %}
-    {% include col-pix.html name='arrows-expand' %}
-    {% include col-pix.html name='arrows-collapse' %}
-    {% include col-pix.html name='arrows-move' %}
-    {% include col-pix.html name='arrows-diagonal' %}
-    {% include col-pix.html name='arrows-horizontal' %}
-    {% include col-pix.html name='arrows-vertical' %}
-    {% include col-pix.html name='arrow-rotate' %}
-</div>
-<div class='row'>
-    {% include col-pix.html name='arrows-cycle' %}
-</div>
-<hr>
-<h4>Playback Buttons</h4>
-<div class='row'>
-    {% include col-pix.html name='play' %}
-    {% include col-pix.html name='rewind' %}
-    {% include col-pix.html name='fast-forward' %}
-    {% include col-pix.html name='previous' %}
-    {% include col-pix.html name='next' %}
-    {% include col-pix.html name='stop' %}
-    {% include col-pix.html name='pause' %}
-    {% include col-pix.html name='rec' %}
-</div>
-<h4>Face Expressions</h4>
-<p>These icons are meant for the upper row of the score, for depicting user emotions and moods, mainly as a result of interaction with the system.</p>
-<div class='row'>
-    {% include col-pix.html name='user' %}
-    {% include col-pix.html name='user-smiling' %}
-    {% include col-pix.html name='user-laughing' %}
-    {% include col-pix.html name='user-sad' %}
-    {% include col-pix.html name='user-upset' %}
-    {% include col-pix.html name='user-surprised' %}
-    {% include col-pix.html name='user-intrigued' %}
-    {% include col-pix.html name='robot' %}
-</div>
-<hr>
-<h4 id='touch'>Touch Gestures</h4>
-<p>All possible finger gestures, for combining with arrows. They can also be rotated or fliped.</p>
-<div class='row'>
-    {% include col-pix.html name='touch' %}
-    {% include col-pix.html name='touch-1' %}
-    {% include col-pix.html name='touch-2' %}
-    {% include col-pix.html name='touch-3' %}
-    {% include col-pix.html name='touch-4' %}
-    {% include col-pix.html name='touch-5' %}
-    {% include col-pix.html name='hand' %}
-    {% include col-pix.html name='pinch' %}
-    {% include col-pix.html name='thumb' %}
-    {% include col-pix.html name='thumb-down' %}
-</div>
-<hr>
-<h4 id='objects'>Objects</h4>
-<p>Standard objects and constructs depicting actions (ie. search, filter, read, etc.)</p>
-<div class='row'>
-    {% include col-pix.html name='cube' %}
-    {% include col-pix.html name='file' %}
-    {% include col-pix.html name='envelope' %}
-    {% include col-pix.html name='picture' %}
-    {% include col-pix.html name='video' %}
-    {% include col-pix.html name='sound' %}
-    {% include col-pix.html name='comment' %}
-    {% include col-pix.html name='comments' %}
-    {% include col-pix.html name='contact' %}
-    {% include col-pix.html name='calendar' %}
-    {% include col-pix.html name='clock' %}
-    {% include col-pix.html name='position' %}
-</div>
-<div class='row'>
-    {% include col-pix.html name='compass' %}
-    {% include col-pix.html name='lightbulb' %}
-    {% include col-pix.html name='cog' %}
-    {% include col-pix.html name='feed' %}
-    {% include col-pix.html name='list' %}
-    {% include col-pix.html name='text' %}
-    {% include col-pix.html name='page' %}
-    {% include col-pix.html name='gallery' %}
-    {% include col-pix.html name='ok' %}
-    {% include col-pix.html name='no' %}
-    {% include col-pix.html name='plus' %}
-    {% include col-pix.html name='minus' %}
-</div>
-<div class='row'>
-    {% include col-pix.html name='question' %}
-    {% include col-pix.html name='alert' %}
-    {% include col-pix.html name='pencil' %}
-    {% include col-pix.html name='wrench' %}
-    {% include col-pix.html name='type' %}
-    {% include col-pix.html name='search' %}
-    {% include col-pix.html name='filter' %}
-    {% include col-pix.html name='read' %}
-    {% include col-pix.html name='link' %}
-    {% include col-pix.html name='lock' %}
-    {% include col-pix.html name='unlock' %}
-    {% include col-pix.html name='tag' %}
-</div>
-<div class='row'>
-    {% include col-pix.html name='camera' %}
-    {% include col-pix.html name='camera-video' %}
-    {% include col-pix.html name='microphone' %}
-    {% include col-pix.html name='checkbox' %}
-    {% include col-pix.html name='radio' %}
-    {% include col-pix.html name='slider' %}
-    {% include col-pix.html name='select' %}
-    {% include col-pix.html name='radio-select' %}
-    {% include col-pix.html name='switch' %}
-    {% include col-pix.html name='call' %}
-    {% include col-pix.html name='hang-up' %}
-</div>
-<hr>
-<h1>Stacked Combinations</h1>
-<p>The following are various examples of stacked icons and their possibilities extending the initial icon set. These combinations can be stacked with different positioning criteria according to this grid:</p>
-<div class='row'>
-    {% include col-pix-stack.html pix1='grid gray' pix2='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' top='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' bottom='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' left='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' right='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' top-left='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' top-right='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' bottom-left='grid-center orange' %}
-    {% include col-pix-stack.html pix1='grid gray' bottom-right='grid-center orange' %}
+	<div class='col-md-6' lang='en'>
+		<p>The Pixograms font family is designed specially for representing the actions, processes and objects involved in the flow of user experience. It works as a <a href='http://eadpucv.github.io/pixograms'>separate repository</a> and works as a dependency for PiX so its easier to maintain and upgrade.</p>
+	</div>
+	<div class='col-md-6' lang='es'>
+		<p>La familia tipográfica Pixograms está especialmente diseñada para representar las acciones, procesos y objetos involucrados en el flujo de experiencia del usuario. Trabaja como un <a href='http://eadpucv.github.io/pixograms'>repositorio independiente</a> y es una dependencia de PiX de tal forma que resulta más sencilla su mantención y actualización.</p>
+	</div>
 </div>
 
-<h2>Control Interactions</h2>
-<h4>Mouse</h4>
-<p>Standard generic mouse actions</p>
-<div class='row'>
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='click' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-right' top-left='click' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' pix3='click-right' top-left='click' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-move' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-diagonal' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrows-diagonal pix-flip-vertical' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-center' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='arrow-right' %}
 
-</div>
-<p>Mouse and interface elements</p>
+<h4>All Icons</h4>
+This textarea uses pixograms as the base font, so you can type the icon names and they'll appear as ligatures. <a href="http://eadpucv.github.io/pixograms">Check the original repository</a>
+
+<textarea class='pix pix-2x pix-demo' rows='7'>add alert angry api archive ask attach audio autocomplete body branch button buy call camera cancel check checkbox click clock cloud collapse color comment config contact contacts copy cut database date delete desktop deviceorient devicerotate deviceshake devicevibrate dialogue dislike doubleclick doubletap down download drag drop edit email empty expand export face ff file film filter furious gallery game hand hand1 hangup happy image import input intrigued kiosk left like link list lock logo map merge message mobile move next notebook notify page password paste pause pay person pinch play position prev print process progress qr radio radioselect range rec remove resize rew right rotate route rss sad save say scroll search select send share smiling speak stack stop surprised switch system tablet tag tap tap1down tap1left tap1right tap1up tap2 tap2down tap2left tap2right tap2up tap3 tap3down tap3left tap3right tap3up tap4 tap4down tap4left tap4right tap4up tap5down tap5left tap5right tap5up text think time tv unlink unlock up update upload video view window zoom </textarea>
+
+<h2>Meta</h2>
+<p>Score headers and meta icons.</p>
 <div class='row'>
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='ok' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='ok green' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='no' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='no red' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='radio' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='checkbox' %}
-    {% include col-pix-stack.html pix1='mouse' pix2='click-left' top-left='slider' %}
+{% include col-pix.html name='logo' %}
+{% include col-pix.html name='person' %}
+{% include col-pix.html name='dialogue' %}
+{% include col-pix.html name='system' %}
+{% include col-pix.html name='empty' %}
 </div>
-<h4>Trackpad</h4>
+
+<h3>Generic</h3>
+<p>Multipurpose</p>
 <div class='row'>
-    {% include col-pix-stack.html pix1='trackpad' top='click' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrows-move' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrows-cycle' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrow-rotate' %}
-    {% include col-pix-stack.html pix1='trackpad' top='arrow-right' %}
-    {% include col-pix-stack.html pix1='trackpad' top='radio' %}
-    {% include col-pix-stack.html pix1='trackpad' top='checkbox' %}
-    {% include col-pix-stack.html pix1='trackpad' top='slider' %}
+{% include col-pix.html name='up' %}
+{% include col-pix.html name='down' %}
+{% include col-pix.html name='left' %}
+{% include col-pix.html name='right' %}
 </div>
-<h4>Keyboard</h4>
+
+<h3>Devices</h3>
+<p>Devices serve to specify what kind of interaction is involved. It's the key to the score:</p>
 <div class='row'>
-    {% include col-pix-stack.html pix1='keyboard' top='keyboard-type' %}
-    {% include col-pix-stack.html pix1='keyboard' top='keyboard-enter' %}
-    {% include col-pix-stack.html pix1='keyboard' top='keyboard-tab' %}
-    {% include col-pix-stack.html pix1='keyboard' top='keyboard-arrows' %}
-</div>
-<h4>Touch Gestures</h4>
-<div class='row'>
-    {% include col-pix-stack.html pix1='touch' top-left='click' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='click' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='click' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='click' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='click' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='click' %}
-    {% include col-pix-stack.html pix1='pinch' top-left='arrows-diagonal' %}
-    {% include col-pix-stack.html pix1='pinch' top-left='arrow-rotate' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrow-right' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-up' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-down' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-left' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrow-right' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrows-vertical' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='touch-5' top-left='arrows-vertical' %}
-    {% include col-pix-stack.html pix1='touch-4' top-left='arrows-horizontal' %}
-    {% include col-pix-stack.html pix1='hand' top-left='arrows-expand' %}
-    {% include col-pix-stack.html pix1='hand' top-left='arrows-collapse' %}
-    {% include col-pix-stack.html pix1='touch-1' top-left='arrows-move' %}
-    {% include col-pix-stack.html pix1='touch-2' top-left='arrows-move' %}
-    {% include col-pix-stack.html pix1='touch-3' top-left='arrows-move' %}
-</div>
-<p>These are some examples of touch interactions with specific screen elements o with special meaning:</p>
-<div class='row'>
-    {% include col-pix-stack.html pix1='touch' top-left='click' %}
-    {% include col-pix-stack.html pix1='touch' top-left='switch' %}
-    {% include col-pix-stack.html pix1='touch' top-left='checkbox' %}
-    {% include col-pix-stack.html pix1='touch' top-left='radio' %}
-    {% include col-pix-stack.html pix1='touch' top-left='select' %}
-    {% include col-pix-stack.html pix1='touch' top-left='radio-select' %}
-    {% include col-pix-stack.html pix1='touch' top-left='type' %}
-    {% include col-pix-stack.html pix1='touch' top-left='slider' %}
-    {% include col-pix-stack.html pix1='touch' top-left='ok' %}
-    {% include col-pix-stack.html pix1='touch' top-left='no' %}
-    {% include col-pix-stack.html pix1='touch' top-left='plus' %}
-    {% include col-pix-stack.html pix1='touch' top-left='minus' %}
-</div>
-<h4>User Intent & Actions</h4>
-<div class='row'>
-    {% include col-pix-stack.html pix1='think' pix2='cube' %}
-    {% include col-pix-stack.html pix1='think' pix2='lightbulb' %}
-    {% include col-pix-stack.html pix1='think' pix2='read' %}
-    {% include col-pix-stack.html pix1='think' pix2='search' %}
-    {% include col-pix-stack.html pix1='think' pix2='filter' %}
-    {% include col-pix-stack.html pix1='think' pix2='contact' %}
-    {% include col-pix-stack.html pix1='think' pix2='calendar' %}
-    {% include col-pix-stack.html pix1='think' pix2='position' %}
-    {% include col-pix-stack.html pix1='think' pix2='clock' %}
-    {% include col-pix-stack.html pix1='think' pix2='cog' %}
-    {% include col-pix-stack.html pix1='think' pix2='list' %}
-    {% include col-pix-stack.html pix1='think' pix2='pencil' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='say' pix2='sound' %}
-    {% include col-pix-stack.html pix1='say' pix2='lightbulb' %}
-    {% include col-pix-stack.html pix1='say' pix2='search' %}
-    {% include col-pix-stack.html pix1='say' pix2='contact' %}
-    {% include col-pix-stack.html pix1='say' pix2='calendar' %}
-    {% include col-pix-stack.html pix1='say' pix2='position' %}
-    {% include col-pix-stack.html pix1='say' pix2='question' %}
-    {% include col-pix-stack.html pix1='say' pix2='cog' %}
-    {% include col-pix-stack.html pix1='say' pix2='list' %}
-    {% include col-pix-stack.html pix1='say' pix2='ok' %}
-    {% include col-pix-stack.html pix1='say' pix2='no' %}
-    {% include col-pix-stack.html pix1='say' pix2='tag' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix2='pile' pix1='sound' %}
-    {% include col-pix-stack.html pix2='pile' pix1='lightbulb' %}
-    {% include col-pix-stack.html pix2='pile' pix1='picture' %}
-    {% include col-pix-stack.html pix2='pile' pix1='contact' %}
-    {% include col-pix-stack.html pix2='pile' pix1='calendar' %}
-    {% include col-pix-stack.html pix2='pile' pix1='position' %}
-    {% include col-pix-stack.html pix2='pile' pix1='video' %}
-    {% include col-pix-stack.html pix2='pile' pix1='read' %}
-    {% include col-pix-stack.html pix2='pile' pix1='list' %}
-    {% include col-pix-stack.html pix2='pile' pix1='text' %}
-    {% include col-pix-stack.html pix2='pile' pix1='page' %}
-    {% include col-pix-stack.html pix2='pile' pix1='gallery' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='circle-dashed' pix2='thumb' %}
-    {% include col-pix-stack.html pix1='circle-dashed' pix2='thumb-down' %}
-    {% include col-pix-stack.html pix1='email' pix2='cube' %}
-    {% include col-pix-stack.html pix1='email' pix2='lightbulb' %}
-    {% include col-pix-stack.html pix1='email' pix2='sound' %}
-    {% include col-pix-stack.html pix1='email' pix2='link' %}
-    {% include col-pix-stack.html pix1='email' pix2='contact' %}
-    {% include col-pix-stack.html pix1='email' pix2='calendar' %}
-    {% include col-pix-stack.html pix1='email' pix2='position' %}
-    {% include col-pix-stack.html pix1='email' pix2='cog' %}
-    {% include col-pix-stack.html pix1='email' pix2='list' %}
-    {% include col-pix-stack.html pix1='email' pix2='question' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='message' pix2='list' %}
-    {% include col-pix-stack.html pix1='message' pix2='text' %}
-    {% include col-pix-stack.html pix1='message' pix2='page' %}
-    {% include col-pix-stack.html pix1='message' pix2='gallery' %}
-    {% include col-pix-stack.html pix1='window' pix2='list' %}
-    {% include col-pix-stack.html pix1='window' pix2='text' %}
-    {% include col-pix-stack.html pix1='window' pix2='page' %}
-    {% include col-pix-stack.html pix1='window' pix2='gallery' %}
-    {% include col-pix-stack.html pix1='message' pix2='alert' %}
-    {% include col-pix-stack.html pix1='message' pix2='question' %}
-    {% include col-pix-stack.html pix1='window' pix2='alert' %}
-    {% include col-pix-stack.html pix1='window' pix2='question' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='message' pix2='link' %}
-    {% include col-pix-stack.html pix1='message' pix2='position' %}
-    {% include col-pix-stack.html pix1='message' pix2='feed' %}
-    {% include col-pix-stack.html pix1='message' pix2='contact' %}
-    {% include col-pix-stack.html pix1='message' pix2='type' %}
-    {% include col-pix-stack.html pix1='window' pix2='link' %}
-    {% include col-pix-stack.html pix1='window' pix2='position' %}
-    {% include col-pix-stack.html pix1='window' pix2='feed' %}
-    {% include col-pix-stack.html pix1='window' pix2='contact' %}
-    {% include col-pix-stack.html pix1='window' pix2='type' %}
-    {% include col-pix-stack.html pix1='book' pix2='contact' %}
-    {% include col-pix-stack.html pix1='book' pix2='read' %}
+{% include col-pix.html name='mobile' %}
+{% include col-pix.html name='tablet' %}
+{% include col-pix.html name='notebook' %}
+{% include col-pix.html name='desktop' %}
+{% include col-pix.html name='tv' %}
+{% include col-pix.html name='kiosk' %}
+{% include col-pix.html name='game' %}
 </div>
 <hr>
-<h4>System Response</h4>
+
 <div class='row'>
-    {% include col-pix-stack.html pix1='reload' pix2='cog' %}
-    {% include col-pix-stack.html pix1='reload' pix2='ok' %}
-    {% include col-pix-stack.html pix1='reload' pix2='no' %}
-    {% include col-pix-stack.html pix1='reload' pix2='clock' %}
-    {% include col-pix-stack.html pix1='reload' pix2='text' %}
-    {% include col-pix-stack.html pix1='reload' pix2='page' %}
-    {% include col-pix-stack.html pix1='reload' pix2='cube' %}
-    {% include col-pix-stack.html pix1='reload' pix2='lightbulb' %}
-    {% include col-pix-stack.html pix1='reload' pix2='lock' %}
-    {% include col-pix-stack.html pix1='reload' pix2='unlock' %}
-    {% include col-pix-stack.html pix1='reload' pix2='question' %}
-    {% include col-pix-stack.html pix1='reload' pix2='alert' %}
+	<div class='col-md-7' lang='en'>
+		<h1><i class='pix pix-5x pix-border pull-left'>person</i> The person layer</h1>
+		<p>This layer depicts the persons's intent and goals through the development of his/her mental model of the task at hand. It also shows the (expected) emotions involved in the overall experience, as well as high-level actions.</p>
+	</div>
+	<div class='col-md-5' lang='es'>
+		<h1>La capa de la persona</h1>
+		<p>Esta capa muestra los objetivos de la persona mediante el desarrollo de su modelo mental de la tarea en cuestión. También muestra las emociones (esperadas) involucradas en la experiencia global.</p>
+	</div>
+</div>
+
+<h2>Emotions</h2>
+<div class='row'>
+{% include col-pix.html name='furious' %}
+{% include col-pix.html name='sad' %}
+{% include col-pix.html name='face' %}
+{% include col-pix.html name='intrigued' %}
+{% include col-pix.html name='surprised' %}
+{% include col-pix.html name='smiling' %}
+{% include col-pix.html name='happy' %}
+</div>
+
+<h2>Intent</h2>
+<div class='row'>
+{% include col-pix.html name='think' %}
+{% include col-pix.html name='say' %}
+{% include col-pix.html name='hand' %}
+{% include col-pix.html name='hand1' %}
+</div>
+
+<div class='row'>
+	<div class='col-md-7' lang='en'>
+		<h1><i class='pix pix-5x pix-border pull-left'>dialogue</i> The dialogue layer</h1>
+		<p>This is the interface dialogue layer that represents the concrete actions happening on the interface: gestures, messages, actions; all direct manipulation of elements and constructs happening onstage.</p>
+	</div>
+	<div class='col-md-5' lang='es'>
+		<h1>La capa del diálogo</h1>
+		<p>Esta es la capa del diálogo que representa las acciones concretas sucediendo en la interfaz: gestos, mensajes, acciones; toda manipulación directa de elementos y constructos sucediendo en el punto de contacto.</p>
+	</div>
+</div>
+
+<div class='row'>
+{% include col-pix.html name='send' %}
+{% include col-pix.html name='share' %}
+{% include col-pix.html name='speak' %}
+{% include col-pix.html name='comment' %}
+{% include col-pix.html name='attach' %}
+{% include col-pix.html name='config' %}
+{% include col-pix.html name='buy' %}
+{% include col-pix.html name='pay' %}
+{% include col-pix.html name='call' %}
+{% include col-pix.html name='hangup' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='add' %}
+{% include col-pix.html name='remove' %}
+{% include col-pix.html name='alert' %}
+{% include col-pix.html name='ask' %}
+{% include col-pix.html name='check' %}
+{% include col-pix.html name='cancel' %}
+{% include col-pix.html name='say' %}
+{% include col-pix.html name='think' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='edit' %}
+{% include col-pix.html name='save' %}
+{% include col-pix.html name='copy' %}
+{% include col-pix.html name='paste' %}
+{% include col-pix.html name='delete' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='like' %}
+{% include col-pix.html name='dislike' %}
+{% include col-pix.html name='link' %}
+{% include col-pix.html name='unlink' %}
+{% include col-pix.html name='branch' %}
+{% include col-pix.html name='merge' %}
+{% include col-pix.html name='print' %}
+{% include col-pix.html name='view' %}
+</div>
+
+<hr>
+
+<h2>Objects</h2>
+<div class='row'>
+{% include col-pix.html name='file' %}
+{% include col-pix.html name='email' %}
+{% include col-pix.html name='archive' %}
+{% include col-pix.html name='stack' %}
+{% include col-pix.html name='image' %}
+{% include col-pix.html name='audio' %}
+{% include col-pix.html name='video' %}
+{% include col-pix.html name='contact' %}
+{% include col-pix.html name='contacts' %}
+{% include col-pix.html name='position' %}
+{% include col-pix.html name='map' %}
+{% include col-pix.html name='rss' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='camera' %}
+{% include col-pix.html name='film' %}
+{% include col-pix.html name='clock' %}
+{% include col-pix.html name='date' %}
+{% include col-pix.html name='tag' %}
+</div>
+
+<h3>Device</h3>
+<div class='row'>
+{% include col-pix.html name='devicerotate' %}
+{% include col-pix.html name='deviceshake' %}
+{% include col-pix.html name='deviceorient' %}
+</div>
+
+<hr class='divider'>
+
+<h2>Interface Elements</h2>
+<div class='row'>
+{% include col-pix.html name='button' %}
+{% include col-pix.html name='checkbox' %}
+{% include col-pix.html name='input' %}
+{% include col-pix.html name='time' %}
+{% include col-pix.html name='select' %}
+{% include col-pix.html name='radio' %}
+{% include col-pix.html name='radioselect' %}
+{% include col-pix.html name='range' %}
+{% include col-pix.html name='switch' %}
+{% include col-pix.html name='move' %}
+{% include col-pix.html name='resize' %}
+</div>
+
+<h2>User Input</h2>
+<div class='row'>
+{% include col-pix.html name='click' %}
+{% include col-pix.html name='doubleclick' %}
+{% include col-pix.html name='drag' %}
+{% include col-pix.html name='drop' %}
+</div>
+
+<h3>Playback Controls</h3>
+<div class='row'>
+{% include col-pix.html name='prev' %}
+{% include col-pix.html name='play' %}
+{% include col-pix.html name='pause' %}
+{% include col-pix.html name='next' %}
+{% include col-pix.html name='ff' %}
+{% include col-pix.html name='rew' %}
+{% include col-pix.html name='stop' %}
+{% include col-pix.html name='rec' %}
+</div>
+
+<h3>Touch Gestures</h3>
+<div class='row'>
+
+{% include col-pix.html name='tap' %}
+{% include col-pix.html name='doubletap' %}
+{% include col-pix.html name='tap2' %}
+{% include col-pix.html name='tap3' %}
+{% include col-pix.html name='tap4' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='tap1up' %}
+{% include col-pix.html name='tap2up' %}
+{% include col-pix.html name='tap3up' %}
+{% include col-pix.html name='tap4up' %}
+{% include col-pix.html name='tap5up' %}
+{% include col-pix.html name='tap1down' %}
+{% include col-pix.html name='tap2down' %}
+{% include col-pix.html name='tap3down' %}
+{% include col-pix.html name='tap4down' %}
+{% include col-pix.html name='tap5down' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='tap1left' %}
+{% include col-pix.html name='tap2left' %}
+{% include col-pix.html name='tap3left' %}
+{% include col-pix.html name='tap4left' %}
+{% include col-pix.html name='tap5left' %}
+{% include col-pix.html name='tap1right' %}
+{% include col-pix.html name='tap2right' %}
+{% include col-pix.html name='tap3right' %}
+{% include col-pix.html name='tap4right' %}
+{% include col-pix.html name='tap5right' %}
+</div>
+
+<div class='row'>
+{% include col-pix.html name='collapse' %}
+{% include col-pix.html name='expand' %}
+{% include col-pix.html name='scroll' %}
+{% include col-pix.html name='zoom' %}
+{% include col-pix.html name='pinch' %}
+{% include col-pix.html name='rotate' %}
+</div>
+
+<hr>
+
+<div class='row'>
+	<div class='col-md-7' lang='en'>
+		<h1><i class='pix pix-5x pix-border pull-left'>system</i> The system layer</h1>
+		<p>This is the system layer which shows what happens under the hood, what enables the service performance; all supporting actions and processes delivered to the person.</p>
+	</div>
+	<div class='col-md-5' lang='es'>
+		<h1>La capa de la persona</h1>
+		<p>Esta es la capa del sistema que muestra lo que ocurre tras bambalinas, aquello que permite que el servicio se desarrolle; todas las acciones de apoyo que son entregadas y presentadas a la persona.</p>
+	</div>
+</div>
+
+<h2>System</h2>
+<div class='row'>
+{% include col-pix.html name='cloud' %}
+{% include col-pix.html name='database' %}
+{% include col-pix.html name='filter' %}
+{% include col-pix.html name='search' %}
+{% include col-pix.html name='process' %}
+{% include col-pix.html name='import' %}
+{% include col-pix.html name='export' %}
+{% include col-pix.html name='upload' %}
+{% include col-pix.html name='download' %}
+{% include col-pix.html name='api' %}
+
+</div>
+
+<h3>System Feedback</h3>
+<div class='row'>
+{% include col-pix.html name='window' %}
+{% include col-pix.html name='page' %}
+{% include col-pix.html name='gallery' %}
+{% include col-pix.html name='list' %}
+{% include col-pix.html name='text' %}
+{% include col-pix.html name='progress' %}
 </div>
 <div class='row'>
-    {% include col-pix-stack.html pix1='refresh' pix2='cog' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='ok' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='no' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='clock' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='text' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='page' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='cube' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='lightbulb' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='lock' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='unlock' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='question' %}
-    {% include col-pix-stack.html pix1='refresh' pix2='alert' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='gear' pix2='cog' %}
-    {% include col-pix-stack.html pix1='gear' pix2='ok' %}
-    {% include col-pix-stack.html pix1='gear' pix2='no' %}
-    {% include col-pix-stack.html pix1='gear' pix2='clock' %}
-    {% include col-pix-stack.html pix1='gear' pix2='text' %}
-    {% include col-pix-stack.html pix1='gear' pix2='page' %}
-    {% include col-pix-stack.html pix1='gear' pix2='cube' %}
-    {% include col-pix-stack.html pix1='gear' pix2='lightbulb' %}
-    {% include col-pix-stack.html pix1='gear' pix2='lock' %}
-    {% include col-pix-stack.html pix1='gear' pix2='unlock' %}
-    {% include col-pix-stack.html pix1='gear' pix2='question' %}
-    {% include col-pix-stack.html pix1='gear' pix2='alert' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html pix1='database' pix2='arrow-up' %}
-    {% include col-pix-stack.html pix1='database' pix2='arrow-down' %}
-    {% include col-pix-stack.html pix1='database' pix2='search' %}
-    {% include col-pix-stack.html pix1='database' pix2='filter' %}
-    {% include col-pix-stack.html pix1='database' pix2='ok' %}
-    {% include col-pix-stack.html pix1='database' pix2='no' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='arrow-up' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='arrow-down' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='search' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='ok' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='no' %}
-    {% include col-pix-stack.html pix1='cloud' pix2='cog' %}
-</div>
-<h4>Object Combinations</h4>
-<div class='row'>
-    {% include col-pix-stack.html top='arrow-up' bottom='cube' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='cube' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='picture' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='picture' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='video' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='video' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='feed' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='feed' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='contact' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='contact' %}
-    {% include col-pix-stack.html top='arrow-up' bottom='position' %}
-    {% include col-pix-stack.html top='arrow-down' bottom='position' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html top='clock' bottom='cog' %}
-    {% include col-pix-stack.html top='ok' bottom='cog' %}
-    {% include col-pix-stack.html top='no' bottom='cog' %}
-    {% include col-pix-stack.html top='arrows-cycle' bottom='cog' %}
-    {% include col-pix-stack.html top='alert' bottom='cog' %}
-    {% include col-pix-stack.html top='question' bottom='cog' %}
-    {% include col-pix-stack.html top='clock' bottom='feed' %}
-    {% include col-pix-stack.html top='ok' bottom='feed' %}
-    {% include col-pix-stack.html top='no' bottom='feed' %}
-    {% include col-pix-stack.html top='arrows-cycle' bottom='feed' %}
-    {% include col-pix-stack.html top='alert' bottom='feed' %}
-    {% include col-pix-stack.html top='question' bottom='feed' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html top='ok' bottom='link' %}
-    {% include col-pix-stack.html top='no' bottom='link' %}
-    {% include col-pix-stack.html top='alert' bottom='link' %}
-    {% include col-pix-stack.html top='question' bottom='link' %}
-    {% include col-pix-stack.html top='read' bottom='list' %}
-    {% include col-pix-stack.html top='read' bottom='envelope' %} 
-    {% include col-pix-stack.html top='read' bottom='cube' %} 
-    {% include col-pix-stack.html top='read' bottom='feed' %}
-    {% include col-pix-stack.html top='read' bottom='lightbulb' %}
-    {% include col-pix-stack.html top='read' bottom='calendar' %}
-    {% include col-pix-stack.html top='read' bottom='position' %}
-    {% include col-pix-stack.html top='read' bottom='question' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html top-right='pencil' left='cube' %}
-    {% include col-pix-stack.html top-right='pencil' left='picture' %}
-    {% include col-pix-stack.html top-right='pencil' left='video' %}
-    {% include col-pix-stack.html top-right='pencil' left='contact' %}
-    {% include col-pix-stack.html top-right='pencil' left='calendar' %}
-    {% include col-pix-stack.html top-right='pencil' left='question' %}
-    {% include col-pix-stack.html top-right='pencil' left='text' %}
-    {% include col-pix-stack.html top-right='pencil' left='list' %}
-    {% include col-pix-stack.html top-right='pencil' left='tag' %}
-    {% include col-pix-stack.html top-right='pencil' left='feed' %}
-    {% include col-pix-stack.html top-right='pencil' left='lightbulb' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html top='position' bottom='cube' %}
-    {% include col-pix-stack.html top='position' bottom='picture' %}
-    {% include col-pix-stack.html top='position' bottom='video' %}
-    {% include col-pix-stack.html top='position' bottom='contact' %}
-    {% include col-pix-stack.html top='position' bottom='calendar' %}
-    {% include col-pix-stack.html top='position' bottom='question' %}
-    {% include col-pix-stack.html top='position' bottom='text' %}
-    {% include col-pix-stack.html top='position' bottom='list' %}
-    {% include col-pix-stack.html top='position' bottom='tag' %}
-    {% include col-pix-stack.html top='position' bottom='feed' %}
-    {% include col-pix-stack.html top='position' bottom='lightbulb' %}
-</div>
-<div class='row'>
-    {% include col-pix-stack.html left='position' right='mobile' %}
-    {% include col-pix-stack.html left='orientation' right='mobile' %}
-    {% include col-pix-stack.html left='contact' right='mobile' %}
-    {% include col-pix-stack.html left='camera' right='mobile' %}
-    {% include col-pix-stack.html left='camera-video' right='mobile' %}
-    {% include col-pix-stack.html left='microphone' right='mobile' %}
-    {% include col-pix-stack.html left='arrows-cycle' right='mobile' %}
-    {% include col-pix-stack.html left='call' right='mobile' %}
-    {% include col-pix-stack.html left='sound' right='mobile' %}
-    {% include col-pix-stack.html left='clock' right='mobile-vibrate' %}
-    {% include col-pix-stack.html left='sound' right='mobile-vibrate' %}
+{% include col-pix.html name='update' %}
+{% include col-pix.html name='notify' %}
+{% include col-pix.html name='message' %}
+{% include col-pix.html name='lock' %}
+{% include col-pix.html name='unlock' %}
 </div>

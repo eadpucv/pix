@@ -1,19 +1,26 @@
 
-.PHONY: less
 .PHONY: css
+.PHONY: less
 
 install:
 	bower install
 
-less:
-	lessc less/pix.less css/pix.css --clean-css
-	
+less: 
+	lessc less/style.less > css/style.css
+
 css:
-	lessc less/pix.less css/pix.css --clean-css
+	make less
 
 server:
 	jekyll server --watch --baseurl= --trace
 
-dist:
+cp_js:
 	cp bower_components/bootstrap/dist/js/bootstrap.min.js js
 	cp bower_components/jquery/dist/jquery.min.js js
+	cp bower_components/handlebars/handlebars.min.js js
+
+dist:
+	make cp_js
+	cp -R bower_components/pixograms/fonts .
+	cp bower_components/pixograms/css/pix-webfont.css css
+	make css

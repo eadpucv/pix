@@ -1,31 +1,180 @@
-.brand{
-	font-size: 2.5em;
-	a{
-		color: @black;
-		font-weight: 900;
+/*	special embed specs		*/
+
+iframe{
+	border: none;
+}
+
+.embed{
+	body{
+		overflow-y: hidden;
+	}
+	.container{width: 100%}
+	h1{
+		*, input{
+			margin: 0;
+			margin-bottom: 0;
+			padding: 0;
+			&:hover{
+				background-color: transparent;
+				border-color: transparent;
+			}
+		}
+	}
+
+	textarea{
+		padding: 0;
+		margin-top: 0;
 		&:hover{
-			text-decoration: none;
-			color: @orange;
+			background-color: transparent;
+			border-color: transparent;
 		}
 	}
 }
 
-h1{ color: @black}
-h2{ color: darken(@brand-info, 20)}
-h3{ color: @brand-info}
-p.lead{font-weight: 300}
 
-.page-header .nav-pills{margin-top: 12px}
+/* big text for index */
+
+p.xl{
+	font-size: 2.1em !important;
+	font-weight: 600 !important;
+	line-height: 100%;
+	color: lighten(@black, 20);
+}
+
+div.row div p,
+div.row div ol,
+div.row div table tr td p{
+	font-size: 1.4em;
+	font-weight: 300;
+	text-align: justify;
+	.hyphens(auto);
+}
+
+/*	pages  	*/
+
+.page-header{
+	text-align: center;
+	border-bottom: 0px solid transparent;
+	margin-bottom: -2em;
+	.brand{
+	font-family: Lato;
+	display: inline-block;
+	font-size: 9em;
+		a{
+			color: @black;
+			font-weight: 900;
+			transition: all .5s ease;
+			&:hover{
+				text-decoration: none;
+				color: @orange;
+			}
+			.pix{
+				margin-top: -4rem;
+			}
+		}
+	}
+
+	aside{
+		display: inline-block;
+		text-align: left;
+		margin: 0 1em;
+		.version{
+			font-weight: 400;
+			font-size: 24px;
+			color: fade(@black, 20);}
+			line-height: 2em;
+			letter-spacing: .1ex;
+		.github{
+			font-size: 11px;
+		}
+	}
+
+	p.lead{
+		font-size: 3.8rem;
+		text-transform: uppercase;
+		font-weight: 300;
+	}
+}
+
+hr {
+	border-width: 20px 0px 0px;
+}
+
+
+.navbar > .container .navbar-brand{
+	font-family: Lato;
+	font-weight: 900;
+	color: @brand-primary;
+	&:hover{color: @white;}
+	i.pix{
+		color: @white;
+		font-size: 170%;
+		line-height: 10%;
+	}
+}
+
+/*
+ul.nav{
+	&.nav-pills{
+		li a i.pix{
+			display: none;
+			color: darken(@link-color, 14);
+			font-size: 1.5em;
+			line-height: .5em;
+			margin: 0 0 0 .5ex;
+		}
+		li.active a i.pix{
+			color: @white;
+		}
+	}
+}
+*/
+
+nav.nav-white{
+	position: absolute;
+	margin-top: 3em; 
+	li{
+		font-size: 3em;
+		font-weight: 800;
+		text-transform: uppercase;
+		a{
+			transition: all 1s ease;
+			color: fade(@white, 20);
+			&:hover{
+				color: @white;
+				text-decoration: none;
+			}
+		}
+	}
+}
+/* navbar top: to provent content overlay */
+.nbt{ padding-top: @navbar-height}
+
+h1{ color: @black}
+h3{ color: darken(@brand-info, 20)}
+// h3{ color: @brand-info}
+
+
+
+.page-header{
+	position: relative;
+	.nav-pills{
+		position: absolute;
+		top: 72px;
+		right: 0;
+	}
+}
+
 .page-header .nav-pills > li > a{
     border-radius: 18px;
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: 800;
-	padding: 2px 11px 3px;
+	padding: 3px 11px 4px;
 
 	&:hover{
-		background-color: fade(@brand-info, 8);
-		box-shadow: inset 0 0 1px @brand-primary;
+		background-color: @white;
+		box-shadow: inset 0 0 0 2px @brand-primary;
 		color: @brand-primary;
 	}
 }
@@ -37,16 +186,68 @@ p.lead{font-weight: 300}
 	}
 }
 
+.btn-huge{
+	display: block;
+	font-size: 4rem;
+	color: @white;
+	// text-shadow: -1px -1px 0px fade(@white, 30);
+	font-weight: 300;
+	text-transform: uppercase;
+	padding: 2rem 4rem;
+	border-radius: 1rem;
+	transition: all ease .3s;
+	margin: 0 5px -5px 0;
+	
+	&.btn-toolkit{
+		background-color: lighten(@black, 30);
+		.longShadowBox(lighten(@black, 10), 5);
+		&:focus,
+		&:active,
+		&:hover{
+			.longShadow(lighten(@black, 10), 5);
+		}
+	}
+
+	&.btn-app{
+		background-color: lighten(@brand-primary, 10);
+		.longShadowBox(darken(@brand-primary, 10), 5);
+		&:focus,
+		&:active,
+		&:hover{
+			.longShadow(darken(@brand-primary, 5), 5);
+			background-color: @brand-primary;
+		}
+	}
+
+	
+	
+	&:focus,
+	&:active,
+	&:hover{
+		box-shadow: 0 0 0 transparent;
+		margin-top: 5px 0 0 5px;
+		color: @white !important;
+		text-decoration: none;
+		background-color: lighten(@black, 20)
+	}
+}
+
+/*
 div[lang='en'],
 td[lang='en']{
 	h1,h2,h3,h4,h5,h6{color: @brand-primary !important}
 	p, li{color: darken(@brand-info, 25) !important}
+	i{
+		color: @black;
+		border-color: @brand-info;
+	}
 }
 div[lang='es'],
 td[lang='es']{
 	h1,h2,h3,h4,h5,h6{color: @brand-info !important}
 	p, li{color: darken(@brand-primary, 15)  !important}
 }
+*/
 
 ul.docs{
 	li{
@@ -61,13 +262,14 @@ ul.docs{
 	tr{
 		th{
 			.tcenter;
+			vertical-align: middle;
 			i.pix{
-				font-size: 72px;
-				color: fade(@black, 35);
+				font-size: 6em;
+				color: fade(@black, 60);
 			}
 			label{
 				color: fade(@black, 50);
-				font-size: 14px;
+				font-size: 1em;
 			}
 		}
 	}
@@ -98,8 +300,101 @@ footer{
 	}
 }
 
-
-
 address{
 	white-space: pre;
+}
+
+textarea{
+	resize: none;
+}
+
+.pix-demo{
+	border: none;
+	width: 100% !important;
+	overflow: scroll;
+	resize: vertical;
+}
+
+.help-line{
+	float: left;
+	color: lighten(@black, 20);
+	a{
+		font-weight: 600;
+		color: @black;
+	}
+	form{
+		display: inline;
+		position: relative;
+		top: .5ex;
+	}
+}
+
+#embed-info{
+	margin:auto;
+	position:absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 500px;
+	height: 300px;
+	padding: 20px;
+	.overlay;
+	textarea.embedcode{
+		background-color: @black; // @blue;
+		border: none;
+		border-radius: @radius;
+		color: @white;
+		padding: 1em;
+		font-family: @font-family-monospace;
+		text-shadow: 1px 1px 1px fade(@black, 30);
+	}
+	p{
+		margin: 1em 0 0 0;
+		font-size: .9em;
+	}
+}
+
+.embed-info{
+	margin:auto;
+	position:absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 500px;
+	height: 300px;
+	padding: 20px;
+	.overlay;
+	textarea.embedcode{
+		background-color: @blue;
+		border: none;
+		border-radius: @radius;
+		color: @white;
+		padding: 1em;
+		font-family: @font-family-monospace;
+		text-shadow: 1px 1px 1px fade(@black, 30);
+	}
+	p{
+		margin: 1em 0 0 0;
+		font-size: .9em;
+	}
+}
+
+.pix-heading{
+	.overlay;
+	padding: 3rem 5rem;
+}
+/* html native tooltip style */
+
+a[title]:hover:after {
+  content: attr(title);
+  color: @white;
+  background-color: @black;
+  padding: @padding-large;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  white-space: nowrap;
+  z-index: @zindex-tooltip;
 }

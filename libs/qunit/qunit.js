@@ -2143,7 +2143,7 @@ QUnit.diff = (function() {
 	};
 }());
 
-// for CommonJS enviroments, export everything
+// for CommonJS environments, export everything
 if ( typeof exports !== "undefined" ) {
 	extend( exports, QUnit );
 }

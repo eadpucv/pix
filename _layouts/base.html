@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 	{% include head.html %}
-	<body lang='ES_es' class='black-bg'>
+	<body lang='{{ page.lang }}' class='black-bg'>
 		<div class='white-bg'>
 			{% include nav.html %} 
 			<div class='container'>      
-		    	{{ content }}
+				{{ content }}
 			</div>
 		</div>
 	    {% include footer.html %}
 	</body>
+	{% include google-analytics.html %}
 </html>

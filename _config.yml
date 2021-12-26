@@ -2,10 +2,17 @@ safe:			false
 source:			.
 destination:	_gh-pages
 lsi:			false
-markdown:		rdiscount
-pygments:		true
 permalink:		pretty
-baseurl: 		"http://eadpucv.github.io/pix"
+baseurl: 		"https://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
 name: 			"PiX"
-pixver:			"2.5"
+pixver:			"1.0.0"
+exclude:
+  - less
+  - libs
+  - node_modules
+  - bower_components
+  - src
+  - bower.json
+  - package.json
+  - Makefile

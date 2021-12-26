@@ -1,21 +1,24 @@
 {
   "name": "PiX",
-  "version": "0.8.2",
+  "version": "0.9.2",
   "homepage": "http://www.ead.pucv.cl",
   "authors": [
     "hspencer@ead.cl",
-    "kexss@ead.cl"
+    "kexss@ead.cl",
+    "hugo.solar@gmail.com"
   ],
-  "description": "Interaction Scores Notation",
+  "description": "Partituras de Interacción - Interaction Scores",
   "license": "None",
   "private": false,
   "ignore": [
     "**/.*",
     "bower_components",
     "test",
-    "tests"
+    "src"
   ],
   "dependencies": {
-    "bootstrap": "~3.0.2"
+    "bootstrap": "~3.0.2",
+    "pixograms": "https://github.com/eadpucv/pixograms.git",
+    "handlebars": "https://github.com/components/handlebars.js.git"
   }
 }

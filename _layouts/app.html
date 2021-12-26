@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	{% include app-head.html %}
+	<body lang='ES_es' class='black-bg'>
+		<div class='white-bg nbt'>
+			{% include app-navbar.html %}
+			<div class='container pix-app'>
+				{{ content }}
+			</div>
+			<div class='container'>
+				<div class='help-line'><!--You are currently using a XXX Template <a href=''>Change to XXX Template</a>.-->Need help? <a href='{{ site.baseurl }}/index.html#docs'>read the docs</a> or <a href='{{ site.baseurl }}/pages/contact'>drop us a line</a><br>If you find this proyect helpfull, please consider supporting it. {% include donate-button.html %}
+			</div>
+			<div class="loader hidden">
+				<div class="sk-circle">
+				  <div class="sk-circle1 sk-child"></div>
+				  <div class="sk-circle2 sk-child"></div>
+				  <div class="sk-circle3 sk-child"></div>
+				  <div class="sk-circle4 sk-child"></div>
+				  <div class="sk-circle5 sk-child"></div>
+				  <div class="sk-circle6 sk-child"></div>
+				  <div class="sk-circle7 sk-child"></div>
+				  <div class="sk-circle8 sk-child"></div>
+				  <div class="sk-circle9 sk-child"></div>
+				  <div class="sk-circle10 sk-child"></div>
+				  <div class="sk-circle11 sk-child"></div>
+				  <div class="sk-circle12 sk-child"></div>
+				</div>
+			</div>
+		</div>
+		</div>
+	    {% include footer.html %}
+	    <script type="text/javascript" src="{{ site.baseurl }}/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="{{ site.baseurl }}/js/handlebars.min.js"></script>
+		<script type="text/javascript" src="{{ site.baseurl }}/js/app.js"></script>
+	</body>
+	{% include google-analytics.html %}
+</html>

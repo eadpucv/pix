@@ -1,19 +1,11 @@
-# PiX<br><small>Interaction notation for UX design</small>
-This visual language notation is and adaptation from [service blueprinting](http://en.wikipedia.org/wiki/Service_blueprint).
+![PiX Logo](img/pix-logo.png)
 
-This simplified version of the language defines three different layers:
+## PiX: Interaction notation for UX design
 
-1. User actions
-2. User/system dialogues
-3. System actions
+PiX is a visual language specially crafted to define and model user experience within digital services. PIX Language based upon service blueprinting and customer journeys, among other visual languages. It is being continuously developed at Taller de Investigaciones Gráficas .:TIG:. [Escuela de Arquitectura y Diseño](http://www.ead.pucv.cl).
 
-## Icons
-### User Actions
-### Dialogues
-#### Mouse
-#### Keyboard
-#### Touch Gestures
-### System Actions
-#### Server Communication
-#### Processes and Computation
-#### File Management
+**Online tool available &rarr; [here](http://eadpucv.github.io/pix)**
+
+
+Artistic License 2.0
+

@@ -1,33 +1,16 @@
 <div class='container'>
-	<div class='page-header'>
-		<h1 class='brand'><a href='{{ site.baseurl }}/'><i class='pix pix-pix'></i> PiX</a></h1>
-		<p class='lead inline orange'>Interaction notation for UX design</p>
-		
-		<ul class='nav nav-pills pull-right'>
-			{% if page.active == 'index' %}
-				<li class='active'><a href='#'>about PiX</a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/'>about PiX</a></li>
-			{% endif %}
-			
-			{% if page.active == 'icons' %}
-				<li class='active'><a href='#'>icons</a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/pages/icons'>icons</a></li>
-			{% endif %}
-
-			{% if page.active == 'magic' %}
-				<li class='active'><a href='#'>magic words</a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/pages/magic'>magic words</a></li>
-			{% endif %}
-			
-			{% if page.active == 'docs' %}
-				<li class='active'><a href='#'>docs</a></li>
-			{% else %}
-				<li><a href='{{ site.baseurl }}/pages/docs'>docs</a></li>
-			{% endif %}
-		</ul>
+	<div class='row'>
+		<div class='page-header col-sm-8 col-sm-offset-2'>
+			<h1 class='brand'>
+				<a href='{{ site.baseurl }}/'><i class='pix'>logo</i> PiX</a> 
+			</h1>
+			<aside>
+				<span class='version'>v{{ site.pixver }}</span><br>
+				<span class='github'><a data-count-api="/repos/eadpucv/pix#stargazers_count" data-count-href="/eadpucv/pix/stargazers" href="https://github.com/eadpucv/pix" class="github-button">Star</a>
+				<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script></span>
+			</aside>
+			<p class='lead inline orange'>Interaction notation for UX design</p>
+		</div>
 	</div>
 </div>
 
