@@ -1,9 +1,11 @@
+title: "PiX - Partituras de Interacción"
 safe:			false
 source:			.
 destination:	_gh-pages
 lsi:			false
 permalink:		pretty
-baseurl: 		"https://eadpucv.github.io/pix"
+baseurl: 		""
+url: "https://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
 name: 			"PiX"
 pixver:			"1.0.0"
@@ -16,3 +18,8 @@ exclude:
   - bower.json
   - package.json
   - Makefile
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
