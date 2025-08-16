@@ -1,9 +1,9 @@
 title: "PiX - Partituras de Interacción"
 safe:			false
 source:			.
-destination:	_gh-pages
-lsi:			false
-permalink:		pretty
+destination: docs
+lsi: false
+permalink: pretty
 baseurl: 		""
 url: "https://eadpucv.github.io/pix"
 exclude:		[bower_components, src]
