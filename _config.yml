@@ -4,8 +4,8 @@ source:			.
 destination: docs
 lsi: false
 permalink: pretty
-baseurl: 		""
-url: "https://eadpucv.github.io/pix"
+url: "https://eadpucv.github.io"
+baseurl: "/pix/"
 exclude:		[bower_components, src]
 name: 			"PiX"
 pixver:			"1.0.0"

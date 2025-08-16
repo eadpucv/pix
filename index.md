@@ -17,12 +17,12 @@ lang: en
 <hr>
 
 <div class='row'>
-    <div class='col-sm-4 col-sm-offset-2'>
-        <a class='btn btn-block btn-huge btn-app' href='{{ site.baseurl }}/pages/app'>PiX app</a>
-    </div>
-    <div class='col-sm-4'>
-        <a class='btn btn-block btn-huge btn-toolkit' href='{{ site.baseurl }}/downloads/pix-toolkit.pdf'>Toolkit</a>
-    </div>
+  <div class='col-sm-4 col-sm-offset-2'>
+    <a class='btn btn-block btn-huge btn-app' href="{{ '/pages/app' | relative_url }}">PiX app</a>
+  </div>
+  <div class='col-sm-4'>
+    <a class='btn btn-block btn-huge btn-toolkit' href="{{ '/downloads/pix-toolkit.pdf' | relative_url }}">Toolkit</a>
+  </div>
 </div>
 
 <hr>
