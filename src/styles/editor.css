@@ -1,0 +1,466 @@
+/* PiX v2 — Editor UI Styles */
+
+/* App shell */
+pix-app {
+  display: block;
+  min-height: 100vh;
+}
+
+/* Top navigation bar */
+.pix-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: var(--pix-surface);
+  border-bottom: 1px solid var(--pix-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: 12px;
+}
+
+.pix-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--pix-brand);
+  text-decoration: none;
+}
+
+.pix-nav-brand svg {
+  width: 28px;
+  height: 28px;
+}
+
+.pix-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Language switcher */
+.pix-lang-switch {
+  display: flex;
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius);
+  overflow: hidden;
+}
+
+.pix-lang-switch button {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: transparent;
+  transition: all var(--pix-transition);
+}
+
+.pix-lang-switch button.active {
+  background: var(--pix-black);
+  color: var(--pix-white);
+}
+
+.pix-lang-switch button:not(.active):hover {
+  background: var(--pix-hover);
+}
+
+/* Toolbar */
+pix-toolbar {
+  display: block;
+}
+
+.pix-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  flex-wrap: wrap;
+}
+
+.pix-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pix-toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: var(--pix-border);
+  margin: 0 4px;
+}
+
+/* Editor container */
+pix-editor {
+  display: block;
+  padding: 16px 20px;
+  max-width: 100%;
+}
+
+/* Library */
+pix-library {
+  display: block;
+  padding: 24px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pix-library-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pix-library-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.pix-library-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pix-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* Score card */
+.pix-card {
+  background: var(--pix-surface);
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius-lg);
+  padding: 20px;
+  transition: all var(--pix-transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.pix-card:hover {
+  box-shadow: var(--pix-shadow);
+  border-color: var(--pix-accent);
+}
+
+.pix-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--pix-text);
+}
+
+.pix-card-desc {
+  font-size: 0.8rem;
+  color: var(--pix-text-muted);
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pix-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--pix-text-muted);
+}
+
+.pix-card-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.pix-card-actions button {
+  padding: 4px 8px;
+  border-radius: var(--pix-radius);
+  font-size: 0.7rem;
+  color: var(--pix-text-muted);
+}
+
+.pix-card-actions button:hover {
+  background: var(--pix-hover);
+  color: var(--pix-text);
+}
+
+.pix-card-actions .delete-btn:hover {
+  color: var(--pix-orange);
+}
+
+/* New score card */
+.pix-card--new {
+  border-style: dashed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  color: var(--pix-text-muted);
+  gap: 8px;
+}
+
+.pix-card--new:hover {
+  color: var(--pix-accent);
+  border-color: var(--pix-accent);
+}
+
+.pix-card--new svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Slot counter */
+.pix-slot-counter {
+  font-size: 0.8rem;
+  color: var(--pix-text-muted);
+}
+
+/* Icon picker */
+pix-icon-picker {
+  display: block;
+}
+
+.pix-icon-picker {
+  position: fixed;
+  background: var(--pix-surface);
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius-lg);
+  box-shadow: var(--pix-shadow-lg);
+  padding: 12px;
+  z-index: 200;
+  width: 320px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  animation: pix-slide-up 150ms ease;
+}
+
+.pix-icon-picker-search {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  background: var(--pix-bg);
+  color: var(--pix-text);
+}
+
+.pix-icon-picker-search:focus {
+  outline: none;
+  border-color: var(--pix-accent);
+}
+
+.pix-icon-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  overflow-y: auto;
+  max-height: 300px;
+  padding: 4px 0;
+}
+
+.pix-icon-picker-separator {
+  grid-column: 1 / -1;
+  padding: 4px 0;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--pix-text-muted);
+  border-top: 1px solid var(--pix-border);
+  margin-top: 4px;
+}
+
+.pix-icon-picker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: var(--pix-radius);
+  cursor: pointer;
+  transition: background var(--pix-transition);
+}
+
+.pix-icon-picker-item:hover,
+.pix-icon-picker-item.selected {
+  background: var(--pix-hover);
+}
+
+.pix-icon-picker-item.selected {
+  outline: 2px solid var(--pix-accent);
+}
+
+.pix-icon-picker-item svg {
+  width: 32px;
+  height: 32px;
+}
+
+.pix-icon-picker-item span {
+  font-size: 0.55rem;
+  color: var(--pix-text-muted);
+  text-align: center;
+  word-break: break-all;
+  line-height: 1.2;
+}
+
+/* Export dialog */
+.pix-export-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.pix-export-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px;
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius-lg);
+  cursor: pointer;
+  transition: all var(--pix-transition);
+}
+
+.pix-export-option:hover {
+  border-color: var(--pix-accent);
+  background: var(--pix-hover);
+}
+
+.pix-export-option svg {
+  width: 32px;
+  height: 32px;
+  color: var(--pix-accent);
+}
+
+.pix-export-option .label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pix-export-option .desc {
+  font-size: 0.7rem;
+  color: var(--pix-text-muted);
+  text-align: center;
+}
+
+/* Embed code section */
+.pix-embed-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--pix-border);
+}
+
+.pix-embed-code {
+  width: 100%;
+  padding: 12px;
+  font-family: var(--pix-font-mono);
+  font-size: 0.75rem;
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius);
+  background: var(--pix-bg);
+  color: var(--pix-text);
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Viewer (read-only) */
+pix-viewer {
+  display: block;
+  padding: 20px;
+}
+
+.pix-viewer-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.pix-viewer-description {
+  font-size: 0.9rem;
+  color: var(--pix-text-muted);
+  margin-bottom: 16px;
+}
+
+/* New score dialog */
+.pix-new-score-options {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.pix-new-score-option {
+  flex: 1;
+  padding: 24px 16px;
+  border: 2px solid var(--pix-border);
+  border-radius: var(--pix-radius-lg);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--pix-transition);
+}
+
+.pix-new-score-option:hover {
+  border-color: var(--pix-accent);
+  background: var(--pix-hover);
+}
+
+.pix-new-score-option h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.pix-new-score-option p {
+  font-size: 0.8rem;
+  color: var(--pix-text-muted);
+}
+
+/* Print styles */
+@media print {
+  .pix-nav,
+  pix-toolbar,
+  .pix-step-actions {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .pix-score-wrapper {
+    overflow: visible;
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .pix-nav {
+    padding: 8px 12px;
+  }
+
+  pix-editor {
+    padding: 12px;
+  }
+
+  pix-library {
+    padding: 16px 12px;
+  }
+
+  .pix-library-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pix-export-options {
+    grid-template-columns: 1fr;
+  }
+}
