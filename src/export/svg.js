@@ -96,7 +96,8 @@ export async function renderScoreToSVG(score) {
   // Calculate dimensions
   const totalWidth = LABEL_WIDTH + numSteps * CELL_WIDTH + PADDING * 2;
   const titleBlockHeight = 50;
-  const totalHeight = titleBlockHeight + HEADER_HEIGHT + layers.length * CELL_HEIGHT + NOTE_HEIGHT + PADDING * 2;
+  const stepTitleHeight = HEADER_HEIGHT; // step titles above grid
+  const totalHeight = titleBlockHeight + stepTitleHeight + layers.length * CELL_HEIGHT + NOTE_HEIGHT + PADDING * 2;
 
   // Preload all icons used
   const iconNames = new Set();
@@ -114,53 +115,47 @@ export async function renderScoreToSVG(score) {
   // Background
   svg += `<rect width="${totalWidth}" height="${totalHeight}" fill="#FAFBFC"/>`;
 
-  // Title
+  // Score title
   const startY = PADDING;
-  svg += `<text x="${PADDING}" y="${startY + 22}" font-size="${TITLE_FONT_SIZE}" font-weight="700" fill="#2E1948" font-family="Georgia, 'Times New Roman', serif">${escapeXml(score.title || 'Untitled Score')}</text>`;
+  svg += `<text x="${PADDING}" y="${startY + 22}" font-size="${TITLE_FONT_SIZE}" font-weight="700" fill="#2E1948">${escapeXml(score.title || 'Untitled Score')}</text>`;
   if (score.description) {
     svg += `<text x="${PADDING}" y="${startY + 40}" font-size="${FONT_SIZE}" fill="#7B8794">${escapeXml(score.description)}</text>`;
   }
 
-  const gridY = startY + titleBlockHeight;
-
-  // Outer border with rounded corners
-  const gridWidth = LABEL_WIDTH + numSteps * CELL_WIDTH;
-  const gridHeight = HEADER_HEIGHT + layers.length * CELL_HEIGHT + NOTE_HEIGHT;
-  svg += `<rect x="${PADDING}" y="${gridY}" width="${gridWidth}" height="${gridHeight}" rx="8" ry="8" fill="none" stroke="#ccd4d1" stroke-width="4"/>`;
-
-  // Header row (step titles)
-  svg += `<rect x="${PADDING}" y="${gridY}" width="${LABEL_WIDTH}" height="${HEADER_HEIGHT}" fill="#2E1948" rx="8" ry="8"/>`;
-  // Cover bottom corners of header label
-  svg += `<rect x="${PADDING}" y="${gridY + HEADER_HEIGHT - 8}" width="${LABEL_WIDTH}" height="8" fill="#2E1948"/>`;
-  svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${gridY + HEADER_HEIGHT / 2 + 4}" font-size="9" fill="#FFF" text-anchor="middle" font-weight="600">PiX</text>`;
+  // Step titles row — ABOVE the bordered grid
+  const titlesY = startY + titleBlockHeight;
+  const gridY = titlesY + stepTitleHeight;
+  const gridHeight = layers.length * CELL_HEIGHT;
 
   for (let i = 0; i < numSteps; i++) {
     const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
-    const isLast = i === numSteps - 1;
-    if (isLast) {
-      svg += `<rect x="${x}" y="${gridY}" width="${CELL_WIDTH}" height="${HEADER_HEIGHT}" fill="#2E1948" rx="8" ry="8"/>`;
-      svg += `<rect x="${x}" y="${gridY + HEADER_HEIGHT - 8}" width="${CELL_WIDTH}" height="8" fill="#2E1948"/>`;
-      svg += `<rect x="${x}" y="${gridY}" width="8" height="${HEADER_HEIGHT}" fill="#2E1948"/>`;
-    } else {
-      svg += `<rect x="${x}" y="${gridY}" width="${CELL_WIDTH}" height="${HEADER_HEIGHT}" fill="#2E1948"/>`;
+    const hasTitle = !!(steps[i].step_title && steps[i].step_title.trim());
+
+    // Section start: continuous divider from title through entire grid
+    if (hasTitle) {
+      svg += `<line x1="${x}" y1="${titlesY}" x2="${x}" y2="${gridY + gridHeight}" stroke="#a8b2ad" stroke-width="2"/>`;
     }
+
     if (steps[i].step_title) {
-      svg += `<text x="${x + CELL_WIDTH / 2}" y="${gridY + HEADER_HEIGHT / 2 + 4}" font-size="10" fill="#FFF" text-anchor="middle" font-weight="700" font-family="Georgia, 'Times New Roman', serif">${escapeXml(steps[i].step_title)}</text>`;
+      svg += `<text x="${x + 8}" y="${titlesY + stepTitleHeight - 8}" font-size="10" fill="#D94021" font-weight="700">${escapeXml(steps[i].step_title)}</text>`;
     }
   }
+
+  // Bordered grid — only layer rows
+  const gridWidth = LABEL_WIDTH + numSteps * CELL_WIDTH;
+  svg += `<rect x="${PADDING}" y="${gridY}" width="${gridWidth}" height="${gridHeight}" rx="8" ry="8" fill="none" stroke="#ccd4d1" stroke-width="4"/>`;
 
   // Layer rows
   for (let r = 0; r < layers.length; r++) {
     const layer = layers[r];
-    const colors = LAYER_COLORS[layer];
-    const rowY = gridY + HEADER_HEIGHT + r * CELL_HEIGHT;
+    const rowY = gridY + r * CELL_HEIGHT;
     const border = getLayerBottomBorder(layer, score.layout);
 
     // Label background
     svg += `<rect x="${PADDING}" y="${rowY}" width="${LABEL_WIDTH}" height="${CELL_HEIGHT}" fill="#e0e5e3"/>`;
     // Left accent border
     svg += `<rect x="${PADDING}" y="${rowY}" width="4" height="${CELL_HEIGHT}" fill="#ccd4d1"/>`;
-    svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${rowY + CELL_HEIGHT / 2 + 4}" font-size="10" fill="#333" text-anchor="middle" font-weight="600" text-transform="uppercase">${escapeXml(getLayerLabel(layer))}</text>`;
+    svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${rowY + CELL_HEIGHT / 2 + 4}" font-size="10" fill="#D94021" text-anchor="middle" font-weight="600" text-transform="uppercase">${escapeXml(getLayerLabel(layer))}</text>`;
 
     // Row bottom separator
     if (r < layers.length - 1) {
@@ -176,19 +171,23 @@ export async function renderScoreToSVG(score) {
       const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
       const key = layer === 'supporting' ? 'supporting_processes' : layer;
       const parsed = parseCellContent(steps[i][key]);
+      const hasTitle = !!(steps[i].step_title && steps[i].step_title.trim());
 
       // Cell background — white
       svg += `<rect x="${x}" y="${rowY}" width="${CELL_WIDTH}" height="${CELL_HEIGHT}" fill="#FFFFFF"/>`;
-      // Cell right border
-      if (i < numSteps - 1) {
-        svg += `<line x1="${x + CELL_WIDTH}" y1="${rowY}" x2="${x + CELL_WIDTH}" y2="${rowY + CELL_HEIGHT}" stroke="#ccd4d1" stroke-width="0.5"/>`;
+
+      // Section start: thicker left border
+      if (hasTitle) {
+        svg += `<line x1="${x}" y1="${rowY}" x2="${x}" y2="${rowY + CELL_HEIGHT}" stroke="#ccd4d1" stroke-width="3"/>`;
+      } else if (i > 0) {
+        // Subtle cell right border
+        svg += `<line x1="${x}" y1="${rowY}" x2="${x}" y2="${rowY + CELL_HEIGHT}" stroke="#ccd4d1" stroke-width="0.5"/>`;
       }
 
       // Icon
       if (parsed.icon) {
         const iconSvg = getIconSync(parsed.icon);
         if (iconSvg) {
-          // Extract the inner content of the SVG
           const innerMatch = iconSvg.match(/<svg[^>]*>([\s\S]*)<\/svg>/);
           if (innerMatch) {
             const iconX = x + (CELL_WIDTH - ICON_SIZE) / 2;
@@ -209,23 +208,16 @@ export async function renderScoreToSVG(score) {
     }
   }
 
-  // Note row
-  const noteY = gridY + HEADER_HEIGHT + layers.length * CELL_HEIGHT;
-  svg += `<rect x="${PADDING}" y="${noteY}" width="${LABEL_WIDTH}" height="${NOTE_HEIGHT}" fill="#e0e5e3"/>`;
-  svg += `<rect x="${PADDING}" y="${noteY}" width="4" height="${NOTE_HEIGHT}" fill="#ccd4d1"/>`;
-  svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${noteY + NOTE_HEIGHT / 2 + 4}" font-size="9" fill="#333" text-anchor="middle" font-style="italic" font-family="Georgia, 'Times New Roman', serif">Notes</text>`;
-
-  // Top border for notes row
-  svg += `<line x1="${PADDING}" y1="${noteY}" x2="${PADDING + LABEL_WIDTH + numSteps * CELL_WIDTH}" y2="${noteY}" stroke="#ccd4d1" stroke-width="1"/>`;
+  // Notes row — BELOW the bordered grid (no header label)
+  const noteY = gridY + gridHeight + 4;
 
   for (let i = 0; i < numSteps; i++) {
     const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
-    svg += `<rect x="${x}" y="${noteY}" width="${CELL_WIDTH}" height="${NOTE_HEIGHT}" fill="#FFFFFF"/>`;
-    if (i < numSteps - 1) {
-      svg += `<line x1="${x + CELL_WIDTH}" y1="${noteY}" x2="${x + CELL_WIDTH}" y2="${noteY + NOTE_HEIGHT}" stroke="#ccd4d1" stroke-width="0.5"/>`;
+    if (i > 0) {
+      svg += `<line x1="${x}" y1="${noteY + 2}" x2="${x}" y2="${noteY + NOTE_HEIGHT - 2}" stroke="#ccd4d1" stroke-width="0.5" opacity="0.3"/>`;
     }
     if (steps[i].note) {
-      svg += `<text x="${x + CELL_WIDTH / 2}" y="${noteY + NOTE_HEIGHT / 2 + 4}" font-size="9" fill="#7B8794" text-anchor="middle" font-style="italic" font-family="Georgia, 'Times New Roman', serif">${escapeXml(steps[i].note)}</text>`;
+      svg += `<text x="${x + 8}" y="${noteY + NOTE_HEIGHT / 2 + 4}" font-size="9" fill="#7B8794" font-style="italic">${escapeXml(steps[i].note)}</text>`;
     }
   }
 

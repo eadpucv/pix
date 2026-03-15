@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+// Redirect legacy MediaWiki widget embeds to v2 SPA
+// Preserves the hash: #!/import/[base64] and #!/print/[base64]
+//
+// Legacy URL:  /pages/app-embed/#!/import/[data]
+// Redirects to: /#!/import/[data]  (v2 SPA root)
+//
+// The v2 PixApp router handles #!/import/ and #!/print/ routes
+
+(function() {
+  var hash = window.location.hash || '';
+  // Get the base path (works whether deployed at / or /pix/)
+  var base = window.location.pathname.replace(/\/pages\/app-embed\/?$/, '/');
+  window.location.replace(base + hash);
+})();
+</script>
+</head>
+<body>
+<noscript>
+  <p>Redirecting to PiX v2...</p>
+  <p>If you are not redirected, <a href="../../">click here</a>.</p>
+</noscript>
+</body>
+</html>

@@ -187,9 +187,9 @@ button {
   border-radius: var(--pix-radius-lg);
   box-shadow: var(--pix-shadow-lg);
   padding: 24px;
-  max-width: 560px;
-  width: 90vw;
-  max-height: 85vh;
+  max-width: 680px;
+  width: 92vw;
+  max-height: 90vh;
   overflow-y: auto;
   animation: pix-slide-up 200ms ease;
 }

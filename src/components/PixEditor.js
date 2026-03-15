@@ -47,18 +47,20 @@ class PixEditor extends HTMLElement {
     }
 
     this.innerHTML = `
+      <div class="pix-editor-topbar">
+        <pix-toolbar></pix-toolbar>
+      </div>
       <div class="pix-score-header">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:0;">
           <input class="pix-score-title" type="text"
                  value="${this._escAttr(this._score.title || '')}"
                  placeholder="${i18n.t('editor.untitled')}">
-          <span class="pix-layout-badge">${this._score.layout?.toUpperCase()}</span>
+          <span class="pix-layout-badge">${this._score.layout === 'ip' ? 'PiX' : 'SB'}</span>
           <span class="save-status" style="font-size:0.75rem;color:var(--pix-text-muted);"></span>
         </div>
         <textarea class="pix-score-description"
                   placeholder="${i18n.t('editor.descPlaceholder')}">${this._score.description || ''}</textarea>
       </div>
-      <pix-toolbar></pix-toolbar>
       <pix-score></pix-score>
       <pix-icon-picker></pix-icon-picker>
       <pix-export-dialog></pix-export-dialog>

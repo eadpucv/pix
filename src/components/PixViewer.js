@@ -12,6 +12,9 @@ const LAYER_PIXOGRAM_ICONS = {
   supporting: 'process'
 };
 
+const COL_WIDTH = 160;
+const LABEL_WIDTH = 120;
+
 class PixViewer extends HTMLElement {
   constructor() {
     super();
@@ -74,6 +77,8 @@ class PixViewer extends HTMLElement {
     }
     await Promise.all([...iconNames].map(n => loadIcon(n)));
 
+    const colDef = `${LABEL_WIDTH}px repeat(${steps.length}, ${COL_WIDTH}px)`;
+
     this.innerHTML = `
       ${!isPrint ? `
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
@@ -91,29 +96,38 @@ class PixViewer extends HTMLElement {
       `}
 
       <div class="pix-score-wrapper">
-        <div class="pix-score-grid" data-layout="${this._score.layout}"
-             style="grid-template-columns: 120px repeat(${steps.length}, minmax(100px, 1fr));
-                    grid-template-rows: auto repeat(${layers.length}, minmax(120px, auto)) auto;">
+        <div class="pix-score-inner">
+          <div class="pix-score-titles" style="grid-template-columns: ${colDef};">
+          </div>
+          <div class="pix-score-body">
+            <div class="pix-score-grid" data-layout="${this._score.layout}"
+                 style="grid-template-columns: ${colDef};
+                        grid-template-rows: repeat(${layers.length}, minmax(120px, auto));">
+            </div>
+          </div>
+          <div class="pix-score-notes" style="grid-template-columns: ${colDef};">
+          </div>
         </div>
       </div>
     `;
 
+    const titlesGrid = this.querySelector('.pix-score-titles');
     const grid = this.querySelector('.pix-score-grid');
+    const notesGrid = this.querySelector('.pix-score-notes');
 
-    // Header row
-    const headerLabel = document.createElement('div');
-    headerLabel.className = 'pix-layer-label pix-layer-label--header';
-    headerLabel.innerHTML = '<span>PiX</span>';
-    grid.appendChild(headerLabel);
+    // === Title row (above bordered area) ===
+    const spacer = document.createElement('div');
+    spacer.className = 'pix-title-label-spacer';
+    titlesGrid.appendChild(spacer);
 
     for (const step of steps) {
       const titleEl = document.createElement('div');
       titleEl.className = 'pix-step-title';
       titleEl.textContent = step.step_title || '';
-      grid.appendChild(titleEl);
+      titlesGrid.appendChild(titleEl);
     }
 
-    // Layer rows
+    // === Layer rows (inside bordered body) ===
     for (const layer of layers) {
       const key = this._getDataKey(layer);
 
@@ -147,23 +161,51 @@ class PixViewer extends HTMLElement {
       }
     }
 
-    // Notes row
-    const noteLabel = document.createElement('div');
-    noteLabel.className = 'pix-layer-label pix-layer-label--notes';
-    noteLabel.innerHTML = `<span>${i18n.t('step.note')}</span>`;
-    grid.appendChild(noteLabel);
+    // === Notes row (below bordered area, no header) ===
+    const noteSpacer = document.createElement('div');
+    noteSpacer.className = 'pix-note-label-spacer';
+    notesGrid.appendChild(noteSpacer);
 
     for (const step of steps) {
       const noteEl = document.createElement('div');
       noteEl.className = 'pix-step-note';
       noteEl.textContent = step.note || '';
-      grid.appendChild(noteEl);
+      notesGrid.appendChild(noteEl);
     }
+
+    // Add section dividers
+    requestAnimationFrame(() => this._addSectionDividers(steps));
 
     // Auto-print if in print mode
     if (isPrint) {
       setTimeout(() => window.print(), 500);
     }
+  }
+
+  _addSectionDividers(steps) {
+    const inner = this.querySelector('.pix-score-inner');
+    const titlesGrid = this.querySelector('.pix-score-titles');
+    const body = this.querySelector('.pix-score-body');
+    const titles = this.querySelectorAll('.pix-step-title');
+    if (!inner || !titlesGrid || !body || titles.length === 0) return;
+
+    inner.querySelectorAll('.pix-section-divider').forEach(el => el.remove());
+
+    const innerRect = inner.getBoundingClientRect();
+    const titlesRect = titlesGrid.getBoundingClientRect();
+    const bodyRect = body.getBoundingClientRect();
+
+    titles.forEach((titleEl, i) => {
+      if (steps[i]?.step_title?.trim()) {
+        const titleRect = titleEl.getBoundingClientRect();
+        const line = document.createElement('div');
+        line.className = 'pix-section-divider';
+        line.style.left = (titleRect.left - innerRect.left) + 'px';
+        line.style.top = (titlesRect.top - innerRect.top) + 'px';
+        line.style.height = (bodyRect.bottom - titlesRect.top) + 'px';
+        inner.appendChild(line);
+      }
+    });
   }
 
   _esc(str) {

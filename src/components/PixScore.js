@@ -13,6 +13,9 @@ const LAYER_PIXOGRAM_ICONS = {
   supporting: 'process'
 };
 
+const COL_WIDTH = 160; // fixed cell column width (px), also max-width
+const LABEL_WIDTH = 120; // label column width (px)
+
 class PixScore extends HTMLElement {
   constructor() {
     super();
@@ -58,28 +61,35 @@ class PixScore extends HTMLElement {
     const iconNames = layers.map(l => LAYER_PIXOGRAM_ICONS[l]).filter(Boolean);
     await Promise.all(iconNames.map(n => loadIcon(n)));
 
-    // Build grid: rows = header + layers + notes, cols = label + steps
-    const numRows = 1 + layers.length + 1; // header + layers + notes
-    const numCols = 1 + steps.length; // label + steps
+    const colDef = `${LABEL_WIDTH}px repeat(${steps.length}, ${COL_WIDTH}px)`;
 
+    // Structure: titles (above border) → body with border (layers) → notes (below border)
     this.innerHTML = `
       <div class="pix-score-wrapper">
-        <div class="pix-score-grid" data-layout="${this._layout}"
-             style="grid-template-columns: 120px repeat(${steps.length}, minmax(100px, 1fr));
-                    grid-template-rows: auto repeat(${layers.length}, minmax(120px, auto)) auto;">
+        <div class="pix-score-inner">
+          <div class="pix-score-titles" style="grid-template-columns: ${colDef};">
+          </div>
+          <div class="pix-score-body">
+            <div class="pix-score-grid" data-layout="${this._layout}"
+                 style="grid-template-columns: ${colDef};
+                        grid-template-rows: repeat(${layers.length}, minmax(120px, auto));">
+            </div>
+          </div>
+          <div class="pix-score-notes" style="grid-template-columns: ${colDef};">
+          </div>
         </div>
       </div>
     `;
 
+    const titlesGrid = this.querySelector('.pix-score-titles');
     const grid = this.querySelector('.pix-score-grid');
+    const notesGrid = this.querySelector('.pix-score-notes');
 
-    // Row 1: Header
-    const headerLabel = document.createElement('div');
-    headerLabel.className = 'pix-layer-label pix-layer-label--header';
-    headerLabel.innerHTML = '<span>PiX</span>';
-    grid.appendChild(headerLabel);
+    // === Title row (above the bordered area) ===
+    const spacer = document.createElement('div');
+    spacer.className = 'pix-title-label-spacer';
+    titlesGrid.appendChild(spacer);
 
-    // Step titles
     for (let i = 0; i < steps.length; i++) {
       const titleEl = document.createElement('div');
       titleEl.className = 'pix-step-title';
@@ -89,30 +99,25 @@ class PixScore extends HTMLElement {
       titleEl.addEventListener('input', () => {
         steps[i].step_title = titleEl.textContent.trim();
         this._emitChange();
+        // Redraw section dividers when title changes
+        requestAnimationFrame(() => this._addSectionDividers(steps));
       });
       titleEl.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
           e.preventDefault();
-          // Focus first cell of this step
           const colCells = grid.querySelectorAll(`pix-cell[data-step="${i}"]`);
           if (colCells.length) colCells[0].focus();
         }
       });
-
-      // Wrap in a container for hover actions
-      const wrapper = document.createElement('div');
-      wrapper.style.position = 'relative';
-      wrapper.style.display = 'contents';
-
-      grid.appendChild(titleEl);
+      titlesGrid.appendChild(titleEl);
     }
 
-    // Layer rows
+    // === Layer rows (inside the bordered body) ===
     for (let r = 0; r < layers.length; r++) {
       const layer = layers[r];
       const key = layer === 'supporting' ? 'supporting_processes' : layer;
 
-      // Label with pixogram icon (icon on top, label text below)
+      // Label with pixogram icon
       const label = document.createElement('div');
       label.className = `pix-layer-label pix-layer-label--${layer}`;
       const pixIconName = LAYER_PIXOGRAM_ICONS[layer];
@@ -143,11 +148,11 @@ class PixScore extends HTMLElement {
       }
     }
 
-    // Note row
-    const noteLabel = document.createElement('div');
-    noteLabel.className = 'pix-layer-label pix-layer-label--notes';
-    noteLabel.innerHTML = `<span>${i18n.t('step.note')}</span>`;
-    grid.appendChild(noteLabel);
+    // === Notes row (below the bordered area, no header) ===
+    // Empty spacer to align with label column
+    const noteSpacer = document.createElement('div');
+    noteSpacer.className = 'pix-note-label-spacer';
+    notesGrid.appendChild(noteSpacer);
 
     for (let i = 0; i < steps.length; i++) {
       const noteEl = document.createElement('div');
@@ -159,16 +164,45 @@ class PixScore extends HTMLElement {
         steps[i].note = noteEl.textContent.trim();
         this._emitChange();
       });
-      grid.appendChild(noteEl);
+      notesGrid.appendChild(noteEl);
     }
 
-    // Add step hover buttons overlay
-    this._addStepActionOverlays(grid, steps);
+    // Section dividers (positioned after layout)
+    requestAnimationFrame(() => this._addSectionDividers(steps));
+  }
+
+  _addSectionDividers(steps) {
+    const inner = this.querySelector('.pix-score-inner');
+    const titlesGrid = this.querySelector('.pix-score-titles');
+    const body = this.querySelector('.pix-score-body');
+    const titles = this.querySelectorAll('.pix-step-title');
+    if (!inner || !titlesGrid || !body || titles.length === 0) return;
+
+    // Remove existing dividers
+    inner.querySelectorAll('.pix-section-divider').forEach(el => el.remove());
+
+    const innerRect = inner.getBoundingClientRect();
+    const titlesRect = titlesGrid.getBoundingClientRect();
+    const bodyRect = body.getBoundingClientRect();
+
+    titles.forEach((titleEl, i) => {
+      if (steps[i]?.step_title?.trim()) {
+        const titleRect = titleEl.getBoundingClientRect();
+        const line = document.createElement('div');
+        line.className = 'pix-section-divider';
+        // Position at the left edge of the title cell
+        line.style.left = (titleRect.left - innerRect.left) + 'px';
+        // Start from top of titles row
+        line.style.top = (titlesRect.top - innerRect.top) + 'px';
+        // Span from top of titles to bottom of body (not notes)
+        line.style.height = (bodyRect.bottom - titlesRect.top) + 'px';
+        inner.appendChild(line);
+      }
+    });
   }
 
   _handleCellTab(grid, stepIdx, layerIdx, layers, steps, shift) {
     if (shift) {
-      // Move up in same step, or to previous step's last layer
       if (layerIdx > 0) {
         const prevLayer = layers[layerIdx - 1];
         const cell = grid.querySelector(`pix-cell[data-step="${stepIdx}"][data-layer="${prevLayer}"]`);
@@ -179,7 +213,6 @@ class PixScore extends HTMLElement {
         if (cell) cell.focus();
       }
     } else {
-      // Move down in same step, or to next step's first layer
       if (layerIdx < layers.length - 1) {
         const nextLayer = layers[layerIdx + 1];
         const cell = grid.querySelector(`pix-cell[data-step="${stepIdx}"][data-layer="${nextLayer}"]`);
@@ -189,43 +222,9 @@ class PixScore extends HTMLElement {
         const cell = grid.querySelector(`pix-cell[data-step="${stepIdx + 1}"][data-layer="${firstLayer}"]`);
         if (cell) cell.focus();
       } else {
-        // At end — create new step
         this.addStep();
       }
     }
-  }
-
-  _addStepActionOverlays(grid, steps) {
-    // Create an overlay container for step actions that appears on hover
-    const titles = grid.querySelectorAll('.pix-step-title');
-    titles.forEach((titleEl, i) => {
-      titleEl.style.position = 'relative';
-
-      const actions = document.createElement('div');
-      actions.className = 'pix-step-actions';
-      actions.innerHTML = `
-        <button title="${i18n.t('step.addBefore')}" data-action="add-before">+</button>
-        <button title="${i18n.t('step.remove')}" data-action="remove" style="color:var(--pix-orange);">&times;</button>
-        <button title="${i18n.t('step.add')}" data-action="add-after">+</button>
-      `;
-
-      actions.querySelector('[data-action="add-before"]').addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.addStepAt(i);
-      });
-      actions.querySelector('[data-action="remove"]').addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (steps.length > 1) {
-          this.removeStep(i);
-        }
-      });
-      actions.querySelector('[data-action="add-after"]').addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.addStepAt(i + 1);
-      });
-
-      titleEl.appendChild(actions);
-    });
   }
 
   addStep() {
@@ -235,7 +234,6 @@ class PixScore extends HTMLElement {
     this._emitChange();
     this._renderProper();
 
-    // Focus the first cell of the new step
     requestAnimationFrame(() => {
       const layers = this._getLayers();
       const lastIdx = this._score.scores[0].length - 1;
@@ -286,7 +284,6 @@ class PixScore extends HTMLElement {
     this._layout = layout;
     this._score.layout = layout;
 
-    // Ensure SB fields exist on all steps
     if (layout === 'sb') {
       for (const step of (this._score.scores?.[0] || [])) {
         if (step.environment === undefined) step.environment = '';

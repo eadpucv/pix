@@ -38,7 +38,7 @@ export default {
   // Toolbar
   'toolbar.addStep': 'Add Step',
   'toolbar.export': 'Export',
-  'toolbar.layoutIP': 'IP',
+  'toolbar.layoutIP': 'PiX',
   'toolbar.layoutSB': 'SB',
   'toolbar.undo': 'Undo',
   'toolbar.redo': 'Redo',

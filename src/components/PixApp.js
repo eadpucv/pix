@@ -6,6 +6,7 @@ import { EXAMPLE_SCORES } from '../data/examples.js';
 import { parseLegacyData, migrateScore } from '../data/migrate.js';
 import { preloadIcons } from '../data/icons-meta.js';
 import { getScore } from '../storage/db.js';
+import { VERSION } from '../version.js';
 import './PixLibrary.js';
 import './PixEditor.js';
 import './PixViewer.js';
@@ -49,6 +50,7 @@ class PixApp extends HTMLElement {
             <text x="128" y="175" text-anchor="middle" font-size="160" font-weight="800" fill="white" font-family="sans-serif">P</text>
           </svg>
           <span>PiX</span>
+          <span class="pix-nav-version">v${VERSION}</span>
         </a>
         <div class="pix-nav-actions">
           <div class="pix-nav-links"></div>
@@ -104,6 +106,9 @@ class PixApp extends HTMLElement {
     if (hash.startsWith('#!/import/')) {
       const b64 = hash.slice('#!/import/'.length);
       const score = parseLegacyData(b64);
+      // Hide nav for clean embed experience (iframe in MediaWiki etc.)
+      const nav = this.querySelector('.pix-nav');
+      if (nav) nav.style.display = 'none';
       if (score) {
         main.innerHTML = '';
         const viewer = document.createElement('pix-viewer');
@@ -119,6 +124,8 @@ class PixApp extends HTMLElement {
     if (hash.startsWith('#!/print/')) {
       const b64 = hash.slice('#!/print/'.length);
       const score = parseLegacyData(b64);
+      const nav = this.querySelector('.pix-nav');
+      if (nav) nav.style.display = 'none';
       if (score) {
         main.innerHTML = '';
         const viewer = document.createElement('pix-viewer');

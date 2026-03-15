@@ -75,7 +75,8 @@ export async function loadIcon(name) {
   if (iconCache.has(name)) return iconCache.get(name);
   if (iconLoadPromises.has(name)) return iconLoadPromises.get(name);
 
-  const promise = fetch(`./icons/${name}.svg`)
+  const base = import.meta.env.BASE_URL || './';
+  const promise = fetch(`${base}icons/${name}.svg`)
     .then(r => {
       if (!r.ok) throw new Error(`Icon not found: ${name}`);
       return r.text();

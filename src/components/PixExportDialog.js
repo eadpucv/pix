@@ -73,8 +73,10 @@ class PixExportDialog extends HTMLElement {
           <div class="pix-embed-section">
             <h4 style="font-size:0.9rem;font-weight:600;margin-bottom:8px;">${i18n.t('export.embed')}</h4>
             <p style="font-size:0.75rem;color:var(--pix-text-muted);margin-bottom:8px;">${i18n.t('export.embedDesc')}</p>
-            <textarea class="pix-embed-code" readonly rows="3">${this._escapeHtml(embedCode)}</textarea>
-            <button class="pix-btn pix-btn--ghost copy-embed-btn" style="margin-top:8px;">Copy</button>
+            <div class="pix-embed-row">
+              <textarea class="pix-embed-code" readonly rows="3">${this._escapeHtml(embedCode)}</textarea>
+              <button class="pix-btn pix-btn--ghost copy-embed-btn" style="align-self:stretch;white-space:nowrap;">Copy</button>
+            </div>
           </div>
         </div>
       </div>

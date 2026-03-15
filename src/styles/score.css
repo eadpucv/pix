@@ -1,56 +1,83 @@
 /* PiX v2 — Score Visual Styles (faithful to PiX v1 original) */
 
-/* Score container */
+/* Score container — scrollable horizontally */
 .pix-score-wrapper {
   overflow-x: auto;
   overflow-y: visible;
   padding: 16px 0;
-  margin: 0 -16px;
   scrollbar-width: thin;
 }
 
+/* Inner container — positioning context for section dividers */
+.pix-score-inner {
+  position: relative;
+  min-width: min-content;
+}
+
+/* Step titles row — outside (above) the bordered area */
+.pix-score-titles {
+  display: grid;
+  gap: 0;
+}
+
+.pix-title-label-spacer {
+  /* empty cell matching label column width */
+}
+
+/* Body — the bordered area containing only layer rows */
+.pix-score-body {
+  border: 4px solid #ccd4d1;
+  border-radius: 8px;
+  overflow: clip;
+}
+
+/* Grid inside the body — layer rows only, no border */
 .pix-score-grid {
   display: grid;
   gap: 0;
-  min-width: min-content;
-  padding: 0 16px;
-  border: 4px solid #ccd4d1;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
-/* IP layout: 3 rows */
-.pix-score-grid[data-layout="ip"] {
-  grid-template-rows: auto repeat(3, minmax(120px, auto)) auto;
+/* Notes row — outside (below) the bordered area */
+.pix-score-notes {
+  display: grid;
+  gap: 0;
 }
 
-/* SB layout: 5 rows */
-.pix-score-grid[data-layout="sb"] {
-  grid-template-rows: auto repeat(5, minmax(120px, auto)) auto;
+/* Section dividers — vertical lines at section boundaries */
+.pix-section-divider {
+  position: absolute;
+  width: 1px;
+  background: #8a9490;
+  z-index: 5;
+  pointer-events: none;
 }
 
-/* Layer labels (first column) — icon on top, label below, centered */
+/* Empty spacer for notes row (no header needed) */
+.pix-note-label-spacer {
+  /* matches label column width, empty */
+}
+
+/* ========================================
+   Layer labels (first column)
+   ======================================== */
 .pix-layer-label {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 8px 8px;
+  padding: 8px;
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(46, 25, 72, 0.5);
-  min-width: 100px;
-  writing-mode: horizontal-tb;
+  color: var(--pix-brand, #D94021);
+  background: #e0e5e3;
+  border-right: 1px solid #ccd4d1;
+  text-align: center;
   position: sticky;
   left: 0;
   z-index: 10;
-  background: #e0e5e3;
-  border-left: 4px solid #ccd4d1;
-  border-right: 1px solid #ccd4d1;
-  text-align: center;
 }
 
 .pix-layer-label .pix-layer-icon {
@@ -68,16 +95,7 @@
   display: block;
 }
 
-.pix-layer-label--header {
-  background: var(--pix-black);
-  color: var(--pix-white);
-  font-size: 0.7rem;
-  min-height: 32px;
-  border-left: 4px solid var(--pix-black);
-  border-right: 1px solid var(--pix-black);
-  border-radius: 0;
-}
-
+/* Layer-specific bottom borders (horizontal separators) */
 .pix-layer-label--user {
   border-bottom: 1px dotted #ccd4d1;
 }
@@ -95,66 +113,75 @@
 }
 
 .pix-layer-label--supporting {
-  /* last row in SB — no bottom border needed */
+  /* last row in SB — no bottom border */
 }
 
-/* Row separators — applied to all cells in the row */
-/* User row: dotted bottom border */
+/* Note label removed — notes row has no header */
+
+/* ========================================
+   Row separators — applied to cells
+   ======================================== */
 .pix-cell--user {
   border-bottom: 1px dotted #ccd4d1;
 }
 
-/* Dialogue row: heavy solid bottom border (visibility line) */
+/* Dialogue → System: heavy solid (visibility line) */
 .pix-cell--dialogue {
   border-bottom: 3px solid #ccd4d1;
 }
 
-/* System row: dotted bottom border (only visible in SB) */
 .pix-cell--system {
   border-bottom: 1px dotted #ccd4d1;
 }
 
-/* Environment row: dotted bottom border */
 .pix-cell--environment {
   border-bottom: 1px dotted #ccd4d1;
 }
 
-/* Supporting row: no bottom border (last row in SB) */
 .pix-cell--supporting {
+  /* last row in SB */
 }
 
-/* Step columns */
-.pix-step-col {
-  display: contents;
-}
-
-/* Step title row */
+/* ========================================
+   Step titles — above the bordered area
+   ======================================== */
 .pix-step-title {
   padding: 4px 8px;
   font-size: 0.75rem;
   font-weight: 700;
-  text-align: center;
-  background: var(--pix-black);
-  color: var(--pix-white);
-  border-right: 1px solid rgba(255,255,255,0.1);
-  min-width: 100px;
+  text-align: left;
+  background: transparent;
+  color: var(--pix-brand, #D94021);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 32px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-height: 28px;
+  max-width: 200px;
+  position: relative;
+  outline: none;
+}
+
+.pix-step-title[contenteditable="true"]:focus {
+  background-color: rgba(239, 239, 215, 0.3);
+  box-shadow: 0 0 0 2px #efefd7 inset;
+  border-radius: 4px;
 }
 
 .pix-step-title[contenteditable="true"]:empty::before {
   content: attr(data-placeholder);
-  color: rgba(255,255,255,0.4);
+  color: var(--pix-text-muted);
+  opacity: 0.3;
+  font-weight: 400;
 }
 
-/* Cells */
+/* ========================================
+   Cells
+   ======================================== */
 .pix-cell {
   padding: 12px;
-  border-right: 1px solid #ccd4d1;
-  min-width: 100px;
+  border-right: 1px solid rgba(204, 212, 209, 0.4);
   min-height: 120px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -206,18 +233,20 @@
   display: block;
 }
 
-/* Note row */
+/* ========================================
+   Notes — below the bordered area
+   ======================================== */
 .pix-step-note {
   padding: 4px 8px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-style: italic;
-  font-family: Georgia, 'Times New Roman', serif;
-  color: var(--pix-text-muted);
+  color: var(--pix-text, #1a1a2e);
   background: transparent;
-  border-right: 1px solid #ccd4d1;
-  border-top: 1px solid #ccd4d1;
   min-height: 24px;
-  text-align: center;
+  max-width: 200px;
+  text-align: left;
+  font-family: sans-serif;
+  opacity: 0.7;
 }
 
 .pix-step-note[contenteditable="true"]:empty::before {
@@ -226,47 +255,11 @@
   opacity: 0.4;
 }
 
-/* Step hover actions */
-.pix-step-actions {
-  position: absolute;
-  top: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 2px;
-  background: var(--pix-surface);
-  border: 1px solid var(--pix-border);
-  border-radius: var(--pix-radius);
-  padding: 2px;
-  box-shadow: var(--pix-shadow);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--pix-transition);
-  z-index: 20;
-}
-
-.pix-step-col:hover .pix-step-actions {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.pix-step-actions button {
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  font-size: 0.7rem;
-}
-
-.pix-step-actions button:hover {
-  background: var(--pix-hover);
-}
-
-/* Score header info */
+/* ========================================
+   Score header info (title, description)
+   ======================================== */
 .pix-score-header {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .pix-score-title {
@@ -293,11 +286,12 @@
 
 .pix-score-description {
   font-size: 0.9rem;
+  font-family: var(--pix-font, system-ui, -apple-system, sans-serif);
   color: var(--pix-text-muted);
   border: none;
   background: none;
   width: 100%;
-  padding: 4px 0;
+  padding: 2px 0 4px;
   resize: none;
   min-height: 1.5em;
   field-sizing: content;
@@ -328,16 +322,4 @@
   background: var(--pix-black);
   color: var(--pix-white);
   letter-spacing: 0.05em;
-}
-
-/* Note label in grid */
-.pix-layer-label--notes {
-  background: #e0e5e3;
-  color: #333;
-  font-style: italic;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 0.65rem;
-  min-height: 28px;
-  border-left: 4px solid #ccd4d1;
-  border-right: 1px solid #ccd4d1;
 }

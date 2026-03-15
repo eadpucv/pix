@@ -35,6 +35,15 @@ pix-app {
   height: 28px;
 }
 
+.pix-nav-version {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--pix-text-muted);
+  opacity: 0.6;
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+
 .pix-nav-actions {
   display: flex;
   align-items: center;
@@ -67,6 +76,13 @@ pix-app {
   background: var(--pix-hover);
 }
 
+/* Editor top bar — toolbar aligned right */
+.pix-editor-topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}
+
 /* Toolbar */
 pix-toolbar {
   display: block;
@@ -76,7 +92,7 @@ pix-toolbar {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 0;
+  padding: 6px 0;
   flex-wrap: wrap;
 }
 
@@ -316,7 +332,7 @@ pix-icon-picker {
 /* Export dialog */
 .pix-export-options {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-top: 16px;
 }
@@ -325,8 +341,8 @@ pix-icon-picker {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 20px 16px;
+  gap: 6px;
+  padding: 16px 12px;
   border: 1px solid var(--pix-border);
   border-radius: var(--pix-radius-lg);
   cursor: pointer;
@@ -362,8 +378,14 @@ pix-icon-picker {
   border-top: 1px solid var(--pix-border);
 }
 
+.pix-embed-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
 .pix-embed-code {
-  width: 100%;
+  flex: 1;
   padding: 12px;
   font-family: var(--pix-font-mono);
   font-size: 0.75rem;
@@ -461,6 +483,6 @@ pix-viewer {
   }
 
   .pix-export-options {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
