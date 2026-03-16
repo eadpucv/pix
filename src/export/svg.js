@@ -13,7 +13,7 @@ const NOTE_HEIGHT = 28;
 const PADDING = 16;
 const FONT_SIZE = 11;
 const TITLE_FONT_SIZE = 18;
-const FONT_FAMILY = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+const FONT_FAMILY = '"Helvetica Neue", Helvetica, Arial, sans-serif';
 
 // Layer header pixogram icons (same as PixScore.js)
 const LAYER_PIXOGRAM_ICONS = {
@@ -25,12 +25,10 @@ const LAYER_PIXOGRAM_ICONS = {
 };
 
 // Border style between layers (bottom border of each layer row)
-function getLayerBottomBorder(layer, layout) {
-  if (layer === 'dialogue') return { width: 3, style: 'solid', color: '#ccd4d1' };
-  if (layer === 'environment') return { width: 1, style: 'dotted', color: '#ccd4d1' };
-  if (layer === 'user') return { width: 1, style: 'dotted', color: '#ccd4d1' };
-  if (layer === 'system' && layout === 'sb') return { width: 1, style: 'dotted', color: '#ccd4d1' };
-  return null; // last row — no border
+function getLayerBottomBorder(layer, layout, isLast) {
+  if (isLast) return null; // no border on the last row
+  if (layer === 'dialogue') return { width: 3, style: 'solid', color: '#9aa5a0' };
+  return { width: 1, style: 'solid', color: '#b5bfba' };
 }
 
 function getLayersForLayout(layout) {
@@ -81,13 +79,14 @@ function wrapText(text, maxChars = 20) {
 /**
  * Render inline SVG icon content (inner elements only, no outer <svg> tag)
  */
-function renderIconInline(iconName, x, y, size) {
+function renderIconInline(iconName, x, y, size, fill) {
   const iconSvg = getIconSync(iconName);
   if (!iconSvg) return '';
   const innerMatch = iconSvg.match(/<svg[^>]*>([\s\S]*)<\/svg>/);
   if (!innerMatch) return '';
   const scale = size / 256;
-  return `<g transform="translate(${x}, ${y}) scale(${scale})">${innerMatch[1]}</g>`;
+  const fillAttr = fill ? ` fill="${fill}" color="${fill}"` : '';
+  return `<g transform="translate(${x}, ${y}) scale(${scale})"${fillAttr}>${innerMatch[1]}</g>`;
 }
 
 /**
@@ -145,9 +144,9 @@ export async function renderScoreToSVG(score) {
     const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
     const hasTitle = !!(steps[i].step_title && steps[i].step_title.trim());
 
-    // Section divider: continuous line from title through grid
+    // Section divider: continuous line from title through grid+notes
     if (hasTitle) {
-      svg += `<line x1="${x}" y1="${titlesY}" x2="${x}" y2="${gridY + gridHeight}" stroke="#8a9490" stroke-width="2"/>`;
+      svg += `<line x1="${x}" y1="${titlesY}" x2="${x}" y2="${gridY + gridHeight + NOTE_HEIGHT + 4}" stroke="#8a9490" stroke-width="1"/>`;
     }
 
     if (steps[i].step_title) {
@@ -160,74 +159,105 @@ export async function renderScoreToSVG(score) {
   svg += `<defs><clipPath id="${clipId}"><rect x="${PADDING}" y="${gridY}" width="${gridWidth}" height="${gridHeight}" rx="8" ry="8"/></clipPath></defs>`;
   svg += `<g clip-path="url(#${clipId})">`;
 
-  // Layer rows
+  // Layer rows — backgrounds and cell content first
   for (let r = 0; r < layers.length; r++) {
     const layer = layers[r];
     const rowY = gridY + r * CELL_HEIGHT;
-    const border = getLayerBottomBorder(layer, score.layout);
 
     // Label background
     svg += `<rect x="${PADDING}" y="${rowY}" width="${LABEL_WIDTH}" height="${CELL_HEIGHT}" fill="#e0e5e3"/>`;
+
+    // Cell backgrounds
+    for (let i = 0; i < numSteps; i++) {
+      const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
+      svg += `<rect x="${x}" y="${rowY}" width="${CELL_WIDTH}" height="${CELL_HEIGHT}" fill="#FFFFFF"/>`;
+    }
+  }
+
+  // Dividers — drawn on top of backgrounds
+  for (let r = 0; r < layers.length; r++) {
+    const layer = layers[r];
+    const rowY = gridY + r * CELL_HEIGHT;
+    const isLast = r === layers.length - 1;
+    const border = getLayerBottomBorder(layer, score.layout, isLast);
+
     // Label right border
     svg += `<line x1="${PADDING + LABEL_WIDTH}" y1="${rowY}" x2="${PADDING + LABEL_WIDTH}" y2="${rowY + CELL_HEIGHT}" stroke="#ccd4d1" stroke-width="1"/>`;
-
-    // Layer header icon
-    const headerIconName = LAYER_PIXOGRAM_ICONS[layer];
-    if (headerIconName) {
-      const iconX = PADDING + (LABEL_WIDTH - LABEL_ICON_SIZE) / 2;
-      const iconY = rowY + 10;
-      svg += renderIconInline(headerIconName, iconX, iconY, LABEL_ICON_SIZE);
-    }
-
-    // Layer label text (below icon)
-    const labelText = getLayerLabel(layer);
-    const labelLines = labelText.split('\n');
-    const textBaseY = rowY + 10 + LABEL_ICON_SIZE + 14;
-    for (let l = 0; l < labelLines.length; l++) {
-      svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${textBaseY + l * 12}" font-size="9" fill="#D94021" text-anchor="middle" font-weight="600" text-transform="uppercase" letter-spacing="0.5">${escapeXml(labelLines[l].toUpperCase())}</text>`;
-    }
 
     // Row bottom separator (horizontal line across full width)
     if (border) {
       const lineY = rowY + CELL_HEIGHT;
-      if (border.style === 'dotted') {
-        svg += `<line x1="${PADDING}" y1="${lineY}" x2="${PADDING + gridWidth}" y2="${lineY}" stroke="${border.color}" stroke-width="${border.width}" stroke-dasharray="4,3"/>`;
-      } else {
-        svg += `<line x1="${PADDING}" y1="${lineY}" x2="${PADDING + gridWidth}" y2="${lineY}" stroke="${border.color}" stroke-width="${border.width}"/>`;
-      }
+      svg += `<line x1="${PADDING}" y1="${lineY}" x2="${PADDING + gridWidth}" y2="${lineY}" stroke="${border.color}" stroke-width="${border.width}"/>`;
     }
 
-    // Cells
+    // Vertical section dividers inside the grid
+    for (let i = 0; i < numSteps; i++) {
+      const hasTitle = !!(steps[i].step_title && steps[i].step_title.trim());
+      if (hasTitle) {
+        const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
+        svg += `<line x1="${x}" y1="${rowY}" x2="${x}" y2="${rowY + CELL_HEIGHT}" stroke="#8a9490" stroke-width="1"/>`;
+      }
+    }
+  }
+
+  // Icons and text — drawn on top of everything
+  for (let r = 0; r < layers.length; r++) {
+    const layer = layers[r];
+    const rowY = gridY + r * CELL_HEIGHT;
+
+    // Layer header icon + label (vertically centered)
+    const headerIconName = LAYER_PIXOGRAM_ICONS[layer];
+    const labelText = getLayerLabel(layer);
+    const labelLines = labelText.split('\n');
+    const labelLineHeight = 12;
+    const labelGap = 6;
+
+    let labelContentH = 0;
+    if (headerIconName) labelContentH += LABEL_ICON_SIZE;
+    if (headerIconName && labelLines.length) labelContentH += labelGap;
+    labelContentH += labelLines.length * labelLineHeight;
+
+    const labelTopY = rowY + (CELL_HEIGHT - labelContentH) / 2;
+    let labelCursorY = labelTopY;
+
+    if (headerIconName) {
+      const iconX = PADDING + (LABEL_WIDTH - LABEL_ICON_SIZE) / 2;
+      svg += renderIconInline(headerIconName, iconX, labelCursorY, LABEL_ICON_SIZE, '#D94021');
+      labelCursorY += LABEL_ICON_SIZE + labelGap;
+    }
+
+    for (let l = 0; l < labelLines.length; l++) {
+      svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${labelCursorY + l * labelLineHeight}" font-size="9" fill="#D94021" text-anchor="middle" font-weight="600" dominant-baseline="hanging" letter-spacing="0.5">${escapeXml(labelLines[l].toUpperCase())}</text>`;
+    }
+
+    // Cell icons and text (vertically centered)
     for (let i = 0; i < numSteps; i++) {
       const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
       const key = layer === 'supporting' ? 'supporting_processes' : layer;
       const parsed = parseCellContent(steps[i][key]);
-      const hasTitle = !!(steps[i].step_title && steps[i].step_title.trim());
+      const textLines = parsed.text ? wrapText(parsed.text, 18).slice(0, 4) : [];
+      const lineHeight = 14;
+      const iconTextGap = 6;
 
-      // Cell background
-      svg += `<rect x="${x}" y="${rowY}" width="${CELL_WIDTH}" height="${CELL_HEIGHT}" fill="#FFFFFF"/>`;
+      // Calculate total content height
+      let contentHeight = 0;
+      if (parsed.icon) contentHeight += ICON_SIZE;
+      if (parsed.icon && textLines.length) contentHeight += iconTextGap;
+      if (textLines.length) contentHeight += textLines.length * lineHeight;
 
-      // Vertical cell separator
-      if (hasTitle) {
-        svg += `<line x1="${x}" y1="${rowY}" x2="${x}" y2="${rowY + CELL_HEIGHT}" stroke="#8a9490" stroke-width="2"/>`;
-      } else if (i > 0) {
-        svg += `<line x1="${x}" y1="${rowY}" x2="${x}" y2="${rowY + CELL_HEIGHT}" stroke="rgba(204,212,209,0.4)" stroke-width="1"/>`;
-      }
+      // Vertical offset to center the block
+      const topY = rowY + (CELL_HEIGHT - contentHeight) / 2;
+      let cursorY = topY;
 
-      // Cell icon
       if (parsed.icon) {
         const iconX = x + (CELL_WIDTH - ICON_SIZE) / 2;
-        const iconY = rowY + 8;
-        svg += renderIconInline(parsed.icon, iconX, iconY, ICON_SIZE);
+        svg += renderIconInline(parsed.icon, iconX, cursorY, ICON_SIZE, '#1F2933');
+        cursorY += ICON_SIZE + iconTextGap;
       }
 
-      // Cell text
-      if (parsed.text) {
-        const textLines = wrapText(parsed.text, 18);
-        const textStartY = parsed.icon ? rowY + ICON_SIZE + 20 : rowY + CELL_HEIGHT / 2;
-        for (let l = 0; l < textLines.length && l < 4; l++) {
-          svg += `<text x="${x + CELL_WIDTH / 2}" y="${textStartY + l * 14}" font-size="${FONT_SIZE}" fill="#1F2933" text-anchor="middle">${escapeXml(textLines[l])}</text>`;
-        }
+      for (let l = 0; l < textLines.length; l++) {
+        // dominant-baseline for vertical text alignment
+        svg += `<text x="${x + CELL_WIDTH / 2}" y="${cursorY + l * lineHeight}" font-size="${FONT_SIZE}" fill="#1F2933" text-anchor="middle" dominant-baseline="hanging">${escapeXml(textLines[l])}</text>`;
       }
     }
   }

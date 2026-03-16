@@ -11,7 +11,7 @@
 /* Inner container — positioning context for section dividers */
 .pix-score-inner {
   position: relative;
-  min-width: min-content;
+  width: fit-content;
 }
 
 /* Step titles row — outside (above) the bordered area */
@@ -143,8 +143,42 @@
 }
 
 /* ========================================
-   Step titles — above the bordered area
+   Step headers — above the bordered area
    ======================================== */
+
+/* Header wrapper: holds grip strip + title */
+.pix-step-header {
+  position: relative;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grip strip — draggable zone above the title */
+.pix-step-grip {
+  height: 24px;
+  cursor: grab;
+  border-radius: 3px 3px 0 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+  background-image: radial-gradient(circle, #999 1px, transparent 1px);
+  background-size: 6px 6px;
+  background-position: 2px 2px;
+}
+
+.pix-step-header:hover .pix-step-grip {
+  opacity: 0.4;
+}
+
+.pix-step-grip:hover {
+  opacity: 0.7 !important;
+}
+
+.pix-step-grip:active {
+  cursor: grabbing;
+}
+
+/* Title text inside header */
 .pix-step-title {
   padding: 4px 8px;
   font-size: 0.75rem;
@@ -156,16 +190,14 @@
   align-items: flex-end;
   justify-content: flex-start;
   min-height: 28px;
-  max-width: 200px;
-  position: relative;
   outline: none;
+  cursor: text;
 }
 
 .pix-step-title[contenteditable="true"]:hover,
 .pix-step-title[contenteditable="true"]:focus {
-  background-color: rgba(239, 239, 215, 0.3);
-  box-shadow: 0 0 0 2px #efefd7 inset;
-  border-radius: 4px;
+  background-color: rgba(239, 239, 215, 0.5);
+  border-radius: 3px;
 }
 
 .pix-step-title[contenteditable="true"]:empty::before {
@@ -181,12 +213,64 @@
   opacity: 0.3;
 }
 
+/* --- Drag feedback --- */
+.pix-step-dragging {
+  opacity: 0.3;
+}
+
+.pix-step-drop-before {
+  box-shadow: -3px 0 0 0 #ee7d33;
+}
+
+.pix-step-drop-after {
+  box-shadow: 3px 0 0 0 #ee7d33;
+}
+
+/* --- Step context menu --- */
+.pix-step-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 50;
+  background: #fff;
+  border: 1px solid var(--pix-border, #ccd4d1);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 4px 0;
+  min-width: 140px;
+  white-space: nowrap;
+}
+
+.pix-step-menu-item {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  border: none;
+  background: none;
+  font-size: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  color: var(--pix-text, #333);
+}
+
+.pix-step-menu-item:hover {
+  background: var(--pix-hover, rgba(239, 239, 215, 0.5));
+}
+
+.pix-step-menu-item--danger {
+  color: #c0392b;
+}
+
+.pix-step-menu-item--danger:hover {
+  background: rgba(192, 57, 43, 0.1);
+}
+
 /* ========================================
    Cells
    ======================================== */
 .pix-cell {
   padding: 12px;
-  border-right: 1px solid rgba(204, 212, 209, 0.4);
+  border-right: none;
   min-height: 120px;
   max-width: 200px;
   display: flex;
@@ -242,17 +326,16 @@
   border: none;
   background: #ee7d33;
   color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  text-align: center;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.15s;
   padding: 0;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .pix-cell:hover .pix-cell-add-icon,

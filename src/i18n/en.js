@@ -53,9 +53,10 @@ export default {
   // Step
   'step.title': 'Step title',
   'step.note': 'Note',
-  'step.add': 'Add step after',
+  'step.add': 'Add step',
   'step.remove': 'Remove step',
   'step.addBefore': 'Add step before',
+  'step.confirmDelete': 'Delete?',
 
   // Cell
   'cell.placeholder': 'Type pix-...',

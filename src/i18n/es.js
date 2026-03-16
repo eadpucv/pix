@@ -53,9 +53,10 @@ export default {
   // Step
   'step.title': 'Titulo del paso',
   'step.note': 'Nota',
-  'step.add': 'Agregar paso despues',
+  'step.add': 'Agregar paso',
   'step.remove': 'Eliminar paso',
   'step.addBefore': 'Agregar paso antes',
+  'step.confirmDelete': 'Eliminar?',
 
   // Cell
   'cell.placeholder': 'Escribe pix-...',

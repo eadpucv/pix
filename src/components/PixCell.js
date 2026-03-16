@@ -11,6 +11,7 @@ class PixCell extends HTMLElement {
     this._iconName = null;
     this._text = '';
     this._contentEl = null;
+    this._openingPicker = false;
   }
 
   static get observedAttributes() {
@@ -113,15 +114,21 @@ class PixCell extends HTMLElement {
 
     this._contentEl.addEventListener('blur', () => {
       this._commitValue();
-      // Close any open picker
-      this._closePicker();
+      // Don't close picker if the add-icon button was just clicked
+      if (!this._openingPicker) {
+        this._closePicker();
+      }
     });
 
     this._addBtn.addEventListener('mousedown', (e) => {
-      // mousedown instead of click to fire before blur closes the picker
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault(); // prevent contenteditable from losing focus
+      this._openingPicker = true;
+    });
+
+    this._addBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent click-outside from closing picker
       this._openFullPicker();
+      setTimeout(() => { this._openingPicker = false; }, 300);
     });
   }
 

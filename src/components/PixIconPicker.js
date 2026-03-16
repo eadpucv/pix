@@ -76,7 +76,8 @@ class PixIconPicker extends HTMLElement {
   }
 
   _getFilteredIcons() {
-    const suggested = getLayerIcons(this._layer);
+    // Only include suggested icons that exist in ALL_ICONS
+    const suggested = getLayerIcons(this._layer).filter(n => ALL_ICONS.includes(n));
     const filter = this._filter.toLowerCase().replace('pix-', '');
 
     let suggestedFiltered, othersFiltered;

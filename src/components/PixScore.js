@@ -91,6 +91,18 @@ class PixScore extends HTMLElement {
     titlesGrid.appendChild(spacer);
 
     for (let i = 0; i < steps.length; i++) {
+      // Header wrapper (holds grip + title)
+      const header = document.createElement('div');
+      header.className = 'pix-step-header';
+      header.setAttribute('data-step', i);
+
+      // Grip zone (draggable strip above the title)
+      const grip = document.createElement('div');
+      grip.className = 'pix-step-grip';
+      grip.setAttribute('draggable', 'true');
+      header.appendChild(grip);
+
+      // Title (contenteditable)
       const titleEl = document.createElement('div');
       titleEl.className = 'pix-step-title';
       titleEl.setAttribute('contenteditable', 'true');
@@ -99,7 +111,6 @@ class PixScore extends HTMLElement {
       titleEl.addEventListener('input', () => {
         steps[i].step_title = titleEl.textContent.trim();
         this._emitChange();
-        // Redraw section dividers when title changes
         requestAnimationFrame(() => this._addSectionDividers(steps));
       });
       titleEl.addEventListener('keydown', (e) => {
@@ -109,7 +120,70 @@ class PixScore extends HTMLElement {
           if (colCells.length) colCells[0].focus();
         }
       });
-      titlesGrid.appendChild(titleEl);
+
+      header.appendChild(titleEl);
+
+      // Context menu on grip click or right-click anywhere on header
+      grip.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this._showStepMenu(header, i, steps);
+      });
+      header.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        this._showStepMenu(header, i, steps);
+      });
+
+      // --- Drag & drop (from grip) ---
+      grip.addEventListener('dragstart', (e) => {
+        this._dragSourceIndex = i;
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', String(i));
+        header.classList.add('pix-step-dragging');
+        // Mark all elements of this column
+        requestAnimationFrame(() => {
+          this.querySelectorAll(`[data-step="${i}"]`).forEach(el =>
+            el.classList.add('pix-step-dragging')
+          );
+        });
+      });
+
+      header.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        // Show drop indicator on left or right half
+        const rect = header.getBoundingClientRect();
+        const midX = rect.left + rect.width / 2;
+        const isLeft = e.clientX < midX;
+        header.classList.toggle('pix-step-drop-before', isLeft);
+        header.classList.toggle('pix-step-drop-after', !isLeft);
+      });
+
+      header.addEventListener('dragleave', () => {
+        header.classList.remove('pix-step-drop-before', 'pix-step-drop-after');
+      });
+
+      header.addEventListener('drop', (e) => {
+        e.preventDefault();
+        header.classList.remove('pix-step-drop-before', 'pix-step-drop-after');
+        const fromIndex = this._dragSourceIndex;
+        if (fromIndex === undefined || fromIndex === null) return;
+        const rect = header.getBoundingClientRect();
+        const midX = rect.left + rect.width / 2;
+        let toIndex = e.clientX < midX ? i : i + 1;
+        // Adjust if dragging to the right of its original position
+        if (fromIndex < toIndex) toIndex--;
+        if (fromIndex !== toIndex) {
+          this.moveStep(fromIndex, toIndex);
+        }
+      });
+
+      grip.addEventListener('dragend', () => {
+        this._dragSourceIndex = null;
+        this.querySelectorAll('.pix-step-dragging, .pix-step-drop-before, .pix-step-drop-after')
+          .forEach(el => el.classList.remove('pix-step-dragging', 'pix-step-drop-before', 'pix-step-drop-after'));
+      });
+
+      titlesGrid.appendChild(header);
     }
 
     // === Layer rows (inside the bordered body) ===
@@ -175,8 +249,8 @@ class PixScore extends HTMLElement {
     const inner = this.querySelector('.pix-score-inner');
     const titlesGrid = this.querySelector('.pix-score-titles');
     const notesGrid = this.querySelector('.pix-score-notes');
-    const titles = this.querySelectorAll('.pix-step-title');
-    if (!inner || !titlesGrid || !notesGrid || titles.length === 0) return;
+    const headers = this.querySelectorAll('.pix-step-header');
+    if (!inner || !titlesGrid || !notesGrid || headers.length === 0) return;
 
     // Remove existing dividers
     inner.querySelectorAll('.pix-section-divider').forEach(el => el.remove());
@@ -185,16 +259,13 @@ class PixScore extends HTMLElement {
     const titlesRect = titlesGrid.getBoundingClientRect();
     const notesRect = notesGrid.getBoundingClientRect();
 
-    titles.forEach((titleEl, i) => {
+    headers.forEach((headerEl, i) => {
       if (steps[i]?.step_title?.trim()) {
-        const titleRect = titleEl.getBoundingClientRect();
+        const headerRect = headerEl.getBoundingClientRect();
         const line = document.createElement('div');
         line.className = 'pix-section-divider';
-        // Position at the left edge of the title cell
-        line.style.left = (titleRect.left - innerRect.left) + 'px';
-        // Start from top of titles row
+        line.style.left = (headerRect.left - innerRect.left) + 'px';
         line.style.top = (titlesRect.top - innerRect.top) + 'px';
-        // Span from top of titles to bottom of notes row
         line.style.height = (notesRect.bottom - titlesRect.top) + 'px';
         inner.appendChild(line);
       }
@@ -256,6 +327,78 @@ class PixScore extends HTMLElement {
     this._score.scores[0].splice(index, 1);
     this._emitChange();
     this._renderProper();
+  }
+
+  moveStep(fromIndex, toIndex) {
+    if (!this._score?.scores?.[0]) return;
+    const steps = this._score.scores[0];
+    if (fromIndex < 0 || fromIndex >= steps.length) return;
+    if (toIndex < 0 || toIndex >= steps.length) return;
+    if (fromIndex === toIndex) return;
+    const [moved] = steps.splice(fromIndex, 1);
+    steps.splice(toIndex, 0, moved);
+    this._emitChange();
+    this._renderProper();
+  }
+
+  _showStepMenu(anchorEl, index, steps) {
+    this._closeStepMenu();
+    const menu = document.createElement('div');
+    menu.className = 'pix-step-menu';
+
+    // "Add step" option
+    const addBtn = document.createElement('button');
+    addBtn.className = 'pix-step-menu-item';
+    addBtn.textContent = i18n.t('step.add');
+    addBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this._closeStepMenu();
+      this.addStepAt(index + 1);
+    });
+    menu.appendChild(addBtn);
+
+    // "Remove step" option (with inline confirmation)
+    if (steps.length > 1) {
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'pix-step-menu-item pix-step-menu-item--danger';
+      removeBtn.textContent = i18n.t('step.remove');
+      removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (removeBtn.dataset.confirm) {
+          this._closeStepMenu();
+          this.removeStep(index);
+        } else {
+          removeBtn.dataset.confirm = '1';
+          removeBtn.textContent = i18n.t('step.confirmDelete');
+          setTimeout(() => {
+            if (removeBtn.isConnected) {
+              delete removeBtn.dataset.confirm;
+              removeBtn.textContent = i18n.t('step.remove');
+            }
+          }, 2000);
+        }
+      });
+      menu.appendChild(removeBtn);
+    }
+
+    anchorEl.appendChild(menu);
+
+    // Close on click outside (delayed to avoid immediate close)
+    setTimeout(() => {
+      this._stepMenuCloseHandler = (e) => {
+        if (!menu.contains(e.target)) this._closeStepMenu();
+      };
+      document.addEventListener('click', this._stepMenuCloseHandler, true);
+    }, 50);
+  }
+
+  _closeStepMenu() {
+    const existing = this.querySelector('.pix-step-menu');
+    if (existing) existing.remove();
+    if (this._stepMenuCloseHandler) {
+      document.removeEventListener('click', this._stepMenuCloseHandler, true);
+      this._stepMenuCloseHandler = null;
+    }
   }
 
   _createEmptyStep() {

@@ -39,7 +39,7 @@ export const LAYER_SUGGESTIONS = {
     'email', 'notify', 'alert', 'pinch', 'rotate', 'resize', 'move',
     'expand', 'collapse', 'zoom', 'play', 'pause', 'stop', 'rec', 'ff',
     'rew', 'next', 'prev', 'view', 'gallery', 'game', 'qr', 'camera',
-    'notebook', 'window', 'tab', 'dialogue', 'date', 'color',
+    'notebook', 'window', 'dialogue', 'date', 'color',
     'tap1down', 'tap1left', 'tap1right', 'tap1up',
     'tap2', 'tap2down', 'tap2left', 'tap2right', 'tap2up',
     'tap3', 'tap3down', 'tap3left', 'tap3right', 'tap3up',
@@ -85,6 +85,10 @@ export async function loadIcon(name) {
       // Strip XML declaration and DOCTYPE
       svgText = svgText.replace(/<\?xml[^?]*\?>\s*/g, '');
       svgText = svgText.replace(/<!DOCTYPE[^>]*>\s*/g, '');
+      // Validate it's actually SVG, not an HTML fallback page
+      if (!svgText.includes('<svg')) {
+        throw new Error(`Invalid SVG for icon: ${name}`);
+      }
       // Remove icomoon-ignore group
       svgText = svgText.replace(/<g id="icomoon-ignore">[\s\S]*?<\/g>\s*/g, '');
       iconCache.set(name, svgText);
