@@ -120,7 +120,7 @@ export default {
   'footer.tagline': 'PiX: Graphic notation for interaction design',
   'footer.developed': 'Developed by',
   'footer.school': 'School of Architecture and Design',
-  'footer.university': 'Pontificia Universidad Cat\u00f3lica de Valpara\u00edso',
+  'footer.university': 'Pontificia Universidad Católica de Valparaíso',
   'footer.opensource': 'Open source',
   'footer.license': 'Artistic License 2.0',
 
