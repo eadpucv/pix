@@ -1,9 +1,9 @@
-# Deploy PiX v2 to GitHub Pages using Vite
+# Deploy PiX v3 to GitHub Pages using Vite
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [v2]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
