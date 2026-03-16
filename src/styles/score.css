@@ -1,0 +1,473 @@
+/* PiX v2 — Score Visual Styles (faithful to PiX v1 original) */
+
+/* Score container — scrollable horizontally */
+.pix-score-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 16px 0;
+  scrollbar-width: thin;
+}
+
+/* Inner container — positioning context for section dividers */
+.pix-score-inner {
+  position: relative;
+  width: fit-content;
+}
+
+/* Step titles row — outside (above) the bordered area */
+.pix-score-titles {
+  display: grid;
+  gap: 0;
+}
+
+.pix-title-label-spacer {
+  /* empty cell matching label column width */
+}
+
+/* Body — the bordered area containing only layer rows */
+.pix-score-body {
+  border: 4px solid #ccd4d1;
+  border-radius: 8px;
+  overflow: clip;
+}
+
+/* Grid inside the body — layer rows only, no border */
+.pix-score-grid {
+  display: grid;
+  gap: 0;
+}
+
+/* Notes row — outside (below) the bordered area */
+.pix-score-notes {
+  display: grid;
+  gap: 0;
+}
+
+/* Section dividers — vertical lines at section boundaries */
+.pix-section-divider {
+  position: absolute;
+  width: 1px;
+  background: #8a9490;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Empty spacer for notes row (no header needed)
+.pix-note-label-spacer {
+
+} */
+
+/* ========================================
+   Layer labels (first column)
+   ======================================== */
+.pix-layer-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--pix-dark, #636262);
+  background: #e4e7e6;
+  border-right: 1px solid #ccd4d1;
+  text-align: center;
+  position: sticky;
+  left: 0;
+  z-index: 10;
+}
+
+.pix-layer-label .pix-layer-icon {
+  width: 4em;
+  height: 4em;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pix-layer-label .pix-layer-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pix-layer-label .pix-layer-icon svg path {
+  fill: var(--pix-dark, #636262) !important;
+}
+
+/* Layer-specific bottom borders (horizontal separators) */
+.pix-layer-label--user {
+  border-bottom: 1px dotted #ccd4d1;
+}
+
+.pix-layer-label--dialogue {
+  border-bottom: 3px solid #ccd4d1;
+}
+
+.pix-layer-label--system {
+  border-bottom: 1px dotted #ccd4d1;
+}
+
+.pix-layer-label--environment {
+  border-bottom: 1px dotted #ccd4d1;
+}
+
+.pix-layer-label--supporting {
+  /* last row in SB — no bottom border */
+}
+
+/* Note label removed — notes row has no header */
+
+/* ========================================
+   Row separators — applied to cells
+   ======================================== */
+.pix-cell--user {
+  border-bottom: 1px dotted #ccd4d1;
+}
+
+/* Dialogue → System: heavy solid (visibility line) */
+.pix-cell--dialogue {
+  border-bottom: 3px solid #ccd4d1;
+}
+
+.pix-cell--system {
+  border-bottom: 1px dotted #ccd4d1;
+}
+
+.pix-cell--environment {
+  border-bottom: 1px dotted #ccd4d1;
+}
+
+.pix-cell--supporting {
+  /* last row in SB */
+}
+
+/* ========================================
+   Step headers — above the bordered area
+   ======================================== */
+
+/* Header wrapper: holds grip strip + title */
+.pix-step-header {
+  position: relative;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grip strip — draggable zone above the title */
+.pix-step-grip {
+  height: 24px;
+  cursor: grab;
+  border-radius: 3px 3px 0 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+  background-image: radial-gradient(circle, #999 1px, transparent 1px);
+  background-size: 6px 6px;
+  background-position: 2px 2px;
+}
+
+.pix-step-header:hover .pix-step-grip {
+  opacity: 0.4;
+}
+
+.pix-step-grip:hover {
+  opacity: 0.7 !important;
+}
+
+.pix-step-grip:active {
+  cursor: grabbing;
+}
+
+/* Title text inside header */
+.pix-step-title {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: left;
+  background: transparent;
+  color: var(--pix-brand, #D94021);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-height: 28px;
+  outline: none;
+  cursor: text;
+}
+
+.pix-step-title[contenteditable="true"]:hover,
+.pix-step-title[contenteditable="true"]:focus {
+  background-color: rgba(239, 239, 215, 0.5);
+  border-radius: 3px;
+}
+
+.pix-step-title[contenteditable="true"]:empty::before {
+  content: attr(data-placeholder);
+  color: var(--pix-text-muted);
+  opacity: 0;
+  font-weight: 400;
+  transition: opacity 0.15s;
+}
+
+.pix-step-title[contenteditable="true"]:hover:empty::before,
+.pix-step-title[contenteditable="true"]:focus:empty::before {
+  opacity: 0.3;
+}
+
+/* --- Drag feedback --- */
+.pix-step-dragging {
+  opacity: 0.3;
+}
+
+.pix-step-drop-before {
+  box-shadow: -3px 0 0 0 #ee7d33;
+}
+
+.pix-step-drop-after {
+  box-shadow: 3px 0 0 0 #ee7d33;
+}
+
+/* --- Step context menu --- */
+.pix-step-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 50;
+  background: #fff;
+  border: 1px solid var(--pix-border, #ccd4d1);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 4px 0;
+  min-width: 140px;
+  white-space: nowrap;
+}
+
+.pix-step-menu-item {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  border: none;
+  background: none;
+  font-size: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  color: var(--pix-text, #333);
+}
+
+.pix-step-menu-item:hover {
+  background: var(--pix-hover, rgba(239, 239, 215, 0.5));
+}
+
+.pix-step-menu-item--danger {
+  color: #c0392b;
+}
+
+.pix-step-menu-item--danger:hover {
+  background: rgba(192, 57, 43, 0.1);
+}
+
+/* ========================================
+   Cells
+   ======================================== */
+.pix-cell {
+  padding: 12px;
+  border-right: none;
+  min-height: 120px;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: transparent;
+  transition: background var(--pix-transition), box-shadow var(--pix-transition);
+  cursor: text;
+  line-height: 1.3;
+  font-size: 0.8rem;
+}
+
+.pix-cell:hover,
+.pix-cell:focus-within {
+  box-shadow: 0 0 0 2px #efefd7 inset;
+  background-color: rgba(239, 239, 215, 0.3);
+  z-index: 5;
+}
+
+/* Cell content */
+.pix-cell-content {
+  width: 100%;
+  min-height: 1.5em;
+  outline: none;
+  word-break: break-word;
+}
+
+.pix-cell-content:empty::before {
+  content: attr(data-placeholder);
+  color: var(--pix-text-muted);
+  opacity: 0;
+  font-style: italic;
+  font-size: 0.75rem;
+  transition: opacity 0.15s;
+}
+
+.pix-cell:hover .pix-cell-content:empty::before,
+.pix-cell:focus-within .pix-cell-content:empty::before {
+  opacity: 0.5;
+}
+
+/* Add-icon button (orange circle with +) */
+.pix-cell-add-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: #ee7d33;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  padding: 0;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.pix-cell:hover .pix-cell-add-icon,
+.pix-cell:focus-within .pix-cell-add-icon {
+  opacity: 1;
+}
+
+.pix-cell-add-icon:hover {
+  background: #d96a20;
+}
+
+/* Icon inside cell */
+.pix-cell .pix-icon {
+  width: 4em;
+  height: 4em;
+  margin-bottom: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.pix-cell .pix-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ========================================
+   Notes — below the bordered area
+   ======================================== */
+.pix-step-note {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--pix-text, #1a1a2e);
+  background: transparent;
+  min-height: 24px;
+  max-width: 200px;
+  text-align: left;
+  font-family: sans-serif;
+  opacity: 0.7;
+}
+
+.pix-step-note[contenteditable="true"]:hover,
+.pix-step-note[contenteditable="true"]:focus {
+  background-color: rgba(239, 239, 215, 0.3);
+  box-shadow: 0 0 0 2px #efefd7 inset;
+  border-radius: 4px;
+}
+
+.pix-step-note[contenteditable="true"]:empty::before {
+  content: attr(data-placeholder);
+  color: var(--pix-text-muted);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.pix-step-note[contenteditable="true"]:hover:empty::before,
+.pix-step-note[contenteditable="true"]:focus:empty::before {
+  opacity: 0.4;
+}
+
+/* ========================================
+   Score header info (title, description)
+   ======================================== */
+.pix-score-header {
+  margin-bottom: 12px;
+}
+
+.pix-score-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--pix-text);
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--pix-transition);
+}
+
+.pix-score-title:focus {
+  outline: none;
+  border-bottom-color: var(--pix-accent);
+}
+
+.pix-score-title::placeholder {
+  color: var(--pix-text-muted);
+  opacity: 0.6;
+}
+
+.pix-score-description {
+  font-size: 0.9rem;
+  font-family: var(--pix-font, system-ui, -apple-system, sans-serif);
+  color: var(--pix-text-muted);
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 2px 0 4px;
+  resize: none;
+  min-height: 1.5em;
+  field-sizing: content;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--pix-transition);
+}
+
+.pix-score-description:focus {
+  outline: none;
+  border-bottom-color: var(--pix-border);
+}
+
+.pix-score-description::placeholder {
+  color: var(--pix-text-muted);
+  opacity: 0.5;
+}
+
+/* Layout badge */
+.pix-layout-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  background: transparent;
+  color: #ee7d33;
+  border: 1.5px solid #ee7d33;
+  letter-spacing: 0.05em;
+}

@@ -1,0 +1,341 @@
+/* PiX v2 — Global Styles */
+
+:root {
+  /* Brand colors */
+  --pix-black: #2E1948;
+  --pix-white: #FFF;
+  --pix-orange: #e24414;
+  --pix-brand: #D94021;
+  --pix-success: #8DD15E;
+  --pix-warning: #FFC972;
+
+  /* Layer colors (used only for label accents, NOT cell backgrounds) */
+  --pix-layer-user: #F4845F;
+  --pix-layer-dialogue: #7B8794;
+  --pix-layer-system: #47B881;
+  --pix-layer-environment: #E8A838;
+  --pix-layer-supporting: #52606D;
+
+  /* UI colors */
+  --pix-bg: #FAFBFC;
+  --pix-surface: #FFFFFF;
+  --pix-border: #E4E7EB;
+  --pix-text: #1F2933;
+  --pix-text-muted: #7B8794;
+  --pix-accent: var(--pix-brand);
+  --pix-hover: #F5F7FA;
+
+  /* Typography */
+  --pix-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --pix-font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+
+  /* Spacing */
+  --pix-gap: 8px;
+  --pix-radius: 6px;
+  --pix-radius-lg: 12px;
+
+  /* Shadows */
+  --pix-shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --pix-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --pix-shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+
+  /* Transitions */
+  --pix-transition: 150ms ease;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pix-bg: #1A1A2E;
+    --pix-surface: #232340;
+    --pix-border: #3A3A5C;
+    --pix-text: #E4E7EB;
+    --pix-text-muted: #9AA5B4;
+    --pix-hover: #2A2A4A;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--pix-font);
+  background: var(--pix-bg);
+  color: var(--pix-text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Utility classes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Button resets */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pix-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pix-text-muted);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--pix-accent);
+  outline-offset: 2px;
+}
+
+/* Common button styles */
+.pix-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--pix-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--pix-transition);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.pix-btn:hover {
+  background: var(--pix-hover);
+}
+
+.pix-btn--primary {
+  background: var(--pix-brand);
+  color: var(--pix-white);
+}
+
+.pix-btn--primary:hover {
+  background: var(--pix-orange);
+}
+
+.pix-btn--ghost {
+  background: transparent;
+  color: var(--pix-text-muted);
+}
+
+.pix-btn--ghost:hover {
+  color: var(--pix-text);
+  background: var(--pix-hover);
+}
+
+.pix-btn--icon {
+  padding: 6px;
+  border-radius: var(--pix-radius);
+}
+
+.pix-btn--icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Footer */
+.pix-footer {
+  padding: 32px 24px;
+  margin-top: 48px;
+  border-top: 1px solid var(--pix-border);
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pix-text-muted);
+}
+
+.pix-footer p {
+  margin: 0;
+}
+
+.pix-footer strong {
+  color: var(--pix-text);
+  font-weight: 700;
+}
+
+.pix-footer a {
+  color: var(--pix-brand, #D94021);
+  text-decoration: none;
+}
+
+.pix-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   About page
+   ======================================== */
+.pix-about {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.pix-about-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--pix-brand);
+  margin-bottom: 12px;
+}
+
+.pix-about-lead {
+  font-size: 1.1rem;
+  color: var(--pix-text-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.pix-about-content h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--pix-brand);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.pix-about-content p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--pix-text);
+  margin-bottom: 12px;
+}
+
+.pix-about-content ul {
+  list-style: disc;
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.pix-about-content li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--pix-text);
+  margin-bottom: 6px;
+}
+
+.pix-about-content strong {
+  font-weight: 600;
+}
+
+.pix-about-content a {
+  color: var(--pix-brand);
+  text-decoration: none;
+}
+
+.pix-about-content a:hover {
+  text-decoration: underline;
+}
+
+.pix-about-content hr {
+  border: none;
+  border-top: 1px solid var(--pix-border);
+  margin: 32px 0 16px;
+}
+
+.pix-about-version {
+  font-size: 0.8rem;
+  color: var(--pix-text-muted);
+  font-style: italic;
+}
+
+/* Modal backdrop */
+.pix-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: pix-fade-in 150ms ease;
+}
+
+.pix-modal {
+  background: var(--pix-surface);
+  border-radius: var(--pix-radius-lg);
+  box-shadow: var(--pix-shadow-lg);
+  padding: 24px;
+  max-width: 680px;
+  width: 92vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: pix-slide-up 200ms ease;
+}
+
+@keyframes pix-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pix-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dropdown menu */
+.pix-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: var(--pix-surface);
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius);
+  box-shadow: var(--pix-shadow-lg);
+  min-width: 180px;
+  z-index: 100;
+  padding: 4px;
+  animation: pix-fade-in 100ms ease;
+}
+
+.pix-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.pix-dropdown button:hover {
+  background: var(--pix-hover);
+}
