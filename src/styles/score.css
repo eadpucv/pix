@@ -70,9 +70,9 @@
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--pix-brand, #D94021);
-  background: #e0e5e3;
+  letter-spacing: 0.02em;
+  color: var(--pix-dark, #636262);
+  background: #e4e7e6;
   border-right: 1px solid #ccd4d1;
   text-align: center;
   position: sticky;

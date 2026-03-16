@@ -14,13 +14,13 @@ export default {
   'library.new': 'Nueva Partitura',
   'library.import': 'Importar JSON',
   'library.downloadAll': 'Descargar Todo',
-  'library.slots': '{used} de {max} espacios usados',
+  'library.storage': '{percent}% almacenamiento usado',
   'library.empty': 'No hay partituras. Crea una!',
   'library.confirmDelete': 'Eliminar esta partitura? No se puede deshacer.',
   'library.duplicated': 'Partitura duplicada',
   'library.imported': 'Partitura importada exitosamente',
   'library.importError': 'No se pudo importar el archivo. Asegurate de que sea un JSON PiX valido.',
-  'library.full': 'La biblioteca esta llena. Elimina una partitura para hacer espacio.',
+  'library.full': 'No hay espacio disponible.',
 
   // New score dialog
   'new.title': 'Crear Nueva Partitura',

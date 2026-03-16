@@ -1,7 +1,7 @@
 // <pix-library> — Score library manager
 
 import { i18n } from '../i18n/index.js';
-import { getAllScores, saveScore, deleteScore, duplicateScore, MAX_SLOTS } from '../storage/db.js';
+import { getAllScores, saveScore, deleteScore, duplicateScore, getStorageUsage } from '../storage/db.js';
 import { migrateScore } from '../data/migrate.js';
 import { importJSON } from '../export/json.js';
 import { exportJSON } from '../export/json.js';
@@ -18,24 +18,28 @@ class PixLibrary extends HTMLElement {
 
   async _loadAndRender() {
     this._scores = await getAllScores();
+    this._storageInfo = await getStorageUsage();
     this._render();
   }
 
   _render() {
-    const slotsUsed = this._scores.length;
+    const count = this._scores.length;
+    const storageLabel = this._storageInfo
+      ? i18n.t('library.storage', { percent: this._storageInfo.percent })
+      : `${count} ${count === 1 ? 'score' : 'scores'}`;
 
     this.innerHTML = `
       <div class="pix-library-header">
         <div>
           <h2>${i18n.t('library.title')}</h2>
-          <span class="pix-slot-counter">${i18n.t('library.slots', { used: slotsUsed, max: MAX_SLOTS })}</span>
+          <span class="pix-slot-counter">${storageLabel}</span>
         </div>
         <div class="pix-library-actions">
           <button class="pix-btn pix-btn--ghost" data-action="import">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
             ${i18n.t('library.import')}
           </button>
-          ${slotsUsed > 0 ? `
+          ${count > 0 ? `
             <button class="pix-btn pix-btn--ghost" data-action="download-all">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
               ${i18n.t('library.downloadAll')}
@@ -45,12 +49,10 @@ class PixLibrary extends HTMLElement {
       </div>
 
       <div class="pix-library-grid">
-        ${slotsUsed < MAX_SLOTS ? `
-          <div class="pix-card pix-card--new" data-action="new">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-            <span>${i18n.t('library.new')}</span>
-          </div>
-        ` : ''}
+        <div class="pix-card pix-card--new" data-action="new">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <span>${i18n.t('library.new')}</span>
+        </div>
         ${this._scores.map(score => this._renderCard(score)).join('')}
       </div>
 
@@ -170,11 +172,6 @@ class PixLibrary extends HTMLElement {
   }
 
   _showNewScoreDialog() {
-    if (this._scores.length >= MAX_SLOTS) {
-      alert(i18n.t('library.full'));
-      return;
-    }
-
     const dialog = this.querySelector('.new-score-dialog');
     dialog.style.display = '';
     dialog.innerHTML = `
@@ -229,11 +226,6 @@ class PixLibrary extends HTMLElement {
   }
 
   async _importFile() {
-    if (this._scores.length >= MAX_SLOTS) {
-      alert(i18n.t('library.full'));
-      return;
-    }
-
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = '.json';
@@ -248,10 +240,6 @@ class PixLibrary extends HTMLElement {
         const scores = Array.isArray(data) ? data : [data];
 
         for (const raw of scores) {
-          if (this._scores.length >= MAX_SLOTS) {
-            alert(i18n.t('library.full'));
-            break;
-          }
           const migrated = migrateScore(raw);
           if (migrated) {
             await saveScore(migrated);

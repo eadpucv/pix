@@ -14,13 +14,13 @@ export default {
   'library.new': 'New Score',
   'library.import': 'Import JSON',
   'library.downloadAll': 'Download All',
-  'library.slots': '{used} of {max} slots used',
+  'library.storage': '{percent}% storage used',
   'library.empty': 'No scores yet. Create one!',
   'library.confirmDelete': 'Delete this score? This cannot be undone.',
   'library.duplicated': 'Score duplicated',
   'library.imported': 'Score imported successfully',
   'library.importError': 'Could not import the file. Make sure it is valid PiX JSON.',
-  'library.full': 'Library is full. Delete a score to make room.',
+  'library.full': 'No storage space available.',
 
   // New score dialog
   'new.title': 'Create New Score',

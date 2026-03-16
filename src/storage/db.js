@@ -3,7 +3,6 @@
 const DB_NAME = 'pix-library';
 const DB_VERSION = 1;
 const STORE_NAME = 'scores';
-const MAX_SLOTS = 20;
 
 let dbInstance = null;
 
@@ -68,11 +67,6 @@ export async function saveScore(score) {
   const now = Date.now();
 
   if (!score.id) {
-    // Check slot limit
-    const count = await getCount();
-    if (count >= MAX_SLOTS) {
-      throw new Error('Library is full');
-    }
     score.id = generateId();
     score.createdAt = now;
   }
@@ -131,4 +125,16 @@ export async function seedExamples(examples) {
   }
 }
 
-export { MAX_SLOTS };
+/**
+ * Estimate storage usage percentage (0–100).
+ * Returns null if the Storage API is not available.
+ */
+export async function getStorageUsage() {
+  if (navigator.storage && navigator.storage.estimate) {
+    const { usage, quota } = await navigator.storage.estimate();
+    if (quota > 0) {
+      return { usage, quota, percent: Math.round((usage / quota) * 100) };
+    }
+  }
+  return null;
+}
