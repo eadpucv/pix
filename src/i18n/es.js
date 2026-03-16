@@ -59,6 +59,7 @@ export default {
 
   // Cell
   'cell.placeholder': 'Escribe pix-...',
+  'cell.addIcon': 'Agregar pictograma',
 
   // Icon picker
   'picker.search': 'Buscar iconos...',

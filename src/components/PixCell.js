@@ -40,6 +40,14 @@ class PixCell extends HTMLElement {
     this._contentEl.setAttribute('spellcheck', 'false');
     this.appendChild(this._contentEl);
 
+    // Add icon picker button (orange circle with +)
+    this._addBtn = document.createElement('button');
+    this._addBtn.className = 'pix-cell-add-icon';
+    this._addBtn.type = 'button';
+    this._addBtn.title = i18n.t('cell.addIcon') || 'Add pictogram';
+    this._addBtn.innerHTML = '+';
+    this.appendChild(this._addBtn);
+
     this._renderContent();
     this._bindEvents();
   }
@@ -73,8 +81,8 @@ class PixCell extends HTMLElement {
 
       if (svgHtml) {
         this._contentEl.innerHTML =
-          `<span class="pix-icon" data-icon="${this._iconName}" contenteditable="false">${svgHtml}</span>` +
-          (this._text ? `<br>${this._escapeHtml(this._text)}` : '');
+          `<span class="pix-icon" data-icon="${this._iconName}" contenteditable="false">${svgHtml}</span><br>` +
+          (this._text ? this._escapeHtml(this._text) : '');
       } else {
         this._contentEl.textContent = this._value;
       }
@@ -109,17 +117,22 @@ class PixCell extends HTMLElement {
       this._closePicker();
     });
 
-    this._contentEl.addEventListener('dblclick', (e) => {
+    this._addBtn.addEventListener('mousedown', (e) => {
+      // mousedown instead of click to fire before blur closes the picker
       e.preventDefault();
+      e.stopPropagation();
       this._openFullPicker();
-    });
-
-    this._contentEl.addEventListener('focus', () => {
-      // Select all on focus for easy replacement
     });
   }
 
   _handleInput() {
+    // If cell already has a pictogram, don't trigger autocomplete
+    // (each cell can have only 1 pictogram; text after it is just text)
+    if (this._contentEl.querySelector('.pix-icon')) {
+      this._closePicker();
+      return;
+    }
+
     const text = this._getPlainText();
 
     // Check for pix- prefix to trigger autocomplete
@@ -214,7 +227,8 @@ class PixCell extends HTMLElement {
   }
 
   _closePicker() {
-    // The picker handles its own close via click-outside
+    const picker = document.querySelector('pix-icon-picker');
+    if (picker) picker.hide();
   }
 
   _commitValue() {

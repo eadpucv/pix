@@ -59,6 +59,7 @@ export default {
 
   // Cell
   'cell.placeholder': 'Type pix-...',
+  'cell.addIcon': 'Add pictogram',
 
   // Icon picker
   'picker.search': 'Search icons...',

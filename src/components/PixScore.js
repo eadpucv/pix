@@ -174,16 +174,16 @@ class PixScore extends HTMLElement {
   _addSectionDividers(steps) {
     const inner = this.querySelector('.pix-score-inner');
     const titlesGrid = this.querySelector('.pix-score-titles');
-    const body = this.querySelector('.pix-score-body');
+    const notesGrid = this.querySelector('.pix-score-notes');
     const titles = this.querySelectorAll('.pix-step-title');
-    if (!inner || !titlesGrid || !body || titles.length === 0) return;
+    if (!inner || !titlesGrid || !notesGrid || titles.length === 0) return;
 
     // Remove existing dividers
     inner.querySelectorAll('.pix-section-divider').forEach(el => el.remove());
 
     const innerRect = inner.getBoundingClientRect();
     const titlesRect = titlesGrid.getBoundingClientRect();
-    const bodyRect = body.getBoundingClientRect();
+    const notesRect = notesGrid.getBoundingClientRect();
 
     titles.forEach((titleEl, i) => {
       if (steps[i]?.step_title?.trim()) {
@@ -194,8 +194,8 @@ class PixScore extends HTMLElement {
         line.style.left = (titleRect.left - innerRect.left) + 'px';
         // Start from top of titles row
         line.style.top = (titlesRect.top - innerRect.top) + 'px';
-        // Span from top of titles to bottom of body (not notes)
-        line.style.height = (bodyRect.bottom - titlesRect.top) + 'px';
+        // Span from top of titles to bottom of notes row
+        line.style.height = (notesRect.bottom - titlesRect.top) + 'px';
         inner.appendChild(line);
       }
     });

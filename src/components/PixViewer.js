@@ -87,7 +87,7 @@ class PixViewer extends HTMLElement {
             ${this._score.description ? `<p class="pix-viewer-description">${this._esc(this._score.description)}</p>` : ''}
           </div>
           <div style="display:flex;gap:8px;">
-            <span class="pix-layout-badge">${this._score.layout?.toUpperCase()}</span>
+            <span class="pix-layout-badge">${this._score.layout === 'ip' ? 'PiX' : 'SB'}</span>
           </div>
         </div>
       ` : `

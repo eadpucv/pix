@@ -29,7 +29,7 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
-    "jspdf": "^2.5.2",
+    "jspdf": "^4.2.0",
     "svg2pdf.js": "^2.2.4"
   }
 }

@@ -63,7 +63,7 @@ class PixLibrary extends HTMLElement {
 
   _renderCard(score) {
     const date = score.updatedAt ? new Date(score.updatedAt).toLocaleDateString() : '';
-    const layout = score.layout?.toUpperCase() || 'IP';
+    const layout = score.layout === 'ip' ? 'PiX' : (score.layout === 'sb' ? 'SB' : 'PiX');
     const stepsCount = score.scores?.[0]?.length || 0;
 
     return `
