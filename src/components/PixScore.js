@@ -100,6 +100,7 @@ class PixScore extends HTMLElement {
       const grip = document.createElement('div');
       grip.className = 'pix-step-grip';
       grip.setAttribute('draggable', 'true');
+      grip.title = i18n.t('step.gripTooltip');
       header.appendChild(grip);
 
       // Title (contenteditable)

@@ -31,12 +31,10 @@ class PixToolbar extends HTMLElement {
         <div class="pix-toolbar-separator"></div>
 
         <div class="pix-toolbar-group">
-          <button class="pix-btn pix-btn--ghost layout-btn ${this._layout === 'ip' ? 'active' : ''}" data-layout="ip"
-                  style="${this._layout === 'ip' ? 'background:var(--pix-black);color:var(--pix-white);' : ''}">
+          <button class="pix-btn pix-btn--ghost layout-btn ${this._layout === 'ip' ? 'active' : ''}" data-layout="ip">
             ${i18n.t('toolbar.layoutIP')}
           </button>
-          <button class="pix-btn pix-btn--ghost layout-btn ${this._layout === 'sb' ? 'active' : ''}" data-layout="sb"
-                  style="${this._layout === 'sb' ? 'background:var(--pix-black);color:var(--pix-white);' : ''}">
+          <button class="pix-btn pix-btn--ghost layout-btn ${this._layout === 'sb' ? 'active' : ''}" data-layout="sb">
             ${i18n.t('toolbar.layoutSB')}
           </button>
         </div>
@@ -76,9 +74,7 @@ class PixToolbar extends HTMLElement {
 
   _updateLayoutButtons() {
     this.querySelectorAll('.layout-btn').forEach(btn => {
-      const isActive = btn.dataset.layout === this._layout;
-      btn.style.background = isActive ? 'var(--pix-black)' : '';
-      btn.style.color = isActive ? 'var(--pix-white)' : '';
+      btn.classList.toggle('active', btn.dataset.layout === this._layout);
     });
   }
 }

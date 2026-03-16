@@ -81,17 +81,12 @@ class PixViewer extends HTMLElement {
 
     this.innerHTML = `
       ${!isPrint ? `
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-          <div>
-            <h2 class="pix-viewer-title">${this._esc(this._score.title || 'Untitled')}</h2>
-            ${this._score.description ? `<p class="pix-viewer-description">${this._esc(this._score.description)}</p>` : ''}
-          </div>
-          <div style="display:flex;gap:8px;">
-            <span class="pix-layout-badge">${this._score.layout === 'ip' ? 'PiX' : 'SB'}</span>
-          </div>
+        <div style="margin-bottom:12px;">
+          <h2 class="pix-viewer-title">${this._esc(this._score.title || i18n.t('editor.untitled'))}</h2>
+          ${this._score.description ? `<p class="pix-viewer-description">${this._esc(this._score.description)}</p>` : ''}
         </div>
       ` : `
-        <h2 style="margin-bottom:4px;">${this._esc(this._score.title || 'Untitled')}</h2>
+        <h2 style="margin-bottom:4px;">${this._esc(this._score.title || i18n.t('editor.untitled'))}</h2>
         ${this._score.description ? `<p style="color:var(--pix-text-muted);margin-bottom:12px;">${this._esc(this._score.description)}</p>` : ''}
       `}
 

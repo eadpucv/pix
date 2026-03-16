@@ -70,20 +70,20 @@ class PixLibrary extends HTMLElement {
 
     return `
       <div class="pix-card" data-id="${score.id}">
-        <div class="pix-card-title">${this._esc(score.title || 'Untitled')}</div>
+        <div class="pix-card-title">${this._esc(score.title || i18n.t('editor.untitled'))}</div>
         <div class="pix-card-desc">${this._esc(score.description || '')}</div>
         <div class="pix-card-meta">
           <div>
             <span class="pix-layout-badge">${layout}</span>
-            <span style="margin-left:8px;">${stepsCount} steps</span>
+            <span style="margin-left:8px;">${i18n.t('library.steps', { count: stepsCount })}</span>
           </div>
           <span>${date}</span>
         </div>
         <div class="pix-card-actions" style="margin-top:8px;">
-          <button data-action="edit" data-id="${score.id}">Edit</button>
-          <button data-action="duplicate" data-id="${score.id}">Duplicate</button>
-          <button data-action="export-json" data-id="${score.id}">JSON</button>
-          <button class="delete-btn" data-action="delete" data-id="${score.id}">Delete</button>
+          <button data-action="edit" data-id="${score.id}">${i18n.t('library.edit')}</button>
+          <button data-action="duplicate" data-id="${score.id}">${i18n.t('library.duplicate')}</button>
+          <button data-action="export-json" data-id="${score.id}">${i18n.t('library.json')}</button>
+          <button class="delete-btn" data-action="delete" data-id="${score.id}">${i18n.t('library.delete')}</button>
         </div>
       </div>
     `;

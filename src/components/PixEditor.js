@@ -55,7 +55,6 @@ class PixEditor extends HTMLElement {
           <input class="pix-score-title" type="text"
                  value="${this._escAttr(this._score.title || '')}"
                  placeholder="${i18n.t('editor.untitled')}">
-          <span class="pix-layout-badge">${this._score.layout === 'ip' ? 'PiX' : 'SB'}</span>
           <span class="save-status" style="font-size:0.75rem;color:var(--pix-text-muted);"></span>
         </div>
         <textarea class="pix-score-description"
@@ -127,7 +126,7 @@ class PixEditor extends HTMLElement {
         }
       } catch (err) {
         console.error('Save failed:', err);
-        if (statusEl) statusEl.textContent = 'Save failed';
+        if (statusEl) statusEl.textContent = i18n.t('editor.saveFailed');
       }
     }, 500);
   }

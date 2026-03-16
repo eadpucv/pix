@@ -16,6 +16,11 @@ export default {
   'library.downloadAll': 'Descargar Todo',
   'library.storage': '{percent}% almacenamiento usado',
   'library.empty': 'No hay partituras. Crea una!',
+  'library.edit': 'Editar',
+  'library.duplicate': 'Duplicar',
+  'library.json': 'JSON',
+  'library.delete': 'Eliminar',
+  'library.steps': '{count} pasos',
   'library.confirmDelete': 'Eliminar esta partitura? No se puede deshacer.',
   'library.duplicated': 'Partitura duplicada',
   'library.imported': 'Partitura importada exitosamente',
@@ -34,6 +39,7 @@ export default {
   'editor.descPlaceholder': 'Agrega una descripcion...',
   'editor.saved': 'Guardado',
   'editor.saving': 'Guardando...',
+  'editor.saveFailed': 'Error al guardar',
 
   // Toolbar
   'toolbar.addStep': 'Agregar Paso',
@@ -57,9 +63,10 @@ export default {
   'step.remove': 'Eliminar paso',
   'step.addBefore': 'Agregar paso antes',
   'step.confirmDelete': 'Eliminar?',
+  'step.gripTooltip': 'Click para mas opciones',
 
   // Cell
-  'cell.placeholder': 'Escribe pix-...',
+  'cell.placeholder': 'Escribe o (+) agrega un pictograma',
   'cell.addIcon': 'Agregar pictograma',
 
   // Icon picker
@@ -81,6 +88,8 @@ export default {
   'export.embed': 'Codigo de insercion',
   'export.embedDesc': 'Copia este HTML para insertar la partitura:',
   'export.close': 'Cerrar',
+  'export.copy': 'Copiar',
+  'export.copied': 'Copiado!',
 
   // Viewer
   'viewer.title': 'Partitura PiX',
@@ -107,7 +116,15 @@ export default {
   'about.opensource.title': 'Codigo Abierto',
   'about.opensource.text': 'PiX es codigo abierto. Visita el repositorio para contribuir o reportar problemas:',
 
+  // Footer
+  'footer.tagline': 'PiX: Notaci\u00f3n gr\u00e1fica para el dise\u00f1o de interacci\u00f3n',
+  'footer.developed': 'Desarrollada por la',
+  'footer.school': 'Escuela de Arquitectura y Dise\u00f1o',
+  'footer.university': 'Pontificia Universidad Cat\u00f3lica de Valpara\u00edso',
+  'footer.opensource': 'C\u00f3digo abierto',
+  'footer.license': 'Licencia Art\u00edstica 2.0',
+
   // Misc
-  'confirm.yes': 'Si',
+  'confirm.yes': 'S\u00ed',
   'confirm.no': 'Cancelar',
 };

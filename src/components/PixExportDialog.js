@@ -28,6 +28,11 @@ class PixExportDialog extends HTMLElement {
   _render() {
     if (!this._visible || !this._score) return;
 
+    // Calculate embed height based on layout
+    // Matches SVG export dimensions: titleBlock(50) + stepTitles(36) + layers*120 + notes(28) + padding(32)
+    const numLayers = this._score.layout === 'sb' ? 5 : 3;
+    const embedHeight = 50 + 36 + numLayers * 120 + 28 + 32;
+
     // Generate embed URL
     const embedData = encodeScoreData({
       title: this._score.title,
@@ -37,11 +42,11 @@ class PixExportDialog extends HTMLElement {
     });
     const baseUrl = window.location.origin + window.location.pathname;
     const embedUrl = `${baseUrl}#!/import/${embedData}`;
-    const embedCode = `<iframe src="${embedUrl}" width="100%" height="400" frameborder="0"></iframe>`;
+    const embedCode = `<iframe src="${embedUrl}" width="100%" height="${embedHeight}" frameborder="0"></iframe>`;
 
     this.innerHTML = `
       <div class="pix-overlay">
-        <div class="pix-modal">
+        <div class="pix-modal pix-modal--export">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
             <h3 style="font-size:1.2rem;font-weight:700;">${i18n.t('export.title')}</h3>
             <button class="pix-btn pix-btn--ghost close-btn">${i18n.t('export.close')}</button>
@@ -75,7 +80,7 @@ class PixExportDialog extends HTMLElement {
             <p style="font-size:0.75rem;color:var(--pix-text-muted);margin-bottom:8px;">${i18n.t('export.embedDesc')}</p>
             <div class="pix-embed-row">
               <textarea class="pix-embed-code" readonly rows="3">${this._escapeHtml(embedCode)}</textarea>
-              <button class="pix-btn pix-btn--ghost copy-embed-btn" style="align-self:stretch;white-space:nowrap;">Copy</button>
+              <button class="pix-btn pix-btn--ghost copy-embed-btn" style="align-self:stretch;white-space:nowrap;">${i18n.t('export.copy')}</button>
             </div>
           </div>
         </div>
@@ -114,8 +119,8 @@ class PixExportDialog extends HTMLElement {
       textarea.select();
       navigator.clipboard.writeText(textarea.value).then(() => {
         const btn = this.querySelector('.copy-embed-btn');
-        btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy', 2000);
+        btn.textContent = i18n.t('export.copied');
+        setTimeout(() => btn.textContent = i18n.t('export.copy'), 2000);
       });
     });
   }

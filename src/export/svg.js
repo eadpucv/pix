@@ -125,8 +125,7 @@ export async function renderScoreToSVG(score) {
   // Define default font style
   svg += `<style>text { font-family: ${FONT_FAMILY}; }</style>`;
 
-  // Background
-  svg += `<rect width="${totalWidth}" height="${totalHeight}" fill="#FAFBFC"/>`;
+
 
   // Score title
   const startY = PADDING;

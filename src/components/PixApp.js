@@ -45,10 +45,7 @@ class PixApp extends HTMLElement {
     this.innerHTML = `
       <nav class="pix-nav">
         <a href="#/library" class="pix-nav-brand">
-          <svg viewBox="0 0 256 256" width="28" height="28">
-            <rect width="256" height="256" rx="40" fill="#D94021"/>
-            <text x="128" y="175" text-anchor="middle" font-size="160" font-weight="800" fill="white" font-family="sans-serif">P</text>
-          </svg>
+          <img src="${import.meta.env.BASE_URL || './'}icons/logo.svg" alt="PiX" width="28" height="28">
           <span>PiX</span>
           <span class="pix-nav-version">v${VERSION}</span>
         </a>
@@ -62,6 +59,12 @@ class PixApp extends HTMLElement {
         </div>
       </nav>
       <main class="pix-main"></main>
+      <footer class="pix-footer">
+        <p><strong>${i18n.t('footer.tagline')}</strong></p>
+        <p>${i18n.t('footer.developed')} <a href="https://ead.pucv.cl" target="_blank" rel="noopener">e[ad] ${i18n.t('footer.school')}</a></p>
+        <p>${i18n.t('footer.university')}</p>
+        <p><a href="https://github.com/eadpucv/pix" target="_blank" rel="noopener">${i18n.t('footer.opensource')}</a> · <a href="https://raw.githubusercontent.com/eadpucv/pix/refs/heads/main/LICENSE" target="_blank" rel="noopener">${i18n.t('footer.license')}</a> · v${VERSION}</p>
+      </footer>
     `;
 
     // Language switcher
@@ -106,9 +109,11 @@ class PixApp extends HTMLElement {
     if (hash.startsWith('#!/import/')) {
       const b64 = hash.slice('#!/import/'.length);
       const score = parseLegacyData(b64);
-      // Hide nav for clean embed experience (iframe in MediaWiki etc.)
+      // Hide nav+footer for clean embed experience (iframe in MediaWiki etc.)
       const nav = this.querySelector('.pix-nav');
+      const footer = this.querySelector('.pix-footer');
       if (nav) nav.style.display = 'none';
+      if (footer) footer.style.display = 'none';
       if (score) {
         main.innerHTML = '';
         const viewer = document.createElement('pix-viewer');
@@ -125,7 +130,9 @@ class PixApp extends HTMLElement {
       const b64 = hash.slice('#!/print/'.length);
       const score = parseLegacyData(b64);
       const nav = this.querySelector('.pix-nav');
+      const footer2 = this.querySelector('.pix-footer');
       if (nav) nav.style.display = 'none';
+      if (footer2) footer2.style.display = 'none';
       if (score) {
         main.innerHTML = '';
         const viewer = document.createElement('pix-viewer');

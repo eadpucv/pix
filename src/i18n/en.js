@@ -16,6 +16,11 @@ export default {
   'library.downloadAll': 'Download All',
   'library.storage': '{percent}% storage used',
   'library.empty': 'No scores yet. Create one!',
+  'library.edit': 'Edit',
+  'library.duplicate': 'Duplicate',
+  'library.json': 'JSON',
+  'library.delete': 'Delete',
+  'library.steps': '{count} steps',
   'library.confirmDelete': 'Delete this score? This cannot be undone.',
   'library.duplicated': 'Score duplicated',
   'library.imported': 'Score imported successfully',
@@ -34,6 +39,7 @@ export default {
   'editor.descPlaceholder': 'Add a description...',
   'editor.saved': 'Saved',
   'editor.saving': 'Saving...',
+  'editor.saveFailed': 'Save failed',
 
   // Toolbar
   'toolbar.addStep': 'Add Step',
@@ -57,9 +63,10 @@ export default {
   'step.remove': 'Remove step',
   'step.addBefore': 'Add step before',
   'step.confirmDelete': 'Delete?',
+  'step.gripTooltip': 'Click for more options',
 
   // Cell
-  'cell.placeholder': 'Type pix-...',
+  'cell.placeholder': 'Type or (+) add a pictogram',
   'cell.addIcon': 'Add pictogram',
 
   // Icon picker
@@ -81,6 +88,8 @@ export default {
   'export.embed': 'Embed Code',
   'export.embedDesc': 'Copy this HTML to embed the score:',
   'export.close': 'Close',
+  'export.copy': 'Copy',
+  'export.copied': 'Copied!',
 
   // Viewer
   'viewer.title': 'PiX Score',
@@ -106,6 +115,14 @@ export default {
   'about.history.evolution': 'Originally used to analyze existing interactions, PiX has evolved into a design tool: the scores are now the prompts that define what to build.',
   'about.opensource.title': 'Open Source',
   'about.opensource.text': 'PiX is open source. Visit the repository to contribute or report issues:',
+
+  // Footer
+  'footer.tagline': 'PiX: Graphic notation for interaction design',
+  'footer.developed': 'Developed by',
+  'footer.school': 'School of Architecture and Design',
+  'footer.university': 'Pontificia Universidad Cat\u00f3lica de Valpara\u00edso',
+  'footer.opensource': 'Open source',
+  'footer.license': 'Artistic License 2.0',
 
   // Misc
   'confirm.yes': 'Yes',

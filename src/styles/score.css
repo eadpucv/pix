@@ -52,10 +52,10 @@
   pointer-events: none;
 }
 
-/* Empty spacer for notes row (no header needed) */
+/* Empty spacer for notes row (no header needed)
 .pix-note-label-spacer {
-  /* matches label column width, empty */
-}
+
+} */
 
 /* ========================================
    Layer labels (first column)
@@ -93,6 +93,10 @@
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.pix-layer-label .pix-layer-icon svg path {
+  fill: var(--pix-dark, #636262) !important;
 }
 
 /* Layer-specific bottom borders (horizontal separators) */
@@ -462,7 +466,8 @@
   font-weight: 600;
   text-transform: uppercase;
   border-radius: 9999px;
-  background: var(--pix-black);
-  color: var(--pix-white);
+  background: transparent;
+  color: #ee7d33;
+  border: 1.5px solid #ee7d33;
   letter-spacing: 0.05em;
 }

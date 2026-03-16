@@ -109,6 +109,13 @@ pix-toolbar {
   margin: 0 4px;
 }
 
+.layout-btn.active {
+  background: transparent !important;
+  color: #ee7d33 !important;
+  border: 1.5px solid #ee7d33;
+  border-radius: 9999px;
+}
+
 /* Editor container */
 pix-editor {
   display: block;
@@ -330,6 +337,30 @@ pix-icon-picker {
 }
 
 /* Export dialog */
+.pix-modal--export {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pix-modal--export > div:first-child {
+  flex-shrink: 0;
+}
+
+.pix-modal--export .pix-embed-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pix-modal--export .pix-embed-row {
+  flex: 1;
+}
+
+.pix-modal--export .pix-embed-code {
+  resize: none;
+}
+
 .pix-export-options {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
