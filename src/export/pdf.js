@@ -12,9 +12,14 @@ export async function exportPDF(score) {
 
   const svgString = await renderScoreToSVG(score);
 
+  // Inject font-family="helvetica" on every <text> element for svg2pdf.
+  // svg2pdf.js does NOT inherit font-family from parent <g> elements —
+  // it only reads the attribute directly on each <text>. Without it, Times (serif) is used.
+  const pdfSvg = svgString.replaceAll('<text ', '<text font-family="helvetica" ');
+
   // Parse SVG dimensions
-  const widthMatch = svgString.match(/width="(\d+)"/);
-  const heightMatch = svgString.match(/height="(\d+)"/);
+  const widthMatch = pdfSvg.match(/width="(\d+)"/);
+  const heightMatch = pdfSvg.match(/height="(\d+)"/);
   const svgWidth = parseInt(widthMatch?.[1] || '800');
   const svgHeight = parseInt(heightMatch?.[1] || '600');
 
@@ -28,7 +33,7 @@ export async function exportPDF(score) {
 
   // Parse SVG string into DOM element
   const parser = new DOMParser();
-  const svgDoc = parser.parseFromString(svgString, 'image/svg+xml');
+  const svgDoc = parser.parseFromString(pdfSvg, 'image/svg+xml');
   const svgElement = svgDoc.documentElement;
 
   // Render SVG to PDF
@@ -41,11 +46,16 @@ export async function exportPDF(score) {
     });
   } catch (e) {
     console.warn('svg2pdf rendering issue, falling back to basic PDF:', e);
-    // Fallback: at least create a basic PDF with text
-    doc.setFontSize(16);
-    doc.text(score.title || 'PiX Score', 20, 30);
-    doc.setFontSize(10);
-    doc.text(score.description || '', 20, 50);
+    let fallbackY = 30;
+    if (score.title && score.title.trim()) {
+      doc.setFontSize(16);
+      doc.text(score.title, 20, fallbackY);
+      fallbackY += 20;
+    }
+    if (score.description && score.description.trim()) {
+      doc.setFontSize(10);
+      doc.text(score.description, 20, fallbackY);
+    }
   }
 
   doc.save(sanitizeFilename(score.title || 'pix-score') + '.pdf');

@@ -13,7 +13,7 @@ const NOTE_HEIGHT = 28;
 const PADDING = 16;
 const FONT_SIZE = 11;
 const TITLE_FONT_SIZE = 18;
-const FONT_FAMILY = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+const FONT_FAMILY = "Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
 
 // Layer header pixogram icons (same as PixScore.js)
 const LAYER_PIXOGRAM_ICONS = {
@@ -100,7 +100,9 @@ export async function renderScoreToSVG(score) {
   // Calculate dimensions
   const gridWidth = LABEL_WIDTH + numSteps * CELL_WIDTH;
   const totalWidth = gridWidth + PADDING * 2;
-  const titleBlockHeight = 50;
+  const hasTitle = !!(score.title && score.title.trim());
+  const hasDescription = !!(score.description && score.description.trim());
+  const titleBlockHeight = hasTitle && hasDescription ? 50 : hasTitle ? 30 : 0;
   const stepTitleHeight = HEADER_HEIGHT;
   const gridHeight = layers.length * CELL_HEIGHT;
   const totalHeight = titleBlockHeight + stepTitleHeight + gridHeight + NOTE_HEIGHT + PADDING * 2;
@@ -122,16 +124,19 @@ export async function renderScoreToSVG(score) {
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${totalHeight}" viewBox="0 0 ${totalWidth} ${totalHeight}">`;
 
-  // Define default font style
-  svg += `<style>text { font-family: ${FONT_FAMILY}; }</style>`;
+  // Wrap all content in a group with font-family as SVG attribute
+  // (svg2pdf.js doesn't reliably process <style> blocks, but does inherit group attributes)
+  svg += `<g font-family="${FONT_FAMILY}">`;
 
 
 
-  // Score title
+  // Score title & description (omitted when empty)
   const startY = PADDING;
-  svg += `<text x="${PADDING}" y="${startY + 22}" font-size="${TITLE_FONT_SIZE}" font-weight="700" fill="#2E1948">${escapeXml(score.title || 'Untitled Score')}</text>`;
-  if (score.description) {
-    svg += `<text x="${PADDING}" y="${startY + 40}" font-size="${FONT_SIZE}" fill="#7B8794">${escapeXml(score.description)}</text>`;
+  if (hasTitle) {
+    svg += `<text x="${PADDING}" y="${startY + 22}" font-size="${TITLE_FONT_SIZE}" font-weight="700" fill="#2E1948">${escapeXml(score.title)}</text>`;
+    if (hasDescription) {
+      svg += `<text x="${PADDING}" y="${startY + 40}" font-size="${FONT_SIZE}" fill="#7B8794">${escapeXml(score.description)}</text>`;
+    }
   }
 
   // Coordinates
@@ -221,12 +226,12 @@ export async function renderScoreToSVG(score) {
 
     if (headerIconName) {
       const iconX = PADDING + (LABEL_WIDTH - LABEL_ICON_SIZE) / 2;
-      svg += renderIconInline(headerIconName, iconX, labelCursorY, LABEL_ICON_SIZE, '#D94021');
+      svg += renderIconInline(headerIconName, iconX, labelCursorY, LABEL_ICON_SIZE, '#636262');
       labelCursorY += LABEL_ICON_SIZE + labelGap;
     }
 
     for (let l = 0; l < labelLines.length; l++) {
-      svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${labelCursorY + l * labelLineHeight}" font-size="9" fill="#D94021" text-anchor="middle" font-weight="600" dominant-baseline="hanging" letter-spacing="0.5">${escapeXml(labelLines[l].toUpperCase())}</text>`;
+      svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${labelCursorY + l * labelLineHeight}" font-size="9" fill="#636262" text-anchor="middle" font-weight="600" dominant-baseline="hanging" letter-spacing="0.5">${escapeXml(labelLines[l].toUpperCase())}</text>`;
     }
 
     // Cell icons and text (vertically centered)
@@ -275,7 +280,7 @@ export async function renderScoreToSVG(score) {
     }
   }
 
-  svg += `</svg>`;
+  svg += `</g></svg>`;
   return svg;
 }
 

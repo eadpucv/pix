@@ -65,7 +65,7 @@ class PixLibrary extends HTMLElement {
 
   _renderCard(score) {
     const date = score.updatedAt ? new Date(score.updatedAt).toLocaleDateString() : '';
-    const layout = score.layout === 'ip' ? 'PiX' : (score.layout === 'sb' ? 'SB' : 'PiX');
+    const layout = score.layout === 'ip' ? i18n.t('toolbar.layoutIP') : (score.layout === 'sb' ? i18n.t('toolbar.layoutSB') : i18n.t('toolbar.layoutIP'));
     const stepsCount = score.scores?.[0]?.length || 0;
 
     return `
