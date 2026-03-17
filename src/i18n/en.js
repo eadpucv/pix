@@ -45,7 +45,7 @@ export default {
   'toolbar.addStep': 'Add Step',
   'toolbar.export': 'Export',
   'toolbar.layoutIP': 'PiX',
-  'toolbar.layoutSB': 'SB',
+  'toolbar.layoutSB': 'Service Blueprint',
   'toolbar.undo': 'Undo',
   'toolbar.redo': 'Redo',
 
@@ -113,6 +113,9 @@ export default {
   'about.history.title': 'History',
   'about.history.text': 'PiX was created at the Escuela de Arquitectura y Diseno, PUCV (Valparaiso, Chile) as a tool for UX designers to visualize and design interactive experiences.',
   'about.history.evolution': 'Originally used to analyze existing interactions, PiX has evolved into a design tool: the scores are now the prompts that define what to build.',
+  'about.history.wiki': 'Academic and historical documentation of the projects, research, and publications derived from PiX is available at',
+  'about.history.wikiName': 'Wiki Casiopea',
+  'about.history.wikiLang': '(in Spanish)',
   'about.opensource.title': 'Open Source',
   'about.opensource.text': 'PiX is open source. Visit the repository to contribute or report issues:',
 

@@ -31,7 +31,7 @@ export default {
   'new.title': 'Crear Nueva Partitura',
   'new.ip': 'Partitura de Interacción',
   'new.ipDesc': '3 capas: Usuario, Diálogo, Sistema',
-  'new.sb': 'Blueprint de Servicio',
+  'new.sb': 'Plano de Servicio',
   'new.sbDesc': '5 capas: Entorno, Usuario, Diálogo, Sistema, Procesos de Soporte',
 
   // Editor
@@ -45,7 +45,7 @@ export default {
   'toolbar.addStep': 'Agregar Paso',
   'toolbar.export': 'Exportar',
   'toolbar.layoutIP': 'PiX',
-  'toolbar.layoutSB': 'SB',
+  'toolbar.layoutSB': 'Plano de Servicio',
   'toolbar.undo': 'Deshacer',
   'toolbar.redo': 'Rehacer',
 
@@ -106,13 +106,15 @@ export default {
   'about.notation.system': 'Los procesos técnicos que ocurren detrás de escena',
   'about.notation.visibility': 'La línea entre Diálogo y Sistema es deliberadamente opaca: el usuario no ve dentro del sistema. Este es un principio de diseño fundamental.',
   'about.notation.steps': 'Cada columna es un paso en la secuencia de interacción. El tiempo fluye de izquierda a derecha.',
-  'about.sb.title': 'Blueprint de Servicio',
-  'about.sb.intro': 'El Blueprint de Servicio extiende la partitura de interacción con dos capas adicionales:',
+  'about.sb.title': 'Plano de Servicio',
+  'about.sb.intro': 'El Plano de Servicio extiende la partitura de interacción con dos capas adicionales:',
   'about.sb.environment': 'El contexto físico o digital',
   'about.sb.supporting': 'Servicios de soporte e infraestructura',
   'about.history.title': 'Historia',
   'about.history.text': 'PiX fue creado en la Escuela de Arquitectura y Diseño, PUCV (Valparaíso, Chile) como herramienta para diseñadores UX para visualizar y diseñar experiencias interactivas.',
   'about.history.evolution': 'Originalmente usado para analizar interacciones existentes, PiX ha evolucionado hacia una herramienta de diseño: las partituras son ahora los prompts que definen lo que se construirá.',
+  'about.history.wiki': 'La documentación académica e histórica de los proyectos, investigaciones y publicaciones derivados de PiX se encuentra en',
+  'about.history.wikiName': 'Wiki Casiopea',
   'about.opensource.title': 'Código Abierto',
   'about.opensource.text': 'PiX es código abierto. Visita el repositorio para contribuir o reportar problemas:',
 

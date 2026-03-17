@@ -250,8 +250,9 @@ class PixScore extends HTMLElement {
     const inner = this.querySelector('.pix-score-inner');
     const titlesGrid = this.querySelector('.pix-score-titles');
     const notesGrid = this.querySelector('.pix-score-notes');
+    const body = this.querySelector('.pix-score-body');
     const headers = this.querySelectorAll('.pix-step-header');
-    if (!inner || !titlesGrid || !notesGrid || headers.length === 0) return;
+    if (!inner || !titlesGrid || !notesGrid || !body || headers.length === 0) return;
 
     // Remove existing dividers
     inner.querySelectorAll('.pix-section-divider').forEach(el => el.remove());
@@ -259,13 +260,14 @@ class PixScore extends HTMLElement {
     const innerRect = inner.getBoundingClientRect();
     const titlesRect = titlesGrid.getBoundingClientRect();
     const notesRect = notesGrid.getBoundingClientRect();
+    const bodyBorderLeft = parseFloat(getComputedStyle(body).borderLeftWidth) || 0;
 
     headers.forEach((headerEl, i) => {
       if (steps[i]?.step_title?.trim()) {
         const headerRect = headerEl.getBoundingClientRect();
         const line = document.createElement('div');
         line.className = 'pix-section-divider';
-        line.style.left = (headerRect.left - innerRect.left) + 'px';
+        line.style.left = (headerRect.left - innerRect.left + bodyBorderLeft) + 'px';
         line.style.top = (titlesRect.top - innerRect.top) + 'px';
         line.style.height = (notesRect.bottom - titlesRect.top) + 'px';
         inner.appendChild(line);

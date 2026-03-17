@@ -34,6 +34,7 @@ class PixAbout extends HTMLElement {
           <h2>${i18n.t('about.history.title')}</h2>
           <p>${i18n.t('about.history.text')}</p>
           <p>${i18n.t('about.history.evolution')}</p>
+          <p>${i18n.t('about.history.wiki')} <a href="https://wiki.ead.pucv.cl/PiX" target="_blank" rel="noopener">${i18n.t('about.history.wikiName')}</a>${i18n.lang !== 'es' ? ' ' + i18n.t('about.history.wikiLang') : ''}.</p>
 
           <h2>${i18n.t('about.opensource.title')}</h2>
           <p>${i18n.t('about.opensource.text')} <a href="https://github.com/eadpucv/pix" target="_blank" rel="noopener">GitHub</a>.</p>

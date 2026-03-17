@@ -189,13 +189,14 @@ class PixViewer extends HTMLElement {
     const innerRect = inner.getBoundingClientRect();
     const titlesRect = titlesGrid.getBoundingClientRect();
     const bodyRect = body.getBoundingClientRect();
+    const bodyBorderLeft = parseFloat(getComputedStyle(body).borderLeftWidth) || 0;
 
     titles.forEach((titleEl, i) => {
       if (steps[i]?.step_title?.trim()) {
         const titleRect = titleEl.getBoundingClientRect();
         const line = document.createElement('div');
         line.className = 'pix-section-divider';
-        line.style.left = (titleRect.left - innerRect.left) + 'px';
+        line.style.left = (titleRect.left - innerRect.left + bodyBorderLeft) + 'px';
         line.style.top = (titlesRect.top - innerRect.top) + 'px';
         line.style.height = (bodyRect.bottom - titlesRect.top) + 'px';
         inner.appendChild(line);
