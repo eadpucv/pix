@@ -16,6 +16,7 @@ export default {
   'library.downloadAll': 'Descargar Todo',
   'library.storage': '{percent}% almacenamiento usado',
   'library.empty': 'No hay partituras. ¡Crea una!',
+  'library.loadExamples': 'Cargar Ejemplos',
   'library.edit': 'Editar',
   'library.duplicate': 'Duplicar',
   'library.json': 'JSON',

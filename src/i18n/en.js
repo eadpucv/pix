@@ -16,6 +16,7 @@ export default {
   'library.downloadAll': 'Download All',
   'library.storage': '{percent}% storage used',
   'library.empty': 'No scores yet. Create one!',
+  'library.loadExamples': 'Load Examples',
   'library.edit': 'Edit',
   'library.duplicate': 'Duplicate',
   'library.json': 'JSON',

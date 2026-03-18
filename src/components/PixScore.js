@@ -20,12 +20,12 @@ class PixScore extends HTMLElement {
   constructor() {
     super();
     this._score = null;
-    this._layout = 'ip';
+    this._layout = 'pix';
   }
 
   set score(val) {
     this._score = val;
-    if (val) this._layout = val.layout || 'ip';
+    if (val) this._layout = val.layout || 'pix';
     if (this.isConnected) this._render();
   }
 

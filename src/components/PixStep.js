@@ -7,7 +7,7 @@ class PixStep extends HTMLElement {
   constructor() {
     super();
     this._data = null;
-    this._layout = 'ip';
+    this._layout = 'pix';
     this._index = 0;
     this._showNote = false;
   }

@@ -3,8 +3,8 @@
 import { i18n } from '../i18n/index.js';
 import { getAllScores, saveScore, deleteScore, duplicateScore, getStorageUsage } from '../storage/db.js';
 import { migrateScore } from '../data/migrate.js';
-import { importJSON } from '../export/json.js';
-import { exportJSON } from '../export/json.js';
+import { importJSON, exportJSON } from '../export/json.js';
+import { EXAMPLE_SCORES } from '../data/examples.js';
 
 class PixLibrary extends HTMLElement {
   constructor() {
@@ -53,6 +53,12 @@ class PixLibrary extends HTMLElement {
           <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
           <span>${i18n.t('library.new')}</span>
         </div>
+        ${count === 0 ? `
+          <div class="pix-card pix-card--new" data-action="load-examples">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
+            <span>${i18n.t('library.loadExamples')}</span>
+          </div>
+        ` : ''}
         ${this._scores.map(score => this._renderCard(score)).join('')}
       </div>
 
@@ -65,7 +71,7 @@ class PixLibrary extends HTMLElement {
 
   _renderCard(score) {
     const date = score.updatedAt ? new Date(score.updatedAt).toLocaleDateString() : '';
-    const layout = score.layout === 'ip' ? i18n.t('toolbar.layoutIP') : (score.layout === 'sb' ? i18n.t('toolbar.layoutSB') : i18n.t('toolbar.layoutIP'));
+    const layout = score.layout === 'sb' ? i18n.t('toolbar.layoutSB') : i18n.t('toolbar.layoutIP');
     const stepsCount = score.scores?.[0]?.length || 0;
 
     return `
@@ -94,6 +100,17 @@ class PixLibrary extends HTMLElement {
     const newCard = this.querySelector('[data-action="new"]');
     if (newCard) {
       newCard.addEventListener('click', () => this._showNewScoreDialog());
+    }
+
+    // Load examples
+    const loadExBtn = this.querySelector('[data-action="load-examples"]');
+    if (loadExBtn) {
+      loadExBtn.addEventListener('click', async () => {
+        for (const example of EXAMPLE_SCORES) {
+          await saveScore({ ...example });
+        }
+        await this._loadAndRender();
+      });
     }
 
     // Card actions
@@ -179,7 +196,7 @@ class PixLibrary extends HTMLElement {
         <div class="pix-modal">
           <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;">${i18n.t('new.title')}</h3>
           <div class="pix-new-score-options">
-            <div class="pix-new-score-option" data-layout="ip">
+            <div class="pix-new-score-option" data-layout="pix">
               <h3>${i18n.t('new.ip')}</h3>
               <p>${i18n.t('new.ipDesc')}</p>
             </div>

@@ -1,0 +1,91 @@
+{
+  "title": "Consultar multas de tránsito pendientes",
+  "layout": "ip",
+  "description": "Rodrigo, 38 años, recibió una foto-multa por correo y quiere saber si tiene otras multas pendientes. No sabe bien dónde buscar ni qué sistema usar.",
+  "scores": [[
+    {
+      "step_title": "",
+      "user": "pix-think Me llegó una multa por correo. ¿Tendré otras? Voy a buscar en internet.",
+      "dialogue": "pix-desktop Abre el navegador y busca en Google 'consultar multas tránsito chile'",
+      "system": "pix-process Google retorna resultados orgánicos y resumen de IA",
+      "note": ""
+    },
+    {
+      "step_title": "Resultados de Google",
+      "user": "pix-intrigued Hay varios resultados. El primero es del Registro Civil pero dice 'Request Rejected'. El segundo es de ChileAtiende.",
+      "dialogue": "pix-list 4 resultados: 1) consultamultas.srcei.cl (caído), 2) ChileAtiende - Certificado de multas, 3) Fiscalización de Transportes, 4) Autopase - circular sin TAG. Resumen de IA al final.",
+      "system": " ",
+      "note": "El portal oficial del Registro Civil para multas está caído (error Tomcat). Fragmentación de servicios entre múltiples sitios."
+    },
+    {
+      "step_title": "",
+      "user": "pix-think El de ChileAtiende me suena confiable. Voy a entrar ahí.",
+      "dialogue": "pix-link Click en 'Certificado de multas de tránsito no pagadas' de ChileAtiende",
+      "system": "pix-process Carga ficha de trámite en chileatiende.gob.cl",
+      "note": ""
+    },
+    {
+      "step_title": "Ficha ChileAtiende - Certificado de multas",
+      "user": "pix-face Dice que este documento permite saber si mi vehículo tiene multas no pagadas. Eso es lo que necesito.",
+      "dialogue": "pix-page Ficha del Servicio de Registro Civil. Descripción del certificado. Botón 'Obtener certificado' a la derecha. Explica que solo incluye multas 'empadronadas' (de cámaras).",
+      "system": " ",
+      "note": "Solo incluye multas de cámaras, no multas cursadas por Carabineros en persona"
+    },
+    {
+      "step_title": "",
+      "user": "pix-surprised ¿Solo multas de cámaras? Mi multa fue de Carabineros... ¿Entonces no aparecería aquí?",
+      "dialogue": "pix-page Texto: 'El registro incluye solo multas empadronadas, aquellas en que la autoridad no vio directamente al infractor'",
+      "system": " ",
+      "note": "El usuario descubre que hay dos tipos de multas en sistemas distintos"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think Bueno, igual quiero ver las de cámaras. Voy a intentar obtener el certificado.",
+      "dialogue": "pix-button Click en 'Obtener certificado'",
+      "system": " ",
+      "note": ""
+    },
+    {
+      "step_title": "Modal de redirección",
+      "user": "pix-face Me dice que me van a llevar a otro sitio web, al Registro Civil.",
+      "dialogue": "pix-alert Modal: 'Te llevaremos a otro sitio web. Para realizar tu trámite te redirigiremos al sitio web institucional de Servicio de Registro Civil.' Botones: 'Hacerlo después' y 'Continuar'.",
+      "system": " ",
+      "note": "ChileAtiende funciona como intermediario informativo, el trámite real es en otro sitio"
+    },
+    {
+      "step_title": "",
+      "user": "pix-sad Pero espera... dice que necesito ClaveÚnica y además cuesta $1.310. ¿Tengo que pagar para ver si tengo multas?",
+      "dialogue": "pix-page Requisitos: ingresar placa patente, tener ClaveÚnica, pagar $1.310 por el certificado.",
+      "system": " ",
+      "note": "El usuario quería consultar sus multas gratis y descubre que el certificado es un trámite pagado"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think ¿Y si pruebo el otro sitio de Google? El de Fiscalización de Transportes...",
+      "dialogue": "pix-button Vuelve atrás a los resultados de Google. Click en 'Fiscalización Consulta Infracciones'.",
+      "system": "pix-process Navega a rnv.fiscalizacion.cl",
+      "note": ""
+    },
+    {
+      "step_title": "Portal Fiscalización de Transportes",
+      "user": "pix-face Este sitio dice que puedo consultar si fui detectado por cámaras de fiscalización. Solo necesito la placa patente.",
+      "dialogue": "pix-input Formulario simple: campo para ingresar placa patente del vehículo. Sin login ni ClaveÚnica.",
+      "system": " ",
+      "note": "Este portal es gratuito y no requiere autenticación, pero solo cubre cámaras de fiscalización de transportes"
+    },
+    {
+      "step_title": "",
+      "user": "pix-angry Pero esto solo me muestra infracciones de cámaras de una autopista específica. Mi multa era de Carabineros en la calle. ¿Dónde consulto esas?",
+      "dialogue": "pix-page Resultados limitados a infracciones del Sistema de Cámaras de Fiscalización de Transportes.",
+      "system": " ",
+      "note": "Cada tipo de multa está en un sistema distinto: cámaras de tránsito en Registro Civil, fiscalización de transportes en otro portal, multas de Carabineros en Juzgados de Policía Local"
+    },
+    {
+      "step_title": "",
+      "user": "pix-angry No existe un solo lugar donde ver todas mis multas. Tendría que revisar 3 sitios distintos y para uno de ellos pagar. Mejor voy al juzgado presencialmente.",
+      "dialogue": "pix-desktop Cierra el navegador frustrado",
+      "system": " ",
+      "note": "No hay portal unificado de multas en Chile. Las multas de tránsito están fragmentadas entre: 1) Registro Civil (cámaras, pagado), 2) Fiscalización de Transportes (autopistas), 3) Juzgados de Policía Local (Carabineros, presencial). El usuario no puede completar su objetivo online."
+    }
+  ]]
+}

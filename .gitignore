@@ -1,4 +1,5 @@
 .DS_Store
 .claude/*
 node_modules/
+dist/
 .claude/worktrees/cranky-beaver/

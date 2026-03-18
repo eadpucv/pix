@@ -12,8 +12,9 @@ export function migrateScore(data) {
   const score = { ...data };
 
   // Ensure layout
-  if (!score.layout) score.layout = 'ip';
+  if (!score.layout) score.layout = 'pix';
   score.layout = score.layout.toLowerCase();
+  if (score.layout === 'ip') score.layout = 'pix';
 
   // Ensure title & description
   if (!score.title) score.title = '';

@@ -116,15 +116,6 @@ export async function duplicateScore(id) {
   return saveScore(copy);
 }
 
-export async function seedExamples(examples) {
-  const count = await getCount();
-  if (count > 0) return; // Already seeded
-
-  for (const example of examples) {
-    await saveScore({ ...example });
-  }
-}
-
 /**
  * Estimate storage usage percentage (0–100).
  * Returns null if the Storage API is not available.

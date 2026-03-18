@@ -1,8 +1,6 @@
 // <pix-app> — Main shell, router, i18n
 
 import { i18n } from '../i18n/index.js';
-import { seedExamples } from '../storage/db.js';
-import { EXAMPLE_SCORES } from '../data/examples.js';
 import { parseLegacyData, migrateScore } from '../data/migrate.js';
 import { preloadIcons } from '../data/icons-meta.js';
 import { getScore } from '../storage/db.js';
@@ -20,9 +18,6 @@ class PixApp extends HTMLElement {
   }
 
   async connectedCallback() {
-    // Seed example scores on first run
-    await seedExamples(EXAMPLE_SCORES);
-
     // Start preloading icons in background
     preloadIcons();
 

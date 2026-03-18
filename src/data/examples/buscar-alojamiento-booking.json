@@ -1,0 +1,98 @@
+{
+  "title": "Buscar alojamiento en Booking.com",
+  "layout": "ip",
+  "description": "Turista neozelandés planifica vacaciones en Chile. Busca alojamiento en Valparaíso para 2 personas por una semana en Booking.com. Usuario con cuenta Genius nivel 2.",
+  "scores": [[
+    {
+      "step_title": "",
+      "user": "pix-think Quiero ir a Valparaíso en Chile. Voy a buscar alojamiento en Booking.",
+      "dialogue": "pix-desktop Abre booking.com. Sesión iniciada automáticamente.",
+      "system": "pix-process Carga SPA. Detecta sesión, idioma (español), moneda (NZD) y nivel Genius del usuario.",
+      "note": ""
+    },
+    {
+      "step_title": "Home de Booking.com",
+      "user": "pix-smiling Me saluda por nombre y me dice que tengo ventajas Genius. Se siente personalizado.",
+      "dialogue": "pix-page '¿Adónde irás, Herbert?' Buscador con 3 campos: destino, fechas, huéspedes. Tabs: Alojamiento, Vuelos, Vuelo+Hotel, Coches, Atracciones. Ofertas destacadas abajo.",
+      "system": " ",
+      "note": "La home está centrada en el buscador. Diseño limpio comparado con otros servicios."
+    },
+    {
+      "step_title": "",
+      "user": " ",
+      "dialogue": "pix-input Click en '¿Adónde vas?' y escribe 'Valparaíso'",
+      "system": "pix-api Autocomplete consulta API con sugerencias de destinos en tiempo real",
+      "note": ""
+    },
+    {
+      "step_title": "Selector de fechas",
+      "user": "pix-face Apareció un calendario. Práctico, puedo elegir las fechas visualmente.",
+      "dialogue": "pix-select Calendario interactivo muestra marzo y abril 2026. Hoy (18 mar) resaltado. Atajos rápidos: 1 día, 2 días, 3 días, 7 días.",
+      "system": " ",
+      "note": "El calendario se abre automáticamente después de elegir destino, guiando el flujo"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think Una semana estaría bien. Del 18 al 26 de marzo.",
+      "dialogue": "pix-tap Selecciona fecha de entrada y salida en el calendario",
+      "system": "pix-process Calcula 8 noches. Actualiza parámetros de búsqueda.",
+      "note": ""
+    },
+    {
+      "step_title": "",
+      "user": " ",
+      "dialogue": "pix-button Click en 'Buscar'. Configuración: 2 adultos, 0 niños, 1 habitación.",
+      "system": "pix-api Query a motor de búsqueda con destino, fechas, ocupación. Aplica filtros Genius.",
+      "note": ""
+    },
+    {
+      "step_title": "Resultados de búsqueda",
+      "user": "pix-happy 133 alojamientos. Bastantes opciones. Veo precios, puntajes y fotos.",
+      "dialogue": "pix-list Resultados en lista con foto, nombre, ubicación, puntaje, tipo, precio total (8 noches). Mapa a la izquierda. Filtros: presupuesto, tipo (apartamentos, hoteles), amenidades (piscina, parking, WiFi). Ordenado por 'Favoritos para estancias largas'.",
+      "system": "pix-database 133 resultados filtrados y ordenados por relevancia personalizada",
+      "note": "Los precios aparecen en NZD (moneda del usuario), no en CLP"
+    },
+    {
+      "step_title": "",
+      "user": "pix-intrigued El primero tiene 9.0 'Fantástico', badge Genius, y precio tachado. Parece buen descuento.",
+      "dialogue": "pix-link Click en 'HOM cerro Barón - Piscina - Parking Privado'. Se abre en nueva pestaña.",
+      "system": "pix-process Carga ficha completa del alojamiento con disponibilidad en tiempo real",
+      "note": "Abrir en nueva pestaña permite comparar sin perder los resultados"
+    },
+    {
+      "step_title": "Ficha del alojamiento",
+      "user": "pix-happy Fotos lindas, piscina, vista a la ciudad. 30 comentarios positivos. Ubicación 9.7.",
+      "dialogue": "pix-page Galería de fotos (38+). Puntaje 9.0. Reseña destacada. Mapa con ubicación. Amenidades: piscina, parking, WiFi, cocina, vistas, gimnasio. Descripción del barrio y distancias.",
+      "system": " ",
+      "note": "La ficha prioriza elementos visuales y prueba social (reseñas)"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think Ventajas Genius nivel 2: 10% de descuento. Eso está bien.",
+      "dialogue": "pix-page Panel lateral: 'Tus ventajas del Nivel 2 de Genius - 10% de descuento'",
+      "system": " ",
+      "note": "El programa de lealtad se integra directamente en la ficha del alojamiento"
+    },
+    {
+      "step_title": "Tabla de disponibilidad",
+      "user": "pix-face Dos opciones: no reembolsable NZD 576 o parcialmente reembolsable NZD 794. La diferencia es grande.",
+      "dialogue": "pix-list Tabla con columnas: tipo, personas, precio 8 noches, opciones de cancelación, selector de cantidad. Precios con descuento Genius tachados. Badge '-11%'. Botón 'Reservaré'.",
+      "system": "pix-database Consulta disponibilidad y precios en tiempo real. Aplica descuentos Genius.",
+      "note": ""
+    },
+    {
+      "step_title": "",
+      "user": "pix-surprised 'Solo tardarás 2 minutos' y '124 apartamentos ya no están disponibles'. ¿Será verdad o es para apurarme?",
+      "dialogue": "pix-alert Mensajes de urgencia: 'Solo tardarás 2 minutos', 'Todavía no se te cobrará nada', 'Disponibilidad limitada en Valparaíso'.",
+      "system": "pix-process Patrones de persuasión: escasez y urgencia generados dinámicamente",
+      "note": "Dark patterns: los mensajes de escasez y urgencia son técnicas de persuasión cuestionadas por reguladores"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think Voy a volver a los resultados y comparar un par más antes de decidir.",
+      "dialogue": "pix-button Cierra la pestaña de la ficha. Vuelve a la lista de resultados.",
+      "system": " ",
+      "note": "El usuario resiste la presión de urgencia y decide comparar — comportamiento racional que el diseño intenta desincentivar"
+    }
+  ]]
+}

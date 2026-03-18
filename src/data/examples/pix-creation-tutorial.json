@@ -1,0 +1,77 @@
+{
+  "title": "How to make a score (using a score)",
+  "layout": "ip",
+  "description": "The most meta score of all: a score that explains how to make scores. If you're reading this, you're already inside one. There's no exit.",
+  "scores": [[
+    {
+      "step_title": "",
+      "user": "pix-intrigued Interaction scores? Like music notation but for interfaces? This is getting philosophical.",
+      "dialogue": "pix-desktop Opens PiX in the browser. The Score Library loads with pre-loaded examples.",
+      "system": "pix-database Loads scores from browser's IndexedDB. Shows seeded examples.",
+      "note": "Meta fact: this very score you're reading was loaded exactly like this."
+    },
+    {
+      "step_title": "Score Library",
+      "user": "pix-think I want to create a new score. I see a 'New Score' button. Nice, no bureaucracy here.",
+      "dialogue": "pix-button Click 'New Score'. A modal appears with two layout options.",
+      "system": " ",
+      "note": ""
+    },
+    {
+      "step_title": "Choose layout",
+      "user": "pix-face 'Interaction Score' (3 layers) or 'Service Blueprint' (5 layers). Let's start simple.",
+      "dialogue": "pix-select Modal: Interaction Score (User, Dialogue, System) vs Service Blueprint (adds Environment and Supporting Processes).",
+      "system": " ",
+      "note": "3 layers work for most cases. Use 5 when you need to document the full backstage."
+    },
+    {
+      "step_title": "Editor",
+      "user": "pix-smiling An empty grid with 3 rows and 1 column. Like a blank page but less intimidating.",
+      "dialogue": "pix-edit Editable fields: score title, description. Grid with 3 layers. Toolbar on top.",
+      "system": "pix-process Auto-save every 500ms. No save button because you don't need one.",
+      "note": "First: name your score and describe who the user is and what they're trying to do."
+    },
+    {
+      "step_title": "The pix- magic",
+      "user": "pix-think I click on a cell and type 'pix-' to see what happens...",
+      "dialogue": "pix-autocomplete A pixogram menu appears! 160 icons organized by layer. User layer: emotions. Dialogue: UI elements. System: processes.",
+      "system": "pix-update Detects current layer and suggests relevant icons. The prefix renders as an SVG icon.",
+      "note": "Format: 'pix-think Is this the right page?' → renders as icon + text. This is the basic unit of a score."
+    },
+    {
+      "step_title": "",
+      "user": "pix-surprised The user layer icons are little faces! Like the ones you're seeing right now in this row.",
+      "dialogue": "pix-tap Select an icon, add descriptive text after it. Press TAB to jump to the next cell.",
+      "system": " ",
+      "note": "Yes, this score uses the same icons it's teaching you to use. Very meta."
+    },
+    {
+      "step_title": "The 3 layers",
+      "user": "pix-person USER: what the person thinks, feels, expects, or wonders.",
+      "dialogue": "pix-dialogue DIALOGUE: what they see on screen and the actions they take (clicks, inputs, navigation).",
+      "system": "pix-process SYSTEM: what happens behind the scenes (APIs, databases, validations).",
+      "note": "Vertical = simultaneous. Each column = a moment in time. Read left to right, like music."
+    },
+    {
+      "step_title": "",
+      "user": "pix-happy Cells can be empty. Not everything happens in every layer at the same time.",
+      "dialogue": "pix-button Click '+' to add a new step (column). Use step titles to mark different screens.",
+      "system": "pix-update The grid grows. Each new step is a 'tick' of the system.",
+      "note": "How long should a score be? As long as you need. This one has 10 steps and it's not complaining."
+    },
+    {
+      "step_title": "Export",
+      "user": "pix-think Done. Now I want to share it with my team.",
+      "dialogue": "pix-down Export button in the toolbar. Formats: SVG (vector), PDF (vector), PNG (raster), JSON (re-importable).",
+      "system": "pix-process Generates the file and downloads it. JSON can be re-imported in another PiX session.",
+      "note": "SVG and PDF are great for reports. JSON to keep editing. PNG for a quick preview."
+    },
+    {
+      "step_title": "The end?",
+      "user": "pix-surprised So... the score I just read was made with the tool it just taught me to use?",
+      "dialogue": "pix-page Yes. This score is a real example stored as JSON in the examples/ folder of the repository.",
+      "system": "pix-merge PiX is open source. Repository on GitHub: github.com/eadpucv/pix",
+      "note": "Welcome to recursion. If you understood this score, you already know how to make scores."
+    }
+  ]]
+}

@@ -1,0 +1,105 @@
+{
+  "title": "Obtener RUT en ChileAtiende",
+  "layout": "ip",
+  "description": "Estudiante extranjero que lleva 3 semanas en Chile quiere obtener un RUT provisorio para realizar sus trámites de postulación a beca. Busca en ChileAtiende sin éxito.",
+  "scores": [[
+    {
+      "step_title": "",
+      "user": "pix-think Necesito un RUT para postular a la beca. Me dijeron que ChileAtiende tiene todos los trámites del Estado.",
+      "dialogue": "pix-desktop Abre chileatiende.gob.cl en su navegador",
+      "system": "pix-process Carga página estática con assets desde CDN",
+      "note": ""
+    },
+    {
+      "step_title": "Página de inicio ChileAtiende",
+      "user": "pix-face Veo un buscador grande que dice '¿Qué necesitas?' Parece sencillo.",
+      "dialogue": "pix-search Buscador central con placeholder '¿Qué necesitas?'. Sección 'Destacamos' con contenido de pensiones y bonos.",
+      "system": " ",
+      "note": "La home no muestra categorías de trámites migratorios ni accesos directos para extranjeros"
+    },
+    {
+      "step_title": "",
+      "user": " ",
+      "dialogue": "pix-input Escribe 'RUT provisorio extranjero' en el buscador",
+      "system": "pix-process Búsqueda full-text en base de fichas de trámites",
+      "note": ""
+    },
+    {
+      "step_title": "Resultados de búsqueda (1er intento)",
+      "user": "pix-intrigued 3 resultados. El primero dice 'Identificador Provisorio Escolar (IPE)'. ¿Será esto?",
+      "dialogue": "pix-list 3 resultados: IPE escolar, Certificados Fonasa, y otro de Fonasa. Filtros laterales sin usar.",
+      "system": "pix-database Query retorna fichas por coincidencia de palabras clave",
+      "note": "El término 'RUT provisorio' no existe como ficha en ChileAtiende"
+    },
+    {
+      "step_title": "Ficha IPE - Identificador Provisorio Escolar",
+      "user": "pix-surprised Esto es para niños en educación básica y media, no para estudiantes universitarios. No me sirve.",
+      "dialogue": "pix-link Click en primer resultado. Ficha del Ministerio de Educación. Describe un identificador para menores extranjeros sin RUN.",
+      "system": "pix-process Carga ficha con código de trámite 49443",
+      "note": "El estudiante universitario no califica para IPE"
+    },
+    {
+      "step_title": "",
+      "user": "pix-sad Tal vez busqué mal. Voy a intentar con otras palabras.",
+      "dialogue": "pix-button Presiona botón Atrás del navegador",
+      "system": " ",
+      "note": ""
+    },
+    {
+      "step_title": "Resultados de búsqueda (2do intento)",
+      "user": "pix-think Quizás debo buscar 'obtener RUT extranjero'",
+      "dialogue": "pix-input Escribe 'obtener RUT extranjero' en el buscador",
+      "system": "pix-database Nueva búsqueda retorna 3 resultados diferentes",
+      "note": ""
+    },
+    {
+      "step_title": "",
+      "user": "pix-angry Los resultados son para chilenos en el extranjero: ClaveÚnica consular, certificado de defunción... Nada que ver con lo que necesito.",
+      "dialogue": "pix-list 3 resultados del Ministerio de Relaciones Exteriores. Todos sobre chilenos fuera de Chile.",
+      "system": " ",
+      "note": "El buscador confunde 'extranjero en Chile' con 'chileno en el extranjero'"
+    },
+    {
+      "step_title": "Resultados de búsqueda (3er intento)",
+      "user": "pix-think Tal vez el trámite se llama de otra forma... ¿'enrolamiento'?",
+      "dialogue": "pix-input Escribe 'enrolamiento extranjero RUN'",
+      "system": "pix-database Solo 1 resultado encontrado",
+      "note": ""
+    },
+    {
+      "step_title": "",
+      "user": "pix-sad Solo aparece el mismo IPE escolar de antes. Un solo resultado.",
+      "dialogue": "pix-list 1 resultado: la misma ficha de IPE del Ministerio de Educación",
+      "system": " ",
+      "note": "El sistema no tiene una ficha para el trámite de obtención de RUT para adultos extranjeros"
+    },
+    {
+      "step_title": "Resultados de búsqueda (4to intento)",
+      "user": "pix-think Un amigo me dijo que necesito una visa. Voy a buscar eso.",
+      "dialogue": "pix-input Escribe 'visa residencia temporal'",
+      "system": "pix-database 3 resultados del Servicio Nacional de Migraciones",
+      "note": ""
+    },
+    {
+      "step_title": "",
+      "user": "pix-intrigued Ahora sí aparece algo de Migraciones: 'Solicitud de Residencia Definitiva', 'Estampado Electrónico'. Pero yo no tengo residencia todavía...",
+      "dialogue": "pix-list 3 resultados: Residencia Definitiva, Estampado Electrónico, Residencias Transitorias",
+      "system": " ",
+      "note": "Los resultados asumen que el usuario ya tiene algún estatus migratorio"
+    },
+    {
+      "step_title": "Ficha Estampado Electrónico",
+      "user": "pix-sad Esto es para descargar un documento que ya te dieron. Yo ni siquiera he empezado el trámite.",
+      "dialogue": "pix-link Click en 'Estampado Electrónico'. Ficha del SERMIG. Botón 'Descargar documento' que redirige a sitio externo.",
+      "system": "pix-process Carga ficha con código 82849. CTA redirige al portal de SERMIG.",
+      "note": "La ficha describe un paso posterior del proceso, no el inicio"
+    },
+    {
+      "step_title": "",
+      "user": "pix-angry No encontré lo que necesitaba. ChileAtiende no me dice cómo obtener un RUT siendo extranjero adulto. Tendré que preguntarle a alguien.",
+      "dialogue": "pix-desktop Cierra la pestaña o busca en Google directamente",
+      "system": " ",
+      "note": "El usuario abandona el sitio sin completar su objetivo. El trámite real requiere ir al portal de SERMIG (tramites.serviciodemigraciones.cl) que no aparece claramente en ChileAtiende."
+    }
+  ]]
+}

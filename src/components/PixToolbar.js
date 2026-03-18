@@ -5,7 +5,7 @@ import { i18n } from '../i18n/index.js';
 class PixToolbar extends HTMLElement {
   constructor() {
     super();
-    this._layout = 'ip';
+    this._layout = 'pix';
     this._exportOpen = false;
   }
 
@@ -31,7 +31,7 @@ class PixToolbar extends HTMLElement {
         <div class="pix-toolbar-separator"></div>
 
         <div class="pix-toolbar-group">
-          <button class="pix-btn pix-btn--ghost layout-btn ${this._layout === 'ip' ? 'active' : ''}" data-layout="ip">
+          <button class="pix-btn pix-btn--ghost layout-btn ${this._layout === 'pix' ? 'active' : ''}" data-layout="pix">
             ${i18n.t('toolbar.layoutIP')}
           </button>
           <button class="pix-btn pix-btn--ghost layout-btn ${this._layout === 'sb' ? 'active' : ''}" data-layout="sb">

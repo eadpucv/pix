@@ -1,0 +1,77 @@
+{
+  "title": "Cómo hacer una partitura (usando una partitura)",
+  "layout": "ip",
+  "description": "La partitura más meta de todas: una partitura que explica cómo hacer partituras. Si estás leyendo esto, ya estás dentro de una. No hay salida.",
+  "scores": [[
+    {
+      "step_title": "",
+      "user": "pix-intrigued ¿Partituras de interacción? ¿Como música pero para interfaces? Esto se pone filosófico.",
+      "dialogue": "pix-desktop Abre PiX en el navegador. Llega a la Biblioteca de Partituras.",
+      "system": "pix-database Carga partituras desde IndexedDB. Muestra ejemplos precargados.",
+      "note": "Dato meta: esta partitura que estás leyendo fue cargada exactamente así."
+    },
+    {
+      "step_title": "Biblioteca de Partituras",
+      "user": "pix-think Quiero crear una partitura nueva. Veo un botón que dice 'Nueva Partitura'. Genial, no es tramitología estatal.",
+      "dialogue": "pix-button Click en 'Nueva Partitura'. Aparece un modal con dos opciones.",
+      "system": " ",
+      "note": ""
+    },
+    {
+      "step_title": "Elegir tipo",
+      "user": "pix-face 'Partitura de Interacción' (3 capas) o 'Plano de Servicio' (5 capas). Empecemos por lo simple.",
+      "dialogue": "pix-select Modal: Partitura de Interacción (Usuario, Diálogo, Sistema) vs Plano de Servicio (agrega Entorno y Procesos de Soporte).",
+      "system": " ",
+      "note": "3 capas es suficiente para la mayoría de los casos. Las 5 capas son para cuando necesitas documentar el backstage completo."
+    },
+    {
+      "step_title": "Editor",
+      "user": "pix-smiling Una grilla vacía con 3 filas y 1 columna. Es como una hoja en blanco pero menos intimidante.",
+      "dialogue": "pix-edit Campos: título de la partitura, descripción. Grilla editable con las 3 capas. Barra de herramientas arriba.",
+      "system": "pix-process Auto-guardado cada 500ms. No hay botón de guardar porque no lo necesitas.",
+      "note": "Primero: ponle título y describe quién es el usuario y qué quiere lograr."
+    },
+    {
+      "step_title": "La magia del pix-",
+      "user": "pix-think Hago click en una celda y escribo 'pix-' a ver qué pasa...",
+      "dialogue": "pix-autocomplete ¡Aparece un menú de pixogramas! 160 íconos organizados por capa. En 'usuario': emociones. En 'diálogo': elementos de interfaz. En 'sistema': procesos.",
+      "system": "pix-update Detecta la capa y sugiere íconos relevantes. El prefijo se transforma en ícono SVG.",
+      "note": "Formato: 'pix-think ¿Será aquí?' → se renderiza como ícono + texto. Es la unidad básica de una partitura."
+    },
+    {
+      "step_title": "",
+      "user": "pix-surprised ¡Los íconos de la capa usuario son caritas! Como las que estás viendo ahora mismo en esta fila.",
+      "dialogue": "pix-tap Selecciona un ícono y agrega texto descriptivo. TAB para saltar a la siguiente celda.",
+      "system": " ",
+      "note": "Sí, esta partitura usa los mismos íconos que te está enseñando a usar. Muy meta."
+    },
+    {
+      "step_title": "Las 3 capas",
+      "user": "pix-person USUARIO: lo que piensa, siente, espera o se pregunta la persona.",
+      "dialogue": "pix-dialogue DIÁLOGO: lo que ve en pantalla y las acciones que realiza (clicks, inputs, navegación).",
+      "system": "pix-process SISTEMA: lo que ocurre detrás de escena (APIs, bases de datos, validaciones).",
+      "note": "Lo vertical es simultáneo. Cada columna es un momento en el tiempo. La partitura se lee de izquierda a derecha, como la música."
+    },
+    {
+      "step_title": "",
+      "user": "pix-happy Las celdas pueden estar vacías. No todo pasa en todas las capas al mismo tiempo.",
+      "dialogue": "pix-button Click en '+' para agregar un nuevo paso (columna). Usa los títulos de paso para marcar pantallas.",
+      "system": "pix-update La grilla crece. Cada paso nuevo es un 'tic' del sistema.",
+      "note": "¿Qué tan larga debe ser una partitura? La que necesites. Esta tiene 10 pasos y no se queja."
+    },
+    {
+      "step_title": "Exportar",
+      "user": "pix-think Terminé. Ahora quiero compartirla con mi equipo.",
+      "dialogue": "pix-down Botón de exportar en la barra. Formatos: SVG (vector), PDF (vector), PNG (raster), JSON (reimportable).",
+      "system": "pix-process Genera el archivo y lo descarga. El JSON se puede reimportar en otra sesión de PiX.",
+      "note": "SVG y PDF son ideales para informes. JSON para seguir editando. PNG para un preview rápido."
+    },
+    {
+      "step_title": "¿El final?",
+      "user": "pix-surprised Entonces... ¿la partitura que acabo de leer fue hecha con la herramienta que me acaba de enseñar a usar?",
+      "dialogue": "pix-page Sí. Esta partitura es un ejemplo real guardado como JSON en la carpeta examples/ del repositorio.",
+      "system": "pix-merge PiX es código abierto. Repositorio en GitHub: github.com/eadpucv/pix",
+      "note": "Bienvenido a la recursión. Si entendiste esta partitura, ya sabes hacer partituras."
+    }
+  ]]
+}

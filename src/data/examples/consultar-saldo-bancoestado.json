@@ -1,0 +1,84 @@
+{
+  "title": "Consultar saldo CuentaRUT en BancoEstado",
+  "layout": "ip",
+  "description": "Don Carlos, 72 años, jubilado. Su nieta le dijo que puede ver su saldo por internet. No tiene mucha experiencia digital y no recuerda su clave de banca en línea.",
+  "scores": [[
+    {
+      "step_title": "",
+      "user": "pix-think Mi nieta me dijo que puedo ver cuánta plata tengo en la CuentaRUT desde el computador.",
+      "dialogue": "pix-desktop Abre bancoestado.cl en el navegador",
+      "system": "pix-process Carga SPA con múltiples scripts, carousel y assets publicitarios",
+      "note": ""
+    },
+    {
+      "step_title": "Página de inicio BancoEstado",
+      "user": "pix-surprised Hay mucha información. Veo publicidad de SOAP, seguros, créditos... ¿Dónde veo mi saldo?",
+      "dialogue": "pix-page Carousel con banners publicitarios. Barra de navegación con Productos, Simuladores, Beneficios, Rutpay, Servicios, App. Dos botones destacados: 'Hazte cliente' y 'Banca en Línea'.",
+      "system": " ",
+      "note": "La home prioriza ofertas comerciales sobre accesos a servicios frecuentes como consulta de saldo"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think Yo ya soy cliente... debe ser 'Banca en Línea'.",
+      "dialogue": "pix-button Click en 'Banca en Línea' (esquina superior derecha)",
+      "system": "pix-process Abre panel lateral de login sobre la misma página (no navega a otra URL)",
+      "note": ""
+    },
+    {
+      "step_title": "Panel de login",
+      "user": "pix-face Me pide el RUT y una clave. ¿Cuál clave será? ¿La del cajero?",
+      "dialogue": "pix-input Formulario con campo RUT (placeholder 'Ej: 12345678k') y campo Clave (oculta con asteriscos). Botón 'Ingresar'. Link '¿Problemas con tu Clave?'",
+      "system": " ",
+      "note": "El usuario debe tener una clave de internet diferente a la del cajero automático"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think Mi RUT sí me lo sé... 8.765.432-1. Pero ¿la clave? No me acuerdo de haber creado una clave para internet.",
+      "dialogue": "pix-input Escribe su RUT en el primer campo",
+      "system": " ",
+      "note": ""
+    },
+    {
+      "step_title": "",
+      "user": "pix-sad Voy a probar con la clave del cajero a ver si funciona...",
+      "dialogue": "pix-password Escribe 4 dígitos en el campo de clave",
+      "system": " ",
+      "note": "La clave de internet es diferente a la clave del cajero automático, pero el usuario no lo sabe"
+    },
+    {
+      "step_title": "",
+      "user": " ",
+      "dialogue": "pix-button Click en 'Ingresar'",
+      "system": "pix-process Valida credenciales contra servidor de autenticación. reCAPTCHA evalúa riesgo.",
+      "note": ""
+    },
+    {
+      "step_title": "Error de autenticación",
+      "user": "pix-sad 'Clave incorrecta'. Sabía que no era esa clave. ¿Y ahora qué hago?",
+      "dialogue": "pix-alert Mensaje de error: clave incorrecta. El formulario se mantiene con el RUT ingresado.",
+      "system": "pix-database Intento fallido registrado. Contador de intentos incrementado.",
+      "note": "Después de 3 intentos fallidos la cuenta se bloquea"
+    },
+    {
+      "step_title": "",
+      "user": "pix-think Veo un link que dice '¿Problemas con tu Clave?' Voy a probar ahí.",
+      "dialogue": "pix-link Click en '¿Problemas con tu Clave?'",
+      "system": "pix-process Redirige a página de recuperación de claves",
+      "note": ""
+    },
+    {
+      "step_title": "Recuperación de claves",
+      "user": "pix-sad Me pide verificar identidad con ClaveÚnica o ir a una sucursal. ¿Qué es ClaveÚnica? Esto se está poniendo complicado...",
+      "dialogue": "pix-page Opciones de recuperación: verificar con ClaveÚnica, llamar al 600 200 7000, o ir a sucursal presencialmente.",
+      "system": " ",
+      "note": "La recuperación online requiere ClaveÚnica, otro sistema que el adulto mayor probablemente no tiene"
+    },
+    {
+      "step_title": "",
+      "user": "pix-angry No puedo ver mi saldo. Necesito ir al banco o pedirle a mi nieta que me ayude. Para eso mejor voy al cajero nomás.",
+      "dialogue": "pix-desktop Cierra el navegador",
+      "system": " ",
+      "note": "El usuario abandona sin completar su objetivo. La consulta de saldo requiere: 1) tener clave de internet, 2) si no la tiene, recuperarla con ClaveÚnica o presencialmente. Barrera de acceso alta para adultos mayores."
+    }
+  ]]
+}
