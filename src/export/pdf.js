@@ -15,7 +15,10 @@ export async function exportPDF(score) {
   // Inject font-family="helvetica" on every <text> element for svg2pdf.
   // svg2pdf.js does NOT inherit font-family from parent <g> elements —
   // it only reads the attribute directly on each <text>. Without it, Times (serif) is used.
-  const pdfSvg = svgString.replaceAll('<text ', '<text font-family="helvetica" ');
+  // Also strip layer header labels (letter-spacing causes svg2pdf rendering issues)
+  const pdfSvg = svgString
+    .replace(/<text[^>]*letter-spacing[^>]*>.*?<\/text>/g, '')
+    .replaceAll('<text ', '<text font-family="helvetica" ');
 
   // Parse SVG dimensions
   const widthMatch = pdfSvg.match(/width="(\d+)"/);

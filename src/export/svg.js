@@ -9,7 +9,6 @@ const LABEL_WIDTH = 130;
 const LABEL_ICON_SIZE = 48;
 const HEADER_HEIGHT = 36;
 const ICON_SIZE = 48;
-const NOTE_HEIGHT = 28;
 const PADDING = 16;
 const FONT_SIZE = 11;
 const TITLE_FONT_SIZE = 18;
@@ -103,9 +102,36 @@ export async function renderScoreToSVG(score) {
   const hasTitle = !!(score.title && score.title.trim());
   const hasDescription = !!(score.description && score.description.trim());
   const titleBlockHeight = hasTitle && hasDescription ? 50 : hasTitle ? 30 : 0;
-  const stepTitleHeight = HEADER_HEIGHT;
   const gridHeight = layers.length * CELL_HEIGHT;
-  const totalHeight = titleBlockHeight + stepTitleHeight + gridHeight + NOTE_HEIGHT + PADDING * 2;
+
+  // Calculate step title height based on wrapped content
+  // Estimate max chars from 90% of column width / average char width per font size
+  const stepTitleLineHeight = 12;
+  const stepTitleAvgCharWidth = 5.5; // font-size 10
+  const stepTitleMaxChars = Math.floor((CELL_WIDTH * 0.9) / stepTitleAvgCharWidth);
+  let maxStepTitleLines = 1;
+  for (const step of steps) {
+    if (step.step_title) {
+      const lines = wrapText(step.step_title, stepTitleMaxChars);
+      if (lines.length > maxStepTitleLines) maxStepTitleLines = lines.length;
+    }
+  }
+  const stepTitleHeight = Math.max(HEADER_HEIGHT, maxStepTitleLines * stepTitleLineHeight + 16);
+
+  // Calculate note row height based on wrapped content
+  const noteLineHeight = 11;
+  const noteAvgCharWidth = 4.5; // font-size 9
+  const noteMaxChars = Math.floor((CELL_WIDTH * 0.9) / noteAvgCharWidth);
+  let maxNoteLines = 0;
+  for (const step of steps) {
+    if (step.note) {
+      const lines = wrapText(step.note, noteMaxChars);
+      if (lines.length > maxNoteLines) maxNoteLines = lines.length;
+    }
+  }
+  const noteRowHeight = maxNoteLines > 0 ? maxNoteLines * noteLineHeight + 12 : 0;
+
+  const totalHeight = titleBlockHeight + stepTitleHeight + gridHeight + noteRowHeight + PADDING * 2;
 
   // Preload all icons used (cells + layer headers)
   const iconNames = new Set();
@@ -150,11 +176,14 @@ export async function renderScoreToSVG(score) {
 
     // Section divider: continuous line from title through grid+notes
     if (hasTitle) {
-      svg += `<line x1="${x}" y1="${titlesY}" x2="${x}" y2="${gridY + gridHeight + NOTE_HEIGHT + 4}" stroke="#8a9490" stroke-width="1"/>`;
+      svg += `<line x1="${x}" y1="${titlesY}" x2="${x}" y2="${gridY + gridHeight + noteRowHeight + 4}" stroke="#8a9490" stroke-width="1"/>`;
     }
 
     if (steps[i].step_title) {
-      svg += `<text x="${x + 8}" y="${titlesY + stepTitleHeight - 8}" font-size="10" fill="#D94021" font-weight="700">${escapeXml(steps[i].step_title)}</text>`;
+      const titleLines = wrapText(steps[i].step_title, stepTitleMaxChars);
+      for (let l = 0; l < titleLines.length; l++) {
+        svg += `<text x="${x + 8}" y="${titlesY + 12 + l * stepTitleLineHeight}" font-size="10" fill="#D94021" font-weight="700" dominant-baseline="hanging">${escapeXml(titleLines[l])}</text>`;
+      }
     }
   }
 
@@ -276,7 +305,10 @@ export async function renderScoreToSVG(score) {
   for (let i = 0; i < numSteps; i++) {
     const x = PADDING + LABEL_WIDTH + i * CELL_WIDTH;
     if (steps[i].note) {
-      svg += `<text x="${x + 8}" y="${noteY + NOTE_HEIGHT / 2 + 4}" font-size="9" fill="#52606D" font-style="italic">${escapeXml(steps[i].note)}</text>`;
+      const noteLines = wrapText(steps[i].note, noteMaxChars);
+      for (let l = 0; l < noteLines.length; l++) {
+        svg += `<text x="${x + 8}" y="${noteY + 10 + l * noteLineHeight}" font-size="9" fill="#52606D" font-style="italic" dominant-baseline="hanging">${escapeXml(noteLines[l])}</text>`;
+      }
     }
   }
 
