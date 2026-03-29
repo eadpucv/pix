@@ -330,14 +330,16 @@
   border: none;
   background: #ee7d33;
   color: #fff;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 22px;
-  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1px;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.15s;
-  padding: 0;
+  padding: 0 0 .5ex 0;
   z-index: 10;
   box-sizing: border-box;
 }
