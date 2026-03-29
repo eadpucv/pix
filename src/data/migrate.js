@@ -68,7 +68,15 @@ function migrateStep(step, layout) {
  */
 export function parseLegacyData(base64String) {
   try {
-    const json = atob(base64String);
+    // Try UTF-8-aware decode first, fall back to plain atob for legacy data
+    let json;
+    try {
+      json = new TextDecoder().decode(
+        Uint8Array.from(atob(base64String), c => c.charCodeAt(0))
+      );
+    } catch {
+      json = atob(base64String);
+    }
     const data = JSON.parse(json);
     return migrateScore(data);
   } catch (e) {
@@ -78,8 +86,11 @@ export function parseLegacyData(base64String) {
 }
 
 /**
- * Encode score data to base64 for embed URLs
+ * Encode score data to base64 for embed URLs (UTF-8 safe)
  */
 export function encodeScoreData(score) {
-  return btoa(JSON.stringify(score));
+  const bytes = new TextEncoder().encode(JSON.stringify(score));
+  let binary = '';
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary);
 }

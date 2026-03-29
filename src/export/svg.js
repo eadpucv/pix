@@ -104,10 +104,8 @@ export async function renderScoreToSVG(score) {
   const titleBlockHeight = hasTitle && hasDescription ? 50 : hasTitle ? 30 : 0;
   const gridHeight = layers.length * CELL_HEIGHT;
 
-  // Calculate step title height based on wrapped content
-  // Estimate max chars from 90% of column width / average char width per font size
   const stepTitleLineHeight = 12;
-  const stepTitleAvgCharWidth = 5.5; // font-size 10
+  const stepTitleAvgCharWidth = 5.5;
   const stepTitleMaxChars = Math.floor((CELL_WIDTH * 0.9) / stepTitleAvgCharWidth);
   let maxStepTitleLines = 1;
   for (const step of steps) {
@@ -118,9 +116,8 @@ export async function renderScoreToSVG(score) {
   }
   const stepTitleHeight = Math.max(HEADER_HEIGHT, maxStepTitleLines * stepTitleLineHeight + 16);
 
-  // Calculate note row height based on wrapped content
   const noteLineHeight = 11;
-  const noteAvgCharWidth = 4.5; // font-size 9
+  const noteAvgCharWidth = 4.5;
   const noteMaxChars = Math.floor((CELL_WIDTH * 0.9) / noteAvgCharWidth);
   let maxNoteLines = 0;
   for (const step of steps) {
@@ -130,7 +127,6 @@ export async function renderScoreToSVG(score) {
     }
   }
   const noteRowHeight = maxNoteLines > 0 ? maxNoteLines * noteLineHeight + 12 : 0;
-
   const totalHeight = titleBlockHeight + stepTitleHeight + gridHeight + noteRowHeight + PADDING * 2;
 
   // Preload all icons used (cells + layer headers)

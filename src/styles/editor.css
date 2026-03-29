@@ -361,11 +361,24 @@ pix-icon-picker {
   resize: none;
 }
 
+.pix-export-section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--pix-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
 .pix-export-options {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 8px;
+}
+
+.pix-export-options:last-of-type {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .pix-export-option {
@@ -402,12 +415,6 @@ pix-icon-picker {
   text-align: center;
 }
 
-/* Embed code section */
-.pix-embed-section {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--pix-border);
-}
 
 .pix-embed-row {
   display: flex;
