@@ -1,4 +1,8 @@
-# Deploy PiX v3 to GitHub Pages using Vite
+# Deploy PiX v3 (the @pix/editor web app) to GitHub Pages.
+# Build output lives at packages/editor/dist/ since the monorepo migration.
+# The legacy /pages/app-embed/ redirect for Casiopea embeds is part of the
+# editor's public/ folder and gets copied automatically by Vite.
+
 name: Deploy to GitHub Pages
 
 on:
@@ -28,20 +32,11 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
-
-      # Legacy redirect: Casiopea wiki embeds PiX via
-      # /pix/pages/app-embed/#!/import/[base64]
-      # The hash portion stays client-side, so we just need
-      # index.html served at that path.
-      - name: Create legacy embed path
-        run: |
-          mkdir -p dist/pages/app-embed
-          cp dist/index.html dist/pages/app-embed/index.html
+      - run: npm run build -w @pix/editor
 
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: packages/editor/dist
 
   deploy:
     environment:
