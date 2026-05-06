@@ -1,10 +1,14 @@
 // JSON export/import
 
 export function exportJSON(score) {
+  // Emit stable ids — required by the extension's round-trip re-import.
+  // The base64 URL embed (encodeScoreData) is the place that strips them.
   const data = {
+    id: score.id,
     title: score.title,
     layout: score.layout,
     description: score.description,
+    movement_ids: score.movement_ids,
     scores: score.scores
   };
 

@@ -10,6 +10,7 @@
     "./storage": "./src/storage/index.js",
     "./pixograms": "./src/pixograms/index.js",
     "./migrations": "./src/migrations/index.js",
+    "./ids": "./src/ids/index.js",
     "./icons/*": "./icons/*",
     "./package.json": "./package.json"
   },
@@ -18,5 +19,8 @@
     "icons/",
     "score-contract.allium"
   ],
+  "dependencies": {
+    "nanoid": "^5.0.0"
+  },
   "license": "MIT"
 }

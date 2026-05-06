@@ -1,5 +1,8 @@
 // IndexedDB wrapper for PiX score library
 
+import { newId } from '../ids/index.js';
+import { migrateScore } from '../migrations/migrate.js';
+
 const DB_NAME = 'pix-library';
 const DB_VERSION = 1;
 const STORE_NAME = 'scores';
@@ -32,8 +35,16 @@ function openDB() {
   });
 }
 
-function generateId() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+// Score.id generator — delegates to nanoid via @pix/core/ids for
+// consistency with the movement/step ids introduced in Phase C.
+// Existing Date-based ids in IndexedDB remain valid.
+const generateId = newId;
+
+// Lazy backfill — migrateScore is idempotent, so calling it on every
+// read costs nothing for scores that already carry stable ids and rescues
+// pre-Phase-C scores that don't. Persistence happens on the next save.
+function migrateOrNull(score) {
+  return score ? migrateScore(score) : null;
 }
 
 export async function getAllScores() {
@@ -43,7 +54,7 @@ export async function getAllScores() {
     const store = tx.objectStore(STORE_NAME);
     const request = store.getAll();
     request.onsuccess = () => {
-      const scores = request.result || [];
+      const scores = (request.result || []).map(migrateOrNull);
       scores.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
       resolve(scores);
     };
@@ -57,7 +68,7 @@ export async function getScore(id) {
     const tx = db.transaction(STORE_NAME, 'readonly');
     const store = tx.objectStore(STORE_NAME);
     const request = store.get(id);
-    request.onsuccess = () => resolve(request.result || null);
+    request.onsuccess = () => resolve(migrateOrNull(request.result || null));
     request.onerror = () => reject(request.error);
   });
 }
@@ -112,6 +123,18 @@ export async function duplicateScore(id) {
   delete copy.createdAt;
   delete copy.updatedAt;
   copy.title = original.title + ' (copy)';
+
+  // Regenerate movement and step ids so the duplicate doesn't share
+  // identity with the original — each ScoreStep id must map to exactly
+  // one local entity for the extension's re-import contract.
+  if (Array.isArray(copy.movement_ids)) {
+    copy.movement_ids = copy.movement_ids.map(() => newId());
+  }
+  if (Array.isArray(copy.scores)) {
+    copy.scores = copy.scores.map(movement =>
+      movement.map(step => ({ ...step, id: newId() }))
+    );
+  }
 
   return saveScore(copy);
 }

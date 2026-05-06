@@ -1,10 +1,15 @@
 // Legacy data migration utilities
 
+import { newId } from '../ids/index.js';
+
 /**
  * Migrate a score from legacy format to v2 format.
  * - Fixes the "enviroment" typo to "environment"
  * - Ensures scores is an array of arrays
  * - Adds missing fields with defaults
+ * - Backfills stable ids (score.id, movement_ids[], step.id) — required by
+ *   the extension's bidirectional re-import (interaction-capture.allium).
+ *   Backfill is in-memory; persistence happens when the caller saves.
  */
 export function migrateScore(data) {
   if (!data) return null;
@@ -30,10 +35,18 @@ export function migrateScore(data) {
     score.scores = [score.scores];
   }
 
-  // Migrate each step
+  // Migrate each step (and backfill step.id)
   score.scores = score.scores.map(movement =>
     movement.map(step => migrateStep(step, score.layout))
   );
+
+  // Backfill movement_ids — sidecar parallel to score.scores[][]
+  if (!Array.isArray(score.movement_ids) || score.movement_ids.length !== score.scores.length) {
+    score.movement_ids = score.scores.map((_, i) => score.movement_ids?.[i] || newId());
+  }
+
+  // Backfill score.id (only when missing — preserves existing IndexedDB ids)
+  if (!score.id) score.id = newId();
 
   return score;
 }
@@ -59,6 +72,9 @@ function migrateStep(step, layout) {
     if (migrated.environment === undefined) migrated.environment = '';
     if (migrated.supporting_processes === undefined) migrated.supporting_processes = '';
   }
+
+  // Backfill stable id
+  if (!migrated.id) migrated.id = newId();
 
   return migrated;
 }
@@ -86,10 +102,28 @@ export function parseLegacyData(base64String) {
 }
 
 /**
- * Encode score data to base64 for embed URLs (UTF-8 safe)
+ * Strip stable ids from a score for embed URLs.
+ * The base64 URL shape is frozen for backwards compatibility with Casiopea
+ * embeds (wiki.ead.pucv.cl). Adding fields would expand existing live URLs.
+ */
+function stripIdsForEmbed(score) {
+  return {
+    title: score.title,
+    layout: score.layout,
+    description: score.description,
+    scores: (score.scores || []).map(movement =>
+      movement.map(({ id, ...rest }) => rest)
+    )
+  };
+}
+
+/**
+ * Encode score data to base64 for embed URLs (UTF-8 safe).
+ * Always emits the legacy shape — see stripIdsForEmbed above.
  */
 export function encodeScoreData(score) {
-  const bytes = new TextEncoder().encode(JSON.stringify(score));
+  const payload = stripIdsForEmbed(score);
+  const bytes = new TextEncoder().encode(JSON.stringify(payload));
   let binary = '';
   for (const b of bytes) binary += String.fromCharCode(b);
   return btoa(binary);

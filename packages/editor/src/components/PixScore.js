@@ -2,6 +2,7 @@
 
 import { i18n } from '../i18n/index.js';
 import { loadIcon, getIconSync } from '@pix/core/pixograms';
+import { newId } from '@pix/core/ids';
 import './PixCell.js';
 
 // Map layer names to their pixogram icon names
@@ -406,6 +407,7 @@ class PixScore extends HTMLElement {
 
   _createEmptyStep() {
     const step = {
+      id: newId(),
       step_title: '',
       user: '',
       dialogue: '',

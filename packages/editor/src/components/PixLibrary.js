@@ -3,6 +3,7 @@
 import { i18n } from '../i18n/index.js';
 import { getAllScores, saveScore, deleteScore, duplicateScore, getStorageUsage } from '@pix/core/storage';
 import { migrateScore } from '@pix/core/migrations';
+import { newId } from '@pix/core/ids';
 import { importJSON, exportJSON } from '../export/json.js';
 import { EXAMPLE_SCORES } from '../data/examples.js';
 
@@ -222,7 +223,9 @@ class PixLibrary extends HTMLElement {
           title: '',
           layout,
           description: '',
+          movement_ids: [newId()],
           scores: [[{
+            id: newId(),
             step_title: '',
             user: '',
             dialogue: '',
