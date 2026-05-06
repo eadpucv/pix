@@ -29,7 +29,6 @@ mkdirSync(outDir, { recursive: true });
 const entries = [
   { in: 'src/background/index.js', out: 'background/index.js' },
   { in: 'src/content/index.js',    out: 'content/index.js' },
-  { in: 'src/overlay/index.js',    out: 'overlay/index.js' },
   { in: 'src/popup/index.js',      out: 'popup/index.js' }
 ];
 
@@ -47,8 +46,7 @@ for (const e of entries) {
   });
 }
 
-copyFileSync(resolve(srcDir, 'popup/index.html'),   resolve(outDir, 'popup/index.html'));
-copyFileSync(resolve(srcDir, 'overlay/index.html'), resolve(outDir, 'overlay/index.html'));
+copyFileSync(resolve(srcDir, 'popup/index.html'), resolve(outDir, 'popup/index.html'));
 copyFileSync(resolve(__dirname, `manifest.${target}.json`), resolve(outDir, 'manifest.json'));
 
 console.log(`Built ${target} → ${outDir}`);

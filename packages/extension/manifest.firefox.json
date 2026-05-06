@@ -27,10 +27,6 @@
       "all_frames": false
     }
   ],
-  "web_accessible_resources": [
-    "overlay/index.html",
-    "overlay/index.js"
-  ],
   "browser_specific_settings": {
     "gecko": {
       "id": "pix-recorder@eadpucv.cl",

@@ -29,11 +29,5 @@
       "run_at": "document_idle",
       "all_frames": false
     }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["overlay/index.html", "overlay/index.js"],
-      "matches": ["<all_urls>"]
-    }
   ]
 }

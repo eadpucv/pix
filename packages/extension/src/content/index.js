@@ -1,17 +1,17 @@
 // PiX Recorder — content script
 //
-// Stage 3: click capture + overlay management.
+// Stage 3+: click capture + on-page overlay widget (shadow DOM).
 //
 // Implements (per interaction-capture.allium):
 //   - external entity InteractiveElement
 //   - @invariant ElementInteractivityCriteria  (via lib/classify isInteractive)
 //   - rule UserClickCapturesStep                (caught here, completed by bg)
-//   - @guarantee RecordingStateAlwaysVisible    (via overlay iframe)
+//   - @guarantee RecordingStateAlwaysVisible    (via the floating widget)
 //
-// The screenshot itself happens in the background — content scripts can't
-// call chrome.tabs.captureVisibleTab. So this script sends the click
-// payload (kind, focus, page url) to the background, which adds the
-// screenshot and persists the ScoreStep.
+// Screenshots happen in the background — content scripts can't call
+// chrome.tabs.captureVisibleTab. So this script sends the click payload
+// (kind, focus, page url) to the background, which adds the screenshot
+// and persists the ScoreStep.
 
 import { MSG } from '../lib/messages.js';
 import {
@@ -21,43 +21,18 @@ import {
   captionFor
 } from '../lib/classify.js';
 import { focusFromRect } from '../lib/focus.js';
+import { showOverlay, hideOverlay, refreshCount, isOverlayHost } from './overlay.js';
 
-const OVERLAY_ID = 'pix-recorder-overlay-iframe';
 let isRecording = false;
 
-function showOverlay() {
-  if (document.getElementById(OVERLAY_ID)) return;
-  const iframe = document.createElement('iframe');
-  iframe.id = OVERLAY_ID;
-  iframe.src = chrome.runtime.getURL('overlay/index.html');
-  // The pill is the only thing inside, sized to fit the iframe exactly.
-  // pointer-events: auto lets the user click STOP. The iframe is in
-  // extension origin, so its clicks never fire on the host page nor
-  // on the content script's window-level click listener.
-  iframe.style.cssText = [
-    'position: fixed',
-    'top: 12px',
-    'right: 12px',
-    'width: 88px',
-    'height: 28px',
-    'border: 0',
-    'background: transparent',
-    'z-index: 2147483647',
-    'pointer-events: auto',
-    'color-scheme: normal'
-  ].join(';');
-  (document.body || document.documentElement).appendChild(iframe);
-}
-
-function hideOverlay() {
-  const el = document.getElementById(OVERLAY_ID);
-  if (el) el.remove();
-}
-
-// Capture-phase click listener. Catches the event before page-level
-// handlers; we don't preventDefault, so the page's behavior is intact.
+// Capture-phase click listener. Runs before page handlers; we don't
+// preventDefault, so the page's behavior is intact.
 window.addEventListener('click', (e) => {
   if (!isRecording) return;
+
+  // Skip clicks on our own widget. Closed shadow root re-targets the
+  // event to the host element, so checking e.target is enough.
+  if (isOverlayHost(e.target)) return;
 
   const el = findInteractiveAncestor(e.target);
   if (!el) return;
@@ -88,6 +63,8 @@ chrome.runtime.onMessage.addListener((msg) => {
   } else if (msg?.type === MSG.OVERLAY_HIDE) {
     hideOverlay();
     isRecording = false;
+  } else if (msg?.type === MSG.SCORE_UPDATED) {
+    refreshCount();
   }
 });
 
