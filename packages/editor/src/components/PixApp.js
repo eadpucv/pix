@@ -4,6 +4,7 @@ import { i18n } from '../i18n/index.js';
 import { parseLegacyData, migrateScore } from '@pix/core/migrations';
 import { preloadIcons } from '@pix/core/pixograms';
 import { getScore } from '@pix/core/storage';
+import logoUrl from '@pix/core/icons/logo.svg?url';
 import { VERSION } from '../version.js';
 import './PixLibrary.js';
 import './PixEditor.js';
@@ -40,7 +41,7 @@ class PixApp extends HTMLElement {
     this.innerHTML = `
       <nav class="pix-nav">
         <a href="#/library" class="pix-nav-brand">
-          <img src="${import.meta.env.BASE_URL || './'}icons/logo.svg" alt="PiX" width="28" height="28">
+          <img src="${logoUrl}" alt="PiX" width="28" height="28">
           <span>PiX</span>
           <span class="pix-nav-version">v${VERSION}</span>
         </a>
