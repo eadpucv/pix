@@ -7,7 +7,7 @@
   body {
     margin: 0;
     padding: 16px;
-    width: 320px;
+    width: 360px;
     font-family: -apple-system, sans-serif;
     font-size: 13px;
     color: #1f2933;
@@ -65,18 +65,115 @@
     color: white;
     border-color: #d94021;
   }
-  .muted {
-    color: #7b8794;
-    font-size: 11px;
-    margin-top: 12px;
-    line-height: 1.5;
-  }
   code {
     font-family: 'SF Mono', Monaco, monospace;
     font-size: 10px;
     background: #f5f7fa;
     padding: 1px 4px;
     border-radius: 3px;
+  }
+
+  /* steps section */
+  .steps-section {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e4e7eb;
+  }
+  .steps-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .steps-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #7b8794;
+  }
+  .link-btn {
+    flex: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #7b8794;
+    font-size: 11px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .link-btn:hover:not(:disabled) {
+    color: #d94021;
+    background: none;
+  }
+  .steps-empty {
+    color: #b5bfba;
+    font-size: 12px;
+    font-style: italic;
+    padding: 12px 0;
+    text-align: center;
+  }
+  .steps-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+  .step {
+    display: flex;
+    gap: 8px;
+    padding: 6px 4px;
+    border-bottom: 1px solid #f5f7fa;
+    cursor: pointer;
+  }
+  .step:hover { background: #fafbfc; }
+  .step:last-child { border-bottom: 0; }
+  .step.crossing { border-left: 2px solid #ff9500; padding-left: 6px; }
+  .step .thumb {
+    width: 64px;
+    height: 40px;
+    object-fit: cover;
+    object-position: top left;
+    border-radius: 3px;
+    background: #e4e7eb;
+    flex-shrink: 0;
+  }
+  .step .body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  .step .caption {
+    font-size: 12px;
+    color: #1f2933;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .step .meta {
+    font-size: 10px;
+    color: #7b8794;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .step .meta .crossing-tag {
+    color: #ff9500;
+    font-weight: 600;
+    margin-left: 4px;
+  }
+  .step .index {
+    font-size: 10px;
+    color: #b5bfba;
+    font-weight: 600;
+    min-width: 16px;
+    text-align: right;
+    align-self: center;
+    flex-shrink: 0;
   }
 </style>
 </head>
@@ -87,7 +184,16 @@
     <button class="primary" id="start">Start recording</button>
     <button id="stop">Stop</button>
   </div>
-  <p class="muted">Stage 2 — recording lifecycle wired. Click capture, screenshots and the score library land in subsequent turns.</p>
+
+  <div class="steps-section">
+    <div class="steps-header">
+      <span class="steps-title" id="steps-title">No score yet</span>
+      <button class="link-btn" id="clear-btn">Clear all</button>
+    </div>
+    <ol class="steps-list" id="steps-list"></ol>
+    <div class="steps-empty" id="steps-empty" hidden>No steps captured yet — click anything on a recorded tab.</div>
+  </div>
+
   <script src="./index.js" type="module"></script>
 </body>
 </html>
