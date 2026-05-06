@@ -30,17 +30,20 @@ function showOverlay() {
   const iframe = document.createElement('iframe');
   iframe.id = OVERLAY_ID;
   iframe.src = chrome.runtime.getURL('overlay/index.html');
-  iframe.setAttribute('aria-hidden', 'true');
+  // The pill is the only thing inside, sized to fit the iframe exactly.
+  // pointer-events: auto lets the user click STOP. The iframe is in
+  // extension origin, so its clicks never fire on the host page nor
+  // on the content script's window-level click listener.
   iframe.style.cssText = [
     'position: fixed',
-    'top: 0',
-    'right: 0',
-    'width: 90px',
-    'height: 36px',
+    'top: 12px',
+    'right: 12px',
+    'width: 88px',
+    'height: 28px',
     'border: 0',
     'background: transparent',
     'z-index: 2147483647',
-    'pointer-events: none',
+    'pointer-events: auto',
     'color-scheme: normal'
   ].join(';');
   (document.body || document.documentElement).appendChild(iframe);

@@ -31,10 +31,27 @@ async function getState() {
 
 async function setState(next) {
   await chrome.storage.local.set({ [STORAGE_KEY]: next });
+  syncBadge(next);
   chrome.runtime
     .sendMessage({ type: MSG.RECORDER_STATE_CHANGED, state: next })
     .catch(() => {});
 }
+
+// Toolbar badge — belt-and-suspenders for RecordingStateAlwaysVisible
+// in tabs where the overlay can't be injected (chrome://, internal pages).
+function syncBadge(state) {
+  if (state?.state === 'recording') {
+    chrome.action.setBadgeText({ text: 'REC' });
+    chrome.action.setBadgeBackgroundColor({ color: '#ff3b30' });
+    chrome.action.setBadgeTextColor?.({ color: '#ffffff' });
+  } else {
+    chrome.action.setBadgeText({ text: '' });
+  }
+}
+
+// On service-worker boot (cold start while idle, or wake-up while
+// recording), rehydrate the badge from persisted state.
+getState().then(syncBadge);
 
 async function applyEvent(event) {
   const current = await getState();
