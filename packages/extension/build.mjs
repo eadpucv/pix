@@ -1,21 +1,14 @@
-// PiX Recorder — build script
+// PiX Recorder — build script (esbuild)
 //
-// Stage 1: file copy. No bundler yet — every entry is a self-contained
-// stub with no imports beyond browser globals. When src/ starts importing
-// from @pix/core, switch this to esbuild or @crxjs/vite-plugin and update
-// the README.
+// Each JS entry produces a single, self-contained bundle (no chunks).
+// The service worker, content script and popup/overlay scripts can all
+// run as standalone files this way, including their imports from
+// @pix/core and ./lib/* resolved through npm workspaces.
 //
-// Output layout (matches manifest paths):
-//   dist/<browser>/
-//     manifest.json
-//     background/index.js
-//     content/index.js
-//     overlay/index.html
-//     overlay/index.js
-//     popup/index.html
-//     popup/index.js
+// HTML files are copied verbatim. Manifest is renamed per target.
 
-import { cpSync, copyFileSync, rmSync, mkdirSync, existsSync } from 'fs';
+import { build } from 'esbuild';
+import { copyFileSync, rmSync, mkdirSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -29,19 +22,33 @@ if (target !== 'chrome' && target !== 'firefox') {
 
 const srcDir = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'dist', target);
-const manifestSource = resolve(__dirname, `manifest.${target}.json`);
-const manifestDest = resolve(outDir, 'manifest.json');
 
 if (existsSync(outDir)) rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 
-// Copy each module folder. Skip lib/ — pure helpers, only consumed via
-// imports from background/content; once a bundler is in place those imports
-// resolve and the lib/ files don't need to ship as separate assets.
-for (const mod of ['background', 'content', 'overlay', 'popup']) {
-  cpSync(resolve(srcDir, mod), resolve(outDir, mod), { recursive: true });
+const entries = [
+  { in: 'src/background/index.js', out: 'background/index.js' },
+  { in: 'src/content/index.js',    out: 'content/index.js' },
+  { in: 'src/overlay/index.js',    out: 'overlay/index.js' },
+  { in: 'src/popup/index.js',      out: 'popup/index.js' }
+];
+
+for (const e of entries) {
+  await build({
+    entryPoints: [resolve(__dirname, e.in)],
+    outfile: resolve(outDir, e.out),
+    bundle: true,
+    format: 'esm',
+    target: 'es2022',
+    platform: 'browser',
+    sourcemap: 'linked',
+    logLevel: 'silent',
+    legalComments: 'none'
+  });
 }
 
-copyFileSync(manifestSource, manifestDest);
+copyFileSync(resolve(srcDir, 'popup/index.html'),   resolve(outDir, 'popup/index.html'));
+copyFileSync(resolve(srcDir, 'overlay/index.html'), resolve(outDir, 'overlay/index.html'));
+copyFileSync(resolve(__dirname, `manifest.${target}.json`), resolve(outDir, 'manifest.json'));
 
 console.log(`Built ${target} → ${outDir}`);

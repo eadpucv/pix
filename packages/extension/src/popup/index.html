@@ -15,8 +15,30 @@
   h1 {
     font-size: 14px;
     font-weight: 700;
-    margin: 0 0 12px;
+    margin: 0 0 4px;
     color: #d94021;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #7b8794;
+    margin-bottom: 12px;
+  }
+  .status .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #b5bfba;
+  }
+  .status.recording .dot {
+    background: #ff3b30;
+    animation: pix-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pix-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
   }
   .row {
     display: flex;
@@ -33,23 +55,39 @@
     font-weight: 500;
     cursor: pointer;
   }
-  button:hover { background: #f5f7fa; }
-  button.primary {
+  button:hover:not(:disabled) { background: #f5f7fa; }
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  button.primary:not(:disabled) {
     background: #d94021;
     color: white;
     border-color: #d94021;
   }
-  .muted { color: #7b8794; font-size: 11px; margin-top: 12px; }
+  .muted {
+    color: #7b8794;
+    font-size: 11px;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  code {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 10px;
+    background: #f5f7fa;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
 </style>
 </head>
 <body>
   <h1>PiX Recorder</h1>
-  <p>Stage 1 — extension shell only. Recording, score library and editor land in subsequent turns.</p>
+  <div class="status" id="status"><span class="dot"></span><span id="status-text">Loading…</span></div>
   <div class="row">
-    <button class="primary" id="start" disabled>Start recording</button>
-    <button id="stop" disabled>Stop</button>
+    <button class="primary" id="start">Start recording</button>
+    <button id="stop">Stop</button>
   </div>
-  <p class="muted">background, content and overlay are loaded but inert.</p>
+  <p class="muted">Stage 2 — recording lifecycle wired. Click capture, screenshots and the score library land in subsequent turns.</p>
   <script src="./index.js" type="module"></script>
 </body>
 </html>
