@@ -1,6 +1,6 @@
 // <pix-icon-picker> — Icon autocomplete/grid picker
 
-import { ALL_ICONS, getLayerIcons, loadIcon, getIconSync } from '../data/icons-meta.js';
+import { ALL_ICONS, getLayerIcons, loadIcon, getIconSync } from '@pix/core/pixograms';
 import { i18n } from '../i18n/index.js';
 
 class PixIconPicker extends HTMLElement {

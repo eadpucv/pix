@@ -7,11 +7,15 @@
   "main": "src/index.js",
   "exports": {
     ".": "./src/index.js",
+    "./storage": "./src/storage/index.js",
     "./pixograms": "./src/pixograms/index.js",
-    "./storage": "./src/storage/index.js"
+    "./migrations": "./src/migrations/index.js",
+    "./icons/*": "./icons/*",
+    "./package.json": "./package.json"
   },
   "files": [
     "src/",
+    "icons/",
     "score-contract.allium"
   ],
   "license": "MIT"

@@ -1,9 +1,9 @@
 // <pix-app> — Main shell, router, i18n
 
 import { i18n } from '../i18n/index.js';
-import { parseLegacyData, migrateScore } from '../data/migrate.js';
-import { preloadIcons } from '../data/icons-meta.js';
-import { getScore } from '../storage/db.js';
+import { parseLegacyData, migrateScore } from '@pix/core/migrations';
+import { preloadIcons } from '@pix/core/pixograms';
+import { getScore } from '@pix/core/storage';
 import { VERSION } from '../version.js';
 import './PixLibrary.js';
 import './PixEditor.js';

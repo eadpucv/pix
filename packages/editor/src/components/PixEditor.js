@@ -1,7 +1,7 @@
 // <pix-editor> — Score editor
 
 import { i18n } from '../i18n/index.js';
-import { saveScore, getScore } from '../storage/db.js';
+import { saveScore, getScore } from '@pix/core/storage';
 import './PixToolbar.js';
 import './PixScore.js';
 import './PixIconPicker.js';

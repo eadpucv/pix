@@ -1,8 +1,8 @@
 // <pix-library> — Score library manager
 
 import { i18n } from '../i18n/index.js';
-import { getAllScores, saveScore, deleteScore, duplicateScore, getStorageUsage } from '../storage/db.js';
-import { migrateScore } from '../data/migrate.js';
+import { getAllScores, saveScore, deleteScore, duplicateScore, getStorageUsage } from '@pix/core/storage';
+import { migrateScore } from '@pix/core/migrations';
 import { importJSON, exportJSON } from '../export/json.js';
 import { EXAMPLE_SCORES } from '../data/examples.js';
 

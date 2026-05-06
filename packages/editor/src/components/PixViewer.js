@@ -1,7 +1,7 @@
 // <pix-viewer> — Read-only view for embed/print modes
 
 import { i18n } from '../i18n/index.js';
-import { loadIcon, getIconSync, ALL_ICONS } from '../data/icons-meta.js';
+import { loadIcon, getIconSync, ALL_ICONS } from '@pix/core/pixograms';
 
 // Map layer names to their pixogram icon names
 const LAYER_PIXOGRAM_ICONS = {

@@ -1,6 +1,6 @@
 // SVG export — renders the score as a clean SVG document
 
-import { getIconSync, loadIcon } from '../data/icons-meta.js';
+import { getIconSync, loadIcon } from '@pix/core/pixograms';
 import { downloadBlob, sanitizeFilename } from './json.js';
 
 const CELL_WIDTH = 160;

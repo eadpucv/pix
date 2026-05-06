@@ -1,6 +1,6 @@
 // <pix-cell> — Editable cell with icon support
 
-import { ALL_ICONS, loadIcon, getIconSync } from '../data/icons-meta.js';
+import { ALL_ICONS, loadIcon, getIconSync } from '@pix/core/pixograms';
 import { i18n } from '../i18n/index.js';
 
 class PixCell extends HTMLElement {

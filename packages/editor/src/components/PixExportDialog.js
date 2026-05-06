@@ -5,7 +5,7 @@ import { exportJSON } from '../export/json.js';
 import { exportSVG } from '../export/svg.js';
 import { exportPNG } from '../export/png.js';
 import { exportPDF } from '../export/pdf.js';
-import { encodeScoreData } from '../data/migrate.js';
+import { encodeScoreData } from '@pix/core/migrations';
 
 // Viewer layout constants (must match PixViewer.js + score.css)
 const COL_WIDTH = 160;

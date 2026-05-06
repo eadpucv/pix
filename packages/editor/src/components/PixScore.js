@@ -1,7 +1,7 @@
 // <pix-score> — Score renderer (visual grid)
 
 import { i18n } from '../i18n/index.js';
-import { loadIcon, getIconSync } from '../data/icons-meta.js';
+import { loadIcon, getIconSync } from '@pix/core/pixograms';
 import './PixCell.js';
 
 // Map layer names to their pixogram icon names
