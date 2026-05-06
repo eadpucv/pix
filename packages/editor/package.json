@@ -1,0 +1,37 @@
+{
+  "name": "@pix/editor",
+  "title": "PiX Editor",
+  "version": "3.1.0",
+  "private": true,
+  "description": "PiX interaction-score editor — the web app at eadpucv.github.io/pix.",
+  "type": "module",
+  "homepage": "https://eadpucv.github.io/pix/",
+  "author": [
+    {
+      "name": "Herbert Spencer",
+      "email": "herbert.spencer@gmail.com"
+    },
+    {
+      "name": "Hugo Solar",
+      "email": "hugo.solar@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/eadpucv/pix.git",
+    "directory": "packages/editor"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "jspdf": "^4.2.0",
+    "svg2pdf.js": "^2.2.4"
+  }
+}

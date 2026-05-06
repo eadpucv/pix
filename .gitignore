@@ -1,5 +1,14 @@
 .DS_Store
 .claude/*
-node_modules/
-dist/
 .claude/worktrees/cranky-beaver/
+
+# Workspaces — ignore deps and build artefacts at the root
+# and inside any package.
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Extension build artefacts (Chrome / Firefox zips, web-ext temp dirs)
+packages/extension/web-ext-artifacts/
+packages/extension/build/

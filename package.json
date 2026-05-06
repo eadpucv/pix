@@ -1,35 +1,23 @@
 {
-  "name": "pix",
-  "title": "PiX",
+  "name": "pix-monorepo",
+  "private": true,
   "version": "3.1.0",
-  "description": "Interaction notation for UX design",
+  "description": "PiX interaction notation — monorepo. Hosts the editor, the browser extension and the shared core.",
   "type": "module",
   "homepage": "https://eadpucv.github.io/pix/",
-  "author": [
-    {
-      "name": "Herbert Spencer",
-      "email": "herbert.spencer@gmail.com"
-    },
-    {
-      "name": "Hugo Solar",
-      "email": "hugo.solar@gmail.com"
-    }
-  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/eadpucv/pix.git"
   },
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^6.2.0"
-  },
-  "dependencies": {
-    "jspdf": "^4.2.0",
-    "svg2pdf.js": "^2.2.4"
+    "dev": "npm run dev -w @pix/editor",
+    "build": "npm run build -w @pix/editor",
+    "preview": "npm run preview -w @pix/editor",
+    "build:editor": "npm run build -w @pix/editor",
+    "build:extension": "npm run build -w @pix/extension"
   }
 }

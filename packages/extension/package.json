@@ -1,0 +1,22 @@
+{
+  "name": "@pix/extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser extension that records the user's interaction with a web page as a PiX score. Chrome (MV3) and Firefox (WebExtensions).",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/eadpucv/pix.git",
+    "directory": "packages/extension"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "echo 'TODO: dev script for extension (e.g. web-ext run / vite watch)' && exit 0",
+    "build": "echo 'TODO: build script (zip per browser target)' && exit 0",
+    "build:chrome": "echo 'TODO: produce dist/chrome.zip with manifest.chrome.json' && exit 0",
+    "build:firefox": "echo 'TODO: produce dist/firefox.zip with manifest.firefox.json' && exit 0"
+  },
+  "dependencies": {
+    "@pix/core": "*"
+  }
+}

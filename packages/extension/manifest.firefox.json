@@ -1,0 +1,43 @@
+{
+  "manifest_version": 2,
+  "name": "PiX Recorder",
+  "short_name": "PiX",
+  "description": "Records browser interactions as PiX interaction scores. Local-only. Exports PiX-JSON (round-trip with the PiX editor) and tutorial PDFs.",
+  "version": "0.1.0",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "downloads",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_title": "PiX Recorder",
+    "default_popup": "src/popup/index.html"
+  },
+  "background": {
+    "scripts": ["src/background/index.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/index.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    "src/overlay/*"
+  ],
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "pix-recorder@eadpucv.cl",
+      "strict_min_version": "115.0"
+    }
+  }
+}
