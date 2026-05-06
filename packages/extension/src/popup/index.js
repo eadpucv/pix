@@ -1,12 +1,21 @@
 // PiX Recorder — popup
 //
-// Stage 3.5: minimal score viewer. Reads chrome.storage.local directly
-// (popup is in extension context). Shows the active or most recent
-// score's steps with a thumbnail + dialogue caption + crossing marker.
-// Click a step to open its full-resolution screenshot in a new tab.
+// Stage 3.5+: minimal score viewer with "Open in editor" handoff.
+// Reads chrome.storage.local directly (popup is in extension context).
+//
+// "Open in editor" encodes the active/most-recent score via
+// encodeScoreData (which strips capture-derived fields and ids — see
+// @pix/core/migrations) and opens it in the canonical PiX editor at
+// /#!/import/<base64>. The target editor URL is configurable in
+// chrome.storage.local under the EDITOR_URL_KEY so users can point at
+// a local dev server (http://localhost:5173/pix/) instead of prod.
 
 import { MSG, STORAGE_KEY } from '../lib/messages.js';
 import { hostOf } from '../lib/focus.js';
+import { encodeScoreData } from '@pix/core/migrations';
+
+const DEFAULT_EDITOR_URL = 'https://eadpucv.github.io/pix/';
+const EDITOR_URL_KEY = 'pix.editor_url';
 
 const startBtn   = document.getElementById('start');
 const stopBtn    = document.getElementById('stop');
@@ -16,9 +25,16 @@ const stepsTitle = document.getElementById('steps-title');
 const stepsList  = document.getElementById('steps-list');
 const stepsEmpty = document.getElementById('steps-empty');
 const clearBtn   = document.getElementById('clear-btn');
+const openBtn    = document.getElementById('open-btn');
+const settingsToggle = document.getElementById('settings-toggle');
+const settingsRow    = document.getElementById('settings-row');
+const editorUrlInput = document.getElementById('editor-url-input');
+const settingsSave   = document.getElementById('settings-save');
 
-let lastState  = null;
+let lastState   = null;
 let activeStats = null;
+let viewedScore = null;
+let editorUrl   = DEFAULT_EDITOR_URL;
 
 function escHtml(s) {
   const d = document.createElement('div');
@@ -61,6 +77,10 @@ function pickViewedScore(scores) {
 }
 
 function renderSteps(score) {
+  viewedScore = score;
+  const hasSteps = !!(score?.scores?.[0]?.length);
+  openBtn.hidden = !hasSteps;
+
   if (!score) {
     stepsTitle.textContent = 'No score yet';
     stepsList.innerHTML = '';
@@ -100,13 +120,10 @@ function renderSteps(score) {
     `;
   }).join('');
 
-  // Click a step → open its screenshot in a new tab.
   stepsList.querySelectorAll('.step').forEach((li, i) => {
     li.addEventListener('click', () => {
       const step = steps[i];
-      if (step?.screenshot) {
-        chrome.tabs.create({ url: step.screenshot });
-      }
+      if (step?.screenshot) chrome.tabs.create({ url: step.screenshot });
     });
   });
 }
@@ -131,6 +148,28 @@ async function refreshAll() {
   }
 }
 
+async function loadEditorUrl() {
+  const data = await chrome.storage.local.get(EDITOR_URL_KEY);
+  editorUrl = data[EDITOR_URL_KEY] || DEFAULT_EDITOR_URL;
+  editorUrlInput.value = editorUrl;
+}
+
+async function saveEditorUrl(url) {
+  editorUrl = url || DEFAULT_EDITOR_URL;
+  await chrome.storage.local.set({ [EDITOR_URL_KEY]: editorUrl });
+}
+
+function buildEditorUrl(score) {
+  const b64 = encodeScoreData(score);
+  // Editor expects a hash route #!/import/<b64>. Trailing slash on
+  // editorUrl is normalised so both 'https://x/pix' and 'https://x/pix/'
+  // produce a valid URL.
+  const base = editorUrl.replace(/\/+$/, '');
+  return `${base}/#!/import/${b64}`;
+}
+
+// ---- event wiring ----
+
 startBtn.addEventListener('click', async () => {
   startBtn.disabled = true;
   await chrome.runtime.sendMessage({ type: MSG.RECORDER_START });
@@ -151,7 +190,20 @@ clearBtn.addEventListener('click', async () => {
   await refreshAll();
 });
 
-// Live updates while popup is open.
+openBtn.addEventListener('click', () => {
+  if (!viewedScore) return;
+  chrome.tabs.create({ url: buildEditorUrl(viewedScore) });
+});
+
+settingsToggle.addEventListener('click', () => {
+  settingsRow.hidden = !settingsRow.hidden;
+});
+
+settingsSave.addEventListener('click', async () => {
+  await saveEditorUrl(editorUrlInput.value.trim());
+  settingsRow.hidden = true;
+});
+
 chrome.runtime.onMessage.addListener((msg) => {
   if (msg?.type === MSG.RECORDER_STATE_CHANGED) {
     lastState = msg.state;
@@ -165,4 +217,5 @@ chrome.runtime.onMessage.addListener((msg) => {
   }
 });
 
+loadEditorUrl();
 refreshAll();

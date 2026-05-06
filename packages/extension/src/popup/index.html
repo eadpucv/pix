@@ -83,7 +83,42 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    gap: 8px;
     margin-bottom: 8px;
+  }
+  .steps-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .settings-row {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px dashed #e4e7eb;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .settings-row label {
+    flex: 1;
+    font-size: 11px;
+    color: #7b8794;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .settings-row input {
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid #e4e7eb;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'SF Mono', Monaco, monospace;
+    box-sizing: border-box;
+  }
+  .footer-row {
+    margin-top: 8px;
+    text-align: right;
   }
   .steps-title {
     font-size: 11px;
@@ -188,10 +223,20 @@
   <div class="steps-section">
     <div class="steps-header">
       <span class="steps-title" id="steps-title">No score yet</span>
-      <button class="link-btn" id="clear-btn">Clear all</button>
+      <div class="steps-actions">
+        <button class="link-btn" id="open-btn" hidden>Open in editor ↗</button>
+        <button class="link-btn" id="clear-btn">Clear all</button>
+      </div>
     </div>
     <ol class="steps-list" id="steps-list"></ol>
     <div class="steps-empty" id="steps-empty" hidden>No steps captured yet — click anything on a recorded tab.</div>
+  </div>
+  <div class="settings-row" id="settings-row" hidden>
+    <label>Editor URL <input type="text" id="editor-url-input" spellcheck="false"></label>
+    <button class="link-btn" id="settings-save">Save</button>
+  </div>
+  <div class="footer-row">
+    <button class="link-btn" id="settings-toggle">Editor target…</button>
   </div>
 
   <script src="./index.js" type="module"></script>
