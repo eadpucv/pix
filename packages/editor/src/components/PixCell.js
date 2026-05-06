@@ -201,8 +201,13 @@ class PixCell extends HTMLElement {
         }, 10);
       },
       onClose: () => {
-        // Return focus to the cell when picker closes without selection
-        this._contentEl.focus();
+        // Return focus to the cell only if no other element took it
+        // (e.g., user pressed Escape or clicked empty space). If they
+        // clicked another cell or Tabbed away, respect that.
+        const active = document.activeElement;
+        if (!active || active === document.body) {
+          this._contentEl.focus();
+        }
       }
     });
   }

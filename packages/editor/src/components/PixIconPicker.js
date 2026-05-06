@@ -42,11 +42,15 @@ class PixIconPicker extends HTMLElement {
   }
 
   hide() {
+    if (!this._visible) return;
     this._visible = false;
     this.innerHTML = '';
     document.removeEventListener('keydown', this._boundKeydown);
     document.removeEventListener('click', this._boundClickOutside);
-    if (this._onClose) this._onClose();
+    const onClose = this._onClose;
+    this._onClose = null;
+    this._onSelect = null;
+    if (onClose) onClose();
   }
 
   updateFilter(filter) {
