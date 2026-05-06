@@ -14,61 +14,102 @@ PDF.
 
 ## Status
 
-**Specification only — no implementation yet.** The behavioural
-contract lives in [`interaction-capture.allium`](interaction-capture.allium)
-(Allium v3). Read it before implementing — it documents:
+**Stage 1 — extension shell loadable, all modules inert.** Stubs in
+place for background, content, popup and overlay so that "Load unpacked"
+in Chrome / `web-ext run` in Firefox produces a working extension that
+proves the pipeline is wired. No actual recording yet.
 
-- the recording lifecycle (start, stop, single active score);
-- exactly what counts as an interactive element (granularity criterion);
-- when and how screenshots are taken;
-- how each captured click maps to a PiX score column;
-- how the recorder handles **multi-site sequences** (cross-origin
-  navigations to a payment gateway and back);
-- the **forensic posture**: append-only capture-derived fields,
-  per-score provenance metadata, replace-in-place re-import;
-- export formats: PiX-JSON for round-trip with the editor, tutorial
-  PDF for replicability.
+The behavioural contract lives in
+[`interaction-capture.allium`](interaction-capture.allium) (Allium v3).
+Read it before implementing the recording — it documents the lifecycle,
+the click-capture rule, multi-site continuity, forensic semantics and
+the round-trip with the editor.
 
-It also documents what is **out of scope** (network calls, browser-
-extension plumbing details, the editor itself, audit trails) and lists
-the open design questions the implementation will need to resolve.
+## Build and load
 
-## Relationship to the rest of the monorepo
+```bash
+# from the repo root
+npm install
+npm run build:chrome -w @pix/extension     # → packages/extension/dist/chrome/
+npm run build:firefox -w @pix/extension    # → packages/extension/dist/firefox/
+npm run build -w @pix/extension            # both
+```
 
-- **`@pix/core`** — owns the score data contract: layouts (`pix`,
-  `sb`), layers, the 160-icon pixogram catalogue, the IndexedDB
-  library pattern, score migrations. This extension imports types
-  and helpers from `@pix/core`.
-- **`@pix/editor`** — the canonical PiX home where users enrich the
-  `user` layer of a recorded score. Round-trip happens through
-  PiX-JSON: the extension exports a score (without screenshots),
-  the editor enriches it, the user re-imports it in the same Score
-  in the extension; capture-derived fields are preserved by id-match.
+### Load unpacked — Chrome
 
-## Layout
+1. `chrome://extensions`
+2. Toggle **Developer mode** (top right)
+3. **Load unpacked** → pick `packages/extension/dist/chrome/`
+4. The "PiX Recorder" icon appears in the toolbar; clicking it opens
+   the popup stub. Open DevTools → Console and you should see the
+   `[pix-recorder] background service worker booted` line. On any tab
+   you visit, the content script logs `[pix-recorder] content script
+   injected on <url>`.
+
+After every code change, click the **reload icon** on the extension
+card in `chrome://extensions` and reload the page you're testing on.
+
+### Load temporary — Firefox
+
+1. `about:debugging#/runtime/this-firefox`
+2. **Load Temporary Add-on** → pick `packages/extension/dist/firefox/manifest.json`
+
+### Watch mode (Chrome)
+
+```bash
+npm run watch:chrome -w @pix/extension
+```
+
+This re-runs the build whenever a file under `src/` or `manifest.chrome.json`
+changes. Chrome still requires a manual reload click — the alternative is
+to use `@crxjs/vite-plugin` for HMR, which we'll consider once iteration
+gets painful.
+
+## Source layout
 
 ```
 packages/extension/
-├── interaction-capture.allium  ← Allium v3 spec (the contract)
-├── manifest.chrome.json        ← (TODO) Chrome MV3 manifest
-├── manifest.firefox.json       ← (TODO) Firefox WebExtensions manifest
-├── src/                        ← (TODO) implementation
-│   ├── background/             ← service worker, recorder state
-│   ├── content/                ← interactive-element detection, click capture
-│   ├── popup/                  ← the manager UI
-│   └── overlay/                ← the "red light" indicator
+├── interaction-capture.allium       Allium v3 spec — the contract
+├── manifest.chrome.json             MV3 (Chrome, Edge)
+├── manifest.firefox.json            MV2 / WebExtensions (Firefox)
+├── build.mjs                        File-copy build (no bundler yet)
+├── src/
+│   ├── background/index.js          Service worker — Recorder state, IDB owner
+│   ├── content/index.js             Click capture, screenshot, focus
+│   ├── overlay/                     Red-light indicator (web_accessible_resource)
+│   │   ├── index.html
+│   │   └── index.js
+│   ├── popup/                       Score manager UI
+│   │   ├── index.html
+│   │   └── index.js
+│   └── lib/                         Pure functions — testable in node
+│       ├── classify.js              (Element) → CapturedElementKind
+│       ├── focus.js                 BoundingBox → FocusRegion, hostOf
+│       └── recorder.js              State machine: (state, event) → state + effects
+├── dist/                            Build output (gitignored)
+│   ├── chrome/
+│   └── firefox/
 └── package.json
 ```
 
-## Open dependency on `@pix/core`
+## Spec → module map
 
-The bidirectional re-import flow (replace-in-place, preserving
-screenshots through a round-trip via the editor) requires `@pix/core`
-to introduce stable ids at three levels (Score, Movement, ScoreStep).
-The current PiX editor preserves only `Score.id` and strips it on
-export. See `interaction-capture.allium` → "Dependency on eadpucv/pix"
-and `packages/core/README.md` for the extraction plan.
+| Module | Allium entities / rules |
+|---|---|
+| `background/` | `entity Recorder`, `rule UserStartsRecording`, `rule UserStopsRecording`, `@invariant SingleActiveScore`, `@invariant RecordingSurvivesNavigationAndTabs` |
+| `content/` | `external entity InteractiveElement`, `@invariant ElementInteractivityCriteria`, `rule UserClickCapturesStep` |
+| `popup/` | `rule UserCreatesScore`, `rule UserEditsCell`, `rule UserDeletesStep`, `rule UserExportsScoreAsPiXJson`, `rule UserExportsScoreAsPdf`, `rule UserImportsPiXScore`, `@guarantee ImportRejectionExplained` |
+| `overlay/` | `@guarantee RecordingStateAlwaysVisible` |
+| `lib/` | Pure helpers — `classify_element`, `pixogram_for_kind`, `focus_from_box`, `host_of`, the Recorder reducer |
 
-Until that lands in `@pix/core`, the extension can implement everything
-**except** lossless re-import — it would have to fall back to
-positional matching, which the spec explicitly rejects.
+The popup will eventually reuse `<pix-cell>`, `<pix-icon-picker>` and
+`<pix-score>` from `@pix/editor` and IndexedDB / migrations / pixogram
+catalogue from `@pix/core`. None of those imports are wired yet — Stage 1
+is bundler-free deliberately.
+
+## Open dependency on `@pix/core` — RESOLVED
+
+Phase C of the monorepo migration introduced stable nanoid-based ids at
+Score / Movement / ScoreStep level in `@pix/core`. The bidirectional
+re-import flow specified in `interaction-capture.allium` ("Dependency on
+eadpucv/pix") is now unblocked.

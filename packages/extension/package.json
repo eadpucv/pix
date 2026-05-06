@@ -11,10 +11,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "echo 'TODO: dev script for extension (e.g. web-ext run / vite watch)' && exit 0",
-    "build": "echo 'TODO: build script (zip per browser target)' && exit 0",
-    "build:chrome": "echo 'TODO: produce dist/chrome.zip with manifest.chrome.json' && exit 0",
-    "build:firefox": "echo 'TODO: produce dist/firefox.zip with manifest.firefox.json' && exit 0"
+    "build": "node build.mjs chrome && node build.mjs firefox",
+    "build:chrome": "node build.mjs chrome",
+    "build:firefox": "node build.mjs firefox",
+    "watch:chrome": "node --watch build.mjs chrome"
   },
   "dependencies": {
     "@pix/core": "*"

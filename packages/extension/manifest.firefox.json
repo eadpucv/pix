@@ -13,27 +13,24 @@
   ],
   "browser_action": {
     "default_title": "PiX Recorder",
-    "default_popup": "src/popup/index.html"
+    "default_popup": "popup/index.html"
   },
   "background": {
-    "scripts": ["src/background/index.js"],
+    "scripts": ["background/index.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/content/index.js"],
+      "js": ["content/index.js"],
       "run_at": "document_idle",
       "all_frames": false
     }
   ],
   "web_accessible_resources": [
-    "src/overlay/*"
+    "overlay/index.html",
+    "overlay/index.js"
   ],
-  "icons": {
-    "48": "icons/icon-48.png",
-    "96": "icons/icon-96.png"
-  },
   "browser_specific_settings": {
     "gecko": {
       "id": "pix-recorder@eadpucv.cl",

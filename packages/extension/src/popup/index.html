@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PiX Recorder</title>
+<style>
+  body {
+    margin: 0;
+    padding: 16px;
+    width: 320px;
+    font-family: -apple-system, sans-serif;
+    font-size: 13px;
+    color: #1f2933;
+  }
+  h1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    color: #d94021;
+  }
+  .row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  button {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #e4e7eb;
+    border-radius: 6px;
+    background: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  button:hover { background: #f5f7fa; }
+  button.primary {
+    background: #d94021;
+    color: white;
+    border-color: #d94021;
+  }
+  .muted { color: #7b8794; font-size: 11px; margin-top: 12px; }
+</style>
+</head>
+<body>
+  <h1>PiX Recorder</h1>
+  <p>Stage 1 — extension shell only. Recording, score library and editor land in subsequent turns.</p>
+  <div class="row">
+    <button class="primary" id="start" disabled>Start recording</button>
+    <button id="stop" disabled>Stop</button>
+  </div>
+  <p class="muted">background, content and overlay are loaded but inert.</p>
+  <script src="./index.js" type="module"></script>
+</body>
+</html>
