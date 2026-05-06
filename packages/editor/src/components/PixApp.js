@@ -3,7 +3,7 @@
 import { i18n } from '../i18n/index.js';
 import { parseLegacyData, migrateScore } from '@pix/core/migrations';
 import { preloadIcons } from '@pix/core/pixograms';
-import { getScore } from '@pix/core/storage';
+import { getScore, saveScore } from '@pix/core/storage';
 import logoUrl from '@pix/core/icons/logo.svg?url';
 import { VERSION } from '../version.js';
 import './PixLibrary.js';
@@ -137,6 +137,27 @@ class PixApp extends HTMLElement {
         main.appendChild(viewer);
       } else {
         main.innerHTML = '<p style="padding:40px;text-align:center;">Could not load score data.</p>';
+      }
+      return;
+    }
+
+    // Handoff route used by @pix/extension's "Open in editor" button.
+    // Decodes, persists to IndexedDB (preserving ids when present so a
+    // second handoff updates the same record), then redirects to the
+    // regular #/editor/<id> view.
+    if (hash.startsWith('#!/edit/')) {
+      const b64 = hash.slice('#!/edit/'.length);
+      const score = parseLegacyData(b64);
+      if (!score) {
+        main.innerHTML = '<p style="padding:40px;text-align:center;">Could not parse score data.</p>';
+        return;
+      }
+      try {
+        const saved = await saveScore(score);
+        window.location.hash = `#/editor/${saved.id}`;
+      } catch (err) {
+        console.error('Failed to import score from #!/edit/', err);
+        main.innerHTML = `<p style="padding:40px;text-align:center;">Failed to import score: ${err.message}</p>`;
       }
       return;
     }

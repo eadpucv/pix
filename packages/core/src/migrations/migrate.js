@@ -135,11 +135,59 @@ function stripForEmbed(score) {
 }
 
 /**
+ * Strip a score down to the round-trip shape — like stripForEmbed but
+ * keeps stable ids (score.id, movement_ids, step.id). Used by the
+ * "open in editor" handoff: the editor picks the score up by its id,
+ * so re-opening the same score updates the local copy instead of
+ * duplicating it.
+ *
+ * Capture-derived fields (screenshot, focus, captured_*, boundary) are
+ * still dropped — JPEG screenshots blow URL size up by 100-300KB each.
+ */
+function stripForRoundTrip(score) {
+  return {
+    id: score.id,
+    title: score.title,
+    layout: score.layout,
+    description: score.description,
+    movement_ids: score.movement_ids,
+    scores: (score.scores || []).map(movement =>
+      movement.map(step => {
+        const out = {
+          id:         step.id,
+          step_title: step.step_title || '',
+          user:       step.user       || '',
+          dialogue:   step.dialogue   || '',
+          system:     step.system     || '',
+          note:       step.note       || ''
+        };
+        if (step.environment !== undefined)          out.environment = step.environment;
+        if (step.supporting_processes !== undefined) out.supporting_processes = step.supporting_processes;
+        return out;
+      })
+    )
+  };
+}
+
+/**
  * Encode score data to base64 for embed URLs (UTF-8 safe).
  * Always emits the legacy shape — see stripForEmbed above.
  */
 export function encodeScoreData(score) {
   const payload = stripForEmbed(score);
+  const bytes = new TextEncoder().encode(JSON.stringify(payload));
+  let binary = '';
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary);
+}
+
+/**
+ * Encode for the editor's #!/edit/<b64> handoff route.
+ * Keeps stable ids so the editor's library can update an existing
+ * score on a second handoff instead of creating a duplicate.
+ */
+export function encodeScoreForEdit(score) {
+  const payload = stripForRoundTrip(score);
   const bytes = new TextEncoder().encode(JSON.stringify(payload));
   let binary = '';
   for (const b of bytes) binary += String.fromCharCode(b);

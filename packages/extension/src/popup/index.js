@@ -12,7 +12,7 @@
 
 import { MSG, STORAGE_KEY } from '../lib/messages.js';
 import { hostOf } from '../lib/focus.js';
-import { encodeScoreData } from '@pix/core/migrations';
+import { encodeScoreForEdit } from '@pix/core/migrations';
 
 const DEFAULT_EDITOR_URL = 'https://eadpucv.github.io/pix/';
 const EDITOR_URL_KEY = 'pix.editor_url';
@@ -160,12 +160,13 @@ async function saveEditorUrl(url) {
 }
 
 function buildEditorUrl(score) {
-  const b64 = encodeScoreData(score);
-  // Editor expects a hash route #!/import/<b64>. Trailing slash on
-  // editorUrl is normalised so both 'https://x/pix' and 'https://x/pix/'
-  // produce a valid URL.
+  // Use the editor's #!/edit/<b64> handoff route — it persists the
+  // score to IndexedDB and lands the user in the editable view, not
+  // the read-only viewer that #!/import/ targets. encodeScoreForEdit
+  // keeps stable ids so re-opening updates the same record.
+  const b64 = encodeScoreForEdit(score);
   const base = editorUrl.replace(/\/+$/, '');
-  return `${base}/#!/import/${b64}`;
+  return `${base}/#!/edit/${b64}`;
 }
 
 // ---- event wiring ----
