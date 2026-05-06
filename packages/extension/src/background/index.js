@@ -1,22 +1,28 @@
 // PiX Recorder — background service worker (MV3)
 //
-// Owns the Recorder state machine. State persists in chrome.storage.local
-// so it survives service worker termination (MV3 SW gets killed when idle).
+// Owns the Recorder state machine and the active Score buffer. State
+// persists in chrome.storage.local so it survives service worker
+// termination (MV3 SW gets killed when idle).
 //
 // Implements (per interaction-capture.allium):
-//   - entity Recorder
-//   - rule UserStartsRecording, UserStopsRecording
+//   - entity Recorder, entity Score, entity Movement, entity ScoreStep
+//   - rule UserStartsRecording, UserStopsRecording, UserClickCapturesStep
 //   - @invariant SingleActiveScore
 //   - @invariant RecordingSurvivesNavigationAndTabs
+//   - @invariant CaptureDerivedFieldsImmutable (append-only writes)
+//   - invariant BoundaryReflectsHostChange     (via lib/focus hostOf)
 //
-// Stage 2: lifecycle only — start, stop, persist, broadcast overlay.
-// Click capture and ScoreStep persistence land in stage 3.
+// Stage 3: capture pipeline complete. Stage 4 swaps chrome.storage to
+// IndexedDB via @pix/core/storage and exposes the score library in the popup.
 
 import { newId } from '@pix/core/ids';
 import { MSG, STORAGE_KEY } from '../lib/messages.js';
 import { reduce, initialRecorder } from '../lib/recorder.js';
+import { hostOf } from '../lib/focus.js';
 
 console.log('[pix-recorder] background service worker booted');
+
+// ---------- recorder state ----------
 
 async function getState() {
   const data = await chrome.storage.local.get(STORAGE_KEY);
@@ -25,7 +31,6 @@ async function getState() {
 
 async function setState(next) {
   await chrome.storage.local.set({ [STORAGE_KEY]: next });
-  // Best-effort broadcast to popup if open. Errors when no listeners.
   chrome.runtime
     .sendMessage({ type: MSG.RECORDER_STATE_CHANGED, state: next })
     .catch(() => {});
@@ -64,15 +69,88 @@ async function broadcastToTabs(message) {
   );
 }
 
-// Popup or content scripts asking us to do something.
-chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+// ---------- score buffer ----------
+
+const scoreKey = (id) => `pix.score:${id}`;
+
+async function getScore(scoreId) {
+  const data = await chrome.storage.local.get(scoreKey(scoreId));
+  return data[scoreKey(scoreId)] || null;
+}
+
+async function setScore(scoreId, score) {
+  await chrome.storage.local.set({ [scoreKey(scoreId)]: score });
+}
+
+async function getStats(scoreId) {
+  const score = await getScore(scoreId);
+  return { steps: score?.scores?.[0]?.length || 0 };
+}
+
+async function appendStep(scoreId, payload, screenshot) {
+  let score = await getScore(scoreId);
+  if (!score) {
+    score = {
+      id: scoreId,
+      title: '',
+      layout: 'pix',
+      description: '',
+      movement_ids: [newId()],
+      scores: [[]],
+      created_at: Date.now(),
+      updated_at: Date.now()
+    };
+  }
+
+  const movement = score.scores[0];
+  const prev = movement[movement.length - 1];
+
+  let boundary = 'none';
+  if (prev?.captured_from_url) {
+    const prevHost = hostOf(prev.captured_from_url);
+    const newHost = hostOf(payload.page_url);
+    if (prevHost && newHost && prevHost !== newHost) boundary = 'crossing';
+  }
+
+  const dialogue = payload.icon
+    ? `pix-${payload.icon}${payload.caption ? ' ' + payload.caption : ''}`
+    : (payload.caption || '');
+
+  const step = {
+    id: newId(),
+    step_title: '',
+    user: '',
+    dialogue,
+    system: '',
+    note: '',
+    captured_at: Date.now(),
+    captured_from_url: payload.page_url,
+    screenshot,
+    focus: payload.focus,
+    captured_kind: payload.kind,
+    boundary
+  };
+
+  movement.push(step);
+  score.updated_at = Date.now();
+  await setScore(scoreId, score);
+
+  chrome.runtime
+    .sendMessage({
+      type: MSG.SCORE_UPDATED,
+      score_id: scoreId,
+      stats: { steps: movement.length }
+    })
+    .catch(() => {});
+}
+
+// ---------- message routing ----------
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   (async () => {
     try {
       switch (msg?.type) {
         case MSG.RECORDER_START: {
-          // Stage 2: spin up an ad-hoc Score id. Real Score creation
-          // (with title, layout, IndexedDB persistence) lands in stage 4
-          // when the popup grows a library.
           const state = await applyEvent({ type: 'start', score_id: newId() });
           sendResponse({ ok: true, state });
           break;
@@ -87,6 +165,36 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
           sendResponse({ ok: true, state });
           break;
         }
+        case MSG.SCORE_GET_STATS: {
+          const state = await getState();
+          const stats = state.active_score_id
+            ? await getStats(state.active_score_id)
+            : { steps: 0 };
+          sendResponse({ ok: true, stats });
+          break;
+        }
+        case MSG.STEP_CAPTURE_REQUEST: {
+          const state = await getState();
+          if (state.state !== 'recording' || !state.active_score_id) {
+            sendResponse({ ok: false, error: 'not recording' });
+            break;
+          }
+          let screenshot = null;
+          const windowId = sender?.tab?.windowId;
+          if (windowId != null) {
+            try {
+              screenshot = await chrome.tabs.captureVisibleTab(windowId, {
+                format: 'jpeg',
+                quality: 70
+              });
+            } catch (err) {
+              console.warn('[pix-recorder] captureVisibleTab failed', err);
+            }
+          }
+          await appendStep(state.active_score_id, msg.payload, screenshot);
+          sendResponse({ ok: true });
+          break;
+        }
         default:
           sendResponse({ ok: false, error: 'unknown message' });
       }
@@ -98,10 +206,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   return true; // signal async sendResponse
 });
 
-// New tab finished loading: if recording, ask its content script to show
-// the overlay. Same logic for top-level navigations within an existing
-// tab — the content script is re-injected on document_idle and its own
-// boot path also queries getState, so this is belt-and-suspenders.
+// New tab finished loading: if recording, ensure overlay is shown there.
 chrome.tabs.onUpdated.addListener((tabId, info, tab) => {
   if (info.status !== 'complete') return;
   if (!tab.url || !/^https?:/.test(tab.url)) return;

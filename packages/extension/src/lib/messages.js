@@ -13,7 +13,14 @@ export const MSG = {
 
   // background → content scripts (per-tab broadcast)
   OVERLAY_SHOW: 'overlay:show',
-  OVERLAY_HIDE: 'overlay:hide'
+  OVERLAY_HIDE: 'overlay:hide',
+
+  // content → background (capture pipeline)
+  STEP_CAPTURE_REQUEST: 'step:capture_request',
+
+  // popup ↔ background (active score stats)
+  SCORE_GET_STATS: 'score:get_stats',
+  SCORE_UPDATED:   'score:updated'
 };
 
 export const STORAGE_KEY = 'pix.recorder';
