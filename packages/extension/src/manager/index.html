@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PiX Recorder — Library</title>
+<style>
+  :root {
+    --pix-brand: #d94021;
+    --pix-orange: #ee7d33;
+    --pix-text: #1f2933;
+    --pix-text-muted: #7b8794;
+    --pix-bg: #fafbfc;
+    --pix-surface: #ffffff;
+    --pix-border: #e4e7eb;
+    --pix-hover: #f5f7fa;
+    --pix-rec: #ff3b30;
+    --pix-crossing: #ff9500;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--pix-bg);
+    color: var(--pix-text);
+    min-height: 100vh;
+  }
+
+  /* Topbar */
+  .topbar {
+    background: var(--pix-surface);
+    border-bottom: 1px solid var(--pix-border);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .topbar h1 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--pix-brand);
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--pix-text-muted);
+  }
+  .status .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #b5bfba;
+  }
+  .status.recording .dot {
+    background: var(--pix-rec);
+    animation: pix-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pix-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .topbar-spacer { flex: 1; }
+  button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border: 1px solid var(--pix-border);
+    border-radius: 6px;
+    background: white;
+    color: var(--pix-text);
+    cursor: pointer;
+    transition: background 120ms ease;
+  }
+  button:hover:not(:disabled) { background: var(--pix-hover); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.primary:not(:disabled) {
+    background: var(--pix-brand);
+    color: white;
+    border-color: var(--pix-brand);
+  }
+  button.primary:hover:not(:disabled) { background: var(--pix-orange); }
+  button.danger { color: #c0392b; }
+  button.danger:hover { background: rgba(192, 57, 43, 0.08); }
+  .link-btn {
+    background: transparent;
+    border: 0;
+    color: var(--pix-text-muted);
+    font-size: 12px;
+    text-decoration: underline;
+    padding: 0;
+    cursor: pointer;
+  }
+  .link-btn:hover { color: var(--pix-brand); background: transparent; }
+
+  /* Main */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .empty {
+    color: var(--pix-text-muted);
+    text-align: center;
+    padding: 80px 24px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* Score card */
+  .score-card {
+    background: var(--pix-surface);
+    border: 1px solid var(--pix-border);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .score-card.expanded { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .score-header {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+  .score-header:hover { background: var(--pix-hover); }
+  .score-id {
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 11px;
+    color: var(--pix-text-muted);
+    background: var(--pix-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .score-meta {
+    flex: 1;
+    font-size: 13px;
+    color: var(--pix-text);
+  }
+  .score-recording-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pix-rec);
+    animation: pix-pulse 1.4s ease-in-out infinite;
+  }
+  .score-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .score-actions button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .chevron {
+    color: var(--pix-text-muted);
+    transition: transform 120ms ease;
+    margin-left: 4px;
+  }
+  .score-card.expanded .chevron { transform: rotate(90deg); }
+
+  .score-body { display: none; }
+  .score-card.expanded .score-body { display: block; }
+
+  /* Steps grid */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 8px 16px 16px;
+    border-top: 1px solid var(--pix-border);
+    background: var(--pix-bg);
+  }
+  .step-card {
+    background: white;
+    border: 1px solid var(--pix-border);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 120ms ease;
+  }
+  .step-card:hover { border-color: var(--pix-brand); }
+  .step-card.crossing { border-left: 3px solid var(--pix-crossing); }
+  .step-card img.thumb {
+    display: block;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top left;
+    background: var(--pix-bg);
+  }
+  .step-card .info {
+    padding: 8px 10px;
+  }
+  .step-card .step-index {
+    font-size: 10px;
+    color: var(--pix-text-muted);
+    margin-bottom: 4px;
+  }
+  .step-card .caption {
+    font-size: 12px;
+    color: var(--pix-text);
+    line-height: 1.35;
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+  .step-card .meta {
+    font-size: 10px;
+    color: var(--pix-text-muted);
+    display: flex;
+    justify-content: space-between;
+  }
+  .step-card .crossing-tag {
+    color: var(--pix-crossing);
+    font-weight: 600;
+  }
+
+  /* Settings */
+  .settings-bar {
+    margin-top: 32px;
+    padding: 16px;
+    background: var(--pix-surface);
+    border: 1px solid var(--pix-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--pix-text-muted);
+  }
+  .settings-bar label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+  .settings-bar input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid var(--pix-border);
+    border-radius: 4px;
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 12px;
+  }
+  .settings-bar button { font-size: 12px; padding: 5px 10px; }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>PiX Recorder</h1>
+    <div class="status" id="status"><span class="dot"></span><span id="status-text">Idle</span></div>
+    <div class="topbar-spacer"></div>
+    <button class="primary" id="start">Start recording</button>
+    <button id="stop">Stop</button>
+  </div>
+  <main>
+    <div id="scores-list"></div>
+    <div class="empty" id="empty" hidden>
+      No recordings yet.<br>
+      <span style="font-size:12px">Click <strong>Start recording</strong> and interact with any web page — every click becomes a step in a PiX score.</span>
+    </div>
+    <div class="settings-bar">
+      <label>
+        Editor target
+        <input type="text" id="editor-url-input" spellcheck="false" placeholder="https://eadpucv.github.io/pix/">
+      </label>
+      <button id="settings-save">Save</button>
+      <button class="link-btn" id="clear-all">Delete all recordings</button>
+    </div>
+  </main>
+  <script src="./index.js" type="module"></script>
+</body>
+</html>

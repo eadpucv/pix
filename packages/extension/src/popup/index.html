@@ -7,7 +7,7 @@
   body {
     margin: 0;
     padding: 16px;
-    width: 360px;
+    width: 280px;
     font-family: -apple-system, sans-serif;
     font-size: 13px;
     color: #1f2933;
@@ -43,7 +43,6 @@
   .row {
     display: flex;
     gap: 8px;
-    margin-top: 8px;
   }
   button {
     flex: 1;
@@ -72,143 +71,27 @@
     padding: 1px 4px;
     border-radius: 3px;
   }
-
-  /* steps section */
-  .steps-section {
-    margin-top: 16px;
+  .library-row {
+    margin-top: 14px;
     padding-top: 12px;
     border-top: 1px solid #e4e7eb;
-  }
-  .steps-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .steps-actions {
-    display: flex;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .settings-row {
-    margin-top: 12px;
-    padding-top: 8px;
-    border-top: 1px dashed #e4e7eb;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .settings-row label {
-    flex: 1;
-    font-size: 11px;
-    color: #7b8794;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .settings-row input {
-    width: 100%;
-    padding: 4px 6px;
-    border: 1px solid #e4e7eb;
-    border-radius: 4px;
-    font-size: 11px;
-    font-family: 'SF Mono', Monaco, monospace;
-    box-sizing: border-box;
-  }
-  .footer-row {
-    margin-top: 8px;
-    text-align: right;
-  }
-  .steps-title {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #7b8794;
-  }
-  .link-btn {
-    flex: 0;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: #7b8794;
-    font-size: 11px;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  .link-btn:hover:not(:disabled) {
-    color: #d94021;
-    background: none;
-  }
-  .steps-empty {
-    color: #b5bfba;
-    font-size: 12px;
-    font-style: italic;
-    padding: 12px 0;
     text-align: center;
   }
-  .steps-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    max-height: 360px;
-    overflow-y: auto;
-  }
-  .step {
-    display: flex;
-    gap: 8px;
-    padding: 6px 4px;
-    border-bottom: 1px solid #f5f7fa;
+  .library-link {
+    display: inline-block;
+    padding: 6px 12px;
+    color: #1f2933;
+    background: transparent;
+    border: 1px solid #e4e7eb;
+    border-radius: 6px;
+    font-size: 12px;
+    text-decoration: none;
     cursor: pointer;
   }
-  .step:hover { background: #fafbfc; }
-  .step:last-child { border-bottom: 0; }
-  .step.crossing { border-left: 2px solid #ff9500; padding-left: 6px; }
-  .step .thumb {
-    width: 64px;
-    height: 40px;
-    object-fit: cover;
-    object-position: top left;
-    border-radius: 3px;
-    background: #e4e7eb;
-    flex-shrink: 0;
-  }
-  .step .body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-  }
-  .step .caption {
-    font-size: 12px;
-    color: #1f2933;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .step .meta {
-    font-size: 10px;
-    color: #7b8794;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .step .meta .crossing-tag {
-    color: #ff9500;
-    font-weight: 600;
-    margin-left: 4px;
-  }
-  .step .index {
-    font-size: 10px;
-    color: #b5bfba;
-    font-weight: 600;
-    min-width: 16px;
-    text-align: right;
-    align-self: center;
-    flex-shrink: 0;
+  .library-link:hover {
+    background: #f5f7fa;
+    border-color: #d94021;
+    color: #d94021;
   }
 </style>
 </head>
@@ -219,26 +102,9 @@
     <button class="primary" id="start">Start recording</button>
     <button id="stop">Stop</button>
   </div>
-
-  <div class="steps-section">
-    <div class="steps-header">
-      <span class="steps-title" id="steps-title">No score yet</span>
-      <div class="steps-actions">
-        <button class="link-btn" id="open-btn" hidden>Open in editor ↗</button>
-        <button class="link-btn" id="clear-btn">Clear all</button>
-      </div>
-    </div>
-    <ol class="steps-list" id="steps-list"></ol>
-    <div class="steps-empty" id="steps-empty" hidden>No steps captured yet — click anything on a recorded tab.</div>
+  <div class="library-row">
+    <button class="library-link" id="open-library">Open library ↗</button>
   </div>
-  <div class="settings-row" id="settings-row" hidden>
-    <label>Editor URL <input type="text" id="editor-url-input" spellcheck="false"></label>
-    <button class="link-btn" id="settings-save">Save</button>
-  </div>
-  <div class="footer-row">
-    <button class="link-btn" id="settings-toggle">Editor target…</button>
-  </div>
-
   <script src="./index.js" type="module"></script>
 </body>
 </html>

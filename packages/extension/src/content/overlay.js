@@ -43,9 +43,9 @@ export async function showOverlay() {
     <style>
       :host { all: initial; }
       .widget {
-        position: fixed;
-        top: 0;
-        left: 0;
+        /* No position here — the host element is fixed-positioned and
+           the widget renders inside it. With its own position:fixed the
+           widget would pin to the viewport, breaking drag. */
         font: 600 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         letter-spacing: 0.06em;
         text-transform: uppercase;
