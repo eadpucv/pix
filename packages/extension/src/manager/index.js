@@ -15,6 +15,26 @@ import { encodeScoreForEdit } from '@pix/core/migrations';
 const DEFAULT_EDITOR_URL = 'https://eadpucv.github.io/pix/';
 const EDITOR_URL_KEY = 'pix.editor_url';
 
+// Shorthand for chrome.i18n. With substitutions for placeholders.
+const t = (key, ...subs) => chrome.i18n.getMessage(key, subs.map(String)) || key;
+
+// Apply data-i18n attributes from the HTML on load. The element's
+// textContent is overwritten with the resolved string.
+function applyStaticI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const msg = t(key);
+    if (msg) el.textContent = msg;
+  });
+  // emptyHint embeds the Start button label.
+  const hint = document.getElementById('empty-hint');
+  if (hint) {
+    const start = t('btnStart');
+    hint.innerHTML = t('emptyHint', start)
+      .replace(start, `<strong>${escHtml(start)}</strong>`);
+  }
+}
+
 const startBtn   = document.getElementById('start');
 const stopBtn    = document.getElementById('stop');
 const statusEl   = document.getElementById('status');
@@ -45,10 +65,9 @@ function renderHeader() {
   if (recording) {
     const id = lastState.active_score_id || '';
     const steps = activeStats?.steps ?? 0;
-    const noun  = steps === 1 ? 'step' : 'steps';
-    statusTxt.innerHTML = `Recording <code>${escHtml(id.slice(0, 8))}</code> · ${steps} ${noun}`;
+    statusTxt.innerHTML = t('statusRecording', `<code>${escHtml(id.slice(0, 8))}</code>`, steps);
   } else {
-    statusTxt.textContent = 'Idle';
+    statusTxt.textContent = t('statusIdle');
   }
 }
 
@@ -176,24 +195,24 @@ function renderScores(scores, tracesById) {
     const recording = lastState?.active_score_id === score.id;
     const isExpanded = expanded.has(score.id);
     const idShort = score.id.slice(0, 8);
-    const noun = steps.length === 1 ? 'step' : 'steps';
+    const noun = steps.length === 1 ? t('stepNoun') : t('stepNounPlural');
     const updated = score.updated_at ? new Date(score.updated_at).toLocaleString() : '';
 
     return `
       <div class="score-card ${isExpanded ? 'expanded' : ''}" data-score-id="${escHtml(score.id)}">
         <div class="score-header" data-action="toggle">
-          ${recording ? '<span class="score-recording-dot" title="Currently recording"></span>' : ''}
+          ${recording ? `<span class="score-recording-dot" title="${escHtml(t('scoreCurrentlyRecording'))}"></span>` : ''}
           <span class="score-id">${escHtml(idShort)}</span>
           <span class="score-meta">${steps.length} ${noun}${updated ? ' · ' + escHtml(updated) : ''}</span>
           <div class="score-actions" data-stop-toggle>
-            <button data-action="open">Open in editor ↗</button>
-            <button class="danger" data-action="delete">Delete</button>
+            <button data-action="open">${escHtml(t('scoreOpenInEditor'))}</button>
+            <button class="danger" data-action="delete">${escHtml(t('scoreDelete'))}</button>
           </div>
           <span class="chevron">›</span>
         </div>
         <div class="score-body">
           ${steps.length === 0
-            ? '<div class="empty" style="padding:24px;">No steps yet — click anything on a recorded tab.</div>'
+            ? `<div class="empty" style="padding:24px;">${escHtml(t('scoreNoStepsYet'))}</div>`
             : `<div class="steps-grid">${steps.map((step, i) => stepCardHtml(step, stepSnapshot.get(step.id), i)).join('')}</div>`}
         </div>
       </div>
@@ -222,7 +241,7 @@ function renderScores(scores, tracesById) {
 
     card.querySelector('[data-action="delete"]').addEventListener('click', async (e) => {
       e.stopPropagation();
-      if (!confirm(`Delete score ${id.slice(0, 8)}? This cannot be undone.`)) return;
+      if (!confirm(t('scoreDeleteConfirm', id.slice(0, 8)))) return;
       await chrome.storage.local.remove([`pix.score:${id}`, `pix.trace:${id}`]);
       expanded.delete(id);
       await refreshAll();
@@ -251,7 +270,7 @@ function stepCardHtml(step, snapshot, index) {
     : '<div class="thumb"></div>';
   const host = hostOf(data.captured_from_url) || '';
   const crossing = boundary === 'crossing'
-    ? '<span class="crossing-tag">↪ crossing</span>'
+    ? `<span class="crossing-tag">${escHtml(t('scoreCrossing'))}</span>`
     : '';
   const captured = data.captured_at ? new Date(data.captured_at).toLocaleTimeString() : '';
   return `
@@ -285,7 +304,7 @@ async function refreshAll() {
     renderScores(scores, tracesById);
   } catch (err) {
     console.error('Manager refresh failed', err);
-    statusTxt.textContent = 'Error talking to background';
+    statusTxt.textContent = t('statusError');
   }
 }
 
@@ -316,12 +335,12 @@ stopBtn.addEventListener('click', async () => {
 
 settingsSave.addEventListener('click', async () => {
   await saveEditorUrl(editorUrlInput.value);
-  settingsSave.textContent = 'Saved ✓';
-  setTimeout(() => settingsSave.textContent = 'Save', 1500);
+  settingsSave.textContent = t('settingsSaved');
+  setTimeout(() => settingsSave.textContent = t('settingsSave'), 1500);
 });
 
 clearAllBtn.addEventListener('click', async () => {
-  if (!confirm('Delete every captured score from storage?')) return;
+  if (!confirm(t('settingsDeleteAllConfirm'))) return;
   const all = await chrome.storage.local.get(null);
   const keys = Object.keys(all).filter(k => k.startsWith('pix.score:') || k.startsWith('pix.trace:'));
   if (keys.length) await chrome.storage.local.remove(keys);
@@ -343,5 +362,6 @@ chrome.runtime.onMessage.addListener((msg) => {
   }
 });
 
+applyStaticI18n();
 loadEditorUrl();
 refreshAll();

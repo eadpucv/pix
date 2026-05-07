@@ -92,21 +92,22 @@ async function doBuildContextMenus() {
   // we care about anyway: the user wants the menu without having to
   // hunt for the toolbar icon.
   const baseContexts = ['page', 'selection', 'link', 'image'];
+  const t = (key) => chrome.i18n?.getMessage?.(key) || key;
   chrome.contextMenus.create({
     id: MENU_IDS.START,
-    title: 'PiX — Iniciar grabación',
+    title: t('menuStart'),
     contexts: baseContexts,
     visible: !recording
   });
   chrome.contextMenus.create({
     id: MENU_IDS.STOP,
-    title: 'PiX — Detener grabación',
+    title: t('menuStop'),
     contexts: baseContexts,
     visible: recording
   });
   chrome.contextMenus.create({
     id: MENU_IDS.LIBRARY,
-    title: 'PiX — Abrir biblioteca de grabaciones',
+    title: t('menuLibrary'),
     contexts: baseContexts
   });
 }

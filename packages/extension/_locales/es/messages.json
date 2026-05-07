@@ -1,0 +1,49 @@
+{
+  "extName":              { "message": "PiX" },
+  "extDescription":       { "message": "Extensión PiX — graba tu interacción con cualquier página web como una partitura PiX. Local, sin conexión a la red. Exporta como PiX-JSON (round-trip con el editor PiX) y como PDF tutorial." },
+
+  "managerTitle":         { "message": "PiX — Grabaciones" },
+  "managerHeading":       { "message": "PiX" },
+
+  "statusIdle":           { "message": "En reposo" },
+  "statusRecording":      { "message": "Grabando $SCORE_ID$ · $STEPS$ pasos",
+                             "placeholders": {
+                               "score_id": { "content": "$1" },
+                               "steps":    { "content": "$2" }
+                             }},
+  "statusError":          { "message": "Error al hablar con el background" },
+
+  "btnStart":             { "message": "Iniciar grabación" },
+  "btnStop":              { "message": "Detener" },
+
+  "emptyTitle":           { "message": "Aún no hay grabaciones." },
+  "emptyHint":            { "message": "Apretá $START$ e interactuá con cualquier página web — cada acción se vuelve un paso en una partitura PiX.",
+                             "placeholders": {
+                               "start": { "content": "$1" }
+                             }},
+
+  "stepNoun":             { "message": "paso" },
+  "stepNounPlural":       { "message": "pasos" },
+
+  "scoreCurrentlyRecording": { "message": "Grabando ahora" },
+  "scoreOpenInEditor":    { "message": "Abrir en editor ↗" },
+  "scoreDelete":          { "message": "Eliminar" },
+  "scoreDeleteConfirm":   { "message": "¿Eliminar la grabación $ID$? No se puede deshacer.",
+                             "placeholders": { "id": { "content": "$1" } }},
+  "scoreNoStepsYet":      { "message": "Sin pasos aún — hacé clic en cualquier elemento de una pestaña que estés grabando." },
+  "scoreCrossing":        { "message": "↪ cambio de sitio" },
+
+  "settingsEditorTarget": { "message": "Editor destino" },
+  "settingsSave":         { "message": "Guardar" },
+  "settingsSaved":        { "message": "Guardado ✓" },
+  "settingsDeleteAll":    { "message": "Borrar todas las grabaciones" },
+  "settingsDeleteAllConfirm": { "message": "¿Borrar todas las grabaciones del almacenamiento?" },
+
+  "footerHeading":        { "message": "Cómo funciona PiX" },
+  "footerHowItWorks":     { "message": "Mientras grabás, cada interacción de la pestaña activa (clics, formularios, selecciones) se transforma en un paso de la partitura. Los screenshots y datos de captura se guardan localmente en tu navegador. Para refinar, exportar o ver el walkthrough, abrí la grabación en el editor con \"Abrir en editor\"." },
+  "footerReadmeLink":     { "message": "Documentación completa de la extensión" },
+
+  "menuStart":            { "message": "PiX — Iniciar grabación" },
+  "menuStop":             { "message": "PiX — Detener grabación" },
+  "menuLibrary":          { "message": "PiX — Abrir biblioteca de grabaciones" }
+}

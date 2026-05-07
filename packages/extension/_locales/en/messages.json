@@ -1,0 +1,49 @@
+{
+  "extName":              { "message": "PiX" },
+  "extDescription":       { "message": "PiX web extension — records your interaction with any web page as a PiX score. Local, no network calls. Exports as PiX-JSON (round-trip with the PiX editor) and as a tutorial PDF." },
+
+  "managerTitle":         { "message": "PiX — Recordings" },
+  "managerHeading":       { "message": "PiX" },
+
+  "statusIdle":           { "message": "Idle" },
+  "statusRecording":      { "message": "Recording $SCORE_ID$ · $STEPS$ steps",
+                             "placeholders": {
+                               "score_id": { "content": "$1" },
+                               "steps":    { "content": "$2" }
+                             }},
+  "statusError":          { "message": "Error talking to background" },
+
+  "btnStart":             { "message": "Start recording" },
+  "btnStop":              { "message": "Stop" },
+
+  "emptyTitle":           { "message": "No recordings yet." },
+  "emptyHint":            { "message": "Click $START$ and interact with any web page — every action becomes a step in a PiX score.",
+                             "placeholders": {
+                               "start": { "content": "$1" }
+                             }},
+
+  "stepNoun":             { "message": "step" },
+  "stepNounPlural":       { "message": "steps" },
+
+  "scoreCurrentlyRecording": { "message": "Currently recording" },
+  "scoreOpenInEditor":    { "message": "Open in editor ↗" },
+  "scoreDelete":          { "message": "Delete" },
+  "scoreDeleteConfirm":   { "message": "Delete recording $ID$? This cannot be undone.",
+                             "placeholders": { "id": { "content": "$1" } }},
+  "scoreNoStepsYet":      { "message": "No steps yet — click anything on a recorded tab." },
+  "scoreCrossing":        { "message": "↪ crossing" },
+
+  "settingsEditorTarget": { "message": "Editor target" },
+  "settingsSave":         { "message": "Save" },
+  "settingsSaved":        { "message": "Saved ✓" },
+  "settingsDeleteAll":    { "message": "Delete all recordings" },
+  "settingsDeleteAllConfirm": { "message": "Delete every captured score from storage?" },
+
+  "footerHeading":        { "message": "How PiX works" },
+  "footerHowItWorks":     { "message": "While recording, every interaction in the active tab (clicks, form commits, selections) becomes a step in the score. Screenshots and capture data are stored locally in your browser. To refine, export, or view the walkthrough, open the recording in the editor with \"Open in editor\"." },
+  "footerReadmeLink":     { "message": "Extension documentation" },
+
+  "menuStart":            { "message": "PiX — Start recording" },
+  "menuStop":             { "message": "PiX — Stop recording" },
+  "menuLibrary":          { "message": "PiX — Open recordings library" }
+}

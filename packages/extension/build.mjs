@@ -10,7 +10,7 @@
 // stops falling back to the puzzle-piece — see renderToolbarIcons.
 
 import { build } from 'esbuild';
-import { copyFileSync, rmSync, mkdirSync, existsSync, readFileSync } from 'fs';
+import { copyFileSync, rmSync, mkdirSync, existsSync, readFileSync, cpSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
@@ -51,6 +51,10 @@ for (const e of entries) {
 
 copyFileSync(resolve(srcDir, 'manager/index.html'), resolve(outDir, 'manager/index.html'));
 copyFileSync(resolve(__dirname, `manifest.${target}.json`), resolve(outDir, 'manifest.json'));
+
+// Localised strings — Chrome reads _locales/<lang>/messages.json from
+// the extension root; Firefox does the same.
+cpSync(resolve(__dirname, '_locales'), resolve(outDir, '_locales'), { recursive: true });
 
 // Toolbar/store icon — rasterised from @pix/core/icons/system.svg.
 // Chrome's MV3 action loader does not render SVG reliably (it falls

@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "PiX",
+  "name": "__MSG_extName__",
   "short_name": "PiX",
-  "description": "PiX web extension — records browser interactions as PiX interaction scores. Local-only. Exports PiX-JSON (round-trip with the PiX editor) and tutorial PDFs.",
+  "description": "__MSG_extDescription__",
+  "default_locale": "es",
   "version": "0.2.0",
   "permissions": [
     "activeTab",
