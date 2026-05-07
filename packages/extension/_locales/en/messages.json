@@ -39,8 +39,7 @@
   "settingsDeleteAll":    { "message": "Delete all recordings" },
   "settingsDeleteAllConfirm": { "message": "Delete every captured score from storage?" },
 
-  "footerHeading":        { "message": "How PiX works" },
-  "footerHowItWorks":     { "message": "While recording, every interaction in the active tab (clicks, form commits, selections) becomes a step in the score. Screenshots and capture data are stored locally in your browser. To refine, export, or view the walkthrough, open the recording in the editor with \"Open in editor\"." },
+  "footerHeading":        { "message": "How the PiX extension works" },
   "footerReadmeLink":     { "message": "Extension documentation" },
 
   "menuStart":            { "message": "PiX — Start recording" },

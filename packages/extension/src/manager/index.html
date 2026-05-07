@@ -252,24 +252,19 @@
 
   /* Footer */
   .footer {
-    margin-top: 40px;
-    padding: 24px;
-    background: var(--pix-surface);
-    border: 1px solid var(--pix-border);
-    border-radius: 8px;
-    color: var(--pix-text);
+    margin-top: 32px;
+    padding: 16px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    color: var(--pix-text-muted);
     font-size: 13px;
-    line-height: 1.6;
   }
   .footer h2 {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    margin: 0 0 8px;
-    color: var(--pix-brand);
-  }
-  .footer p {
-    margin: 0 0 12px;
-    color: var(--pix-text-muted);
+    margin: 0;
+    color: var(--pix-text);
   }
   .footer a {
     color: var(--pix-brand);
@@ -302,8 +297,7 @@
       <button class="link-btn" id="clear-all" data-i18n="settingsDeleteAll">Borrar todas las grabaciones</button>
     </div>
     <div class="footer">
-      <h2 data-i18n="footerHeading">Cómo funciona PiX</h2>
-      <p data-i18n="footerHowItWorks">Mientras grabás, cada interacción de la pestaña activa (clics, formularios, selecciones) se transforma en un paso de la partitura. Los screenshots y datos de captura se guardan localmente en tu navegador. Para refinar, exportar o ver el walkthrough, abrí la grabación en el editor con "Abrir en editor".</p>
+      <h2 data-i18n="footerHeading">Cómo funciona la extensión PiX</h2>
       <a href="https://github.com/eadpucv/pix/blob/main/packages/extension/README.md" target="_blank" rel="noopener" data-i18n="footerReadmeLink">Documentación completa de la extensión</a>
     </div>
   </main>

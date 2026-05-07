@@ -39,18 +39,12 @@ async function setState(next) {
     .catch(() => {});
 }
 
-// Toolbar badge — belt-and-suspenders for RecordingStateAlwaysVisible
-// in tabs where the overlay can't be injected (chrome://, internal pages).
-// Just a red dot character on a transparent badge so it reads as a tiny
-// indicator instead of an error label.
-function syncBadge(state) {
-  if (state?.state === 'recording') {
-    chrome.action.setBadgeText({ text: '●' });
-    chrome.action.setBadgeBackgroundColor({ color: [0, 0, 0, 0] });
-    chrome.action.setBadgeTextColor?.({ color: '#ff3b30' });
-  } else {
-    chrome.action.setBadgeText({ text: '' });
-  }
+// Chrome's badge API can't render a small unobtrusive dot — every option
+// (text "REC", a bullet character, etc.) ends up looking like an error
+// overlay on the toolbar. The page-level red dot and the manager tab
+// cover RecordingStateAlwaysVisible without polluting the toolbar.
+function syncBadge(_state) {
+  chrome.action.setBadgeText({ text: '' });
 }
 
 // On service-worker boot (cold start while idle, or wake-up while
