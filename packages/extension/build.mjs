@@ -6,11 +6,14 @@
 // @pix/core and ./lib/* resolved through npm workspaces.
 //
 // HTML files are copied verbatim. Manifest is renamed per target.
+// Toolbar icon is rasterised from a pixogram SVG so Chrome's MV3 action
+// stops falling back to the puzzle-piece — see renderToolbarIcons.
 
 import { build } from 'esbuild';
-import { copyFileSync, rmSync, mkdirSync, existsSync } from 'fs';
+import { copyFileSync, rmSync, mkdirSync, existsSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const target = process.argv[2] || 'chrome';
@@ -49,10 +52,54 @@ for (const e of entries) {
 copyFileSync(resolve(srcDir, 'manager/index.html'), resolve(outDir, 'manager/index.html'));
 copyFileSync(resolve(__dirname, `manifest.${target}.json`), resolve(outDir, 'manifest.json'));
 
-// Toolbar/store icon comes from @pix/core. Chrome MV3 + Firefox both
-// accept SVG for action icons (Chrome 96+, FF always).
-const logoSrc = resolve(__dirname, '../core/icons/logo.svg');
+// Toolbar/store icon — rasterised from @pix/core/icons/system.svg.
+// Chrome's MV3 action loader does not render SVG reliably (it falls
+// back to the generic puzzle piece), so we ship PNGs at the canonical
+// sizes. White glyph on black rounded background for legibility at
+// small sizes and consistency across light/dark toolbars.
 mkdirSync(resolve(outDir, 'icons'), { recursive: true });
-copyFileSync(logoSrc, resolve(outDir, 'icons/logo.svg'));
+await renderToolbarIcons(resolve(outDir, 'icons'));
 
 console.log(`Built ${target} → ${outDir}`);
+
+// ---- icon rasterisation ----
+
+async function renderToolbarIcons(iconsDir) {
+  const sourceSvg = readFileSync(
+    resolve(__dirname, '../core/icons/system.svg'),
+    'utf8'
+  );
+
+  // Recolour the icomoon glyph to white. The source is black-on-transparent;
+  // we want white-on-black (rendered in the wrapper below).
+  const glyph = sourceSvg
+    // strip the doctype / xml declaration — we're embedding into another svg
+    .replace(/<\?xml[^>]*\?>/, '')
+    .replace(/<!DOCTYPE[^>]*>/, '')
+    // drop the icomoon-ignore guide group
+    .replace(/<g id="icomoon-ignore"[\s\S]*?<\/g>/, '')
+    // recolour every fill
+    .replace(/fill="#000000"/g, 'fill="#FFFFFF"')
+    .replace(/fill="#000"/g,    'fill="#FFFFFF"');
+
+  // Pull the inner content out of the source <svg> so we can drop it
+  // into our own wrapper at a chosen scale + offset.
+  const innerMatch = glyph.match(/<svg[^>]*>([\s\S]*)<\/svg>/);
+  const inner = innerMatch ? innerMatch[1] : glyph;
+
+  // The icon glyph in system.svg covers ~ y:47..119 on a 256x256 board
+  // (the rest of the canvas is empty). Translate + scale so it sits
+  // centred in the rounded square.
+  const wrap = `<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+    <rect width="256" height="256" rx="48" fill="#000"/>
+    <g transform="translate(0, 45)">${inner}</g>
+  </svg>`;
+
+  const sizes = [16, 32, 48, 128];
+  for (const size of sizes) {
+    await sharp(Buffer.from(wrap))
+      .resize(size, size)
+      .png()
+      .toFile(resolve(iconsDir, `icon-${size}.png`));
+  }
+}
