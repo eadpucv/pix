@@ -56,7 +56,14 @@ async function loadAllScores() {
   const all = await chrome.storage.local.get(null);
   const scores = [];
   for (const [k, v] of Object.entries(all)) {
-    if (k.startsWith('pix.score:') && v?.scores) scores.push(v);
+    if (k.startsWith('pix.score:') && v?.scores) {
+      // Anything stored in chrome.storage by this extension is a
+      // recording — the extension is the only writer. Pre-Slice-0
+      // scores have no state field; default to 'draft' so they
+      // travel correctly to the editor's Grabaciones section.
+      if (v.state !== 'draft' && v.state !== 'final') v.state = 'draft';
+      scores.push(v);
+    }
   }
   scores.sort((a, b) => (b.updated_at || 0) - (a.updated_at || 0));
   return scores;

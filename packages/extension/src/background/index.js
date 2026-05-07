@@ -120,6 +120,11 @@ async function appendStep(scoreId, payload, screenshot) {
       created_at: Date.now(),
       updated_at: Date.now()
     };
+  } else if (score.state !== 'draft' && score.state !== 'final') {
+    // Pre-Slice-0 score in chrome.storage. By construction every
+    // score the extension wrote is a recording, so 'draft' is the
+    // correct default.
+    score.state = 'draft';
   }
 
   const movement = score.scores[0];

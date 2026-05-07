@@ -2,6 +2,22 @@
 
 import { newId } from '../ids/index.js';
 
+// The set of capture-derived fields that historically lived embedded
+// in ScoreStep but now belong to a separate ScreenshotTrace entity
+// (see packages/extension/interaction-capture.allium). extractTrace
+// uses this list to identify pre-migration data.
+const CAPTURE_DERIVED_FIELDS = [
+  'screenshot',
+  'focus',
+  'captured_at',
+  'captured_from_url',
+  'captured_page_title',
+  'captured_kind',
+  'captured_tab_id',
+  'captured_trigger',
+  'boundary'
+];
+
 /**
  * Migrate a score from legacy format to v2 format.
  * - Fixes the "enviroment" typo to "environment"
@@ -152,7 +168,7 @@ function stripForEmbed(score) {
  * still dropped — JPEG screenshots blow URL size up by 100-300KB each.
  */
 function stripForRoundTrip(score) {
-  return {
+  const out = {
     id: score.id,
     title: score.title,
     layout: score.layout,
@@ -160,7 +176,7 @@ function stripForRoundTrip(score) {
     movement_ids: score.movement_ids,
     scores: (score.scores || []).map(movement =>
       movement.map(step => {
-        const out = {
+        const stepOut = {
           id:         step.id,
           step_title: step.step_title || '',
           user:       step.user       || '',
@@ -168,12 +184,20 @@ function stripForRoundTrip(score) {
           system:     step.system     || '',
           note:       step.note       || ''
         };
-        if (step.environment !== undefined)          out.environment = step.environment;
-        if (step.supporting_processes !== undefined) out.supporting_processes = step.supporting_processes;
-        return out;
+        if (step.environment !== undefined)          stepOut.environment = step.environment;
+        if (step.supporting_processes !== undefined) stepOut.supporting_processes = step.supporting_processes;
+        return stepOut;
       })
     )
   };
+  // Preserve the workflow state (draft | final) through the handoff.
+  // Without this, recordings exported by the extension lose their
+  // 'draft' marker and land in the editor library's "finished" section
+  // instead of "Grabaciones".
+  if (score.state === 'draft' || score.state === 'final') {
+    out.state = score.state;
+  }
+  return out;
 }
 
 /**
