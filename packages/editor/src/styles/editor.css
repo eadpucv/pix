@@ -200,23 +200,33 @@ pix-library {
 
 .pix-card-actions {
   display: flex;
-  gap: 4px;
+  gap: 2px;
+  margin-top: 8px;
 }
 
-.pix-card-actions button {
-  padding: 4px 8px;
+.pix-icon-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
   border-radius: var(--pix-radius);
-  font-size: 0.7rem;
+  background: transparent;
   color: var(--pix-text-muted);
+  cursor: pointer;
+  transition: background var(--pix-transition), color var(--pix-transition);
 }
 
-.pix-card-actions button:hover {
+.pix-icon-btn:hover {
   background: var(--pix-hover);
   color: var(--pix-text);
 }
 
-.pix-card-actions .delete-btn:hover {
+.pix-icon-btn--danger:hover {
   color: var(--pix-orange);
+  background: rgba(226, 68, 20, 0.08);
 }
 
 /* New score card */

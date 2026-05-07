@@ -103,14 +103,26 @@ class PixLibrary extends HTMLElement {
           </div>
           <span>${date}</span>
         </div>
-        <div class="pix-card-actions" style="margin-top:8px;">
-          <button data-action="edit" data-id="${score.id}">${i18n.t('library.edit')}</button>
+        <div class="pix-card-actions">
+          <button class="pix-icon-btn" data-action="edit" data-id="${score.id}" title="${i18n.t('library.edit')}" aria-label="${i18n.t('library.edit')}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          </button>
           ${isDraft
-            ? `<button data-action="mark-final" data-id="${score.id}">${i18n.t('library.markFinal')}</button>`
-            : `<button data-action="reopen-draft" data-id="${score.id}">${i18n.t('library.reopenDraft')}</button>`}
-          <button data-action="duplicate" data-id="${score.id}">${i18n.t('library.duplicate')}</button>
-          <button data-action="export-json" data-id="${score.id}">${i18n.t('library.json')}</button>
-          <button class="delete-btn" data-action="delete" data-id="${score.id}">${i18n.t('library.delete')}</button>
+            ? `<button class="pix-icon-btn" data-action="mark-final" data-id="${score.id}" title="${i18n.t('library.markFinal')}" aria-label="${i18n.t('library.markFinal')}">
+                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+               </button>`
+            : `<button class="pix-icon-btn" data-action="reopen-draft" data-id="${score.id}" title="${i18n.t('library.reopenDraft')}" aria-label="${i18n.t('library.reopenDraft')}">
+                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+               </button>`}
+          <button class="pix-icon-btn" data-action="duplicate" data-id="${score.id}" title="${i18n.t('library.duplicate')}" aria-label="${i18n.t('library.duplicate')}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </button>
+          <button class="pix-icon-btn" data-action="export-json" data-id="${score.id}" title="${i18n.t('library.json')}" aria-label="${i18n.t('library.json')}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </button>
+          <button class="pix-icon-btn pix-icon-btn--danger" data-action="delete" data-id="${score.id}" title="${i18n.t('library.delete')}" aria-label="${i18n.t('library.delete')}">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+          </button>
         </div>
       </div>
     `;
