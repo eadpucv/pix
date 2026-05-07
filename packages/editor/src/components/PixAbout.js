@@ -44,12 +44,12 @@ class PixAbout extends HTMLElement {
           </div>
           <p>${i18n.t('about.extension.intro')}</p>
           <div class="pix-extension-downloads">
-            <a class="pix-download-btn" href="${baseUrl}extensions/pix-recorder-chrome.zip" download>
+            <a class="pix-download-btn" href="${baseUrl}extensions/pix-chrome.zip" download>
               <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
               <span class="pix-download-label">${i18n.t('about.extension.chrome')}</span>
               <span class="pix-download-meta">${i18n.t('about.extension.chromeMeta')}</span>
             </a>
-            <a class="pix-download-btn" href="${baseUrl}extensions/pix-recorder-firefox.zip" download>
+            <a class="pix-download-btn" href="${baseUrl}extensions/pix-firefox.zip" download>
               <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
               <span class="pix-download-label">${i18n.t('about.extension.firefox')}</span>
               <span class="pix-download-meta">${i18n.t('about.extension.firefoxMeta')}</span>

@@ -40,10 +40,10 @@ npm run build -w @pix/extension            # both
 1. `chrome://extensions`
 2. Toggle **Developer mode** (top right)
 3. **Load unpacked** → pick `packages/extension/dist/chrome/`
-4. The "PiX Recorder" icon appears in the toolbar; clicking it opens
-   the popup stub. Open DevTools → Console and you should see the
-   `[pix-recorder] background service worker booted` line. On any tab
-   you visit, the content script logs `[pix-recorder] content script
+4. The "PiX" icon appears in the toolbar; clicking it opens
+   the popup. Open DevTools → Console and you should see the
+   `[pix] background service worker booted` line. On any tab
+   you visit, the content script logs `[pix] content script
    injected on <url>`.
 
 After every code change, click the **reload icon** on the extension

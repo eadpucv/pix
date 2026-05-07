@@ -1,4 +1,4 @@
-// PiX Recorder — manager (full-page library).
+// PiX — manager (full-page library).
 //
 // Opened from the popup with chrome.tabs.create. Stays as a real tab
 // that doesn't lose focus when the user clicks elsewhere — the popup's

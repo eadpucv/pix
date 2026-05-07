@@ -12,7 +12,7 @@
 
 import { MSG } from '../lib/messages.js';
 
-const HOST_ID = 'pix-recorder-host';
+const HOST_ID = 'pix-host';
 const POSITION_KEY = 'pix.overlay_position';
 const DEFAULT_POSITION = { top: 12, right: 12 };
 const COLLAPSE_DELAY_MS = 200;

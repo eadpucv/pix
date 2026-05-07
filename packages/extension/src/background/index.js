@@ -1,4 +1,4 @@
-// PiX Recorder — background service worker (MV3)
+// PiX — background service worker (MV3)
 //
 // Owns the Recorder state machine and the active Score buffer. State
 // persists in chrome.storage.local so it survives service worker
@@ -20,7 +20,7 @@ import { MSG, STORAGE_KEY } from '../lib/messages.js';
 import { reduce, initialRecorder } from '../lib/recorder.js';
 import { hostOf } from '../lib/focus.js';
 
-console.log('[pix-recorder] background service worker booted');
+console.log('[pix] background service worker booted');
 
 // ---------- recorder state ----------
 
@@ -205,7 +205,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                 quality: 70
               });
             } catch (err) {
-              console.warn('[pix-recorder] captureVisibleTab failed', err);
+              console.warn('[pix] captureVisibleTab failed', err);
             }
           }
           await appendStep(state.active_score_id, msg.payload, screenshot);
@@ -216,7 +216,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           sendResponse({ ok: false, error: 'unknown message' });
       }
     } catch (err) {
-      console.error('[pix-recorder] message handler failed', err);
+      console.error('[pix] message handler failed', err);
       sendResponse({ ok: false, error: String(err) });
     }
   })();

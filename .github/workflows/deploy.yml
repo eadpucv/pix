@@ -40,8 +40,8 @@ jobs:
         run: |
           OUT="$GITHUB_WORKSPACE/packages/editor/dist/extensions"
           mkdir -p "$OUT"
-          (cd packages/extension/dist/chrome  && zip -rq "$OUT/pix-recorder-chrome.zip" .)
-          (cd packages/extension/dist/firefox && zip -rq "$OUT/pix-recorder-firefox.zip" .)
+          (cd packages/extension/dist/chrome  && zip -rq "$OUT/pix-chrome.zip" .)
+          (cd packages/extension/dist/firefox && zip -rq "$OUT/pix-firefox.zip" .)
           ls -la "$OUT"
 
       - uses: actions/upload-pages-artifact@v4

@@ -1,4 +1,4 @@
-// PiX Recorder — build script (esbuild)
+// PiX — build script (esbuild)
 //
 // Each JS entry produces a single, self-contained bundle (no chunks).
 // The service worker, content script and popup/overlay scripts can all

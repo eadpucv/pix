@@ -124,7 +124,7 @@ export default {
   'about.history.wikiName': 'Wiki Casiopea',
   'about.history.wikiLang': '(in Spanish)',
 
-  'about.extension.title': 'PiX Recorder Extension',
+  'about.extension.title': 'PiX (Web Extension)',
   'about.extension.alpha': 'Alpha — under development. Manual install, expect rough edges.',
   'about.extension.intro': 'Browser extension that records your interactions with web pages as PiX scores. Local-only, no network calls. Each click becomes a step in the score, with viewport screenshot and focus region.',
   'about.extension.chrome': 'Chrome / Edge',

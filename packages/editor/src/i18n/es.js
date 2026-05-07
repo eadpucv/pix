@@ -123,7 +123,7 @@ export default {
   'about.history.wiki': 'La documentación académica e histórica de los proyectos, investigaciones y publicaciones derivados de PiX se encuentra en',
   'about.history.wikiName': 'Wiki Casiopea',
 
-  'about.extension.title': 'Extensión PiX Recorder',
+  'about.extension.title': 'PiX (Extensión Web)',
   'about.extension.alpha': 'Alpha — en desarrollo. Instalación manual, posibles errores.',
   'about.extension.intro': 'Extensión de navegador que registra tus interacciones con páginas web como partituras PiX. Local, sin llamadas de red. Cada click se convierte en un paso de la partitura, con captura de pantalla y región de foco.',
   'about.extension.chrome': 'Chrome / Edge',

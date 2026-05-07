@@ -1,4 +1,4 @@
-// PiX Recorder — popup
+// PiX — popup
 //
 // Minimal: status + Start/Stop + a link to the full-page library.
 // The score list, step thumbnails, settings and "open in editor"

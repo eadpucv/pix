@@ -1,4 +1,4 @@
-// PiX Recorder — content script
+// PiX — content script
 //
 // Stage 3+: click capture + on-page overlay widget (shadow DOM).
 //
@@ -80,4 +80,4 @@ chrome.runtime
   })
   .catch(() => {});
 
-console.log('[pix-recorder] content script ready on', window.location.href);
+console.log('[pix] content script ready on', window.location.href);
