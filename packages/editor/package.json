@@ -1,7 +1,7 @@
 {
   "name": "@pix/editor",
   "title": "PiX Editor",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": true,
   "description": "PiX interaction-score editor — the web app at eadpucv.github.io/pix.",
   "type": "module",

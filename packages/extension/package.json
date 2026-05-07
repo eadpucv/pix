@@ -1,6 +1,6 @@
 {
   "name": "@pix/extension",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Browser extension that records the user's interaction with a web page as a PiX score. Chrome (MV3) and Firefox (WebExtensions).",
   "type": "module",

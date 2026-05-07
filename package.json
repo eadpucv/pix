@@ -1,7 +1,7 @@
 {
   "name": "pix-monorepo",
   "private": true,
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "PiX interaction notation — monorepo. Hosts the editor, the browser extension and the shared core.",
   "type": "module",
   "homepage": "https://eadpucv.github.io/pix/",

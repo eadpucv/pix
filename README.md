@@ -22,9 +22,9 @@ pix/
 
 | Package | Status | Spec |
 |---|---|---|
-| `@pix/core` | Scaffolded; population pending | (planned) `packages/core/score-contract.allium` |
-| `@pix/editor` | Stable, in production | implicit in code (distill pending) |
-| `@pix/extension` | Spec only, implementation pending | [`packages/extension/interaction-capture.allium`](packages/extension/interaction-capture.allium) |
+| `@pix/core` | Populated — score migrations, stable ids, IndexedDB storage, pixogram catalogue, ScreenshotTrace | (planned) `packages/core/score-contract.allium` |
+| `@pix/editor` | Stable, in production · v3.2.0 | implicit in code (distill pending) |
+| `@pix/extension` | Functional alpha · v0.2.0 — recording, multi-trigger capture, ScreenshotTrace handoff, walkthrough viewer integration | [`packages/extension/interaction-capture.allium`](packages/extension/interaction-capture.allium) |
 
 ## Score Types
 
@@ -86,11 +86,20 @@ Imported data is automatically migrated: flat arrays are wrapped, the `enviromen
 
 Browser extension (Chrome MV3 + Firefox WebExtensions) that records the user's interaction with any web page and writes the result as a PiX score. Local-only, no network calls. Exports PiX-JSON (round-trip with `@pix/editor`) or step-by-step tutorial PDFs.
 
-Specification only at the moment — see [`packages/extension/interaction-capture.allium`](packages/extension/interaction-capture.allium) (Allium v3) for the full behavioural contract, then `packages/extension/README.md` for the implementation plan.
+Functional in alpha. The current build covers:
+
+- Recording state machine surviving navigation, tab changes and service worker hibernation.
+- Multi-trigger capture: clicks, text input commits (blur with value change), select / checkbox / radio commits, file attachments. Captions are localised (es / en / pt) and always describe the action — never the value typed into a free-text field.
+- Section breaks emitted automatically when the URL or `document.title` changes between two consecutive steps.
+- Screenshots taken with the recording dot hidden, so the indicator never leaks into a snapshot.
+- Score and ScreenshotTrace stored separately in `chrome.storage.local`; the trace ships to the editor's IndexedDB on "Open in editor" via `chrome.scripting.executeScript` running in the page's MAIN world.
+- A toolbar button that opens the manager directly (no popup), a right-click context menu (Start / Stop / Open library) and an on-page red dot that clicks-to-stop and drags-to-reposition.
+
+See [`packages/extension/interaction-capture.allium`](packages/extension/interaction-capture.allium) (Allium v3) for the behavioural contract and [`packages/extension/README.md`](packages/extension/README.md) for the build/load instructions.
 
 ## Core (`@pix/core`)
 
-The shared core: score data contract, types, pixograms, IndexedDB storage, score migrations. Both editor and extension depend on it. Currently scaffolded but not yet populated — the extraction from `@pix/editor` is the next refactor pass. See [`packages/core/README.md`](packages/core/README.md).
+The shared core: score data contract, stable nanoid-based ids, pixogram catalogue (160 SVG icons), IndexedDB storage with v2 schema (separate `scores` and `traces` stores), score migrations (`enviroment` typo, lazy capture-field extraction, legacy backfill), Casiopea-locked URL encoder. Both editor and extension import from it. See [`packages/core/README.md`](packages/core/README.md).
 
 ## Contributing
 

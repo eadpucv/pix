@@ -12,18 +12,49 @@ browser and exportable as PiX-JSON (re-importable round-trip into this
 extension after editing in `@pix/editor`) or as a step-by-step tutorial
 PDF.
 
-## Status
+## Status — v0.2.0 · functional alpha
 
-**Stage 1 — extension shell loadable, all modules inert.** Stubs in
-place for background, content, popup and overlay so that "Load unpacked"
-in Chrome / `web-ext run` in Firefox produces a working extension that
-proves the pipeline is wired. No actual recording yet.
+What works:
+
+- **Recorder state machine.** Start / stop survive navigation, tab switches
+  and MV3 service-worker termination. Persisted in `chrome.storage.local`.
+- **Multi-trigger capture.** Clicks (button / link / generic), text-input
+  commits (blur with value change), select / checkbox / radio commits and
+  file attachments. Each step gets a localised caption (es / en / pt) and a
+  pixogram seed.
+- **Section breaks.** A new section starts on the first step and on every
+  URL or `document.title` change between consecutive steps. The section
+  title cascades from `document.title` → first `<h1>` → humanised path
+  segment.
+- **ScreenshotTrace as a separate entity.** Capture-derived fields
+  (screenshot, focus, captured\_\*) live in a `pix.trace:<id>` blob; the
+  Score itself stays clean.
+- **Recording dot.** A draggable red dot in the corner of every recorded
+  page. Click stops recording, drag repositions and persists the new
+  spot. The dot is hidden via `visibility: hidden` for the duration of
+  every `chrome.tabs.captureVisibleTab` so it never bleeds into the
+  screenshot.
+- **No popup.** Clicking the toolbar action opens the manager directly
+  (the popup is gone); a right-click context menu exposes Start / Stop /
+  Open library on any page.
+- **Trace handoff.** "Open in editor" from the manager creates a tab at
+  `#!/edit/<base64-score>` and follows up with `chrome.scripting.executeScript`
+  running in `world: 'MAIN'` to call `window.__pixReceiveTrace(trace)`,
+  which the editor's `PixApp` persists to IndexedDB. The walkthrough
+  viewer (`#/walkthrough/<score_id>`) reads it from there.
+
+What's still pending — see `interaction-capture.allium` for the full set:
+
+- Pause / resume of an active recording.
+- Hover / tooltip capture, drag-and-drop steps, error visibility, media
+  playback events.
+- Async-result capture (e.g. the chatbot response that lands after a text
+  commit without further user input).
 
 The behavioural contract lives in
 [`interaction-capture.allium`](interaction-capture.allium) (Allium v3).
-Read it before implementing the recording — it documents the lifecycle,
-the click-capture rule, multi-site continuity, forensic semantics and
-the round-trip with the editor.
+Read it before extending the recorder — it documents the lifecycle, the
+trigger rules, the privacy invariants and the round-trip with the editor.
 
 ## Build and load
 
@@ -35,60 +66,60 @@ npm run build:firefox -w @pix/extension    # → packages/extension/dist/firefox
 npm run build -w @pix/extension            # both
 ```
 
-### Load unpacked — Chrome
+### Load unpacked — Chrome / Edge / Arc
 
 1. `chrome://extensions`
-2. Toggle **Developer mode** (top right)
-3. **Load unpacked** → pick `packages/extension/dist/chrome/`
-4. The "PiX" icon appears in the toolbar; clicking it opens
-   the popup. Open DevTools → Console and you should see the
-   `[pix] background service worker booted` line. On any tab
-   you visit, the content script logs `[pix] content script
-   injected on <url>`.
+2. Toggle **Developer mode** (top right).
+3. **Load unpacked** → pick `packages/extension/dist/chrome/`.
+4. The PiX logo appears in the toolbar; clicking it opens the manager
+   tab. Open DevTools on the service-worker card and you should see
+   `[pix] background service worker booted`.
 
 After every code change, click the **reload icon** on the extension
-card in `chrome://extensions` and reload the page you're testing on.
+card and reload the page you're testing on.
 
 ### Load temporary — Firefox
 
 1. `about:debugging#/runtime/this-firefox`
-2. **Load Temporary Add-on** → pick `packages/extension/dist/firefox/manifest.json`
+2. **Load Temporary Add-on** → pick
+   `packages/extension/dist/firefox/manifest.json`.
 
-### Watch mode (Chrome)
+### Watch mode
 
 ```bash
 npm run watch:chrome -w @pix/extension
 ```
 
-This re-runs the build whenever a file under `src/` or `manifest.chrome.json`
-changes. Chrome still requires a manual reload click — the alternative is
-to use `@crxjs/vite-plugin` for HMR, which we'll consider once iteration
-gets painful.
+Re-runs the build on changes under `src/` and `manifest.chrome.json`.
+Chrome still requires a manual reload click.
 
 ## Source layout
 
 ```
 packages/extension/
 ├── interaction-capture.allium       Allium v3 spec — the contract
-├── manifest.chrome.json             MV3 (Chrome, Edge)
+├── manifest.chrome.json             MV3 (Chrome / Edge / Arc)
 ├── manifest.firefox.json            MV2 / WebExtensions (Firefox)
-├── build.mjs                        File-copy build (no bundler yet)
+├── build.mjs                        esbuild-based bundler
 ├── src/
-│   ├── background/index.js          Service worker — Recorder state, IDB owner
-│   ├── content/index.js             Click capture, screenshot, focus
-│   ├── overlay/                     Red-light indicator (web_accessible_resource)
-│   │   ├── index.html
-│   │   └── index.js
-│   ├── popup/                       Score manager UI
-│   │   ├── index.html
-│   │   └── index.js
-│   └── lib/                         Pure functions — testable in node
-│       ├── classify.js              (Element) → CapturedElementKind
+│   ├── background/index.js          Service worker — Recorder state, capture
+│   │                                pipeline, context menus, manager auto-open,
+│   │                                pre/post-capture overlay coordination
+│   ├── content/
+│   │   ├── index.js                 Multi-trigger capture, focus regions,
+│   │   │                            forwarding to background
+│   │   └── overlay.js               Draggable click-to-stop red dot (shadow DOM)
+│   ├── manager/                     Full-page library — Start/Stop, captured
+│   │   ├── index.html               scores list with thumbnails, "Open in editor"
+│   │   └── index.js                 handoff
+│   └── lib/                         Pure functions
+│       ├── classify.js              Element kind + caption derivation
 │       ├── focus.js                 BoundingBox → FocusRegion, hostOf
-│       └── recorder.js              State machine: (state, event) → state + effects
-├── dist/                            Build output (gitignored)
-│   ├── chrome/
-│   └── firefox/
+│       ├── messages.js              Message-type constants
+│       └── recorder.js              Reducer: (state, event) → state + effects
+├── dist/
+│   ├── chrome/                      MV3 build
+│   └── firefox/                     MV2 build
 └── package.json
 ```
 
@@ -96,20 +127,16 @@ packages/extension/
 
 | Module | Allium entities / rules |
 |---|---|
-| `background/` | `entity Recorder`, `rule UserStartsRecording`, `rule UserStopsRecording`, `@invariant SingleActiveScore`, `@invariant RecordingSurvivesNavigationAndTabs` |
-| `content/` | `external entity InteractiveElement`, `@invariant ElementInteractivityCriteria`, `rule UserClickCapturesStep` |
-| `popup/` | `rule UserCreatesScore`, `rule UserEditsCell`, `rule UserDeletesStep`, `rule UserExportsScoreAsPiXJson`, `rule UserExportsScoreAsPdf`, `rule UserImportsPiXScore`, `@guarantee ImportRejectionExplained` |
-| `overlay/` | `@guarantee RecordingStateAlwaysVisible` |
-| `lib/` | Pure helpers — `classify_element`, `pixogram_for_kind`, `focus_from_box`, `host_of`, the Recorder reducer |
+| `background/` | `entity Recorder`, `rule UserStartsRecording`, `rule UserStopsRecording`, `@invariant SingleActiveScore`, `@invariant RecordingSurvivesNavigationAndTabs`, `@invariant CaptureDerivedFieldsImmutable`, capture pipeline coordination |
+| `content/index.js` | `external entity InteractiveElement`, `@invariant ElementInteractivityCriteria`, `rule UserClickCapturesStep`, `rule UserTextInputCapturesStep`, `rule UserSelectionCapturesStep`, `rule UserFileAttachmentCapturesStep`, `@invariant TriggerMatchesKind`, `@invariant DialogueValuePrivacy` |
+| `content/overlay.js` | `@guarantee RecordingStateAlwaysVisible` |
+| `manager/` | `entity Score`, `rule UserDeletesScore`, `rule UserExportsScoreAsPiXJson` (via "Open in editor" round-trip), score library UI |
+| `lib/` | Pure helpers — `classify_element`, `pixogram_for_kind`, `auto_caption`, `focus_from_box`, `host_of`, recorder reducer |
 
-The popup will eventually reuse `<pix-cell>`, `<pix-icon-picker>` and
-`<pix-score>` from `@pix/editor` and IndexedDB / migrations / pixogram
-catalogue from `@pix/core`. None of those imports are wired yet — Stage 1
-is bundler-free deliberately.
+## Dependency on `@pix/core`
 
-## Open dependency on `@pix/core` — RESOLVED
-
-Phase C of the monorepo migration introduced stable nanoid-based ids at
-Score / Movement / ScoreStep level in `@pix/core`. The bidirectional
-re-import flow specified in `interaction-capture.allium` ("Dependency on
-eadpucv/pix") is now unblocked.
+Stable nanoid-based ids at Score / Movement / ScoreStep level live in
+`@pix/core/ids`. `extractTrace` and the score migrations live in
+`@pix/core/migrations`. The extension imports both — score handoff, trace
+splitting and id round-tripping all flow through the same primitives the
+editor uses.
