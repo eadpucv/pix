@@ -70,28 +70,22 @@ async function renderToolbarIcons(iconsDir) {
     'utf8'
   );
 
-  // Recolour the icomoon glyph to white. The source is black-on-transparent;
-  // we want white-on-black (rendered in the wrapper below).
-  const glyph = sourceSvg
-    // strip the doctype / xml declaration — we're embedding into another svg
+  // Strip the icomoon-ignore guide group; keep the original black fill
+  // and transparent background. Chrome's toolbar handles light/dark
+  // theming on its own so a monochrome glyph on transparent is the
+  // friendliest baseline.
+  const cleaned = sourceSvg
     .replace(/<\?xml[^>]*\?>/, '')
     .replace(/<!DOCTYPE[^>]*>/, '')
-    // drop the icomoon-ignore guide group
-    .replace(/<g id="icomoon-ignore"[\s\S]*?<\/g>/, '')
-    // recolour every fill
-    .replace(/fill="#000000"/g, 'fill="#FFFFFF"')
-    .replace(/fill="#000"/g,    'fill="#FFFFFF"');
+    .replace(/<g id="icomoon-ignore"[\s\S]*?<\/g>/, '');
 
-  // Pull the inner content out of the source <svg> so we can drop it
-  // into our own wrapper at a chosen scale + offset.
-  const innerMatch = glyph.match(/<svg[^>]*>([\s\S]*)<\/svg>/);
-  const inner = innerMatch ? innerMatch[1] : glyph;
+  const innerMatch = cleaned.match(/<svg[^>]*>([\s\S]*)<\/svg>/);
+  const inner = innerMatch ? innerMatch[1] : cleaned;
 
-  // The icon glyph in system.svg covers ~ y:47..119 on a 256x256 board
-  // (the rest of the canvas is empty). Translate + scale so it sits
-  // centred in the rounded square.
+  // Centre the glyph on a 256x256 transparent canvas. The source paths
+  // sit roughly in y:47..119, so a 45px down-shift drops the optical
+  // centre near 128.
   const wrap = `<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-    <rect width="256" height="256" rx="48" fill="#000"/>
     <g transform="translate(0, 45)">${inner}</g>
   </svg>`;
 
