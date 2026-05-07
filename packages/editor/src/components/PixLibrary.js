@@ -24,10 +24,14 @@ class PixLibrary extends HTMLElement {
   }
 
   _render() {
-    const count = this._scores.length;
+    const finalScores = this._scores.filter(s => s.state !== 'draft');
+    const draftScores = this._scores.filter(s => s.state === 'draft');
+    const totalCount = this._scores.length;
+    const finalCount = finalScores.length;
+    const draftCount = draftScores.length;
     const storageLabel = this._storageInfo
       ? i18n.t('library.storage', { percent: this._storageInfo.percent })
-      : `${count} ${count === 1 ? 'score' : 'scores'}`;
+      : `${totalCount} ${totalCount === 1 ? 'score' : 'scores'}`;
 
     this.innerHTML = `
       <div class="pix-library-header">
@@ -40,7 +44,7 @@ class PixLibrary extends HTMLElement {
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
             ${i18n.t('library.import')}
           </button>
-          ${count > 0 ? `
+          ${totalCount > 0 ? `
             <button class="pix-btn pix-btn--ghost" data-action="download-all">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
               ${i18n.t('library.downloadAll')}
@@ -54,25 +58,25 @@ class PixLibrary extends HTMLElement {
           <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
           <span>${i18n.t('library.new')}</span>
         </div>
-        ${count === 0 ? `
+        ${finalCount === 0 ? `
           <div class="pix-card pix-card--new" data-action="load-examples">
             <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>
             <span>${i18n.t('library.loadExamples')}</span>
           </div>
         ` : ''}
-        ${this._scores.filter(s => s.state !== 'draft').map(score => this._renderCard(score)).join('')}
+        ${finalScores.map(score => this._renderCard(score)).join('')}
       </div>
 
-      ${this._scores.some(s => s.state === 'draft') ? `
+      ${draftCount > 0 ? `
         <div class="pix-library-section">
           <h3 class="pix-library-section-title">
             <span class="pix-rec-dot"></span>
             ${i18n.t('library.recordings')}
-            <span class="pix-library-section-count">${this._scores.filter(s => s.state === 'draft').length}</span>
+            <span class="pix-library-section-count">${draftCount}</span>
           </h3>
           <p class="pix-library-section-hint">${i18n.t('library.recordingsHint')}</p>
           <div class="pix-library-grid">
-            ${this._scores.filter(s => s.state === 'draft').map(score => this._renderCard(score)).join('')}
+            ${draftScores.map(score => this._renderCard(score)).join('')}
           </div>
         </div>
       ` : ''}
