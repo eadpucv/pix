@@ -48,6 +48,13 @@ export function migrateScore(data) {
   // Backfill score.id (only when missing — preserves existing IndexedDB ids)
   if (!score.id) score.id = newId();
 
+  // Backfill state. Pre-existing scores in user libraries have no state
+  // field; treat them as final (authored). Recordings produced by the
+  // extension set state='draft' explicitly at creation time.
+  if (score.state !== 'draft' && score.state !== 'final') {
+    score.state = 'final';
+  }
+
   return score;
 }
 

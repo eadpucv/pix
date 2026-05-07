@@ -112,6 +112,9 @@ async function appendStep(scoreId, payload, screenshot) {
       title: '',
       layout: 'pix',
       description: '',
+      // Recordings start as drafts. The user promotes them to final
+      // in the editor after refining the partitura by hand.
+      state: 'draft',
       movement_ids: [newId()],
       scores: [[]],
       created_at: Date.now(),

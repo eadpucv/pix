@@ -60,8 +60,22 @@ class PixLibrary extends HTMLElement {
             <span>${i18n.t('library.loadExamples')}</span>
           </div>
         ` : ''}
-        ${this._scores.map(score => this._renderCard(score)).join('')}
+        ${this._scores.filter(s => s.state !== 'draft').map(score => this._renderCard(score)).join('')}
       </div>
+
+      ${this._scores.some(s => s.state === 'draft') ? `
+        <div class="pix-library-section">
+          <h3 class="pix-library-section-title">
+            <span class="pix-rec-dot"></span>
+            ${i18n.t('library.recordings')}
+            <span class="pix-library-section-count">${this._scores.filter(s => s.state === 'draft').length}</span>
+          </h3>
+          <p class="pix-library-section-hint">${i18n.t('library.recordingsHint')}</p>
+          <div class="pix-library-grid">
+            ${this._scores.filter(s => s.state === 'draft').map(score => this._renderCard(score)).join('')}
+          </div>
+        </div>
+      ` : ''}
 
       <!-- New score dialog (hidden) -->
       <div class="new-score-dialog" style="display:none;"></div>
@@ -74,9 +88,12 @@ class PixLibrary extends HTMLElement {
     const date = score.updatedAt ? new Date(score.updatedAt).toLocaleDateString() : '';
     const layout = score.layout === 'sb' ? i18n.t('toolbar.layoutSB') : i18n.t('toolbar.layoutIP');
     const stepsCount = score.scores?.[0]?.length || 0;
+    const isDraft = score.state === 'draft';
+    const cardClass = isDraft ? 'pix-card pix-card--draft' : 'pix-card';
 
     return `
-      <div class="pix-card" data-id="${score.id}">
+      <div class="${cardClass}" data-id="${score.id}">
+        ${isDraft ? `<span class="pix-draft-badge" title="${i18n.t('library.draftHint')}">${i18n.t('library.draftBadge')}</span>` : ''}
         <div class="pix-card-title">${this._esc(score.title || i18n.t('editor.untitled'))}</div>
         <div class="pix-card-desc">${this._esc(score.description || '')}</div>
         <div class="pix-card-meta">
@@ -88,6 +105,9 @@ class PixLibrary extends HTMLElement {
         </div>
         <div class="pix-card-actions" style="margin-top:8px;">
           <button data-action="edit" data-id="${score.id}">${i18n.t('library.edit')}</button>
+          ${isDraft
+            ? `<button data-action="mark-final" data-id="${score.id}">${i18n.t('library.markFinal')}</button>`
+            : `<button data-action="reopen-draft" data-id="${score.id}">${i18n.t('library.reopenDraft')}</button>`}
           <button data-action="duplicate" data-id="${score.id}">${i18n.t('library.duplicate')}</button>
           <button data-action="export-json" data-id="${score.id}">${i18n.t('library.json')}</button>
           <button class="delete-btn" data-action="delete" data-id="${score.id}">${i18n.t('library.delete')}</button>
@@ -129,6 +149,28 @@ class PixLibrary extends HTMLElement {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         window.location.hash = `#/editor/${btn.dataset.id}`;
+      });
+    });
+
+    this.querySelectorAll('[data-action="mark-final"]').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const score = this._scores.find(s => s.id === btn.dataset.id);
+        if (!score) return;
+        score.state = 'final';
+        await saveScore(score);
+        await this._loadAndRender();
+      });
+    });
+
+    this.querySelectorAll('[data-action="reopen-draft"]').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const score = this._scores.find(s => s.id === btn.dataset.id);
+        if (!score) return;
+        score.state = 'draft';
+        await saveScore(score);
+        await this._loadAndRender();
       });
     });
 
@@ -223,6 +265,7 @@ class PixLibrary extends HTMLElement {
           title: '',
           layout,
           description: '',
+          state: 'final',
           movement_ids: [newId()],
           scores: [[{
             id: newId(),

@@ -247,6 +247,72 @@ pix-library {
   color: var(--pix-text-muted);
 }
 
+/* Library section: Grabaciones */
+.pix-library-section {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--pix-border);
+}
+.pix-library-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pix-text);
+  margin: 0 0 6px;
+}
+.pix-library-section-title .pix-rec-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff3b30;
+  animation: pix-rec-pulse 1.6s ease-in-out infinite;
+}
+@keyframes pix-rec-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pix-library-section-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--pix-text-muted);
+  background: var(--pix-hover);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.pix-library-section-hint {
+  font-size: 0.85rem;
+  color: var(--pix-text-muted);
+  line-height: 1.5;
+  margin: 0 0 16px;
+  max-width: 720px;
+}
+
+/* Draft card variant */
+.pix-card--draft {
+  position: relative;
+  border-color: rgba(255, 59, 48, 0.25);
+  background: linear-gradient(180deg, rgba(255, 59, 48, 0.03) 0%, var(--pix-surface) 60%);
+}
+.pix-card--draft:hover {
+  border-color: rgba(255, 59, 48, 0.55);
+}
+.pix-draft-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 2px 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ff3b30;
+  background: rgba(255, 59, 48, 0.08);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  border-radius: 999px;
+}
+
 /* Icon picker */
 pix-icon-picker {
   display: block;
