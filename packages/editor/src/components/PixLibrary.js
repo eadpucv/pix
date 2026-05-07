@@ -1,7 +1,7 @@
 // <pix-library> — Score library manager
 
 import { i18n } from '../i18n/index.js';
-import { getAllScores, saveScore, deleteScore, duplicateScore, getStorageUsage } from '@pix/core/storage';
+import { getAllScores, saveScore, deleteScore, duplicateScore, getStorageUsage, getTrace } from '@pix/core/storage';
 import { migrateScore } from '@pix/core/migrations';
 import { newId } from '@pix/core/ids';
 import { importJSON, exportJSON } from '../export/json.js';
@@ -11,10 +11,10 @@ class PixLibrary extends HTMLElement {
   constructor() {
     super();
     this._scores = [];
+    this._traceAvailable = new Set(); // score_ids that have a non-empty trace
   }
 
   connectedCallback() {
-    console.log('[pix-library] connected');
     // Render immediately with empty data so the user always sees the
     // shell (Nueva, Cargar Ejemplos) even if IDB hangs or loads slowly.
     // Then load and re-render when ready.
@@ -23,11 +23,21 @@ class PixLibrary extends HTMLElement {
   }
 
   async _loadAndRender() {
-    console.log('[pix-library] loading scores from IDB…');
     try {
       const scores = await getAllScores();
-      console.log('[pix-library] loaded', scores.length, 'scores');
       this._scores = scores;
+      // For each draft, look up its trace. Only drafts with a non-empty
+      // trace get the walkthrough affordance — without snapshots there's
+      // nothing for the viewer to render.
+      const draftIds = scores.filter(s => s.state === 'draft').map(s => s.id);
+      const traces = await Promise.all(
+        draftIds.map(id => getTrace(id).catch(() => null))
+      );
+      this._traceAvailable = new Set(
+        traces
+          .filter(t => t && Array.isArray(t.snapshots) && t.snapshots.length > 0)
+          .map(t => t.score_id)
+      );
       this._storageInfo = await getStorageUsage();
       this._render();
     } catch (err) {
@@ -133,7 +143,7 @@ class PixLibrary extends HTMLElement {
           <span>${date}</span>
         </div>
         <div class="pix-card-actions">
-          ${isDraft ? `
+          ${isDraft && this._traceAvailable.has(score.id) ? `
             <a class="pix-icon-btn" href="#/walkthrough/${score.id}" title="${i18n.t('library.walkthrough')}" aria-label="${i18n.t('library.walkthrough')}">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
             </a>

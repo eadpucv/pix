@@ -200,8 +200,10 @@ pix-library {
 
 .pix-card-actions {
   display: flex;
-  gap: 2px;
+  gap: 6px;
   margin-top: 8px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .pix-icon-btn {
