@@ -42,6 +42,7 @@
   "settingsDeleteAllConfirm": { "message": "¿Borrar todas las grabaciones del almacenamiento?" },
 
   "footerHeading":        { "message": "Cómo funciona la extensión PiX" },
+  "footerHowItWorks":     { "message": "Mientras grabas, cada interacción de la pestaña activa (clics, formularios, selecciones) se transforma en un paso de la partitura. Los screenshots y datos de captura se guardan localmente en tu navegador. Para refinar, exportar o ver el walkthrough, abre la grabación en el editor con \"Abrir en editor\"." },
   "footerReadmeLink":     { "message": "Documentación completa de la extensión" },
 
   "menuStart":            { "message": "PiX — Iniciar grabación" },
