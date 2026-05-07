@@ -49,4 +49,10 @@ for (const e of entries) {
 copyFileSync(resolve(srcDir, 'manager/index.html'), resolve(outDir, 'manager/index.html'));
 copyFileSync(resolve(__dirname, `manifest.${target}.json`), resolve(outDir, 'manifest.json'));
 
+// Toolbar/store icon comes from @pix/core. Chrome MV3 + Firefox both
+// accept SVG for action icons (Chrome 96+, FF always).
+const logoSrc = resolve(__dirname, '../core/icons/logo.svg');
+mkdirSync(resolve(outDir, 'icons'), { recursive: true });
+copyFileSync(logoSrc, resolve(outDir, 'icons/logo.svg'));
+
 console.log(`Built ${target} → ${outDir}`);

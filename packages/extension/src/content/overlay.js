@@ -1,7 +1,7 @@
 // Floating recording indicator rendered into the host page via shadow
-// DOM. Just the red dot — no expanding pill, no Stop button. Stop now
-// lives in the popup and the right-click context menu; the dot's only
-// job is "you are being recorded, you can drag me out of the way".
+// DOM. Just the red dot — no expanding pill, no Stop button.
+// Click  → stop recording (sent to background)
+// Drag   → reposition (persisted in chrome.storage)
 //
 // Implements (per interaction-capture.allium):
 //   - @guarantee RecordingStateAlwaysVisible (the dot is always present)
@@ -9,14 +9,18 @@
 // Public API: showOverlay(), hideOverlay(), refreshCount(),
 // preCapture(), postCapture(), isOverlayHost().
 
+import { MSG } from '../lib/messages.js';
+
 const HOST_ID = 'pix-host';
 const POSITION_KEY = 'pix.overlay_position';
 const DEFAULT_POSITION = { top: 12, right: 12 };
+const DRAG_THRESHOLD_PX = 4;
 
 let host = null;
 let shadow = null;
 let dotEl = null;
 let dragStart = null;
+let dragMoved = false;
 let position = { ...DEFAULT_POSITION };
 
 export function isOverlayHost(target) {
@@ -54,7 +58,7 @@ export async function showOverlay() {
         50% { opacity: 0.35; }
       }
     </style>
-    <div class="dot" id="dot" title="PiX is recording — drag to reposition"></div>
+    <div class="dot" id="dot" title="PiX está grabando — clic para detener, arrastrar para mover"></div>
   `;
 
   document.documentElement.appendChild(host);
@@ -134,15 +138,24 @@ function startDrag(clientX, clientY) {
   const rect = host.getBoundingClientRect();
   dragStart = {
     offsetX: clientX - rect.left,
-    offsetY: clientY - rect.top
+    offsetY: clientY - rect.top,
+    startX:  clientX,
+    startY:  clientY
   };
-  dotEl?.classList.add('dragging');
+  dragMoved = false;
   document.addEventListener('mousemove', onDragMove, { capture: true });
   document.addEventListener('mouseup',   endDrag,    { capture: true, once: true });
 }
 
 function onDragMove(e) {
   if (!dragStart) return;
+  const dx = Math.abs(e.clientX - dragStart.startX);
+  const dy = Math.abs(e.clientY - dragStart.startY);
+  if (!dragMoved && (dx + dy) < DRAG_THRESHOLD_PX) return;
+  if (!dragMoved) {
+    dragMoved = true;
+    dotEl?.classList.add('dragging');
+  }
   const rect = host.getBoundingClientRect();
   const newLeft = clamp(e.clientX - dragStart.offsetX, 0, window.innerWidth  - rect.width);
   const newTop  = clamp(e.clientY - dragStart.offsetY, 0, window.innerHeight - rect.height);
@@ -156,10 +169,16 @@ function endDrag() {
   if (!dragStart) return;
   document.removeEventListener('mousemove', onDragMove, { capture: true });
   dotEl?.classList.remove('dragging');
-  const rect = host.getBoundingClientRect();
-  position = { top: rect.top, left: rect.left };
-  savePosition();
+  if (dragMoved) {
+    const rect = host.getBoundingClientRect();
+    position = { top: rect.top, left: rect.left };
+    savePosition();
+  } else {
+    // No drag — treat as a click on the dot. Stop the recording.
+    chrome.runtime.sendMessage({ type: MSG.RECORDER_STOP }).catch(() => {});
+  }
   dragStart = null;
+  dragMoved = false;
 }
 
 function clamp(n, lo, hi) {

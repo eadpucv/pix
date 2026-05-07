@@ -16,7 +16,14 @@
     "<all_urls>"
   ],
   "action": {
-    "default_title": "PiX"
+    "default_title": "PiX",
+    "default_icon": "icons/logo.svg"
+  },
+  "icons": {
+    "16":  "icons/logo.svg",
+    "32":  "icons/logo.svg",
+    "48":  "icons/logo.svg",
+    "128": "icons/logo.svg"
   },
   "background": {
     "service_worker": "background/index.js",
