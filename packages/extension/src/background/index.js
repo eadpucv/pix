@@ -67,8 +67,21 @@ const MENU_IDS = {
   LIBRARY: 'pix-library'
 };
 
-async function buildContextMenus() {
-  if (!chrome.contextMenus) return;
+// Serialize buildContextMenus calls. The service worker can fire it
+// from onInstalled, onStartup, and the unconditional boot path; without
+// this, two interleaved runs each call create() after the same removeAll
+// resolves and the second one collides on the still-registered ids.
+let contextMenuBuildInFlight = null;
+
+function buildContextMenus() {
+  if (!chrome.contextMenus) return Promise.resolve();
+  if (contextMenuBuildInFlight) return contextMenuBuildInFlight;
+  contextMenuBuildInFlight = doBuildContextMenus()
+    .finally(() => { contextMenuBuildInFlight = null; });
+  return contextMenuBuildInFlight;
+}
+
+async function doBuildContextMenus() {
   await new Promise((resolve) => chrome.contextMenus.removeAll(resolve));
   const state = await getState();
   const recording = state?.state === 'recording';
