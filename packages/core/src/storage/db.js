@@ -11,48 +11,55 @@ const TRACES_STORE = 'traces';
 let dbInstance = null;
 
 function openDB() {
-  if (dbInstance) return Promise.resolve(dbInstance);
+  if (dbInstance) {
+    console.log('[pix-storage] openDB → returning cached dbInstance');
+    return Promise.resolve(dbInstance);
+  }
 
   return new Promise((resolve, reject) => {
+    console.log('[pix-storage] openDB → indexedDB.open', DB_NAME, 'version', DB_VERSION);
     const request = indexedDB.open(DB_NAME, DB_VERSION);
 
     request.onupgradeneeded = (e) => {
+      console.log('[pix-storage] onupgradeneeded oldV', e.oldVersion, '→ newV', e.newVersion);
       const db = e.target.result;
       if (!db.objectStoreNames.contains(STORE_NAME)) {
+        console.log('[pix-storage] creating scores store');
         const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
         store.createIndex('updatedAt', 'updatedAt', { unique: false });
         store.createIndex('title', 'title', { unique: false });
       }
       if (!db.objectStoreNames.contains(TRACES_STORE)) {
-        // Traces are 1:1 with scores. Keying by score_id makes the
-        // relationship explicit and lookup trivial.
+        console.log('[pix-storage] creating traces store');
         db.createObjectStore(TRACES_STORE, { keyPath: 'score_id' });
       }
     };
 
     request.onsuccess = (e) => {
       dbInstance = e.target.result;
-      // If a future bundle bumps the version, close this connection so
-      // the upgrade isn't blocked by us.
-      dbInstance.onversionchange = () => {
-        try { dbInstance.close(); } catch {}
-        dbInstance = null;
-      };
+      console.log('[pix-storage] onsuccess — stores:', [...dbInstance.objectStoreNames]);
       resolve(dbInstance);
     };
 
     request.onerror = (e) => {
+      console.error('[pix-storage] open onerror', e.target.error);
       reject(new Error('Failed to open database: ' + e.target.error));
     };
 
-    // Fired when the upgrade is blocked because another tab still
-    // holds a v1 connection. Without a handler the open() request
-    // hangs forever and the library appears empty.
     request.onblocked = () => {
+      console.warn('[pix-storage] open onblocked — close other tabs');
       reject(new Error(
         'IndexedDB upgrade blocked. Close other PiX tabs and reload this page.'
       ));
     };
+
+    // Safety net: if none of the above fires within 5s, surface it.
+    setTimeout(() => {
+      if (request.readyState !== 'done') {
+        console.error('[pix-storage] open hung for 5s, readyState=', request.readyState);
+        reject(new Error('IndexedDB open hung — readyState=' + request.readyState));
+      }
+    }, 5000);
   });
 }
 
@@ -74,16 +81,35 @@ async function migrateOrNull(rawScore) {
 }
 
 export async function getAllScores() {
+  console.log('[pix-storage] getAllScores → openDB');
   const db = await openDB();
+  console.log('[pix-storage] getAllScores → tx readonly on', STORE_NAME);
   const raw = await new Promise((resolve, reject) => {
-    const tx = db.transaction(STORE_NAME, 'readonly');
+    let tx;
+    try {
+      tx = db.transaction(STORE_NAME, 'readonly');
+    } catch (err) {
+      console.error('[pix-storage] tx creation threw', err);
+      reject(err);
+      return;
+    }
     const store = tx.objectStore(STORE_NAME);
     const request = store.getAll();
-    request.onsuccess = () => resolve(request.result || []);
-    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      console.log('[pix-storage] getAll onsuccess', request.result?.length, 'rows');
+      resolve(request.result || []);
+    };
+    request.onerror = () => {
+      console.error('[pix-storage] getAll onerror', request.error);
+      reject(request.error);
+    };
+    tx.onerror = () => console.error('[pix-storage] getAll tx error', tx.error);
+    tx.onabort = () => console.error('[pix-storage] getAll tx abort', tx.error);
   });
+  console.log('[pix-storage] getAllScores → migrating', raw.length, 'scores');
   const migrated = await Promise.all(raw.map(migrateOrNull));
   migrated.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+  console.log('[pix-storage] getAllScores → done, returning', migrated.length);
   return migrated;
 }
 
