@@ -122,6 +122,17 @@ export default {
   'about.history.evolution': 'Originalmente usado para analizar interacciones existentes, PiX ha evolucionado hacia una herramienta de diseño: las partituras son ahora los prompts que definen lo que se construirá.',
   'about.history.wiki': 'La documentación académica e histórica de los proyectos, investigaciones y publicaciones derivados de PiX se encuentra en',
   'about.history.wikiName': 'Wiki Casiopea',
+
+  'about.extension.title': 'Extensión PiX Recorder',
+  'about.extension.alpha': 'Alpha — en desarrollo. Instalación manual, posibles errores.',
+  'about.extension.intro': 'Extensión de navegador que registra tus interacciones con páginas web como partituras PiX. Local, sin llamadas de red. Cada click se convierte en un paso de la partitura, con captura de pantalla y región de foco.',
+  'about.extension.chrome': 'Chrome / Edge',
+  'about.extension.chromeMeta': 'Carpeta descomprimida (.zip)',
+  'about.extension.firefox': 'Firefox',
+  'about.extension.firefoxMeta': 'Add-on temporal (.zip)',
+  'about.extension.howto': 'Instrucciones de instalación en el',
+  'about.extension.readmeLink': 'README de la extensión',
+
   'about.opensource.title': 'Código Abierto',
   'about.opensource.text': 'PiX es código abierto. Visita el repositorio para contribuir o reportar problemas:',
 

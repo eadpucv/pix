@@ -275,6 +275,81 @@ button {
   font-style: italic;
 }
 
+/* Alpha banner — used in About > Extension section */
+.pix-alpha-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  margin: 0 0 12px;
+  background: rgba(255, 149, 0, 0.08);
+  border: 1px solid rgba(255, 149, 0, 0.3);
+  border-radius: var(--pix-radius);
+  font-size: 0.85rem;
+  color: #8a4b00;
+}
+.pix-alpha-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ff9500;
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+@media (prefers-color-scheme: dark) {
+  .pix-alpha-banner {
+    background: rgba(255, 149, 0, 0.12);
+    color: #ffc972;
+  }
+}
+
+/* Extension download buttons */
+.pix-extension-downloads {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 16px;
+  flex-wrap: wrap;
+}
+.pix-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--pix-border);
+  border-radius: var(--pix-radius);
+  background: var(--pix-surface);
+  color: var(--pix-text);
+  text-decoration: none;
+  transition: all var(--pix-transition);
+  min-width: 200px;
+}
+.pix-download-btn:hover {
+  border-color: var(--pix-accent);
+  color: var(--pix-accent);
+  background: var(--pix-hover);
+  text-decoration: none;
+}
+.pix-download-btn svg {
+  flex-shrink: 0;
+}
+.pix-download-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex: 1;
+}
+.pix-download-meta {
+  font-size: 0.7rem;
+  color: var(--pix-text-muted);
+}
+.pix-download-btn:hover .pix-download-meta {
+  color: var(--pix-accent);
+}
+
 /* Modal backdrop */
 .pix-overlay {
   position: fixed;

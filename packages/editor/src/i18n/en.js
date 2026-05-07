@@ -123,6 +123,17 @@ export default {
   'about.history.wiki': 'Academic and historical documentation of the projects, research, and publications derived from PiX is available at',
   'about.history.wikiName': 'Wiki Casiopea',
   'about.history.wikiLang': '(in Spanish)',
+
+  'about.extension.title': 'PiX Recorder Extension',
+  'about.extension.alpha': 'Alpha — under development. Manual install, expect rough edges.',
+  'about.extension.intro': 'Browser extension that records your interactions with web pages as PiX scores. Local-only, no network calls. Each click becomes a step in the score, with viewport screenshot and focus region.',
+  'about.extension.chrome': 'Chrome / Edge',
+  'about.extension.chromeMeta': 'Unpacked folder (.zip)',
+  'about.extension.firefox': 'Firefox',
+  'about.extension.firefoxMeta': 'Temporary add-on (.zip)',
+  'about.extension.howto': 'Installation instructions in the',
+  'about.extension.readmeLink': 'extension README',
+
   'about.opensource.title': 'Open Source',
   'about.opensource.text': 'PiX is open source. Visit the repository to contribute or report issues:',
 

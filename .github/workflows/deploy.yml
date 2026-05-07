@@ -1,7 +1,7 @@
 # Deploy PiX v3 (the @pix/editor web app) to GitHub Pages.
 # Build output lives at packages/editor/dist/ since the monorepo migration.
-# The legacy /pages/app-embed/ redirect for Casiopea embeds is part of the
-# editor's public/ folder and gets copied automatically by Vite.
+# Also builds @pix/extension and ships its Chrome / Firefox zips inside the
+# editor's dist so they're downloadable from the About page (alpha).
 
 name: Deploy to GitHub Pages
 
@@ -33,6 +33,16 @@ jobs:
       - run: npm ci
 
       - run: npm run build -w @pix/editor
+
+      - run: npm run build -w @pix/extension
+
+      - name: Package extension zips into editor dist
+        run: |
+          OUT="$GITHUB_WORKSPACE/packages/editor/dist/extensions"
+          mkdir -p "$OUT"
+          (cd packages/extension/dist/chrome  && zip -rq "$OUT/pix-recorder-chrome.zip" .)
+          (cd packages/extension/dist/firefox && zip -rq "$OUT/pix-recorder-firefox.zip" .)
+          ls -la "$OUT"
 
       - uses: actions/upload-pages-artifact@v4
         with:

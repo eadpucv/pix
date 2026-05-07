@@ -8,6 +8,7 @@ class PixAbout extends HTMLElement {
   }
 
   _render() {
+    const baseUrl = import.meta.env.BASE_URL || '/';
     this.innerHTML = `
       <div class="pix-about">
         <article class="pix-about-content">
@@ -35,6 +36,26 @@ class PixAbout extends HTMLElement {
           <p>${i18n.t('about.history.text')}</p>
           <p>${i18n.t('about.history.evolution')}</p>
           <p>${i18n.t('about.history.wiki')} <a href="https://wiki.ead.pucv.cl/PiX" target="_blank" rel="noopener">${i18n.t('about.history.wikiName')}</a>${i18n.lang !== 'es' ? ' ' + i18n.t('about.history.wikiLang') : ''}.</p>
+
+          <h2>${i18n.t('about.extension.title')}</h2>
+          <div class="pix-alpha-banner" role="note">
+            <span class="pix-alpha-tag">α</span>
+            <span>${i18n.t('about.extension.alpha')}</span>
+          </div>
+          <p>${i18n.t('about.extension.intro')}</p>
+          <div class="pix-extension-downloads">
+            <a class="pix-download-btn" href="${baseUrl}extensions/pix-recorder-chrome.zip" download>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              <span class="pix-download-label">${i18n.t('about.extension.chrome')}</span>
+              <span class="pix-download-meta">${i18n.t('about.extension.chromeMeta')}</span>
+            </a>
+            <a class="pix-download-btn" href="${baseUrl}extensions/pix-recorder-firefox.zip" download>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              <span class="pix-download-label">${i18n.t('about.extension.firefox')}</span>
+              <span class="pix-download-meta">${i18n.t('about.extension.firefoxMeta')}</span>
+            </a>
+          </div>
+          <p>${i18n.t('about.extension.howto')} <a href="https://github.com/eadpucv/pix/blob/main/packages/extension/README.md" target="_blank" rel="noopener">${i18n.t('about.extension.readmeLink')} ↗</a>.</p>
 
           <h2>${i18n.t('about.opensource.title')}</h2>
           <p>${i18n.t('about.opensource.text')} <a href="https://github.com/eadpucv/pix" target="_blank" rel="noopener">GitHub</a>.</p>
