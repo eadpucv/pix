@@ -107,6 +107,54 @@ function buildEditorUrl(score) {
   return `${base}/#!/edit/${b64}`;
 }
 
+// Open the editor for a score and (if applicable) hand off its
+// ScreenshotTrace via chrome.scripting.executeScript. The trace can't
+// fit in the URL hash for any non-trivial recording (each JPEG
+// screenshot is ~100-300KB), so we open the tab first, wait for it to
+// load, then inject the trace into a global on the editor's window;
+// the editor's PixApp picks it up and persists it to IDB.
+async function openInEditor(score, trace) {
+  const url = buildEditorUrl(score);
+  const tab = await chrome.tabs.create({ url });
+
+  // Authored scores or already-flushed recordings have no trace —
+  // nothing further to do.
+  if (!trace || !trace.snapshots || trace.snapshots.length === 0) return;
+
+  // Wait until the tab finishes loading. chrome.tabs.onUpdated fires
+  // multiple status events; we resolve on the first 'complete'.
+  await new Promise((resolve) => {
+    const onUpdated = (updatedTabId, info) => {
+      if (updatedTabId === tab.id && info.status === 'complete') {
+        chrome.tabs.onUpdated.removeListener(onUpdated);
+        resolve();
+      }
+    };
+    chrome.tabs.onUpdated.addListener(onUpdated);
+  });
+
+  // Inject the trace as an argument; the function runs in the page
+  // context with access to window.__pixReceiveTrace, registered by
+  // the editor's PixApp on connectedCallback. If the editor hasn't
+  // wired it yet, leave the trace on a pending slot for the editor
+  // to pick up on init.
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: (payload) => {
+        if (typeof window.__pixReceiveTrace === 'function') {
+          window.__pixReceiveTrace(payload);
+        } else {
+          window.__pixPendingTrace = payload;
+        }
+      },
+      args: [trace]
+    });
+  } catch (err) {
+    console.warn('[pix-extension] could not inject trace into editor tab', err);
+  }
+}
+
 function renderScores(scores, tracesById) {
   if (!scores.length) {
     scoresList.innerHTML = '';
@@ -161,9 +209,9 @@ function renderScores(scores, tracesById) {
       card.classList.toggle('expanded');
     });
 
-    card.querySelector('[data-action="open"]').addEventListener('click', (e) => {
+    card.querySelector('[data-action="open"]').addEventListener('click', async (e) => {
       e.stopPropagation();
-      chrome.tabs.create({ url: buildEditorUrl(score) });
+      await openInEditor(score, trace);
     });
 
     card.querySelector('[data-action="delete"]').addEventListener('click', async (e) => {

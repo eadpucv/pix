@@ -3,7 +3,7 @@
 import { i18n } from '../i18n/index.js';
 import { parseLegacyData, migrateScore } from '@pix/core/migrations';
 import { preloadIcons } from '@pix/core/pixograms';
-import { getScore, saveScore } from '@pix/core/storage';
+import { getScore, saveScore, saveTrace } from '@pix/core/storage';
 import logoUrl from '@pix/core/icons/logo.svg?url';
 import { VERSION } from '../version.js';
 import './PixLibrary.js';
@@ -27,6 +27,32 @@ class PixApp extends HTMLElement {
 
     // Listen for hash changes
     window.addEventListener('hashchange', () => this._route());
+
+    // Cross-origin trace handoff from @pix/extension. After the
+    // extension opens this editor at #!/edit/<b64> for a recording,
+    // it follows up with chrome.scripting.executeScript that calls
+    // window.__pixReceiveTrace with the matching ScreenshotTrace.
+    // Saving it to IDB makes the walkthrough viewer functional for
+    // that score.
+    window.__pixReceiveTrace = async (trace) => {
+      if (!trace || !trace.score_id) return;
+      try {
+        await saveTrace(trace);
+        console.log(
+          '[pix-editor] received trace for', trace.score_id,
+          'with', trace.snapshots?.length ?? 0, 'snapshots'
+        );
+      } catch (err) {
+        console.error('[pix-editor] failed to save trace', err);
+      }
+    };
+    // If the extension injected the trace before this listener was
+    // ready, pick up the pending payload.
+    if (window.__pixPendingTrace) {
+      const pending = window.__pixPendingTrace;
+      delete window.__pixPendingTrace;
+      window.__pixReceiveTrace(pending);
+    }
 
     // Initial render
     this._renderShell();
