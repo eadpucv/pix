@@ -9,7 +9,8 @@
     "scripting",
     "storage",
     "tabs",
-    "downloads"
+    "downloads",
+    "contextMenus"
   ],
   "host_permissions": [
     "<all_urls>"

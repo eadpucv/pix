@@ -33,6 +33,7 @@ async function getState() {
 async function setState(next) {
   await chrome.storage.local.set({ [STORAGE_KEY]: next });
   syncBadge(next);
+  refreshContextMenuVisibility();
   chrome.runtime
     .sendMessage({ type: MSG.RECORDER_STATE_CHANGED, state: next })
     .catch(() => {});
@@ -53,6 +54,98 @@ function syncBadge(state) {
 // On service-worker boot (cold start while idle, or wake-up while
 // recording), rehydrate the badge from persisted state.
 getState().then(syncBadge);
+
+// ---------- right-click context menu ----------
+//
+// The action button is not pinned to the toolbar by default in Chrome,
+// so right-clicking the page is the discovery surface for PiX. The
+// labels switch between Start/Stop based on the current recorder state.
+
+const MENU_IDS = {
+  START:   'pix-start',
+  STOP:    'pix-stop',
+  LIBRARY: 'pix-library'
+};
+
+async function buildContextMenus() {
+  if (!chrome.contextMenus) return;
+  await new Promise((resolve) => chrome.contextMenus.removeAll(resolve));
+  const state = await getState();
+  const recording = state?.state === 'recording';
+  // 'page' covers the right-click on any page. We avoid 'action' here
+  // because MV2 (Firefox) doesn't accept it, and 'page' is the surface
+  // we care about anyway: the user wants the menu without having to
+  // hunt for the toolbar icon.
+  const baseContexts = ['page', 'selection', 'link', 'image'];
+  chrome.contextMenus.create({
+    id: MENU_IDS.START,
+    title: 'PiX — Iniciar grabación',
+    contexts: baseContexts,
+    visible: !recording
+  });
+  chrome.contextMenus.create({
+    id: MENU_IDS.STOP,
+    title: 'PiX — Detener grabación',
+    contexts: baseContexts,
+    visible: recording
+  });
+  chrome.contextMenus.create({
+    id: MENU_IDS.LIBRARY,
+    title: 'PiX — Abrir biblioteca de grabaciones',
+    contexts: baseContexts
+  });
+}
+
+async function refreshContextMenuVisibility() {
+  if (!chrome.contextMenus) return;
+  const state = await getState();
+  const recording = state?.state === 'recording';
+  chrome.contextMenus.update(MENU_IDS.START, { visible: !recording });
+  chrome.contextMenus.update(MENU_IDS.STOP,  { visible:  recording });
+}
+
+if (chrome.runtime.onInstalled) {
+  chrome.runtime.onInstalled.addListener(() => { buildContextMenus(); });
+}
+if (chrome.runtime.onStartup) {
+  chrome.runtime.onStartup.addListener(() => { buildContextMenus(); });
+}
+// Also rebuild on cold service-worker boot — the menu is owned by the
+// browser process but onInstalled only fires once per install/update.
+buildContextMenus();
+
+if (chrome.contextMenus?.onClicked) {
+  chrome.contextMenus.onClicked.addListener(async (info) => {
+    if (info.menuItemId === MENU_IDS.START) {
+      await applyEvent({ type: 'start', score_id: newId() });
+      openManagerTab({ active: false }).catch(() => {});
+    } else if (info.menuItemId === MENU_IDS.STOP) {
+      await applyEvent({ type: 'stop' });
+    } else if (info.menuItemId === MENU_IDS.LIBRARY) {
+      await openManagerTab({ active: true });
+    }
+  });
+}
+
+// Open the manager (full-page library) tab. If one is already open we
+// reuse it; otherwise we create a new one. `active` controls whether
+// the new tab takes focus — the auto-open on RECORDER_START passes
+// false so the user keeps recording on the page they were on.
+async function openManagerTab({ active = true } = {}) {
+  const url = chrome.runtime.getURL('manager/index.html');
+  const tabs = await chrome.tabs.query({ url });
+  if (tabs?.length) {
+    const tab = tabs[0];
+    if (active) {
+      await chrome.tabs.update(tab.id, { active: true });
+      if (tab.windowId != null) {
+        await chrome.windows.update(tab.windowId, { focused: true });
+      }
+    }
+    return tab;
+  }
+  return chrome.tabs.create({ url, active });
+}
 
 async function applyEvent(event) {
   const current = await getState();
@@ -301,6 +394,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       switch (msg?.type) {
         case MSG.RECORDER_START: {
           const state = await applyEvent({ type: 'start', score_id: newId() });
+          // Open the manager in the background so the user gets a
+          // visible canvas of the steps as they pile up. Doesn't take
+          // focus — the user is recording on another tab.
+          openManagerTab({ active: false }).catch(() => {});
           sendResponse({ ok: true, state });
           break;
         }
@@ -330,7 +427,15 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           }
           let screenshot = null;
           const windowId = sender?.tab?.windowId;
+          const tabId    = sender?.tab?.id;
           if (windowId != null) {
+            // Hide the dot, capture, then restore. Without this the red
+            // recording indicator ends up baked into every screenshot.
+            if (tabId != null) {
+              await chrome.tabs
+                .sendMessage(tabId, { type: MSG.OVERLAY_PRE_CAPTURE })
+                .catch(() => {});
+            }
             try {
               screenshot = await chrome.tabs.captureVisibleTab(windowId, {
                 format: 'jpeg',
@@ -338,6 +443,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
               });
             } catch (err) {
               console.warn('[pix] captureVisibleTab failed', err);
+            }
+            if (tabId != null) {
+              chrome.tabs
+                .sendMessage(tabId, { type: MSG.OVERLAY_POST_CAPTURE })
+                .catch(() => {});
             }
           }
           await appendStep(state.active_score_id, msg.payload, screenshot);

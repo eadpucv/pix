@@ -26,7 +26,14 @@ import {
   captionFor
 } from '../lib/classify.js';
 import { focusFromRect } from '../lib/focus.js';
-import { showOverlay, hideOverlay, refreshCount, isOverlayHost } from './overlay.js';
+import {
+  showOverlay,
+  hideOverlay,
+  refreshCount,
+  isOverlayHost,
+  preCapture,
+  postCapture
+} from './overlay.js';
 
 let isRecording = false;
 
@@ -175,7 +182,7 @@ window.addEventListener('change', (e) => {
 
 // ---- overlay sync ----
 
-chrome.runtime.onMessage.addListener((msg) => {
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg?.type === MSG.OVERLAY_SHOW) {
     showOverlay();
     isRecording = true;
@@ -184,6 +191,14 @@ chrome.runtime.onMessage.addListener((msg) => {
     isRecording = false;
   } else if (msg?.type === MSG.SCORE_UPDATED) {
     refreshCount();
+  } else if (msg?.type === MSG.OVERLAY_PRE_CAPTURE) {
+    // Hide the dot and respond once the next paint has flushed so the
+    // background's captureVisibleTab reads a frame without our overlay.
+    preCapture().then(() => sendResponse({ ok: true }));
+    return true; // keep the message channel open for async response
+  } else if (msg?.type === MSG.OVERLAY_POST_CAPTURE) {
+    postCapture();
+    sendResponse({ ok: true });
   }
 });
 
