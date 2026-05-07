@@ -7,6 +7,7 @@
 
 import { i18n } from '../i18n/index.js';
 import { loadIcon, getIconSync, ALL_ICONS } from '@pix/core/pixograms';
+import { exportWalkthroughPDF } from '../export/walkthrough-pdf.js';
 
 const LAYER_ICONS = {
   user: 'person',
@@ -129,6 +130,7 @@ class PixWalkthrough extends HTMLElement {
             <span class="walkthrough-stepcount">${i18n.t('walkthrough.stepOf', { current: idx + 1, total })}</span>
           </div>
           <div class="walkthrough-header-actions">
+            <button type="button" class="pix-btn pix-btn--ghost" data-action="export-pdf">${i18n.t('walkthrough.exportPdf')}</button>
             <a class="pix-btn pix-btn--ghost" href="#/editor/${this._esc(this._score.id)}">${i18n.t('walkthrough.openInEditor')}</a>
           </div>
         </header>
@@ -200,6 +202,25 @@ class PixWalkthrough extends HTMLElement {
     this.querySelectorAll('[data-jump]').forEach(btn => {
       btn.addEventListener('click', () => this._goto(parseInt(btn.dataset.jump, 10)));
     });
+    const exportBtn = this.querySelector('[data-action="export-pdf"]');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => this._onExportPdf(exportBtn));
+    }
+  }
+
+  async _onExportPdf(btn) {
+    if (!this._score || !this._trace) return;
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = i18n.t('walkthrough.exporting');
+    try {
+      await exportWalkthroughPDF(this._score, this._trace);
+    } catch (err) {
+      console.error('walkthrough PDF export failed', err);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = original;
+    }
   }
 
   _onKeydown(e) {

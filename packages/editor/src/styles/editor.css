@@ -678,9 +678,10 @@ pix-walkthrough {
   padding: 2px 6px;
   border-radius: 3px;
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  line-height: 1.4;
 }
 .walkthrough-crossing {
   color: #ff9500;
@@ -755,6 +756,13 @@ pix-walkthrough {
   font-size: 0.85rem;
   color: var(--pix-text);
   min-height: 36px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.walkthrough-cell-text {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 .walkthrough-cell-icon {
   width: 28px;
