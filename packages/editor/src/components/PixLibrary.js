@@ -14,18 +14,27 @@ class PixLibrary extends HTMLElement {
   }
 
   connectedCallback() {
+    console.log('[pix-library] connected');
+    // Render immediately with empty data so the user always sees the
+    // shell (Nueva, Cargar Ejemplos) even if IDB hangs or loads slowly.
+    // Then load and re-render when ready.
+    this._render();
     this._loadAndRender();
   }
 
   async _loadAndRender() {
+    console.log('[pix-library] loading scores from IDB…');
     try {
-      this._scores = await getAllScores();
+      const scores = await getAllScores();
+      console.log('[pix-library] loaded', scores.length, 'scores');
+      this._scores = scores;
       this._storageInfo = await getStorageUsage();
       this._render();
     } catch (err) {
       console.error('[pix-library] failed to load scores', err);
-      this._scores = [];
-      this._renderError(err);
+      // Keep the shell from the synchronous render; just surface
+      // the error in console. Don't replace UI with renderError —
+      // that would hide the Nueva / Cargar Ejemplos buttons.
     }
   }
 
