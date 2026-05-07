@@ -32,11 +32,26 @@ function openDB() {
 
     request.onsuccess = (e) => {
       dbInstance = e.target.result;
+      // If a future bundle bumps the version, close this connection so
+      // the upgrade isn't blocked by us.
+      dbInstance.onversionchange = () => {
+        try { dbInstance.close(); } catch {}
+        dbInstance = null;
+      };
       resolve(dbInstance);
     };
 
     request.onerror = (e) => {
       reject(new Error('Failed to open database: ' + e.target.error));
+    };
+
+    // Fired when the upgrade is blocked because another tab still
+    // holds a v1 connection. Without a handler the open() request
+    // hangs forever and the library appears empty.
+    request.onblocked = () => {
+      reject(new Error(
+        'IndexedDB upgrade blocked. Close other PiX tabs and reload this page.'
+      ));
     };
   });
 }

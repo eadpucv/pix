@@ -18,9 +18,25 @@ class PixLibrary extends HTMLElement {
   }
 
   async _loadAndRender() {
-    this._scores = await getAllScores();
-    this._storageInfo = await getStorageUsage();
-    this._render();
+    try {
+      this._scores = await getAllScores();
+      this._storageInfo = await getStorageUsage();
+      this._render();
+    } catch (err) {
+      console.error('[pix-library] failed to load scores', err);
+      this._scores = [];
+      this._renderError(err);
+    }
+  }
+
+  _renderError(err) {
+    this.innerHTML = `
+      <div class="pix-library-error" style="padding:60px 24px;text-align:center;max-width:520px;margin:0 auto;">
+        <h2 style="font-size:1.1rem;color:var(--pix-brand);margin-bottom:8px;">No se pudo cargar la biblioteca</h2>
+        <p style="font-size:0.9rem;color:var(--pix-text-muted);line-height:1.6;">${this._esc(err?.message || String(err))}</p>
+        <p style="margin-top:24px;"><button class="pix-btn pix-btn--ghost" onclick="window.location.reload()">Recargar</button></p>
+      </div>
+    `;
   }
 
   _render() {
