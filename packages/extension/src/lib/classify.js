@@ -199,26 +199,103 @@ export function labelOf(el) {
 }
 
 /**
- * Build the dialogue caption: "{verb} {label}". Verb comes from the
- * navigator language so partituras grabadas en español leen natural.
+ * Build the dialogue caption from the targeted element, its kind and
+ * the trigger that fired the capture. Verb is chosen by (kind, trigger)
+ * + navigator.language so partituras read natural. Per
+ * @invariant DialogueValuePrivacy in interaction-capture.allium, the
+ * raw value typed into a text/password/textarea is NEVER reproduced;
+ * only the action is described. Selection-committed events (dropdown,
+ * checkbox, radio) DO include the chosen option text, because that
+ * is choice metadata, not free user input.
  *
  * @param {Element} el
  * @param {CapturedElementKind} kind
+ * @param {{ trigger?: string, value?: string, checked?: boolean }} [opts]
  * @returns {string}
  */
-export function captionFor(el, kind) {
-  const verb = clickVerb();
+export function captionFor(el, kind, opts = {}) {
+  const trigger = opts.trigger || 'click';
+  const verb = verbFor(kind, trigger, opts);
   const label = labelOf(el);
+
+  // Selection events: the chosen value carries the meaning. Field
+  // label is auxiliary — include only when distinct from the value.
+  if (trigger === 'selection_committed') {
+    if (kind === 'checkbox') {
+      // "Marcar Acepto términos" / "Desmarcar Acepto términos"
+      return label ? `${verb} ${label}` : verb;
+    }
+    if (kind === 'radio') {
+      // The label of a radio is its own option text.
+      return label ? `${verb} ${label}` : verb;
+    }
+    // dropdown: "Seleccionar Chile" or "Seleccionar Chile en País"
+    const value = (opts.value || '').trim();
+    if (value && label && value.toLowerCase() !== label.toLowerCase()) {
+      return langPrep(value, label, kind);
+    }
+    return value ? `${verb} ${value}` : verb;
+  }
+
+  // file_attached: "Adjuntar archivo en {label}" or with file count
+  if (trigger === 'file_attached') {
+    return label ? `${verb} ${label}` : verb;
+  }
+
+  // text_committed, click, others: "{verb} {label}"
   return label ? `${verb} ${label}` : verb;
 }
 
 // ---- internals ----
 
-function clickVerb() {
+function verbFor(kind, trigger, opts = {}) {
   const lang = (typeof navigator !== 'undefined' && navigator.language || '').toLowerCase();
-  if (lang.startsWith('es')) return 'Click en';
-  if (lang.startsWith('pt')) return 'Click em';
-  return 'Click on';
+  const isEs = lang.startsWith('es');
+  const isPt = lang.startsWith('pt');
+
+  if (trigger === 'text_committed') {
+    if (kind === 'password_input') {
+      return isEs ? 'Ingresar contraseña en' : isPt ? 'Inserir senha em' : 'Enter password in';
+    }
+    return isEs ? 'Escribir en' : isPt ? 'Escrever em' : 'Type in';
+  }
+
+  if (trigger === 'selection_committed') {
+    if (kind === 'checkbox') {
+      // 'checked' carries the post-event state. opts.checked === false
+      // means the box was just unchecked.
+      if (opts.checked === false) {
+        return isEs ? 'Desmarcar' : isPt ? 'Desmarcar' : 'Uncheck';
+      }
+      return isEs ? 'Marcar' : isPt ? 'Marcar' : 'Check';
+    }
+    if (kind === 'radio') {
+      return isEs ? 'Elegir' : isPt ? 'Escolher' : 'Choose';
+    }
+    return isEs ? 'Seleccionar' : isPt ? 'Selecionar' : 'Select';
+  }
+
+  if (trigger === 'file_attached') {
+    return isEs ? 'Adjuntar archivo en' : isPt ? 'Anexar arquivo em' : 'Attach file in';
+  }
+
+  // click + everything else
+  if (kind === 'link') {
+    return isEs ? 'Ir a' : isPt ? 'Ir para' : 'Go to';
+  }
+  return isEs ? 'Click en' : isPt ? 'Click em' : 'Click on';
+}
+
+// "Seleccionar Chile en País" — joins value + field label with the
+// right preposition for the locale. Today only used when the dropdown's
+// label is distinct enough from the chosen value to be informative.
+function langPrep(value, fieldLabel, kind) {
+  const lang = (typeof navigator !== 'undefined' && navigator.language || '').toLowerCase();
+  const isEs = lang.startsWith('es');
+  const isPt = lang.startsWith('pt');
+  const verb = isEs ? 'Seleccionar' : isPt ? 'Selecionar' : 'Select';
+  const prep = isEs ? 'en' : isPt ? 'em' : 'in';
+  return `${verb} ${value} ${prep} ${fieldLabel}`;
 }
 
 function clean(s) {

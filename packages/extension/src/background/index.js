@@ -87,6 +87,31 @@ async function broadcastToTabs(message) {
   );
 }
 
+// Derive a human-readable section title from the captured page.
+// Cadena: document.title → primer <h1> → último segmento del path.
+// Used by appendStep when a section break is detected.
+function deriveSectionTitle(payload) {
+  const t = (payload.page_title || '').trim();
+  if (t) return t.slice(0, 120);
+  const h1 = (payload.page_h1 || '').trim();
+  if (h1) return h1.slice(0, 120);
+  try {
+    const u = new URL(payload.page_url);
+    const segs = u.pathname.split('/').filter(Boolean);
+    if (segs.length) return humanize(segs[segs.length - 1]).slice(0, 120);
+    return u.hostname;
+  } catch {
+    return '';
+  }
+}
+
+function humanize(s) {
+  return s
+    .replace(/[_-]+/g, ' ')
+    .replace(/\.[a-z0-9]{1,5}$/i, '') // strip .html / .php / etc
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
 // ---------- score + trace buffer ----------
 //
 // Slice 1 split: chrome.storage holds two keys per recording:
@@ -203,6 +228,26 @@ async function appendStep(scoreId, payload, screenshot) {
     if (prevHost && newHost && prevHost !== newHost) boundary = 'crossing';
   }
 
+  // Section break detection — see @invariant SectionStartsOnScreenChange.
+  // The first captured step always starts a section. After that, a new
+  // section begins when the URL or document.title changes vs the previous
+  // snapshot. step_title carries the new section's name and the editor
+  // renders a divider on top of the column.
+  const newPageTitle = payload.page_title || '';
+  const isFirstStep = !prevSnapshot;
+  const urlChanged = !!prevSnapshot && prevSnapshot.captured_from_url !== payload.page_url;
+  const titleChanged = !!prevSnapshot && (prevSnapshot.captured_page_title || '') !== newPageTitle;
+  const sectionBreak = isFirstStep || urlChanged || titleChanged;
+  const stepTitle = sectionBreak ? deriveSectionTitle(payload) : '';
+
+  // Navigation marker in the system cell when the URL changed. Same
+  // condition as before; section break is independent of this — a
+  // pure title change without URL change still creates a section but
+  // doesn't add pix-page to the system cell.
+  const navigationCell = urlChanged
+    ? `pix-page ${payload.page_url}`
+    : '';
+
   const dialogue = payload.icon
     ? `pix-${payload.icon}${payload.caption ? ' ' + payload.caption : ''}`
     : (payload.caption || '');
@@ -210,10 +255,10 @@ async function appendStep(scoreId, payload, screenshot) {
   // Clean ScoreStep — partitura content only.
   const step = {
     id: newId(),
-    step_title: '',
+    step_title: stepTitle,
     user: '',
     dialogue,
-    system: '',
+    system: navigationCell,
     note: ''
   };
 
