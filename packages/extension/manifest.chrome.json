@@ -16,8 +16,7 @@
     "<all_urls>"
   ],
   "action": {
-    "default_title": "PiX",
-    "default_popup": "popup/index.html"
+    "default_title": "PiX"
   },
   "background": {
     "service_worker": "background/index.js",

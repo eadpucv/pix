@@ -29,7 +29,6 @@ mkdirSync(outDir, { recursive: true });
 const entries = [
   { in: 'src/background/index.js', out: 'background/index.js' },
   { in: 'src/content/index.js',    out: 'content/index.js' },
-  { in: 'src/popup/index.js',      out: 'popup/index.js' },
   { in: 'src/manager/index.js',    out: 'manager/index.js' }
 ];
 
@@ -47,7 +46,6 @@ for (const e of entries) {
   });
 }
 
-copyFileSync(resolve(srcDir, 'popup/index.html'),   resolve(outDir, 'popup/index.html'));
 copyFileSync(resolve(srcDir, 'manager/index.html'), resolve(outDir, 'manager/index.html'));
 copyFileSync(resolve(__dirname, `manifest.${target}.json`), resolve(outDir, 'manifest.json'));
 

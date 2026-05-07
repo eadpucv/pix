@@ -127,6 +127,22 @@ if (chrome.runtime.onStartup) {
 // browser process but onInstalled only fires once per install/update.
 buildContextMenus();
 
+// Click on the toolbar action — open the manager (full-page library).
+// Without default_popup in the manifest, onClicked fires instead of
+// showing a popup. The manager owns the Start/Stop buttons now, so
+// the popup file/route is dead weight.
+if (chrome.action?.onClicked) {
+  chrome.action.onClicked.addListener(() => {
+    openManagerTab({ active: true }).catch(() => {});
+  });
+}
+if (chrome.browserAction?.onClicked) {
+  // Firefox MV2 path.
+  chrome.browserAction.onClicked.addListener(() => {
+    openManagerTab({ active: true }).catch(() => {});
+  });
+}
+
 if (chrome.contextMenus?.onClicked) {
   chrome.contextMenus.onClicked.addListener(async (info) => {
     if (info.menuItemId === MENU_IDS.START) {

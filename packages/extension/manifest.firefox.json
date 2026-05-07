@@ -13,8 +13,7 @@
     "<all_urls>"
   ],
   "browser_action": {
-    "default_title": "PiX",
-    "default_popup": "popup/index.html"
+    "default_title": "PiX"
   },
   "background": {
     "scripts": ["background/index.js"],
