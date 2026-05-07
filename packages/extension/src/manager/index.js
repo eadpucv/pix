@@ -141,6 +141,12 @@ async function openInEditor(score, trace) {
   try {
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
+      // MAIN world so we can read/write the page's globals — the editor
+      // exposes window.__pixReceiveTrace from PixApp. The default
+      // ISOLATED world shares the DOM but not window globals, so the
+      // function would land on a different `window` and the editor
+      // would never see the trace.
+      world: 'MAIN',
       func: (payload) => {
         if (typeof window.__pixReceiveTrace === 'function') {
           window.__pixReceiveTrace(payload);
