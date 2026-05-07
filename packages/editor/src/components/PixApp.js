@@ -3,13 +3,14 @@
 import { i18n } from '../i18n/index.js';
 import { parseLegacyData, migrateScore } from '@pix/core/migrations';
 import { preloadIcons } from '@pix/core/pixograms';
-import { getScore, saveScore, saveTrace } from '@pix/core/storage';
+import { getScore, saveScore, saveTrace, getTrace } from '@pix/core/storage';
 import logoUrl from '@pix/core/icons/logo.svg?url';
 import { VERSION } from '../version.js';
 import './PixLibrary.js';
 import './PixEditor.js';
 import './PixViewer.js';
 import './PixAbout.js';
+import './PixWalkthrough.js';
 
 class PixApp extends HTMLElement {
   constructor() {
@@ -185,6 +186,44 @@ class PixApp extends HTMLElement {
         console.error('Failed to import score from #!/edit/', err);
         main.innerHTML = `<p style="padding:40px;text-align:center;">Failed to import score: ${err.message}</p>`;
       }
+      return;
+    }
+
+    // Walkthrough route — visor de la ScreenshotTrace de una grabación.
+    // Spec: packages/editor/walkthrough-viewer.allium
+    // URL: #/walkthrough/<score_id>(/<step_id>)
+    if (hash.startsWith('#/walkthrough/')) {
+      const parts = hash.slice('#/walkthrough/'.length).split('/');
+      const scoreId = parts[0];
+      const stepId = parts[1] || null;
+      if (!scoreId) {
+        window.location.hash = '#/library';
+        return;
+      }
+      const [score, trace] = await Promise.all([
+        getScore(scoreId),
+        getTrace(scoreId)
+      ]);
+      if (!score) {
+        main.innerHTML = `<p style="padding:40px;text-align:center;">${i18n.t('walkthrough.scoreNotFound')}</p>`;
+        return;
+      }
+      if (!trace || !trace.snapshots?.length) {
+        main.innerHTML = `
+          <div style="padding:60px 24px;text-align:center;max-width:520px;margin:0 auto;">
+            <p style="font-size:1.05rem;color:var(--pix-text);margin-bottom:8px;">${i18n.t('walkthrough.noTraceTitle')}</p>
+            <p style="font-size:0.9rem;color:var(--pix-text-muted);line-height:1.6;">${i18n.t('walkthrough.noTraceHint')}</p>
+            <p style="margin-top:24px;"><a href="#/editor/${scoreId}" class="pix-btn pix-btn--ghost" style="text-decoration:none;">${i18n.t('walkthrough.openInEditor')}</a></p>
+          </div>
+        `;
+        return;
+      }
+      main.innerHTML = '';
+      const wt = document.createElement('pix-walkthrough');
+      wt.score = score;
+      wt.trace = trace;
+      wt.initialStepId = stepId;
+      main.appendChild(wt);
       return;
     }
 

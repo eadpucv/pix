@@ -104,6 +104,11 @@ class PixLibrary extends HTMLElement {
           <span>${date}</span>
         </div>
         <div class="pix-card-actions">
+          ${isDraft ? `
+            <a class="pix-icon-btn" href="#/walkthrough/${score.id}" title="${i18n.t('library.walkthrough')}" aria-label="${i18n.t('library.walkthrough')}">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            </a>
+          ` : ''}
           <button class="pix-icon-btn" data-action="edit" data-id="${score.id}" title="${i18n.t('library.edit')}" aria-label="${i18n.t('library.edit')}">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
           </button>
