@@ -1,11 +1,12 @@
 // IndexedDB wrapper for PiX score library
 
 import { newId } from '../ids/index.js';
-import { migrateScore } from '../migrations/migrate.js';
+import { migrateScore, extractTrace } from '../migrations/migrate.js';
 
 const DB_NAME = 'pix-library';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_NAME = 'scores';
+const TRACES_STORE = 'traces';
 
 let dbInstance = null;
 
@@ -22,6 +23,11 @@ function openDB() {
         store.createIndex('updatedAt', 'updatedAt', { unique: false });
         store.createIndex('title', 'title', { unique: false });
       }
+      if (!db.objectStoreNames.contains(TRACES_STORE)) {
+        // Traces are 1:1 with scores. Keying by score_id makes the
+        // relationship explicit and lookup trivial.
+        db.createObjectStore(TRACES_STORE, { keyPath: 'score_id' });
+      }
     };
 
     request.onsuccess = (e) => {
@@ -37,40 +43,45 @@ function openDB() {
 
 // Score.id generator — delegates to nanoid via @pix/core/ids for
 // consistency with the movement/step ids introduced in Phase C.
-// Existing Date-based ids in IndexedDB remain valid.
 const generateId = newId;
 
-// Lazy backfill — migrateScore is idempotent, so calling it on every
-// read costs nothing for scores that already carry stable ids and rescues
-// pre-Phase-C scores that don't. Persistence happens on the next save.
-function migrateOrNull(score) {
-  return score ? migrateScore(score) : null;
+// Lazy migration on read. extractTrace splits any embedded
+// capture-derived fields out into a separate Trace; migrateScore
+// then normalises the cleaned Score. The extracted Trace is
+// persisted as a side effect so subsequent reads see clean data.
+async function migrateOrNull(rawScore) {
+  if (!rawScore) return null;
+  const { score, trace } = extractTrace(rawScore);
+  if (trace) {
+    try { await saveTrace(trace); } catch { /* non-fatal — next read retries */ }
+  }
+  return migrateScore(score);
 }
 
 export async function getAllScores() {
   const db = await openDB();
-  return new Promise((resolve, reject) => {
+  const raw = await new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readonly');
     const store = tx.objectStore(STORE_NAME);
     const request = store.getAll();
-    request.onsuccess = () => {
-      const scores = (request.result || []).map(migrateOrNull);
-      scores.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
-      resolve(scores);
-    };
+    request.onsuccess = () => resolve(request.result || []);
     request.onerror = () => reject(request.error);
   });
+  const migrated = await Promise.all(raw.map(migrateOrNull));
+  migrated.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+  return migrated;
 }
 
 export async function getScore(id) {
   const db = await openDB();
-  return new Promise((resolve, reject) => {
+  const raw = await new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readonly');
     const store = tx.objectStore(STORE_NAME);
     const request = store.get(id);
-    request.onsuccess = () => resolve(migrateOrNull(request.result || null));
+    request.onsuccess = () => resolve(request.result || null);
     request.onerror = () => reject(request.error);
   });
+  return migrateOrNull(raw);
 }
 
 export async function saveScore(score) {
@@ -94,6 +105,8 @@ export async function saveScore(score) {
 
 export async function deleteScore(id) {
   const db = await openDB();
+  // Cascade: drop the matching trace first (best-effort), then the score.
+  await deleteTrace(id).catch(() => {});
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_NAME, 'readwrite');
     const store = tx.objectStore(STORE_NAME);
@@ -125,8 +138,7 @@ export async function duplicateScore(id) {
   copy.title = original.title + ' (copy)';
 
   // Regenerate movement and step ids so the duplicate doesn't share
-  // identity with the original — each ScoreStep id must map to exactly
-  // one local entity for the extension's re-import contract.
+  // identity with the original.
   if (Array.isArray(copy.movement_ids)) {
     copy.movement_ids = copy.movement_ids.map(() => newId());
   }
@@ -137,6 +149,46 @@ export async function duplicateScore(id) {
   }
 
   return saveScore(copy);
+  // Note: the trace is NOT duplicated. A copy is a fresh score that
+  // has no recording history of its own — it's an authored derivative.
+}
+
+// ---- ScreenshotTrace API ----
+
+export async function getTrace(scoreId) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(TRACES_STORE, 'readonly');
+    const store = tx.objectStore(TRACES_STORE);
+    const request = store.get(scoreId);
+    request.onsuccess = () => resolve(request.result || null);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+export async function saveTrace(trace) {
+  if (!trace || !trace.score_id) {
+    throw new Error('saveTrace: trace.score_id is required');
+  }
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(TRACES_STORE, 'readwrite');
+    const store = tx.objectStore(TRACES_STORE);
+    const request = store.put(trace);
+    request.onsuccess = () => resolve(trace);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+export async function deleteTrace(scoreId) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(TRACES_STORE, 'readwrite');
+    const store = tx.objectStore(TRACES_STORE);
+    const request = store.delete(scoreId);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
 }
 
 /**

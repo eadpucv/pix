@@ -103,6 +103,93 @@ function migrateStep(step, layout) {
 }
 
 /**
+ * Split a raw Score (possibly with capture-derived fields embedded
+ * in its steps) into a clean Score and a separate ScreenshotTrace.
+ * Returns { score, trace } where trace is null if no step had any
+ * capture-derived data.
+ *
+ * The clean Score has none of: screenshot, focus, captured_*, boundary
+ * on its steps. Those live in the Trace's snapshots, linked back to
+ * each step by step_id.
+ *
+ * Idempotent: extracting from an already-clean Score returns
+ * { score: <same>, trace: null }.
+ */
+export function extractTrace(rawScore) {
+  if (!rawScore) return { score: null, trace: null };
+
+  const score = { ...rawScore };
+  const snapshots = [];
+  let earliestCaptureAt = null;
+
+  if (Array.isArray(score.scores)) {
+    score.scores = score.scores.map(movement =>
+      Array.isArray(movement)
+        ? movement.map(step => splitStep(step, snapshots, ts => {
+            if (ts != null && (earliestCaptureAt == null || ts < earliestCaptureAt)) {
+              earliestCaptureAt = ts;
+            }
+          }))
+        : movement
+    );
+  }
+
+  if (snapshots.length === 0) return { score, trace: null };
+
+  const trace = {
+    score_id: score.id,
+    id: newId(),
+    snapshots,
+    created_at: earliestCaptureAt || Date.now()
+  };
+  return { score, trace };
+}
+
+function splitStep(step, snapshotsAccum, recordCaptureAt) {
+  if (!step || typeof step !== 'object') return step;
+
+  const {
+    screenshot,
+    focus,
+    captured_at,
+    captured_from_url,
+    captured_page_title,
+    captured_kind,
+    captured_tab_id,
+    captured_trigger,
+    boundary,
+    ...cleanStep
+  } = step;
+
+  const hasCaptureData =
+    screenshot != null ||
+    focus != null ||
+    captured_at != null ||
+    captured_from_url != null ||
+    captured_kind != null ||
+    boundary != null;
+
+  if (hasCaptureData) {
+    snapshotsAccum.push({
+      id: newId(),
+      step_id: cleanStep.id,
+      screenshot: screenshot ?? null,
+      focus: focus ?? null,
+      captured_at: captured_at ?? null,
+      captured_from_url: captured_from_url ?? null,
+      captured_page_title: captured_page_title ?? null,
+      captured_kind: captured_kind ?? null,
+      captured_tab_id: captured_tab_id ?? null,
+      captured_trigger: captured_trigger ?? null,
+      boundary: boundary ?? 'none'
+    });
+    recordCaptureAt(captured_at);
+  }
+
+  return cleanStep;
+}
+
+/**
  * Parse legacy base64 URL data
  */
 export function parseLegacyData(base64String) {

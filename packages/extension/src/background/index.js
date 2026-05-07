@@ -16,6 +16,7 @@
 // IndexedDB via @pix/core/storage and exposes the score library in the popup.
 
 import { newId } from '@pix/core/ids';
+import { extractTrace } from '@pix/core/migrations';
 import { MSG, STORAGE_KEY } from '../lib/messages.js';
 import { reduce, initialRecorder } from '../lib/recorder.js';
 import { hostOf } from '../lib/focus.js';
@@ -86,17 +87,77 @@ async function broadcastToTabs(message) {
   );
 }
 
-// ---------- score buffer ----------
+// ---------- score + trace buffer ----------
+//
+// Slice 1 split: chrome.storage holds two keys per recording:
+//   pix.score:<id>  — clean Score (no capture-derived fields on steps)
+//   pix.trace:<id>  — ScreenshotTrace { score_id, snapshots: [...] }
+//
+// Pre-Slice-1 entries had everything embedded in the Score's steps.
+// getScore migrates lazily on read: any embedded capture-derived data
+// is split out into a Trace and persisted separately, then the clean
+// Score is returned.
 
 const scoreKey = (id) => `pix.score:${id}`;
+const traceKey = (id) => `pix.trace:${id}`;
 
-async function getScore(scoreId) {
+async function getRawScore(scoreId) {
   const data = await chrome.storage.local.get(scoreKey(scoreId));
   return data[scoreKey(scoreId)] || null;
 }
 
-async function setScore(scoreId, score) {
+async function setRawScore(scoreId, score) {
   await chrome.storage.local.set({ [scoreKey(scoreId)]: score });
+}
+
+async function getTrace(scoreId) {
+  const data = await chrome.storage.local.get(traceKey(scoreId));
+  return data[traceKey(scoreId)] || null;
+}
+
+async function setTrace(scoreId, trace) {
+  await chrome.storage.local.set({ [traceKey(scoreId)]: trace });
+}
+
+async function deleteTrace(scoreId) {
+  await chrome.storage.local.remove(traceKey(scoreId));
+}
+
+// Read a Score, splitting any legacy embedded capture-derived data
+// out into a Trace on the fly. The split Trace is persisted before
+// returning so subsequent reads see clean data.
+async function getScore(scoreId) {
+  const raw = await getRawScore(scoreId);
+  if (!raw) return null;
+
+  const { score, trace } = extractTrace(raw);
+  if (trace) {
+    // Merge with any existing trace (new recordings start without
+    // legacy data, but a partial migration could still be in flight).
+    const existing = await getTrace(scoreId);
+    if (existing && Array.isArray(existing.snapshots)) {
+      // Dedup by step_id — keep existing entries, append new ones
+      // for steps that lack a snapshot yet.
+      const seen = new Set(existing.snapshots.map(s => s.step_id));
+      for (const s of trace.snapshots) {
+        if (!seen.has(s.step_id)) existing.snapshots.push(s);
+      }
+      await setTrace(scoreId, existing);
+    } else {
+      await setTrace(scoreId, trace);
+    }
+    // Persist the cleaned score so we don't re-extract on every read.
+    if (score.state !== 'draft' && score.state !== 'final') score.state = 'draft';
+    await setRawScore(scoreId, score);
+    return score;
+  }
+
+  // Already-clean score; just normalise state if missing.
+  if (raw.state !== 'draft' && raw.state !== 'final') {
+    raw.state = 'draft';
+    await setRawScore(scoreId, raw);
+  }
+  return raw;
 }
 
 async function getStats(scoreId) {
@@ -120,19 +181,24 @@ async function appendStep(scoreId, payload, screenshot) {
       created_at: Date.now(),
       updated_at: Date.now()
     };
-  } else if (score.state !== 'draft' && score.state !== 'final') {
-    // Pre-Slice-0 score in chrome.storage. By construction every
-    // score the extension wrote is a recording, so 'draft' is the
-    // correct default.
-    score.state = 'draft';
+  }
+
+  let trace = await getTrace(scoreId);
+  if (!trace) {
+    trace = {
+      score_id: scoreId,
+      id: newId(),
+      snapshots: [],
+      created_at: Date.now()
+    };
   }
 
   const movement = score.scores[0];
-  const prev = movement[movement.length - 1];
+  const prevSnapshot = trace.snapshots[trace.snapshots.length - 1];
 
   let boundary = 'none';
-  if (prev?.captured_from_url) {
-    const prevHost = hostOf(prev.captured_from_url);
+  if (prevSnapshot?.captured_from_url) {
+    const prevHost = hostOf(prevSnapshot.captured_from_url);
     const newHost = hostOf(payload.page_url);
     if (prevHost && newHost && prevHost !== newHost) boundary = 'crossing';
   }
@@ -141,24 +207,37 @@ async function appendStep(scoreId, payload, screenshot) {
     ? `pix-${payload.icon}${payload.caption ? ' ' + payload.caption : ''}`
     : (payload.caption || '');
 
+  // Clean ScoreStep — partitura content only.
   const step = {
     id: newId(),
     step_title: '',
     user: '',
     dialogue,
     system: '',
-    note: '',
+    note: ''
+  };
+
+  // TraceSnapshot — capture-derived fields, linked by step.id.
+  const snapshot = {
+    id: newId(),
+    step_id: step.id,
+    screenshot,
+    focus: payload.focus || null,
     captured_at: Date.now(),
     captured_from_url: payload.page_url,
-    screenshot,
-    focus: payload.focus,
-    captured_kind: payload.kind,
+    captured_page_title: payload.page_title || null,
+    captured_kind: payload.kind || null,
+    captured_tab_id: payload.tab_id ?? null,
+    captured_trigger: payload.trigger || 'click',
     boundary
   };
 
   movement.push(step);
+  trace.snapshots.push(snapshot);
   score.updated_at = Date.now();
-  await setScore(scoreId, score);
+
+  await setRawScore(scoreId, score);
+  await setTrace(scoreId, trace);
 
   chrome.runtime
     .sendMessage({

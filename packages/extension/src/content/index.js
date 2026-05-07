@@ -51,7 +51,8 @@ window.addEventListener('click', (e) => {
       icon: pixogramForKind(kind),
       caption: captionFor(el, kind),
       focus,
-      page_url: window.location.href
+      page_url: window.location.href,
+      page_title: document.title || ''
     }
   }).catch(() => {});
 }, { capture: true, passive: true });

@@ -55,18 +55,50 @@ function renderHeader() {
 async function loadAllScores() {
   const all = await chrome.storage.local.get(null);
   const scores = [];
+  const tracesById = new Map();
   for (const [k, v] of Object.entries(all)) {
     if (k.startsWith('pix.score:') && v?.scores) {
       // Anything stored in chrome.storage by this extension is a
       // recording — the extension is the only writer. Pre-Slice-0
-      // scores have no state field; default to 'draft' so they
-      // travel correctly to the editor's Grabaciones section.
+      // scores have no state field; default to 'draft'.
       if (v.state !== 'draft' && v.state !== 'final') v.state = 'draft';
       scores.push(v);
+    } else if (k.startsWith('pix.trace:') && v?.snapshots) {
+      tracesById.set(v.score_id, v);
     }
   }
   scores.sort((a, b) => (b.updated_at || 0) - (a.updated_at || 0));
-  return scores;
+  return { scores, tracesById };
+}
+
+// Lookup helper: build a step_id → snapshot map for a given score.
+// Falls back to legacy data on the step itself when no trace exists
+// (transitional state during Slice 1 migration).
+function snapshotsByStepId(score, trace) {
+  const map = new Map();
+  if (trace?.snapshots) {
+    for (const s of trace.snapshots) {
+      if (s.step_id) map.set(s.step_id, s);
+    }
+  }
+  // Legacy fallback: if a step still has embedded screenshot/focus
+  // (pre-migration data), synthesize a pseudo-snapshot so the UI
+  // works while the next read finishes splitting it.
+  for (const movement of (score.scores || [])) {
+    for (const step of (movement || [])) {
+      if (!map.has(step.id) && step.screenshot) {
+        map.set(step.id, {
+          screenshot: step.screenshot,
+          focus: step.focus,
+          captured_from_url: step.captured_from_url,
+          captured_at: step.captured_at,
+          captured_kind: step.captured_kind,
+          boundary: step.boundary || 'none'
+        });
+      }
+    }
+  }
+  return map;
 }
 
 function buildEditorUrl(score) {
@@ -75,7 +107,7 @@ function buildEditorUrl(score) {
   return `${base}/#!/edit/${b64}`;
 }
 
-function renderScores(scores) {
+function renderScores(scores, tracesById) {
   if (!scores.length) {
     scoresList.innerHTML = '';
     emptyEl.hidden = false;
@@ -85,6 +117,8 @@ function renderScores(scores) {
 
   scoresList.innerHTML = scores.map(score => {
     const steps = score.scores?.[0] || [];
+    const trace = tracesById.get(score.id);
+    const stepSnapshot = snapshotsByStepId(score, trace);
     const recording = lastState?.active_score_id === score.id;
     const isExpanded = expanded.has(score.id);
     const idShort = score.id.slice(0, 8);
@@ -106,7 +140,7 @@ function renderScores(scores) {
         <div class="score-body">
           ${steps.length === 0
             ? '<div class="empty" style="padding:24px;">No steps yet — click anything on a recorded tab.</div>'
-            : `<div class="steps-grid">${steps.map((step, i) => stepCardHtml(step, i)).join('')}</div>`}
+            : `<div class="steps-grid">${steps.map((step, i) => stepCardHtml(step, stepSnapshot.get(step.id), i)).join('')}</div>`}
         </div>
       </div>
     `;
@@ -117,9 +151,9 @@ function renderScores(scores) {
     const id = card.dataset.scoreId;
     const score = scores.find(s => s.id === id);
     if (!score) return;
+    const trace = tracesById.get(score.id);
+    const stepSnapshot = snapshotsByStepId(score, trace);
 
-    // Toggle expand/collapse on header click — but only if the click
-    // wasn't on an action button.
     card.querySelector('.score-header').addEventListener('click', (e) => {
       if (e.target.closest('[data-stop-toggle]')) return;
       if (expanded.has(id)) expanded.delete(id);
@@ -135,31 +169,37 @@ function renderScores(scores) {
     card.querySelector('[data-action="delete"]').addEventListener('click', async (e) => {
       e.stopPropagation();
       if (!confirm(`Delete score ${id.slice(0, 8)}? This cannot be undone.`)) return;
-      await chrome.storage.local.remove(`pix.score:${id}`);
+      await chrome.storage.local.remove([`pix.score:${id}`, `pix.trace:${id}`]);
       expanded.delete(id);
       await refreshAll();
     });
 
-    // Each step card → open screenshot in new tab.
+    // Each step card → open the matching snapshot's screenshot.
     card.querySelectorAll('.step-card').forEach((stepCard, i) => {
       stepCard.addEventListener('click', () => {
         const step = score.scores?.[0]?.[i];
-        if (step?.screenshot) chrome.tabs.create({ url: step.screenshot });
+        const snap = step ? stepSnapshot.get(step.id) : null;
+        const screenshot = snap?.screenshot || step?.screenshot;
+        if (screenshot) chrome.tabs.create({ url: screenshot });
       });
     });
   });
 }
 
-function stepCardHtml(step, index) {
-  const cls = step.boundary === 'crossing' ? 'step-card crossing' : 'step-card';
-  const thumb = step.screenshot
-    ? `<img class="thumb" src="${escHtml(step.screenshot)}" alt="">`
+function stepCardHtml(step, snapshot, index) {
+  // snapshot may be undefined for manually-added steps or pre-migration
+  // entries that haven't been split yet.
+  const data = snapshot || {};
+  const boundary = data.boundary || 'none';
+  const cls = boundary === 'crossing' ? 'step-card crossing' : 'step-card';
+  const thumb = data.screenshot
+    ? `<img class="thumb" src="${escHtml(data.screenshot)}" alt="">`
     : '<div class="thumb"></div>';
-  const host = hostOf(step.captured_from_url) || '';
-  const crossing = step.boundary === 'crossing'
+  const host = hostOf(data.captured_from_url) || '';
+  const crossing = boundary === 'crossing'
     ? '<span class="crossing-tag">↪ crossing</span>'
     : '';
-  const captured = step.captured_at ? new Date(step.captured_at).toLocaleTimeString() : '';
+  const captured = data.captured_at ? new Date(data.captured_at).toLocaleTimeString() : '';
   return `
     <div class="${cls}">
       ${thumb}
@@ -187,8 +227,8 @@ async function refreshAll() {
     }
     renderHeader();
 
-    const scores = await loadAllScores();
-    renderScores(scores);
+    const { scores, tracesById } = await loadAllScores();
+    renderScores(scores, tracesById);
   } catch (err) {
     console.error('Manager refresh failed', err);
     statusTxt.textContent = 'Error talking to background';
@@ -229,7 +269,7 @@ settingsSave.addEventListener('click', async () => {
 clearAllBtn.addEventListener('click', async () => {
   if (!confirm('Delete every captured score from storage?')) return;
   const all = await chrome.storage.local.get(null);
-  const keys = Object.keys(all).filter(k => k.startsWith('pix.score:'));
+  const keys = Object.keys(all).filter(k => k.startsWith('pix.score:') || k.startsWith('pix.trace:'));
   if (keys.length) await chrome.storage.local.remove(keys);
   expanded.clear();
   await refreshAll();
