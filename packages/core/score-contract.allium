@@ -1,0 +1,745 @@
+-- allium: 3
+-- score-contract.allium
+--
+-- The shared data contract of the PiX monorepo: what a score *is*.
+--
+-- @pix/editor and @pix/extension agree on this contract down to field
+-- names, pixogram identifiers and library layout. This spec is the
+-- canonical definition of that agreement — the Score / Movement /
+-- ScoreStep shape, the cell encoding, stable identity, the split
+-- between a partitura and its ScreenshotTrace, normalisation of
+-- legacy data, and the local score library.
+--
+-- Consumers:
+--   - packages/editor          authors and renders scores
+--   - packages/extension       records scores from live browsing
+--     (packages/extension/interaction-capture.allium)
+--   - packages/editor/walkthrough-viewer.allium  replays a trace
+--
+-- ----------------------------------------------------------------------------
+-- Scope
+-- ----------------------------------------------------------------------------
+-- Included:
+--   - Score structure: a Score holds ordered Movements, each holding
+--     ordered ScoreSteps. A step is one column of the grid; a layer is
+--     one row. Layout (pix | sb) decides which layers are visible.
+--   - Cell encoding: a cell is one string that optionally opens with a
+--     pixogram reference. Both packages parse and emit this same form,
+--     so it is contract, not presentation.
+--   - Stable identity: score, movement and step ids, and the guarantee
+--     that they survive a round trip out of the editor and back.
+--   - Score state (draft | final) and who sets it.
+--   - The partitura / trace split: a Score carries no capture-derived
+--     data. Screenshots and focus regions live in a ScreenshotTrace
+--     keyed by score, 1:1, append-only.
+--   - Normalisation: how a score of unknown vintage is brought up to
+--     the current contract on read (defaults, renames, id backfill,
+--     shape coercion) and how embedded capture data is extracted into
+--     a trace.
+--   - The local score library: save, read, list, duplicate, delete,
+--     capacity. Persistence is local to the browser profile.
+--   - Serialisation forms for hand-off: an embed form (legacy, minimal,
+--     size-stable) and a round-trip form (carries identity and state).
+--   - The pixogram catalogue: a closed set of names, with per-layer
+--     suggestions.
+--
+-- Excluded:
+--   - Storage backend. The contract commits to "local to the browser
+--     profile, persistent across sessions, never on the network".
+--     IndexedDB, its store names and version numbers are implementation.
+--   - Id generation scheme. The contract requires stable and unique;
+--     the alphabet and length are implementation.
+--   - Transport encoding of the serialisation forms (base64, URL
+--     fragments). The contract fixes *what* each form carries, not
+--     how it is packed for the wire.
+--   - Pixogram artwork: the SVG files, their loading, caching and
+--     preloading. The contract owns the catalogue of names, not the
+--     drawings or their delivery.
+--   - Everything the recorder does. How a step comes to exist from a
+--     click is specified in interaction-capture.allium; this spec only
+--     says what the resulting step must look like.
+--   - Everything the editor does. Rendering, editing affordances,
+--     export to PNG/SVG/PDF, i18n and routing are the editor's.
+--   - The example scores bundled with the editor. They are content,
+--     not contract.
+--
+-- ----------------------------------------------------------------------------
+-- Known overlap (flagged, not resolved here)
+-- ----------------------------------------------------------------------------
+-- interaction-capture.allium currently *defines* Score, Movement,
+-- ScoreStep, ScreenshotTrace and TraceSnapshot as owned entities, and
+-- walkthrough-viewer.allium restates them as external. This spec is
+-- intended to be the single owner. Until the extension spec is
+-- reworked to reference these as external, the two definitions must be
+-- kept in step by hand. Two live divergences to settle:
+--
+--   1. Cell shape. Both other specs model `value Cell { icon, text }`
+--      and per-layer fields named user_cell, dialogue_cell, and so on.
+--      The implementation stores one flat string per layer, in fields
+--      named for the layer itself (user, dialogue, system, environment,
+--      supporting_processes), with the pixogram encoded in the string.
+--      This spec follows the implementation, because the flat string
+--      under those field names is what actually crosses the package
+--      boundary and lands in published embeds.
+--
+--   2. Layer naming. The supporting-processes layer is called
+--      `supporting_processes` as a step field but `supporting` as a
+--      layer key in the pixogram suggestions and in the editor's
+--      column list. One name should win. See the open question.
+
+-- ============================================================
+-- External Entities
+-- ============================================================
+
+-- Where scores live. Local to one browser profile, survives restart,
+-- never leaves the device. Named so rules can speak about capacity and
+-- persistence without naming a backend.
+external entity ScoreLibrary {
+    scores: List<Score> with library = this
+    used_fraction: Decimal?                 -- 0..1 of the profile's quota, when
+                                            -- the browser will report it
+    is_full: scores.count >= config.score_library_capacity
+}
+
+-- A score as it sits in storage, of unknown vintage. Fields are
+-- optional because a score written by an older version may be missing
+-- any of them, and the whole point of normalisation is to accept that.
+-- Modelled as external because the contract does not own what past
+-- versions wrote.
+external entity StoredScore {
+    id: String?
+    title: String?
+    description: String?
+    layout: String?                         -- "pix" | "sb" | the retired "ip"
+    state: String?                          -- "draft" | "final" | absent
+    carries_inline_capture_data: Boolean    -- true for scores written before
+                                            -- the partitura / trace split
+}
+
+-- A pixogram from the PiX vocabulary: monochrome icons identified by
+-- name. The catalogue is closed — a name outside it is not a pixogram,
+-- and a cell referencing one is read as plain text.
+external entity Pixogram {
+    name: String
+    suggested_layers: Set<ScoreLayer>       -- narrows what the icon picker
+                                            -- offers per layer; never restricts
+                                            -- what a cell may reference
+}
+
+-- ============================================================
+-- Enumerations
+-- ============================================================
+
+-- The five layers a score can have. Which are visible depends on
+-- layout.
+enum ScoreLayer {
+    environment                             -- sb only
+    | user
+    | dialogue
+    | system
+    | supporting_processes                  -- sb only
+}
+
+enum ScoreLayout {
+    pix                                     -- Interaction Process: 3 layers
+    | sb                                    -- Service Blueprint: 5 layers
+}
+
+enum ScoreState {
+    draft                                   -- recorded, awaits human refinement
+    | final                                 -- authored, or a recording promoted by hand
+}
+
+-- What a serialised score carries when handed to another surface.
+-- Neither form ever carries capture-derived data.
+enum SerialisationForm {
+    embed                                   -- legacy shape: content only, no identity.
+                                            -- Consumed by the wiki.ead.pucv.cl embeds,
+                                            -- whose size and shape must stay stable.
+    | round_trip                            -- content plus identity and state, so
+                                            -- re-opening updates the existing score
+                                            -- instead of duplicating it
+}
+
+-- ============================================================
+-- Value Types
+-- ============================================================
+
+-- One (layer x step) cell. Stored and exchanged as a single string
+-- that may open with a pixogram reference followed by free text. The
+-- pixogram and the text are derived from that string, not stored
+-- beside it — see @invariant CellEncoding in the PiXScoreCodec
+-- contract.
+value Cell {
+    raw: String                             -- "" for an empty cell
+
+    icon: parse_pixogram_name(raw)          -- catalogue name, or null when the
+                                            -- leading token is not one
+    text: parse_cell_text(raw)              -- the remainder, trimmed
+    is_empty: raw = ""
+}
+
+-- The highlighted region drawn over a screenshot. Percentages, not
+-- pixels, so the highlight survives rescaling of the image.
+value FocusRegion {
+    x_percent: Decimal                      -- 0..100, centre x
+    y_percent: Decimal                      -- 0..100, centre y
+    radius_percent: Decimal                 -- 0..100, of half the longest edge
+}
+
+-- ============================================================
+-- Entities
+-- ============================================================
+
+entity Score {
+    id: String
+    library: ScoreLibrary
+    title: String
+    description: String
+    layout: ScoreLayout
+    state: ScoreState
+    movements: List<Movement> with score = this
+    trace: ScreenshotTrace?                 -- absent for authored scores
+    created_at: Timestamp
+    updated_at: Timestamp
+
+    visible_layers:
+        if layout = pix:
+            { user, dialogue, system }
+        else:
+            { environment, user, dialogue, system, supporting_processes }
+
+    is_recording: exists trace
+    is_editable: true                       -- every score is editable, recorded
+                                            -- or not; only the trace is frozen
+
+    transitions state {
+        draft -> final                      -- MarkScoreAsFinal
+        final -> draft                      -- ReopenScoreAsDraft
+    }
+}
+
+-- An ordered run of steps. A score always has at least one movement;
+-- a movement may be empty.
+entity Movement {
+    id: String
+    score: Score
+    position: Integer                       -- 0-based within score.movements
+    steps: List<ScoreStep> with movement = this
+
+    is_empty: steps.count = 0
+}
+
+-- One column of the grid: the partitura content of a single moment.
+-- Carries no capture-derived data — that lives in the matching
+-- TraceSnapshot, joined by step id.
+--
+-- The five cell fields are named for their layers, matching the
+-- serialised field names exactly. A step carries all five regardless
+-- of layout: layout decides what is rendered and serialised, not what
+-- is stored, so switching sb -> pix -> sb is lossless.
+entity ScoreStep {
+    id: String
+    movement: Movement
+    position: Integer                       -- 0-based within movement.steps
+    step_title: String                      -- non-empty marks a section start
+    note: String                            -- caption below the grid
+
+    environment: Cell
+    user: Cell
+    dialogue: Cell
+    system: Cell
+    supporting_processes: Cell
+
+    starts_section: step_title != ""
+    snapshot: TraceSnapshot?                -- the evidence behind this step, when
+                                            -- the step was recorded rather than typed
+}
+
+-- The empirical record behind a recorded score. Authored scores have
+-- none; a recording has exactly one.
+entity ScreenshotTrace {
+    id: String
+    score: Score
+    snapshots: List<TraceSnapshot> with trace = this
+    created_at: Timestamp                   -- earliest captured_at among snapshots,
+                                            -- or the moment of extraction when the
+                                            -- snapshots carry no timestamp
+
+    is_empty: snapshots.count = 0
+}
+
+-- One captured interaction. These fields are exactly the set that
+-- historically lived inline on ScoreStep and were moved out; the
+-- contract names them so extraction can be specified.
+--
+-- Interpreting these values is the recorder's and the viewer's
+-- business, not the contract's — see interaction-capture.allium.
+entity TraceSnapshot {
+    id: String
+    trace: ScreenshotTrace
+    step: ScoreStep
+
+    screenshot: String?                     -- the captured viewport
+    focus: FocusRegion?
+    captured_at: Timestamp?
+    captured_from_url: String?
+    captured_page_title: String?
+    captured_kind: String?
+    captured_tab_id: String?
+    captured_trigger: String?
+    boundary: String
+}
+
+-- ============================================================
+-- Config
+-- ============================================================
+
+config {
+    -- A library holds at most this many scores. Shared by both
+    -- packages so the extension cannot record past what the editor
+    -- will show.
+    score_library_capacity: Integer = 20
+
+    -- Size of the pixogram catalogue. Named so a mismatch between the
+    -- catalogue and the shipped artwork is a contract violation rather
+    -- than a silently missing icon.
+    pixogram_catalogue_size: Integer = 160
+
+    -- Suffix appended to the title of a duplicated score.
+    duplicate_title_suffix: String = " (copy)"
+
+    -- Layout assumed when a score arrives without one.
+    default_layout: ScoreLayout = pix
+
+    -- State assumed for a score that predates the state field. Such
+    -- scores are authored by definition — the extension has always
+    -- written draft explicitly.
+    legacy_default_state: ScoreState = final
+}
+
+-- ============================================================
+-- Defaults
+-- ============================================================
+
+default Cell empty_cell = { raw: "" }
+
+-- ============================================================
+-- Rules — Reading and normalisation
+-- ============================================================
+
+-- Every read goes through normalisation. A caller never sees a score
+-- of an older vintage, and never asks whether one needs migrating.
+rule ReadScore {
+    when: ReadScore(stored)
+
+    ensures: ScoreRead(stored: stored)
+}
+
+rule ListScores {
+    when: ListScores(library)
+
+    ensures:
+        for stored in stored_scores(library):
+            ScoreRead(stored: stored)
+
+    -- Ordering is a surface concern, guaranteed in CoreLibraryApi:
+    -- most recently updated first.
+}
+
+-- Bring a stored score up to the current contract. In memory only —
+-- the result reaches storage when the caller saves.
+--
+-- Total and idempotent: it accepts any stored score, including one
+-- already current, and normalising twice changes nothing.
+rule NormaliseScore {
+    when: ScoreRead(stored)
+
+    -- Field-level normalisation, in the order it matters:
+    --   - layout: absent becomes config.default_layout; the retired
+    --     name "ip" reads as pix; case is not significant.
+    --   - title, description: absent become "".
+    --   - shape: a bare list of steps reads as a single movement.
+    --   - step fields: absent cells become empty_cell; the retired
+    --     field name "enviroment" reads as environment; step_title
+    --     and note absent become "".
+    --   - state: anything other than draft or final becomes
+    --     config.legacy_default_state.
+    -- resolve_* are the black box functions that carry this out.
+    ensures: Score.created(
+        id: resolve_id(stored.id),
+        title: resolve_text(stored.title),
+        description: resolve_text(stored.description),
+        layout: resolve_layout(stored.layout),
+        state: resolve_state(stored.state),
+        movements: resolve_movements(stored)
+    )
+}
+
+-- Capture-derived data once lived inline on each step. Reading a score
+-- of that vintage splits it: the step keeps its partitura content, the
+-- capture fields become snapshots of a trace.
+rule ExtractTrace {
+    when: ScoreRead(stored)
+
+    requires: stored.carries_inline_capture_data
+
+    ensures: ScreenshotTrace.created(
+        score: score_of(stored),
+        snapshots: extract_snapshots(stored),
+        created_at: earliest_capture_at(stored)
+    )
+    ensures: TraceExtracted(stored: stored)
+}
+
+-- Persisting the extracted trace is a repair, not part of the read's
+-- contract. Split as its own rule so a failed repair cannot fail the
+-- read: the next read simply retries.
+rule PersistExtractedTrace {
+    when: TraceExtracted(stored)
+
+    ensures: SaveScore(score: score_of(stored))
+}
+
+-- ============================================================
+-- Rules — Library
+-- ============================================================
+
+rule SaveScore {
+    when: SaveScore(score)
+
+    -- Capacity bounds new scores only. An existing score can always be
+    -- saved again, or a full library would be uneditable.
+    requires: not score.library.is_full or score in score.library.scores
+
+    ensures: score.updated_at = now
+    ensures: score.library.scores.add(score)
+}
+
+rule CreateScore {
+    when: CreateScore(library, layout, title?)
+
+    requires: not library.is_full
+
+    ensures: Score.created(
+        library: library,
+        title: resolve_text(title),
+        description: "",
+        layout: layout,
+        state: final,
+        trace: null,
+        created_at: now,
+        updated_at: now
+    )
+
+    -- A score created here is authored, so it starts final. Recordings
+    -- are created by the extension and start draft; see
+    -- interaction-capture.allium.
+}
+
+rule DeleteScore {
+    when: DeleteScore(score)
+
+    ensures: not exists score.trace
+    ensures: not exists score
+}
+
+rule DuplicateScore {
+    when: DuplicateScore(source)
+
+    requires: not source.library.is_full
+
+    ensures: Score.created(
+        library: source.library,
+        title: source.title + config.duplicate_title_suffix,
+        description: source.description,
+        layout: source.layout,
+        state: source.state,
+        movements: copy_movements_with_fresh_ids(source),
+        trace: null,
+        created_at: now,
+        updated_at: now
+    )
+}
+
+-- ============================================================
+-- Rules — State
+-- ============================================================
+
+rule MarkScoreAsFinal {
+    when: MarkScoreAsFinal(score)
+
+    requires: score.state = draft
+
+    ensures: score.state = final
+}
+
+rule ReopenScoreAsDraft {
+    when: ReopenScoreAsDraft(score)
+
+    requires: score.state = final
+
+    ensures: score.state = draft
+}
+
+-- ============================================================
+-- Rules — Serialisation
+-- ============================================================
+
+rule SerialiseScore {
+    when: SerialiseScore(score, form)
+
+    -- A serialised step carries step_title, note and one entry per
+    -- visible layer, and nothing else. Neither form carries identity
+    -- for embed, nor capture data for either.
+    ensures: SerialisedScore(
+        score: score,
+        form: form,
+        payload: serialise(score, form)
+    )
+}
+
+rule DeserialiseScore {
+    when: DeserialiseScore(library, document)
+
+    ensures: ScoreRead(stored: as_stored_score(document))
+
+    -- A document carrying a known score id updates that score in
+    -- place; one without enters the library as new. That follows from
+    -- resolve_id preserving the id it is given, and SaveScore
+    -- replacing by id.
+}
+
+-- ============================================================
+-- Invariants
+-- ============================================================
+
+invariant StableIdsAreUnique {
+    for a in Scores:
+        for b in Scores:
+            a != b implies a.id != b.id
+}
+
+invariant MovementIdsAreUnique {
+    for a in Movements:
+        for b in Movements:
+            a != b implies a.id != b.id
+}
+
+invariant StepIdsAreUnique {
+    for a in ScoreSteps:
+        for b in ScoreSteps:
+            a != b implies a.id != b.id
+}
+
+invariant TraceCardinality {
+    -- At most one trace per score.
+    for a in ScreenshotTraces:
+        for b in ScreenshotTraces:
+            a != b implies a.score != b.score
+}
+
+invariant SnapshotMatchesStep {
+    -- Every snapshot points at a step of its own trace's score. The
+    -- join is by step id, which is why step ids must survive
+    -- serialisation.
+    for snapshot in TraceSnapshots:
+        snapshot.step.movement.score = snapshot.trace.score
+}
+
+invariant SnapshotAgreesWithStep {
+    -- The two directions of the step/snapshot join agree.
+    for step in ScoreSteps:
+        exists step.snapshot implies step.snapshot.step = step
+}
+
+invariant LibraryCapacity {
+    for library in ScoreLibraries:
+        library.scores.count <= config.score_library_capacity
+}
+
+invariant TraceBelongsToLibraryScore {
+    -- A trace never outlives its score, so every trace resolves to a
+    -- score still in a library. Deleting a score deletes its trace;
+    -- without this an orphan trace occupies the profile's storage
+    -- quota indefinitely, and screenshots dominate that quota.
+    for trace in ScreenshotTraces:
+        trace.score in trace.score.library.scores
+}
+
+invariant PositionsAreContiguous {
+    -- Movement positions run 0..n-1 within their score, and step
+    -- positions run 0..n-1 within their movement. No gaps, no
+    -- duplicates. Deleting a step renumbers those after it.
+}
+
+invariant NoCaptureDataOnSteps {
+    -- A ScoreStep never carries screenshot, focus, captured_* or
+    -- boundary. That data belongs to TraceSnapshot. The split exists
+    -- so a partitura can be edited, serialised and embedded without
+    -- ever touching — or having to carry — the evidence behind it.
+    --
+    -- Legacy scores violate this by construction; ExtractTrace repairs
+    -- them on read.
+}
+
+invariant TraceIsAppendOnly {
+    -- Once written, a snapshot's capture-derived fields are never
+    -- modified. A trace grows during recording and is fixed
+    -- afterwards. Editing the partitura never edits the evidence, so
+    -- what the score claims and what was observed can always be
+    -- compared. See CaptureDerivedFieldsImmutable in
+    -- interaction-capture.allium.
+}
+
+invariant IdentityIsPreserved {
+    -- An id already present is never replaced. Minting only fills
+    -- gaps, on read and on duplication. Without this a score would
+    -- lose its library identity on every read and duplicate itself on
+    -- every save, and its trace would be orphaned because the join is
+    -- by step id.
+}
+
+invariant LayersNotDiscarded {
+    -- Normalising or rendering a score under the pix layout does not
+    -- delete the environment and supporting_processes content of its
+    -- steps. Layout decides what is visible and what is serialised,
+    -- not what is stored, so sb -> pix -> sb round-trips losslessly
+    -- within the library.
+    --
+    -- Note this does not hold *through* serialisation: the serialised
+    -- forms carry only the visible layers, so an sb score serialised
+    -- as pix and re-imported has genuinely lost two layers.
+}
+
+invariant PixogramCatalogueIsClosed {
+    -- The catalogue is a fixed set of config.pixogram_catalogue_size
+    -- names, shared by both packages. Per-layer suggestions narrow the
+    -- set offered when picking an icon for a given layer; they never
+    -- restrict what a cell may reference. Any pixogram is valid in any
+    -- layer.
+}
+
+invariant LocalOnlyPersistence {
+    -- The library lives in the browser profile. It is not synced, not
+    -- backed up, and never sent anywhere. A score leaves the device
+    -- only when the user serialises it deliberately.
+}
+
+-- ============================================================
+-- Contracts
+-- ============================================================
+
+-- The encoding both packages must implement identically. This is the
+-- one place where presentation and contract genuinely coincide,
+-- because the encoded string is what crosses the package boundary.
+contract PiXScoreCodec {
+    parse_pixogram_name: (raw: String) -> String
+    parse_cell_text: (raw: String) -> String
+    serialise: (score: Score, form: SerialisationForm) -> String
+    as_stored_score: (document: String) -> StoredScore
+
+    @invariant CellEncoding
+        -- A cell is one string. If its leading whitespace-delimited
+        -- token is a pixogram reference — a catalogue name under a
+        -- reserved prefix — the cell renders that pixogram followed by
+        -- the rest of the string as text. Otherwise the whole string
+        -- is text.
+        --
+        -- An unknown name is not an error and not a missing-icon
+        -- placeholder: the cell reads as plain text, so a score
+        -- authored against a newer catalogue degrades to something
+        -- readable rather than something broken.
+
+    @invariant NoScreenshotsOnTheWire
+        -- Neither serialisation form carries screenshots. A single
+        -- captured viewport is 100-300KB; a handful would exceed what
+        -- a URL can carry. Traces move between surfaces by staying in
+        -- the library, not by being serialised.
+
+    @invariant EmbedShapeIsFrozen
+        -- The embed form is consumed by live wiki.ead.pucv.cl embeds.
+        -- Adding a field to it changes the size and shape of every
+        -- published embed URL. New fields go in the round-trip form.
+
+    @invariant StatePreservedOnRoundTrip
+        -- A recording handed to the editor arrives still marked draft,
+        -- so it lands among the recordings rather than among the
+        -- finished scores. Dropping state here silently misfiles every
+        -- recording.
+
+    @invariant RoundTripIsLossless
+        -- A score serialised in round_trip form and deserialised again
+        -- is the same score: same identity, same content, same state,
+        -- updating its library entry rather than duplicating it. Its
+        -- trace stays where it was, still joined by step id, because
+        -- step ids survived the trip.
+
+    @guidance
+        -- The two forms differ only in what identity they carry.
+        -- Implement the embed form as the round-trip form minus
+        -- identity and state, so the two cannot drift in how they
+        -- render cells.
+}
+
+-- ============================================================
+-- Surfaces
+-- ============================================================
+
+surface CoreLibraryApi {
+    facing packages: PiXPackage
+
+    contracts:
+        fulfils PiXScoreCodec
+
+    exposes:
+        ReadScore(stored: StoredScore)
+        ListScores(library: ScoreLibrary)
+        CreateScore(library: ScoreLibrary, layout: ScoreLayout, title: String?)
+        SaveScore(score: Score)
+        DeleteScore(score: Score)
+        DuplicateScore(source: Score)
+        MarkScoreAsFinal(score: Score)
+        ReopenScoreAsDraft(score: Score)
+        SerialiseScore(score: Score, form: SerialisationForm)
+        DeserialiseScore(library: ScoreLibrary, document: String)
+
+    @guarantee MigrationIsInvisible
+        -- A caller never asks whether a score needs normalising. Every
+        -- read returns a score at the current contract. There is no
+        -- migration step to run, no version to check, and no way to
+        -- observe a half-migrated score.
+
+    @guarantee ReadsDoNotFail
+        -- A stored score that cannot be read yields nothing rather
+        -- than an error that takes down the listing. One corrupt score
+        -- must not make a library unopenable.
+
+    @guarantee ListingIsMostRecentFirst
+        -- ListScores returns scores ordered by updated_at, most
+        -- recently touched first, so the library opens on what the
+        -- user was last working on.
+
+    @guarantee CapacityIsVisible
+        -- Where the browser reports quota usage, the surface exposes
+        -- it, so a user can see a library filling up before a save
+        -- fails.
+}
+
+-- ============================================================
+-- Open Questions
+-- ============================================================
+
+open question "Layer naming: the supporting-processes layer is `supporting_processes` as a step field but `supporting` as a layer key in the pixogram suggestions and the editor's column list. Two names for one layer is exactly the duplication that produces mismatched lookups. Which name wins? `supporting_processes` is the serialised name and the one in published embeds, so changing it is a data migration; `supporting` is the shorter internal key and changing it is a code-only rename. Recommendation: keep `supporting_processes` everywhere and delete the short alias."
+
+open question "Cell shape across specs: this spec models a cell as an encoded string with derived icon and text, matching the implementation. interaction-capture.allium and walkthrough-viewer.allium model `value Cell { icon, text }` with per-layer fields named user_cell, dialogue_cell and so on. Should those specs adopt the encoded-string model, or should the implementation store icon and text apart and encode only at the serialisation boundary? Storing them apart is cleaner but changes the shape of every stored and published score."
+
+open question "Reads that write: ExtractTrace persists the trace it extracts, so listing a library of legacy scores performs writes. This is what makes migration invisible, but it means a read can exhaust the storage quota, and two tabs listing at once will both attempt the repair. Is read-repair the right model, or should extraction be an explicit one-time migration the user triggers?"
+
+open question "Capacity of 20 scores: where does this bound come from? If it protects the storage quota then it belongs on total size, not on count — twenty recordings with screenshots are worth far more than twenty authored scores, and only one of those threatens the quota. If it is a deliberate product limit on library size, say so. Today a user can be blocked from saving a one-step authored score because twenty recordings filled the count."
+
+open question "Trace cardinality of 1: re-recording a score cannot produce a second trace, so a user who re-records overwrites the evidence of the first run. Comparing two runs of the same task is a natural thing to want from a notation system for interaction. Should a score hold several traces, and if so what does the walkthrough viewer do with them?"
+
+open question "Movement identity: movement ids are carried in a list alongside the movements rather than on the movements themselves, so the two can fall out of alignment in length. Normalisation repairs this by minting to match, which silently reassigns identity when they diverge — a movement can acquire another movement's id. Should a movement be a first-class object carrying its own id?"
+
+open question "Layer loss through serialisation: an sb score serialised while the editor is showing the pix layout carries only three layers, so re-importing it loses the environment and supporting_processes content permanently. Should serialisation always carry all five layers regardless of layout, at the cost of larger embeds? The embed shape is frozen, so this may only be fixable in the round-trip form."
