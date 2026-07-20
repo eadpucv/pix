@@ -12,7 +12,12 @@ const ICON_SIZE = 48;
 const PADDING = 16;
 const FONT_SIZE = 11;
 const TITLE_FONT_SIZE = 18;
-const FONT_FAMILY = "Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
+// Named, not embedded. An exported SVG renders in IBM Plex Sans only on
+// machines that have it installed; elsewhere it falls back down the
+// stack. Embedding the woff2 as a data URI would make exports
+// self-contained at a cost of ~100KB per file — see the note in
+// packages/editor/README or ask before doing it.
+const FONT_FAMILY = "'IBM Plex Sans', 'IBM Plex Sans Variable', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
 
 // Layer header pixogram icons (same as PixScore.js)
 const LAYER_PIXOGRAM_ICONS = {

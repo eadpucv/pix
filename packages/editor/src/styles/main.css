@@ -1,5 +1,10 @@
 /* PiX v2 — Global Styles */
 
+/* IBM Plex Sans Variable — 'standard' build carries both axes:
+   weight 100–700 and width 75–100%. The width axis is what makes
+   font-stretch on cell text (see score.css) actually do something. */
+@import '@fontsource-variable/ibm-plex-sans/standard.css';
+
 :root {
   /* Brand colors */
   --pix-black: #2E1948;
@@ -26,8 +31,12 @@
   --pix-hover: #F5F7FA;
 
   /* Typography */
-  --pix-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --pix-font: 'IBM Plex Sans Variable', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --pix-font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+
+  /* Width axis for cell text. IBM Plex Sans Variable supports 75–100%;
+     values outside that range clamp rather than synthesise. */
+  --pix-cell-stretch: 80%;
 
   /* Spacing */
   --pix-gap: 8px;
@@ -42,19 +51,13 @@
   /* Transitions */
   --pix-transition: 150ms ease;
 
+  /* Light only, deliberately. The dark palette that used to live here
+     was never worked through for contrast, so following the OS theme
+     made the interface worse rather than better. `color-scheme: light`
+     also stops the browser from darkening form controls and
+     scrollbars underneath us. Revisit when there is a designed dark
+     palette and a user-facing switch to choose it. */
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --pix-bg: #1A1A2E;
-    --pix-surface: #232340;
-    --pix-border: #3A3A5C;
-    --pix-text: #E4E7EB;
-    --pix-text-muted: #9AA5B4;
-    --pix-hover: #2A2A4A;
-    color-scheme: dark;
-  }
 }
 
 *, *::before, *::after {
@@ -301,12 +304,7 @@ button {
   font-size: 0.75rem;
   flex-shrink: 0;
 }
-@media (prefers-color-scheme: dark) {
-  .pix-alpha-banner {
-    background: rgba(255, 149, 0, 0.12);
-    color: #ffc972;
-  }
-}
+/* (dark-theme override for .pix-alpha-banner removed — light only) */
 
 /* Extension download buttons */
 .pix-extension-downloads {
