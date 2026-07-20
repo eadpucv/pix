@@ -8,10 +8,9 @@ use "../core/score-contract.allium" as core
 -- claims to describe that moment.
 --
 -- It lives in @pix/editor at the route #/walkthrough/<score_id>.
--- Score, Movement, ScoreStep, ScreenshotTrace, RecordingSession,
--- TraceSnapshot and TraceAnnotation are owned by
--- packages/core/score-contract.allium. This spec references them; it
--- does not define them.
+-- Score, Movement, ScoreStep, ScreenshotTrace, TraceSnapshot and
+-- TraceAnnotation are owned by packages/core/score-contract.allium.
+-- This spec references them; it does not define them.
 --
 -- ----------------------------------------------------------------------------
 -- Scope
@@ -29,7 +28,6 @@ use "../core/score-contract.allium" as core
 --   - Step-by-step navigation (next, previous, jump-to-step).
 --   - Editing the cells and the note of the *visible step*, in place.
 --   - Free-form annotations attached to a snapshot.
---   - Comparing two recording sessions of the same score.
 --   - Deep-linkable URL per step: #/walkthrough/<score_id>/<step_id>.
 --   - Hand-off to the editor proper for everything structural.
 --
@@ -46,8 +44,9 @@ use "../core/score-contract.allium" as core
 --     at the step boundary: inside the visible step, edit; outside it,
 --     hand off.
 --   - Capture of new evidence. The viewer never opens a recorder
---     session. A second run is started from the extension, and arrives
---     here as another RecordingSession to compare against.
+--     session. A second run is started from the extension, and appends
+--     a Movement and new snapshots to the same trace; the viewer walks
+--     the trace it is given and does not model recording passes.
 --   - Tutorial PDF generation. The viewer can offer the button; the
 --     format is specified elsewhere.
 --
@@ -83,11 +82,13 @@ external entity Score {
     movements: List<Movement>
     trace: ScreenshotTrace?
 
-    -- Which rows the viewer draws, and therefore which cells it will
-    -- accept an edit for. Layout hides layers; it never discards them
-    -- (LayersAreHiddenNeverDiscarded), so an invisible layer is one the
-    -- viewer must leave alone rather than one it may blank.
-    visible_layers:
+    -- The layers this score has, fixed by its layout, and therefore
+    -- which cells the viewer draws and will accept an edit for. Layout
+    -- is the score's type, not a view filter: a PiX score has three
+    -- layers and no environment cell at all, so a layer the score does
+    -- not have is one the viewer has nothing to draw or edit — not one
+    -- it must leave alone.
+    layers:
         if layout = pix:
             { user, dialogue, system }
         else:
@@ -101,8 +102,10 @@ external entity Movement {
     steps: List<ScoreStep>
 }
 
--- One column of the partitura. The five cell fields are named for
--- their layers, matching the contract exactly; `supporting` is retired.
+-- One column of the partitura. The cell fields are named for their
+-- layers, matching the contract exactly; `supporting` is retired. The
+-- three PiX layers are always present; the two SB-only cells exist only
+-- when the score's layout is sb (CellsMatchScoreType in the contract).
 -- These are the fields the viewer may write.
 external entity ScoreStep {
     id: String
@@ -111,11 +114,11 @@ external entity ScoreStep {
     step_title: String
     note: String
 
-    environment: Cell
     user: Cell
     dialogue: Cell
     system: Cell
-    supporting_processes: Cell
+    environment: Cell?                      -- present iff score.layout = sb
+    supporting_processes: Cell?             -- present iff score.layout = sb
 
     snapshot: TraceSnapshot?                -- absent for a step typed by hand
 }
@@ -124,30 +127,13 @@ external entity ScreenshotTrace {
     id: String
     score: Score
     snapshots: List<TraceSnapshot>
-    sessions: List<RecordingSession>
     created_at: Timestamp
-
-    was_re_recorded: sessions.count > 1
-}
-
--- One sitting at the recorder. Re-recording appends a session, which
--- appends a movement and new snapshots to the same trace. This is what
--- the comparison view compares: two sessions of one score, not two
--- traces.
-external entity RecordingSession {
-    id: String
-    trace: ScreenshotTrace
-    movement: Movement
-    index: Integer
-    started_at: Timestamp
-    ended_at: Timestamp?
 }
 
 -- The evidence. Read here, never written.
 external entity TraceSnapshot {
     id: String
     trace: ScreenshotTrace
-    session: RecordingSession
     step: ScoreStep
     annotations: List<TraceAnnotation>
 
@@ -247,12 +233,10 @@ entity WalkthroughSession {
     current_step: ScoreStep                 -- always a step of score
     layout: ViewerLayout
     active_panel: ViewerPanel               -- meaningful only when layout = tabbed
-    compared_with: RecordingSession?        -- absent unless comparing two runs
 
     -- The step carries its own snapshot; there is no lookup to do.
     current_snapshot: current_step.snapshot
     has_snapshot: exists current_step.snapshot
-    is_comparing: exists compared_with
 
     has_next: current_step != score.movements.last.steps.last
     has_prev: current_step != score.movements.first.steps.first
@@ -279,8 +263,7 @@ rule UserOpensWalkthrough {
             score: score,
             current_step: target_step,
             layout: side_by_side,
-            active_panel: visual,
-            compared_with: null
+            active_panel: visual
         )
 }
 
@@ -346,15 +329,17 @@ rule UserSwitchesLayout {
 -- no title. Structural change stays in the editor, which is what the
 -- hand-off button is for.
 --
--- The layer must be one the current layout draws. Writing to a hidden
--- layer would be editing something the person cannot see, and the
--- reason hidden layers keep their content is that nobody is looking
--- at them.
+-- The layer must be one the score has. A PiX score has three layers and
+-- no environment cell to edit; editing environment or supporting is
+-- meaningful only on an SB score, which is exactly the score that has
+-- those cells. The precondition below reads the score's own layers
+-- rather than a fixed five, so it accepts a layer iff the step carries
+-- a cell for it.
 
 rule UserEditsCell {
     when: UserEditsCell(session, layer, raw)
 
-    requires: layer in session.score.visible_layers
+    requires: layer in session.score.layers
 
     let step = session.current_step
 
@@ -399,33 +384,6 @@ rule PersistPartituraEdit {
 }
 
 -- ============================================================
--- Rules — Comparing two runs
--- ============================================================
-
--- Re-recording a score appends a RecordingSession, which appends a
--- Movement and new snapshots to the same trace. So "compare two runs"
--- means comparing two sessions of one score. There is no second trace
--- and no trace selector; there is a session selector.
-rule UserComparesSessions {
-    when: UserComparesSessions(session, other_recording)
-
-    requires: exists session.score.trace
-    requires: session.score.trace.was_re_recorded
-    requires: other_recording.trace = session.score.trace
-    requires: other_recording != recording_session_of(session.current_step)
-
-    ensures: session.compared_with = other_recording
-}
-
-rule UserExitsComparison {
-    when: UserExitsComparison(session)
-
-    requires: session.is_comparing
-
-    ensures: session.compared_with = null
-}
-
--- ============================================================
 -- Rules — Hand-off and exit
 -- ============================================================
 
@@ -458,20 +416,10 @@ invariant CurrentStepBelongsToScore {
         s.current_step.movement.score = s.score
 }
 
-invariant ComparedSessionBelongsToSameTrace {
-    -- A comparison is always between two sittings at the same score.
-    -- Comparing against another score's session would put two
-    -- unrelated tasks side by side and invite the reading that one is
-    -- a variant of the other.
-    for s in WalkthroughSessions:
-        exists s.compared_with implies s.compared_with.trace.score = s.score
-}
-
 invariant TraceIsUntouched {
-    -- No rule in this spec writes to ScreenshotTrace, TraceSnapshot or
-    -- RecordingSession. Not the screenshot, not the focus region, not
-    -- the captured_* metadata, not the boundary marker, not the
-    -- session boundaries.
+    -- No rule in this spec writes to ScreenshotTrace or TraceSnapshot.
+    -- Not the screenshot, not the focus region, not the captured_*
+    -- metadata, not the boundary marker.
     --
     -- This is the invariant that makes the editing above safe to have.
     -- The partitura is what the score claims; the trace is what was
@@ -528,7 +476,6 @@ surface WalkthroughSurface {
         UserSwitchesLayout(session: WalkthroughSession, new_layout: ViewerLayout)
         UserEditsCell(session: WalkthroughSession, layer: ScoreLayer, raw: String)
         UserEditsStepNote(session: WalkthroughSession, text: String)
-        UserComparesSessions(session: WalkthroughSession, other_recording: RecordingSession)
 
         -- Annotation operations belong to the core library
         -- (CoreLibraryApi in score-contract.allium). They are listed
@@ -538,7 +485,6 @@ surface WalkthroughSurface {
         EditAnnotation(annotation: TraceAnnotation, text: String)
         DeleteAnnotation(annotation: TraceAnnotation)
 
-        UserExitsComparison(session: WalkthroughSession)
         UserOpensScoreEditor(session: WalkthroughSession)
         UserClosesWalkthrough(session: WalkthroughSession)
 
@@ -565,8 +511,8 @@ surface WalkthroughSurface {
 
     @guarantee EvidenceIsNeverMutated
         -- No affordance in this viewer changes a screenshot, a focus
-        -- region, captured metadata, a boundary marker or a session.
-        -- The visual panel has no edit control of any kind, including
+        -- region, captured metadata or a boundary marker. The visual
+        -- panel has no edit control of any kind, including
         -- no re-crop of the focus region: the region marks what was
         -- actually targeted, and redrawing it would make the evidence
         -- a matter of opinion.
@@ -603,18 +549,6 @@ surface WalkthroughSurface {
         -- Skipping would hide exactly the steps whose text nobody has
         -- checked against anything.
 
-    @guarantee ComparisonIsAcrossSessionsOfOneScore
-        -- When a score's trace carries more than one recording
-        -- session, the viewer offers the other sessions for
-        -- comparison and shows them alongside the current one. There
-        -- is no trace selector, because a score has one trace: a
-        -- second run appends a session and a movement to it.
-        --
-        -- What is *paired* within that comparison is not settled; see
-        -- the open question below. Until it is, the viewer shows the
-        -- two sessions' steps in their own order and pairs nothing
-        -- automatically.
-
     @guarantee DeepLinkable
         -- #/walkthrough/<score_id>/<step_id> opens at the named step.
         -- #/walkthrough/<score_id> opens at the first. Reload
@@ -646,8 +580,6 @@ surface WalkthroughSurface {
 -- ============================================================
 -- Open Questions
 -- ============================================================
-
-open question "Pairing within a session comparison: comparing two runs means comparing two movements of one score, and their steps are not aligned. The second run may take a different path, or the same path in a different number of steps. Positional pairing (step 1 against step 1) is trivial to build and wrong the moment the paths diverge. Matching on captured_from_url and captured_kind is the useful thing and needs a rule for what counts as the same moment, plus a way to render steps that pair with nothing. This is unresolved; the surface currently promises only that both sessions are shown, not what lines up with what. Note this is the same question as the one left open in score-contract.allium, and it should be answered once, there."
 
 open question "Does refining a recording here promote it? A recorded score arrives draft, and score-contract.allium says a recording is promoted to final by hand. This viewer is now where the refinement happens — filling the user layer against the evidence is exactly the work that makes a recording finished. So: does the viewer offer MarkScoreAsFinal once every visible step has a non-empty user cell, does it leave promotion entirely to the editor, or does it say nothing and let the score stay draft forever because nobody remembers where the button is? Editing was added here without deciding this, and the draft/final distinction is what the library sorts on."
 

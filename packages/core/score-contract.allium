@@ -67,7 +67,7 @@
 -- Ownership
 -- ----------------------------------------------------------------------------
 -- This spec is the single owner of Score, Movement, ScoreStep,
--- ScreenshotTrace, RecordingSession, TraceSnapshot and TraceAnnotation.
+-- ScreenshotTrace, TraceSnapshot and TraceAnnotation.
 -- interaction-capture.allium and walkthrough-viewer.allium reference
 -- them; they do not define them.
 --
@@ -139,8 +139,11 @@ external entity Pixogram {
 -- Enumerations
 -- ============================================================
 
--- The five layers a score can have. Which are visible depends on
--- layout.
+-- The layers a score can have. Which layers a score has is fixed by
+-- its layout: a PiX score has three, an SB score has five. A layer is
+-- not a view that can be toggled on and off — it is part of what kind
+-- of score this is. See ScoreStep, where the two SB-only layers are
+-- simply absent on a PiX step.
 enum ScoreLayer {
     environment                             -- sb only
     | user
@@ -212,7 +215,10 @@ entity Score {
     created_at: Timestamp
     updated_at: Timestamp
 
-    visible_layers:
+    -- The layers this score has, fixed by its layout. Not a view
+    -- filter — a PiX score does not have an environment layer at all,
+    -- so its steps carry no environment cell.
+    layers:
         if layout = pix:
             { user, dialogue, system }
         else:
@@ -243,10 +249,13 @@ entity Movement {
 -- Carries no capture-derived data — that lives in the matching
 -- TraceSnapshot, joined by step id.
 --
--- The five cell fields are named for their layers, matching the
--- serialised field names exactly. A step carries all five regardless
--- of layout: layout decides what is rendered and serialised, not what
--- is stored, so switching sb -> pix -> sb is lossless.
+-- A step carries a cell for each layer its score has, and no others.
+-- The three PiX layers are always present. The two SB-only layers are
+-- present exactly when the score's layout is sb — see @invariant
+-- CellsMatchScoreType. They are not empty placeholders on a PiX step;
+-- they are absent, because a PiX score has no such layer to fill.
+-- Modelling them as always-present would carry two dead cells on every
+-- PiX score, which is the common case.
 entity ScoreStep {
     id: String
     movement: Movement
@@ -254,11 +263,11 @@ entity ScoreStep {
     step_title: String                      -- non-empty marks a section start
     note: String                            -- caption below the grid
 
-    environment: Cell
     user: Cell
     dialogue: Cell
     system: Cell
-    supporting_processes: Cell
+    environment: Cell?                      -- present iff score.layout = sb
+    supporting_processes: Cell?             -- present iff score.layout = sb
 
     starts_section: step_title != ""
     snapshot: TraceSnapshot?                -- the evidence behind this step, when
@@ -266,39 +275,24 @@ entity ScoreStep {
 }
 
 -- The empirical record behind a recorded score. Authored scores have
--- none; a recorded score has exactly one, which grows across recording
--- sessions rather than being replaced by them.
+-- none; a recorded score has exactly one.
+--
+-- The trace grows by appending: re-recording a score adds a Movement
+-- to the partitura and new snapshots to this same trace, joined to the
+-- new steps by step id. Nothing already captured is rewritten (see
+-- @invariant TraceIsAppendOnly). There is no separate "session"
+-- entity — a Movement already groups and orders the steps of one
+-- recording pass, and snapshot.step.movement says which pass a
+-- snapshot belongs to.
 entity ScreenshotTrace {
     id: String
     score: Score
     snapshots: List<TraceSnapshot> with trace = this
-    sessions: List<RecordingSession> with trace = this
     created_at: Timestamp                   -- earliest captured_at among snapshots,
                                             -- or the moment of extraction when the
                                             -- snapshots carry no timestamp
 
     is_empty: snapshots.count = 0
-    was_re_recorded: sessions.count > 1
-}
-
--- One sitting at the recorder. Re-recording a score does not discard
--- what was captured before: it opens a new session, which appends a
--- new Movement to the partitura and new snapshots to the same trace.
---
--- The session is what makes the trace legible after a second pass.
--- Without it every snapshot would sit in one undifferentiated pile and
--- there would be nothing for a comparison view to compare — two runs
--- of the same task would be indistinguishable from one long run.
-entity RecordingSession {
-    id: String
-    trace: ScreenshotTrace
-    movement: Movement                      -- the movement this session appended
-    index: Integer                          -- 0-based, in order of recording
-    started_at: Timestamp
-    ended_at: Timestamp?                    -- absent while the session is live
-
-    is_live: not exists ended_at
-    snapshots: TraceSnapshots where session = this
 }
 
 -- A free-form remark a person attaches to a captured moment, after the
@@ -325,8 +319,8 @@ entity TraceAnnotation {
 entity TraceSnapshot {
     id: String
     trace: ScreenshotTrace
-    session: RecordingSession               -- which sitting produced it
-    step: ScoreStep
+    step: ScoreStep                         -- which recording pass it belongs to
+                                            -- is read through step.movement
     annotations: List<TraceAnnotation> with snapshot = this
 
     screenshot: String?                     -- the captured viewport
@@ -579,17 +573,45 @@ rule ReopenScoreAsDraft {
 }
 
 -- ============================================================
+-- Rules — Layout conversion
+-- ============================================================
+
+-- Changing a score's layout converts it from one kind to another. It
+-- is not a view toggle; it changes which layers the score has.
+rule ConvertLayout {
+    when: ConvertLayout(score, new_layout, confirmed?)
+
+    requires: new_layout != score.layout
+    -- sb -> pix drops the two SB layers. When either holds content, it
+    -- may proceed only once the user has confirmed the loss. pix -> sb
+    -- adds empty cells and needs no confirmation.
+    requires: new_layout = sb
+        or score.steps.all(s => s.environment.is_empty and s.supporting_processes.is_empty)
+        or confirmed
+
+    ensures: score.layout = new_layout
+    ensures:
+        for step in score.steps:
+            if new_layout = sb:
+                step.environment = empty_cell
+                step.supporting_processes = empty_cell
+            else:
+                not exists step.environment
+                not exists step.supporting_processes
+}
+
+-- ============================================================
 -- Rules — Serialisation
 -- ============================================================
 
 rule SerialiseScore {
     when: SerialiseScore(score, form)
 
-    -- A serialised step carries step_title, note and all five layer
-    -- cells — not just the ones the current layout draws. See
-    -- @invariant LayersAreHiddenNeverDiscarded: hiding a row must not
-    -- be a way to lose its content. Beyond that, embed carries no
-    -- identity and neither form carries capture data.
+    -- A serialised step carries step_title, note and one cell per
+    -- layer the score has — three for a PiX score, five for an SB one.
+    -- There are no absent-layer cells to carry: they do not exist on
+    -- the step (see @invariant CellsMatchScoreType). Beyond that, embed
+    -- carries no identity and neither form carries capture data.
     ensures: SerialisedScore(
         score: score,
         form: form,
@@ -658,36 +680,15 @@ invariant StoragePressureIsAdvisory {
     -- else, on a judgement the software is not in a position to make.
 }
 
-invariant SessionsAreOrdered {
-    -- Session indices run 0..n-1 within their trace, in the order the
-    -- sittings happened. The index is what a comparison view sorts by.
-    for session in RecordingSessions:
-        session.index >= 0
-}
-
-invariant OneLiveSessionPerTrace {
-    -- A trace has at most one session still open. Two live sessions
-    -- would interleave snapshots from different sittings into one
-    -- movement, which is exactly what the session boundary exists to
-    -- prevent.
-    for a in RecordingSessions:
-        for b in RecordingSessions:
-            a != b and a.trace = b.trace implies not (a.is_live and b.is_live)
-}
-
-invariant SnapshotSessionMatchesTrace {
-    for snapshot in TraceSnapshots:
-        snapshot.session.trace = snapshot.trace
-}
-
-invariant SessionOwnsItsMovement {
-    -- Each recording session appends exactly one movement, and that
-    -- movement belongs to the trace's score.
-    for session in RecordingSessions:
-        session.movement.score = session.trace.score
-    for a in RecordingSessions:
-        for b in RecordingSessions:
-            a != b implies a.movement != b.movement
+invariant CellsMatchScoreType {
+    -- A step carries the two SB-only cells exactly when its score is an
+    -- SB score, and never on a PiX score. This is the whole of what it
+    -- means for a layer to belong to a score type: there is no hidden,
+    -- filled-but-invisible environment cell waiting on a PiX step.
+    for step in ScoreSteps:
+        (exists step.environment) = (step.movement.score.layout = sb)
+    for step in ScoreSteps:
+        (exists step.supporting_processes) = (step.movement.score.layout = sb)
 }
 
 invariant TraceBelongsToLibraryScore {
@@ -749,20 +750,21 @@ invariant IdentityIsPreserved {
     -- by step id.
 }
 
-invariant LayersAreHiddenNeverDiscarded {
-    -- Layout governs visibility alone. It never governs what is
-    -- stored, and never governs what is serialised.
+invariant LayoutConversionIsExplicitAndWarned {
+    -- Layout is the score's type, not a view filter. Changing it
+    -- converts the score from one kind to another: sb -> pix turns a
+    -- five-layer blueprint into a three-layer interaction process, and
+    -- the environment and supporting_processes cells cease to exist,
+    -- because a PiX score has no such layers.
     --
-    -- A score switched sb -> pix keeps the content of its environment
-    -- and supporting_processes cells; the editor stops drawing those
-    -- rows, and that is the whole of the effect. Switching back shows
-    -- them again, unchanged. Serialising a score carries all five
-    -- layers whatever the current layout, so a score that makes a
-    -- round trip through an embed or a hand-off comes back whole.
+    -- Dropping them is correct — they are not part of a PiX score — but
+    -- it is not reversible, so ConvertLayout warns first when the
+    -- conversion would discard non-empty cells and proceeds only on
+    -- confirmation. pix -> sb is always safe: it adds two empty cells.
     --
-    -- The failure this forbids is silent and unrecoverable: a person
-    -- flips to pix to tidy up the view, exports, re-imports, and two
-    -- layers of work are gone with nothing to indicate it happened.
+    -- The failure this forbids is a silent one: a blueprint downgraded
+    -- to a partitura with a stray click, two layers of work gone with
+    -- no prompt. The loss is acceptable; the silence is not.
 }
 
 invariant PixogramCatalogueIsClosed {
@@ -815,11 +817,11 @@ contract PiXScoreCodec {
         -- Adding a field to it changes the size and shape of every
         -- published embed URL. New fields go in the round-trip form.
         --
-        -- The five layer cells are not a new field: the embed form has
-        -- always carried environment and supporting_processes whenever
-        -- the step had them, without consulting the layout. Carrying
-        -- them unconditionally is a clarification of existing
-        -- behaviour, not a change to the frozen shape.
+        -- A step's SB-only cells are carried exactly when the step has
+        -- them, which is exactly when the score is an SB score — the
+        -- embed form has always done this, without consulting a
+        -- separate layout flag. A PiX embed has three layer fields, an
+        -- SB embed has five, and that has not changed.
 
     @invariant StatePreservedOnRoundTrip
         -- A recording handed to the editor arrives still marked draft,
@@ -860,6 +862,7 @@ surface CoreLibraryApi {
         DuplicateScore(source: Score)
         MarkScoreAsFinal(score: Score)
         ReopenScoreAsDraft(score: Score)
+        ConvertLayout(score: Score, new_layout: ScoreLayout, confirmed: Boolean?)
         SerialiseScore(score: Score, form: SerialisationForm)
         DeserialiseScore(library: ScoreLibrary, document: String)
         AnnotateSnapshot(snapshot: TraceSnapshot, text: String)
@@ -907,4 +910,4 @@ open question "Movement identity in the implementation: this spec gives Movement
 
 open question "Layer naming in the implementation: `supporting_processes` is now the single name in this spec. The editor still uses the short key `supporting` in LAYER_SUGGESTIONS and in the column list in PixScore.js, mapping between the two at the point of lookup. The alias should go."
 
-open question "Comparison across sessions: re-recording appends a session and a movement, so comparing two runs means comparing two movements of one score. Steps are not aligned between them — the second run may take a different path, or the same path in a different number of steps. What does the viewer put side by side: step 1 against step 1 positionally, or some matching on captured_from_url and element kind? Positional is trivial and wrong the moment the paths diverge; matching is the useful thing and needs a rule for what counts as the same moment."
+open question "Re-recording append, in the implementation: the model says re-recording appends a Movement and new snapshots to the same trace. No code does this yet — the extension records into a fresh score. When it is built, the only contract requirement is that new snapshots join their new steps by step id, exactly as first-pass capture does; the append needs no new entity. Confirm the append lands in a new Movement (a section divider) rather than extending the last one."
