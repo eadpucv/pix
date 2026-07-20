@@ -5,20 +5,26 @@ import { sanitizeFilename } from './json.js';
 
 export async function exportPDF(score) {
   // Dynamic import for code-splitting
-  const [{ jsPDF }, svg2pdfModule] = await Promise.all([
+  const [{ jsPDF }, svg2pdfModule, { registerPdfFonts }] = await Promise.all([
     import('jspdf'),
-    import('svg2pdf.js')
+    import('svg2pdf.js'),
+    import('./fonts.js')
   ]);
 
   const svgString = await renderScoreToSVG(score);
 
-  // Inject font-family="helvetica" on every <text> element for svg2pdf.
-  // svg2pdf.js does NOT inherit font-family from parent <g> elements —
-  // it only reads the attribute directly on each <text>. Without it, Times (serif) is used.
-  // Also strip layer header labels (letter-spacing causes svg2pdf rendering issues)
+  // svg2pdf reads the fonts from the jsPDF VFS by name, not from the
+  // SVG's @font-face — so drop the (large) embedded <style> block, and
+  // collapse each <text>'s font-family fallback list down to the single
+  // registered name svg2pdf will match (svg2pdf does not resolve a
+  // comma-separated stack). Cells map to the condensed face, everything
+  // else to the normal one. Labels use letter-spacing, which svg2pdf
+  // mishandles, so they are stripped as before.
   const pdfSvg = svgString
+    .replace(/<style>[\s\S]*?<\/style>/, '')
     .replace(/<text[^>]*letter-spacing[^>]*>.*?<\/text>/g, '')
-    .replaceAll('<text ', '<text font-family="helvetica" ');
+    .replace(/font-family="[^"]*"/g, m =>
+      m.includes('Cond') ? 'font-family="IBM Plex Sans Cond"' : 'font-family="IBM Plex Sans"');
 
   // Parse SVG dimensions
   const widthMatch = pdfSvg.match(/width="(\d+)"/);
@@ -33,6 +39,11 @@ export async function exportPDF(score) {
     unit: 'pt',
     format: [svgWidth, svgHeight]
   });
+
+  // Embed IBM Plex Sans so the PDF matches the screen instead of
+  // falling back to the core Helvetica.
+  registerPdfFonts(doc);
+  doc.setFont('IBM Plex Sans', 'normal');
 
   // Parse SVG string into DOM element
   const parser = new DOMParser();

@@ -12,12 +12,14 @@ const ICON_SIZE = 48;
 const PADDING = 16;
 const FONT_SIZE = 11;
 const TITLE_FONT_SIZE = 18;
-// Named, not embedded. An exported SVG renders in IBM Plex Sans only on
-// machines that have it installed; elsewhere it falls back down the
-// stack. Embedding the woff2 as a data URI would make exports
-// self-contained at a cost of ~100KB per file — see the note in
-// packages/editor/README or ask before doing it.
-const FONT_FAMILY = "'IBM Plex Sans', 'IBM Plex Sans Variable', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
+// The exported SVG carries its own fonts (see fontFaceCss below), so it
+// renders in IBM Plex Sans anywhere, installed or not. Two families:
+// the normal-width face for titles/notes/labels, and a condensed face
+// for cell text that matches the on-screen font-stretch:80%.
+// font-family is set per <text> rather than on the wrapping <g>,
+// because svg2pdf (the PDF path) does not inherit it from a group.
+const FONT_SANS = "'IBM Plex Sans', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
+const FONT_COND = "'IBM Plex Sans Cond', 'IBM Plex Sans', Roboto, Helvetica, Arial, sans-serif";
 
 // Layer header pixogram icons (same as PixScore.js)
 const LAYER_PIXOGRAM_ICONS = {
@@ -149,20 +151,26 @@ export async function renderScoreToSVG(score) {
   }
   await Promise.all([...iconNames].map(n => loadIcon(n)));
 
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${totalHeight}" viewBox="0 0 ${totalWidth} ${totalHeight}">`;
+  // Embed the fonts so the standalone SVG is self-contained. Lazy
+  // import keeps the ~228KB of font bytes out of the app's first paint —
+  // they load only when someone exports.
+  const { fontFaceCss } = await import('./fonts.js');
 
-  // Wrap all content in a group with font-family as SVG attribute
-  // (svg2pdf.js doesn't reliably process <style> blocks, but does inherit group attributes)
-  svg += `<g font-family="${FONT_FAMILY}">`;
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${totalHeight}" viewBox="0 0 ${totalWidth} ${totalHeight}">`;
+  svg += `<style>${fontFaceCss()}</style>`;
+
+  // font-family is set per <text>, not on this group — svg2pdf does not
+  // inherit it. The group carries the browser fallback only.
+  svg += `<g font-family="${FONT_SANS}">`;
 
 
 
   // Score title & description (omitted when empty)
   const startY = PADDING;
   if (hasTitle) {
-    svg += `<text x="${PADDING}" y="${startY + 22}" font-size="${TITLE_FONT_SIZE}" font-weight="700" fill="#2E1948">${escapeXml(score.title)}</text>`;
+    svg += `<text x="${PADDING}" y="${startY + 22}" font-family="${FONT_SANS}" font-size="${TITLE_FONT_SIZE}" font-weight="700" fill="#2E1948">${escapeXml(score.title)}</text>`;
     if (hasDescription) {
-      svg += `<text x="${PADDING}" y="${startY + 40}" font-size="${FONT_SIZE}" fill="#7B8794">${escapeXml(score.description)}</text>`;
+      svg += `<text x="${PADDING}" y="${startY + 40}" font-family="${FONT_SANS}" font-size="${FONT_SIZE}" fill="#7B8794">${escapeXml(score.description)}</text>`;
     }
   }
 
@@ -183,7 +191,7 @@ export async function renderScoreToSVG(score) {
     if (steps[i].step_title) {
       const titleLines = wrapText(steps[i].step_title, stepTitleMaxChars);
       for (let l = 0; l < titleLines.length; l++) {
-        svg += `<text x="${x + 8}" y="${titlesY + 12 + l * stepTitleLineHeight}" font-size="10" fill="#D94021" font-weight="700" dominant-baseline="hanging">${escapeXml(titleLines[l])}</text>`;
+        svg += `<text x="${x + 8}" y="${titlesY + 12 + l * stepTitleLineHeight}" font-family="${FONT_SANS}" font-size="10" fill="#D94021" font-weight="700" dominant-baseline="hanging">${escapeXml(titleLines[l])}</text>`;
       }
     }
   }
@@ -261,7 +269,7 @@ export async function renderScoreToSVG(score) {
     }
 
     for (let l = 0; l < labelLines.length; l++) {
-      svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${labelCursorY + l * labelLineHeight}" font-size="9" fill="#636262" text-anchor="middle" font-weight="600" dominant-baseline="hanging" letter-spacing="0.5">${escapeXml(labelLines[l].toUpperCase())}</text>`;
+      svg += `<text x="${PADDING + LABEL_WIDTH / 2}" y="${labelCursorY + l * labelLineHeight}" font-family="${FONT_SANS}" font-size="9" fill="#636262" text-anchor="middle" font-weight="600" dominant-baseline="hanging" letter-spacing="0.5">${escapeXml(labelLines[l].toUpperCase())}</text>`;
     }
 
     // Cell icons and text (vertically centered)
@@ -291,7 +299,7 @@ export async function renderScoreToSVG(score) {
 
       for (let l = 0; l < textLines.length; l++) {
         // dominant-baseline for vertical text alignment
-        svg += `<text x="${x + CELL_WIDTH / 2}" y="${cursorY + l * lineHeight}" font-size="${FONT_SIZE}" fill="#1F2933" text-anchor="middle" dominant-baseline="hanging">${escapeXml(textLines[l])}</text>`;
+        svg += `<text x="${x + CELL_WIDTH / 2}" y="${cursorY + l * lineHeight}" font-family="${FONT_COND}" font-size="${FONT_SIZE}" fill="#1F2933" text-anchor="middle" dominant-baseline="hanging">${escapeXml(textLines[l])}</text>`;
       }
     }
   }
@@ -308,7 +316,7 @@ export async function renderScoreToSVG(score) {
     if (steps[i].note) {
       const noteLines = wrapText(steps[i].note, noteMaxChars);
       for (let l = 0; l < noteLines.length; l++) {
-        svg += `<text x="${x + 8}" y="${noteY + 10 + l * noteLineHeight}" font-size="9" fill="#52606D" font-style="italic" dominant-baseline="hanging">${escapeXml(noteLines[l])}</text>`;
+        svg += `<text x="${x + 8}" y="${noteY + 10 + l * noteLineHeight}" font-family="${FONT_SANS}" font-size="9" fill="#52606D" font-style="italic" dominant-baseline="hanging">${escapeXml(noteLines[l])}</text>`;
       }
     }
   }

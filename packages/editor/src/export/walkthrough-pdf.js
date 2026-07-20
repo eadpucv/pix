@@ -49,7 +49,10 @@ function cellText(value) {
 }
 
 export async function exportWalkthroughPDF(score, trace) {
-  const { jsPDF } = await import('jspdf');
+  const [{ jsPDF }, { registerPdfFonts }] = await Promise.all([
+    import('jspdf'),
+    import('./fonts.js')
+  ]);
 
   const steps = (score?.scores || []).flat();
   if (steps.length === 0) return;
@@ -58,6 +61,9 @@ export async function exportWalkthroughPDF(score, trace) {
   for (const s of trace?.snapshots || []) snapshotsByStep.set(s.step_id, s);
 
   const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: [PAGE.w, PAGE.h] });
+  // IBM Plex Sans, so the tutorial reads in the same face as the app
+  // rather than the PDF core Helvetica.
+  registerPdfFonts(doc);
   const layers = layersForLayout(score.layout);
   const total  = steps.length;
   const title  = score.title || i18n.t('editor.untitled');
@@ -76,12 +82,12 @@ async function renderPage(doc, ctx) {
   const { score, title, total, step, snap, layers, index } = ctx;
 
   // ---- Header: title + step counter
-  doc.setFont('helvetica', 'bold');
+  doc.setFont('IBM Plex Sans', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(31, 41, 51);
   doc.text(title, MARGIN, MARGIN + 12);
 
-  doc.setFont('helvetica', 'normal');
+  doc.setFont('IBM Plex Sans', 'normal');
   doc.setFontSize(9);
   doc.setTextColor(123, 135, 148);
   const counter = i18n.t('walkthrough.pdfStepHeader', { current: index + 1, total });
@@ -117,7 +123,7 @@ async function renderPage(doc, ctx) {
 
   // Footer: captured timestamp + URL
   if (snap?.captured_at || snap?.captured_from_url) {
-    doc.setFont('helvetica', 'normal');
+    doc.setFont('IBM Plex Sans', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(150, 160, 170);
     const parts = [];
@@ -139,7 +145,7 @@ async function renderScreenshotPanel(doc, snap, box) {
     doc.setDrawColor(228, 231, 235);
     doc.setFillColor(250, 251, 252);
     doc.roundedRect(box.x, box.y, box.w, box.h, 6, 6, 'FD');
-    doc.setFont('helvetica', 'italic');
+    doc.setFont('IBM Plex Sans', 'italic');
     doc.setFontSize(10);
     doc.setTextColor(150, 160, 170);
     const msg = i18n.t('walkthrough.noSnapshot');
@@ -184,7 +190,7 @@ function renderPartituraPanel(doc, step, layers, box) {
 
   // step_title (section break heading)
   if (step.step_title) {
-    doc.setFont('helvetica', 'bold');
+    doc.setFont('IBM Plex Sans', 'bold');
     doc.setFontSize(11);
     doc.setTextColor(217, 64, 33);
     const lines = doc.splitTextToSize(step.step_title, box.w);
@@ -201,12 +207,12 @@ function renderPartituraPanel(doc, step, layers, box) {
     const label = i18n.t(LAYER_LABEL_KEY[layer]);
     const text  = cellText(value);
 
-    doc.setFont('helvetica', 'normal');
+    doc.setFont('IBM Plex Sans', 'normal');
     doc.setFontSize(7);
     doc.setTextColor(123, 135, 148);
     doc.text(label.toUpperCase(), box.x + innerPad, cursor + innerPad + 6);
 
-    doc.setFont('helvetica', 'normal');
+    doc.setFont('IBM Plex Sans', 'normal');
     doc.setFontSize(10);
     doc.setTextColor(31, 41, 51);
 
@@ -228,7 +234,7 @@ function renderPartituraPanel(doc, step, layers, box) {
 
   // Note
   if (step.note && cursor < box.y + box.h - 30) {
-    doc.setFont('helvetica', 'italic');
+    doc.setFont('IBM Plex Sans', 'italic');
     doc.setFontSize(9);
     doc.setTextColor(123, 135, 148);
     const lines = doc.splitTextToSize(step.note, box.w);
