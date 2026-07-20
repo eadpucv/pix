@@ -1,132 +1,195 @@
 -- allium: 3
+use "../core/score-contract.allium" as core
 -- walkthrough-viewer.allium
 --
--- The walkthrough viewer surfaces the ScreenshotTrace of a recorded
--- PiX score: a step-by-step playback of the empirical evidence that
--- was captured (viewport screenshots with focus regions overlaid),
--- alongside the corresponding partitura cells.
+-- The walkthrough viewer puts a recorded PiX score next to the
+-- evidence it was recorded from: on one side the captured viewport
+-- with its focus region, on the other the partitura column that
+-- claims to describe that moment.
 --
 -- It lives in @pix/editor at the route #/walkthrough/<score_id>.
--- The trace itself is owned by the recorder and specified in
--- packages/extension/interaction-capture.allium (entities
--- ScreenshotTrace and TraceSnapshot).
+-- Score, Movement, ScoreStep, ScreenshotTrace, RecordingSession,
+-- TraceSnapshot and TraceAnnotation are owned by
+-- packages/core/score-contract.allium. This spec references them; it
+-- does not define them.
 --
 -- ----------------------------------------------------------------------------
 -- Scope
 -- ----------------------------------------------------------------------------
+-- The headline: this viewer is no longer read-only. Refining a
+-- recording against its own evidence is the point of the screen. A
+-- recorder leaves the `user` layer empty — it can see what was
+-- clicked, not what the person was trying to do — and the only place
+-- where a person can supply that honestly is with the screenshot in
+-- front of them. Sending them to the editor to type it, and back here
+-- to check it, is the wrong shape for the work.
+--
 -- Included:
---   - Read-only display of a ScreenshotTrace.
+--   - Side-by-side display of a ScreenshotTrace and its partitura.
 --   - Step-by-step navigation (next, previous, jump-to-step).
---   - Side-by-side or toggleable presentation: visual evidence on one
---     side (screenshot + focus region overlay), partitura cells on the
---     other (the column the snapshot corresponds to in the Score grid).
+--   - Editing the cells and the note of the *visible step*, in place.
+--   - Free-form annotations attached to a snapshot.
+--   - Comparing two recording sessions of the same score.
 --   - Deep-linkable URL per step: #/walkthrough/<score_id>/<step_id>.
---   - Hand-off to the editor proper for editing the underlying score.
+--   - Hand-off to the editor proper for everything structural.
 --
 -- Excluded:
---   - Editing of trace data. Snapshots are append-only — see
---     CaptureDerivedFieldsImmutable in interaction-capture.allium.
---     The viewer only reads. Editing the partitura happens in the
---     editor (#/editor/<score_id>); the viewer offers a button to
---     jump there.
+--   - Any mutation of ScreenshotTrace or TraceSnapshot. The evidence
+--     is frozen — see TraceIsAppendOnly and FocusRegionIsNotEditable
+--     in score-contract.allium. What a person disagrees with, they
+--     say in a TraceAnnotation, which is commentary and lives in its
+--     own entity precisely so the record does not have to move.
+--   - Structural editing: adding or deleting steps and movements,
+--     reordering, changing layout, editing score title, description
+--     or state. That stays in the editor at #/editor/<score_id>, and
+--     the viewer keeps its hand-off button for it. The line is drawn
+--     at the step boundary: inside the visible step, edit; outside it,
+--     hand off.
 --   - Capture of new evidence. The viewer never opens a recorder
---     session.
---   - Tutorial PDF generation. That is a separate export rule
---     (UserExportsScoreAsPdf in interaction-capture.allium); the
---     viewer can offer it as a button but does not specify the PDF
---     format.
---   - Comparison across multiple traces of the same score. Today the
---     trace cardinality is 1:1 (TraceCardinality in
---     interaction-capture.allium); if that changes, this viewer
---     will need a trace selector.
+--     session. A second run is started from the extension, and arrives
+--     here as another RecordingSession to compare against.
+--   - Tutorial PDF generation. The viewer can offer the button; the
+--     format is specified elsewhere.
 --
+-- ----------------------------------------------------------------------------
+-- The boundary that matters
+-- ----------------------------------------------------------------------------
+-- The viewer now writes to one side of the screen and never to the
+-- other. That asymmetry is the design, not an accident of scope.
+--
+-- The partitura is a *claim* about what happened. The trace is a
+-- *record* of what was observed. Refining the claim is the work; the
+-- record is what makes the refinement answerable to something. If
+-- editing could reach the trace, the two panels would converge on
+-- whatever the author last believed and there would be nothing left to
+-- check the claim against — the screen would show agreement it had
+-- manufactured itself.
+--
+-- So: cells and notes move, snapshots never do. See @guarantee
+-- EvidenceIsNeverMutated and invariant TraceIsUntouched.
+
 -- ============================================================
 -- External Entities
 -- ============================================================
 
--- The score being walked through. Defined in
--- interaction-capture.allium; referenced here only by id and by the
--- subset of fields the viewer needs to display.
+-- Owned by score-contract.allium. Only the fields the viewer reads or
+-- writes are restated here.
 external entity Score {
-    id: UUID
+    id: String
     title: String
     description: String
     layout: ScoreLayout
     state: ScoreState
     movements: List<Movement>
     trace: ScreenshotTrace?
+
+    -- Which rows the viewer draws, and therefore which cells it will
+    -- accept an edit for. Layout hides layers; it never discards them
+    -- (LayersAreHiddenNeverDiscarded), so an invisible layer is one the
+    -- viewer must leave alone rather than one it may blank.
+    visible_layers:
+        if layout = pix:
+            { user, dialogue, system }
+        else:
+            { environment, user, dialogue, system, supporting_processes }
 }
 
--- A movement of the score. Same definition as in
--- interaction-capture.allium; here it is just a position-ordered
--- list of steps, walked through in order.
 external entity Movement {
-    id: UUID
+    id: String
     score: Score
     position: Integer
     steps: List<ScoreStep>
 }
 
--- One column of the partitura. The viewer reads the cells (user,
--- dialogue, system, environment, supporting) to display the
--- partitura panel alongside the snapshot.
+-- One column of the partitura. The five cell fields are named for
+-- their layers, matching the contract exactly; `supporting` is retired.
+-- These are the fields the viewer may write.
 external entity ScoreStep {
-    id: UUID
+    id: String
     movement: Movement
     position: Integer
     step_title: String
     note: String
-    user_cell: Cell
-    dialogue_cell: Cell
-    system_cell: Cell
-    environment_cell: Cell
-    supporting_cell: Cell
+
+    environment: Cell
+    user: Cell
+    dialogue: Cell
+    system: Cell
+    supporting_processes: Cell
+
+    snapshot: TraceSnapshot?                -- absent for a step typed by hand
 }
 
--- The container of all snapshots for a given score. Specified in
--- interaction-capture.allium.
 external entity ScreenshotTrace {
-    id: UUID
+    id: String
     score: Score
     snapshots: List<TraceSnapshot>
+    sessions: List<RecordingSession>
     created_at: Timestamp
+
+    was_re_recorded: sessions.count > 1
 }
 
--- One captured snapshot. Specified in interaction-capture.allium.
--- The viewer reads the screenshot, focus, and surrounding metadata
--- to render the visual evidence panel.
-external entity TraceSnapshot {
-    id: UUID
+-- One sitting at the recorder. Re-recording appends a session, which
+-- appends a movement and new snapshots to the same trace. This is what
+-- the comparison view compares: two sessions of one score, not two
+-- traces.
+external entity RecordingSession {
+    id: String
     trace: ScreenshotTrace
+    movement: Movement
+    index: Integer
+    started_at: Timestamp
+    ended_at: Timestamp?
+}
+
+-- The evidence. Read here, never written.
+external entity TraceSnapshot {
+    id: String
+    trace: ScreenshotTrace
+    session: RecordingSession
     step: ScoreStep
-    screenshot: String
-    focus: FocusRegion
-    captured_at: Timestamp
-    captured_from_url: String
-    captured_page_title: String
-    captured_kind: CapturedElementKind
-    boundary: BoundaryMarker
+    annotations: List<TraceAnnotation>
+
+    screenshot: String?
+    focus: FocusRegion?
+    captured_at: Timestamp?
+    captured_from_url: String?
+    captured_page_title: String?
+    captured_kind: String?
+    boundary: String
+}
+
+-- Commentary on a snapshot. Mutable by design: it is the pressure
+-- valve that lets the snapshot stay immutable. Created, edited and
+-- deleted from this viewer through the core library's operations.
+external entity TraceAnnotation {
+    id: String
+    snapshot: TraceSnapshot
+    text: String
+    created_at: Timestamp
+    updated_at: Timestamp
 }
 
 -- ============================================================
 -- Value Types
 -- ============================================================
 
--- Same definitions as in interaction-capture.allium, restated here
--- because Allium specs are self-contained.
 value FocusRegion {
     x_percent: Decimal
     y_percent: Decimal
     radius_percent: Decimal
 }
 
+-- A cell is one encoded string. The pixogram and the text are read
+-- out of it, not stored beside it, so what the viewer writes back is
+-- the same single string the editor and the extension exchange.
 value Cell {
-    icon: Pixogram?
-    text: String
-}
+    raw: String
 
-external entity Pixogram {
-    name: String
+    icon: parse_pixogram_name(raw)
+    text: parse_cell_text(raw)
+    is_empty: raw = ""
 }
 
 -- ============================================================
@@ -135,59 +198,76 @@ external entity Pixogram {
 
 enum ScoreLayout { pix | sb }
 enum ScoreState { draft | final }
-enum CapturedElementKind {
-    button | link | text_input | password_input | checkbox | radio
-    | dropdown | text_area | generic
+
+-- The five layers, named as the contract names them.
+enum ScoreLayer {
+    environment
+    | user
+    | dialogue
+    | system
+    | supporting_processes
 }
-enum BoundaryMarker { none | crossing }
 
 -- The two presentation panels of the viewer.
 enum ViewerPanel {
     visual                                  -- screenshot + focus region overlay
-    | partitura                             -- the score column corresponding to the snapshot
+    | partitura                             -- the score column for this step, editable
 }
 
--- The viewer's layout: how visual and partitura relate on screen.
+-- The viewer's layout. side_by_side is the design: the whole argument
+-- for editing here is having the evidence in view while you type, and
+-- a tab that hides the screenshot gives that away. tabbed survives
+-- only as the narrow-screen fallback, where side-by-side would render
+-- both panels too small to read.
 enum ViewerLayout {
-    side_by_side                            -- both panels visible at once (large screens)
-    | tabbed                                -- one panel at a time, user toggles
+    side_by_side
+    | tabbed
+}
+
+-- ============================================================
+-- Config
+-- ============================================================
+
+config {
+    -- Below this viewport width the viewer falls back to tabbed. This
+    -- is the answer to "what breakpoint": one number, in this file,
+    -- rather than a judgement made per component.
+    side_by_side_min_viewport_px: Integer = 900
 }
 
 -- ============================================================
 -- Entities
 -- ============================================================
 
--- The viewer's session state. Ephemeral — does not persist across
--- reloads. Drives the URL (deep-link) and what the user sees.
+-- The viewer's session state. Ephemeral — it does not persist across
+-- reloads. Note that the *edits* it makes are not ephemeral: they land
+-- on the score through the library.
 entity WalkthroughSession {
     score: Score
-    current_step: ScoreStep                 -- always within score.movements
+    current_step: ScoreStep                 -- always a step of score
     layout: ViewerLayout
     active_panel: ViewerPanel               -- meaningful only when layout = tabbed
+    compared_with: RecordingSession?        -- absent unless comparing two runs
 
-    -- Convenience accessors:
-    current_snapshot: score.trace?.snapshots
-        .find(s => s.step = current_step)
-    has_next: current_step != score
-        .movements.last.steps.last
-    has_prev: current_step != score
-        .movements.first.steps.first
+    -- The step carries its own snapshot; there is no lookup to do.
+    current_snapshot: current_step.snapshot
+    has_snapshot: exists current_step.snapshot
+    is_comparing: exists compared_with
 
-    transitions current_step {
-        any -> any                          -- arbitrary jumps via UserJumpsToStep
-    }
+    has_next: current_step != score.movements.last.steps.last
+    has_prev: current_step != score.movements.first.steps.first
 }
 
 -- ============================================================
--- Rules
+-- Rules — Opening and navigating
 -- ============================================================
 
 rule UserOpensWalkthrough {
     when: UserOpensWalkthrough(score, initial_step?)
 
-    -- The viewer requires a Score that has a trace. Authored scores
-    -- (no trace) cannot be walked through; the route resolves to a
-    -- "no trace available" page (a surface concern, not a rule).
+    -- A score with no trace has nothing to walk through. The route
+    -- resolves to a "no recorded walkthrough" page; see @guarantee
+    -- EmptyTraceHandled.
     requires: exists score.trace
     requires: score.trace.snapshots.count > 0
 
@@ -198,21 +278,31 @@ rule UserOpensWalkthrough {
         WalkthroughSession.created(
             score: score,
             current_step: target_step,
-            layout: pick_default_layout(),
-            active_panel: visual
+            layout: side_by_side,
+            active_panel: visual,
+            compared_with: null
         )
 }
 
 rule UserJumpsToStep {
     when: UserJumpsToStep(session, step)
 
-    -- The user clicked a step in the partitura strip, or hit the
-    -- next/previous shortcut, or pasted a deep-link URL.
+    -- From the step strip, a keyboard shortcut, or a pasted deep link.
     requires: step.movement.score = session.score
 
     ensures: session.current_step = step
 }
 
+-- Advancing moves to the next step of the score, whether or not that
+-- step has a snapshot. It does not skip.
+--
+-- The earlier draft left this open and leaned towards skipping as the
+-- friendlier option. Skipping is friendlier right up to the moment it
+-- matters: a step with no snapshot is a step somebody added by hand,
+-- which is exactly the kind of step whose text nobody has checked. Now
+-- that the partitura panel is editable, stopping on it is where the
+-- work is, not an interruption to it. The visual panel shows a
+-- placeholder and says why.
 rule UserAdvancesStep {
     when: UserAdvancesStep(session)
 
@@ -247,15 +337,106 @@ rule UserSwitchesLayout {
     ensures: session.layout = new_layout
 }
 
+-- ============================================================
+-- Rules — Editing the partitura
+-- ============================================================
+
+-- The visible step's cells and note are editable in place. Nothing
+-- else is: no step is added or removed here, no movement, no layout,
+-- no title. Structural change stays in the editor, which is what the
+-- hand-off button is for.
+--
+-- The layer must be one the current layout draws. Writing to a hidden
+-- layer would be editing something the person cannot see, and the
+-- reason hidden layers keep their content is that nobody is looking
+-- at them.
+
+rule UserEditsCell {
+    when: UserEditsCell(session, layer, raw)
+
+    requires: layer in session.score.visible_layers
+
+    let step = session.current_step
+
+    ensures:
+        if layer = environment:
+            step.environment = { raw: raw }
+        else if layer = user:
+            step.user = { raw: raw }
+        else if layer = dialogue:
+            step.dialogue = { raw: raw }
+        else if layer = system:
+            step.system = { raw: raw }
+        else:
+            step.supporting_processes = { raw: raw }
+    ensures: PartituraEdited(score: session.score, step: step)
+
+    @guidance
+        -- The `user` layer is the one this rule exists for. The
+        -- recorder cannot fill it: it observes a click, not an
+        -- intention. Put that field first in the panel and give it
+        -- focus on arrival at a step whose user cell is empty.
+}
+
+rule UserEditsStepNote {
+    when: UserEditsStepNote(session, text)
+
+    let step = session.current_step
+
+    ensures: step.note = text
+    ensures: PartituraEdited(score: session.score, step: step)
+}
+
+-- An edit made here is an edit to the score, and lands in the library
+-- the same way any other does. The viewer holds no draft of its own to
+-- lose: there is no "save" button and no unsaved state, because the
+-- alternative is a person typing a careful description of what they
+-- saw and closing the tab.
+rule PersistPartituraEdit {
+    when: PartituraEdited(score, step)
+
+    ensures: SaveScore(score: score)
+}
+
+-- ============================================================
+-- Rules — Comparing two runs
+-- ============================================================
+
+-- Re-recording a score appends a RecordingSession, which appends a
+-- Movement and new snapshots to the same trace. So "compare two runs"
+-- means comparing two sessions of one score. There is no second trace
+-- and no trace selector; there is a session selector.
+rule UserComparesSessions {
+    when: UserComparesSessions(session, other_recording)
+
+    requires: exists session.score.trace
+    requires: session.score.trace.was_re_recorded
+    requires: other_recording.trace = session.score.trace
+    requires: other_recording != recording_session_of(session.current_step)
+
+    ensures: session.compared_with = other_recording
+}
+
+rule UserExitsComparison {
+    when: UserExitsComparison(session)
+
+    requires: session.is_comparing
+
+    ensures: session.compared_with = null
+}
+
+-- ============================================================
+-- Rules — Hand-off and exit
+-- ============================================================
+
 rule UserOpensScoreEditor {
     when: UserOpensScoreEditor(session)
 
-    -- One-click hand-off to the regular editor view, focused on the
-    -- step the user is currently inspecting. The walkthrough session
-    -- ends; the editor opens at #/editor/<score_id> and may scroll
-    -- to or highlight the step.
+    -- Hand-off for everything structural, focused on the step being
+    -- inspected. The walkthrough session ends; the editor opens at
+    -- #/editor/<score_id>.
     ensures:
-        EditorOpened.applied(
+        EditorOpened(
             score: session.score,
             focus_step: session.current_step
         )
@@ -273,34 +454,62 @@ rule UserClosesWalkthrough {
 -- ============================================================
 
 invariant CurrentStepBelongsToScore {
-    -- The session's current_step is always a step of the session's
-    -- score. Jumps to foreign step ids are rejected.
     for s in WalkthroughSessions:
         s.current_step.movement.score = s.score
 }
 
-@invariant ReadOnly
-    -- No rule in this spec mutates the Score, ScreenshotTrace, or
-    -- TraceSnapshot. The viewer only reads. The only state it owns
-    -- is the WalkthroughSession (current_step, layout, active_panel),
-    -- which is ephemeral.
+invariant ComparedSessionBelongsToSameTrace {
+    -- A comparison is always between two sittings at the same score.
+    -- Comparing against another score's session would put two
+    -- unrelated tasks side by side and invite the reading that one is
+    -- a variant of the other.
+    for s in WalkthroughSessions:
+        exists s.compared_with implies s.compared_with.trace.score = s.score
+}
 
-@invariant TraceRequired
-    -- Opening a walkthrough requires a non-empty ScreenshotTrace.
-    -- Authored scores (no trace) and recordings whose trace was
-    -- deleted via UserDeletesTrace cannot be walked through. The
-    -- surface communicates this rather than rendering an empty
-    -- viewer.
-
-invariant SnapshotResolvesForCurrentStep {
-    -- For the visual panel to render, the current step must have a
-    -- matching TraceSnapshot. Manually-added steps in a recorded
-    -- score (UserAddsBlankStep) have no snapshot; the viewer skips
-    -- them in next/prev navigation by default, or shows a
-    -- "no snapshot for this step" placeholder if jumped to directly.
+invariant TraceIsUntouched {
+    -- No rule in this spec writes to ScreenshotTrace, TraceSnapshot or
+    -- RecordingSession. Not the screenshot, not the focus region, not
+    -- the captured_* metadata, not the boundary marker, not the
+    -- session boundaries.
     --
-    -- This invariant is informational; the surface guarantees below
-    -- describe the user-visible behaviour.
+    -- This is the invariant that makes the editing above safe to have.
+    -- The partitura is what the score claims; the trace is what was
+    -- observed. A person refines the claim here, with the observation
+    -- next to it, and the observation does not move while they do —
+    -- so the two can still be compared afterwards, by them or by
+    -- anyone else. An editable trace would let the screen agree with
+    -- itself.
+    --
+    -- Disagreement with the evidence has somewhere to go that is not
+    -- the evidence: a TraceAnnotation. See TraceIsAppendOnly and
+    -- FocusRegionIsNotEditable in score-contract.allium.
+}
+
+invariant EditingIsConfinedToTheVisibleStep {
+    -- Every editing rule writes to session.current_step and to no
+    -- other step. There is no bulk edit, no find-and-replace and no
+    -- write to a step the person is not looking at.
+    --
+    -- The boundary is not squeamishness about mutation; it is what
+    -- keeps the two panels honest. An edit the person cannot see the
+    -- evidence for is an edit made in the editor, and the editor is
+    -- one button away.
+}
+
+invariant StructureIsTheEditorsBusiness {
+    -- Steps and movements are not created, deleted or reordered here;
+    -- neither are layout, title, description or state. A recording's
+    -- shape is the trace's shape, and changing it while standing in
+    -- front of the trace invites edits that quietly desynchronise the
+    -- two.
+}
+
+invariant TraceRequiredToOpen {
+    -- Opening a walkthrough requires a trace with at least one
+    -- snapshot. An authored score has none. The surface says so rather
+    -- than rendering an empty viewer with editable cells, which would
+    -- read as an editor that had lost its evidence.
 }
 
 -- ============================================================
@@ -310,70 +519,136 @@ invariant SnapshotResolvesForCurrentStep {
 surface WalkthroughSurface {
     facing browser: WebApp
 
-    exposes:
+    provides:
         UserOpensWalkthrough(score: Score, initial_step: ScoreStep?)
         UserJumpsToStep(session: WalkthroughSession, step: ScoreStep)
         UserAdvancesStep(session: WalkthroughSession)
         UserGoesBackStep(session: WalkthroughSession)
         UserTogglesPanel(session: WalkthroughSession)
         UserSwitchesLayout(session: WalkthroughSession, new_layout: ViewerLayout)
+        UserEditsCell(session: WalkthroughSession, layer: ScoreLayer, raw: String)
+        UserEditsStepNote(session: WalkthroughSession, text: String)
+        UserComparesSessions(session: WalkthroughSession, other_recording: RecordingSession)
+
+        -- Annotation operations belong to the core library
+        -- (CoreLibraryApi in score-contract.allium). They are listed
+        -- here because this viewer is where they are reached from: the
+        -- snapshot a remark is about is on screen at the time.
+        AnnotateSnapshot(snapshot: TraceSnapshot, text: String)
+        EditAnnotation(annotation: TraceAnnotation, text: String)
+        DeleteAnnotation(annotation: TraceAnnotation)
+
+        UserExitsComparison(session: WalkthroughSession)
         UserOpensScoreEditor(session: WalkthroughSession)
         UserClosesWalkthrough(session: WalkthroughSession)
 
+    @guarantee SideBySideIsTheDefault
+        -- The viewer opens with both panels visible: evidence on one
+        -- side, partitura on the other. Below
+        -- config.side_by_side_min_viewport_px the viewer presents
+        -- tabbed instead, because two panels at that width are two
+        -- unreadable panels. The user may switch either way at any
+        -- time, and the choice sticks for the session.
+        --
+        -- Tabbed is a fallback, not a peer. Everything this screen is
+        -- for depends on seeing the claim and the evidence together.
+
+    @guarantee PartituraPanelIsEditable
+        -- The partitura panel is a live editor for the visible step:
+        -- its cells and its note. Edits apply immediately and persist
+        -- through the library. There is no save button and no unsaved
+        -- state.
+        --
+        -- The `user` layer is empty on every recorded step, because a
+        -- recorder cannot observe intent. Filling it, with the
+        -- screenshot in view, is the reason this panel is editable.
+
+    @guarantee EvidenceIsNeverMutated
+        -- No affordance in this viewer changes a screenshot, a focus
+        -- region, captured metadata, a boundary marker or a session.
+        -- The visual panel has no edit control of any kind, including
+        -- no re-crop of the focus region: the region marks what was
+        -- actually targeted, and redrawing it would make the evidence
+        -- a matter of opinion.
+        --
+        -- What a person wants to say about a captured moment, they say
+        -- in an annotation.
+
+    @guarantee StructuralEditingHandsOff
+        -- Adding or deleting steps and movements, reordering, changing
+        -- layout, and editing score metadata are not available here.
+        -- The controls for them are absent, not disabled, and "Open in
+        -- editor" carries the current step across so the person
+        -- resumes where they were.
+
+    @guarantee AnnotationsAreOfferedOnEverySnapshot
+        -- Free-form annotations on the visible snapshot are created,
+        -- edited and deleted from this viewer through the core
+        -- library's AnnotateSnapshot, EditAnnotation and
+        -- DeleteAnnotation. Existing annotations for the snapshot are
+        -- listed beside it, oldest first.
+        --
+        -- They are stored as TraceAnnotation, attached to the
+        -- snapshot, never on it. That indirection is what lets a
+        -- person say "this region is misleading" without the record of
+        -- what was captured having to change to accommodate the
+        -- remark.
+
+    @guarantee MissingSnapshotStopsRatherThanSkips
+        -- Advancing onto a step with no snapshot stops there. The
+        -- visual panel shows a placeholder naming the reason — the
+        -- step was added by hand and was never recorded — and the
+        -- partitura panel renders and is editable as usual.
+        --
+        -- Skipping would hide exactly the steps whose text nobody has
+        -- checked against anything.
+
+    @guarantee ComparisonIsAcrossSessionsOfOneScore
+        -- When a score's trace carries more than one recording
+        -- session, the viewer offers the other sessions for
+        -- comparison and shows them alongside the current one. There
+        -- is no trace selector, because a score has one trace: a
+        -- second run appends a session and a movement to it.
+        --
+        -- What is *paired* within that comparison is not settled; see
+        -- the open question below. Until it is, the viewer shows the
+        -- two sessions' steps in their own order and pairs nothing
+        -- automatically.
+
     @guarantee DeepLinkable
-        -- The URL #/walkthrough/<score_id>/<step_id> opens the viewer
-        -- at the named step. #/walkthrough/<score_id> alone opens at
-        -- the first step. Reload preserves position. Browser back/
-        -- forward buttons step through the session's history of
-        -- current_step values.
+        -- #/walkthrough/<score_id>/<step_id> opens at the named step.
+        -- #/walkthrough/<score_id> opens at the first. Reload
+        -- preserves position, including any edit made before it.
+        -- Browser back and forward step through the session's history
+        -- of current_step values, and never undo an edit.
 
     @guarantee FocusRegionFidelity
-        -- The focus region rendered over the screenshot uses the
-        -- snapshot's stored percentages, so it tracks the image
-        -- as it is rescaled to fit the panel. The user can never
-        -- be confused about which element was clicked, even on
-        -- a small screen where the screenshot is heavily
+        -- The focus region is drawn from the snapshot's stored
+        -- percentages, so it tracks the image as it is rescaled to fit
+        -- the panel. Which element was clicked stays unambiguous even
+        -- on a small screen where the screenshot is heavily
         -- downscaled.
 
     @guarantee BoundaryMadeVisible
-        -- A snapshot whose boundary = crossing is annotated in the
-        -- viewer (e.g. a coloured strip, a "host changed" badge),
-        -- so the user understands why the URL or visual context
-        -- jumped. The annotation surfaces the previous and current
-        -- hosts, derived from captured_from_url.
-
-    @guarantee NoDestructiveActions
-        -- The viewer offers no delete, edit-cell, or
-        -- modify-trace affordance. Affordances that look editorial
-        -- (e.g. "Open in editor") navigate away to the editor proper
-        -- and end the walkthrough session — they never mutate state
-        -- in place from inside the walkthrough.
-
-    @guarantee MissingSnapshotHandled
-        -- When the current_step has no matching snapshot
-        -- (manually-added step in a recording, or trace deleted
-        -- after the step was captured), the visual panel shows a
-        -- placeholder explaining "no snapshot for this step" rather
-        -- than failing. The partitura panel still renders.
+        -- A snapshot whose boundary marks a crossing is annotated in
+        -- the viewer, so the user understands why the URL or the
+        -- visual context jumped. The annotation surfaces the previous
+        -- and current hosts, derived from captured_from_url.
 
     @guarantee EmptyTraceHandled
-        -- When UserOpensWalkthrough fires on a score with no trace
-        -- or an empty trace, the surface shows a "this score has
-        -- no recorded walkthrough" message and offers a link back
-        -- to #/library or #/editor/<score_id>. It does not silently
-        -- redirect.
+        -- Opening a walkthrough on a score with no trace, or an empty
+        -- one, shows "this score has no recorded walkthrough" and
+        -- offers a link back to #/library or #/editor/<score_id>. It
+        -- does not silently redirect, and it does not offer the
+        -- editable partitura panel on its own — that is the editor.
 }
 
 -- ============================================================
 -- Open Questions
 -- ============================================================
 
-open question "Default layout: side_by_side on screens above some breakpoint, tabbed below? What breakpoint? Or always tabbed and let the user expand on demand?"
+open question "Pairing within a session comparison: comparing two runs means comparing two movements of one score, and their steps are not aligned. The second run may take a different path, or the same path in a different number of steps. Positional pairing (step 1 against step 1) is trivial to build and wrong the moment the paths diverge. Matching on captured_from_url and captured_kind is the useful thing and needs a rule for what counts as the same moment, plus a way to render steps that pair with nothing. This is unresolved; the surface currently promises only that both sessions are shown, not what lines up with what. Note this is the same question as the one left open in score-contract.allium, and it should be answered once, there."
 
-open question "Skip-or-stop on missing-snapshot steps: when UserAdvancesStep would land on a step with no snapshot, does it skip to the next snapshotted step, or stop at the gap with a placeholder? Skipping is friendlier; stopping is more faithful to the score's structure."
+open question "Does refining a recording here promote it? A recorded score arrives draft, and score-contract.allium says a recording is promoted to final by hand. This viewer is now where the refinement happens — filling the user layer against the evidence is exactly the work that makes a recording finished. So: does the viewer offer MarkScoreAsFinal once every visible step has a non-empty user cell, does it leave promotion entirely to the editor, or does it say nothing and let the score stay draft forever because nobody remembers where the button is? Editing was added here without deciding this, and the draft/final distinction is what the library sorts on."
 
-open question "Annotations on the viewer: should the user be able to add free-form notes attached to a snapshot (e.g. 'this is where the user got confused')? If yes, where do they live — on the TraceSnapshot (would break CaptureDerivedFieldsImmutable) or on a new entity (TraceAnnotation) attached to the snapshot id? The latter is cleaner."
-
-open question "Comparison view: when re-recording produces a second trace (currently forbidden by TraceCardinality), should the viewer support a side-by-side comparison of two traces of the same score? Defer until trace cardinality is reconsidered."
-
-open question "Cropping focus regions: the captured focus region marks the bounding box of the clicked element. Sometimes this is too tight (a tiny icon inside a large clickable area) or too loose. Should the user be able to re-crop in the viewer? Doing so would mean the focus region is editable, which contradicts the immutability invariant. Alternative: store a TraceSnapshotOverlay in a new entity that overlays the original."
+open question "Editing the same score from two places: the viewer and the editor can be open on one score in two tabs, and both now write cells. The library saves whole scores, so the later save wins and silently discards the earlier one. This was not a problem while the viewer only read. Whether it needs anything beyond a warning depends on how often it happens, which nobody has measured."

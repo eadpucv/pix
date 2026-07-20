@@ -22,9 +22,24 @@ pix/
 
 | Package | Status | Spec |
 |---|---|---|
-| `@pix/core` | Populated — score migrations, stable ids, IndexedDB storage, pixogram catalogue, ScreenshotTrace | (planned) `packages/core/score-contract.allium` |
-| `@pix/editor` | Stable, in production · v3.2.0 | implicit in code (distill pending) |
+| `@pix/core` | Populated — score migrations, stable ids, IndexedDB storage, pixogram catalogue, ScreenshotTrace | [`packages/core/score-contract.allium`](packages/core/score-contract.allium) — owns the shared data model |
+| `@pix/editor` | Stable, in production · v3.2.0 | [`packages/editor/walkthrough-viewer.allium`](packages/editor/walkthrough-viewer.allium); the editor proper is still implicit in code |
 | `@pix/extension` | Functional alpha · v0.2.0 — recording, multi-trigger capture, ScreenshotTrace handoff, walkthrough viewer integration | [`packages/extension/interaction-capture.allium`](packages/extension/interaction-capture.allium) |
+
+### Specs
+
+`score-contract.allium` owns the shared vocabulary — Score, Movement, ScoreStep,
+ScreenshotTrace, RecordingSession, TraceSnapshot, TraceAnnotation. The other two
+specs import it (`use "../core/score-contract.allium" as core`) and reference
+those entities rather than redefining them.
+
+Because of that import, the specs must be checked **as a set** — checking one
+file alone leaves the import unresolved:
+
+```bash
+npm run spec            # allium check, all three together
+npm run spec:analyse    # process-level analysis
+```
 
 ## Score Types
 

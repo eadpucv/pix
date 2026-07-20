@@ -18,6 +18,8 @@
     "build": "npm run build -w @pix/editor",
     "preview": "npm run preview -w @pix/editor",
     "build:editor": "npm run build -w @pix/editor",
-    "build:extension": "npm run build -w @pix/extension"
+    "build:extension": "npm run build -w @pix/extension",
+    "spec": "allium check packages/core/score-contract.allium packages/editor/walkthrough-viewer.allium packages/extension/interaction-capture.allium",
+    "spec:analyse": "allium analyse packages/core/score-contract.allium packages/editor/walkthrough-viewer.allium packages/extension/interaction-capture.allium"
   }
 }

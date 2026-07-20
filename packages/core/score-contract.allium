@@ -64,28 +64,24 @@
 --     not contract.
 --
 -- ----------------------------------------------------------------------------
--- Known overlap (flagged, not resolved here)
+-- Ownership
 -- ----------------------------------------------------------------------------
--- interaction-capture.allium currently *defines* Score, Movement,
--- ScoreStep, ScreenshotTrace and TraceSnapshot as owned entities, and
--- walkthrough-viewer.allium restates them as external. This spec is
--- intended to be the single owner. Until the extension spec is
--- reworked to reference these as external, the two definitions must be
--- kept in step by hand. Two live divergences to settle:
+-- This spec is the single owner of Score, Movement, ScoreStep,
+-- ScreenshotTrace, RecordingSession, TraceSnapshot and TraceAnnotation.
+-- interaction-capture.allium and walkthrough-viewer.allium reference
+-- them; they do not define them.
 --
---   1. Cell shape. Both other specs model `value Cell { icon, text }`
---      and per-layer fields named user_cell, dialogue_cell, and so on.
---      The implementation stores one flat string per layer, in fields
---      named for the layer itself (user, dialogue, system, environment,
---      supporting_processes), with the pixogram encoded in the string.
---      This spec follows the implementation, because the flat string
---      under those field names is what actually crosses the package
---      boundary and lands in published embeds.
+-- Two questions that were open here are now settled, and both settle
+-- the same way — towards what actually crosses the package boundary:
 --
---   2. Layer naming. The supporting-processes layer is called
---      `supporting_processes` as a step field but `supporting` as a
---      layer key in the pixogram suggestions and in the editor's
---      column list. One name should win. See the open question.
+--   1. Cell shape. A cell is one encoded string, not a pair of icon
+--      and text. A cell may carry a pixogram alone, text alone, or
+--      both, and the encoding expresses all three without a special
+--      case. This is the form that is stored, serialised and published
+--      in embeds.
+--
+--   2. Layer naming. `supporting_processes` is the name of the layer,
+--      everywhere. The short alias `supporting` is retired.
 
 -- ============================================================
 -- External Entities
@@ -94,11 +90,24 @@
 -- Where scores live. Local to one browser profile, survives restart,
 -- never leaves the device. Named so rules can speak about capacity and
 -- persistence without naming a backend.
+-- Capacity is bounded by weight, not by count. Twenty recordings full
+-- of screenshots and twenty typed partituras are wildly different
+-- loads on the profile's quota, and only one of them threatens it.
 external entity ScoreLibrary {
     scores: List<Score> with library = this
-    used_fraction: Decimal?                 -- 0..1 of the profile's quota, when
-                                            -- the browser will report it
-    is_full: scores.count >= config.score_library_capacity
+    used_fraction: Decimal?                 -- 0..1 of the profile's quota, as
+                                            -- reported by the browser; absent
+                                            -- where the browser will not say
+
+    -- Pressure is read from the quota where it is known. Where it is
+    -- not, the count bound stands in as a coarse backstop, so a
+    -- library on a browser that reports nothing still cannot grow
+    -- without limit.
+    is_under_pressure:
+        if exists used_fraction:
+            used_fraction >= config.library_pressure_fraction
+        else:
+            scores.count >= config.score_count_backstop
 }
 
 -- A score as it sits in storage, of unknown vintage. Fields are
@@ -257,16 +266,54 @@ entity ScoreStep {
 }
 
 -- The empirical record behind a recorded score. Authored scores have
--- none; a recording has exactly one.
+-- none; a recorded score has exactly one, which grows across recording
+-- sessions rather than being replaced by them.
 entity ScreenshotTrace {
     id: String
     score: Score
     snapshots: List<TraceSnapshot> with trace = this
+    sessions: List<RecordingSession> with trace = this
     created_at: Timestamp                   -- earliest captured_at among snapshots,
                                             -- or the moment of extraction when the
                                             -- snapshots carry no timestamp
 
     is_empty: snapshots.count = 0
+    was_re_recorded: sessions.count > 1
+}
+
+-- One sitting at the recorder. Re-recording a score does not discard
+-- what was captured before: it opens a new session, which appends a
+-- new Movement to the partitura and new snapshots to the same trace.
+--
+-- The session is what makes the trace legible after a second pass.
+-- Without it every snapshot would sit in one undifferentiated pile and
+-- there would be nothing for a comparison view to compare — two runs
+-- of the same task would be indistinguishable from one long run.
+entity RecordingSession {
+    id: String
+    trace: ScreenshotTrace
+    movement: Movement                      -- the movement this session appended
+    index: Integer                          -- 0-based, in order of recording
+    started_at: Timestamp
+    ended_at: Timestamp?                    -- absent while the session is live
+
+    is_live: not exists ended_at
+    snapshots: TraceSnapshots where session = this
+}
+
+-- A free-form remark a person attaches to a captured moment, after the
+-- fact: "aquí se confundió", "este paso sobra".
+--
+-- Separate from TraceSnapshot on purpose. The snapshot is evidence and
+-- never changes; the annotation is commentary and changes freely.
+-- Putting the remark on the snapshot would mean editing the record of
+-- what was observed in order to say something about it.
+entity TraceAnnotation {
+    id: String
+    snapshot: TraceSnapshot
+    text: String
+    created_at: Timestamp
+    updated_at: Timestamp
 }
 
 -- One captured interaction. These fields are exactly the set that
@@ -278,7 +325,9 @@ entity ScreenshotTrace {
 entity TraceSnapshot {
     id: String
     trace: ScreenshotTrace
+    session: RecordingSession               -- which sitting produced it
     step: ScoreStep
+    annotations: List<TraceAnnotation> with snapshot = this
 
     screenshot: String?                     -- the captured viewport
     focus: FocusRegion?
@@ -296,10 +345,15 @@ entity TraceSnapshot {
 -- ============================================================
 
 config {
-    -- A library holds at most this many scores. Shared by both
-    -- packages so the extension cannot record past what the editor
-    -- will show.
-    score_library_capacity: Integer = 20
+    -- Fraction of the profile's storage quota at which the library is
+    -- considered under pressure. The user is warned and offered a
+    -- backup; nothing is evicted.
+    library_pressure_fraction: Decimal = 0.8
+
+    -- Coarse backstop for browsers that will not report a quota. Not
+    -- the real bound — the real bound is weight — but a library that
+    -- can measure nothing still must not grow without limit.
+    score_count_backstop: Integer = 20
 
     -- Size of the pixogram catalogue. Named so a mismatch between the
     -- catalogue and the shipped artwork is a contract violation rather
@@ -405,21 +459,29 @@ rule PersistExtractedTrace {
 -- Rules — Library
 -- ============================================================
 
+-- Saving never fails on capacity. Storage pressure is advisory: the
+-- user is warned and offered a backup, and decides what to delete.
+-- Refusing the save would strand work that has nowhere else to go —
+-- the library is the only copy.
 rule SaveScore {
     when: SaveScore(score)
-
-    -- Capacity bounds new scores only. An existing score can always be
-    -- saved again, or a full library would be uneditable.
-    requires: not score.library.is_full or score in score.library.scores
 
     ensures: score.updated_at = now
     ensures: score.library.scores.add(score)
 }
 
+-- Fires when the library crosses into pressure, not on every save.
+rule LibraryUnderPressure {
+    when: library: ScoreLibrary.is_under_pressure
+
+    ensures: StoragePressureReported(
+        library: library,
+        used_fraction: library.used_fraction
+    )
+}
+
 rule CreateScore {
     when: CreateScore(library, layout, title?)
-
-    requires: not library.is_full
 
     ensures: Score.created(
         library: library,
@@ -440,14 +502,48 @@ rule CreateScore {
 rule DeleteScore {
     when: DeleteScore(score)
 
+    -- The cascade runs the whole depth: annotations hang off
+    -- snapshots, snapshots and sessions off the trace, the trace off
+    -- the score. Screenshots dominate the profile's quota, so anything
+    -- left behind here is both orphaned and expensive.
     ensures: not exists score.trace
     ensures: not exists score
 }
 
+-- ------------------------------------------------------------
+-- Annotations
+-- ------------------------------------------------------------
+
+rule AnnotateSnapshot {
+    when: AnnotateSnapshot(snapshot, text)
+
+    requires: text != ""
+
+    ensures: TraceAnnotation.created(
+        snapshot: snapshot,
+        text: text,
+        created_at: now,
+        updated_at: now
+    )
+}
+
+rule EditAnnotation {
+    when: EditAnnotation(annotation, text)
+
+    requires: text != ""
+
+    ensures: annotation.text = text
+    ensures: annotation.updated_at = now
+}
+
+rule DeleteAnnotation {
+    when: DeleteAnnotation(annotation)
+
+    ensures: not exists annotation
+}
+
 rule DuplicateScore {
     when: DuplicateScore(source)
-
-    requires: not source.library.is_full
 
     ensures: Score.created(
         library: source.library,
@@ -489,9 +585,11 @@ rule ReopenScoreAsDraft {
 rule SerialiseScore {
     when: SerialiseScore(score, form)
 
-    -- A serialised step carries step_title, note and one entry per
-    -- visible layer, and nothing else. Neither form carries identity
-    -- for embed, nor capture data for either.
+    -- A serialised step carries step_title, note and all five layer
+    -- cells — not just the ones the current layout draws. See
+    -- @invariant LayersAreHiddenNeverDiscarded: hiding a row must not
+    -- be a way to lose its content. Beyond that, embed carries no
+    -- identity and neither form carries capture data.
     ensures: SerialisedScore(
         score: score,
         form: form,
@@ -553,9 +651,43 @@ invariant SnapshotAgreesWithStep {
         exists step.snapshot implies step.snapshot.step = step
 }
 
-invariant LibraryCapacity {
-    for library in ScoreLibraries:
-        library.scores.count <= config.score_library_capacity
+invariant StoragePressureIsAdvisory {
+    -- Crossing config.library_pressure_fraction warns and offers a
+    -- backup. It never refuses a save and never evicts a score.
+    -- Eviction would destroy captured evidence that exists nowhere
+    -- else, on a judgement the software is not in a position to make.
+}
+
+invariant SessionsAreOrdered {
+    -- Session indices run 0..n-1 within their trace, in the order the
+    -- sittings happened. The index is what a comparison view sorts by.
+    for session in RecordingSessions:
+        session.index >= 0
+}
+
+invariant OneLiveSessionPerTrace {
+    -- A trace has at most one session still open. Two live sessions
+    -- would interleave snapshots from different sittings into one
+    -- movement, which is exactly what the session boundary exists to
+    -- prevent.
+    for a in RecordingSessions:
+        for b in RecordingSessions:
+            a != b and a.trace = b.trace implies not (a.is_live and b.is_live)
+}
+
+invariant SnapshotSessionMatchesTrace {
+    for snapshot in TraceSnapshots:
+        snapshot.session.trace = snapshot.trace
+}
+
+invariant SessionOwnsItsMovement {
+    -- Each recording session appends exactly one movement, and that
+    -- movement belongs to the trace's score.
+    for session in RecordingSessions:
+        session.movement.score = session.trace.score
+    for a in RecordingSessions:
+        for b in RecordingSessions:
+            a != b implies a.movement != b.movement
 }
 
 invariant TraceBelongsToLibraryScore {
@@ -585,11 +717,28 @@ invariant NoCaptureDataOnSteps {
 
 invariant TraceIsAppendOnly {
     -- Once written, a snapshot's capture-derived fields are never
-    -- modified. A trace grows during recording and is fixed
-    -- afterwards. Editing the partitura never edits the evidence, so
+    -- modified. A trace grows — during a session, and again when a
+    -- later session appends to it — but nothing already in it is
+    -- rewritten. Editing the partitura never edits the evidence, so
     -- what the score claims and what was observed can always be
     -- compared. See CaptureDerivedFieldsImmutable in
     -- interaction-capture.allium.
+    --
+    -- Two things sit deliberately outside this: TraceAnnotation, which
+    -- is commentary rather than record, and which is why remarks live
+    -- in their own entity; and the focus region, which is captured as
+    -- observed and never re-cropped.
+}
+
+invariant FocusRegionIsNotEditable {
+    -- The focus region marks what was actually targeted. It is
+    -- sometimes tighter or looser than a person would draw by hand,
+    -- and that is accepted: letting it be redrawn would make the
+    -- evidence a matter of opinion, and the machinery to overlay a
+    -- correction costs more than the imprecision does.
+    --
+    -- A person who wants to say the region is misleading says it in a
+    -- TraceAnnotation.
 }
 
 invariant IdentityIsPreserved {
@@ -600,16 +749,20 @@ invariant IdentityIsPreserved {
     -- by step id.
 }
 
-invariant LayersNotDiscarded {
-    -- Normalising or rendering a score under the pix layout does not
-    -- delete the environment and supporting_processes content of its
-    -- steps. Layout decides what is visible and what is serialised,
-    -- not what is stored, so sb -> pix -> sb round-trips losslessly
-    -- within the library.
+invariant LayersAreHiddenNeverDiscarded {
+    -- Layout governs visibility alone. It never governs what is
+    -- stored, and never governs what is serialised.
     --
-    -- Note this does not hold *through* serialisation: the serialised
-    -- forms carry only the visible layers, so an sb score serialised
-    -- as pix and re-imported has genuinely lost two layers.
+    -- A score switched sb -> pix keeps the content of its environment
+    -- and supporting_processes cells; the editor stops drawing those
+    -- rows, and that is the whole of the effect. Switching back shows
+    -- them again, unchanged. Serialising a score carries all five
+    -- layers whatever the current layout, so a score that makes a
+    -- round trip through an embed or a hand-off comes back whole.
+    --
+    -- The failure this forbids is silent and unrecoverable: a person
+    -- flips to pix to tidy up the view, exports, re-imports, and two
+    -- layers of work are gone with nothing to indicate it happened.
 }
 
 invariant PixogramCatalogueIsClosed {
@@ -661,6 +814,12 @@ contract PiXScoreCodec {
         -- The embed form is consumed by live wiki.ead.pucv.cl embeds.
         -- Adding a field to it changes the size and shape of every
         -- published embed URL. New fields go in the round-trip form.
+        --
+        -- The five layer cells are not a new field: the embed form has
+        -- always carried environment and supporting_processes whenever
+        -- the step had them, without consulting the layout. Carrying
+        -- them unconditionally is a clarification of existing
+        -- behaviour, not a change to the frozen shape.
 
     @invariant StatePreservedOnRoundTrip
         -- A recording handed to the editor arrives still marked draft,
@@ -692,7 +851,7 @@ surface CoreLibraryApi {
     contracts:
         fulfils PiXScoreCodec
 
-    exposes:
+    provides:
         ReadScore(stored: StoredScore)
         ListScores(library: ScoreLibrary)
         CreateScore(library: ScoreLibrary, layout: ScoreLayout, title: String?)
@@ -703,6 +862,9 @@ surface CoreLibraryApi {
         ReopenScoreAsDraft(score: Score)
         SerialiseScore(score: Score, form: SerialisationForm)
         DeserialiseScore(library: ScoreLibrary, document: String)
+        AnnotateSnapshot(snapshot: TraceSnapshot, text: String)
+        EditAnnotation(annotation: TraceAnnotation, text: String)
+        DeleteAnnotation(annotation: TraceAnnotation)
 
     @guarantee MigrationIsInvisible
         -- A caller never asks whether a score needs normalising. Every
@@ -720,26 +882,29 @@ surface CoreLibraryApi {
         -- recently touched first, so the library opens on what the
         -- user was last working on.
 
-    @guarantee CapacityIsVisible
-        -- Where the browser reports quota usage, the surface exposes
-        -- it, so a user can see a library filling up before a save
-        -- fails.
+    @guarantee StoragePressureWarnsAndOffersBackup
+        -- On crossing config.library_pressure_fraction the surface
+        -- tells the user how full the library is and offers to export
+        -- a backup before anything is deleted. It never refuses a save
+        -- and never evicts. The choice of what goes is the user's,
+        -- made with the evidence in front of them.
+        --
+        -- Where the browser reports no quota, the count backstop
+        -- applies and the warning says so, rather than implying a
+        -- measurement that was never taken.
 }
 
 -- ============================================================
 -- Open Questions
 -- ============================================================
 
-open question "Layer naming: the supporting-processes layer is `supporting_processes` as a step field but `supporting` as a layer key in the pixogram suggestions and the editor's column list. Two names for one layer is exactly the duplication that produces mismatched lookups. Which name wins? `supporting_processes` is the serialised name and the one in published embeds, so changing it is a data migration; `supporting` is the shorter internal key and changing it is a code-only rename. Recommendation: keep `supporting_processes` everywhere and delete the short alias."
+-- All questions this spec opened have been answered by the author; the
+-- decisions are recorded in the invariants and rules above. What
+-- remains here are the consequences that landed in *code* rather than
+-- in this document, and one question the answers created.
 
-open question "Cell shape across specs: this spec models a cell as an encoded string with derived icon and text, matching the implementation. interaction-capture.allium and walkthrough-viewer.allium model `value Cell { icon, text }` with per-layer fields named user_cell, dialogue_cell and so on. Should those specs adopt the encoded-string model, or should the implementation store icon and text apart and encode only at the serialisation boundary? Storing them apart is cleaner but changes the shape of every stored and published score."
+open question "Movement identity in the implementation: this spec gives Movement its own id, which is the agreed model. The implementation still carries `movement_ids` as a list running parallel to `score.scores[][]`, and migrate.js repairs a length mismatch by minting to fit — which can hand one movement another movement's id. Closing this is a data change, not a wording change: move the id onto the movement and migrate existing libraries. Until that lands, the spec and the storage disagree."
 
-open question "Reads that write: ExtractTrace persists the trace it extracts, so listing a library of legacy scores performs writes. This is what makes migration invisible, but it means a read can exhaust the storage quota, and two tabs listing at once will both attempt the repair. Is read-repair the right model, or should extraction be an explicit one-time migration the user triggers?"
+open question "Layer naming in the implementation: `supporting_processes` is now the single name in this spec. The editor still uses the short key `supporting` in LAYER_SUGGESTIONS and in the column list in PixScore.js, mapping between the two at the point of lookup. The alias should go."
 
-open question "Capacity of 20 scores: where does this bound come from? If it protects the storage quota then it belongs on total size, not on count — twenty recordings with screenshots are worth far more than twenty authored scores, and only one of those threatens the quota. If it is a deliberate product limit on library size, say so. Today a user can be blocked from saving a one-step authored score because twenty recordings filled the count."
-
-open question "Trace cardinality of 1: re-recording a score cannot produce a second trace, so a user who re-records overwrites the evidence of the first run. Comparing two runs of the same task is a natural thing to want from a notation system for interaction. Should a score hold several traces, and if so what does the walkthrough viewer do with them?"
-
-open question "Movement identity: movement ids are carried in a list alongside the movements rather than on the movements themselves, so the two can fall out of alignment in length. Normalisation repairs this by minting to match, which silently reassigns identity when they diverge — a movement can acquire another movement's id. Should a movement be a first-class object carrying its own id?"
-
-open question "Layer loss through serialisation: an sb score serialised while the editor is showing the pix layout carries only three layers, so re-importing it loses the environment and supporting_processes content permanently. Should serialisation always carry all five layers regardless of layout, at the cost of larger embeds? The embed shape is frozen, so this may only be fixable in the round-trip form."
+open question "Comparison across sessions: re-recording appends a session and a movement, so comparing two runs means comparing two movements of one score. Steps are not aligned between them — the second run may take a different path, or the same path in a different number of steps. What does the viewer put side by side: step 1 against step 1 positionally, or some matching on captured_from_url and element kind? Positional is trivial and wrong the moment the paths diverge; matching is the useful thing and needs a rule for what counts as the same moment."

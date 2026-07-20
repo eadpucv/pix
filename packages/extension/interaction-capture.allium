@@ -1,4 +1,5 @@
 -- allium: 3
+use "../core/score-contract.allium" as core
 -- interaction-capture.allium
 --
 -- Browser extension that records a user's interaction with the open
@@ -12,24 +13,53 @@
 -- packages/editor/walkthrough-viewer.allium.
 --
 -- ----------------------------------------------------------------------------
+-- Ownership
+-- ----------------------------------------------------------------------------
+-- packages/core/score-contract.allium is the canonical owner of the
+-- shared data model: Score, Movement, ScoreStep, ScreenshotTrace,
+-- RecordingSession, TraceSnapshot and TraceAnnotation. This spec
+-- references them as external entities carrying only the fields the
+-- recorder actually touches. It does not redefine them, and where the
+-- two documents could disagree, core wins.
+--
+-- What this spec owns is the recorder: the Recorder state machine, the
+-- criteria by which a DOM event becomes a captured moment, the
+-- vocabulary written into the captured_* fields, and the seeding of
+-- cells at capture time.
+--
+-- ----------------------------------------------------------------------------
 -- Scope
 -- ----------------------------------------------------------------------------
 -- Included:
---   - Recording lifecycle: start, stop, pause, resume.
+--   - Recording lifecycle: start, stop, pause, resume. Starting a
+--     recording opens a RecordingSession, which appends a new Movement
+--     to the score and appends snapshots to the score's one trace.
+--   - Re-recording an existing score: an APPEND, never a replace. A
+--     second sitting adds a second session and a second movement.
+--     Nothing already captured is discarded or rewritten.
 --   - Capture granularity: one ScoreStep + one TraceSnapshot per
 --     accepted interaction event. Triggers vary by element kind:
 --     click for buttons/links, blur-with-change for text inputs,
 --     change for dropdown/checkbox/radio/file, plus drag-drop and
---     media playback start.
+--     media playback. Captures are atomic; merging consecutive steps
+--     is an editing affordance, not a capture-time decision.
 --   - Screenshot of the visible viewport plus a normalised focus
---     region that highlights the targeted element.
+--     region that highlights the targeted element. The region is
+--     captured as observed and is never re-croppable.
 --   - Mapping captured action -> PiX score column with one cell per
 --     visible layer, seeded with a pixogram inferred from the
 --     element kind and a verb chosen by the interaction trigger.
+--   - Seeding the user layer, but only on high-confidence signals
+--     (landing on a confirmation page after a submit). Otherwise the
+--     layer is left empty for a person to fill.
 --   - Section divisions: when a captured step lands on a different
 --     "screen" (URL, document title, or browser tab) than the
 --     previous step, the new step's step_title is seeded with the
 --     screen's name so the editor renders a section divider.
+--   - SPA screen changes: a significant DOM mutation with no change
+--     of URL, title or tab is also a section boundary. The resulting
+--     sections are enumerated beneath the last real section name
+--     ("Carro: Paso 1", "Carro: Paso 2", ...).
 --   - System events as steps: visible error UI (alert dialogs,
 --     role="alert", aria-live="assertive", validation messages)
 --     creates its own step in the system layer, anchored to the
@@ -37,9 +67,10 @@
 --   - Hover-revealed content as annotations: when the user dwells
 --     long enough on an element that reveals a tooltip / popover,
 --     the revealed text is appended to the most recent step's note.
---   - Media playback: a video or audio that begins playing creates
---     its own step, captured once at play-start (later pause/seek
---     not captured to avoid step explosion).
+--   - Media playback: all media events are captured (play, pause,
+--     seek, end), but they do not each produce a step. The first
+--     play creates the step; later events on the same element attach
+--     to it.
 --   - Multi-site continuity: top-level navigations (including
 --     cross-origin hops to a payment gateway and back) do not
 --     interrupt recording. The TraceSnapshot that lands on a new
@@ -48,7 +79,7 @@
 --     page (target=_blank, window.open, ctrl-click) continue to
 --     append to the same active recording. Each snapshot records
 --     its tab identity so the walkthrough viewer can surface
---     parallel flows.
+--     parallel flows. The partitura stays linear.
 --   - Forensic posture: capture-derived data lives in a separate
 --     ScreenshotTrace entity per Score; once written, snapshots are
 --     append-only. Per-Score provenance metadata at create time.
@@ -61,16 +92,24 @@
 --     a step-by-step tutorial PDF (driven by the ScreenshotTrace).
 --
 -- Excluded:
+--   - The shared data model itself. Score, Movement, ScoreStep,
+--     ScreenshotTrace, RecordingSession, TraceSnapshot and
+--     TraceAnnotation belong to packages/core/score-contract.allium.
+--   - Library capacity as a count. The library is bounded by storage
+--     pressure, warns, and offers a backup; it never refuses a save
+--     and never evicts. That policy lives in core; this spec only
+--     honours it by never gating recording on library size.
+--   - Free-form remarks. TraceAnnotation exists and is mutable, but
+--     the recorder never writes one — the viewer does.
 --   - All pictos.cl integration: aid-availability checks, in-page aid
 --     overlay, sidepanel iframe to app.pictos.cl, "send task" upload,
 --     and pictogram fetching from api.pictos.cl. This branch is offline.
 --   - Browser-extension plumbing details (manifest shape, message bus,
 --     service-worker lifetime). The browser is modelled as an external
 --     boundary; specifics live in implementation, not in this spec.
---   - The PiX editor application itself (eadpucv/pix). This spec consumes
---     PiX's score data contract (layouts, layers, pixograms) as an
---     external vocabulary; that project owns it. The walkthrough viewer
---     for the screenshot trace is specified in
+--   - The PiX editor application itself. Rendering, editing
+--     affordances and export live there. The walkthrough viewer for
+--     the screenshot trace is specified in
 --     packages/editor/walkthrough-viewer.allium.
 --   - Storage backend choice. The spec only commits to "local to the
 --     browser profile, persistent across sessions, never on the network".
@@ -82,6 +121,9 @@
 --     typed. Password fields never reveal anything beyond the fact
 --     of typing. Dropdown / checkbox / radio selections do reveal
 --     the chosen option label (it is meta-data, not free text).
+--   - CSS-only hover reveals. A site that shows content on hover
+--     without touching the DOM is invisible to the recorder. Still
+--     deferred; see Open Questions.
 --
 -- ----------------------------------------------------------------------------
 -- Library locus and storage
@@ -96,10 +138,21 @@
 -- A Score's state changes only via UserMarksScoreAsFinal /
 -- UserReopensScoreAsDraft.
 --
--- Each Recording owns a ScreenshotTrace 1:1, holding the screenshots
--- and focus regions that were captured. The Score itself is purely
--- the partitura — text and pixogram cells — so it can be edited
--- without ever touching the trace.
+-- Each recorded Score owns a ScreenshotTrace 1:1, holding the
+-- screenshots and focus regions that were captured. The Score itself is
+-- purely the partitura — text and pixogram cells — so it can be edited
+-- without ever touching the trace. The trace is one per score and grows
+-- across sittings; it is never replaced.
+
+-- ============================================================
+-- Given
+-- ============================================================
+
+-- There is one recorder per browser profile. Every rule below speaks
+-- about that one instance.
+given {
+    recorder: Recorder
+}
 
 -- ============================================================
 -- External Entities
@@ -112,7 +165,11 @@ external entity WebPage {
     title: String                           -- document.title at observation time
     viewport_width: Integer
     viewport_height: Integer
-    tab_id: TabId                           -- which browser tab this page is in
+
+    -- Opaque browser tab identifier. Implementation: chrome.tabs.Tab.id
+    -- or equivalent. The spec requires only uniqueness within the
+    -- session and stability across the life of one tab.
+    tab_id: String
 }
 
 -- A DOM element on the current page that the recorder considers
@@ -126,10 +183,11 @@ external entity InteractiveElement {
     aria_label: String?
     placeholder: String?                    -- for inputs
     selected_option_text: String?           -- for <select> with a current selection
+    is_contenteditable: Boolean
     bounding_box: BoundingBox               -- position and size within the viewport
 }
 
--- A media element (HTML <video> or <audio>) the user starts playing.
+-- A media element (HTML <video> or <audio>) the user interacts with.
 external entity MediaElement {
     page: WebPage
     tag_name: String                        -- "video" or "audio"
@@ -140,7 +198,7 @@ external entity MediaElement {
 
 -- A visible error indicator on a page — a validation message, alert
 -- dialog, role="alert" notification or similar. Detection criteria
--- live in @invariant ErrorDetectionCriteria.
+-- live in invariant ErrorDetectionCriteria.
 external entity ErrorIndicator {
     page: WebPage
     text: String                            -- the visible error message
@@ -149,10 +207,139 @@ external entity ErrorIndicator {
     bounding_box: BoundingBox?
 }
 
--- A pixogram from the PiX icon vocabulary (160 monochrome SVG icons).
--- Identified by name only ("button", "input", "think", "process", ...).
-external entity Pixogram {
-    name: String
+-- ------------------------------------------------------------
+-- The shared score model
+-- ------------------------------------------------------------
+-- Owner: packages/core/score-contract.allium. Everything below is a
+-- narrow view of what core defines, listing only the fields the
+-- recorder reads or writes. Consult core for the full definitions,
+-- the lifecycle and the cross-entity invariants.
+
+-- Owner: packages/core/score-contract.allium.
+external entity Score {
+    id: String
+    title: String
+    description: String
+    layout: ScoreLayout
+    state: ScoreState
+    movements: List<Movement> with score = this
+    trace: ScreenshotTrace?                 -- absent until the first sitting
+    created_at: Timestamp
+    updated_at: Timestamp
+
+    -- Provenance is written once, by the recorder, at Score creation.
+    -- It is not part of core's Score today; see Open Questions.
+    provenance: ScoreProvenance
+
+    visible_layers:
+        if layout = pix:
+            { user, dialogue, system }
+        else:
+            { environment, user, dialogue, system, supporting_processes }
+}
+
+-- Owner: packages/core/score-contract.allium.
+--
+-- A movement is a recording session's worth of steps. That is the
+-- meaning the recorder gives it and the reason a second sitting
+-- appends one rather than reopening the last.
+external entity Movement {
+    id: String
+    score: Score
+    position: Integer                       -- 0-based index within score.movements
+    steps: List<ScoreStep> with movement = this
+}
+
+-- Owner: packages/core/score-contract.allium.
+--
+-- One column of the PiX grid — partitura content only. Capture-derived
+-- data lives in the matching TraceSnapshot. The five cell fields are
+-- named for their layers, matching the serialised field names; a step
+-- carries all five whatever the layout.
+external entity ScoreStep {
+    id: String
+    movement: Movement
+    position: Integer                       -- 0-based index within movement.steps
+    step_title: String                      -- non-empty marks the start of a section
+    note: String                            -- caption below the grid; can include
+                                            -- hover-reveal annotations, media events
+                                            -- and error context
+
+    environment: Cell
+    user: Cell
+    dialogue: Cell
+    system: Cell
+    supporting_processes: Cell
+
+    snapshot: TraceSnapshot?                -- the evidence behind this step, when the
+                                            -- step was recorded rather than typed
+}
+
+-- Owner: packages/core/score-contract.allium.
+--
+-- One trace per recorded Score. It grows across sittings; a second
+-- recording appends to it and never replaces it.
+external entity ScreenshotTrace {
+    id: String
+    score: Score
+    snapshots: List<TraceSnapshot> with trace = this
+    sessions: List<RecordingSession> with trace = this
+    created_at: Timestamp
+}
+
+-- Owner: packages/core/score-contract.allium.
+--
+-- One sitting at the recorder. The recorder opens one on start and
+-- closes it on stop. At most one is live at a time.
+external entity RecordingSession {
+    id: String
+    trace: ScreenshotTrace
+    movement: Movement                      -- the movement this session appended
+    index: Integer                          -- 0-based, in order of recording
+    started_at: Timestamp
+    ended_at: Timestamp?                    -- absent while the session is live
+
+    is_live: not exists ended_at
+}
+
+-- Owner: packages/core/score-contract.allium.
+--
+-- The empirical record of one captured interaction.
+--
+-- Core types the captured_* fields and boundary as opaque strings,
+-- deliberately: interpreting them is the recorder's business, not the
+-- contract's. This spec supplies that interpretation, so it types them
+-- with the enums it writes. Likewise, core makes them optional because
+-- a snapshot extracted from a legacy score may lack them; every
+-- snapshot written by the rules below carries all of them, which is why
+-- they are not optional in this view.
+external entity TraceSnapshot {
+    id: String
+    trace: ScreenshotTrace
+    session: RecordingSession               -- which sitting produced it
+    step: ScoreStep                         -- referenced by step.id
+
+    screenshot: String                      -- data URL of the viewport
+    focus: FocusRegion
+    captured_at: Timestamp
+    captured_from_url: String
+    captured_page_title: String
+    captured_tab_id: String
+    captured_kind: CapturedElementKind
+    captured_trigger: InteractionTrigger
+    boundary: BoundaryMarker
+}
+
+-- Owner: packages/core/score-contract.allium.
+--
+-- A free-form remark someone attaches to a captured moment after the
+-- fact. Declared here only so it is visible that the recorder does not
+-- write one: annotations are commentary, added in the viewer, and
+-- their existence is why a snapshot never needs editing.
+external entity TraceAnnotation {
+    id: String
+    snapshot: TraceSnapshot
+    text: String
 }
 
 -- A serialized PiX score, conforming to the data contract owned by
@@ -167,7 +354,7 @@ external entity PiXScoreDocument {
 -- A step-by-step tutorial PDF generated from a Score's ScreenshotTrace.
 external entity TutorialPdf {
     score_id: String
-    payload: Bytes
+    payload: String                         -- the encoded document
 }
 
 -- ============================================================
@@ -181,11 +368,19 @@ value BoundingBox {
     height: Integer
 }
 
--- A single (layer x step) cell in a score. PiX renders cells as
--- "<pixogram> <text>". An absent cell has icon = null and text = "".
+-- One (layer x step) cell. Owner of the shape: score-contract.allium.
+--
+-- A cell is a single encoded string, not a pair. It may carry a
+-- pixogram alone, text alone, or both, and the encoding expresses all
+-- three without a special case. The pixogram name and the text are
+-- derived from that string, never stored beside it.
 value Cell {
-    icon: Pixogram?
-    text: String
+    raw: String                             -- "" for an empty cell
+
+    icon: parse_pixogram_name(raw)          -- catalogue name, or null when the
+                                            -- leading token is not one
+    text: parse_cell_text(raw)              -- the remainder, trimmed
+    is_empty: raw = ""
 }
 
 -- The highlighted region drawn over the screenshot in the viewer.
@@ -205,20 +400,12 @@ value ScoreProvenance {
     locale: String                          -- BCP-47 tag, e.g. "es-CL"
 }
 
--- Opaque identifier for a browser tab. The recorder uses this to
--- annotate snapshots and detect tab switches; the value itself is
--- meaningless outside the recording session.
-value TabId {
-    -- Implementation: chrome.tabs.Tab.id (an integer per session) or
-    -- equivalent. The spec only requires uniqueness within the
-    -- session and stability across the life of one tab.
-}
-
 -- ============================================================
 -- Enumerations
 -- ============================================================
 
--- The five PiX layers.
+-- The five PiX layers. `supporting_processes` is the name of the
+-- layer, everywhere; the short alias `supporting` is retired.
 enum ScoreLayer {
     user | dialogue | system | environment | supporting_processes
 }
@@ -244,8 +431,8 @@ enum CapturedElementKind {
 -- What kind of interaction triggered the capture. Drives the verb
 -- chosen for the dialogue cell text. Orthogonal to CapturedElementKind:
 -- the same element kind can produce different InteractionTriggers
--- (a checkbox can be triggered by `change`, but never by `click_only`
--- — see @invariant TriggerMatchesKind).
+-- (a checkbox can be triggered by `change`, but never by a bare click
+-- — see invariant TriggerMatchesKind).
 enum InteractionTrigger {
     click                                   -- mouse click on a clickable element
     | text_committed                        -- input/textarea blurred with value changed
@@ -254,6 +441,12 @@ enum InteractionTrigger {
     | drag_drop                             -- source dragged and dropped on target
     | media_play                            -- <video>/<audio> started playing
     | system_error                          -- error UI became visible (system-emitted)
+}
+
+-- Everything a media element can report. All four are captured; only
+-- the first `play` on a given element creates a step.
+enum MediaEventKind {
+    play | paused | seeked | ended
 }
 
 enum ErrorSeverity {
@@ -272,11 +465,20 @@ enum BoundaryMarker {
 -- ============================================================
 
 -- The single global recording state for the extension. There is one
--- recorder per browser profile.
+-- recorder per browser profile, bound as `recorder` in the given block.
 entity Recorder {
     state: idle | recording | paused
     active_score: Score?
-    active_tab: TabId?                      -- the tab where the most recent capture occurred
+    active_session: RecordingSession?       -- the sitting currently open
+    active_tab: String?                     -- tab where the most recent capture occurred
+
+    -- Section naming state. `last_section_base` is the name of the last
+    -- real screen change (document title, or the screen's name).
+    -- `spa_section_ordinal` counts the in-place screen changes observed
+    -- beneath it, and is reset to 0 by every real screen change.
+    last_section_base: String
+    spa_section_ordinal: Integer
+    pending_section_title: String           -- "" when the next capture starts no section
 
     transitions state {
         idle -> recording                   -- UserStartsRecording
@@ -284,80 +486,8 @@ entity Recorder {
         paused -> recording                 -- UserResumesRecording
         recording -> idle                   -- UserStopsRecording
         paused -> idle                      -- UserStopsRecording (from paused)
+        terminal: idle
     }
-}
-
--- A PiX score. Owned and edited locally; never uploaded anywhere.
-entity Score {
-    id: UUID
-    title: String
-    description: String
-    layout: ScoreLayout
-    state: ScoreState
-    movements: List<Movement> with score = this
-    trace: ScreenshotTrace?                 -- absent for authored scores
-    provenance: ScoreProvenance
-    created_at: Timestamp
-    updated_at: Timestamp
-
-    visible_layers:
-        if layout = pix:
-            { user, dialogue, system }
-        else:
-            { environment, user, dialogue, system, supporting_processes }
-
-    active_movement: movements.last
-    total_steps: movements.sum(m => m.steps.count)
-}
-
-entity Movement {
-    id: UUID
-    score: Score
-    position: Integer                       -- 0-based index within score.movements
-    steps: List<ScoreStep> with movement = this
-}
-
--- One column of the PiX grid — partitura content only. Capture-derived
--- data lives in the matching TraceSnapshot.
-entity ScoreStep {
-    id: UUID
-    movement: Movement
-    position: Integer                       -- 0-based index within movement.steps
-    step_title: String                      -- non-empty marks the start of a section
-    note: String                            -- caption below the grid; can include
-                                            -- hover-reveal annotations and error context
-
-    user_cell: Cell
-    dialogue_cell: Cell
-    system_cell: Cell
-    environment_cell: Cell
-    supporting_cell: Cell
-}
-
--- The collection of captured snapshots for a recorded Score. Authored
--- scores have no trace; recordings have exactly one (1:1 with Score).
-entity ScreenshotTrace {
-    id: UUID
-    score: Score
-    snapshots: List<TraceSnapshot> with trace = this
-    created_at: Timestamp
-}
-
--- The empirical record of one captured interaction.
-entity TraceSnapshot {
-    id: UUID
-    trace: ScreenshotTrace
-    step: ScoreStep                         -- referenced by step.id
-
-    screenshot: String                      -- data URL of the viewport
-    focus: FocusRegion
-    captured_at: Timestamp
-    captured_from_url: String
-    captured_page_title: String
-    captured_tab_id: TabId
-    captured_kind: CapturedElementKind
-    captured_trigger: InteractionTrigger
-    boundary: BoundaryMarker
 }
 
 -- ============================================================
@@ -366,6 +496,8 @@ entity TraceSnapshot {
 
 config {
     -- Pixogram names seeded into the dialogue cell, by element kind.
+    -- These are catalogue names; how a name is encoded into a cell's
+    -- raw string is the codec's business (see core's CellEncoding).
     icon_button: String = "button"
     icon_link: String = "link"
     icon_text_input: String = "input"
@@ -385,11 +517,32 @@ config {
     -- since the previous captured step.
     icon_navigation: String = "page"
 
-    score_library_capacity: Integer = 20
+    -- Pixogram seeded into the *user* cell on a high-confidence
+    -- success signal. The author's example: landing on a confirmation
+    -- page after a submit.
+    icon_user_success: String = "happy"
+
+    -- Fraction of the profile's storage quota at which the library is
+    -- considered under pressure. Mirrors core's parameter of the same
+    -- name; crossing it warns and offers a backup, and nothing else.
+    library_pressure_fraction: Decimal = 0.8
+
+    -- Coarse backstop for browsers that will not report a quota. Not
+    -- the real bound — the real bound is weight. Mirrors core.
+    score_count_backstop: Integer = 20
 
     -- Debounce window for re-scanning interactive elements after
     -- DOM mutations. Below this, mutation bursts are coalesced.
     interactive_rescan_debounce: Duration = 300.milliseconds
+
+    -- Fraction of the rendered subtree that must change, within one
+    -- debounce window and with no change of URL, title or tab, for the
+    -- recorder to read it as an in-place screen change.
+    spa_section_mutation_threshold: Decimal = 0.4
+
+    -- Word used when enumerating in-place screen changes beneath the
+    -- last real section name: "Carro: Paso 1", "Carro: Paso 2".
+    spa_section_step_label: String = "Paso"
 
     -- A hover that reveals a tooltip/popover only counts as a
     -- capture-worthy "hover reveal" if the user dwells this long.
@@ -406,21 +559,24 @@ config {
 -- Defaults
 -- ============================================================
 
-default Cell empty_cell = { icon: null, text: "" }
+default Cell empty_cell = { raw: "" }
 
 -- ============================================================
--- Rules
+-- Rules — Score creation
 -- ============================================================
 
 rule UserCreatesScore {
     when: UserCreatesScore(layout, title?)
 
-    requires: Score.count < config.score_library_capacity
-
-    -- Authored scores skip the draft phase; they have no trace.
+    -- No capacity gate. Storage pressure warns and offers a backup; it
+    -- never refuses. Refusing here would strand work that has nowhere
+    -- else to go — the library is the only copy.
+    --
+    -- Authored scores skip the draft phase; they have no trace and no
+    -- session until someone records against them.
     ensures:
         let score = Score.created(
-            id: new_uuid(),
+            id: new_id(),
             title: title ?? "",
             description: "",
             layout: layout,
@@ -431,82 +587,144 @@ rule UserCreatesScore {
             updated_at: now
         )
         Movement.created(
-            id: new_uuid(),
+            id: new_id(),
             score: score,
             position: 0
         )
 }
 
+-- ============================================================
+-- Rules — Recording lifecycle
+-- ============================================================
+
+-- Recording against a score that has already been recorded is an
+-- APPEND. A second sitting opens a second RecordingSession, which
+-- appends a second Movement to the partitura and appends its snapshots
+-- to the same trace. Nothing captured before is discarded or rewritten.
+--
+-- The trace is created here only if the score has none — that is, only
+-- on the first sitting.
 rule UserStartsRecording {
     when: UserStartsRecording(score)
 
-    requires: Recorder.state = idle
+    requires: recorder.state = idle
     requires: score.state = draft
+
+    ensures: recorder.state = recording
+    ensures: recorder.active_score = score
+    ensures:
+        if not exists score.trace:
+            let trace = ScreenshotTrace.created(
+                score: score,
+                created_at: now
+            )
+            score.trace = trace
+    ensures: RecordingSessionOpened(score: score)
+}
+
+-- Split from UserStartsRecording so the session and its movement are
+-- opened against a trace that is known to exist, whether it was just
+-- created or has been there since an earlier sitting.
+rule OpenRecordingSession {
+    when: RecordingSessionOpened(score)
+
     requires: exists score.trace
 
-    ensures: Recorder.state = recording
-    ensures: Recorder.active_score = score
+    ensures:
+        let movement = Movement.created(
+            id: new_id(),
+            score: score,
+            position: score.movements.count
+        )
+        let session = RecordingSession.created(
+            id: new_id(),
+            trace: score.trace,
+            movement: movement,
+            index: score.trace.sessions.count,
+            started_at: now,
+            ended_at: null
+        )
+        recorder.active_session = session
+        recorder.last_section_base = ""
+        recorder.spa_section_ordinal = 0
+        recorder.pending_section_title = ""
+        score.updated_at = now
 }
 
 rule UserPausesRecording {
-    when: UserPausesRecording
+    when: UserPausesRecording(session)
 
-    requires: Recorder.state = recording
+    requires: recorder.state = recording
+    requires: recorder.active_session = session
 
-    -- While paused, no capture event of any kind produces a step.
-    -- The active_score is preserved so resume can continue. Per
-    -- @guarantee RecordingStateAlwaysVisible, the overlay reflects
-    -- the paused state distinctly from recording (e.g., the dot
-    -- stops pulsing).
-    ensures: Recorder.state = paused
+    -- While paused, no capture event of any kind produces a step. The
+    -- session stays live and active_score is preserved, so resume
+    -- continues appending to the same movement — a pause is not a
+    -- sitting boundary. Per @guarantee RecordingStateAlwaysVisible the
+    -- overlay reflects the paused state distinctly (e.g. the dot stops
+    -- pulsing).
+    ensures: recorder.state = paused
 }
 
 rule UserResumesRecording {
-    when: UserResumesRecording
+    when: UserResumesRecording(session)
 
-    requires: Recorder.state = paused
-    requires: exists Recorder.active_score
+    requires: recorder.state = paused
+    requires: recorder.active_session = session
 
-    ensures: Recorder.state = recording
+    ensures: recorder.state = recording
 }
 
 rule UserStopsRecording {
-    when: UserStopsRecording
+    when: UserStopsRecording(session)
 
-    requires: Recorder.state = recording or Recorder.state = paused
+    requires: recorder.state = recording or recorder.state = paused
+    requires: recorder.active_session = session
 
-    ensures: Recorder.state = idle
-    ensures: Recorder.active_score = null
+    let score = recorder.active_score
+
+    -- Closing the session is what makes the sitting legible later: a
+    -- comparison view sorts by session index, and without the boundary
+    -- two runs of the same task would be one long run.
+    ensures: session.ended_at = now
+
+    ensures: recorder.state = idle
+    ensures: recorder.active_score = null
+    ensures: recorder.active_session = null
+    ensures: recorder.active_tab = null
 
     -- The recording (Score + ScreenshotTrace) is persisted to the
     -- editor's canonical library at the moment the recorder stops.
     -- See @guarantee RecordingPersistedOnStop. The Score's state
     -- remains draft until UserMarksScoreAsFinal fires.
-    ensures:
-        RecordingFlushedToLibrary.applied(
-            score: previously_active_score,
-            policy: persist_score_and_trace
-        )
+    ensures: RecordingFlushedToLibrary(score: score, session: session)
 }
 
--- The capture rules. Every accepted firing produces exactly one
--- ScoreStep + one TraceSnapshot, except UserHoverRevealsContent
--- (annotates an existing step) — see @invariant CaptureGranularity.
+-- ============================================================
+-- Rules — Capture
+-- ============================================================
+
+-- Every accepted firing produces exactly one ScoreStep + one
+-- TraceSnapshot, except UserHoverRevealsContent and
+-- MediaEventAttachesToStep, which annotate an existing step — see
+-- invariant CaptureGranularity.
 --
 -- The shared structure:
 --   * derive interaction kind, element kind, trigger
 --   * compute dialogue text from auto_caption (per-trigger verb
 --     mapping; NEVER includes typed text from <input> values; DOES
 --     include selected option text from dropdown/checkbox/radio)
---   * detect section break (URL/title/tab change vs previous snapshot)
+--   * seed the user cell only on a high-confidence signal
+--   * detect section break (URL/title/tab change, or a pending SPA
+--     section title left by SpaScreenChangeStartsSection)
 --   * detect boundary crossing (host change)
---   * build the step + snapshot
+--   * build the step + snapshot in the active session's movement
 
 rule UserClickCapturesStep {
     when: UserClicksElement(element)
 
-    requires: Recorder.state = recording
-    requires: exists Recorder.active_score
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
     -- Click is the trigger for elements whose primary interaction is
     -- the click itself: buttons, links, generic clickables. Inputs
     -- and selectors have their own dedicated triggers below.
@@ -518,7 +736,7 @@ rule UserClickCapturesStep {
 
     ensures:
         capture_step(
-            score: Recorder.active_score,
+            session: recorder.active_session,
             element: element,
             element_kind: element_kind,
             trigger: trigger
@@ -526,14 +744,14 @@ rule UserClickCapturesStep {
 }
 
 rule UserTextInputCapturesStep {
-    when: UserBlursTextInput(element, text_changed: Boolean)
+    when: UserBlursTextInput(element, text_changed)
 
     -- Text inputs (single-line, multi-line, password, contenteditable)
     -- capture on blur, only if the value changed during the focus
     -- session. This matches the user's intent: they wrote something.
     -- A pure focus-then-blur with no change does not capture.
-    requires: Recorder.state = recording
-    requires: exists Recorder.active_score
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
     requires: text_changed = true
     requires: classify_element(element) in
         { text_input, password_input, text_area }
@@ -543,7 +761,7 @@ rule UserTextInputCapturesStep {
 
     ensures:
         capture_step(
-            score: Recorder.active_score,
+            session: recorder.active_session,
             element: element,
             element_kind: classify_element(element),
             trigger: trigger
@@ -558,8 +776,8 @@ rule UserSelectionCapturesStep {
     -- when the value flips. The new value is included verbatim in
     -- the dialogue text — for these kinds it is choice meta-data,
     -- not free user input.
-    requires: Recorder.state = recording
-    requires: exists Recorder.active_score
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
     requires: classify_element(element) in
         { dropdown, checkbox, radio }
 
@@ -567,7 +785,7 @@ rule UserSelectionCapturesStep {
 
     ensures:
         capture_step(
-            score: Recorder.active_score,
+            session: recorder.active_session,
             element: element,
             element_kind: classify_element(element),
             trigger: trigger
@@ -577,15 +795,15 @@ rule UserSelectionCapturesStep {
 rule UserFileAttachmentCapturesStep {
     when: UserAttachesFile(element, file_count, file_names)
 
-    requires: Recorder.state = recording
-    requires: exists Recorder.active_score
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
     requires: classify_element(element) = file_input
 
     let trigger = file_attached
 
     ensures:
         capture_step(
-            score: Recorder.active_score,
+            session: recorder.active_session,
             element: element,
             element_kind: file_input,
             trigger: trigger
@@ -593,22 +811,26 @@ rule UserFileAttachmentCapturesStep {
 }
 
 rule UserDragDropCapturesStep {
-    when: UserDragsAndDrops(source: InteractiveElement, target: InteractiveElement)
+    when: UserDragsAndDrops(source, target)
 
-    -- A drag-drop is a single event with two participants. The step
-    -- is anchored to the target (where the drop happened); the
-    -- source identity is preserved in the dialogue text
-    -- ("Arrastrar source a target"). The screenshot captures the
-    -- viewport at the moment of drop; the focus region is on the
-    -- target's bounding box.
-    requires: Recorder.state = recording
-    requires: exists Recorder.active_score
+    -- One drag-drop is ONE step, captured once, at the drop. The
+    -- source identity survives as text in the partitura ("Arrastrar
+    -- source a target"); the screenshot is the viewport at the moment
+    -- of drop and the focus region is on the target.
+    --
+    -- No second snapshot at drag-start. Showing the source "in flight"
+    -- would double the storage cost of every drag for a picture of a
+    -- moment nobody reads back, and the machinery to capture it fairly
+    -- (which frame? mid-flight or at pickup?) costs more than the
+    -- imprecision does.
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
 
     let trigger = drag_drop
 
     ensures:
         capture_step(
-            score: Recorder.active_score,
+            session: recorder.active_session,
             element: target,
             element_kind: drag_target,
             trigger: trigger,
@@ -616,48 +838,73 @@ rule UserDragDropCapturesStep {
         )
 }
 
-rule UserMediaPlaybackCapturesStep {
-    when: MediaElementBeganPlaying(media: MediaElement)
+-- Media: capture everything, but do not multiply steps.
+--
+-- The first play on an element creates the step. Every later event on
+-- that same element — pause, seek, end, a second play — attaches to it.
+-- A user who cares about a particular moment of playback can say so in
+-- the note or in a TraceAnnotation; what they must not get is a
+-- partitura with forty columns because someone scrubbed a video.
 
-    -- The user observed a video / audio start playing. Captured
-    -- once at play-start. Subsequent pause / seek / end do not
-    -- create steps (would explode the partitura on long media).
-    -- The user can manually annotate the note if a specific
-    -- moment of playback was meaningful.
-    requires: Recorder.state = recording
-    requires: exists Recorder.active_score
+rule MediaFirstPlayCapturesStep {
+    when: MediaElementEvent(media, event_kind)
+
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
+    requires: event_kind = play
+    requires: not exists step_for_media(recorder.active_session, media)
 
     let trigger = media_play
 
     ensures:
         capture_step(
-            score: Recorder.active_score,
+            session: recorder.active_session,
             element: media,                  -- treated as InteractiveElement-like
             element_kind: media,
             trigger: trigger
         )
 }
 
+rule MediaEventAttachesToStep {
+    when: MediaElementEvent(media, event_kind)
+
+    -- Pause, seek, end and re-play all land here once the element has
+    -- a step. An event on an element the recorder never saw start
+    -- (playback began before recording, or on a page it could not
+    -- inject into) matches neither rule and is dropped — there is no
+    -- honest step to attach it to.
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
+
+    let step = step_for_media(recorder.active_session, media)
+
+    requires: exists step
+
+    ensures: step.note = append_media_event(step.note, event_kind, now)
+    ensures: step.movement.score.updated_at = now
+}
+
 rule SystemErrorCapturesStep {
-    when: ErrorBecameVisible(indicator: ErrorIndicator)
+    when: ErrorBecameVisible(indicator)
 
     -- A visible error UI on a recorded page becomes its own step.
     -- The dialogue cell shows the error text with the alert
-    -- pixogram. The system cell echoes pix-alert (the system is
-    -- speaking). The user_cell remains empty — what the user
-    -- felt is for the human author to describe.
+    -- pixogram. The system cell echoes the alert (the system is
+    -- speaking). The user cell stays empty here — an error is not a
+    -- high-confidence signal about how the person felt, and guessing
+    -- would be worse than leaving it for them.
     --
     -- Coalescing: errors that surface within
     -- config.error_coalesce_window of one another collapse into
     -- one step, with their texts joined.
-    requires: Recorder.state = recording
-    requires: exists Recorder.active_score
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
 
     let trigger = system_error
 
     ensures:
         capture_step(
-            score: Recorder.active_score,
+            session: recorder.active_session,
             element: indicator,
             element_kind: error_surface,
             trigger: trigger
@@ -665,7 +912,7 @@ rule SystemErrorCapturesStep {
 }
 
 rule UserHoverRevealsContent {
-    when: HoverRevealedContent(element, revealed_text, duration: Duration)
+    when: HoverRevealedContent(element, revealed_text, duration)
 
     -- A hover that reveals a tooltip / popover for at least
     -- config.hover_capture_threshold annotates the most recent
@@ -674,32 +921,57 @@ rule UserHoverRevealsContent {
     --
     -- If no step exists yet (the user hasn't done anything else),
     -- the hover is silently dropped (no anchor for the annotation).
-    requires: Recorder.state = recording
+    requires: recorder.state = recording
     requires: duration >= config.hover_capture_threshold
-    requires: revealed_text is non_empty
+    requires: revealed_text != ""
+    requires: exists recorder.active_session
 
-    let last_step = Recorder.active_score.active_movement.steps.last
+    let movement = recorder.active_session.movement
+    let last_step = latest_step(movement)
 
-    ensures:
-        if last_step != null:
-            last_step.note = append_hover_annotation(last_step.note, revealed_text)
-            Recorder.active_score.updated_at = now
+    requires: exists last_step
+
+    ensures: last_step.note = append_hover_annotation(last_step.note, revealed_text)
+    ensures: movement.score.updated_at = now
 }
 
-rule UserStartsNewMovement {
-    when: UserStartsNewMovement(score)
+-- ------------------------------------------------------------
+-- In-place (SPA) screen changes
+-- ------------------------------------------------------------
 
-    requires: Recorder.state = recording
-    requires: Recorder.active_score = score
+-- An SPA wizard renders three moments of a cart in place: same URL,
+-- same document.title, same tab. SectionStartsOnScreenChange cannot
+-- see them, so the recorder falls back to the shape of the page:
+-- a large enough DOM mutation, within one debounce window and with no
+-- change of URL, title or tab, is read as a new screen.
+--
+-- The recorder cannot name what it cannot read, so it does not try.
+-- It inherits the last real section name and enumerates beneath it:
+-- "Carro", then "Carro: Paso 1", "Carro: Paso 2". The person renames
+-- them afterwards; the numbering exists so the divider lands in the
+-- right column, not to be the final wording.
+rule SpaScreenChangeStartsSection {
+    when: SignificantDomMutation(page, changed_fraction)
 
-    ensures:
-        Movement.created(
-            id: new_uuid(),
-            score: score,
-            position: score.movements.count
+    requires: recorder.state = recording
+    requires: exists recorder.active_session
+    requires: changed_fraction >= config.spa_section_mutation_threshold
+    requires: recorder.last_section_base != ""
+
+    -- The ordinal is read pre-rule on the right-hand side, so the name
+    -- and the counter both land on the same value.
+    ensures: recorder.spa_section_ordinal = recorder.spa_section_ordinal + 1
+    ensures: recorder.pending_section_title =
+        spa_section_name(
+            recorder.last_section_base,
+            recorder.spa_section_ordinal + 1,
+            config.spa_section_step_label
         )
-        score.updated_at = now
 }
+
+-- ============================================================
+-- Rules — Manual editing
+-- ============================================================
 
 -- Manual editor actions (no click capture involved).
 
@@ -709,16 +981,17 @@ rule UserAddsBlankStep {
     -- Manually-added steps have no matching TraceSnapshot.
     ensures:
         ScoreStep.created(
-            id: new_uuid(),
+            id: new_id(),
             movement: movement,
             position: movement.steps.count,
             step_title: "",
             note: "",
-            user_cell: empty_cell,
-            dialogue_cell: empty_cell,
-            system_cell: empty_cell,
-            environment_cell: empty_cell,
-            supporting_cell: empty_cell
+            environment: empty_cell,
+            user: empty_cell,
+            dialogue: empty_cell,
+            system: empty_cell,
+            supporting_processes: empty_cell,
+            snapshot: null
         )
         movement.score.updated_at = now
 }
@@ -727,11 +1000,11 @@ rule UserEditsCell {
     when: UserEditsCell(step, layer, new_value)
 
     ensures:
-        if layer = user:                step.user_cell = new_value
-        else if layer = dialogue:       step.dialogue_cell = new_value
-        else if layer = system:         step.system_cell = new_value
-        else if layer = environment:    step.environment_cell = new_value
-        else:                           step.supporting_cell = new_value
+        if layer = user:                        step.user = new_value
+        else if layer = dialogue:               step.dialogue = new_value
+        else if layer = system:                 step.system = new_value
+        else if layer = environment:            step.environment = new_value
+        else:                                   step.supporting_processes = new_value
         step.movement.score.updated_at = now
 }
 
@@ -748,27 +1021,53 @@ rule UserEditsScoreMetadata {
 rule UserDeletesStep {
     when: UserDeletesStep(step)
 
-    ensures: not exists step
+    let score = step.movement.score
+
+    -- The evidence goes with the step. A snapshot whose step is gone
+    -- is orphaned and expensive: screenshots dominate the profile's
+    -- quota.
     ensures:
-        for s in step.movement.score.trace?.snapshots where s.step = step:
-            not exists s
-    ensures: step.movement.score.updated_at = now
+        if exists step.snapshot:
+            not exists step.snapshot
+    ensures: not exists step
+    ensures: score.updated_at = now
 }
 
 rule UserDeletesScore {
     when: UserDeletesScore(score)
 
-    requires: Recorder.active_score != score
+    requires: recorder.active_score != score
 
-    ensures: not exists score
     ensures:
         if exists score.trace:
-            not exists score.trace
             for s in score.trace.snapshots:
                 not exists s
+            for sess in score.trace.sessions:
+                not exists sess
+            not exists score.trace
+    ensures: not exists score
 }
 
--- Score state transitions (draft <-> final).
+rule UserDeletesTrace {
+    when: UserDeletesTrace(score)
+
+    requires: exists score.trace
+    requires: recorder.active_score != score
+
+    ensures:
+        for s in score.trace.snapshots:
+            not exists s
+    ensures:
+        for sess in score.trace.sessions:
+            not exists sess
+    ensures: not exists score.trace
+    ensures: score.trace = null
+    ensures: score.updated_at = now
+}
+
+-- ============================================================
+-- Rules — Score state
+-- ============================================================
 
 rule UserMarksScoreAsFinal {
     when: UserMarksScoreAsFinal(score)
@@ -788,27 +1087,19 @@ rule UserReopensScoreAsDraft {
     ensures: score.updated_at = now
 }
 
-rule UserDeletesTrace {
-    when: UserDeletesTrace(score)
-
-    requires: exists score.trace
-
-    ensures: not exists score.trace
-    ensures: score.trace = null
-    ensures: score.updated_at = now
-}
-
--- Export and re-import.
+-- ============================================================
+-- Rules — Export and re-import
+-- ============================================================
 
 rule UserExportsScoreAsPiXJson {
     when: UserExportsScoreAsPiXJson(score)
 
     ensures:
-        PiXScoreDocument.emitted(
+        PiXScoreDocument.created(
             score_id: score.id,
             payload: pix_json_of(
                 score: score,
-                with_uuids: true
+                with_ids: true
             )
         )
 }
@@ -817,15 +1108,17 @@ rule UserExportsScoreAsPdf {
     when: UserExportsScoreAsPdf(score)
 
     ensures:
-        TutorialPdf.emitted(
+        TutorialPdf.created(
             score_id: score.id,
             payload: pdf_tutorial_of(
                 score: score,
                 trace: score.trace,
-                page_per_snapshot: true,
-                instruction_text_source: "dialogue_cell.text"
+                page_per_snapshot: true
             )
         )
+
+    -- The instruction text under each page is the dialogue cell's
+    -- text, i.e. Cell.text of ScoreStep.dialogue.
 }
 
 rule UserImportsPiXScore {
@@ -834,22 +1127,20 @@ rule UserImportsPiXScore {
     requires: target_score.id = document.score_id
 
     -- The trace is NEVER touched by re-import — the document never
-    -- carries snapshots. Replace-in-place applies to partitura
-    -- fields only.
-    ensures:
-        ReconcilePiXDocument.applied(
-            target: target_score,
-            document: document,
-            policy: replace_in_place_preserve_trace
-        )
-        target_score.updated_at = now
+    -- carries snapshots. Replace-in-place applies to partitura fields
+    -- only, and steps keep their ids so the trace stays joined.
+    ensures: PiXDocumentReconciled(
+        target: target_score,
+        document: document
+    )
+    ensures: target_score.updated_at = now
 }
 
 -- ============================================================
 -- Invariants
 -- ============================================================
 
-@invariant ElementInteractivityCriteria
+invariant ElementInteractivityCriteria {
     -- An InteractiveElement is one for which any of the following holds:
     --   1. tag_name in {button, a, input, select, textarea}
     --   2. ARIA role in {button, link, checkbox, radio, menuitem, tab,
@@ -859,8 +1150,9 @@ rule UserImportsPiXScore {
     --   5. has contenteditable = "true"
     -- Open and closed shadow roots are traversed. The set is rebuilt
     -- on DOM mutations, debounced by interactive_rescan_debounce.
+}
 
-@invariant ErrorDetectionCriteria
+invariant ErrorDetectionCriteria {
     -- An ErrorIndicator becomes visible when a DOM element matches
     -- ANY of:
     --   1. role = "alert" or role = "alertdialog"
@@ -875,8 +1167,9 @@ rule UserImportsPiXScore {
     -- Detection runs on DOM mutations, coalesced by
     -- error_coalesce_window so a burst of validation messages
     -- becomes one capture, not many.
+}
 
-@invariant HoverRevealCriteria
+invariant HoverRevealCriteria {
     -- A "hover reveal" is captured when:
     --   1. The user's cursor stays over the same element for at least
     --      hover_capture_threshold.
@@ -887,8 +1180,13 @@ rule UserImportsPiXScore {
     --   3. The revealed element has non-empty text content.
     -- Mouse-leave or keyboard activity before the threshold cancels
     -- the capture.
+    --
+    -- A reveal driven purely by CSS — no DOM change, only a computed
+    -- style flipping — is invisible to this and stays uncaptured. See
+    -- Open Questions.
+}
 
-@invariant CaptureGranularity
+invariant CaptureGranularity {
     -- Exactly one ScoreStep + one TraceSnapshot per accepted firing of
     -- one of the capture rules:
     --   - UserClickCapturesStep
@@ -896,18 +1194,26 @@ rule UserImportsPiXScore {
     --   - UserSelectionCapturesStep
     --   - UserFileAttachmentCapturesStep
     --   - UserDragDropCapturesStep
-    --   - UserMediaPlaybackCapturesStep
+    --   - MediaFirstPlayCapturesStep
     --   - SystemErrorCapturesStep
-    -- UserHoverRevealsContent does NOT create a step; it annotates the
-    -- last step's note. This is the explicit exception to "one event,
-    -- one column".
+    -- UserHoverRevealsContent and MediaEventAttachesToStep do NOT
+    -- create a step; they annotate an existing one. Those are the two
+    -- explicit exceptions to "one event, one column".
     --
     -- An "accepted" firing means the Recorder is in state = recording
-    -- (paused suspends capture entirely, see PauseSuspendsCapture)
-    -- and the kind/trigger combination is permitted by
-    -- TriggerMatchesKind.
+    -- with a live session (paused suspends capture entirely, see
+    -- PauseSuspendsCapture) and the kind/trigger combination is
+    -- permitted by TriggerMatchesKind.
+    --
+    -- Capture is atomic and stays atomic. Consecutive captures within
+    -- one form or component are never collapsed at capture time: the
+    -- recorder writes what happened, and merging is an editing
+    -- decision made later, in the editor, with the steps in view. A
+    -- merge that turns out wrong can be undone; a capture that never
+    -- happened cannot be recovered.
+}
 
-@invariant TriggerMatchesKind
+invariant TriggerMatchesKind {
     -- Each TraceSnapshot has a captured_kind and a captured_trigger.
     -- The combinations the spec permits:
     --   click           with kind in {button, link, generic, drag_source}
@@ -920,23 +1226,40 @@ rule UserImportsPiXScore {
     --   system_error    with kind = error_surface
     -- Any other combination is a contract violation, never produced
     -- by the rules in this spec.
+}
 
-@invariant PauseSuspendsCapture
+invariant PauseSuspendsCapture {
     -- While Recorder.state = paused, NO capture rule fires. Events
     -- that would otherwise trigger a capture are silently dropped.
-    -- The recorder is "asleep but not dead": the active_score and
-    -- its trace remain intact, and resuming continues to append to
-    -- the same trace.
+    -- The recorder is "asleep but not dead": the session stays live,
+    -- the active_score and its trace remain intact, and resuming
+    -- continues to append to the same movement.
+    --
+    -- A pause is therefore not a sitting boundary. Only stop-then-start
+    -- opens a new session and a new movement.
+}
 
-@invariant ScreenshotScope
+invariant ScreenshotScope {
     -- A captured screenshot is the visible viewport of the active
     -- tab at capture time, encoded as a JPEG data URL. Off-screen
     -- page content is not captured. The focus region marks the
     -- targeted element's bounding box at capture time, normalised
     -- to percentages so the overlay tracks the image as it is
     -- rescaled.
+}
 
-@invariant DialogueValuePrivacy
+invariant FocusRegionIsNotRecroppable {
+    -- The focus region records what was actually targeted. It is
+    -- sometimes tighter or looser than a person would draw by hand,
+    -- and that is accepted. Letting it be redrawn would make the
+    -- evidence a matter of opinion, and the machinery to overlay a
+    -- correction costs more than the imprecision does.
+    --
+    -- Someone who thinks the region misleads says so in a
+    -- TraceAnnotation. This is settled, not deferred.
+}
+
+invariant DialogueValuePrivacy {
     -- The dialogue text written into a captured step NEVER contains
     -- the verbatim value typed into a text_input, password_input or
     -- text_area. The verb describes the act ("Escribir en email"),
@@ -946,23 +1269,69 @@ rule UserImportsPiXScore {
     -- Selection-committed events (dropdown, checkbox, radio) DO
     -- include the chosen option text, because that text is choice
     -- metadata, not free user input.
+}
+
+invariant UserLayerSeededOnlyOnStrongSignals {
+    -- The user layer is what the person experienced, and the recorder
+    -- cannot see that. It seeds the layer anyway, but only where the
+    -- page states the outcome plainly enough that a wrong guess is
+    -- unlikely:
+    --
+    --   - landing on a confirmation / success screen immediately after
+    --     a submit seeds config.icon_user_success ("pix-happy" in the
+    --     author's shorthand).
+    --
+    -- Everything else leaves the cell empty. An error is deliberately
+    -- NOT a signal: a person meeting a validation message may be
+    -- annoyed, indifferent or relieved, and the recorder has no
+    -- standing to say which.
+    --
+    -- The bar is high on purpose. An empty cell asks to be filled in;
+    -- a wrongly-seeded one has to be noticed first, and a plausible
+    -- wrong seed is worse than no seed at all.
+}
+
+invariant RecorderSeedsVisibleLayersOnly {
+    -- At capture time the recorder writes cells only for the layers
+    -- score.visible_layers names. Under layout = pix the environment
+    -- and supporting_processes cells are seeded empty.
+    --
+    -- It never blanks a cell that already carries content. Layout
+    -- governs visibility alone, never storage — see core's
+    -- LayersAreHiddenNeverDiscarded. A score switched sb -> pix keeps
+    -- what was in its hidden rows, and recording against it must not
+    -- be the thing that quietly clears them.
+}
 
 invariant SingleActiveScore {
-    Recorder.state = recording implies exists Recorder.active_score
-    Recorder.state = paused    implies exists Recorder.active_score
-    Recorder.state = idle      implies Recorder.active_score = null
+    recorder.state = recording implies exists recorder.active_score
+    recorder.state = paused    implies exists recorder.active_score
+    recorder.state = idle      implies recorder.active_score = null
 }
 
-invariant ScoreLibraryCapacity {
-    Score.count <= config.score_library_capacity
+invariant SingleLiveSession {
+    -- The recorder holds at most one open session, and holds one
+    -- exactly when it is engaged. Two live sessions would interleave
+    -- snapshots from different sittings into one movement, which is
+    -- exactly what the session boundary exists to prevent.
+    recorder.state = recording implies exists recorder.active_session
+    recorder.state = paused    implies exists recorder.active_session
+    recorder.state = idle      implies recorder.active_session = null
 }
 
-invariant CellLayerCompatibility {
-    for s in Scores where layout = pix:
-        for m in s.movements:
-            for st in m.steps:
-                st.environment_cell = empty_cell
-                st.supporting_cell = empty_cell
+invariant SessionAppendsRatherThanReplaces {
+    -- A trace has exactly one trace per score and grows across
+    -- sittings. Each RecordingSession appends one Movement and appends
+    -- its snapshots; none of them touches what an earlier session
+    -- wrote.
+    --
+    -- The earlier stance in this spec was that re-recording was
+    -- forbidden. It is not: a person who records the same task twice
+    -- is comparing two runs, and throwing the first away is the one
+    -- outcome that makes the second recording pointless.
+    for a in RecordingSessions:
+        for b in RecordingSessions:
+            a != b and a.trace = b.trace implies a.movement != b.movement
 }
 
 invariant StepPositionsAreContiguous {
@@ -972,25 +1341,39 @@ invariant StepPositionsAreContiguous {
 }
 
 invariant TraceCardinality {
-    -- Score and ScreenshotTrace are 1:1.
+    -- Score and ScreenshotTrace are 1:1, for the life of the score.
+    -- Re-recording does not create a second trace; it appends to this
+    -- one.
     for t in ScreenshotTraces:
-        exists t.score
         t.score.trace = t
 }
 
 invariant TraceSnapshotMatchesScoreStep {
     for s in TraceSnapshots:
-        exists s.step
         s.step.movement.score = s.trace.score
 }
 
-@invariant CaptureDerivedFieldsImmutable
+invariant SnapshotBelongsToItsSessionsMovement {
+    -- A snapshot lands in the movement its session opened. This is
+    -- what keeps a second sitting from writing into the first
+    -- sitting's movement.
+    for s in TraceSnapshots:
+        s.step.movement = s.session.movement
+}
+
+invariant CaptureDerivedFieldsImmutable {
     -- Once a TraceSnapshot has been written, no rule modifies any of
     -- its fields. The whole snapshot can be deleted (UserDeletesStep
     -- cascade, UserDeletesTrace, UserDeletesScore) — append-only is
     -- per-field, not per-entity.
+    --
+    -- Commentary about a snapshot lives in TraceAnnotation, which is
+    -- mutable and separate. The recorder never creates one: an
+    -- annotation is a person's reading of the evidence, added in the
+    -- viewer, and the recorder has nothing to say.
+}
 
-@invariant RecordingSurvivesNavigationAndTabs
+invariant RecordingSurvivesNavigationAndTabs {
     -- Top-level navigations in the tab being recorded — including
     -- cross-origin hops, redirects through 3DS flows, and the
     -- eventual return to the original origin — do not change
@@ -1000,22 +1383,39 @@ invariant TraceSnapshotMatchesScoreStep {
     -- a recorded page opens a new tab (target=_blank, window.open,
     -- middle-click, ctrl-click, "open in new tab" from context
     -- menu), the recorder begins capturing in that new tab against
-    -- the same active_score. The first captured snapshot in the new
+    -- the same active session. The first captured snapshot in the new
     -- tab carries boundary = crossing iff the host differs from the
     -- previous snapshot's host (see BoundaryReflectsHostChange) and
     -- captured_tab_id reflects the new tab.
     --
     -- The number of host crossings and tab switches within a single
     -- movement is unbounded.
+}
+
+invariant MultiTabStaysLinear {
+    -- Tabs annotate; they do not branch. captured_tab_id marks each
+    -- snapshot, a tab switch opens a section divider, and the
+    -- partitura stays one linear sequence of steps.
+    --
+    -- This matters more now than it used to. A Movement means a
+    -- recording session — one sitting at the recorder. Giving a tab
+    -- its own movement would overload the construct with a second,
+    -- incompatible meaning, and a trace with four movements would no
+    -- longer tell you whether you were looking at four sittings or
+    -- four tabs.
+    --
+    -- Parallel flows are a viewing problem, and the viewer solves it
+    -- with the tab annotation.
+}
 
 invariant TabIdentityRecorded {
-    -- Every TraceSnapshot records the browser tab where the
-    -- capture occurred. The walkthrough viewer can use this to
-    -- annotate consecutive snapshots that came from different tabs
-    -- (parallel flows in the linear partitura), per
-    -- @guarantee TabIdentityVisibleInViewer in walkthrough-viewer.allium.
+    -- Every TraceSnapshot the recorder writes records the browser tab
+    -- where the capture occurred. The walkthrough viewer uses this to
+    -- annotate consecutive snapshots that came from different tabs,
+    -- per @guarantee TabIdentityVisibleInViewer in
+    -- walkthrough-viewer.allium.
     for s in TraceSnapshots:
-        exists s.captured_tab_id
+        s.captured_tab_id != ""
 }
 
 invariant BoundaryReflectsHostChange {
@@ -1024,13 +1424,10 @@ invariant BoundaryReflectsHostChange {
     -- snapshot's captured_from_url in the same trace.
     for t in ScreenshotTraces:
         for s in t.snapshots:
-            let prev = t.snapshots
-                .where(p => p.step.position < s.step.position)
-                .last
-            s.boundary = crossing iff (
-                prev != null
-                and host_of(prev.captured_from_url) != host_of(s.captured_from_url)
-            )
+            let prev = preceding_snapshot(t, s)
+            (s.boundary = crossing)
+                = (exists prev
+                   and host_of(prev.captured_from_url) != host_of(s.captured_from_url))
 }
 
 invariant SectionStartsOnScreenChange {
@@ -1040,35 +1437,94 @@ invariant SectionStartsOnScreenChange {
     --   - the captured_from_url changed, OR
     --   - the captured_page_title changed, OR
     --   - the captured_tab_id changed (user switched tab and
-    --     captured something in the other tab).
+    --     captured something in the other tab), OR
+    --   - SpaScreenChangeStartsSection left a pending section title
+    --     (an in-place screen change with none of the above).
     -- Otherwise step_title is empty.
     --
     -- This invariant constrains only the seed value at capture time.
     -- The user can edit step_title freely after capture.
     for m in Movements:
-        for st in m.steps where exists snapshot_of(st):
-            let snap = snapshot_of(st)
-            let prev_step = m.steps.where(p => p.position < st.position).last
-            let prev_snap = if prev_step != null: snapshot_of(prev_step) else: null
-            let is_section_start =
-                prev_step = null
-                or prev_snap = null
-                or prev_snap.captured_from_url != snap.captured_from_url
-                or prev_snap.captured_page_title != snap.captured_page_title
-                or prev_snap.captured_tab_id != snap.captured_tab_id
-            (st.step_title != "") iff is_section_start
+        for st in m.steps:
+            let snap = st.snapshot
+            let prev_step = preceding_step(m, st)
+            let prev_snap = preceding_snapshot_of_step(m, st)
+            exists snap implies
+                (st.step_title != "")
+                    = (not exists prev_step
+                       or not exists prev_snap
+                       or prev_snap.captured_from_url != snap.captured_from_url
+                       or prev_snap.captured_page_title != snap.captured_page_title
+                       or prev_snap.captured_tab_id != snap.captured_tab_id
+                       or had_pending_section_title(st))
+}
+
+invariant SpaSectionsAreEnumerated {
+    -- In-place screen changes are named as an explicit series beneath
+    -- the last real section name, which is the document title or the
+    -- screen's name as SectionStartsOnScreenChange observed it:
+    --
+    --     Carro                 <- real screen change, ordinal reset to 0
+    --     Carro: Paso 1         <- in-place change
+    --     Carro: Paso 2         <- in-place change
+    --     Pago                  <- real screen change, ordinal reset to 0
+    --
+    -- The base name is inherited, never invented; the recorder only
+    -- enumerates beneath it, using config.spa_section_step_label. Where
+    -- there is no base yet — an in-place change before any real screen
+    -- change — no section is started at all, because a bare "Paso 1"
+    -- names nothing.
+    --
+    -- The numbering is a placeholder that puts the divider in the right
+    -- column. Renaming it is expected, and is what the editor is for.
 }
 
 invariant ScoreStateTransitionExplicit {
     -- A Score's state changes only via UserMarksScoreAsFinal or
     -- UserReopensScoreAsDraft. No rule mutates state automatically.
+    -- In particular, stopping a recording does not promote it: a
+    -- recording stays draft until someone says otherwise.
 }
 
-invariant StableIdsAreUnique {
-    for s1, s2 in Scores where s1 != s2:        s1.id != s2.id
-    for m1, m2 in Movements where m1 != m2:     m1.id != m2.id
-    for st1, st2 in ScoreSteps where st1 != st2: st1.id != st2.id
-    for ts1, ts2 in TraceSnapshots where ts1 != ts2: ts1.id != ts2.id
+invariant StoragePressureIsAdvisory {
+    -- The library is bounded by weight, not by count. Twenty
+    -- recordings full of screenshots and twenty typed partituras are
+    -- wildly different loads on the profile's quota, and only one of
+    -- them threatens it.
+    --
+    -- On crossing config.library_pressure_fraction of the profile's
+    -- quota — or config.score_count_backstop scores, where the browser
+    -- reports no quota at all — the user is warned and offered a
+    -- backup export. Nothing else happens. No save is refused, no
+    -- score is evicted, and recording is never blocked because the
+    -- library is full.
+    --
+    -- Refusing or evicting would destroy captured evidence that exists
+    -- nowhere else, on a judgement the software is not in a position
+    -- to make. The policy itself belongs to core; this spec's part is
+    -- to never gate capture on it.
+}
+
+invariant IdsAreMintedNotReused {
+    -- Score, Movement, ScoreStep, RecordingSession and TraceSnapshot
+    -- ids are minted fresh and never reused. The uniqueness statements
+    -- live with the entities, in score-contract.allium
+    -- (StableIdsAreUnique, MovementIdsAreUnique, StepIdsAreUnique).
+    --
+    -- What matters here is that the recorder mints and never rewrites:
+    -- a step id is the join to its snapshot, so reassigning one
+    -- silently reattaches evidence to the wrong moment.
+}
+
+-- ============================================================
+-- Actor Declarations
+-- ============================================================
+
+-- The external party at this boundary is code, not a person: the
+-- browser's extension runtime, delivering DOM events into the recorder
+-- and rendering its state back out.
+actor BrowserExtensionRuntime {
+    identified_by: Recorder where state in { idle, recording, paused }
 }
 
 -- ============================================================
@@ -1079,12 +1535,17 @@ surface BrowserHost {
     facing browser: BrowserExtensionRuntime
 
     exposes:
+        browser.state
+        browser.active_score
+        browser.active_session
+        browser.pending_section_title
+
+    provides:
         UserCreatesScore(layout: ScoreLayout, title: String?)
         UserStartsRecording(score: Score)
-        UserPausesRecording
-        UserResumesRecording
-        UserStopsRecording
-        UserStartsNewMovement(score: Score)
+        UserPausesRecording(session: RecordingSession)
+        UserResumesRecording(session: RecordingSession)
+        UserStopsRecording(session: RecordingSession)
         UserAddsBlankStep(movement: Movement)
         UserEditsCell(step: ScoreStep, layer: ScoreLayer, new_value: Cell)
         UserEditsScoreMetadata(score: Score, title: String?, description: String?, layout: ScoreLayout?)
@@ -1100,13 +1561,14 @@ surface BrowserHost {
         UserChangesSelection(element: InteractiveElement, new_value: String)
         UserAttachesFile(element: InteractiveElement, file_count: Integer, file_names: List<String>)
         UserDragsAndDrops(source: InteractiveElement, target: InteractiveElement)
-        MediaElementBeganPlaying(media: MediaElement)
+        MediaElementEvent(media: MediaElement, event_kind: MediaEventKind)
         ErrorBecameVisible(indicator: ErrorIndicator)
         HoverRevealedContent(element: InteractiveElement, revealed_text: String, duration: Duration)
+        SignificantDomMutation(page: WebPage, changed_fraction: Decimal)
 
         UserExportsScoreAsPiXJson(score: Score)
         UserExportsScoreAsPdf(score: Score)
-        UserImportsPiXScore(document: PiXScoreDocument)
+        UserImportsPiXScore(target_score: Score, document: PiXScoreDocument)
 
     @guarantee NoNetworkSideEffects
         -- No rule sends data to a remote service. Recordings live
@@ -1126,6 +1588,14 @@ surface BrowserHost {
         -- visible on every tab where the recorder might capture.
         -- It disappears only after UserStopsRecording.
 
+    @guarantee ReRecordingIsAnnounced
+        -- Starting a recording against a score that already has a
+        -- trace tells the user, before capture begins, that this is a
+        -- second sitting appended to the first, and how many sittings
+        -- the score already carries. Nothing is overwritten, and the
+        -- surface says so — a person about to re-record is entitled to
+        -- expect the opposite, because most recorders do overwrite.
+
     @guarantee CrossSiteCaptureScope
         -- The boundary marker on a TraceSnapshot is metadata only:
         -- it describes that the user crossed hosts since the
@@ -1144,8 +1614,20 @@ surface BrowserHost {
         -- until a successful flush. The recording is never
         -- silently dropped.
 
+    @guarantee StoragePressureWarnsAndOffersBackup
+        -- On crossing config.library_pressure_fraction the surface
+        -- tells the user how full the library is and offers to export
+        -- a backup before anything is deleted. It never refuses a
+        -- save, never evicts, and never refuses to start a recording.
+        -- The choice of what goes is the user's, made with the
+        -- evidence in front of them.
+        --
+        -- Where the browser reports no quota, the count backstop
+        -- applies and the warning says so, rather than implying a
+        -- measurement that was never taken.
+
     @guarantee PrivacyOfTypedValues
-        -- Per @invariant DialogueValuePrivacy: typed text from
+        -- Per invariant DialogueValuePrivacy: typed text from
         -- text_input, password_input, text_area and contenteditable
         -- never appears in any captured cell. The user can later
         -- enrich the dialogue text in the editor — that's a
@@ -1163,20 +1645,10 @@ surface BrowserHost {
 -- Open Questions
 -- ============================================================
 
-open question "Library overflow at config.score_library_capacity: refuse new scores, evict the oldest, or warn the user?"
+open question "Hover-reveal capture: HoverRevealCriteria detects tooltips/popovers via DOM mutation during dwell. Some sites render content on hover via CSS-only (no DOM change) — those reveals are invisible to the recorder. A heuristic (computed-style change on a specific element) is possible but expensive to run on every dwell. Still deferred."
 
-open question "Granularity aggregation: should consecutive captures within the same form / component collapse to a single step at capture time (smart-buffering), or always be captured atomically and merged later in the editor (post-capture)? This spec assumes the latter (capture-all-then-merge) — the merge affordance lives in the editor (UserMergesSteps, in score-contract.allium when written)."
+open question "Provenance has no home in the contract. The recorder writes ScoreProvenance (user agent, extension version, timezone, locale) once at Score creation, and this spec's external view of Score carries the field. score-contract.allium's Score does not. Either core takes provenance — it is capture-derived, so it arguably belongs beside the trace rather than on the score — or this spec stops writing it. Until that is settled the two documents disagree about what a Score carries."
 
-open question "Perceptual screen changes that share URL, document.title and tab — e.g. an SPA wizard where a 'cart' has 3 moments rendered in place via JS. SectionStartsOnScreenChange does not detect these. Heuristic options: detect significant DOM mutation, observe history.replaceState, or expose a keyboard shortcut for the user to mark sections while recording. Decision deferred."
+open question "Naming the base of an SPA section series. SpaScreenChangeStartsSection inherits last_section_base from the last real screen change and enumerates beneath it. Where the recording opens directly onto an SPA — no real screen change has happened yet — there is no base, and the rule declines to start a section at all, so in-place changes before the first navigation are invisible. Is falling back to the document title at session start good enough, or should the recorder ask the user to name the screen once at the start of a sitting?"
 
-open question "user_cell suggestion heuristic: should suggest_user_cell ever return non-empty? This spec returns empty_cell in all cases — the user layer is left blank for the human author to fill in. High-confidence signals (e.g. landing on a confirmation page after a submit -> pix-happy) might be worth seeding. Open."
-
-open question "Re-recording a Score: starting a new recording session against an existing Score (with an existing trace) — replace the previous trace, append-extend it, or forbid? This spec forbids via @invariant TraceCardinality — recording a draft starts fresh. Confirm or relax."
-
-open question "Hover-reveal capture: today HoverRevealCriteria detects tooltips/popovers via DOM mutation during dwell. Some sites render content on hover via CSS-only (no DOM change) — those reveals are invisible to the recorder. Heuristic to detect CSS-only reveals (computed-style change of a specific element) is possible but expensive. Defer."
-
-open question "Media playback scope: today only the first play event per <video>/<audio> element is captured. Should pause / seek / end be captured too? Should re-playing the same element produce a new step? Defer."
-
-open question "Drag-drop screenshot timing: the screenshot is taken at drop. The dragged element is no longer visible in its original position. Should we also capture a snapshot at drag-start (showing the source 'in flight')? That doubles the storage cost per drag-drop. Defer."
-
-open question "Multi-tab parallelism representation: today TraceSnapshot.captured_tab_id annotates each snapshot, and SectionStartsOnScreenChange creates a section divider on tab switch. The partitura is still linear. Should we instead create a separate Movement per tab (parallel branches in the score data model)? Today no — the linear interleaving with tab annotations is the chosen abstraction. Revisit if user testing shows the linear view is confusing."
+open question "Detecting the high-confidence success signal. UserLayerSeededOnlyOnStrongSignals commits to seeding config.icon_user_success when a submit lands on a confirmation screen, but does not say how the recorder recognises one. Candidate signals: a navigation immediately after a text_committed or click on a submit control, plus a page whose text matches confirmation tokens; or the absence of any ErrorIndicator within a window after submit. The second is cheaper and locale-agnostic but weaker. Needs a criteria invariant of the same kind as ErrorDetectionCriteria before it can be implemented."
